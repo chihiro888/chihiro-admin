@@ -2,10 +2,8 @@
 import { useState } from 'react'
 import * as Yup from 'yup'
 import clsx from 'clsx'
-import { Link } from 'react-router-dom'
 import { useFormik } from 'formik'
 import { getUserByToken, login } from '../core/_requests'
-import { toAbsoluteUrl } from '../../../../_metronic/helpers'
 import { useAuth } from '../core/Auth'
 
 const loginSchema = Yup.object().shape({
@@ -64,13 +62,7 @@ export function Login() {
     >
       {/* begin::Heading */}
       <div className="text-center mb-10">
-        <h1 className="text-dark mb-3">Sign In to Metronic</h1>
-        <div className="text-gray-400 fw-bold fs-4">
-          New Here?{' '}
-          <Link to="/auth/registration" className="link-primary fw-bolder">
-            Create an Account
-          </Link>
-        </div>
+        <h1 className="text-dark mb-3">Mysql Query Saver</h1>
       </div>
       {/* begin::Heading */}
 
@@ -121,15 +113,6 @@ export function Login() {
               Password
             </label>
             {/* end::Label */}
-            {/* begin::Link */}
-            <Link
-              to="/auth/forgot-password"
-              className="link-primary fs-6 fw-bolder"
-              style={{ marginLeft: '5px' }}
-            >
-              Forgot Password ?
-            </Link>
-            {/* end::Link */}
           </div>
         </div>
         <input
@@ -164,7 +147,7 @@ export function Login() {
           className="btn btn-lg btn-primary w-100 mb-5"
           disabled={formik.isSubmitting || !formik.isValid}
         >
-          {!loading && <span className="indicator-label">Continue</span>}
+          {!loading && <span className="indicator-label">Sign in</span>}
           {loading && (
             <span className="indicator-progress" style={{ display: 'block' }}>
               Please wait...
