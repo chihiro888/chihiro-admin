@@ -1,7 +1,7 @@
 import { ISession } from 'connect-typeorm/out'
 import { Column, Entity } from 'typeorm'
 
-@Entity('_session', { schema: 'mysql_query_saver_db' })
+@Entity('_session', { schema: 'mysql_query_saver' })
 export class Session implements ISession {
   @Column('varchar', {
     primary: true,

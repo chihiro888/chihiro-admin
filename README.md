@@ -2,7 +2,7 @@
 
 ## Initial Setting
 
-###  install nodeenv for mac
+### install nodeenv for mac
 
 ```bash
 brew install nodeenv
@@ -21,22 +21,38 @@ nodeenv --node=16.16.0 nenv
 ```
 
 ### install yarn
+
 ```bash
 npm install -g yarn
 ```
 
-## backend
+## database
+
 ```bash
-yarn install
+cd infra
+docker-compose up
 ```
+
+## backend
+
 ```bash
-yarn start
+cd backend
+yarn install
+
+# if local
+yarn start:local
+
+# if development
+yarn start:dev
+
+# if production
+yarn start:prod
 ```
 
 ## frontend
+
 ```bash
+cd frontend
 yarn install
-```
-```bash
 yarn start
 ```

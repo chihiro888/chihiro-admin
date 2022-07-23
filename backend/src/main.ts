@@ -3,6 +3,10 @@ import { AppModule } from './app.module'
 import { HttpExceptionFilter } from './common/http-exception.filter'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 import configuration from './configuration/configuration'
+import * as session from 'express-session'
+// import { TypeormStore } from 'connect-typeorm/out'
+// import { getConnectionManager } from 'typeorm'
+// import { Session } from './app/session/session.entity'
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule)
@@ -11,18 +15,16 @@ async function bootstrap() {
   app.useGlobalFilters(new HttpExceptionFilter())
 
   // session
-  /*
   app.use(
     session({
-      secret: 'mysql-query-saver',
+      secret: 'my-secret',
       resave: false,
-      saveUninitialized: true,
-      store: new TypeormStore().connect(
-        getConnectionManager().get('mysql_query_saver').getRepository(Session)
-      )
+      saveUninitialized: false
+      // store: new TypeormStore().connect(
+      //   getConnectionManager().get('mysql_query_saver').getRepository(Session)
+      // )
     })
   )
-  */
 
   // swagger config
   const config = new DocumentBuilder()

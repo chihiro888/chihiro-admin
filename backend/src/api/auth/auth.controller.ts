@@ -1,7 +1,15 @@
-import { Controller, Get, HttpStatus, Res } from '@nestjs/common'
+import {
+  Body,
+  Controller,
+  HttpStatus,
+  Post,
+  Res,
+  Session
+} from '@nestjs/common'
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 import SWAGGER from 'src/common/constants-swagger'
 import { Response } from 'express'
+import { SignInDto } from './dto/sign-in.dto'
 
 // ANCHOR auth controller
 @ApiTags(SWAGGER.AUTH.TAG)
@@ -11,21 +19,31 @@ export class AuthController {
     //
   }
 
-  // ANCHOR test API
+  // ANCHOR Sign in API
   @ApiOperation({
-    summary: SWAGGER.AUTH.TEST.SUMMARY,
-    description: SWAGGER.AUTH.TEST.DESC
+    summary: SWAGGER.AUTH.SIGN_IN.SUMMARY,
+    description: SWAGGER.AUTH.SIGN_IN.DESC
   })
   @ApiResponse({
     status: HttpStatus.OK,
-    description: SWAGGER.AUTH.TEST.RES_200
+    description: SWAGGER.AUTH.SIGN_IN.RES_200
   })
-  @Get(SWAGGER.AUTH.TEST.URL)
-  async test(@Res() res: Response) {
+  @Post(SWAGGER.AUTH.SIGN_IN.URL)
+  async signIn(
+    @Res() res: Response,
+    @Body() dto: SignInDto,
+    @Session() session
+  ) {
+    // debug
+    console.log('dto -> ', dto)
+
+    // session test
+    session.hello = 'world'
+
     // return 200 response
     res.status(HttpStatus.OK).json({
       statusCode: HttpStatus.OK,
-      message: SWAGGER.AUTH.TEST.MSG.OK,
+      message: SWAGGER.AUTH.SIGN_IN.MSG.OK,
       data: null
     })
   }

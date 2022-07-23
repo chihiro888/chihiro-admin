@@ -2,11 +2,11 @@ const SWAGGER = {
   // auth
   AUTH: {
     TAG: 'auth',
-    URL: 'api/auth',
-    TEST: {
-      URL: 'test',
-      SUMMARY: 'test API',
-      DESC: 'just test',
+    URL: 'api/signIn',
+    SIGN_IN: {
+      URL: 'signIn',
+      SUMMARY: 'This is Sign in API',
+      DESC: 'Sign in API',
       RES_200: 'success',
       MSG: {
         OK: ''
