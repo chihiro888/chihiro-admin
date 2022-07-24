@@ -1,8 +1,16 @@
-import { Body, Controller, HttpStatus, Post, Res } from '@nestjs/common'
+import {
+  Body,
+  Controller,
+  HttpStatus,
+  Post,
+  Res,
+  UseGuards
+} from '@nestjs/common'
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 import { Response } from 'express'
 import { UserService } from 'src/app/user/user.service'
 import SWAGGER from 'src/common/constants/swagger'
+import { AuthGuard } from 'src/common/guard/auth.guard'
 import { CreateUserDto } from './dto/create-user.dto'
 
 // ANCHOR user controller
@@ -20,6 +28,7 @@ export class UserController {
     status: HttpStatus.OK,
     description: SWAGGER.USER.CREATE_USER.RES.OK
   })
+  @UseGuards(AuthGuard)
   @Post(SWAGGER.USER.CREATE_USER.URL)
   async createUser(@Res() res: Response, @Body() dto: CreateUserDto) {
     // create account

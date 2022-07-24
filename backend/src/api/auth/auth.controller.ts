@@ -12,7 +12,7 @@ import { Response } from 'express'
 import { SignInDto } from './dto/sign-in.dto'
 import { UserService } from 'src/app/user/user.service'
 import SWAGGER from 'src/common/constants/swagger'
-import { isMatch } from 'src/common/util/auth'
+import { isMatch, login } from 'src/common/util/auth'
 
 // ANCHOR auth controller
 @ApiTags(SWAGGER.AUTH.TAG)
@@ -20,7 +20,7 @@ import { isMatch } from 'src/common/util/auth'
 export class AuthController {
   constructor(private userService: UserService) {}
 
-  // ANCHOR Sign in API
+  // ANCHOR Sign In API
   @ApiOperation({
     summary: SWAGGER.AUTH.SIGN_IN.SUMMARY,
     description: SWAGGER.AUTH.SIGN_IN.DESC
@@ -53,7 +53,7 @@ export class AuthController {
     }
 
     // login
-    session.userId = user.id
+    await login(session, user)
 
     // return 200 response
     res.status(HttpStatus.OK).json({
