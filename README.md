@@ -33,6 +33,16 @@ cd infra
 docker-compose up
 ```
 
+| key           | value             |
+| ------------- | ----------------- |
+| host          | localhost         |
+| port          | 3306              |
+| database      | mysql_query_saver |
+| root user     | root              |
+| root password | root              |
+| user          | docker            |
+| password      | docker            |
+
 ## backend
 
 - Please create the database with docker first.
