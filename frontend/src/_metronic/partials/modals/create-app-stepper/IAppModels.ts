@@ -1,6 +1,9 @@
 export interface IAppBasic {
   appName: string
-  appType: 'Quick Online Courses' | 'Face to Face Discussions' | 'Full Intro Training'
+  appType:
+    | 'Quick Online Courses'
+    | 'Face to Face Discussions'
+    | 'Full Intro Training'
 }
 
 export type TAppFramework = 'HTML5' | 'ReactJS' | 'Angular' | 'Vue'
@@ -20,14 +23,14 @@ export interface ICreateAppData {
 }
 
 export const defaultCreateAppData: ICreateAppData = {
-  appBasic: {appName: '', appType: 'Quick Online Courses'},
+  appBasic: { appName: '', appType: 'Quick Online Courses' },
   appFramework: 'HTML5',
-  appDatabase: {databaseName: 'db_name', databaseSolution: 'MySQL'},
-  appStorage: 'Basic Server',
+  appDatabase: { databaseName: 'db_name', databaseSolution: 'MySQL' },
+  appStorage: 'Basic Server'
 }
 
 export type StepProps = {
-  data: ICreateAppData,
-  updateData: (fieldsToUpdate: Partial<ICreateAppData>) => void,
+  data: ICreateAppData
+  updateData: (fieldsToUpdate: Partial<ICreateAppData>) => void
   hasError: boolean
 }

@@ -10,72 +10,72 @@
 
 // Slide In Down
 @keyframes animationSlideInDown {
-    from {
-        transform: translate3d(0, -100%, 0);
-        visibility: visible;
-    }
+  from {
+    transform: translate3d(0, -100%, 0);
+    visibility: visible;
+  }
 
-    to {
-        transform: translate3d(0, 0, 0);
-    }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
 }
 
 .animation-slide-in-down {
-    animation-name: animationSlideInDown;
+  animation-name: animationSlideInDown;
 }
 
 // Slide In Up
 @keyframes animationSlideInUp {
-    from {
-        transform: translate3d(0, 100%, 0);
-        visibility: visible;
-    }
+  from {
+    transform: translate3d(0, 100%, 0);
+    visibility: visible;
+  }
 
-    to {
-        transform: translate3d(0, 0, 0);
-    }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
 }
 
 .animation-slide-in-up {
-    animation-name: animationSlideInUp;
+  animation-name: animationSlideInUp;
 }
 
 // Fade In
 @keyframes animationFadeIn {
-    from {
-        opacity: 0;
-    }
+  from {
+    opacity: 0;
+  }
 
-    to {
-        opacity: 1;
-    }
+  to {
+    opacity: 1;
+  }
 }
 
 .animation-fade-in {
-    animation-name: animationFadeIn;
+  animation-name: animationFadeIn;
 }
 
 // Fade Out
 @keyframes animationFadeOut {
-    from {
-        opacity: 1;
-    }
+  from {
+    opacity: 1;
+  }
 
-    to {
-        opacity: 0;
-    }
+  to {
+    opacity: 0;
+  }
 }
 .animation-fade-out {
-    animation-name: animationFadeOut;
+  animation-name: animationFadeOut;
 }
 
 // Blink
 .animation-blink {
-    animation: animationBlink 1s steps(5, start) infinite;
+  animation: animationBlink 1s steps(5, start) infinite;
 }
 
 @keyframes animationBlink {
-    to {
-        visibility: hidden;
-    }
+  to {
+    visibility: hidden;
+  }
 }

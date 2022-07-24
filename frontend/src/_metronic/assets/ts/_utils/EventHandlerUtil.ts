@@ -1,5 +1,5 @@
-import {DataUtil} from './_DataUtil'
-import {getUniqueIdWithPrefix} from './_TypesHelpers'
+import { DataUtil } from './_DataUtil'
+import { getUniqueIdWithPrefix } from './_TypesHelpers'
 
 export interface EventMeta {
   name: string
@@ -45,7 +45,10 @@ export class EventHandlerUtil {
     EventHandlerUtil.store[name][handlerId] = meta
   }
 
-  private static getEventMetaByHandlerId(name: string, handlerId: string): EventMeta | undefined {
+  private static getEventMetaByHandlerId(
+    name: string,
+    handlerId: string
+  ): EventMeta | undefined {
     const handlersIds = EventHandlerUtil.store[name]
     if (!handlersIds) {
       return
@@ -53,7 +56,11 @@ export class EventHandlerUtil {
     return handlersIds[handlerId]
   }
 
-  private static setFiredByNameAndHandlerId(name: string, handerId: string, fired: boolean): void {
+  private static setFiredByNameAndHandlerId(
+    name: string,
+    handerId: string,
+    fired: boolean
+  ): void {
     const meta = EventHandlerUtil.getEventMetaByHandlerId(name, handerId)
     if (!meta) {
       return
@@ -80,14 +87,18 @@ export class EventHandlerUtil {
       name: name,
       callback: callback,
       one: one,
-      fired: false,
+      fired: false
     }
 
     EventHandlerUtil.setEventMetaByNameAndHandlerId(name, handlerId, meta)
     return handlerId
   }
 
-  private static removeEvent(element: HTMLElement, name: string, handerId: string) {
+  private static removeEvent(
+    element: HTMLElement,
+    name: string,
+    handerId: string
+  ) {
     DataUtil.removeOne(element, name, handerId)
     const handlersIds = EventHandlerUtil.store[name]
     if (handlersIds) {
@@ -97,7 +108,12 @@ export class EventHandlerUtil {
     delete EventHandlerUtil.store[name][handerId]
   }
 
-  public static trigger(element: HTMLElement, name: string, target?: any, e?: Event): boolean {
+  public static trigger(
+    element: HTMLElement,
+    name: string,
+    target?: any,
+    e?: Event
+  ): boolean {
     let returnValue = true
     if (!DataUtil.has(element, name)) {
       return returnValue
@@ -109,7 +125,10 @@ export class EventHandlerUtil {
     const handlersIds = data ? (data as string[]) : []
     for (let i = 0; i < handlersIds.length; i++) {
       handlerId = handlersIds[i]
-      if (EventHandlerUtil.store[name] && EventHandlerUtil.store[name][handlerId]) {
+      if (
+        EventHandlerUtil.store[name] &&
+        EventHandlerUtil.store[name][handlerId]
+      ) {
         const handler = EventHandlerUtil.store[name][handlerId]
         if (handler.name === name) {
           if (handler.one) {
@@ -130,15 +149,27 @@ export class EventHandlerUtil {
     return returnValue
   }
 
-  public static on = function (element: HTMLElement, name: string, callBack: Function): void {
+  public static on = function (
+    element: HTMLElement,
+    name: string,
+    callBack: Function
+  ): void {
     EventHandlerUtil.addEvent(element, name, callBack, false)
   }
 
-  public static one(element: HTMLElement, name: string, callBack: Function): void {
+  public static one(
+    element: HTMLElement,
+    name: string,
+    callBack: Function
+  ): void {
     EventHandlerUtil.addEvent(element, name, callBack, true)
   }
 
-  public static off(element: HTMLElement, name: string, handerId: string): void {
+  public static off(
+    element: HTMLElement,
+    name: string,
+    handerId: string
+  ): void {
     EventHandlerUtil.removeEvent(element, name, handerId)
   }
 }

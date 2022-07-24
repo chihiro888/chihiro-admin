@@ -1,6 +1,6 @@
-import {FC} from 'react'
+import { FC } from 'react'
 import clsx from 'clsx'
-import {WithChildren} from '../react18MigrationHelpers'
+import { WithChildren } from '../react18MigrationHelpers'
 
 // Wrapper on html card:
 // https://preview.keenthemes.com/metronic8/demo1/documentation/base/cards.html
@@ -12,7 +12,12 @@ type Props = {
   resetSidePaddings?: boolean // https://preview.keenthemes.com/metronic8/demo1/documentation/base/cards.html#reset-side-paddings
   border?: boolean // https://preview.keenthemes.com/metronic8/demo1/documentation/base/cards.html#bordered
   dashed?: boolean // https://preview.keenthemes.com/metronic8/demo1/documentation/base/cards.html#dashed
-  stretch?: 'stretch' | 'stretch-75' | 'stretch-50' | 'stretch-33' | 'stretch-25' // https://preview.keenthemes.com/metronic8/demo1/documentation/base/cards.html#stretch
+  stretch?:
+    | 'stretch'
+    | 'stretch-75'
+    | 'stretch-50'
+    | 'stretch-33'
+    | 'stretch-25' // https://preview.keenthemes.com/metronic8/demo1/documentation/base/cards.html#stretch
   rounded?: 'rounded' | 'rounded-top' | 'rounded-bottom'
   // https://preview.keenthemes.com/metronic8/demo1/documentation/base/cards.html#utilities
   utilityP?: number
@@ -33,7 +38,7 @@ const KTCard: FC<Props & WithChildren> = (props) => {
     utilityP,
     utilityPY,
     utilityPX,
-    children,
+    children
   } = props
   return (
     <div
@@ -45,7 +50,7 @@ const KTCard: FC<Props & WithChildren> = (props) => {
           'card-flush': flush,
           'card-px-0': resetSidePaddings,
           'card-bordered': border,
-          'card-dashed': dashed,
+          'card-dashed': dashed
         },
         stretch && `card-${stretch}`,
         utilityP && `p-${utilityP}`,
@@ -59,4 +64,4 @@ const KTCard: FC<Props & WithChildren> = (props) => {
   )
 }
 
-export {KTCard}
+export { KTCard }

@@ -3,12 +3,12 @@
 //
 
 // Initialize
-@import "init";
+@import 'init';
 
 // Components
-@import "./core/components/components";
-@import "components/components";
+@import './core/components/components';
+@import 'components/components';
 
 // Layout
-@import "./core/layout/base";
-@import "layout/layout";
+@import './core/layout/base';
+@import 'layout/layout';

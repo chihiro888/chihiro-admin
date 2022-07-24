@@ -1,10 +1,10 @@
-import React, {useRef, useEffect} from 'react'
-import {useLayout} from '../core'
+import React, { useRef, useEffect } from 'react'
+import { useLayout } from '../core'
 
 const BG_COLORS = ['bg-body', 'bg-info']
 
 export function Sidebar() {
-  const {classes} = useLayout()
+  const { classes } = useLayout()
   const sidebarCSSClass = classes.sidebar
   const sideBarRef = useRef<HTMLDivElement | null>(null)
 

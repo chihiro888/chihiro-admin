@@ -26,24 +26,24 @@ export interface ISettings {
 export const defaultSettings: ISettings = {
   setupEmailNotifications: {
     emailNotifications: true,
-    sendCopyToPersonalEmail: false,
+    sendCopyToPersonalEmail: false
   },
   activityRelatedEmail: {
     whenToEmail: {
       youHaveNewNotifications: true,
       youAreADirectMessage: false,
-      someoneAddsYouAsAConnection: false,
+      someoneAddsYouAsAConnection: false
     },
     whenToEscalateEmails: {
       uponNewOrder: true,
       newMembershipApproval: false,
-      memberRegistration: false,
-    },
+      memberRegistration: false
+    }
   },
   updatesFromKeenthemes: {
     newsAboutKTProducts: false,
     tipsOnGettingMore: false,
     thingsYouMissed: false,
-    newsAboutKTPartners: false,
-  },
+    newsAboutKTPartners: false
+  }
 }

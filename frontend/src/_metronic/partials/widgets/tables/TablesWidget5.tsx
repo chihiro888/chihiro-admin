@@ -1,45 +1,47 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react'
-import {KTSVG, toAbsoluteUrl} from '../../../helpers'
+import { KTSVG, toAbsoluteUrl } from '../../../helpers'
 
 type Props = {
   className: string
 }
 
-const TablesWidget5: React.FC<Props> = ({className}) => {
+const TablesWidget5: React.FC<Props> = ({ className }) => {
   return (
     <div className={`card ${className}`}>
       {/* begin::Header */}
-      <div className='card-header border-0 pt-5'>
-        <h3 className='card-title align-items-start flex-column'>
-          <span className='card-label fw-bold fs-3 mb-1'>Latest Products</span>
-          <span className='text-muted mt-1 fw-semibold fs-7'>More than 400 new products</span>
+      <div className="card-header border-0 pt-5">
+        <h3 className="card-title align-items-start flex-column">
+          <span className="card-label fw-bold fs-3 mb-1">Latest Products</span>
+          <span className="text-muted mt-1 fw-semibold fs-7">
+            More than 400 new products
+          </span>
         </h3>
-        <div className='card-toolbar'>
-          <ul className='nav'>
-            <li className='nav-item'>
+        <div className="card-toolbar">
+          <ul className="nav">
+            <li className="nav-item">
               <a
-                className='nav-link btn btn-sm btn-color-muted btn-active btn-active-light-primary active fw-bold px-4 me-1'
-                data-bs-toggle='tab'
-                href='#kt_table_widget_5_tab_1'
+                className="nav-link btn btn-sm btn-color-muted btn-active btn-active-light-primary active fw-bold px-4 me-1"
+                data-bs-toggle="tab"
+                href="#kt_table_widget_5_tab_1"
               >
                 Month
               </a>
             </li>
-            <li className='nav-item'>
+            <li className="nav-item">
               <a
-                className='nav-link btn btn-sm btn-color-muted btn-active btn-active-light-primary fw-bold px-4 me-1'
-                data-bs-toggle='tab'
-                href='#kt_table_widget_5_tab_2'
+                className="nav-link btn btn-sm btn-color-muted btn-active btn-active-light-primary fw-bold px-4 me-1"
+                data-bs-toggle="tab"
+                href="#kt_table_widget_5_tab_2"
               >
                 Week
               </a>
             </li>
-            <li className='nav-item'>
+            <li className="nav-item">
               <a
-                className='nav-link btn btn-sm btn-color-muted btn-active btn-active-light-primary fw-bold px-4'
-                data-bs-toggle='tab'
-                href='#kt_table_widget_5_tab_3'
+                className="nav-link btn btn-sm btn-color-muted btn-active btn-active-light-primary fw-bold px-4"
+                data-bs-toggle="tab"
+                href="#kt_table_widget_5_tab_3"
               >
                 Day
               </a>
@@ -49,22 +51,25 @@ const TablesWidget5: React.FC<Props> = ({className}) => {
       </div>
       {/* end::Header */}
       {/* begin::Body */}
-      <div className='card-body py-3'>
-        <div className='tab-content'>
+      <div className="card-body py-3">
+        <div className="tab-content">
           {/* begin::Tap pane */}
-          <div className='tab-pane fade show active' id='kt_table_widget_5_tab_1'>
+          <div
+            className="tab-pane fade show active"
+            id="kt_table_widget_5_tab_1"
+          >
             {/* begin::Table container */}
-            <div className='table-responsive'>
+            <div className="table-responsive">
               {/* begin::Table */}
-              <table className='table table-row-dashed table-row-gray-200 align-middle gs-0 gy-4'>
+              <table className="table table-row-dashed table-row-gray-200 align-middle gs-0 gy-4">
                 {/* begin::Table head */}
                 <thead>
-                  <tr className='border-0'>
-                    <th className='p-0 w-50px'></th>
-                    <th className='p-0 min-w-150px'></th>
-                    <th className='p-0 min-w-140px'></th>
-                    <th className='p-0 min-w-110px'></th>
-                    <th className='p-0 min-w-50px'></th>
+                  <tr className="border-0">
+                    <th className="p-0 w-50px"></th>
+                    <th className="p-0 min-w-150px"></th>
+                    <th className="p-0 min-w-140px"></th>
+                    <th className="p-0 min-w-110px"></th>
+                    <th className="p-0 min-w-50px"></th>
                   </tr>
                 </thead>
                 {/* end::Table head */}
@@ -72,170 +77,221 @@ const TablesWidget5: React.FC<Props> = ({className}) => {
                 <tbody>
                   <tr>
                     <td>
-                      <div className='symbol symbol-45px me-2'>
-                        <span className='symbol-label'>
+                      <div className="symbol symbol-45px me-2">
+                        <span className="symbol-label">
                           <img
-                            src={toAbsoluteUrl('/media/svg/brand-logos/plurk.svg')}
-                            className='h-50 align-self-center'
-                            alt=''
+                            src={toAbsoluteUrl(
+                              '/media/svg/brand-logos/plurk.svg'
+                            )}
+                            className="h-50 align-self-center"
+                            alt=""
                           />
                         </span>
                       </div>
                     </td>
                     <td>
-                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
+                      <a
+                        href="#"
+                        className="text-dark fw-bold text-hover-primary mb-1 fs-6"
+                      >
                         Brad Simmons
                       </a>
-                      <span className='text-muted fw-semibold d-block'>Movie Creator</span>
+                      <span className="text-muted fw-semibold d-block">
+                        Movie Creator
+                      </span>
                     </td>
-                    <td className='text-end text-muted fw-semibold'>React, HTML</td>
-                    <td className='text-end'>
-                      <span className='badge badge-light-success'>Approved</span>
+                    <td className="text-end text-muted fw-semibold">
+                      React, HTML
                     </td>
-                    <td className='text-end'>
+                    <td className="text-end">
+                      <span className="badge badge-light-success">
+                        Approved
+                      </span>
+                    </td>
+                    <td className="text-end">
                       <a
-                        href='#'
-                        className='btn btn-sm btn-icon btn-bg-light btn-active-color-primary'
+                        href="#"
+                        className="btn btn-sm btn-icon btn-bg-light btn-active-color-primary"
                       >
                         <KTSVG
-                          path='/media/icons/duotune/arrows/arr064.svg'
-                          className='svg-icon-2'
+                          path="/media/icons/duotune/arrows/arr064.svg"
+                          className="svg-icon-2"
                         />
                       </a>
                     </td>
                   </tr>
                   <tr>
                     <td>
-                      <div className='symbol symbol-45px me-2'>
-                        <span className='symbol-label'>
+                      <div className="symbol symbol-45px me-2">
+                        <span className="symbol-label">
                           <img
-                            src={toAbsoluteUrl('/media/svg/brand-logos/telegram.svg')}
-                            className='h-50 align-self-center'
-                            alt=''
+                            src={toAbsoluteUrl(
+                              '/media/svg/brand-logos/telegram.svg'
+                            )}
+                            className="h-50 align-self-center"
+                            alt=""
                           />
                         </span>
                       </div>
                     </td>
                     <td>
-                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
+                      <a
+                        href="#"
+                        className="text-dark fw-bold text-hover-primary mb-1 fs-6"
+                      >
                         Popular Authors
                       </a>
-                      <span className='text-muted fw-semibold d-block'>Most Successful</span>
+                      <span className="text-muted fw-semibold d-block">
+                        Most Successful
+                      </span>
                     </td>
-                    <td className='text-end text-muted fw-semibold'>Python, MySQL</td>
-                    <td className='text-end'>
-                      <span className='badge badge-light-warning'>In Progress</span>
+                    <td className="text-end text-muted fw-semibold">
+                      Python, MySQL
                     </td>
-                    <td className='text-end'>
+                    <td className="text-end">
+                      <span className="badge badge-light-warning">
+                        In Progress
+                      </span>
+                    </td>
+                    <td className="text-end">
                       <a
-                        href='#'
-                        className='btn btn-sm btn-icon btn-bg-light btn-active-color-primary'
+                        href="#"
+                        className="btn btn-sm btn-icon btn-bg-light btn-active-color-primary"
                       >
                         <KTSVG
-                          path='/media/icons/duotune/arrows/arr064.svg'
-                          className='svg-icon-2'
+                          path="/media/icons/duotune/arrows/arr064.svg"
+                          className="svg-icon-2"
                         />
                       </a>
                     </td>
                   </tr>
                   <tr>
                     <td>
-                      <div className='symbol symbol-45px me-2'>
-                        <span className='symbol-label'>
+                      <div className="symbol symbol-45px me-2">
+                        <span className="symbol-label">
                           <img
-                            src={toAbsoluteUrl('/media/svg/brand-logos/vimeo.svg')}
-                            className='h-50 align-self-center'
-                            alt=''
+                            src={toAbsoluteUrl(
+                              '/media/svg/brand-logos/vimeo.svg'
+                            )}
+                            className="h-50 align-self-center"
+                            alt=""
                           />
                         </span>
                       </div>
                     </td>
                     <td>
-                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
+                      <a
+                        href="#"
+                        className="text-dark fw-bold text-hover-primary mb-1 fs-6"
+                      >
                         New Users
                       </a>
-                      <span className='text-muted fw-semibold d-block'>Awesome Users</span>
+                      <span className="text-muted fw-semibold d-block">
+                        Awesome Users
+                      </span>
                     </td>
-                    <td className='text-end text-muted fw-semibold'>Laravel,Metronic</td>
-                    <td className='text-end'>
-                      <span className='badge badge-light-primary'>Success</span>
+                    <td className="text-end text-muted fw-semibold">
+                      Laravel,Metronic
                     </td>
-                    <td className='text-end'>
+                    <td className="text-end">
+                      <span className="badge badge-light-primary">Success</span>
+                    </td>
+                    <td className="text-end">
                       <a
-                        href='#'
-                        className='btn btn-sm btn-icon btn-bg-light btn-active-color-primary'
+                        href="#"
+                        className="btn btn-sm btn-icon btn-bg-light btn-active-color-primary"
                       >
                         <KTSVG
-                          path='/media/icons/duotune/arrows/arr064.svg'
-                          className='svg-icon-2'
+                          path="/media/icons/duotune/arrows/arr064.svg"
+                          className="svg-icon-2"
                         />
                       </a>
                     </td>
                   </tr>
                   <tr>
                     <td>
-                      <div className='symbol symbol-45px me-2'>
-                        <span className='symbol-label'>
+                      <div className="symbol symbol-45px me-2">
+                        <span className="symbol-label">
                           <img
-                            src={toAbsoluteUrl('/media/svg/brand-logos/bebo.svg')}
-                            className='h-50 align-self-center'
-                            alt=''
+                            src={toAbsoluteUrl(
+                              '/media/svg/brand-logos/bebo.svg'
+                            )}
+                            className="h-50 align-self-center"
+                            alt=""
                           />
                         </span>
                       </div>
                     </td>
                     <td>
-                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
+                      <a
+                        href="#"
+                        className="text-dark fw-bold text-hover-primary mb-1 fs-6"
+                      >
                         Active Customers
                       </a>
-                      <span className='text-muted fw-semibold d-block'>Movie Creator</span>
+                      <span className="text-muted fw-semibold d-block">
+                        Movie Creator
+                      </span>
                     </td>
-                    <td className='text-end text-muted fw-semibold'>AngularJS, C#</td>
-                    <td className='text-end'>
-                      <span className='badge badge-light-danger'>Rejected</span>
+                    <td className="text-end text-muted fw-semibold">
+                      AngularJS, C#
                     </td>
-                    <td className='text-end'>
+                    <td className="text-end">
+                      <span className="badge badge-light-danger">Rejected</span>
+                    </td>
+                    <td className="text-end">
                       <a
-                        href='#'
-                        className='btn btn-sm btn-icon btn-bg-light btn-active-color-primary'
+                        href="#"
+                        className="btn btn-sm btn-icon btn-bg-light btn-active-color-primary"
                       >
                         <KTSVG
-                          path='/media/icons/duotune/arrows/arr064.svg'
-                          className='svg-icon-2'
+                          path="/media/icons/duotune/arrows/arr064.svg"
+                          className="svg-icon-2"
                         />
                       </a>
                     </td>
                   </tr>
                   <tr>
                     <td>
-                      <div className='symbol symbol-45px me-2'>
-                        <span className='symbol-label'>
+                      <div className="symbol symbol-45px me-2">
+                        <span className="symbol-label">
                           <img
-                            src={toAbsoluteUrl('/media/svg/brand-logos/kickstarter.svg')}
-                            className='h-50 align-self-center'
-                            alt=''
+                            src={toAbsoluteUrl(
+                              '/media/svg/brand-logos/kickstarter.svg'
+                            )}
+                            className="h-50 align-self-center"
+                            alt=""
                           />
                         </span>
                       </div>
                     </td>
                     <td>
-                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
+                      <a
+                        href="#"
+                        className="text-dark fw-bold text-hover-primary mb-1 fs-6"
+                      >
                         Bestseller Theme
                       </a>
-                      <span className='text-muted fw-semibold d-block'>Best Customers</span>
+                      <span className="text-muted fw-semibold d-block">
+                        Best Customers
+                      </span>
                     </td>
-                    <td className='text-end text-muted fw-semibold'>ReactJS, Ruby</td>
-                    <td className='text-end'>
-                      <span className='badge badge-light-warning'>In Progress</span>
+                    <td className="text-end text-muted fw-semibold">
+                      ReactJS, Ruby
                     </td>
-                    <td className='text-end'>
+                    <td className="text-end">
+                      <span className="badge badge-light-warning">
+                        In Progress
+                      </span>
+                    </td>
+                    <td className="text-end">
                       <a
-                        href='#'
-                        className='btn btn-sm btn-icon btn-bg-light btn-active-color-primary'
+                        href="#"
+                        className="btn btn-sm btn-icon btn-bg-light btn-active-color-primary"
                       >
                         <KTSVG
-                          path='/media/icons/duotune/arrows/arr064.svg'
-                          className='svg-icon-2'
+                          path="/media/icons/duotune/arrows/arr064.svg"
+                          className="svg-icon-2"
                         />
                       </a>
                     </td>
@@ -248,19 +304,19 @@ const TablesWidget5: React.FC<Props> = ({className}) => {
           </div>
           {/* end::Tap pane */}
           {/* begin::Tap pane */}
-          <div className='tab-pane fade' id='kt_table_widget_5_tab_2'>
+          <div className="tab-pane fade" id="kt_table_widget_5_tab_2">
             {/* begin::Table container */}
-            <div className='table-responsive'>
+            <div className="table-responsive">
               {/* begin::Table */}
-              <table className='table table-row-dashed table-row-gray-200 align-middle gs-0 gy-4'>
+              <table className="table table-row-dashed table-row-gray-200 align-middle gs-0 gy-4">
                 {/* begin::Table head */}
                 <thead>
-                  <tr className='border-0'>
-                    <th className='p-0 w-50px'></th>
-                    <th className='p-0 min-w-150px'></th>
-                    <th className='p-0 min-w-140px'></th>
-                    <th className='p-0 min-w-110px'></th>
-                    <th className='p-0 min-w-50px'></th>
+                  <tr className="border-0">
+                    <th className="p-0 w-50px"></th>
+                    <th className="p-0 min-w-150px"></th>
+                    <th className="p-0 min-w-140px"></th>
+                    <th className="p-0 min-w-110px"></th>
+                    <th className="p-0 min-w-50px"></th>
                   </tr>
                 </thead>
                 {/* end::Table head */}
@@ -268,102 +324,133 @@ const TablesWidget5: React.FC<Props> = ({className}) => {
                 <tbody>
                   <tr>
                     <td>
-                      <div className='symbol symbol-45px me-2'>
-                        <span className='symbol-label'>
+                      <div className="symbol symbol-45px me-2">
+                        <span className="symbol-label">
                           <img
-                            src={toAbsoluteUrl('/media/svg/brand-logos/plurk.svg')}
-                            className='h-50 align-self-center'
-                            alt=''
+                            src={toAbsoluteUrl(
+                              '/media/svg/brand-logos/plurk.svg'
+                            )}
+                            className="h-50 align-self-center"
+                            alt=""
                           />
                         </span>
                       </div>
                     </td>
                     <td>
-                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
+                      <a
+                        href="#"
+                        className="text-dark fw-bold text-hover-primary mb-1 fs-6"
+                      >
                         Brad Simmons
                       </a>
-                      <span className='text-muted fw-semibold d-block'>Movie Creator</span>
+                      <span className="text-muted fw-semibold d-block">
+                        Movie Creator
+                      </span>
                     </td>
-                    <td className='text-end text-muted fw-semibold'>React, HTML</td>
-                    <td className='text-end'>
-                      <span className='badge badge-light-success'>Approved</span>
+                    <td className="text-end text-muted fw-semibold">
+                      React, HTML
                     </td>
-                    <td className='text-end'>
+                    <td className="text-end">
+                      <span className="badge badge-light-success">
+                        Approved
+                      </span>
+                    </td>
+                    <td className="text-end">
                       <a
-                        href='#'
-                        className='btn btn-sm btn-icon btn-bg-light btn-active-color-primary'
+                        href="#"
+                        className="btn btn-sm btn-icon btn-bg-light btn-active-color-primary"
                       >
                         <KTSVG
-                          path='/media/icons/duotune/arrows/arr064.svg'
-                          className='svg-icon-2'
+                          path="/media/icons/duotune/arrows/arr064.svg"
+                          className="svg-icon-2"
                         />
                       </a>
                     </td>
                   </tr>
                   <tr>
                     <td>
-                      <div className='symbol symbol-45px me-2'>
-                        <span className='symbol-label'>
+                      <div className="symbol symbol-45px me-2">
+                        <span className="symbol-label">
                           <img
-                            src={toAbsoluteUrl('/media/svg/brand-logos/telegram.svg')}
-                            className='h-50 align-self-center'
-                            alt=''
+                            src={toAbsoluteUrl(
+                              '/media/svg/brand-logos/telegram.svg'
+                            )}
+                            className="h-50 align-self-center"
+                            alt=""
                           />
                         </span>
                       </div>
                     </td>
                     <td>
-                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
+                      <a
+                        href="#"
+                        className="text-dark fw-bold text-hover-primary mb-1 fs-6"
+                      >
                         Popular Authors
                       </a>
-                      <span className='text-muted fw-semibold d-block'>Most Successful</span>
+                      <span className="text-muted fw-semibold d-block">
+                        Most Successful
+                      </span>
                     </td>
-                    <td className='text-end text-muted fw-semibold'>Python, MySQL</td>
-                    <td className='text-end'>
-                      <span className='badge badge-light-warning'>In Progress</span>
+                    <td className="text-end text-muted fw-semibold">
+                      Python, MySQL
                     </td>
-                    <td className='text-end'>
+                    <td className="text-end">
+                      <span className="badge badge-light-warning">
+                        In Progress
+                      </span>
+                    </td>
+                    <td className="text-end">
                       <a
-                        href='#'
-                        className='btn btn-sm btn-icon btn-bg-light btn-active-color-primary'
+                        href="#"
+                        className="btn btn-sm btn-icon btn-bg-light btn-active-color-primary"
                       >
                         <KTSVG
-                          path='/media/icons/duotune/arrows/arr064.svg'
-                          className='svg-icon-2'
+                          path="/media/icons/duotune/arrows/arr064.svg"
+                          className="svg-icon-2"
                         />
                       </a>
                     </td>
                   </tr>
                   <tr>
                     <td>
-                      <div className='symbol symbol-45px me-2'>
-                        <span className='symbol-label'>
+                      <div className="symbol symbol-45px me-2">
+                        <span className="symbol-label">
                           <img
-                            src={toAbsoluteUrl('/media/svg/brand-logos/bebo.svg')}
-                            className='h-50 align-self-center'
-                            alt=''
+                            src={toAbsoluteUrl(
+                              '/media/svg/brand-logos/bebo.svg'
+                            )}
+                            className="h-50 align-self-center"
+                            alt=""
                           />
                         </span>
                       </div>
                     </td>
                     <td>
-                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
+                      <a
+                        href="#"
+                        className="text-dark fw-bold text-hover-primary mb-1 fs-6"
+                      >
                         Active Customers
                       </a>
-                      <span className='text-muted fw-semibold d-block'>Movie Creator</span>
+                      <span className="text-muted fw-semibold d-block">
+                        Movie Creator
+                      </span>
                     </td>
-                    <td className='text-end text-muted fw-semibold'>AngularJS, C#</td>
-                    <td className='text-end'>
-                      <span className='badge badge-light-danger'>Rejected</span>
+                    <td className="text-end text-muted fw-semibold">
+                      AngularJS, C#
                     </td>
-                    <td className='text-end'>
+                    <td className="text-end">
+                      <span className="badge badge-light-danger">Rejected</span>
+                    </td>
+                    <td className="text-end">
                       <a
-                        href='#'
-                        className='btn btn-sm btn-icon btn-bg-light btn-active-color-primary'
+                        href="#"
+                        className="btn btn-sm btn-icon btn-bg-light btn-active-color-primary"
                       >
                         <KTSVG
-                          path='/media/icons/duotune/arrows/arr064.svg'
-                          className='svg-icon-2'
+                          path="/media/icons/duotune/arrows/arr064.svg"
+                          className="svg-icon-2"
                         />
                       </a>
                     </td>
@@ -376,19 +463,19 @@ const TablesWidget5: React.FC<Props> = ({className}) => {
           </div>
           {/* end::Tap pane */}
           {/* begin::Tap pane */}
-          <div className='tab-pane fade' id='kt_table_widget_5_tab_3'>
+          <div className="tab-pane fade" id="kt_table_widget_5_tab_3">
             {/* begin::Table container */}
-            <div className='table-responsive'>
+            <div className="table-responsive">
               {/* begin::Table */}
-              <table className='table table-row-dashed table-row-gray-200 align-middle gs-0 gy-4'>
+              <table className="table table-row-dashed table-row-gray-200 align-middle gs-0 gy-4">
                 {/* begin::Table head */}
                 <thead>
-                  <tr className='border-0'>
-                    <th className='p-0 w-50px'></th>
-                    <th className='p-0 min-w-150px'></th>
-                    <th className='p-0 min-w-140px'></th>
-                    <th className='p-0 min-w-110px'></th>
-                    <th className='p-0 min-w-50px'></th>
+                  <tr className="border-0">
+                    <th className="p-0 w-50px"></th>
+                    <th className="p-0 min-w-150px"></th>
+                    <th className="p-0 min-w-140px"></th>
+                    <th className="p-0 min-w-110px"></th>
+                    <th className="p-0 min-w-50px"></th>
                   </tr>
                 </thead>
                 {/* end::Table head */}
@@ -396,136 +483,176 @@ const TablesWidget5: React.FC<Props> = ({className}) => {
                 <tbody>
                   <tr>
                     <td>
-                      <div className='symbol symbol-45px me-2'>
-                        <span className='symbol-label'>
+                      <div className="symbol symbol-45px me-2">
+                        <span className="symbol-label">
                           <img
-                            src={toAbsoluteUrl('/media/svg/brand-logos/kickstarter.svg')}
-                            className='h-50 align-self-center'
-                            alt=''
+                            src={toAbsoluteUrl(
+                              '/media/svg/brand-logos/kickstarter.svg'
+                            )}
+                            className="h-50 align-self-center"
+                            alt=""
                           />
                         </span>
                       </div>
                     </td>
                     <td>
-                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
+                      <a
+                        href="#"
+                        className="text-dark fw-bold text-hover-primary mb-1 fs-6"
+                      >
                         Bestseller Theme
                       </a>
-                      <span className='text-muted fw-semibold d-block'>Best Customers</span>
+                      <span className="text-muted fw-semibold d-block">
+                        Best Customers
+                      </span>
                     </td>
-                    <td className='text-end text-muted fw-semibold'>ReactJS, Ruby</td>
-                    <td className='text-end'>
-                      <span className='badge badge-light-warning'>In Progress</span>
+                    <td className="text-end text-muted fw-semibold">
+                      ReactJS, Ruby
                     </td>
-                    <td className='text-end'>
+                    <td className="text-end">
+                      <span className="badge badge-light-warning">
+                        In Progress
+                      </span>
+                    </td>
+                    <td className="text-end">
                       <a
-                        href='#'
-                        className='btn btn-sm btn-icon btn-bg-light btn-active-color-primary'
+                        href="#"
+                        className="btn btn-sm btn-icon btn-bg-light btn-active-color-primary"
                       >
                         <KTSVG
-                          path='/media/icons/duotune/arrows/arr064.svg'
-                          className='svg-icon-2'
+                          path="/media/icons/duotune/arrows/arr064.svg"
+                          className="svg-icon-2"
                         />
                       </a>
                     </td>
                   </tr>
                   <tr>
                     <td>
-                      <div className='symbol symbol-45px me-2'>
-                        <span className='symbol-label'>
+                      <div className="symbol symbol-45px me-2">
+                        <span className="symbol-label">
                           <img
-                            src={toAbsoluteUrl('/media/svg/brand-logos/bebo.svg')}
-                            className='h-50 align-self-center'
-                            alt=''
+                            src={toAbsoluteUrl(
+                              '/media/svg/brand-logos/bebo.svg'
+                            )}
+                            className="h-50 align-self-center"
+                            alt=""
                           />
                         </span>
                       </div>
                     </td>
                     <td>
-                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
+                      <a
+                        href="#"
+                        className="text-dark fw-bold text-hover-primary mb-1 fs-6"
+                      >
                         Active Customers
                       </a>
-                      <span className='text-muted fw-semibold d-block'>Movie Creator</span>
+                      <span className="text-muted fw-semibold d-block">
+                        Movie Creator
+                      </span>
                     </td>
-                    <td className='text-end text-muted fw-semibold'>AngularJS, C#</td>
-                    <td className='text-end'>
-                      <span className='badge badge-light-danger'>Rejected</span>
+                    <td className="text-end text-muted fw-semibold">
+                      AngularJS, C#
                     </td>
-                    <td className='text-end'>
+                    <td className="text-end">
+                      <span className="badge badge-light-danger">Rejected</span>
+                    </td>
+                    <td className="text-end">
                       <a
-                        href='#'
-                        className='btn btn-sm btn-icon btn-bg-light btn-active-color-primary'
+                        href="#"
+                        className="btn btn-sm btn-icon btn-bg-light btn-active-color-primary"
                       >
                         <KTSVG
-                          path='/media/icons/duotune/arrows/arr064.svg'
-                          className='svg-icon-2'
+                          path="/media/icons/duotune/arrows/arr064.svg"
+                          className="svg-icon-2"
                         />
                       </a>
                     </td>
                   </tr>
                   <tr>
                     <td>
-                      <div className='symbol symbol-45px me-2'>
-                        <span className='symbol-label'>
+                      <div className="symbol symbol-45px me-2">
+                        <span className="symbol-label">
                           <img
-                            src={toAbsoluteUrl('/media/svg/brand-logos/vimeo.svg')}
-                            className='h-50 align-self-center'
-                            alt=''
+                            src={toAbsoluteUrl(
+                              '/media/svg/brand-logos/vimeo.svg'
+                            )}
+                            className="h-50 align-self-center"
+                            alt=""
                           />
                         </span>
                       </div>
                     </td>
                     <td>
-                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
+                      <a
+                        href="#"
+                        className="text-dark fw-bold text-hover-primary mb-1 fs-6"
+                      >
                         New Users
                       </a>
-                      <span className='text-muted fw-semibold d-block'>Awesome Users</span>
+                      <span className="text-muted fw-semibold d-block">
+                        Awesome Users
+                      </span>
                     </td>
-                    <td className='text-end text-muted fw-semibold'>Laravel,Metronic</td>
-                    <td className='text-end'>
-                      <span className='badge badge-light-primary'>Success</span>
+                    <td className="text-end text-muted fw-semibold">
+                      Laravel,Metronic
                     </td>
-                    <td className='text-end'>
+                    <td className="text-end">
+                      <span className="badge badge-light-primary">Success</span>
+                    </td>
+                    <td className="text-end">
                       <a
-                        href='#'
-                        className='btn btn-sm btn-icon btn-bg-light btn-active-color-primary'
+                        href="#"
+                        className="btn btn-sm btn-icon btn-bg-light btn-active-color-primary"
                       >
                         <KTSVG
-                          path='/media/icons/duotune/arrows/arr064.svg'
-                          className='svg-icon-2'
+                          path="/media/icons/duotune/arrows/arr064.svg"
+                          className="svg-icon-2"
                         />
                       </a>
                     </td>
                   </tr>
                   <tr>
                     <td>
-                      <div className='symbol symbol-45px me-2'>
-                        <span className='symbol-label'>
+                      <div className="symbol symbol-45px me-2">
+                        <span className="symbol-label">
                           <img
-                            src={toAbsoluteUrl('/media/svg/brand-logos/telegram.svg')}
-                            className='h-50 align-self-center'
-                            alt=''
+                            src={toAbsoluteUrl(
+                              '/media/svg/brand-logos/telegram.svg'
+                            )}
+                            className="h-50 align-self-center"
+                            alt=""
                           />
                         </span>
                       </div>
                     </td>
                     <td>
-                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
+                      <a
+                        href="#"
+                        className="text-dark fw-bold text-hover-primary mb-1 fs-6"
+                      >
                         Popular Authors
                       </a>
-                      <span className='text-muted fw-semibold d-block'>Most Successful</span>
+                      <span className="text-muted fw-semibold d-block">
+                        Most Successful
+                      </span>
                     </td>
-                    <td className='text-end text-muted fw-semibold'>Python, MySQL</td>
-                    <td className='text-end'>
-                      <span className='badge badge-light-warning'>In Progress</span>
+                    <td className="text-end text-muted fw-semibold">
+                      Python, MySQL
                     </td>
-                    <td className='text-end'>
+                    <td className="text-end">
+                      <span className="badge badge-light-warning">
+                        In Progress
+                      </span>
+                    </td>
+                    <td className="text-end">
                       <a
-                        href='#'
-                        className='btn btn-sm btn-icon btn-bg-light btn-active-color-primary'
+                        href="#"
+                        className="btn btn-sm btn-icon btn-bg-light btn-active-color-primary"
                       >
                         <KTSVG
-                          path='/media/icons/duotune/arrows/arr064.svg'
-                          className='svg-icon-2'
+                          path="/media/icons/duotune/arrows/arr064.svg"
+                          className="svg-icon-2"
                         />
                       </a>
                     </td>
@@ -544,4 +671,4 @@ const TablesWidget5: React.FC<Props> = ({className}) => {
   )
 }
 
-export {TablesWidget5}
+export { TablesWidget5 }

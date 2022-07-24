@@ -1,27 +1,30 @@
-import {KTSVG} from '../../../../../../_metronic/helpers'
-import {useListView} from '../core/ListViewProvider'
+import { KTSVG } from '../../../../../../_metronic/helpers'
+import { useListView } from '../core/ListViewProvider'
 
 const UserEditModalHeader = () => {
-  const {setItemIdForUpdate} = useListView()
+  const { setItemIdForUpdate } = useListView()
 
   return (
-    <div className='modal-header'>
+    <div className="modal-header">
       {/* begin::Modal title */}
-      <h2 className='fw-bolder'>Add User</h2>
+      <h2 className="fw-bolder">Add User</h2>
       {/* end::Modal title */}
 
       {/* begin::Close */}
       <div
-        className='btn btn-icon btn-sm btn-active-icon-primary'
-        data-kt-users-modal-action='close'
+        className="btn btn-icon btn-sm btn-active-icon-primary"
+        data-kt-users-modal-action="close"
         onClick={() => setItemIdForUpdate(undefined)}
-        style={{cursor: 'pointer'}}
+        style={{ cursor: 'pointer' }}
       >
-        <KTSVG path='/media/icons/duotune/arrows/arr061.svg' className='svg-icon-1' />
+        <KTSVG
+          path="/media/icons/duotune/arrows/arr061.svg"
+          className="svg-icon-1"
+        />
       </div>
       {/* end::Close */}
     </div>
   )
 }
 
-export {UserEditModalHeader}
+export { UserEditModalHeader }

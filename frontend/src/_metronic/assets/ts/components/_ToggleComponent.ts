@@ -1,6 +1,10 @@
-import {DataUtil, getUniqueIdWithPrefix, EventHandlerUtil} from '../_utils/index'
+import {
+  DataUtil,
+  getUniqueIdWithPrefix,
+  EventHandlerUtil
+} from '../_utils/index'
 // Helpers
-import {CookieComponent} from './_CookieComponent'
+import { CookieComponent } from './_CookieComponent'
 
 export interface ToggleOptions {
   saveState: boolean
@@ -10,7 +14,7 @@ export interface ToggleOptions {
 }
 
 const defaultToggleOptions: ToggleOptions = {
-  saveState: false,
+  saveState: false
 }
 
 class ToggleComponent {
@@ -35,7 +39,8 @@ class ToggleComponent {
     this.state = elementToggleAttr || ''
     const elementModeAttr = this.element.getAttribute('data-kt-toggle-mode')
     this.mode = elementModeAttr || ''
-    this.attribute = 'data-kt-' + this.element.getAttribute('data-kt-toggle-name')
+    this.attribute =
+      'data-kt-' + this.element.getAttribute('data-kt-toggle-name')
 
     // Event Handlers
     this._handlers()
@@ -122,7 +127,9 @@ class ToggleComponent {
       return false
     }
 
-    return String(this.target.getAttribute(this.attribute)).toLowerCase() === 'on'
+    return (
+      String(this.target.getAttribute(this.attribute)).toLowerCase() === 'on'
+    )
   }
 
   ///////////////////////
@@ -197,4 +204,4 @@ class ToggleComponent {
   }
 }
 
-export {ToggleComponent, defaultToggleOptions}
+export { ToggleComponent, defaultToggleOptions }

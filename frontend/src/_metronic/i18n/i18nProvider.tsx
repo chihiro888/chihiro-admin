@@ -1,6 +1,6 @@
-import {FC} from 'react'
-import {useLang} from './Metronici18n'
-import {IntlProvider} from 'react-intl'
+import { FC } from 'react'
+import { useLang } from './Metronici18n'
+import { IntlProvider } from 'react-intl'
 import '@formatjs/intl-relativetimeformat/polyfill'
 import '@formatjs/intl-relativetimeformat/locale-data/en'
 import '@formatjs/intl-relativetimeformat/locale-data/de'
@@ -23,10 +23,10 @@ const allMessages = {
   es: esMessages,
   fr: frMessages,
   ja: jaMessages,
-  zh: zhMessages,
+  zh: zhMessages
 }
 
-const I18nProvider: FC<WithChildren> = ({children}) => {
+const I18nProvider: FC<WithChildren> = ({ children }) => {
   const locale = useLang()
   const messages = allMessages[locale]
 
@@ -37,4 +37,4 @@ const I18nProvider: FC<WithChildren> = ({children}) => {
   )
 }
 
-export {I18nProvider}
+export { I18nProvider }

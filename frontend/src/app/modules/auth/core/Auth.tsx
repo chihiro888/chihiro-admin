@@ -6,13 +6,13 @@ import {
   useContext,
   useRef,
   Dispatch,
-  SetStateAction,
+  SetStateAction
 } from 'react'
-import {LayoutSplashScreen} from '../../../../_metronic/layout/core'
-import {AuthModel, UserModel} from './_models'
+import { LayoutSplashScreen } from '../../../../_metronic/layout/core'
+import { AuthModel, UserModel } from './_models'
 import * as authHelper from './AuthHelpers'
-import {getUserByToken} from './_requests'
-import {WithChildren} from '../../../../_metronic/helpers'
+import { getUserByToken } from './_requests'
+import { WithChildren } from '../../../../_metronic/helpers'
 
 type AuthContextProps = {
   auth: AuthModel | undefined
@@ -27,7 +27,7 @@ const initAuthContextPropsState = {
   saveAuth: () => {},
   currentUser: undefined,
   setCurrentUser: () => {},
-  logout: () => {},
+  logout: () => {}
 }
 
 const AuthContext = createContext<AuthContextProps>(initAuthContextPropsState)
@@ -36,7 +36,7 @@ const useAuth = () => {
   return useContext(AuthContext)
 }
 
-const AuthProvider: FC<WithChildren> = ({children}) => {
+const AuthProvider: FC<WithChildren> = ({ children }) => {
   const [auth, setAuth] = useState<AuthModel | undefined>(authHelper.getAuth())
   const [currentUser, setCurrentUser] = useState<UserModel | undefined>()
   const saveAuth = (auth: AuthModel | undefined) => {
@@ -54,14 +54,16 @@ const AuthProvider: FC<WithChildren> = ({children}) => {
   }
 
   return (
-    <AuthContext.Provider value={{auth, saveAuth, currentUser, setCurrentUser, logout}}>
+    <AuthContext.Provider
+      value={{ auth, saveAuth, currentUser, setCurrentUser, logout }}
+    >
       {children}
     </AuthContext.Provider>
   )
 }
 
-const AuthInit: FC<WithChildren> = ({children}) => {
-  const {auth, logout, setCurrentUser} = useAuth()
+const AuthInit: FC<WithChildren> = ({ children }) => {
+  const { auth, logout, setCurrentUser } = useAuth()
   const didRequest = useRef(false)
   const [showSplashScreen, setShowSplashScreen] = useState(true)
   // We should request user by authToken (IN OUR EXAMPLE IT'S API_TOKEN) before rendering the application
@@ -69,7 +71,7 @@ const AuthInit: FC<WithChildren> = ({children}) => {
     const requestUser = async (apiToken: string) => {
       try {
         if (!didRequest.current) {
-          const {data} = await getUserByToken(apiToken)
+          const { data } = await getUserByToken(apiToken)
           if (data) {
             setCurrentUser(data)
           }
@@ -98,4 +100,4 @@ const AuthInit: FC<WithChildren> = ({children}) => {
   return showSplashScreen ? <LayoutSplashScreen /> : <>{children}</>
 }
 
-export {AuthProvider, AuthInit, useAuth}
+export { AuthProvider, AuthInit, useAuth }

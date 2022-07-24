@@ -51,4 +51,9 @@ function toJSON(value: string | JSON): JSON | undefined {
   }
 }
 
-export {getObjectPropertyValueByKey, getUniqueIdWithPrefix, stringSnakeToCamel, toJSON}
+export {
+  getObjectPropertyValueByKey,
+  getUniqueIdWithPrefix,
+  stringSnakeToCamel,
+  toJSON
+}

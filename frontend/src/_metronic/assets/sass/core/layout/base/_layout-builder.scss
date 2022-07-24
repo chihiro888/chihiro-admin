@@ -4,16 +4,16 @@
 
 // General mode
 .app-layout-builder-toggle {
-    position: fixed;
-    z-index: $app-layout-builder-toggle-z-index;
-    bottom: $app-layout-builder-toggle-bottom;
-    right: $app-layout-builder-toggle-end;
+  position: fixed;
+  z-index: $app-layout-builder-toggle-z-index;
+  bottom: $app-layout-builder-toggle-bottom;
+  right: $app-layout-builder-toggle-end;
 }
 
 // Tablet & mobile modes
 @include media-breakpoint-down(lg) {
-	.app-layout-builder-toggle { 
-		bottom: $app-layout-builder-toggle-bottom-mobile;
-        right: $app-layout-builder-toggle-end-mobile;
-	}
+  .app-layout-builder-toggle {
+    bottom: $app-layout-builder-toggle-bottom-mobile;
+    right: $app-layout-builder-toggle-end-mobile;
+  }
 }

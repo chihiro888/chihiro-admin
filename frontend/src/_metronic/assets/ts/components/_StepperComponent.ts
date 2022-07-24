@@ -5,7 +5,7 @@ import {
   EventHandlerUtil,
   DataUtil,
   DOMEventHandlerUtil,
-  ElementStyleUtil,
+  ElementStyleUtil
 } from '../_utils/index'
 
 export interface IStepperOptions {
@@ -21,7 +21,7 @@ const defaultStepperOptions: IStepperOptions = {
   animation: false,
   animationSpeed: '0.3s',
   animationNextClass: 'animate__animated animate__slideInRight animate__fast',
-  animationPreviousClass: 'animate__animated animate__slideInLeft animate__fast',
+  animationPreviousClass: 'animate__animated animate__slideInLeft animate__fast'
 }
 
 class StepperComponent {
@@ -42,10 +42,16 @@ class StepperComponent {
     this.instanceUid = getUniqueIdWithPrefix('stepper')
 
     // Elements
-    this.steps = this.element.querySelectorAll('[data-kt-stepper-element="nav"]')
+    this.steps = this.element.querySelectorAll(
+      '[data-kt-stepper-element="nav"]'
+    )
     this.btnNext = this.element.querySelector('[data-kt-stepper-action="next"]')
-    this.btnPrev = this.element.querySelector('[data-kt-stepper-action="previous"]')
-    this.btnSubmit = this.element.querySelector('[data-kt-stepper-action="submit"]')
+    this.btnPrev = this.element.querySelector(
+      '[data-kt-stepper-action="previous"]'
+    )
+    this.btnSubmit = this.element.querySelector(
+      '[data-kt-stepper-action="submit"]'
+    )
 
     // Variables
     this.totatStepsNumber = this.steps?.length | 0
@@ -67,7 +73,11 @@ class StepperComponent {
   private _goTo = (index: number) => {
     EventHandlerUtil.trigger(this.element, 'kt.stepper.change')
     // Skip if this step is already shown
-    if (index === this.currentStepIndex || index > this.totatStepsNumber || index < 0) {
+    if (
+      index === this.currentStepIndex ||
+      index > this.totatStepsNumber ||
+      index < 0
+    ) {
       return
     }
 
@@ -96,21 +106,30 @@ class StepperComponent {
       EventHandlerUtil.trigger(this.element, 'kt.stepper.previous', e)
     })
 
-    DOMEventHandlerUtil.on(this.element, '[data-kt-stepper-action="step"]', 'click', (e: Event) => {
-      e.preventDefault()
+    DOMEventHandlerUtil.on(
+      this.element,
+      '[data-kt-stepper-action="step"]',
+      'click',
+      (e: Event) => {
+        e.preventDefault()
 
-      if (this.steps && this.steps.length > 0) {
-        for (let i = 0; i < this.steps.length; i++) {
-          if ((this.steps[i] as HTMLElement) === this.element) {
-            let index = i + 1
+        if (this.steps && this.steps.length > 0) {
+          for (let i = 0; i < this.steps.length; i++) {
+            if ((this.steps[i] as HTMLElement) === this.element) {
+              let index = i + 1
 
-            const stepDirection = this._getStepDirection(index)
-            EventHandlerUtil.trigger(this.element, `stepper.${stepDirection}`, e)
-            return
+              const stepDirection = this._getStepDirection(index)
+              EventHandlerUtil.trigger(
+                this.element,
+                `stepper.${stepDirection}`,
+                e
+              )
+              return
+            }
           }
         }
       }
-    })
+    )
   }
 
   private _getStepDirection = (index: number) => {
@@ -118,7 +137,9 @@ class StepperComponent {
   }
 
   private getStepContent = (index: number) => {
-    const content = this.element.querySelectorAll('[data-kt-stepper-element="content"]')
+    const content = this.element.querySelectorAll(
+      '[data-kt-stepper-element="content"]'
+    )
     if (!content) {
       return false
     }
@@ -180,7 +201,11 @@ class StepperComponent {
           this.options.animation !== false &&
           element.getAttribute('data-kt-stepper-element') === 'content'
         ) {
-          ElementStyleUtil.set(element, 'animationDuration', this.options.animationSpeed)
+          ElementStyleUtil.set(
+            element,
+            'animationDuration',
+            this.options.animationSpeed
+          )
 
           const animation =
             this._getStepDirection(this.passedStepIndex) === 'previous'
@@ -289,7 +314,9 @@ class StepperComponent {
     return DataUtil.has(element, 'stepper')
   }
 
-  public static getInstance(element: HTMLElement): StepperComponent | undefined {
+  public static getInstance(
+    element: HTMLElement
+  ): StepperComponent | undefined {
     if (element !== null && StepperComponent.hasInstace(element)) {
       const data = DataUtil.get(element, 'stepper')
       if (data) {
@@ -329,4 +356,4 @@ class StepperComponent {
   }
 }
 
-export {StepperComponent, defaultStepperOptions}
+export { StepperComponent, defaultStepperOptions }

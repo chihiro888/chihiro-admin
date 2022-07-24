@@ -1,5 +1,5 @@
 const QUERIES = {
-  USERS_LIST: 'users-list',
+  USERS_LIST: 'users-list'
 }
 
-export {QUERIES}
+export { QUERIES }

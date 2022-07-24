@@ -7,10 +7,10 @@ import {
   getObjectPropertyValueByKey,
   getViewPort,
   isVisibleElement,
-  throttle,
+  throttle
 } from '../_utils/index'
 
-import {MenuComponent, defaultMenuOptions} from './MenuComponent'
+import { MenuComponent, defaultMenuOptions } from './MenuComponent'
 
 export interface ISearchOptions {
   minLength: number // Miniam text lenght to query search
@@ -32,13 +32,13 @@ const defaultSearchOptions: ISearchOptions = {
   keypress: true, // Enable search on keypress
   enter: true, // Enable search on enter key press
   layout: 'menu', // Use 'menu' or 'inline' layout options to display search results
-  showOnFocus: true, // Always show menu on input focus
+  showOnFocus: true // Always show menu on input focus
 }
 
 const defaultSearchQueires: ISearchQueries = {
   componentName: 'search',
   instanseQuery: '[data-kt-search]',
-  attrQuery: 'data-kt-search-',
+  attrQuery: 'data-kt-search-'
 }
 
 class SearchComponent {
@@ -62,7 +62,11 @@ class SearchComponent {
   processing: boolean = false
   menuObject: MenuComponent | undefined
 
-  constructor(_element: HTMLElement, _options: ISearchOptions, _queries: ISearchQueries) {
+  constructor(
+    _element: HTMLElement,
+    _options: ISearchOptions,
+    _queries: ISearchQueries
+  ) {
     // Variables
     this.options = Object.assign(defaultSearchOptions, _options)
     this.queries = _queries
@@ -85,7 +89,10 @@ class SearchComponent {
     // Layout
     this.layout = this.getOption('layout')
     if (this.layout === 'menu') {
-      this.menuObject = new MenuComponent(this.contentElement, defaultMenuOptions)
+      this.menuObject = new MenuComponent(
+        this.contentElement,
+        defaultMenuOptions
+      )
     }
 
     // Update
@@ -276,10 +283,16 @@ class SearchComponent {
     if (this.layout === 'menu') {
       let responsiveFormMode = this.getResponsiveFormMode()
 
-      if (responsiveFormMode === 'on' && !this.contentElement.contains(this.formElement)) {
+      if (
+        responsiveFormMode === 'on' &&
+        !this.contentElement.contains(this.formElement)
+      ) {
         this.contentElement.prepend(this.formElement)
         this.formElement.classList.remove('d-none')
-      } else if (responsiveFormMode === 'off' && this.contentElement.contains(this.formElement)) {
+      } else if (
+        responsiveFormMode === 'off' &&
+        this.contentElement.contains(this.formElement)
+      ) {
         this.element.prepend(this.formElement)
         this.formElement.classList.add('d-none')
       }
@@ -467,12 +480,16 @@ class SearchComponent {
     return Search
   }
 
-  public static bootstrap = (selector: string = defaultSearchQueires.instanseQuery) => {
+  public static bootstrap = (
+    selector: string = defaultSearchQueires.instanseQuery
+  ) => {
     SearchComponent.createInstances(selector)
   }
 
-  public static reinitialization = (selector: string = defaultSearchQueires.instanseQuery) => {
+  public static reinitialization = (
+    selector: string = defaultSearchQueires.instanseQuery
+  ) => {
     SearchComponent.createInstances(selector)
   }
 }
-export {SearchComponent, defaultSearchOptions, defaultSearchQueires}
+export { SearchComponent, defaultSearchOptions, defaultSearchQueires }

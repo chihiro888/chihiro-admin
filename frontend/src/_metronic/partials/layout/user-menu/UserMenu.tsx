@@ -1,7 +1,7 @@
-import React, {FC} from 'react'
+import React, { FC } from 'react'
 
 const UserMenu: FC = () => {
   return <></>
 }
 
-export {UserMenu}
+export { UserMenu }

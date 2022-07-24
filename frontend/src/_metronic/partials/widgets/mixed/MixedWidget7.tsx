@@ -1,10 +1,10 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, {useEffect, useRef} from 'react'
-import ApexCharts, {ApexOptions} from 'apexcharts'
-import {KTSVG} from '../../../helpers'
-import {getCSSVariableValue} from '../../../assets/ts/_utils'
-import {Dropdown1} from '../../content/dropdown/Dropdown1'
-import {useThemeMode} from '../../layout/theme-mode/ThemeModeProvider'
+import React, { useEffect, useRef } from 'react'
+import ApexCharts, { ApexOptions } from 'apexcharts'
+import { KTSVG } from '../../../helpers'
+import { getCSSVariableValue } from '../../../assets/ts/_utils'
+import { Dropdown1 } from '../../content/dropdown/Dropdown1'
+import { useThemeMode } from '../../layout/theme-mode/ThemeModeProvider'
 
 type Props = {
   className: string
@@ -12,15 +12,22 @@ type Props = {
   chartHeight: string
 }
 
-const MixedWidget7: React.FC<Props> = ({className, chartColor, chartHeight}) => {
+const MixedWidget7: React.FC<Props> = ({
+  className,
+  chartColor,
+  chartHeight
+}) => {
   const chartRef = useRef<HTMLDivElement | null>(null)
-  const {mode} = useThemeMode()
+  const { mode } = useThemeMode()
   const refreshChart = () => {
     if (!chartRef.current) {
       return
     }
 
-    const chart = new ApexCharts(chartRef.current, chartOptions(chartColor, chartHeight))
+    const chart = new ApexCharts(
+      chartRef.current,
+      chartOptions(chartColor, chartHeight)
+    )
     if (chart) {
       chart.render()
     }
@@ -42,22 +49,27 @@ const MixedWidget7: React.FC<Props> = ({className, chartColor, chartHeight}) => 
   return (
     <div className={`card ${className}`}>
       {/* begin::Beader */}
-      <div className='card-header border-0 py-5'>
-        <h3 className='card-title align-items-start flex-column'>
-          <span className='card-label fw-bold fs-3 mb-1'>Action Needed</span>
-          <span className='text-muted fw-semibold fs-7'>Complete your profile setup</span>
+      <div className="card-header border-0 py-5">
+        <h3 className="card-title align-items-start flex-column">
+          <span className="card-label fw-bold fs-3 mb-1">Action Needed</span>
+          <span className="text-muted fw-semibold fs-7">
+            Complete your profile setup
+          </span>
         </h3>
 
-        <div className='card-toolbar'>
+        <div className="card-toolbar">
           {/* begin::Menu */}
           <button
-            type='button'
-            className='btn btn-sm btn-icon btn-color-primary btn-active-light-primary'
-            data-kt-menu-trigger='click'
-            data-kt-menu-placement='bottom-end'
-            data-kt-menu-flip='top-end'
+            type="button"
+            className="btn btn-sm btn-icon btn-color-primary btn-active-light-primary"
+            data-kt-menu-trigger="click"
+            data-kt-menu-placement="bottom-end"
+            data-kt-menu-flip="top-end"
           >
-            <KTSVG path='/media/icons/duotune/general/gen024.svg' className='svg-icon-2' />
+            <KTSVG
+              path="/media/icons/duotune/general/gen024.svg"
+              className="svg-icon-2"
+            />
           </button>
           <Dropdown1 />
           {/* end::Menu */}
@@ -66,20 +78,20 @@ const MixedWidget7: React.FC<Props> = ({className, chartColor, chartHeight}) => 
       {/* end::Header */}
 
       {/* begin::Body */}
-      <div className='card-body d-flex flex-column'>
-        <div className='flex-grow-1'>
-          <div ref={chartRef} className='mixed-widget-4-chart'></div>
+      <div className="card-body d-flex flex-column">
+        <div className="flex-grow-1">
+          <div ref={chartRef} className="mixed-widget-4-chart"></div>
         </div>
 
-        <div className='pt-5'>
-          <p className='text-center fs-6 pb-5 '>
-            <span className='badge badge-light-danger fs-8'>Notes:</span>&nbsp; Current sprint
-            requires stakeholders
+        <div className="pt-5">
+          <p className="text-center fs-6 pb-5 ">
+            <span className="badge badge-light-danger fs-8">Notes:</span>&nbsp;
+            Current sprint requires stakeholders
             <br />
             to approve newly amended policies
           </p>
 
-          <a href='#' className={`btn btn-${chartColor} w-100 py-3`}>
+          <a href="#" className={`btn btn-${chartColor} w-100 py-3`}>
             Take Action
           </a>
         </div>
@@ -99,18 +111,18 @@ const chartOptions = (chartColor: string, chartHeight: string): ApexOptions => {
     chart: {
       fontFamily: 'inherit',
       height: chartHeight,
-      type: 'radialBar',
+      type: 'radialBar'
     },
     plotOptions: {
       radialBar: {
         hollow: {
           margin: 0,
-          size: '65%',
+          size: '65%'
         },
         dataLabels: {
           name: {
             show: false,
-            fontWeight: '700',
+            fontWeight: '700'
           },
           value: {
             color: labelColor,
@@ -120,21 +132,21 @@ const chartOptions = (chartColor: string, chartHeight: string): ApexOptions => {
             show: true,
             formatter: function (val) {
               return val + '%'
-            },
-          },
+            }
+          }
         },
         track: {
           background: lightColor,
-          strokeWidth: '100%',
-        },
-      },
+          strokeWidth: '100%'
+        }
+      }
     },
     colors: [baseColor],
     stroke: {
-      lineCap: 'round',
+      lineCap: 'round'
     },
-    labels: ['Progress'],
+    labels: ['Progress']
   }
 }
 
-export {MixedWidget7}
+export { MixedWidget7 }

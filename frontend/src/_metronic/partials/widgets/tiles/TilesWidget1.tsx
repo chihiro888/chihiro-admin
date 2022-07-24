@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import clsx from 'clsx'
-import {toAbsoluteUrl} from '../../../helpers'
+import { toAbsoluteUrl } from '../../../helpers'
 
 type Props = {
   className?: string
@@ -10,21 +10,21 @@ type Props = {
 const TilesWidget1 = ({
   className,
   bgImage = toAbsoluteUrl('/media/stock/600x400/img-75.jpg'),
-  title = 'Properties',
+  title = 'Properties'
 }: Props) => {
   return (
     <div
       className={clsx('card h-150px bgi-no-repeat bgi-size-cover', className)}
       style={{
-        backgroundImage: `url("${bgImage}")`,
+        backgroundImage: `url("${bgImage}")`
       }}
     >
-      <div className='card-body p-6'>
+      <div className="card-body p-6">
         <a
-          href='#'
-          className='text-black text-hover-primary fw-bold fs-2'
-          data-bs-toggle='modal'
-          data-bs-target='#kt_modal_create_app'
+          href="#"
+          className="text-black text-hover-primary fw-bold fs-2"
+          data-bs-toggle="modal"
+          data-bs-target="#kt_modal_create_app"
         >
           {title}
         </a>
@@ -33,4 +33,4 @@ const TilesWidget1 = ({
   )
 }
 
-export {TilesWidget1}
+export { TilesWidget1 }

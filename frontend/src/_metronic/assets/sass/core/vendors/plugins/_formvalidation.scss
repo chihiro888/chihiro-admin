@@ -3,17 +3,17 @@
 //
 
 .fv-plugins-message-container {
-    margin-top: 0.3rem;
+  margin-top: 0.3rem;
 
-    .fv-help-block {
-        color: var(--kt-danger);
-        font-size: 1rem;
-        font-weight: $font-weight-normal;
-    }
+  .fv-help-block {
+    color: var(--kt-danger);
+    font-size: 1rem;
+    font-weight: $font-weight-normal;
+  }
 
-    &.valid-feedback,
-    &.invalid-feedback {
-        display: block;
-        font-weight: $font-weight-normal;
-    }
+  &.valid-feedback,
+  &.invalid-feedback {
+    display: block;
+    font-weight: $font-weight-normal;
+  }
 }

@@ -1,9 +1,9 @@
 // @ts-nocheck
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, {useEffect, useRef} from 'react'
-import ApexCharts, {ApexOptions} from 'apexcharts'
-import {getCSSVariableValue} from '../../../assets/ts/_utils'
-import {useThemeMode} from '../../layout/theme-mode/ThemeModeProvider'
+import React, { useEffect, useRef } from 'react'
+import ApexCharts, { ApexOptions } from 'apexcharts'
+import { getCSSVariableValue } from '../../../assets/ts/_utils'
+import { useThemeMode } from '../../layout/theme-mode/ThemeModeProvider'
 
 type Props = {
   className: string
@@ -11,9 +11,13 @@ type Props = {
   backGroundColor: string
 }
 
-const MixedWidget14: React.FC<Props> = ({className, backGroundColor, chartHeight = '150px'}) => {
+const MixedWidget14: React.FC<Props> = ({
+  className,
+  backGroundColor,
+  chartHeight = '150px'
+}) => {
   const chartRef = useRef<HTMLDivElement | null>(null)
-  const {mode} = useThemeMode()
+  const { mode } = useThemeMode()
 
   const refreshChart = () => {
     if (!chartRef.current) {
@@ -40,13 +44,16 @@ const MixedWidget14: React.FC<Props> = ({className, backGroundColor, chartHeight
   }, [chartRef, mode])
 
   return (
-    <div className={`card ${className} theme-dark-bg-body`} style={{backgroundColor: backGroundColor}}>
+    <div
+      className={`card ${className} theme-dark-bg-body`}
+      style={{ backgroundColor: backGroundColor }}
+    >
       {/* begin::Body */}
-      <div className='card-body d-flex flex-column'>
+      <div className="card-body d-flex flex-column">
         {/* begin::Wrapper */}
-        <div className='d-flex flex-column flex-grow-1'>
+        <div className="d-flex flex-column flex-grow-1">
           {/* begin::Title                    */}
-          <a href='#' className='text-dark text-hover-primary fw-bolder fs-3'>
+          <a href="#" className="text-dark text-hover-primary fw-bolder fs-3">
             Contributors
           </a>
 
@@ -54,24 +61,24 @@ const MixedWidget14: React.FC<Props> = ({className, backGroundColor, chartHeight
 
           <div
             ref={chartRef}
-            className='mixed-widget-14-chart'
-            style={{height: chartHeight, minHeight: chartHeight}}
+            className="mixed-widget-14-chart"
+            style={{ height: chartHeight, minHeight: chartHeight }}
           ></div>
         </div>
         {/* end::Wrapper */}
 
         {/* begin::Stats */}
-        <div className='pt-5'>
+        <div className="pt-5">
           {/* begin::Symbol */}
-          <span className='text-dark fw-bolder fs-2x lh-0'>$</span>
+          <span className="text-dark fw-bolder fs-2x lh-0">$</span>
           {/* end::Symbol */}
 
           {/* begin::Number */}
-          <span className='text-dark fw-bolder fs-3x me-2 lh-0'>47</span>
+          <span className="text-dark fw-bolder fs-3x me-2 lh-0">47</span>
           {/* end::Number */}
 
           {/* begin::Text */}
-          <span className='text-dark fw-bolder fs-6 lh-0'>- 12% this week</span>
+          <span className="text-dark fw-bolder fs-6 lh-0">- 12% this week</span>
           {/* end::Text */}
         </div>
         {/* end::Stats */}
@@ -87,16 +94,18 @@ const chartOptions = (chartHeight: string): ApexOptions => {
     series: [
       {
         name: 'Inflation',
-        data: [1, 2.1, 1, 2.1, 4.1, 6.1, 4.1, 4.1, 2.1, 4.1, 2.1, 3.1, 1, 1, 2.1],
-      },
+        data: [
+          1, 2.1, 1, 2.1, 4.1, 6.1, 4.1, 4.1, 2.1, 4.1, 2.1, 3.1, 1, 1, 2.1
+        ]
+      }
     ],
     chart: {
       fontFamily: 'inherit',
       height: chartHeight,
       type: 'bar',
       toolbar: {
-        show: false,
-      },
+        show: false
+      }
     },
     grid: {
       show: false,
@@ -104,18 +113,18 @@ const chartOptions = (chartHeight: string): ApexOptions => {
         top: 0,
         bottom: 0,
         left: 0,
-        right: 0,
-      },
+        right: 0
+      }
     },
     colors: ['#ffffff'],
     plotOptions: {
       bar: {
         borderRadius: 2.5,
         dataLabels: {
-          position: 'top', // top, center, bottom
+          position: 'top' // top, center, bottom
         },
-        columnWidth: '20%',
-      },
+        columnWidth: '20%'
+      }
     },
     dataLabels: {
       enabled: false,
@@ -125,12 +134,12 @@ const chartOptions = (chartHeight: string): ApexOptions => {
       offsetY: -20,
       style: {
         fontSize: '12px',
-        colors: ['#304758'],
-      },
+        colors: ['#304758']
+      }
     },
     xaxis: {
       labels: {
-        show: false,
+        show: false
       },
       categories: [
         'Jan',
@@ -147,39 +156,39 @@ const chartOptions = (chartHeight: string): ApexOptions => {
         'Dec',
         'Jan',
         'Feb',
-        'Mar',
+        'Mar'
       ],
       position: 'top',
       axisBorder: {
-        show: false,
+        show: false
       },
       axisTicks: {
-        show: false,
+        show: false
       },
       crosshairs: {
-        show: false,
+        show: false
       },
       tooltip: {
-        enabled: false,
-      },
+        enabled: false
+      }
     },
     yaxis: {
       show: false,
       axisBorder: {
-        show: false,
+        show: false
       },
       axisTicks: {
         show: false,
-        background: labelColor,
+        background: labelColor
       },
       labels: {
         show: false,
         formatter: function (val) {
           return val + '%'
-        },
-      },
-    },
+        }
+      }
+    }
   }
 }
 
-export {MixedWidget14}
+export { MixedWidget14 }

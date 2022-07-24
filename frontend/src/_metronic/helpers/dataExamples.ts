@@ -11,62 +11,65 @@ const defaultMessages: Array<MessageModel> = [
     user: 4,
     type: 'in',
     text: 'How likely are you to recommend our company to your friends and family ?',
-    time: '2 mins',
+    time: '2 mins'
   },
   {
     user: 2,
     type: 'out',
     text: 'Hey there, we’re just writing to let you know that you’ve been subscribed to a repository on GitHub.',
-    time: '5 mins',
+    time: '5 mins'
   },
   {
     user: 4,
     type: 'in',
     text: 'Ok, Understood!',
-    time: '1 Hour',
+    time: '1 Hour'
   },
   {
     user: 2,
     type: 'out',
     text: 'You’ll receive notifications for all issues, pull requests!',
-    time: '2 Hours',
+    time: '2 Hours'
   },
   {
     user: 4,
     type: 'in',
     text: 'You can unwatch this repository immediately by clicking here: <a href="https://keenthemes.com">Keenthemes.com</a>',
-    time: '3 Hours',
+    time: '3 Hours'
   },
   {
     user: 2,
     type: 'out',
     text: 'Most purchased Business courses during this sale!',
-    time: '4 Hours',
+    time: '4 Hours'
   },
   {
     user: 4,
     type: 'in',
     text: 'Company BBQ to celebrate the last quater achievements and goals. Food and drinks provided',
-    time: '5 Hours',
+    time: '5 Hours'
   },
   {
     template: true,
     user: 2,
     type: 'out',
     text: '',
-    time: 'Just now',
+    time: 'Just now'
   },
   {
     template: true,
     user: 4,
     type: 'in',
     text: 'Right before vacation season we have the next Big Deal for you.',
-    time: 'Just now',
-  },
+    time: 'Just now'
+  }
 ]
 
 export interface UserInfoModel {
-  initials?: {label: string; state: 'warning' | 'danger' | 'primary' | 'success' | 'info'}
+  initials?: {
+    label: string
+    state: 'warning' | 'danger' | 'primary' | 'success' | 'info'
+  }
   name: string
   avatar?: string
   email: string
@@ -80,121 +83,121 @@ const defaultUserInfos: Array<UserInfoModel> = [
     avatar: 'avatars/300-6.jpg',
     email: 'e.smith@kpmg.com.au',
     position: 'Art Director',
-    online: false,
+    online: false
   },
   {
     name: 'Melody Macy',
-    initials: {label: 'M', state: 'danger'},
+    initials: { label: 'M', state: 'danger' },
     email: 'melody@altbox.com',
     position: 'Marketing Analytic',
-    online: true,
+    online: true
   },
   {
     name: 'Max Smith',
     avatar: 'avatars/300-1.jpg',
     email: 'max@kt.com',
     position: 'Software Enginer',
-    online: false,
+    online: false
   },
   {
     name: 'Sean Bean',
     avatar: 'avatars/300-5.jpg',
     email: 'sean@dellito.com',
     position: 'Web Developer',
-    online: false,
+    online: false
   },
   {
     name: 'Brian Cox',
     avatar: 'avatars/300-25.jpg',
     email: 'brian@exchange.com',
     position: 'UI/UX Designer',
-    online: false,
+    online: false
   },
   {
     name: 'Mikaela Collins',
-    initials: {label: 'M', state: 'warning'},
+    initials: { label: 'M', state: 'warning' },
     email: 'mikaela@pexcom.com',
     position: 'Head Of Marketing',
-    online: true,
+    online: true
   },
   {
     name: 'Francis Mitcham',
     avatar: 'avatars/300-9.jpg',
     email: 'f.mitcham@kpmg.com.au',
     position: 'Software Arcitect',
-    online: false,
+    online: false
   },
 
   {
     name: 'Olivia Wild',
-    initials: {label: 'O', state: 'danger'},
+    initials: { label: 'O', state: 'danger' },
     email: 'olivia@corpmail.com',
     position: 'System Admin',
-    online: true,
+    online: true
   },
   {
     name: 'Neil Owen',
-    initials: {label: 'N', state: 'primary'},
+    initials: { label: 'N', state: 'primary' },
     email: 'owen.neil@gmail.com',
     position: 'Account Manager',
-    online: true,
+    online: true
   },
   {
     name: 'Dan Wilson',
     avatar: 'avatars/300-23.jpg',
     email: 'dam@consilting.com',
     position: 'Web Desinger',
-    online: false,
+    online: false
   },
   {
     name: 'Emma Bold',
-    initials: {label: 'E', state: 'danger'},
+    initials: { label: 'E', state: 'danger' },
     email: 'emma@intenso.com',
     position: 'Corporate Finance',
-    online: true,
+    online: true
   },
   {
     name: 'Ana Crown',
     avatar: 'avatars/300-12.jpg',
     email: 'ana.cf@limtel.com',
     position: 'Customer Relationship',
-    online: false,
+    online: false
   },
   {
     name: 'Robert Doe',
-    initials: {label: 'A', state: 'info'},
+    initials: { label: 'A', state: 'info' },
     email: 'robert@benko.com',
     position: 'Marketing Executive',
-    online: true,
+    online: true
   },
   {
     name: 'John Miller',
     avatar: 'avatars/300-13.jpg',
     email: 'miller@mapple.com',
     position: 'Project Manager',
-    online: false,
+    online: false
   },
   {
     name: 'Lucy Kunic',
-    initials: {label: 'L', state: 'success'},
+    initials: { label: 'L', state: 'success' },
     email: 'lucy.m@fentech.com',
     position: 'SEO Master',
-    online: true,
+    online: true
   },
   {
     name: 'Ethan Wilder',
     avatar: 'avatars/300-21.jpg',
     email: 'ethan@loop.com.au',
     position: 'Accountant',
-    online: true,
-  },
+    online: true
+  }
 ]
 
 const messageFromClient: MessageModel = {
   user: 4,
   type: 'in',
   text: 'Thank you for your awesome support!',
-  time: 'Just now',
+  time: 'Just now'
 }
 
 export interface AlertModel {
@@ -211,50 +214,50 @@ const defaultAlerts: Array<AlertModel> = [
     description: 'Phase 1 development',
     time: '1 hr',
     icon: 'icons/duotune/technology/teh008.svg',
-    state: 'primary',
+    state: 'primary'
   },
   {
     title: 'HR Confidential',
     description: 'Confidential staff documents',
     time: '2 hrs',
     icon: 'icons/duotune/general/gen044.svg',
-    state: 'danger',
+    state: 'danger'
   },
   {
     title: 'Company HR',
     description: 'Corporeate staff profiles',
     time: '5 hrs',
     icon: 'icons/duotune/finance/fin006.svg',
-    state: 'warning',
+    state: 'warning'
   },
   {
     title: 'Project Red',
     description: 'New frontend admin theme',
     time: '2 days',
     icon: 'icons/duotune/files/fil023.svg',
-    state: 'success',
+    state: 'success'
   },
   {
     title: 'Project Breafing',
     description: 'Product launch status update',
     time: '21 Jan',
     icon: 'icons/duotune/maps/map001.svg',
-    state: 'primary',
+    state: 'primary'
   },
   {
     title: 'Banner Assets',
     description: 'Collection of banner images',
     time: '21 Jan',
     icon: 'icons/duotune/general/gen006.svg',
-    state: 'info',
+    state: 'info'
   },
   {
     title: 'Icon Assets',
     description: 'Collection of SVG icons',
     time: '20 March',
     icon: 'icons/duotune/art/art002.svg',
-    state: 'warning',
-  },
+    state: 'warning'
+  }
 ]
 export interface LogModel {
   code: string
@@ -264,18 +267,69 @@ export interface LogModel {
 }
 
 const defaultLogs: Array<LogModel> = [
-  {code: '200 OK', state: 'success', message: 'New order', time: 'Just now'},
-  {code: '500 ERR', state: 'danger', message: 'New customer', time: '2 hrs'},
-  {code: '200 OK', state: 'success', message: 'Payment process', time: '5 hrs'},
-  {code: '300 WRN', state: 'warning', message: 'Search query', time: '2 days'},
-  {code: '200 OK', state: 'success', message: 'API connection', time: '1 week'},
-  {code: '200 OK', state: 'success', message: 'Database restore', time: 'Mar 5'},
-  {code: '300 WRN', state: 'warning', message: 'System update', time: 'May 15'},
-  {code: '300 WRN', state: 'warning', message: 'Server OS update', time: 'Apr 3'},
-  {code: '300 WRN', state: 'warning', message: 'API rollback', time: 'Jun 30'},
-  {code: '500 ERR', state: 'danger', message: 'Refund process', time: 'Jul 10'},
-  {code: '500 ERR', state: 'danger', message: 'Withdrawal process', time: 'Sep 10'},
-  {code: '500 ERR', state: 'danger', message: 'Mail tasks', time: 'Dec 10'},
+  { code: '200 OK', state: 'success', message: 'New order', time: 'Just now' },
+  { code: '500 ERR', state: 'danger', message: 'New customer', time: '2 hrs' },
+  {
+    code: '200 OK',
+    state: 'success',
+    message: 'Payment process',
+    time: '5 hrs'
+  },
+  {
+    code: '300 WRN',
+    state: 'warning',
+    message: 'Search query',
+    time: '2 days'
+  },
+  {
+    code: '200 OK',
+    state: 'success',
+    message: 'API connection',
+    time: '1 week'
+  },
+  {
+    code: '200 OK',
+    state: 'success',
+    message: 'Database restore',
+    time: 'Mar 5'
+  },
+  {
+    code: '300 WRN',
+    state: 'warning',
+    message: 'System update',
+    time: 'May 15'
+  },
+  {
+    code: '300 WRN',
+    state: 'warning',
+    message: 'Server OS update',
+    time: 'Apr 3'
+  },
+  {
+    code: '300 WRN',
+    state: 'warning',
+    message: 'API rollback',
+    time: 'Jun 30'
+  },
+  {
+    code: '500 ERR',
+    state: 'danger',
+    message: 'Refund process',
+    time: 'Jul 10'
+  },
+  {
+    code: '500 ERR',
+    state: 'danger',
+    message: 'Withdrawal process',
+    time: 'Sep 10'
+  },
+  { code: '500 ERR', state: 'danger', message: 'Mail tasks', time: 'Dec 10' }
 ]
 
-export {defaultMessages, defaultUserInfos, defaultAlerts, defaultLogs, messageFromClient}
+export {
+  defaultMessages,
+  defaultUserInfos,
+  defaultAlerts,
+  defaultLogs,
+  messageFromClient
+}

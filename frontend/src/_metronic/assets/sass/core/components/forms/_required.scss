@@ -3,12 +3,12 @@
 //
 
 .required {
-    &:after {
-        content: "*";
-        position: relative;
-        font-size: inherit;
-        color: var(--kt-danger);
-        padding-left: 0.25rem;
-        font-weight: $font-weight-bold;
-    }
+  &:after {
+    content: '*';
+    position: relative;
+    font-size: inherit;
+    color: var(--kt-danger);
+    padding-left: 0.25rem;
+    font-weight: $font-weight-bold;
+  }
 }

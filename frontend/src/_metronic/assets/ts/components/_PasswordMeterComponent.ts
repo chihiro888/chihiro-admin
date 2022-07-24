@@ -1,6 +1,6 @@
 /* eslint-disable array-callback-return */
 /* eslint-disable no-useless-escape */
-import {DataUtil} from '../_utils/index'
+import { DataUtil } from '../_utils/index'
 
 export interface IPasswordMeterOptions {
   minLength: number
@@ -25,7 +25,7 @@ const defaultPasswordMeterOptions = {
   checkLowercase: true,
   checkDigit: true,
   checkChar: true,
-  scoreHighlightClass: 'active',
+  scoreHighlightClass: 'active'
 }
 
 const defaultPasswordMeterQueires: IPasswordMeterQueries = {
@@ -33,7 +33,7 @@ const defaultPasswordMeterQueires: IPasswordMeterQueries = {
   instanseQuery: '[data-kt-password-meter]',
   inputQuery: 'input[type]',
   visibilityQuery: '[data-kt-password-meter-control="visibility"]',
-  highlightQuery: '[data-kt-password-meter-control="highlight"]',
+  highlightQuery: '[data-kt-password-meter-control="highlight"]'
 }
 
 class PasswordMeterComponent {
@@ -59,8 +59,12 @@ class PasswordMeterComponent {
 
     // Elements
     this.inputElement = this.element.querySelector(this.queries.inputQuery)
-    this.visibilityElement = this.element.querySelector(this.queries.visibilityQuery)
-    this.highlightElement = this.element.querySelector(this.queries.highlightQuery)
+    this.visibilityElement = this.element.querySelector(
+      this.queries.visibilityQuery
+    )
+    this.highlightElement = this.element.querySelector(
+      this.queries.highlightQuery
+    )
 
     // Event Handlers
     this.handlers()
@@ -88,7 +92,9 @@ class PasswordMeterComponent {
         'i:not(.d-none), .svg-icon:not(.d-none)'
       )
 
-      const hiddenIcon = this.visibilityElement.querySelector('i.d-none, .svg-icon.d-none')
+      const hiddenIcon = this.visibilityElement.querySelector(
+        'i.d-none, .svg-icon.d-none'
+      )
 
       const typeAttr = this.inputElement.getAttribute('type') || ''
 
@@ -221,7 +227,7 @@ class PasswordMeterComponent {
   public static getInstance = (
     el: HTMLElement,
     componentName: string = defaultPasswordMeterQueires.componentName
-  ): PasswordMeterComponent | undefined  => {
+  ): PasswordMeterComponent | undefined => {
     const passwordMeter = DataUtil.get(el, componentName)
     if (passwordMeter) {
       return passwordMeter as PasswordMeterComponent
@@ -260,7 +266,9 @@ class PasswordMeterComponent {
     return passwordMeter
   }
 
-  public static bootstrap = (selector: string = defaultPasswordMeterQueires.instanseQuery) => {
+  public static bootstrap = (
+    selector: string = defaultPasswordMeterQueires.instanseQuery
+  ) => {
     PasswordMeterComponent.createInstances(selector)
   }
 
@@ -270,4 +278,8 @@ class PasswordMeterComponent {
     PasswordMeterComponent.createInstances(selector)
   }
 }
-export {PasswordMeterComponent, defaultPasswordMeterOptions, defaultPasswordMeterQueires}
+export {
+  PasswordMeterComponent,
+  defaultPasswordMeterOptions,
+  defaultPasswordMeterQueires
+}

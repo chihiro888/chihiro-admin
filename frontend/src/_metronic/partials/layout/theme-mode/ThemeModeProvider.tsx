@@ -1,6 +1,6 @@
-import React, {createContext, useContext, useEffect, useState} from 'react'
-import {ThemeModeComponent} from '../../../assets/ts/layout'
-import {toAbsoluteUrl} from '../../../helpers'
+import React, { createContext, useContext, useEffect, useState } from 'react'
+import { ThemeModeComponent } from '../../../assets/ts/layout'
+import { toAbsoluteUrl } from '../../../helpers'
 
 export type ThemeModeType = 'dark' | 'light' | 'system'
 const systemMode = ThemeModeComponent.getSystemMode() as 'light' | 'dark'
@@ -15,7 +15,8 @@ type ThemeModeContextType = {
 const themeModeSwitchHelper = (_mode: ThemeModeType) => {
   // change background image url
   const mode = _mode !== 'system' ? _mode : systemMode
-  const imageUrl = '/media/patterns/header-bg' + (mode === 'light' ? '.jpg' : '-dark.png')
+  const imageUrl =
+    '/media/patterns/header-bg' + (mode === 'light' ? '.jpg' : '-dark.png')
   document.body.style.backgroundImage = `url("${toAbsoluteUrl(imageUrl)}")`
 }
 
@@ -47,21 +48,23 @@ const defaultThemeMode: ThemeModeContextType = {
   mode: getThemeModeFromLocalStorage(themeModeLSKey),
   menuMode: getThemeModeFromLocalStorage(themeMenuModeLSKey),
   updateMode: (_mode: ThemeModeType) => {},
-  updateMenuMode: (_menuMode: ThemeModeType) => {},
+  updateMenuMode: (_menuMode: ThemeModeType) => {}
 }
 
 const ThemeModeContext = createContext<ThemeModeContextType>({
   mode: defaultThemeMode.mode,
   menuMode: defaultThemeMode.menuMode,
   updateMode: (_mode: ThemeModeType) => {},
-  updateMenuMode: (_menuMode: ThemeModeType) => {},
+  updateMenuMode: (_menuMode: ThemeModeType) => {}
 })
 
 const useThemeMode = () => useContext(ThemeModeContext)
 
-const ThemeModeProvider = ({children}: {children: React.ReactNode}) => {
+const ThemeModeProvider = ({ children }: { children: React.ReactNode }) => {
   const [mode, setMode] = useState<ThemeModeType>(defaultThemeMode.mode)
-  const [menuMode, setMenuMode] = useState<ThemeModeType>(defaultThemeMode.menuMode)
+  const [menuMode, setMenuMode] = useState<ThemeModeType>(
+    defaultThemeMode.menuMode
+  )
 
   const updateMode = (_mode: ThemeModeType) => {
     const updatedMode = _mode === 'system' ? systemMode : _mode
@@ -89,10 +92,12 @@ const ThemeModeProvider = ({children}: {children: React.ReactNode}) => {
   }, [])
 
   return (
-    <ThemeModeContext.Provider value={{mode, menuMode, updateMode, updateMenuMode}}>
+    <ThemeModeContext.Provider
+      value={{ mode, menuMode, updateMode, updateMenuMode }}
+    >
       {children}
     </ThemeModeContext.Provider>
   )
 }
 
-export {ThemeModeProvider, useThemeMode, systemMode, themeModeSwitchHelper}
+export { ThemeModeProvider, useThemeMode, systemMode, themeModeSwitchHelper }

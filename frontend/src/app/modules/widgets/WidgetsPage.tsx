@@ -1,25 +1,25 @@
-import {Navigate, Route, Routes, Outlet} from 'react-router-dom'
-import {PageLink, PageTitle} from '../../../_metronic/layout/core'
-import {Charts} from './components/Charts'
-import {Feeds} from './components/Feeds'
-import {Lists} from './components/Lists'
-import {Tables} from './components/Tables'
-import {Mixed} from './components/Mixed'
-import {Statistics} from './components/Statistics'
+import { Navigate, Route, Routes, Outlet } from 'react-router-dom'
+import { PageLink, PageTitle } from '../../../_metronic/layout/core'
+import { Charts } from './components/Charts'
+import { Feeds } from './components/Feeds'
+import { Lists } from './components/Lists'
+import { Tables } from './components/Tables'
+import { Mixed } from './components/Mixed'
+import { Statistics } from './components/Statistics'
 
 const widgetsBreadCrumbs: Array<PageLink> = [
   {
     title: 'Widgets',
     path: '/crafted/widgets/charts',
     isSeparator: false,
-    isActive: false,
+    isActive: false
   },
   {
     title: '',
     path: '',
     isSeparator: true,
-    isActive: false,
-  },
+    isActive: false
+  }
 ]
 
 const WidgetsPage = () => {
@@ -27,7 +27,7 @@ const WidgetsPage = () => {
     <Routes>
       <Route element={<Outlet />}>
         <Route
-          path='charts'
+          path="charts"
           element={
             <>
               <PageTitle breadcrumbs={widgetsBreadCrumbs}>Charts</PageTitle>
@@ -36,7 +36,7 @@ const WidgetsPage = () => {
           }
         />
         <Route
-          path='feeds'
+          path="feeds"
           element={
             <>
               <PageTitle breadcrumbs={widgetsBreadCrumbs}>Feeds</PageTitle>
@@ -45,7 +45,7 @@ const WidgetsPage = () => {
           }
         />
         <Route
-          path='lists'
+          path="lists"
           element={
             <>
               <PageTitle breadcrumbs={widgetsBreadCrumbs}>Lists</PageTitle>
@@ -54,7 +54,7 @@ const WidgetsPage = () => {
           }
         />
         <Route
-          path='mixed'
+          path="mixed"
           element={
             <>
               <PageTitle breadcrumbs={widgetsBreadCrumbs}>Mixed</PageTitle>
@@ -63,7 +63,7 @@ const WidgetsPage = () => {
           }
         />
         <Route
-          path='tables'
+          path="tables"
           element={
             <>
               <PageTitle breadcrumbs={widgetsBreadCrumbs}>Tables</PageTitle>
@@ -72,7 +72,7 @@ const WidgetsPage = () => {
           }
         />
         <Route
-          path='statistics'
+          path="statistics"
           element={
             <>
               <PageTitle breadcrumbs={widgetsBreadCrumbs}>Statiscics</PageTitle>
@@ -80,7 +80,7 @@ const WidgetsPage = () => {
             </>
           }
         />
-        <Route index element={<Navigate to='/crafted/widgets/lists' />} />
+        <Route index element={<Navigate to="/crafted/widgets/lists" />} />
       </Route>
     </Routes>
   )

@@ -9,7 +9,7 @@ import {
   DataUtil,
   ElementAnimateUtil,
   ElementStyleUtil,
-  EventHandlerUtil,
+  EventHandlerUtil
 } from '../_utils/index'
 
 export interface StickyOptions {
@@ -25,7 +25,7 @@ const defaultStickyOptions: StickyOptions = {
   reverse: false,
   animation: true,
   animationSpeed: '0.3s',
-  animationClass: 'animation-slide-in-down',
+  animationClass: 'animation-slide-in-down'
 }
 
 class StickyComponent {
@@ -170,8 +170,15 @@ class StickyComponent {
     const zindex = this.getOption('zindex')
 
     if (update !== true && this.getOption('animation') === true) {
-      ElementStyleUtil.set(this.element, 'animationDuration', this.getOption('animationSpeed'))
-      ElementAnimateUtil.animateClass(this.element, 'animation ' + this.getOption('animationClass'))
+      ElementStyleUtil.set(
+        this.element,
+        'animationDuration',
+        this.getOption('animationSpeed')
+      )
+      ElementAnimateUtil.animateClass(
+        this.element,
+        'animation ' + this.getOption('animationClass')
+      )
     }
 
     if (zindex !== null) {
@@ -282,4 +289,4 @@ class StickyComponent {
   }
 }
 
-export {StickyComponent, defaultStickyOptions}
+export { StickyComponent, defaultStickyOptions }

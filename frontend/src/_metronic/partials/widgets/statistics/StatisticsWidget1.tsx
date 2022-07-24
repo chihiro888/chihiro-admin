@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react'
-import {toAbsoluteUrl} from '../../../helpers'
+import { toAbsoluteUrl } from '../../../helpers'
 
 type Props = {
   className: string
@@ -10,27 +10,36 @@ type Props = {
   description: string
 }
 
-const StatisticsWidget1: React.FC<Props> = ({className, image, title, time, description}) => {
+const StatisticsWidget1: React.FC<Props> = ({
+  className,
+  image,
+  title,
+  time,
+  description
+}) => {
   return (
     <div
       className={`card bgi-no-repeat ${className}`}
       style={{
         backgroundPosition: 'right top',
         backgroundSize: '30% auto',
-        backgroundImage: `url(${toAbsoluteUrl('/media/svg/shapes/' + image)})`,
+        backgroundImage: `url(${toAbsoluteUrl('/media/svg/shapes/' + image)})`
       }}
     >
       {/* begin::Body */}
-      <div className='card-body'>
-        <a href='#' className='card-title fw-bold text-muted text-hover-primary fs-4'>
+      <div className="card-body">
+        <a
+          href="#"
+          className="card-title fw-bold text-muted text-hover-primary fs-4"
+        >
           {title}
         </a>
 
-        <div className='fw-bold text-primary my-6'>{time}</div>
+        <div className="fw-bold text-primary my-6">{time}</div>
 
         <p
-          className='text-dark-75 fw-semibold fs-5 m-0'
-          dangerouslySetInnerHTML={{__html: description}}
+          className="text-dark-75 fw-semibold fs-5 m-0"
+          dangerouslySetInnerHTML={{ __html: description }}
         ></p>
       </div>
       {/* end::Body */}
@@ -38,4 +47,4 @@ const StatisticsWidget1: React.FC<Props> = ({className, image, title, time, desc
   )
 }
 
-export {StatisticsWidget1}
+export { StatisticsWidget1 }

@@ -19,7 +19,7 @@ export const defaultAccount: IAccount = {
   communications: {
     email: false,
     sms: true,
-    phone: false,
+    phone: false
   },
-  requireInfo: false,
+  requireInfo: false
 }

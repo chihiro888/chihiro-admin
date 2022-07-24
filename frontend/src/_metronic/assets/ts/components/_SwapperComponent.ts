@@ -3,13 +3,16 @@ import {
   stringSnakeToCamel,
   getObjectPropertyValueByKey,
   EventHandlerUtil,
-  throttle,
+  throttle
 } from '../_utils/index'
 
 export class SwapperStore {
   static store: Map<string, SwapperComponent> = new Map()
 
-  public static set(instanceId: string, drawerComponentObj: SwapperComponent): void {
+  public static set(
+    instanceId: string,
+    drawerComponentObj: SwapperComponent
+  ): void {
     if (SwapperStore.has(instanceId)) {
       return
     }
@@ -52,13 +55,13 @@ export interface ISwapperQueries {
 }
 
 const defaultSwapperOptions: ISwapperOptions = {
-  mode: 'append',
+  mode: 'append'
 }
 
 const defaultSwapperQueires: ISwapperQueries = {
   componentName: 'swapper',
   instanseQuery: '[data-kt-swapper="true"]',
-  attrQuery: 'data-kt-swapper-',
+  attrQuery: 'data-kt-swapper-'
 }
 
 class SwapperComponent {
@@ -66,7 +69,11 @@ class SwapperComponent {
   options: ISwapperOptions
   queries: ISwapperQueries
 
-  constructor(_element: HTMLElement, _options: ISwapperOptions, _queries: ISwapperQueries) {
+  constructor(
+    _element: HTMLElement,
+    _options: ISwapperOptions,
+    _queries: ISwapperQueries
+  ) {
     this.element = _element
     this.options = Object.assign(defaultSwapperOptions, _options)
     this.queries = _queries
@@ -104,7 +111,9 @@ class SwapperComponent {
   public update = () => {
     const parentSelector = this.getOption('parent')?.toString()
     const mode = this.getOption('mode')
-    const parentElement = parentSelector ? document.querySelector(parentSelector) : null
+    const parentElement = parentSelector
+      ? document.querySelector(parentSelector)
+      : null
 
     if (parentElement && this.element.parentNode !== parentElement) {
       if (mode === 'prepend') {
@@ -177,11 +186,15 @@ class SwapperComponent {
     return place
   }
 
-  public static bootstrap = (selector: string = defaultSwapperQueires.instanseQuery) => {
+  public static bootstrap = (
+    selector: string = defaultSwapperQueires.instanseQuery
+  ) => {
     SwapperComponent.createInstances(selector)
   }
 
-  public static reinitialization = (selector: string = defaultSwapperQueires.instanseQuery) => {
+  public static reinitialization = (
+    selector: string = defaultSwapperQueires.instanseQuery
+  ) => {
     SwapperComponent.createInstances(selector)
   }
 }
@@ -193,7 +206,9 @@ window.addEventListener('resize', function () {
     timer,
     () => {
       // Locate and update Offcanvas instances on window resize
-      const elements = document.querySelectorAll(defaultSwapperQueires.instanseQuery)
+      const elements = document.querySelectorAll(
+        defaultSwapperQueires.instanseQuery
+      )
       elements.forEach((el) => {
         const place = SwapperComponent.getInstance(el as HTMLElement)
         if (place) {
@@ -205,4 +220,4 @@ window.addEventListener('resize', function () {
   )
 })
 
-export {SwapperComponent, defaultSwapperOptions, defaultSwapperQueires}
+export { SwapperComponent, defaultSwapperOptions, defaultSwapperQueires }

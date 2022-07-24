@@ -6,7 +6,7 @@ import {
   stringSnakeToCamel,
   getUniqueIdWithPrefix,
   DataUtil,
-  ElementAnimateUtil,
+  ElementAnimateUtil
 } from '../_utils/index'
 
 export interface IScrollTopOptions {
@@ -16,7 +16,7 @@ export interface IScrollTopOptions {
 
 const defaultScrollTopOptions: IScrollTopOptions = {
   offset: 200,
-  speed: 600,
+  speed: 600
 }
 
 class ScrollTopComponent {
@@ -99,7 +99,9 @@ class ScrollTopComponent {
   }
 
   // Static methods
-  public static getInstance = (el: HTMLElement): ScrollTopComponent | undefined => {
+  public static getInstance = (
+    el: HTMLElement
+  ): ScrollTopComponent | undefined => {
     const scrollTop = DataUtil.get(el, 'scrolltop')
     if (scrollTop) {
       return scrollTop as ScrollTopComponent
@@ -145,4 +147,4 @@ class ScrollTopComponent {
     ElementAnimateUtil.scrollTop(0, defaultScrollTopOptions.speed)
   }
 }
-export {ScrollTopComponent, defaultScrollTopOptions}
+export { ScrollTopComponent, defaultScrollTopOptions }

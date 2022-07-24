@@ -3,32 +3,32 @@
 //
 
 @mixin scrollbar-color($color, $hover-color: null) {
-    // Firefox
-    scrollbar-color: $color transparent;
-    
-    // Webkit
-    &::-webkit-scrollbar-thumb {
-        background-color: $color;
-    }
+  // Firefox
+  scrollbar-color: $color transparent;
 
-    &::-webkit-scrollbar-corner {
+  // Webkit
+  &::-webkit-scrollbar-thumb {
+    background-color: $color;
+  }
+
+  &::-webkit-scrollbar-corner {
+    background-color: transparent;
+  }
+
+  @if ($hover-color != null) {
+    // Hover state
+    &:hover {
+      // Firefox
+      scrollbar-color: $hover-color transparent;
+
+      // Webkit
+      &::-webkit-scrollbar-thumb {
+        background-color: $hover-color;
+      }
+
+      &::-webkit-scrollbar-corner {
         background-color: transparent;
+      }
     }
-
-    @if ($hover-color != null) {
-        // Hover state
-        &:hover {
-            // Firefox
-            scrollbar-color: $hover-color transparent;
-
-            // Webkit
-            &::-webkit-scrollbar-thumb {
-                background-color: $hover-color;
-            }
-
-            &::-webkit-scrollbar-corner {
-                background-color: transparent;
-            }
-        }
-    }
+  }
 }

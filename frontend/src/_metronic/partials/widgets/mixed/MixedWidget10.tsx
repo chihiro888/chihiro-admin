@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, {useEffect, useRef} from 'react'
-import ApexCharts, {ApexOptions} from 'apexcharts'
-import {getCSSVariableValue} from '../../../assets/ts/_utils'
-import {useThemeMode} from '../../layout/theme-mode/ThemeModeProvider'
+import React, { useEffect, useRef } from 'react'
+import ApexCharts, { ApexOptions } from 'apexcharts'
+import { getCSSVariableValue } from '../../../assets/ts/_utils'
+import { useThemeMode } from '../../layout/theme-mode/ThemeModeProvider'
 
 type Props = {
   className: string
@@ -10,15 +10,22 @@ type Props = {
   chartHeight: string
 }
 
-const MixedWidget10: React.FC<Props> = ({className, chartColor, chartHeight}) => {
+const MixedWidget10: React.FC<Props> = ({
+  className,
+  chartColor,
+  chartHeight
+}) => {
   const chartRef = useRef<HTMLDivElement | null>(null)
-  const {mode} = useThemeMode()
+  const { mode } = useThemeMode()
   const refreshChart = () => {
     if (!chartRef.current) {
       return
     }
 
-    const chart = new ApexCharts(chartRef.current, chartOptions(chartColor, chartHeight))
+    const chart = new ApexCharts(
+      chartRef.current,
+      chartOptions(chartColor, chartHeight)
+    )
     if (chart) {
       chart.render()
     }
@@ -40,16 +47,18 @@ const MixedWidget10: React.FC<Props> = ({className, chartColor, chartHeight}) =>
   return (
     <div className={`card ${className}`}>
       {/* begin::Body */}
-      <div className='card-body d-flex flex-column p-0'>
+      <div className="card-body d-flex flex-column p-0">
         {/* begin::Stats */}
-        <div className='flex-grow-1 card-p pb-0'>
-          <div className='d-flex flex-stack flex-wrap'>
-            <div className='me-2'>
-              <a href='#' className='text-dark text-hover-primary fw-bold fs-3'>
+        <div className="flex-grow-1 card-p pb-0">
+          <div className="d-flex flex-stack flex-wrap">
+            <div className="me-2">
+              <a href="#" className="text-dark text-hover-primary fw-bold fs-3">
                 Generate Reports
               </a>
 
-              <div className='text-muted fs-7 fw-semibold'>Finance and accounting reports</div>
+              <div className="text-muted fs-7 fw-semibold">
+                Finance and accounting reports
+              </div>
             </div>
 
             <div className={`fw-bold fs-3 text-${chartColor}`}>$24,500</div>
@@ -58,7 +67,10 @@ const MixedWidget10: React.FC<Props> = ({className, chartColor, chartHeight}) =>
         {/* end::Stats */}
 
         {/* begin::Chart */}
-        <div ref={chartRef} className='mixed-widget-7-chart card-rounded-bottom'></div>
+        <div
+          ref={chartRef}
+          className="mixed-widget-7-chart card-rounded-bottom"
+        ></div>
         {/* end::Chart */}
       </div>
       {/* end::Body */}
@@ -76,54 +88,54 @@ const chartOptions = (chartColor: string, chartHeight: string): ApexOptions => {
     series: [
       {
         name: 'Net Profit',
-        data: [15, 25, 15, 40, 20, 50],
-      },
+        data: [15, 25, 15, 40, 20, 50]
+      }
     ],
     chart: {
       fontFamily: 'inherit',
       type: 'area',
       height: chartHeight,
       toolbar: {
-        show: false,
+        show: false
       },
       zoom: {
-        enabled: false,
+        enabled: false
       },
       sparkline: {
-        enabled: true,
-      },
+        enabled: true
+      }
     },
     plotOptions: {},
     legend: {
-      show: false,
+      show: false
     },
     dataLabels: {
-      enabled: false,
+      enabled: false
     },
     fill: {
       type: 'solid',
-      opacity: 1,
+      opacity: 1
     },
     stroke: {
       curve: 'smooth',
       show: true,
       width: 3,
-      colors: [baseColor],
+      colors: [baseColor]
     },
     xaxis: {
       categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
       axisBorder: {
-        show: false,
+        show: false
       },
       axisTicks: {
-        show: false,
+        show: false
       },
       labels: {
         show: false,
         style: {
           colors: labelColor,
-          fontSize: '12px',
-        },
+          fontSize: '12px'
+        }
       },
       crosshairs: {
         show: false,
@@ -131,12 +143,12 @@ const chartOptions = (chartColor: string, chartHeight: string): ApexOptions => {
         stroke: {
           color: strokeColor,
           width: 1,
-          dashArray: 3,
-        },
+          dashArray: 3
+        }
       },
       tooltip: {
-        enabled: false,
-      },
+        enabled: false
+      }
     },
     yaxis: {
       min: 0,
@@ -145,48 +157,48 @@ const chartOptions = (chartColor: string, chartHeight: string): ApexOptions => {
         show: false,
         style: {
           colors: labelColor,
-          fontSize: '12px',
-        },
-      },
+          fontSize: '12px'
+        }
+      }
     },
     states: {
       normal: {
         filter: {
           type: 'none',
-          value: 0,
-        },
+          value: 0
+        }
       },
       hover: {
         filter: {
           type: 'none',
-          value: 0,
-        },
+          value: 0
+        }
       },
       active: {
         allowMultipleDataPointsSelection: false,
         filter: {
           type: 'none',
-          value: 0,
-        },
-      },
+          value: 0
+        }
+      }
     },
     tooltip: {
       style: {
-        fontSize: '12px',
+        fontSize: '12px'
       },
       y: {
         formatter: function (val) {
           return '$' + val + ' thousands'
-        },
-      },
+        }
+      }
     },
     colors: [lightColor],
     markers: {
       colors: [lightColor],
       strokeColors: [baseColor],
-      strokeWidth: 3,
-    },
+      strokeWidth: 3
+    }
   }
 }
 
-export {MixedWidget10}
+export { MixedWidget10 }

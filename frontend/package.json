@@ -1,8 +1,8 @@
 {
-  "name": "demo1",
+  "name": "mysql-query-saver",
   "version": "8.1.0",
   "private": true,
-  "homepage": "/metronic8/react/demo1",
+  "homepage": "/",
   "dependencies": {
     "@formatjs/intl-pluralrules": "4.3.3",
     "@formatjs/intl-relativetimeformat": "10.0.1",

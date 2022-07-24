@@ -9,10 +9,14 @@ const UsersListLoading = () => {
     width: 'auto',
     padding: '1rem 2rem',
     top: 'calc(50% - 2rem)',
-    left: 'calc(50% - 4rem)',
+    left: 'calc(50% - 4rem)'
   }
 
-  return <div style={{...styles, position: 'absolute', textAlign: 'center'}}>Processing...</div>
+  return (
+    <div style={{ ...styles, position: 'absolute', textAlign: 'center' }}>
+      Processing...
+    </div>
+  )
 }
 
-export {UsersListLoading}
+export { UsersListLoading }

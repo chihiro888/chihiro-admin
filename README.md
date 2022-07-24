@@ -35,6 +35,8 @@ docker-compose up
 
 ## backend
 
+- Please create the database with docker first.
+
 ```bash
 cd backend
 yarn install
@@ -49,6 +51,8 @@ yarn start:dev
 yarn start:prod
 ```
 
+http://localhost:9000/api
+
 ## frontend
 
 ```bash
@@ -56,3 +60,5 @@ cd frontend
 yarn install
 yarn start
 ```
+
+http://localhost:3000/

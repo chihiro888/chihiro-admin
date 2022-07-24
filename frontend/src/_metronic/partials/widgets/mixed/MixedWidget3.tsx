@@ -1,11 +1,11 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, {useEffect, useRef} from 'react'
-import ApexCharts, {ApexOptions} from 'apexcharts'
-import {KTSVG} from '../../../helpers'
-import {getCSSVariableValue} from '../../../assets/ts/_utils'
-import {Dropdown1} from '../../content/dropdown/Dropdown1'
+import React, { useEffect, useRef } from 'react'
+import ApexCharts, { ApexOptions } from 'apexcharts'
+import { KTSVG } from '../../../helpers'
+import { getCSSVariableValue } from '../../../assets/ts/_utils'
+import { Dropdown1 } from '../../content/dropdown/Dropdown1'
 import clsx from 'clsx'
-import {useThemeMode} from '../../layout/theme-mode/ThemeModeProvider'
+import { useThemeMode } from '../../layout/theme-mode/ThemeModeProvider'
 
 type Props = {
   className: string
@@ -13,9 +13,13 @@ type Props = {
   chartHeight: string
 }
 
-const MixedWidget3: React.FC<Props> = ({className, chartColor, chartHeight}) => {
+const MixedWidget3: React.FC<Props> = ({
+  className,
+  chartColor,
+  chartHeight
+}) => {
   const chartRef = useRef<HTMLDivElement | null>(null)
-  const {mode} = useThemeMode()
+  const { mode } = useThemeMode()
   const refreshChart = () => {
     if (!chartRef.current) {
       return
@@ -44,22 +48,25 @@ const MixedWidget3: React.FC<Props> = ({className, chartColor, chartHeight}) => 
     <div className={`card ${className}`}>
       {/* begin::Header  */}
       <div className={`card-header border-0 bg-${chartColor} py-5`}>
-        <h3 className='card-title fw-bold text-white'>Sales Progress</h3>
+        <h3 className="card-title fw-bold text-white">Sales Progress</h3>
 
-        <div className='card-toolbar'>
+        <div className="card-toolbar">
           {/* begin::Menu  */}
           <button
-            type='button'
+            type="button"
             className={clsx(
               'btn btn-sm btn-icon btn-color-white btn-active-white',
               `btn-active-color-${chartColor}`,
               'border-0 me-n3'
             )}
-            data-kt-menu-trigger='click'
-            data-kt-menu-placement='bottom-end'
-            data-kt-menu-flip='top-end'
+            data-kt-menu-trigger="click"
+            data-kt-menu-placement="bottom-end"
+            data-kt-menu-flip="top-end"
           >
-            <KTSVG path='/media/icons/duotune/general/gen024.svg' className='svg-icon-2' />
+            <KTSVG
+              path="/media/icons/duotune/general/gen024.svg"
+              className="svg-icon-2"
+            />
           </button>
           <Dropdown1 />
           {/* end::Menu  */}
@@ -68,7 +75,7 @@ const MixedWidget3: React.FC<Props> = ({className, chartColor, chartHeight}) => 
       {/* end::Header  */}
 
       {/* begin::Body  */}
-      <div className='card-body p-0'>
+      <div className="card-body p-0">
         {/* begin::Chart  */}
         <div
           ref={chartRef}
@@ -77,38 +84,38 @@ const MixedWidget3: React.FC<Props> = ({className, chartColor, chartHeight}) => 
         {/* end::Chart  */}
 
         {/* begin::Stats  */}
-        <div className='card-rounded bg-body mt-n10 position-relative card-px py-15'>
+        <div className="card-rounded bg-body mt-n10 position-relative card-px py-15">
           {/* begin::Row  */}
-          <div className='row g-0 mb-7'>
+          <div className="row g-0 mb-7">
             {/* begin::Col  */}
-            <div className='col mx-5'>
-              <div className='fs-6 text-gray-400'>Avarage Sale</div>
-              <div className='fs-2 fw-bold text-gray-800'>$650</div>
+            <div className="col mx-5">
+              <div className="fs-6 text-gray-400">Avarage Sale</div>
+              <div className="fs-2 fw-bold text-gray-800">$650</div>
             </div>
             {/* end::Col  */}
 
             {/* begin::Col  */}
-            <div className='col mx-5'>
-              <div className='fs-6 text-gray-400'>Comissions</div>
-              <div className='fs-2 fw-bold text-gray-800'>$29,500</div>
+            <div className="col mx-5">
+              <div className="fs-6 text-gray-400">Comissions</div>
+              <div className="fs-2 fw-bold text-gray-800">$29,500</div>
             </div>
             {/* end::Col  */}
           </div>
           {/* end::Row  */}
 
           {/* begin::Row  */}
-          <div className='row g-0'>
+          <div className="row g-0">
             {/* begin::Col  */}
-            <div className='col mx-5'>
-              <div className='fs-6 text-gray-400'>Revenue</div>
-              <div className='fs-2 fw-bold text-gray-800'>$55,000</div>
+            <div className="col mx-5">
+              <div className="fs-6 text-gray-400">Revenue</div>
+              <div className="fs-2 fw-bold text-gray-800">$55,000</div>
             </div>
             {/* end::Col  */}
 
             {/* begin::Col  */}
-            <div className='col mx-5'>
-              <div className='fs-6 text-gray-400'>Expenses</div>
-              <div className='fs-2 fw-bold text-gray-800'>$1,130,600</div>
+            <div className="col mx-5">
+              <div className="fs-6 text-gray-400">Expenses</div>
+              <div className="fs-2 fw-bold text-gray-800">$1,130,600</div>
             </div>
             {/* end::Col  */}
           </div>
@@ -129,56 +136,56 @@ const chartOptions = (chartHeight: string): ApexOptions => {
     series: [
       {
         name: 'Net Profit',
-        data: [35, 65, 75, 55, 45, 60, 55],
+        data: [35, 65, 75, 55, 45, 60, 55]
       },
       {
         name: 'Revenue',
-        data: [40, 70, 80, 60, 50, 65, 60],
-      },
+        data: [40, 70, 80, 60, 50, 65, 60]
+      }
     ],
     chart: {
       fontFamily: 'inherit',
       type: 'bar',
       height: chartHeight,
       toolbar: {
-        show: false,
+        show: false
       },
       sparkline: {
-        enabled: true,
-      },
+        enabled: true
+      }
     },
     plotOptions: {
       bar: {
         horizontal: false,
         columnWidth: '30%',
-        borderRadius: 5,
-      },
+        borderRadius: 5
+      }
     },
     legend: {
-      show: false,
+      show: false
     },
     dataLabels: {
-      enabled: false,
+      enabled: false
     },
     stroke: {
       show: true,
       width: 1,
-      colors: ['transparent'],
+      colors: ['transparent']
     },
     xaxis: {
       categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
       axisBorder: {
-        show: false,
+        show: false
       },
       axisTicks: {
-        show: false,
+        show: false
       },
       labels: {
         style: {
           colors: labelColor,
-          fontSize: '12px',
-        },
-      },
+          fontSize: '12px'
+        }
+      }
     },
     yaxis: {
       min: 0,
@@ -186,47 +193,47 @@ const chartOptions = (chartHeight: string): ApexOptions => {
       labels: {
         style: {
           colors: labelColor,
-          fontSize: '12px',
-        },
-      },
+          fontSize: '12px'
+        }
+      }
     },
     fill: {
       type: ['solid', 'solid'],
-      opacity: [0.25, 1],
+      opacity: [0.25, 1]
     },
     states: {
       normal: {
         filter: {
           type: 'none',
-          value: 0,
-        },
+          value: 0
+        }
       },
       hover: {
         filter: {
           type: 'none',
-          value: 0,
-        },
+          value: 0
+        }
       },
       active: {
         allowMultipleDataPointsSelection: false,
         filter: {
           type: 'none',
-          value: 0,
-        },
-      },
+          value: 0
+        }
+      }
     },
     tooltip: {
       style: {
-        fontSize: '12px',
+        fontSize: '12px'
       },
       y: {
         formatter: function (val) {
           return '$' + val + ' thousands'
-        },
+        }
       },
       marker: {
-        show: false,
-      },
+        show: false
+      }
     },
     colors: ['#ffffff', '#ffffff'],
     grid: {
@@ -234,15 +241,15 @@ const chartOptions = (chartHeight: string): ApexOptions => {
       strokeDashArray: 4,
       yaxis: {
         lines: {
-          show: true,
-        },
+          show: true
+        }
       },
       padding: {
         left: 20,
-        right: 20,
-      },
-    },
+        right: 20
+      }
+    }
   }
 }
 
-export {MixedWidget3}
+export { MixedWidget3 }

@@ -3,17 +3,17 @@
 //
 
 .toggle {
-    &.collapsible:not(.collapsed), // Integration with Bootstrap Collapse
+  &.collapsible:not(.collapsed), // Integration with Bootstrap Collapse
     &.active {
-        .toggle-off {
-            display: none;
-        }
+    .toggle-off {
+      display: none;
     }
+  }
 
-    &.collapsible.collapsed, // Integration with Bootstrap Collapse
+  &.collapsible.collapsed, // Integration with Bootstrap Collapse
     &:not(.collapsible):not(.active) {
-        .toggle-on {
-            display: none;
-        }
+    .toggle-on {
+      display: none;
     }
+  }
 }

@@ -1,28 +1,28 @@
-import {Route, Routes, Outlet, Navigate} from 'react-router-dom'
-import {PageLink, PageTitle} from '../../../_metronic/layout/core'
-import {Vertical} from './components/Vertical'
-import {Horizontal} from './components/Horizontal'
+import { Route, Routes, Outlet, Navigate } from 'react-router-dom'
+import { PageLink, PageTitle } from '../../../_metronic/layout/core'
+import { Vertical } from './components/Vertical'
+import { Horizontal } from './components/Horizontal'
 
 const wizardsBreadCrumbs: Array<PageLink> = [
   {
     title: 'Wizards',
     path: '/crafted/pages/wizards/horizontal',
     isSeparator: false,
-    isActive: false,
+    isActive: false
   },
   {
     title: '',
     path: '',
     isSeparator: true,
-    isActive: false,
-  },
+    isActive: false
+  }
 ]
 
 const WizardsPage = () => (
   <Routes>
     <Route element={<Outlet />}>
       <Route
-        path='horizontal'
+        path="horizontal"
         element={
           <>
             <PageTitle breadcrumbs={wizardsBreadCrumbs}>Horizontal</PageTitle>
@@ -31,7 +31,7 @@ const WizardsPage = () => (
         }
       />
       <Route
-        path='vertical'
+        path="vertical"
         element={
           <>
             <PageTitle breadcrumbs={wizardsBreadCrumbs}>Vertical</PageTitle>
@@ -39,7 +39,10 @@ const WizardsPage = () => (
           </>
         }
       />
-      <Route index element={<Navigate to='/crafted/pages/wizards/horizontal' />} />
+      <Route
+        index
+        element={<Navigate to="/crafted/pages/wizards/horizontal" />}
+      />
     </Route>
   </Routes>
 )

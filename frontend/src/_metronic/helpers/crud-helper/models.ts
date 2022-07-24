@@ -1,11 +1,16 @@
-import {Dispatch, SetStateAction} from 'react'
+import { Dispatch, SetStateAction } from 'react'
 
 export type ID = undefined | null | number
 
 export type PaginationState = {
   page: number
   items_per_page: 10 | 30 | 50 | 100
-  links?: Array<{label: string; active: boolean; url: string | null; page: number | null}>
+  links?: Array<{
+    label: string
+    active: boolean
+    url: string | null
+    page: number | null
+  }>
 }
 
 export type SortState = {
@@ -41,12 +46,12 @@ export type QueryRequestContextProps = {
 
 export const initialQueryState: QueryState = {
   page: 1,
-  items_per_page: 10,
+  items_per_page: 10
 }
 
 export const initialQueryRequest: QueryRequestContextProps = {
   state: initialQueryState,
-  updateState: () => {},
+  updateState: () => {}
 }
 
 export type QueryResponseContextProps<T> = {
@@ -56,7 +61,11 @@ export type QueryResponseContextProps<T> = {
   query: string
 }
 
-export const initialQueryResponse = {refetch: () => {}, isLoading: false, query: ''}
+export const initialQueryResponse = {
+  refetch: () => {},
+  isLoading: false,
+  query: ''
+}
 
 export type ListViewContextProps = {
   selected: Array<ID>
@@ -79,5 +88,5 @@ export const initialListView: ListViewContextProps = {
   clearSelected: () => {},
   setItemIdForUpdate: () => {},
   isAllSelected: false,
-  disabled: false,
+  disabled: false
 }

@@ -1,5 +1,10 @@
 export class ElementStyleUtil {
-  public static set(element: HTMLElement, property: string, value?: any, important?: boolean) {
+  public static set(
+    element: HTMLElement,
+    property: string,
+    value?: any,
+    important?: boolean
+  ) {
     if (important) {
       element.style.setProperty(property, value, 'important')
     } else {

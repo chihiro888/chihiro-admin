@@ -1,49 +1,57 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react'
-import {KTSVG, toAbsoluteUrl} from '../../../helpers'
-import {Dropdown1} from '../../content/dropdown/Dropdown1'
+import { KTSVG, toAbsoluteUrl } from '../../../helpers'
+import { Dropdown1 } from '../../content/dropdown/Dropdown1'
 
 type Props = {
   className: string
 }
 
-const FeedsWidget2: React.FC<Props> = ({className}) => {
+const FeedsWidget2: React.FC<Props> = ({ className }) => {
   return (
     <div className={`card ${className}`}>
       {/* begin::Body */}
-      <div className='card-body pb-0'>
+      <div className="card-body pb-0">
         {/* begin::Header */}
-        <div className='d-flex align-items-center mb-5'>
+        <div className="d-flex align-items-center mb-5">
           {/* begin::User */}
-          <div className='d-flex align-items-center flex-grow-1'>
+          <div className="d-flex align-items-center flex-grow-1">
             {/* begin::Avatar */}
-            <div className='symbol symbol-45px me-5'>
-              <img src={toAbsoluteUrl('/media/avatars/300-23.jpg')} alt='' />
+            <div className="symbol symbol-45px me-5">
+              <img src={toAbsoluteUrl('/media/avatars/300-23.jpg')} alt="" />
             </div>
             {/* end::Avatar */}
 
             {/* begin::Info */}
-            <div className='d-flex flex-column'>
-              <a href='#' className='text-gray-800 text-hover-primary fs-6 fw-bold'>
+            <div className="d-flex flex-column">
+              <a
+                href="#"
+                className="text-gray-800 text-hover-primary fs-6 fw-bold"
+              >
                 Nick Logan
               </a>
 
-              <span className='text-gray-400 fw-semibold'>PHP, SQLite, Artisan CLI</span>
+              <span className="text-gray-400 fw-semibold">
+                PHP, SQLite, Artisan CLI
+              </span>
             </div>
             {/* end::Info */}
           </div>
           {/* end::User */}
 
           {/* begin::Menu */}
-          <div className='my-0'>
+          <div className="my-0">
             <button
-              type='button'
-              className='btn btn-sm btn-icon btn-color-primary btn-active-light-primary'
-              data-kt-menu-trigger='click'
-              data-kt-menu-placement='bottom-end'
-              data-kt-menu-flip='top-end'
+              type="button"
+              className="btn btn-sm btn-icon btn-color-primary btn-active-light-primary"
+              data-kt-menu-trigger="click"
+              data-kt-menu-placement="bottom-end"
+              data-kt-menu-flip="top-end"
             >
-              <KTSVG path='/media/icons/duotune/general/gen024.svg' className='svg-icon-2' />
+              <KTSVG
+                path="/media/icons/duotune/general/gen024.svg"
+                className="svg-icon-2"
+              />
             </button>
             <Dropdown1 />
           </div>
@@ -52,29 +60,36 @@ const FeedsWidget2: React.FC<Props> = ({className}) => {
         {/* end::Header */}
 
         {/* begin::Post */}
-        <div className='mb-5'>
+        <div className="mb-5">
           {/* begin::Text */}
-          <p className='text-gray-800 fw-normal mb-5'>
-            Outlines keep you honest. They stop you from indulging in poorly thought-out metaphors
-            about driving and keep you focused on the overall structure of your post
+          <p className="text-gray-800 fw-normal mb-5">
+            Outlines keep you honest. They stop you from indulging in poorly
+            thought-out metaphors about driving and keep you focused on the
+            overall structure of your post
           </p>
           {/* end::Text */}
 
           {/* begin::Toolbar */}
-          <div className='d-flex align-items-center mb-5'>
+          <div className="d-flex align-items-center mb-5">
             <a
-              href='#'
-              className='btn btn-sm btn-light btn-color-muted btn-active-light-success px-4 py-2 me-4'
+              href="#"
+              className="btn btn-sm btn-light btn-color-muted btn-active-light-success px-4 py-2 me-4"
             >
-              <KTSVG path='/media/icons/duotune/communication/com012.svg' className='svg-icon-2' />
+              <KTSVG
+                path="/media/icons/duotune/communication/com012.svg"
+                className="svg-icon-2"
+              />
               120
             </a>
 
             <a
-              href='#'
-              className='btn btn-sm btn-light btn-color-muted btn-active-light-danger px-4 py-2'
+              href="#"
+              className="btn btn-sm btn-light btn-color-muted btn-active-light-danger px-4 py-2"
             >
-              <KTSVG path='/media/icons/duotune/general/gen030.svg' className='svg-icon-2' />
+              <KTSVG
+                path="/media/icons/duotune/general/gen030.svg"
+                className="svg-icon-2"
+              />
               15
             </a>
           </div>
@@ -83,27 +98,30 @@ const FeedsWidget2: React.FC<Props> = ({className}) => {
         {/* end::Post */}
 
         {/* begin::Separator */}
-        <div className='separator mb-4'></div>
+        <div className="separator mb-4"></div>
         {/* end::Separator */}
 
         {/* begin::Reply input */}
-        <form className='position-relative mb-6'>
+        <form className="position-relative mb-6">
           <textarea
-            className='form-control border-0 p-0 pe-10 resize-none min-h-25px'
+            className="form-control border-0 p-0 pe-10 resize-none min-h-25px"
             rows={1}
-            placeholder='Reply..'
+            placeholder="Reply.."
           ></textarea>
 
-          <div className='position-absolute top-0 end-0 me-n5'>
-            <span className='btn btn-icon btn-sm btn-active-color-primary pe-0 me-2'>
+          <div className="position-absolute top-0 end-0 me-n5">
+            <span className="btn btn-icon btn-sm btn-active-color-primary pe-0 me-2">
               <KTSVG
-                path='/media/icons/duotune/communication/com008.svg'
-                className='svg-icon-3 mb-3'
+                path="/media/icons/duotune/communication/com008.svg"
+                className="svg-icon-3 mb-3"
               />
             </span>
 
-            <span className='btn btn-icon btn-sm btn-active-color-primary ps-0'>
-              <KTSVG path='/media/icons/duotune/general/gen018.svg' className='svg-icon-2 mb-3' />
+            <span className="btn btn-icon btn-sm btn-active-color-primary ps-0">
+              <KTSVG
+                path="/media/icons/duotune/general/gen018.svg"
+                className="svg-icon-2 mb-3"
+              />
             </span>
           </div>
         </form>
@@ -114,4 +132,4 @@ const FeedsWidget2: React.FC<Props> = ({className}) => {
   )
 }
 
-export {FeedsWidget2}
+export { FeedsWidget2 }

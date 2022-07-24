@@ -3,5 +3,6 @@
 //
 
 @mixin app-layout-transition($properties: all) {
-    transition: $properties $app-general-transition-duration $app-general-transition-timing !important;    
+  transition: $properties $app-general-transition-duration
+    $app-general-transition-timing !important;
 }

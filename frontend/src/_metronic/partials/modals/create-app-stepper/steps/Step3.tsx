@@ -1,34 +1,40 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import {StepProps} from '../IAppModels'
+import { StepProps } from '../IAppModels'
 
-const Step3 = ({data, updateData, hasError}: StepProps) => {
+const Step3 = ({ data, updateData, hasError }: StepProps) => {
   return (
     <>
       {/*begin::Step 3 */}
-      <div className='pb-5' data-kt-stepper-element='content'>
-        <div className='w-100'>
+      <div className="pb-5" data-kt-stepper-element="content">
+        <div className="w-100">
           {/*begin::Form Group */}
 
-          <div className='fv-row mb-10'>
-            <label className='required fs-5 fw-semibold mb-2'>Database Name</label>
+          <div className="fv-row mb-10">
+            <label className="required fs-5 fw-semibold mb-2">
+              Database Name
+            </label>
 
             <input
-              type='text'
-              className='form-control form-control-lg form-control-solid'
-              name='dbname'
+              type="text"
+              className="form-control form-control-lg form-control-solid"
+              name="dbname"
               value={data.appDatabase.databaseName}
               onChange={(e) =>
                 updateData({
                   appDatabase: {
                     databaseName: e.target.value,
-                    databaseSolution: data.appDatabase.databaseSolution,
-                  },
+                    databaseSolution: data.appDatabase.databaseSolution
+                  }
                 })
               }
             />
             {!data.appDatabase.databaseName && hasError && (
-              <div className='fv-plugins-message-container'>
-                <div data-field='appname' data-validator='notEmpty' className='fv-help-block'>
+              <div className="fv-plugins-message-container">
+                <div
+                  data-field="appname"
+                  data-validator="notEmpty"
+                  className="fv-help-block"
+                >
                   Database name is required
                 </div>
               </div>
@@ -37,45 +43,45 @@ const Step3 = ({data, updateData, hasError}: StepProps) => {
           {/*end::Form Group */}
 
           {/*begin::Form Group */}
-          <div className='fv-row'>
-            <label className='d-flex align-items-center fs-5 fw-semibold mb-4'>
-              <span className='required'>Select Database Engine</span>
+          <div className="fv-row">
+            <label className="d-flex align-items-center fs-5 fw-semibold mb-4">
+              <span className="required">Select Database Engine</span>
 
               <i
-                className='fas fa-exclamation-circle ms-2 fs-7'
-                data-bs-toggle='tooltip'
-                title='Select your app database engine'
+                className="fas fa-exclamation-circle ms-2 fs-7"
+                data-bs-toggle="tooltip"
+                title="Select your app database engine"
               ></i>
             </label>
 
             {/*begin:Option */}
-            <label className='d-flex align-items-center justify-content-between cursor-pointer mb-6'>
-              <span className='d-flex align-items-center me-2'>
-                <span className='symbol symbol-50px me-6'>
-                  <span className='symbol-label bg-light-success'>
-                    <i className='fas fa-database text-success fs-2x'></i>
+            <label className="d-flex align-items-center justify-content-between cursor-pointer mb-6">
+              <span className="d-flex align-items-center me-2">
+                <span className="symbol symbol-50px me-6">
+                  <span className="symbol-label bg-light-success">
+                    <i className="fas fa-database text-success fs-2x"></i>
                   </span>
                 </span>
 
-                <span className='d-flex flex-column'>
-                  <span className='fw-bolder fs-6'>MySQL</span>
-                  <span className='fs-7 text-muted'>Basic MySQL database</span>
+                <span className="d-flex flex-column">
+                  <span className="fw-bolder fs-6">MySQL</span>
+                  <span className="fs-7 text-muted">Basic MySQL database</span>
                 </span>
               </span>
 
-              <span className='form-check form-check-custom form-check-solid'>
+              <span className="form-check form-check-custom form-check-solid">
                 <input
-                  className='form-check-input'
-                  type='radio'
-                  name='databaseSolution'
-                  value='MySQL'
+                  className="form-check-input"
+                  type="radio"
+                  name="databaseSolution"
+                  value="MySQL"
                   checked={data.appDatabase.databaseSolution === 'MySQL'}
                   onChange={() =>
                     updateData({
                       appDatabase: {
                         databaseName: data.appDatabase.databaseName,
-                        databaseSolution: 'MySQL',
-                      },
+                        databaseSolution: 'MySQL'
+                      }
                     })
                   }
                 />
@@ -84,33 +90,35 @@ const Step3 = ({data, updateData, hasError}: StepProps) => {
             {/*end::Option */}
 
             {/*begin:Option */}
-            <label className='d-flex align-items-center justify-content-between cursor-pointer mb-6'>
-              <span className='d-flex align-items-center me-2'>
-                <span className='symbol symbol-50px me-6'>
-                  <span className='symbol-label bg-light-danger'>
-                    <i className='fab fa-google text-danger fs-2x'></i>
+            <label className="d-flex align-items-center justify-content-between cursor-pointer mb-6">
+              <span className="d-flex align-items-center me-2">
+                <span className="symbol symbol-50px me-6">
+                  <span className="symbol-label bg-light-danger">
+                    <i className="fab fa-google text-danger fs-2x"></i>
                   </span>
                 </span>
 
-                <span className='d-flex flex-column'>
-                  <span className='fw-bolder fs-6'>Firebase</span>
-                  <span className='fs-7 text-muted'>Google based app data management</span>
+                <span className="d-flex flex-column">
+                  <span className="fw-bolder fs-6">Firebase</span>
+                  <span className="fs-7 text-muted">
+                    Google based app data management
+                  </span>
                 </span>
               </span>
 
-              <span className='form-check form-check-custom form-check-solid'>
+              <span className="form-check form-check-custom form-check-solid">
                 <input
-                  className='form-check-input'
-                  type='radio'
-                  name='databaseSolution'
-                  value='Firebase'
+                  className="form-check-input"
+                  type="radio"
+                  name="databaseSolution"
+                  value="Firebase"
                   checked={data.appDatabase.databaseSolution === 'Firebase'}
                   onChange={() =>
                     updateData({
                       appDatabase: {
                         databaseName: data.appDatabase.databaseName,
-                        databaseSolution: 'Firebase',
-                      },
+                        databaseSolution: 'Firebase'
+                      }
                     })
                   }
                 />
@@ -119,33 +127,35 @@ const Step3 = ({data, updateData, hasError}: StepProps) => {
             {/*end::Option */}
 
             {/*begin:Option */}
-            <label className='d-flex align-items-center justify-content-between cursor-pointer mb-6'>
-              <span className='d-flex align-items-center me-2'>
-                <span className='symbol symbol-50px me-6'>
-                  <span className='symbol-label bg-light-warning'>
-                    <i className='fab fa-amazon text-warning fs-2x'></i>
+            <label className="d-flex align-items-center justify-content-between cursor-pointer mb-6">
+              <span className="d-flex align-items-center me-2">
+                <span className="symbol symbol-50px me-6">
+                  <span className="symbol-label bg-light-warning">
+                    <i className="fab fa-amazon text-warning fs-2x"></i>
                   </span>
                 </span>
 
-                <span className='d-flex flex-column'>
-                  <span className='fw-bolder fs-6'>DynamoDB</span>
-                  <span className='fs-7 text-muted'>Amazon Fast NoSQL Database</span>
+                <span className="d-flex flex-column">
+                  <span className="fw-bolder fs-6">DynamoDB</span>
+                  <span className="fs-7 text-muted">
+                    Amazon Fast NoSQL Database
+                  </span>
                 </span>
               </span>
 
-              <span className='form-check form-check-custom form-check-solid'>
+              <span className="form-check form-check-custom form-check-solid">
                 <input
-                  className='form-check-input'
-                  type='radio'
-                  name='databaseSolution'
-                  value='DynamoDB'
+                  className="form-check-input"
+                  type="radio"
+                  name="databaseSolution"
+                  value="DynamoDB"
                   checked={data.appDatabase.databaseSolution === 'DynamoDB'}
                   onChange={() =>
                     updateData({
                       appDatabase: {
                         databaseName: data.appDatabase.databaseName,
-                        databaseSolution: 'DynamoDB',
-                      },
+                        databaseSolution: 'DynamoDB'
+                      }
                     })
                   }
                 />
@@ -161,4 +171,4 @@ const Step3 = ({data, updateData, hasError}: StepProps) => {
   )
 }
 
-export {Step3}
+export { Step3 }

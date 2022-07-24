@@ -3,89 +3,89 @@
 //
 
 .nav.nav-pills.nav-pills-custom {
-	// States
-	.show > .nav-link,
-	.nav-link{		
-		border: 1px dashed var(--kt-border-dashed-color);
-		@include border-radius($border-radius-lg);
-		
-		&.nav-link-border-solid {
-			border: 3px solid var(--kt-border-dashed-color);
+  // States
+  .show > .nav-link,
+  .nav-link {
+    border: 1px dashed var(--kt-border-dashed-color);
+    @include border-radius($border-radius-lg);
 
-			&.active {					 		
-				border: 3px solid var(--kt-primary);	 
-			}
-		}
-		
-        .nav-icon {
-            img {
-                width: 30px;
-                transition: $transition-link;
+    &.nav-link-border-solid {
+      border: 3px solid var(--kt-border-dashed-color);
 
-                &.default {
-                    display: inline-block;
-                }
+      &.active {
+        border: 3px solid var(--kt-primary);
+      }
+    }
 
-                &.active {
-                    display: none;
-                }
-            }
+    .nav-icon {
+      img {
+        width: 30px;
+        transition: $transition-link;
+
+        &.default {
+          display: inline-block;
         }
 
-        &.active {	
-			background-color: transparent;		
-			border: 1px solid var(--kt-border-dashed-color);
-			transition-duration: 1ms;			
-			position: relative;
+        &.active {
+          display: none;
+        }
+      }
+    }
 
-			.nav-text {
-				color: var(--kt-gray-800) !important;
-				transition: $transition-link;
-			}
-			
-			.bullet-custom {
-				display: block;			  	
-			}
-		}
+    &.active {
+      background-color: transparent;
+      border: 1px solid var(--kt-border-dashed-color);
+      transition-duration: 1ms;
+      position: relative;
 
-		.bullet-custom {
-			display: none;			  	
-		}
-	}
+      .nav-text {
+        color: var(--kt-gray-800) !important;
+        transition: $transition-link;
+      }
 
-	&.nav-pills-active-custom {
-		.nav-item {				 
-			.nav-link {
-				&:not(:active) {				 
-					span:nth-child(1) {
-						color: #B5B5C3;
-					}
-	
-					span:nth-child(2) {
-						color: #3F4254;
-					}						 	 
-				}		
+      .bullet-custom {
+        display: block;
+      }
+    }
 
-				&:hover {				 
-					span:nth-child(1) {
-						color: $white !important;
-					}
-	
-					span:nth-child(2) {
-						color: $white !important;
-					}						 	 
-				}
-				
-				&.active {				 
-					span:nth-child(1) {
-						color: $white !important;
-					}
-	
-					span:nth-child(2) {
-						color: $white !important;
-					}						 	 
-				}	
-			}				 		 
-		}		 
-	}
+    .bullet-custom {
+      display: none;
+    }
+  }
+
+  &.nav-pills-active-custom {
+    .nav-item {
+      .nav-link {
+        &:not(:active) {
+          span:nth-child(1) {
+            color: #b5b5c3;
+          }
+
+          span:nth-child(2) {
+            color: #3f4254;
+          }
+        }
+
+        &:hover {
+          span:nth-child(1) {
+            color: $white !important;
+          }
+
+          span:nth-child(2) {
+            color: $white !important;
+          }
+        }
+
+        &.active {
+          span:nth-child(1) {
+            color: $white !important;
+          }
+
+          span:nth-child(2) {
+            color: $white !important;
+          }
+        }
+      }
+    }
+  }
 }

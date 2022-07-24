@@ -1,9 +1,9 @@
-import {OffsetModel} from './models/OffsetModel'
-import {ViewPortModel} from './models/ViewPortModel'
-import {ElementStyleUtil} from './_ElementStyleUtil'
-import {DataUtil} from './_DataUtil'
-import {ElementAnimateUtil} from './ElementAnimateUtil'
-import {getObjectPropertyValueByKey, toJSON} from './_TypesHelpers'
+import { OffsetModel } from './models/OffsetModel'
+import { ViewPortModel } from './models/ViewPortModel'
+import { ElementStyleUtil } from './_ElementStyleUtil'
+import { DataUtil } from './_DataUtil'
+import { ElementAnimateUtil } from './ElementAnimateUtil'
+import { getObjectPropertyValueByKey, toJSON } from './_TypesHelpers'
 
 function getCSS(el: HTMLElement, styleProp: string) {
   const defaultView = (el.ownerDocument || document).defaultView
@@ -20,7 +20,9 @@ function getCSS(el: HTMLElement, styleProp: string) {
 }
 
 function getCSSVariableValue(variableName: string) {
-  let hex = getComputedStyle(document.documentElement).getPropertyValue(variableName)
+  let hex = getComputedStyle(document.documentElement).getPropertyValue(
+    variableName
+  )
   if (hex && hex.length > 0) {
     hex = hex.trim()
   }
@@ -98,7 +100,7 @@ function getElementOffset(el: HTMLElement): OffsetModel {
   // Running getBoundingClientRect on a
   // disconnected node in IE throws an error
   if (!el.getClientRects().length) {
-    return {top: 0, left: 0}
+    return { top: 0, left: 0 }
   }
 
   // Get document-relative position by adding viewport scroll to viewport-relative gBCR
@@ -107,7 +109,7 @@ function getElementOffset(el: HTMLElement): OffsetModel {
   if (win) {
     return {
       top: rect.top + win.pageYOffset,
-      left: rect.left + win.pageXOffset,
+      left: rect.left + win.pageXOffset
     }
   }
 
@@ -153,7 +155,11 @@ function getHighestZindex(el: HTMLElement) {
     // This makes behavior of this function consistent across browsers
     // WebKit always returns auto if the element is positioned
     const position = buffer.style.getPropertyValue('position')
-    if (position === 'absolute' || position === 'relative' || position === 'fixed') {
+    if (
+      position === 'absolute' ||
+      position === 'relative' ||
+      position === 'fixed'
+    ) {
       // IE returns 0 when zIndex is not specified
       // other browsers return a string
       // we ignore the case of nested elements with an explicit value of 0
@@ -178,7 +184,7 @@ function getScrollTop(): number {
 function getViewPort(): ViewPortModel {
   return {
     width: window.innerWidth,
-    height: window.innerHeight,
+    height: window.innerHeight
   }
 }
 
@@ -186,7 +192,10 @@ function insertAfterElement(el: HTMLElement, referenceNode: HTMLElement) {
   return referenceNode.parentNode?.insertBefore(el, referenceNode.nextSibling)
 }
 
-function isElementHasClasses(element: HTMLElement, classesStr: string): boolean {
+function isElementHasClasses(
+  element: HTMLElement,
+  classesStr: string
+): boolean {
   const classes = classesStr.split(' ')
   for (let i = 0; i < classes.length; i++) {
     if (!element.classList.contains(classes[i])) {
@@ -218,7 +227,10 @@ function throttle(timer: number | undefined, func: Function, delay?: number) {
   }, delay)
 }
 
-function getElementChildren(element: HTMLElement, selector: string): Array<HTMLElement> | null {
+function getElementChildren(
+  element: HTMLElement,
+  selector: string
+): Array<HTMLElement> | null {
   if (!element || !element.childNodes) {
     return null
   }
@@ -227,7 +239,10 @@ function getElementChildren(element: HTMLElement, selector: string): Array<HTMLE
   for (let i = 0; i < element.childNodes.length; i++) {
     const child = element.childNodes[i]
     // child.nodeType == 1 => Element, Text, Comment, ProcessingInstruction, CDATASection, EntityReference
-    if (child.nodeType === 1 && getElementMatches(child as HTMLElement, selector)) {
+    if (
+      child.nodeType === 1 &&
+      getElementMatches(child as HTMLElement, selector)
+    ) {
       result.push(child as HTMLElement)
     }
   }
@@ -235,7 +250,10 @@ function getElementChildren(element: HTMLElement, selector: string): Array<HTMLE
   return result
 }
 
-function getElementChild(element: HTMLElement, selector: string): HTMLElement | null {
+function getElementChild(
+  element: HTMLElement,
+  selector: string
+): HTMLElement | null {
   const children = getElementChildren(element, selector)
   return children ? children[0] : null
 }
@@ -265,15 +283,26 @@ function slide(el: HTMLElement, dir: string, speed: number, callback: any) {
   let calcPaddingTop: number = 0
   let calcPaddingBottom: number = 0
 
-  if (ElementStyleUtil.get(el, 'padding-top') && DataUtil.get(el, 'slide-padding-top') !== true) {
-    DataUtil.set(el, 'slide-padding-top', ElementStyleUtil.get(el, 'padding-top'))
+  if (
+    ElementStyleUtil.get(el, 'padding-top') &&
+    DataUtil.get(el, 'slide-padding-top') !== true
+  ) {
+    DataUtil.set(
+      el,
+      'slide-padding-top',
+      ElementStyleUtil.get(el, 'padding-top')
+    )
   }
 
   if (
     ElementStyleUtil.get(el, 'padding-bottom') &&
     DataUtil.has(el, 'slide-padding-bottom') !== true
   ) {
-    DataUtil.set(el, 'slide-padding-bottom', ElementStyleUtil.get(el, 'padding-bottom'))
+    DataUtil.set(
+      el,
+      'slide-padding-bottom',
+      ElementStyleUtil.get(el, 'padding-bottom')
+    )
   }
 
   if (DataUtil.has(el, 'slide-padding-top')) {
@@ -291,15 +320,25 @@ function slide(el: HTMLElement, dir: string, speed: number, callback: any) {
     el.style.cssText = 'display: block; overflow: hidden;'
 
     if (calcPaddingTop) {
-      ElementAnimateUtil.animate(0, calcPaddingTop, speed, function (value: number) {
-        el.style.paddingTop = calcPaddingTop - value + 'px'
-      })
+      ElementAnimateUtil.animate(
+        0,
+        calcPaddingTop,
+        speed,
+        function (value: number) {
+          el.style.paddingTop = calcPaddingTop - value + 'px'
+        }
+      )
     }
 
     if (calcPaddingBottom) {
-      ElementAnimateUtil.animate(0, calcPaddingBottom, speed, function (value: number) {
-        el.style.paddingBottom = calcPaddingBottom - value + 'px'
-      })
+      ElementAnimateUtil.animate(
+        0,
+        calcPaddingBottom,
+        speed,
+        function (value: number) {
+          el.style.paddingBottom = calcPaddingBottom - value + 'px'
+        }
+      )
     }
 
     ElementAnimateUtil.animate(
@@ -419,7 +458,8 @@ function colorLighten(color: string, amount: number) {
   const addLight = (_color: string, _amount: number) => {
     const cc = parseInt(_color, 16) + _amount
     const cNum = cc > 255 ? 255 : cc
-    const c = cNum.toString(16).length > 1 ? cNum.toString(16) : `0${cNum.toString(16)}`
+    const c =
+      cNum.toString(16).length > 1 ? cNum.toString(16) : `0${cNum.toString(16)}`
     return c
   }
 
@@ -435,17 +475,21 @@ function colorDarken(color: string, amount: number) {
   const subtractLight = (_color: string, _amount: number) => {
     const cc = parseInt(color, 16) - amount
     const cNum = cc < 0 ? 0 : cc
-    const c = cNum.toString(16).length > 1 ? cNum.toString(16) : `0${cNum.toString(16)}`
+    const c =
+      cNum.toString(16).length > 1 ? cNum.toString(16) : `0${cNum.toString(16)}`
     return c
   }
 
   color = color.indexOf('#') >= 0 ? color.substring(1, color.length) : color
   amount = parseInt(((255 * amount) / 100).toString())
 
-  return (color = `#${subtractLight(color.substring(0, 2), amount)}${subtractLight(
-    color.substring(2, 4),
+  return (color = `#${subtractLight(
+    color.substring(0, 2),
     amount
-  )}${subtractLight(color.substring(4, 6), amount)}`)
+  )}${subtractLight(color.substring(2, 4), amount)}${subtractLight(
+    color.substring(4, 6),
+    amount
+  )}`)
 }
 
 export {
@@ -474,5 +518,5 @@ export {
   slideDown,
   getAttributeValueByBreakpoint,
   colorLighten,
-  colorDarken,
+  colorDarken
 }

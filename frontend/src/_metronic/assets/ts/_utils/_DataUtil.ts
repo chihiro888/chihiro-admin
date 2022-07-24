@@ -1,7 +1,11 @@
 export class DataUtil {
   static store: Map<HTMLElement, Map<string, unknown>> = new Map()
 
-  public static set(instance: HTMLElement | undefined, key: string, data: unknown): void {
+  public static set(
+    instance: HTMLElement | undefined,
+    key: string,
+    data: unknown
+  ): void {
     if (!instance) {
       return
     }

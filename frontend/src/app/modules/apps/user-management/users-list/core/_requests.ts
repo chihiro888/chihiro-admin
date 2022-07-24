@@ -1,6 +1,6 @@
-import axios, {AxiosResponse} from 'axios'
-import {ID, Response} from '../../../../../../_metronic/helpers'
-import {User, UsersQueryResponse} from './_models'
+import axios, { AxiosResponse } from 'axios'
+import { ID, Response } from '../../../../../../_metronic/helpers'
+import { User, UsersQueryResponse } from './_models'
 
 const API_URL = process.env.REACT_APP_THEME_API_URL
 const USER_URL = `${API_URL}/user`
@@ -42,4 +42,11 @@ const deleteSelectedUsers = (userIds: Array<ID>): Promise<void> => {
   return axios.all(requests).then(() => {})
 }
 
-export {getUsers, deleteUser, deleteSelectedUsers, getUserById, createUser, updateUser}
+export {
+  getUsers,
+  deleteUser,
+  deleteSelectedUsers,
+  getUserById,
+  createUser,
+  updateUser
+}

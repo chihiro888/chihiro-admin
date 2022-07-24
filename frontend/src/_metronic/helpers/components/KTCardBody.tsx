@@ -1,6 +1,6 @@
 import clsx from 'clsx'
-import {FC} from 'react'
-import {WithChildren} from '../react18MigrationHelpers'
+import { FC } from 'react'
+import { WithChildren } from '../react18MigrationHelpers'
 
 type Props = {
   className?: string
@@ -9,14 +9,14 @@ type Props = {
 }
 
 const KTCardBody: FC<Props & WithChildren> = (props) => {
-  const {className, scroll, height, children} = props
+  const { className, scroll, height, children } = props
   return (
     <div
       className={clsx(
         'card-body',
         className && className,
         {
-          'card-scroll': scroll,
+          'card-scroll': scroll
         },
         height && `h-${height}px`
       )}
@@ -26,4 +26,4 @@ const KTCardBody: FC<Props & WithChildren> = (props) => {
   )
 }
 
-export {KTCardBody}
+export { KTCardBody }

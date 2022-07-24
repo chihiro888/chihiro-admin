@@ -8,11 +8,12 @@ import {
   ILayoutCSSClasses,
   ILayoutHTMLAttributes,
   ILayoutCSSVariables,
-  IPageTitle,
+  IPageTitle
 } from './LayoutModels'
-import {DefaultLayoutConfig} from './DefaultLayoutConfig'
+import { DefaultLayoutConfig } from './DefaultLayoutConfig'
 
-const LAYOUT_CONFIG_KEY = process.env.REACT_APP_BASE_LAYOUT_CONFIG_KEY || 'LayoutConfig'
+const LAYOUT_CONFIG_KEY =
+  process.env.REACT_APP_BASE_LAYOUT_CONFIG_KEY || 'LayoutConfig'
 
 export function getLayout(): ILayout {
   const ls = localStorage.getItem(LAYOUT_CONFIG_KEY)
@@ -49,7 +50,7 @@ export function getEmptyCssClasses() {
     contentContainer: [],
     footerContainer: [],
     sidebar: [],
-    pageTitle: [],
+    pageTitle: []
   }
 }
 
@@ -59,13 +60,13 @@ export function getEmptyHTMLAttributes() {
     headerMobile: new Map(),
     headerMenu: new Map(),
     headerContainer: new Map(),
-    pageTitle: new Map(),
+    pageTitle: new Map()
   }
 }
 
 export function getEmptyCSSVariables() {
   return {
-    body: new Map(),
+    body: new Map()
   }
 }
 
@@ -248,7 +249,9 @@ export class LayoutSetup {
   // }
 
   private static initFooter(config: IFooter): void {
-    LayoutSetup.classes.footerContainer.push(`container${config.width === 'fluid' ? '-fluid' : ''}`)
+    LayoutSetup.classes.footerContainer.push(
+      `container${config.width === 'fluid' ? '-fluid' : ''}`
+    )
   }
 
   private static initConfig(config: ILayout): void {
@@ -273,7 +276,7 @@ export class LayoutSetup {
 
   public static updatePartialConfig(fieldsToUpdate: Partial<ILayout>): ILayout {
     const config = LayoutSetup.config
-    const updatedConfig = {...config, ...fieldsToUpdate}
+    const updatedConfig = { ...config, ...fieldsToUpdate }
     LayoutSetup.initCSSClasses()
     LayoutSetup.initCSSVariables()
     LayoutSetup.initHTMLAttributes()

@@ -1,7 +1,7 @@
-import React, {FC} from 'react'
+import React, { FC } from 'react'
 
 const CreateApp: FC = () => {
   return <></>
 }
 
-export {CreateApp}
+export { CreateApp }

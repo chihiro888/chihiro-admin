@@ -3,13 +3,13 @@
 //
 
 @mixin theme-light() {
-	html:not([data-theme="dark"]) {
-		@content;
-	}
+  html:not([data-theme='dark']) {
+    @content;
+  }
 }
 
 @mixin theme-dark() {
-	[data-theme="dark"] {
-		@content;
-	}
+  [data-theme='dark'] {
+    @content;
+  }
 }

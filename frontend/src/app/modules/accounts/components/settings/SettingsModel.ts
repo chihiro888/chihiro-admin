@@ -83,26 +83,26 @@ export const profileDetailsInitValues: IProfileDetails = {
   currency: '',
   communications: {
     email: false,
-    phone: false,
+    phone: false
   },
-  allowMarketing: false,
+  allowMarketing: false
 }
 
 export const updateEmail: IUpdateEmail = {
   newEmail: 'support@keenthemes.com',
-  confirmPassword: '',
+  confirmPassword: ''
 }
 
 export const updatePassword: IUpdatePassword = {
   currentPassword: '',
   newPassword: '',
-  passwordConfirmation: '',
+  passwordConfirmation: ''
 }
 
 export const connectedAccounts: IConnectedAccounts = {
   google: true,
   github: true,
-  stack: false,
+  stack: false
 }
 
 export const emailPreferences: IEmailPreferences = {
@@ -112,32 +112,32 @@ export const emailPreferences: IEmailPreferences = {
   customerPaymentDispute: true,
   refundAlert: false,
   invoicePayments: true,
-  webhookAPIEndpoints: false,
+  webhookAPIEndpoints: false
 }
 
 export const notifications: INotifications = {
   notifications: {
     email: true,
-    phone: true,
+    phone: true
   },
   billingUpdates: {
     email: true,
-    phone: true,
+    phone: true
   },
   newTeamMembers: {
     email: true,
-    phone: false,
+    phone: false
   },
   completeProjects: {
     email: false,
-    phone: true,
+    phone: true
   },
   newsletters: {
     email: false,
-    phone: false,
-  },
+    phone: false
+  }
 }
 
 export const deactivateAccount: IDeactivateAccount = {
-  confirm: false,
+  confirm: false
 }

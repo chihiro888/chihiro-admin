@@ -5,15 +5,15 @@ import React, {
   useState,
   useEffect,
   SetStateAction,
-  Dispatch,
+  Dispatch
 } from 'react'
-import {WithChildren} from '../../helpers'
+import { WithChildren } from '../../helpers'
 
-const MetronicSplashScreenContext = createContext<Dispatch<SetStateAction<number>> | undefined>(
-  undefined
-)
+const MetronicSplashScreenContext = createContext<
+  Dispatch<SetStateAction<number>> | undefined
+>(undefined)
 
-const MetronicSplashScreenProvider: FC<WithChildren> = ({children}) => {
+const MetronicSplashScreenProvider: FC<WithChildren> = ({ children }) => {
   const [count, setCount] = useState(0)
   let visible = count > 0
 
@@ -49,7 +49,7 @@ const MetronicSplashScreenProvider: FC<WithChildren> = ({children}) => {
   )
 }
 
-const LayoutSplashScreen: FC<{visible?: boolean}> = ({visible = true}) => {
+const LayoutSplashScreen: FC<{ visible?: boolean }> = ({ visible = true }) => {
   // Everything are ready - remove splashscreen
   const setCount = useContext(MetronicSplashScreenContext)
 
@@ -76,4 +76,4 @@ const LayoutSplashScreen: FC<{visible?: boolean}> = ({visible = true}) => {
   return null
 }
 
-export {MetronicSplashScreenProvider, LayoutSplashScreen}
+export { MetronicSplashScreenProvider, LayoutSplashScreen }
