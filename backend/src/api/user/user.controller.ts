@@ -18,7 +18,7 @@ export class UserController {
   })
   @ApiResponse({
     status: HttpStatus.OK,
-    description: SWAGGER.USER.CREATE_USER.RES_200
+    description: SWAGGER.USER.CREATE_USER.RES.OK
   })
   @Post(SWAGGER.USER.CREATE_USER.URL)
   async createUser(@Res() res: Response, @Body() dto: CreateUserDto) {

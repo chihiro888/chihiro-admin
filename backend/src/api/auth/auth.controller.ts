@@ -27,11 +27,11 @@ export class AuthController {
   })
   @ApiResponse({
     status: HttpStatus.OK,
-    description: SWAGGER.AUTH.SIGN_IN.RES_200
+    description: SWAGGER.AUTH.SIGN_IN.RES.OK
   })
   @ApiResponse({
     status: HttpStatus.UNAUTHORIZED,
-    description: SWAGGER.AUTH.SIGN_IN.RES_401
+    description: SWAGGER.AUTH.SIGN_IN.RES.UNAUTHORIZED
   })
   @Post(SWAGGER.AUTH.SIGN_IN.URL)
   async signIn(
