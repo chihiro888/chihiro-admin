@@ -1,3 +1,4 @@
+import { createPassword } from './../../common/util/auth'
 import { Inject, Injectable } from '@nestjs/common'
 import { CreateUserDto } from 'src/api/user/dto/create-user.dto'
 import { Repository } from 'typeorm'
@@ -25,7 +26,8 @@ export class UserService {
     // init user object
     const user = new User()
     user.account = dto.account
-    user.password = dto.password
+    const hash = await createPassword(dto.password)
+    user.password = hash
     user.username = dto.username
 
     // create user

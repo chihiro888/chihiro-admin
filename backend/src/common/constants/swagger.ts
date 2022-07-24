@@ -7,9 +7,11 @@ const SWAGGER = {
       URL: 'signIn',
       SUMMARY: 'This is Sign In API',
       DESC: 'Sign In API',
-      RES_200: 'success',
+      RES_200: 'OK',
+      RES_401: 'UNAUTHORIZED',
       MSG: {
-        OK: ''
+        OK: '',
+        UNAUTHORIZED: ''
       }
     }
   },
@@ -22,7 +24,7 @@ const SWAGGER = {
       URL: 'createUser',
       SUMMARY: 'This is Create User API',
       DESC: 'Create User API',
-      RES_200: 'success',
+      RES_200: 'OK',
       MSG: {
         OK: ''
       }

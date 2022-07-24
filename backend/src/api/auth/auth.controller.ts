@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  HttpException,
   HttpStatus,
   Post,
   Res,
@@ -11,6 +12,7 @@ import { Response } from 'express'
 import { SignInDto } from './dto/sign-in.dto'
 import { UserService } from 'src/app/user/user.service'
 import SWAGGER from 'src/common/constants/swagger'
+import { isMatch } from 'src/common/util/auth'
 
 // ANCHOR auth controller
 @ApiTags(SWAGGER.AUTH.TAG)
@@ -27,17 +29,31 @@ export class AuthController {
     status: HttpStatus.OK,
     description: SWAGGER.AUTH.SIGN_IN.RES_200
   })
+  @ApiResponse({
+    status: HttpStatus.UNAUTHORIZED,
+    description: SWAGGER.AUTH.SIGN_IN.RES_401
+  })
   @Post(SWAGGER.AUTH.SIGN_IN.URL)
   async signIn(
     @Res() res: Response,
     @Body() dto: SignInDto,
     @Session() session
-  ) {
+  ): Promise<any> {
     // find account
     const user = await this.userService.findUserByAccount(dto.account)
 
+    // check password
+    const condition = await isMatch(dto.password, user.password)
+    if (!condition) {
+      // return 401 response
+      throw new HttpException(
+        SWAGGER.AUTH.SIGN_IN.MSG.UNAUTHORIZED,
+        HttpStatus.UNAUTHORIZED
+      )
+    }
+
     // login
-    session.id = user.id
+    session.userId = user.id
 
     // return 200 response
     res.status(HttpStatus.OK).json({
