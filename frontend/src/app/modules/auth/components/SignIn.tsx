@@ -19,7 +19,7 @@ const loginSchema = Yup.object().shape({
 })
 
 const initialValues = {
-  email: 'admin@mysqlquerysaver.io',
+  email: 'admin@savethequery.io',
   password: '12345'
 }
 
@@ -66,7 +66,7 @@ export function SignIn() {
     >
       {/* begin::Heading */}
       <div className="text-center mb-10">
-        <h1 className="text-dark mb-3">Mysql Query Saver</h1>
+        <h1 className="text-dark mb-3">Save The Query</h1>
       </div>
       {/* begin::Heading */}
 
@@ -75,12 +75,7 @@ export function SignIn() {
           <div className="alert-text font-weight-bold">{formik.status}</div>
         </div>
       ) : (
-        <div className="mb-10 bg-light-info p-8 rounded">
-          <div className="text-info">
-            Use account <strong>admin@demo.com</strong> and password{' '}
-            <strong>demo</strong> to continue.
-          </div>
-        </div>
+        <></>
       )}
 
       {/* begin::Form group */}

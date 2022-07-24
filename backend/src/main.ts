@@ -17,7 +17,7 @@ async function bootstrap() {
 
   // swagger config
   const config = new DocumentBuilder()
-    .setTitle('mysql query saver API')
+    .setTitle('Save The Query API')
     .setDescription('Documentation is quite important. lol')
     .setVersion('1.0')
     .build()

@@ -1,7 +1,7 @@
 const PARAMETER = {
   // account
   ACCOUNT: 'account',
-  ACCOUNT_EXAMPLE: 'admin@mysqlquerysaver.io',
+  ACCOUNT_EXAMPLE: 'admin@savethequery.io',
 
   // password
   PASSWORD: 'password',
