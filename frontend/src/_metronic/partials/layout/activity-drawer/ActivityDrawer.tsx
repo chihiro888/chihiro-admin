@@ -25,7 +25,9 @@ const ActivityDrawer: FC = () => (
   >
     <div className="card shadow-none rounded-0">
       <div className="card-header" id="kt_activities_header">
-        <h3 className="card-title fw-bolder text-dark">Activity Logs</h3>
+        <h3 className="card-title fw-bolder text-dark">
+          Execute Query History
+        </h3>
 
         <div className="card-toolbar">
           <button
@@ -49,25 +51,25 @@ const ActivityDrawer: FC = () => (
           data-kt-scroll-wrappers="#kt_activities_body"
           data-kt-scroll-dependencies="#kt_activities_header, #kt_activities_footer"
           data-kt-scroll-offset="5px"
+          style={{ paddingTop: '10px' }}
         >
           <div className="timeline">
-            <Item1 />
             <Item2 />
-            <Item3 />
-            <Item4 />
-            <Item5 />
-            <Item6 />
-            <Item7 />
-            <Item8 />
+            <Item2 />
+            <Item2 />
+            <Item2 />
+            <Item2 />
+            <Item2 />
+            <Item2 />
+            <Item2 />
+            <Item2 />
+            <Item2 />
           </div>
         </div>
       </div>
       <div className="card-footer py-5 text-center" id="kt_activities_footer">
-        <Link
-          to="/crafted/pages/profile"
-          className="btn btn-bg-body text-primary"
-        >
-          View All Activities
+        <Link to="#" className="btn btn-bg-body text-primary">
+          View All History
           <KTSVG
             path="/media/icons/duotune/arrows/arr064.svg"
             className="svg-icon-3 svg-icon-primary"

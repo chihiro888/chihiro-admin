@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { KTSVG, toAbsoluteUrl } from '../../../helpers'
 
-const Item2: FC = () => {
+const Item2: FC = (props) => {
   return (
     <div className="timeline-item">
       <div className="timeline-line w-40px"></div>
@@ -18,11 +18,14 @@ const Item2: FC = () => {
       <div className="timeline-content mb-10 mt-n2">
         <div className="overflow-auto pe-3">
           <div className="fs-5 fw-bold mb-2">
-            Invitation for crafting engaging designs that speak human workshop
+            select u.account, u.password, u.username, c.code_name as 'role' from
+            _user u inner join _code c on u.role = c.code where c.id = '3' union
+            select u.account, u.password, u.username, c.code_name as 'role' from
+            _user u inner join _code c on u.role = c.code where c.id = '3'
           </div>
 
           <div className="d-flex align-items-center mt-1 fs-6">
-            <div className="text-muted me-2 fs-7">Sent at 4:23 PM by</div>
+            <div className="text-muted me-2 fs-7">execute at 21:41 by</div>
 
             <div
               className="symbol symbol-circle symbol-25px"

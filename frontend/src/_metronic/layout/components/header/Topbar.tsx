@@ -20,12 +20,6 @@ const Topbar: FC = () => {
 
   return (
     <div className="d-flex align-items-stretch flex-shrink-0">
-      {/* Search */}
-      <div
-        className={clsx('d-flex align-items-stretch', toolbarButtonMarginClass)}
-      >
-        <Search />
-      </div>
       {/* Activities */}
       <div
         className={clsx('d-flex align-items-center', toolbarButtonMarginClass)}
@@ -44,76 +38,6 @@ const Topbar: FC = () => {
           />
         </div>
         {/* end::Drawer toggle */}
-      </div>
-
-      {/* NOTIFICATIONS */}
-      <div
-        className={clsx('d-flex align-items-center', toolbarButtonMarginClass)}
-      >
-        {/* begin::Menu- wrapper */}
-        <div
-          className={clsx(
-            'btn btn-icon btn-active-light-primary btn-custom',
-            toolbarButtonHeightClass
-          )}
-          data-kt-menu-trigger="click"
-          data-kt-menu-attach="parent"
-          data-kt-menu-placement="bottom-end"
-          data-kt-menu-flip="bottom"
-        >
-          <KTSVG
-            path="/media/icons/duotune/general/gen022.svg"
-            className={toolbarButtonIconSizeClass}
-          />
-        </div>
-        <HeaderNotificationsMenu />
-        {/* end::Menu wrapper */}
-      </div>
-
-      {/* CHAT */}
-      <div
-        className={clsx('d-flex align-items-center', toolbarButtonMarginClass)}
-      >
-        {/* begin::Menu wrapper */}
-        <div
-          className={clsx(
-            'btn btn-icon btn-active-light-primary btn-custom position-relative',
-            toolbarButtonHeightClass
-          )}
-          id="kt_drawer_chat_toggle"
-        >
-          <KTSVG
-            path="/media/icons/duotune/communication/com012.svg"
-            className={toolbarButtonIconSizeClass}
-          />
-
-          <span className="bullet bullet-dot bg-success h-6px w-6px position-absolute translate-middle top-0 start-50 animation-blink"></span>
-        </div>
-        {/* end::Menu wrapper */}
-      </div>
-
-      {/* Quick links */}
-      <div
-        className={clsx('d-flex align-items-center', toolbarButtonMarginClass)}
-      >
-        {/* begin::Menu wrapper */}
-        <div
-          className={clsx(
-            'btn btn-icon btn-active-light-primary btn-custom',
-            toolbarButtonHeightClass
-          )}
-          data-kt-menu-trigger="click"
-          data-kt-menu-attach="parent"
-          data-kt-menu-placement="bottom-end"
-          data-kt-menu-flip="bottom"
-        >
-          <KTSVG
-            path="/media/icons/duotune/general/gen025.svg"
-            className={toolbarButtonIconSizeClass}
-          />
-        </div>
-        <QuickLinks />
-        {/* end::Menu wrapper */}
       </div>
 
       {/* begin::Theme mode */}
