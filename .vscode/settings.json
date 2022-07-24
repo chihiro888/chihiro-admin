@@ -2,5 +2,6 @@
   "files.eol": "\n",
   // enable globally (here: format on save)
   "editor.formatOnSave": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode"
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "cSpell.words": ["nestjs", "typeorm"]
 }
