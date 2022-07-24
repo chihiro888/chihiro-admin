@@ -40,7 +40,7 @@ async function bootstrap() {
   // set express-session
   app.use(
     session({
-      secret: 'my-secret',
+      secret: configService.get<string>('sessionSecretKey'),
       resave: false,
       saveUninitialized: false,
       store: new TypeormStore().connect(sessionRepository)

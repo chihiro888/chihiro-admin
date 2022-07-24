@@ -1,16 +1,16 @@
 import { ApiProperty } from '@nestjs/swagger'
-import MESSAGE from 'src/common/constants/message'
+import PARAMETER from 'src/common/constants/parameter'
 
 export class SignInDto {
   @ApiProperty({
-    description: MESSAGE.ACCOUNT,
-    example: MESSAGE.ACCOUNT_EXAMPLE
+    description: PARAMETER.ACCOUNT,
+    example: PARAMETER.ACCOUNT_EXAMPLE
   })
   account: string
 
   @ApiProperty({
-    description: MESSAGE.PASSWORD,
-    example: MESSAGE.PASSWORD_EXAMPLE
+    description: PARAMETER.PASSWORD,
+    example: PARAMETER.PASSWORD_EXAMPLE
   })
   password: string
 }

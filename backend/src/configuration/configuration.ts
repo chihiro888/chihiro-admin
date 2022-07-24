@@ -4,6 +4,7 @@ import { DataSourceOptions } from 'typeorm'
 interface Configuration {
   port: number
   database: DataSourceOptions
+  sessionSecretKey: string
 }
 
 export default () => {
@@ -22,7 +23,8 @@ export default () => {
         connectionLimit: 10
       },
       timezone: 'Z'
-    }
+    },
+    sessionSecretKey: process.env.SESSION_SECRET_KEY
   }
   console.log('configuration -> ', configuration)
   return configuration

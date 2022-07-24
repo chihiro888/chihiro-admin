@@ -1,6 +1,5 @@
 import { Module } from '@nestjs/common'
-import { ConfigModule, ConfigService } from '@nestjs/config'
-import { TypeOrmModule } from '@nestjs/typeorm'
+import { ConfigModule } from '@nestjs/config'
 import { join } from 'path'
 import { AuthModule } from './api/auth/auth.module'
 import configuration from './configuration/configuration'
@@ -20,16 +19,6 @@ console.log('----------------------------')
     ConfigModule.forRoot({
       envFilePath: envFilePath,
       load: [configuration]
-    }),
-
-    // setting TypeORM
-    TypeOrmModule.forRootAsync({
-      name: 'mysql_query_saver',
-      imports: [ConfigModule],
-      inject: [ConfigService],
-      useFactory: (configService: ConfigService) => ({
-        ...configService.get('database')
-      })
     }),
 
     // import app module
