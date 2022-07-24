@@ -1,4 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common'
+import { CreateUserDto } from 'src/api/user/dto/create-user.dto'
 import { Repository } from 'typeorm'
 import { User } from './user.entity'
 
@@ -9,13 +10,27 @@ export class UserService {
     private userRepository: Repository<User>
   ) {}
 
-  // ANCHOR find account
-  async findUserByAccount(account: string) {
+  // ANCHOR find user by account
+  async findUserByAccount(account: string): Promise<User> | null {
     const user = await this.userRepository.findOne({
       where: {
         account
       }
     })
     return user
+  }
+
+  // ANCHOR create user
+  async createUser(dto: CreateUserDto) {
+    // init user object
+    const user = new User()
+    user.account = dto.account
+    user.password = dto.password
+    user.username = dto.username
+
+    // create user
+    const result = await this.userRepository.save(user)
+
+    return result
   }
 }

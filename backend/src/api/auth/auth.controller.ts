@@ -33,14 +33,11 @@ export class AuthController {
     @Body() dto: SignInDto,
     @Session() session
   ) {
-    // debug
-    console.log('dto -> ', dto)
-
     // find account
     const user = await this.userService.findUserByAccount(dto.account)
 
-    // session test
-    session.hello = 'world'
+    // login
+    session.id = user.id
 
     // return 200 response
     res.status(HttpStatus.OK).json({

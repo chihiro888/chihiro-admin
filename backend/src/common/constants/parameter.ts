@@ -5,7 +5,11 @@ const PARAMETER = {
 
   // password
   PASSWORD: 'password',
-  PASSWORD_EXAMPLE: '12345'
+  PASSWORD_EXAMPLE: '12345',
+
+  // username
+  USERNAME: 'username',
+  USERNAME_EXAMPLE: 'john'
 }
 
 export default PARAMETER

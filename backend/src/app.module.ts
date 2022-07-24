@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 import { join } from 'path'
 import { AuthModule } from './api/auth/auth.module'
+import { UserModule } from './api/user/user.module'
 import configuration from './configuration/configuration'
 
 const envFileName = '.env.' + process.env.NODE_ENV
@@ -22,7 +23,8 @@ console.log('----------------------------')
     }),
 
     // import app module
-    AuthModule
+    AuthModule,
+    UserModule
   ]
 })
 export class AppModule {}
