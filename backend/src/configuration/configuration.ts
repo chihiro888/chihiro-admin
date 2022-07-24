@@ -26,6 +26,5 @@ export default () => {
     },
     sessionSecretKey: process.env.SESSION_SECRET_KEY
   }
-  console.log('configuration -> ', configuration)
   return configuration
 }
