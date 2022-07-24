@@ -24,6 +24,6 @@ export default () => {
       timezone: 'Z'
     }
   }
-  console.log(configuration)
+  console.log('configuration -> ', configuration)
   return configuration
 }

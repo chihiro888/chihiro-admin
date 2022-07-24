@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger'
-import MESSAGE from 'src/common/constants-message'
+import MESSAGE from 'src/common/constants/message'
 
 export class SignInDto {
   @ApiProperty({

@@ -7,17 +7,16 @@ import {
   Session
 } from '@nestjs/common'
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
-import SWAGGER from 'src/common/constants-swagger'
 import { Response } from 'express'
 import { SignInDto } from './dto/sign-in.dto'
+import { UserService } from 'src/app/user/user.service'
+import SWAGGER from 'src/common/constants/swagger'
 
 // ANCHOR auth controller
 @ApiTags(SWAGGER.AUTH.TAG)
 @Controller(SWAGGER.AUTH.URL)
 export class AuthController {
-  constructor() {
-    //
-  }
+  constructor(private userService: UserService) {}
 
   // ANCHOR Sign in API
   @ApiOperation({
@@ -37,6 +36,9 @@ export class AuthController {
     // debug
     console.log('dto -> ', dto)
 
+    // find account
+    const user = await this.userService.findUserByAccount(dto.account)
+
     // session test
     session.hello = 'world'
 
@@ -44,7 +46,7 @@ export class AuthController {
     res.status(HttpStatus.OK).json({
       statusCode: HttpStatus.OK,
       message: SWAGGER.AUTH.SIGN_IN.MSG.OK,
-      data: null
+      data: user
     })
   }
 }

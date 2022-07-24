@@ -3,5 +3,5 @@
   // enable globally (here: format on save)
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "cSpell.words": ["nestjs", "typeorm"]
+  "cSpell.words": ["nestjs", "resave", "typeorm"]
 }
