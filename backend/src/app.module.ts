@@ -1,19 +1,24 @@
 import { Module } from '@nestjs/common'
 import { ConfigModule, ConfigService } from '@nestjs/config'
 import { TypeOrmModule } from '@nestjs/typeorm'
+import { join } from 'path'
 import { AuthModule } from './api/auth/auth.module'
 import configuration from './configuration/configuration'
 
+const envFileName = '.env.' + process.env.NODE_ENV
+const envFilePath = join(__dirname, '..', 'src', 'configuration', envFileName)
+
 // for debug
 console.log('----------------------------')
-console.log(`.env.${process.env.NODE_ENV}`)
+console.log(envFileName)
+console.log(envFilePath)
 console.log('----------------------------')
 
 @Module({
   imports: [
     // setting configuration
     ConfigModule.forRoot({
-      envFilePath: `./src/configuration/.env.${process.env.NODE_ENV}`,
+      envFilePath: envFilePath,
       load: [configuration]
     }),
 
