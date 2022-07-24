@@ -15,6 +15,19 @@ const SWAGGER = {
         OK: '',
         UNAUTHORIZED: ''
       }
+    },
+    GET_USER_BY_SESSION: {
+      URL: 'getUserBySession',
+      SUMMARY: 'This is Get User By Session API',
+      DESC: 'Get User By Session API',
+      RES: {
+        OK: 'OK',
+        UNAUTHORIZED: 'UNAUTHORIZED'
+      },
+      MSG: {
+        OK: '',
+        UNAUTHORIZED: ''
+      }
     }
   },
 

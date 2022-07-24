@@ -1,6 +1,11 @@
+export interface CommonResponse {
+  statusCode: number
+  message: string
+  data: any
+}
+
 export interface AuthModel {
-  api_token: string
-  refreshToken?: string
+  isSignIn: boolean
 }
 
 export interface UserAddressModel {
@@ -45,6 +50,16 @@ export interface UserSocialNetworksModel {
 
 export interface UserModel {
   id: number
+  account: string
+  username: string
+  password: string | undefined
+  signInAt: string | null
+  signOutAt: string | null
+  createdAt: string | null
+  updatedAt: string | null
+  deletedAt: string | null
+  /*
+  id: number
   username: string
   password: string | undefined
   email: string
@@ -64,4 +79,5 @@ export interface UserModel {
   communication?: UserCommunicationModel
   address?: UserAddressModel
   socialNetworks?: UserSocialNetworksModel
+  */
 }

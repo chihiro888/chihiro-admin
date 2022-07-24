@@ -1,10 +1,8 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { useEffect } from 'react'
 import { Outlet, Route, Routes } from 'react-router-dom'
-import { Registration } from './components/Registration'
-import { ForgotPassword } from './components/ForgotPassword'
-import { Login } from './components/Login'
 import { toAbsoluteUrl } from '../../../_metronic/helpers'
+import { SignIn } from './components/SignIn'
 
 const AuthLayout = () => {
   useEffect(() => {
@@ -48,10 +46,8 @@ const AuthLayout = () => {
 const AuthPage = () => (
   <Routes>
     <Route element={<AuthLayout />}>
-      <Route path="login" element={<Login />} />
-      <Route path="registration" element={<Registration />} />
-      <Route path="forgot-password" element={<ForgotPassword />} />
-      <Route index element={<Login />} />
+      <Route path="signIn" element={<SignIn />} />
+      <Route index element={<SignIn />} />
     </Route>
   </Routes>
 )

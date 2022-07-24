@@ -21,6 +21,16 @@ export class UserService {
     return user
   }
 
+  // ANCHOR find user by id
+  async findUserById(id: number): Promise<User> {
+    const user = await this.userRepository.findOne({
+      where: {
+        id
+      }
+    })
+    return user
+  }
+
   // ANCHOR create user
   async createUser(dto: CreateUserDto) {
     // init user object

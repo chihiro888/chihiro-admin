@@ -49,17 +49,17 @@ const removeAuth = () => {
 
 export function setupAxios(axios: any) {
   axios.defaults.headers.Accept = 'application/json'
-  axios.interceptors.request.use(
-    (config: { headers: { Authorization: string } }) => {
-      const auth = getAuth()
-      if (auth && auth.api_token) {
-        config.headers.Authorization = `Bearer ${auth.api_token}`
-      }
+  // axios.interceptors.request.use(
+  //   (config: { headers: { Authorization: string } }) => {
+  //     const auth = getAuth()
+  //     if (auth && auth.api_token) {
+  //       config.headers.Authorization = `Bearer ${auth.api_token}`
+  //     }
 
-      return config
-    },
-    (err: any) => Promise.reject(err)
-  )
+  //     return config
+  //   },
+  //   (err: any) => Promise.reject(err)
+  // )
 }
 
 export { getAuth, setAuth, removeAuth, AUTH_LOCAL_STORAGE_KEY }

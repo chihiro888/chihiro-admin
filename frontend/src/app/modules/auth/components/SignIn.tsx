@@ -3,7 +3,7 @@ import { useState } from 'react'
 import * as Yup from 'yup'
 import clsx from 'clsx'
 import { useFormik } from 'formik'
-import { getUserByToken, login } from '../core/_requests'
+import { getUserBySession, login } from '../core/_requests'
 import { useAuth } from '../core/Auth'
 
 const loginSchema = Yup.object().shape({
@@ -19,8 +19,8 @@ const loginSchema = Yup.object().shape({
 })
 
 const initialValues = {
-  email: 'admin@demo.com',
-  password: 'demo'
+  email: 'admin@mysqlquerysaver.io',
+  password: '12345'
 }
 
 /*
@@ -29,7 +29,7 @@ const initialValues = {
   https://medium.com/@maurice.de.beijer/yup-validation-and-typescript-and-formik-6c342578a20e
 */
 
-export function Login() {
+export function SignIn() {
   const [loading, setLoading] = useState(false)
   const { saveAuth, setCurrentUser } = useAuth()
 
@@ -40,11 +40,13 @@ export function Login() {
       setLoading(true)
       try {
         const { data: auth } = await login(values.email, values.password)
-        console.log('auth -> ', auth)
-        saveAuth(auth)
-        const { data: user } = await getUserByToken(auth.api_token)
-        console.log('user -> ', user)
-        setCurrentUser(user)
+        if (auth.statusCode === 200) {
+          saveAuth({ isSignIn: true })
+        }
+        const { data: user } = await getUserBySession()
+        if (user.statusCode === 200) {
+          setCurrentUser(user.data)
+        }
       } catch (error) {
         console.error(error)
         saveAuth(undefined)
