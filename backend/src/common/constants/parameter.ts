@@ -1,11 +1,11 @@
 const PARAMETER = {
   // account
   ACCOUNT: 'account',
-  ACCOUNT_EXAMPLE: 'admin@mysql-query-saver.com',
+  ACCOUNT_EXAMPLE: 'admin@mysqlquerysaver.io',
 
   // password
   PASSWORD: 'password',
-  PASSWORD_EXAMPLE: '12341234'
+  PASSWORD_EXAMPLE: '12345'
 }
 
 export default PARAMETER
