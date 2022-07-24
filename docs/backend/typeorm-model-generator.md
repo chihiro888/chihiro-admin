@@ -9,7 +9,7 @@ yarn global add typeorm-model-generator
 ## how to use?
 
 ```bash
-typeorm-model-generator -h localhost -d mysql_query_saver -p 3306 -u docker -x 'docker' -e mysql -o .
+typeorm-model-generator -h localhost -d save_the_query -p 3306 -u docker -x 'docker' -e mysql -o .
 ```
 
 ## reference
