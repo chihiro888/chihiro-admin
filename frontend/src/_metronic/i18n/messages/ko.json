@@ -14,5 +14,8 @@
   "TEXT.POST_METHOD": "POST 메소드",
   "TEXT.PUT_METHOD": "PUT 메소드",
   "TEXT.DELETE_METHOD": "DELETE 메소드",
-  "TEXT.RESPONSE": "응답"
+  "TEXT.RESPONSE": "응답",
+  "LABEL.COUNT": "카운트",
+  "TEXT.PLUS": "증가",
+  "TEXT.MINUS": "감소"
 }

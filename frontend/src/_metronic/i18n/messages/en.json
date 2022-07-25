@@ -14,5 +14,8 @@
   "TEXT.POST_METHOD": "POST Method",
   "TEXT.PUT_METHOD": "PUT Method",
   "TEXT.DELETE_METHOD": "DELETE Method",
-  "TEXT.RESPONSE": "Response"
+  "TEXT.RESPONSE": "Response",
+  "LABEL.COUNT": "Count",
+  "TEXT.PLUS": "Plus",
+  "TEXT.MINUS": "Minus"
 }

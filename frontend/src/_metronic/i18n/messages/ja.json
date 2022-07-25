@@ -14,5 +14,8 @@
   "TEXT.POST_METHOD": "POST メソード",
   "TEXT.PUT_METHOD": "PUT メソード",
   "TEXT.DELETE_METHOD": "DELETE メソード",
-  "TEXT.RESPONSE": "応答"
+  "TEXT.RESPONSE": "応答",
+  "LABEL.COUNT": "カウント",
+  "TEXT.PLUS": "増加",
+  "TEXT.MINUS": "減少"
 }
