@@ -17,5 +17,6 @@
   "TEXT.RESPONSE": "응답",
   "LABEL.COUNT": "카운트",
   "TEXT.PLUS": "증가",
-  "TEXT.MINUS": "감소"
+  "TEXT.MINUS": "감소",
+  "TEXT.PLUS_5": "증가 5"
 }

@@ -1,19 +1,27 @@
-import { FC, useState } from 'react'
+import { FC } from 'react'
 import { IntlShape, useIntl } from 'react-intl'
 import { PageTitle } from '../../../_metronic/layout/core'
+import { useAppDispatch, useAppSelector } from '../../hooks'
+import {
+  decrement,
+  increment,
+  incrementByAmount
+} from '../../slice/counter/counterSlice'
 
 interface DevelopReduxStateProps {
   intl: IntlShape
   count: number
   handleClickPlus: () => void
   handleClickMinus: () => void
+  handleClickFive: () => void
 }
 
 const DevelopReduxStatePage: FC<DevelopReduxStateProps> = ({
   intl,
   count,
   handleClickPlus,
-  handleClickMinus
+  handleClickMinus,
+  handleClickFive
 }: DevelopReduxStateProps) => (
   <>
     <div className="card card-custom">
@@ -37,21 +45,38 @@ const DevelopReduxStatePage: FC<DevelopReduxStateProps> = ({
             {intl.formatMessage({ id: 'TEXT.MINUS' })}
           </button>
         </div>
+        <div className="mt-3">
+          <button className="btn btn-light-success" onClick={handleClickFive}>
+            <i className="bi bi-arrow-up fs-4 me-2"></i>
+            {intl.formatMessage({ id: 'TEXT.PLUS_5' })}
+          </button>
+        </div>
       </div>
     </div>
   </>
 )
 
 const DevelopReduxStateWrapper: FC = () => {
+  // hooks
   const intl = useIntl()
-  const [count, setCount] = useState(0)
 
+  // redux
+  const count = useAppSelector((state) => state.counter.value)
+  const dispatch = useAppDispatch()
+
+  // handler
   const handleClickPlus = () => {
-    setCount(count + 1)
+    dispatch(increment())
   }
 
+  // handler
   const handleClickMinus = () => {
-    setCount(count - 1)
+    dispatch(decrement())
+  }
+
+  // handler
+  const handleClickFive = () => {
+    dispatch(incrementByAmount(5))
   }
 
   return (
@@ -65,6 +90,7 @@ const DevelopReduxStateWrapper: FC = () => {
         count={count}
         handleClickPlus={handleClickPlus}
         handleClickMinus={handleClickMinus}
+        handleClickFive={handleClickFive}
       />
     </>
   )

@@ -17,5 +17,6 @@
   "TEXT.RESPONSE": "応答",
   "LABEL.COUNT": "カウント",
   "TEXT.PLUS": "増加",
-  "TEXT.MINUS": "減少"
+  "TEXT.MINUS": "減少",
+  "TEXT.PLUS_5": "増加 5"
 }

@@ -17,5 +17,6 @@
   "TEXT.RESPONSE": "Response",
   "LABEL.COUNT": "Count",
   "TEXT.PLUS": "Plus",
-  "TEXT.MINUS": "Minus"
+  "TEXT.MINUS": "Minus",
+  "TEXT.PLUS_5": "Plus 5"
 }

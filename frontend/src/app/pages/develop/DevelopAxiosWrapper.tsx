@@ -115,23 +115,29 @@ const DevelopAxiosPage: FC<DevelopAxiosProps> = ({
 )
 
 const DevelopAxiosWrapper: FC = () => {
+  // hooks
   const intl = useIntl()
+
+  // state
   const [parameter1, setParameter1] = useState('')
   const [parameter2, setParameter2] = useState('')
   const [result, setResult] = useState('')
 
+  // handler
   const handleChangeParameter1 = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     setParameter1(event.target.value)
   }
 
+  // handler
   const handleChangeParameter2 = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     setParameter2(event.target.value)
   }
 
+  // handler
   const handleClickButton = async (method: string) => {
     const params = {
       parameter1,

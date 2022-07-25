@@ -43,13 +43,18 @@ const DevelopReactStatePage: FC<DevelopReactStateProps> = ({
 )
 
 const DevelopReactStateWrapper: FC = () => {
+  // hooks
   const intl = useIntl()
+
+  // state
   const [count, setCount] = useState(0)
 
+  // handler
   const handleClickPlus = () => {
     setCount(count + 1)
   }
 
+  // handler
   const handleClickMinus = () => {
     setCount(count - 1)
   }
