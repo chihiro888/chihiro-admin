@@ -32,27 +32,27 @@ export function AsideMenuMain() {
       </div>
       <AsideMenuItem
         to="/develop/axios/"
-        icon="/media/icons/duotune/communication/com006.svg"
+        icon="/media/icons/duotune/general/gen029.svg"
         title={intl.formatMessage({ id: 'MENU.DEVELOP.AXIOS_SAMPLE' })}
       />
       <AsideMenuItem
         to="/develop/button/"
-        icon="/media/icons/duotune/communication/com006.svg"
+        icon="/media/icons/duotune/general/gen029.svg"
         title={intl.formatMessage({ id: 'MENU.DEVELOP.BUTTON_SAMPLE' })}
       />
       <AsideMenuItem
         to="/develop/reactState/"
-        icon="/media/icons/duotune/communication/com006.svg"
+        icon="/media/icons/duotune/general/gen029.svg"
         title={intl.formatMessage({ id: 'MENU.DEVELOP.REACT_STATE_SAMPLE' })}
       />
       <AsideMenuItem
         to="/develop/reduxState/"
-        icon="/media/icons/duotune/communication/com006.svg"
+        icon="/media/icons/duotune/general/gen029.svg"
         title={intl.formatMessage({ id: 'MENU.DEVELOP.REDUX_STATE_SAMPLE' })}
       />
       <AsideMenuItem
         to="/develop/toast/"
-        icon="/media/icons/duotune/communication/com006.svg"
+        icon="/media/icons/duotune/general/gen029.svg"
         title={intl.formatMessage({ id: 'MENU.DEVELOP.TOAST_SAMPLE' })}
       />
 
