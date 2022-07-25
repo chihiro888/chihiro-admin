@@ -2,18 +2,18 @@ import { FC } from 'react'
 import { useIntl } from 'react-intl'
 import { PageTitle } from '../../../_metronic/layout/core'
 
-const UserPage: FC = () => <>user</>
+const DevelopReactStatePage: FC = () => <>ReactState</>
 
-const UserWrapper: FC = () => {
+const DevelopReactStateWrapper: FC = () => {
   const intl = useIntl()
   return (
     <>
       <PageTitle breadcrumbs={[]}>
-        {intl.formatMessage({ id: 'MENU.USER_MANAGEMENT' })}
+        {intl.formatMessage({ id: 'MENU.DEVELOP.REACT_STATE_SAMPLE' })}
       </PageTitle>
-      <UserPage />
+      <DevelopReactStatePage />
     </>
   )
 }
 
-export { UserWrapper }
+export { DevelopReactStateWrapper }

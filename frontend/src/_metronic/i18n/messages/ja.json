@@ -1,6 +1,11 @@
 {
-  "MENU.DASHBOARD": "Dashboard",
-  "MENU.USER_MANAGEMENT": "User Management",
-  "MENU.QUERY_EXECUTE": "Query Execute",
-  "MENU.QUERY_EXECUTE_HISTORY": "Query Execute History"
+  "MENU.DASHBOARD": "ダッシュボード",
+  "MENU.ACCOUNT.SETTINGS": "アカウント設定",
+  "MENU.DEVELOP.AXIOS_SAMPLE": "Axios サンプル",
+  "MENU.DEVELOP.BUTTON_SAMPLE": "ボタン サンプル",
+  "MENU.DEVELOP.REACT_STATE_SAMPLE": "React State サンプル",
+  "MENU.DEVELOP.REDUX_STATE_SAMPLE": "ReduxState サンプル",
+  "MENU.USER.USER_MANAGEMENT": "ユーザー管理",
+  "MENU.QUERY.QUERY_EXECUTE": "クエリー実行",
+  "MENU.QUERY.QUERY_HISTORY": "クエリー履歴"
 }

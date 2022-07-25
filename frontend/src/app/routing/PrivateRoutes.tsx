@@ -5,9 +5,14 @@ import TopBarProgress from 'react-topbar-progress-indicator'
 import { DashboardWrapper } from '../pages/dashboard/DashboardWrapper'
 import { getCSSVariableValue } from '../../_metronic/assets/ts/_utils'
 import { WithChildren } from '../../_metronic/helpers'
-import { QueryExecuteWrapper } from '../pages/query-execute/QueryExecuteWrapper'
-import { QueryExecuteHistoryWrapper } from '../pages/query-execute-history/QueryExecuteHistoryWrapper'
-import { UserWrapper } from '../pages/user-management/UserWrapper'
+import { QueryExecuteWrapper } from '../pages/query/QueryExecuteWrapper'
+import { QueryHistoryWrapper } from '../pages/query/QueryHistoryWrapper'
+import { UserManagementWrapper } from '../pages/user-management/UserManagementWrapper'
+import { DevelopAxiosWrapper } from '../pages/develop/DevelopAxiosWrapper'
+import { DevelopButtonWrapper } from '../pages/develop/DevelopButtonWrapper'
+import { DevelopReactStateWrapper } from '../pages/develop/DevelopReactStateWrapper'
+import { DevelopReduxStateWrapper } from '../pages/develop/DevelopReduxStateWrapper'
+import { AccountSettingsWrapper } from '../pages/account-settings/AccountSettingsWrapper'
 
 /*
   react-route-dom v6
@@ -26,14 +31,30 @@ const PrivateRoutes = () => {
         {/* Redirect to Dashboard after success login/registartion */}
         <Route path="auth/*" element={<Navigate to="/dashboard" />} />
 
-        {/* Pages */}
-        <Route path="dashboard/" element={<DashboardWrapper />} />
-        <Route path="userManagement/" element={<UserWrapper />} />
-        <Route path="queryExecute/" element={<QueryExecuteWrapper />} />
+        {/* Pages - Account Settings */}
+        <Route path="/account/settings/" element={<AccountSettingsWrapper />} />
+
+        {/* Pages - Dashboard */}
+        <Route path="/dashboard/" element={<DashboardWrapper />} />
+
+        {/* Pages - Develop */}
+        <Route path="/develop/axios/" element={<DevelopAxiosWrapper />} />
+        <Route path="/develop/button/" element={<DevelopButtonWrapper />} />
         <Route
-          path="queryExecuteHistory/"
-          element={<QueryExecuteHistoryWrapper />}
+          path="/develop/reactState/"
+          element={<DevelopReactStateWrapper />}
         />
+        <Route
+          path="/develop/reduxState/"
+          element={<DevelopReduxStateWrapper />}
+        />
+
+        {/* Pages - User */}
+        <Route path="/user/management/" element={<UserManagementWrapper />} />
+
+        {/* Pages - Query */}
+        <Route path="/query/execute/" element={<QueryExecuteWrapper />} />
+        <Route path="/query/history/" element={<QueryHistoryWrapper />} />
 
         {/* Lazy Modules */}
         <Route

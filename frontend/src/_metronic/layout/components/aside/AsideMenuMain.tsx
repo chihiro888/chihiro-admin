@@ -15,32 +15,73 @@ export function AsideMenuMain() {
 
   return (
     <>
+      {/* Dashboard */}
       <AsideMenuItem
         to="/dashboard"
         icon="/media/icons/duotune/art/art002.svg"
         title={intl.formatMessage({ id: 'MENU.DASHBOARD' })}
       />
+
+      {/* Develop */}
       <div className="menu-item">
         <div className="menu-content pt-8 pb-2">
           <span className="menu-section text-muted text-uppercase fs-8 ls-1">
-            Apps
+            Develop
           </span>
         </div>
       </div>
       <AsideMenuItem
-        to="/userManagement/"
+        to="/develop/axios/"
         icon="/media/icons/duotune/communication/com006.svg"
-        title="User Management"
+        title={intl.formatMessage({ id: 'MENU.DEVELOP.AXIOS_SAMPLE' })}
       />
       <AsideMenuItem
-        to="/queryExecute/"
+        to="/develop/button/"
+        icon="/media/icons/duotune/communication/com006.svg"
+        title={intl.formatMessage({ id: 'MENU.DEVELOP.BUTTON_SAMPLE' })}
+      />
+      <AsideMenuItem
+        to="/develop/reactState/"
+        icon="/media/icons/duotune/communication/com006.svg"
+        title={intl.formatMessage({ id: 'MENU.DEVELOP.REACT_STATE_SAMPLE' })}
+      />
+      <AsideMenuItem
+        to="/develop/reduxState/"
+        icon="/media/icons/duotune/communication/com006.svg"
+        title={intl.formatMessage({ id: 'MENU.DEVELOP.REDUX_STATE_SAMPLE' })}
+      />
+
+      {/* User */}
+      <div className="menu-item">
+        <div className="menu-content pt-8 pb-2">
+          <span className="menu-section text-muted text-uppercase fs-8 ls-1">
+            User
+          </span>
+        </div>
+      </div>
+      <AsideMenuItem
+        to="/user/management/"
+        icon="/media/icons/duotune/communication/com006.svg"
+        title={intl.formatMessage({ id: 'MENU.USER.USER_MANAGEMENT' })}
+      />
+
+      {/* Query */}
+      <div className="menu-item">
+        <div className="menu-content pt-8 pb-2">
+          <span className="menu-section text-muted text-uppercase fs-8 ls-1">
+            Query
+          </span>
+        </div>
+      </div>
+      <AsideMenuItem
+        to="/query/execute/"
         icon="/media/icons/duotune/general/gen017.svg"
-        title="Query Execute"
+        title={intl.formatMessage({ id: 'MENU.QUERY.QUERY_EXECUTE' })}
       />
       <AsideMenuItem
-        to="/queryExecuteHistory/"
+        to="/query/history/"
         icon="/media/icons/duotune/general/gen013.svg"
-        title="Query Execute History"
+        title={intl.formatMessage({ id: 'MENU.QUERY.QUERY_HISTORY' })}
       />
     </>
   )

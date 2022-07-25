@@ -1,6 +1,11 @@
 {
-  "MENU.DASHBOARD": "Dashboard",
-  "MENU.USER_MANAGEMENT": "User Management",
-  "MENU.QUERY_EXECUTE": "Query Execute",
-  "MENU.QUERY_EXECUTE_HISTORY": "Query Execute History"
+  "MENU.DASHBOARD": "대쉬보드",
+  "MENU.ACCOUNT.SETTINGS": "계정설정",
+  "MENU.DEVELOP.AXIOS_SAMPLE": "Axios 샘플",
+  "MENU.DEVELOP.BUTTON_SAMPLE": "Button 샘플",
+  "MENU.DEVELOP.REACT_STATE_SAMPLE": "React State 샘플",
+  "MENU.DEVELOP.REDUX_STATE_SAMPLE": "Redux State 샘플",
+  "MENU.USER.USER_MANAGEMENT": "사용자 관리",
+  "MENU.QUERY.QUERY_EXECUTE": "쿼리 실행",
+  "MENU.QUERY.QUERY_HISTORY": "쿼리 이력"
 }

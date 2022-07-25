@@ -27,7 +27,7 @@ const QueryExecuteWrapper: FC = () => {
   return (
     <>
       <PageTitle breadcrumbs={[]}>
-        {intl.formatMessage({ id: 'MENU.QUERY_EXECUTE' })}
+        {intl.formatMessage({ id: 'MENU.QUERY.QUERY_EXECUTE' })}
       </PageTitle>
       <QueryExecutePage name="react" />
     </>
