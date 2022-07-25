@@ -7,5 +7,12 @@
   "MENU.DEVELOP.REDUX_STATE_SAMPLE": "Redux State 샘플",
   "MENU.USER.USER_MANAGEMENT": "사용자 관리",
   "MENU.QUERY.QUERY_EXECUTE": "쿼리 실행",
-  "MENU.QUERY.QUERY_HISTORY": "쿼리 이력"
+  "MENU.QUERY.QUERY_HISTORY": "쿼리 이력",
+  "LABEL.PARAMETER_1": "파라미터 1",
+  "LABEL.PARAMETER_2": "파라미터 2",
+  "TEXT.GET_METHOD": "GET 메소드",
+  "TEXT.POST_METHOD": "POST 메소드",
+  "TEXT.PUT_METHOD": "PUT 메소드",
+  "TEXT.DELETE_METHOD": "DELETE 메소드",
+  "TEXT.RESPONSE": "응답"
 }

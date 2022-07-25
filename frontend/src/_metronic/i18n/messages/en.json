@@ -7,5 +7,12 @@
   "MENU.DEVELOP.REDUX_STATE_SAMPLE": "Redux State Sample",
   "MENU.USER.USER_MANAGEMENT": "User Management",
   "MENU.QUERY.QUERY_EXECUTE": "Query Execute",
-  "MENU.QUERY.QUERY_HISTORY": "Query History"
+  "MENU.QUERY.QUERY_HISTORY": "Query History",
+  "LABEL.PARAMETER_1": "Parameter 1",
+  "LABEL.PARAMETER_2": "Parameter 2",
+  "TEXT.GET_METHOD": "GET Method",
+  "TEXT.POST_METHOD": "POST Method",
+  "TEXT.PUT_METHOD": "PUT Method",
+  "TEXT.DELETE_METHOD": "DELETE Method",
+  "TEXT.RESPONSE": "Response"
 }

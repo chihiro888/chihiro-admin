@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { CommonResponse } from './_models'
+import { CommonResponse } from '../../../../common/interface'
 
 export const GET_USER_BY_SESSION = `/api/auth/getUserBySession`
 export const LOGIN_URL = '/api/auth/signIn'

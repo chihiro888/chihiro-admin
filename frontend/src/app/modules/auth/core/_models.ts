@@ -1,9 +1,3 @@
-export interface CommonResponse {
-  statusCode: number
-  message: string
-  data: any
-}
-
 export interface AuthModel {
   isSignIn: boolean
 }

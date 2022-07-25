@@ -7,5 +7,12 @@
   "MENU.DEVELOP.REDUX_STATE_SAMPLE": "ReduxState サンプル",
   "MENU.USER.USER_MANAGEMENT": "ユーザー管理",
   "MENU.QUERY.QUERY_EXECUTE": "クエリー実行",
-  "MENU.QUERY.QUERY_HISTORY": "クエリー履歴"
+  "MENU.QUERY.QUERY_HISTORY": "クエリー履歴",
+  "LABEL.PARAMETER_1": "パラメーター 1",
+  "LABEL.PARAMETER_2": "パラメーター 2",
+  "TEXT.GET_METHOD": "GET メソード",
+  "TEXT.POST_METHOD": "POST メソード",
+  "TEXT.PUT_METHOD": "PUT メソード",
+  "TEXT.DELETE_METHOD": "DELETE メソード",
+  "TEXT.RESPONSE": "応答"
 }

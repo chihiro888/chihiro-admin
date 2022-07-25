@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 import { join } from 'path'
 import { AuthModule } from './api/auth/auth.module'
+import { DevelopModule } from './api/develop/develop.module'
 import { UserModule } from './api/user/user.module'
 import configuration from './configuration/configuration'
 
@@ -24,7 +25,8 @@ console.log('----------------------------')
 
     // import app module
     AuthModule,
-    UserModule
+    UserModule,
+    DevelopModule
   ]
 })
 export class AppModule {}
