@@ -102,6 +102,7 @@ const DevelopAxiosPage: FC<DevelopAxiosProps> = ({
             className="form-control"
             rows={10}
             value={result}
+            readOnly
           ></textarea>
         </div>
       </div>
