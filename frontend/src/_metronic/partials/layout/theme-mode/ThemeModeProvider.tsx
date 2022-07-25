@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
+import { Theme } from 'react-toastify'
 import { ThemeModeComponent } from '../../../assets/ts/layout'
 import { toAbsoluteUrl } from '../../../helpers'
 

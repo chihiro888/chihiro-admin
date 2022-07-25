@@ -5,6 +5,7 @@
   "MENU.DEVELOP.BUTTON_SAMPLE": "Button Sample",
   "MENU.DEVELOP.REACT_STATE_SAMPLE": "React State Sample",
   "MENU.DEVELOP.REDUX_STATE_SAMPLE": "Redux State Sample",
+  "MENU.DEVELOP.TOAST_SAMPLE": "Toast Sample",
   "MENU.USER.USER_MANAGEMENT": "User Management",
   "MENU.QUERY.QUERY_EXECUTE": "Query Execute",
   "MENU.QUERY.QUERY_HISTORY": "Query History",
@@ -18,5 +19,10 @@
   "LABEL.COUNT": "Count",
   "TEXT.PLUS": "Plus",
   "TEXT.MINUS": "Minus",
-  "TEXT.PLUS_5": "Plus 5"
+  "TEXT.PLUS_5": "Plus 5",
+  "TEXT.INFORMATION": "Information",
+  "TEXT.SUCCESS": "Success",
+  "TEXT.WARNING": "Warning",
+  "TEXT.ERROR": "Error",
+  "TEXT.TOAST": "Toast"
 }

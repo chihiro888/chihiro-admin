@@ -17,6 +17,8 @@ import {
   ThemeModeProvider
 } from '../partials'
 import { MenuComponent } from '../assets/ts/components'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const MasterLayout = () => {
   const location = useLocation()
@@ -55,6 +57,18 @@ const MasterLayout = () => {
               </div>
             </div>
             <Footer />
+
+            <ToastContainer
+              position="top-right"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+            />
           </div>
         </div>
 

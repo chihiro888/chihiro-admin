@@ -13,6 +13,7 @@ import { DevelopButtonWrapper } from '../pages/develop/DevelopButtonWrapper'
 import { DevelopReactStateWrapper } from '../pages/develop/DevelopReactStateWrapper'
 import { DevelopReduxStateWrapper } from '../pages/develop/DevelopReduxStateWrapper'
 import { AccountSettingsWrapper } from '../pages/account-settings/AccountSettingsWrapper'
+import { DevelopToastWrapper } from '../pages/develop/DevelopToastWrapper'
 
 /*
   react-route-dom v6
@@ -48,6 +49,7 @@ const PrivateRoutes = () => {
           path="/develop/reduxState/"
           element={<DevelopReduxStateWrapper />}
         />
+        <Route path="/develop/toast/" element={<DevelopToastWrapper />} />
 
         {/* Pages - User */}
         <Route path="/user/management/" element={<UserManagementWrapper />} />

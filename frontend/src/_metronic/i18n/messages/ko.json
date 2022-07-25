@@ -5,6 +5,7 @@
   "MENU.DEVELOP.BUTTON_SAMPLE": "Button 샘플",
   "MENU.DEVELOP.REACT_STATE_SAMPLE": "React State 샘플",
   "MENU.DEVELOP.REDUX_STATE_SAMPLE": "Redux State 샘플",
+  "MENU.DEVELOP.TOAST_SAMPLE": "Toast 샘플",
   "MENU.USER.USER_MANAGEMENT": "사용자 관리",
   "MENU.QUERY.QUERY_EXECUTE": "쿼리 실행",
   "MENU.QUERY.QUERY_HISTORY": "쿼리 이력",
@@ -18,5 +19,10 @@
   "LABEL.COUNT": "카운트",
   "TEXT.PLUS": "증가",
   "TEXT.MINUS": "감소",
-  "TEXT.PLUS_5": "증가 5"
+  "TEXT.PLUS_5": "증가ㅁ 5",
+  "TEXT.INFORMATION": "정보",
+  "TEXT.SUCCESS": "성공",
+  "TEXT.WARNING": "주의",
+  "TEXT.ERROR": "에러",
+  "TEXT.TOAST": "토스트"
 }

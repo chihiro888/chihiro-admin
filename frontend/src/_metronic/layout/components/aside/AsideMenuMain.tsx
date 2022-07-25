@@ -50,6 +50,11 @@ export function AsideMenuMain() {
         icon="/media/icons/duotune/communication/com006.svg"
         title={intl.formatMessage({ id: 'MENU.DEVELOP.REDUX_STATE_SAMPLE' })}
       />
+      <AsideMenuItem
+        to="/develop/toast/"
+        icon="/media/icons/duotune/communication/com006.svg"
+        title={intl.formatMessage({ id: 'MENU.DEVELOP.TOAST_SAMPLE' })}
+      />
 
       {/* User */}
       <div className="menu-item">
