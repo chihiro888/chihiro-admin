@@ -37,7 +37,6 @@ const useAuth = () => {
 }
 
 const AuthProvider: FC<WithChildren> = ({ children }) => {
-  console.log('### AuthProvider')
   const [auth, setAuth] = useState<AuthModel | undefined>(authHelper.getAuth())
   const [currentUser, setCurrentUser] = useState<UserModel | undefined>()
   const saveAuth = (auth: AuthModel | undefined) => {
