@@ -58,35 +58,39 @@ const DevelopAxiosPage: FC<DevelopAxiosProps> = ({
     <div className="card card-custom mt-5">
       <div className="card-body">
         <div className="row">
-          <div className="col">
+          <div className="col-md-3 col-12 mt-3 mt-md-0">
             <button
-              className="btn btn-light-primary"
+              className="btn btn-light-primary w-100"
               onClick={() => handleClickButton('GET')}
             >
+              <i className="bi bi-send fs-4 me-2"></i>
               {intl.formatMessage({ id: 'TEXT.GET_METHOD' })}
             </button>
           </div>
-          <div className="col">
+          <div className="col-md-3 col-12 mt-3 mt-md-0">
             <button
-              className="btn btn-light-success"
+              className="btn btn-light-success w-100"
               onClick={() => handleClickButton('POST')}
             >
+              <i className="bi bi-send fs-4 me-2"></i>
               {intl.formatMessage({ id: 'TEXT.POST_METHOD' })}
             </button>
           </div>
-          <div className="col">
+          <div className="col-md-3 col-12 mt-3 mt-md-0">
             <button
-              className="btn btn-light-warning"
+              className="btn btn-light-warning w-100"
               onClick={() => handleClickButton('PUT')}
             >
+              <i className="bi bi-send fs-4 me-2"></i>
               {intl.formatMessage({ id: 'TEXT.PUT_METHOD' })}
             </button>
           </div>
-          <div className="col">
+          <div className="col-md-3 col-12 mt-3 mt-md-0">
             <button
-              className="btn btn-light-danger"
+              className="btn btn-light-danger w-100"
               onClick={() => handleClickButton('DELETE')}
             >
+              <i className="bi bi-send fs-4 me-2"></i>
               {intl.formatMessage({ id: 'TEXT.DELETE_METHOD' })}
             </button>
           </div>
