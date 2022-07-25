@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import clsx from 'clsx'
-import React from 'react'
 import { Link } from 'react-router-dom'
 import { KTSVG, toAbsoluteUrl } from '../../../helpers'
 import { useLayout } from '../../core'

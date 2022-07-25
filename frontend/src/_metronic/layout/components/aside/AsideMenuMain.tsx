@@ -1,9 +1,14 @@
 /* eslint-disable react/jsx-no-target-blank */
-import React from 'react'
 import { useIntl } from 'react-intl'
-import { KTSVG } from '../../../helpers'
-import { AsideMenuItemWithSub } from './AsideMenuItemWithSub'
 import { AsideMenuItem } from './AsideMenuItem'
+
+/*
+  icon (duotune)
+  https://preview.keenthemes.com/metronic8/react/docs/docs/icons/duotune
+
+  if you want to use font icon, change aside.menuIcon = 'font'
+  - frontend/src/_metronic/layout/core/DefaultLayoutConfig.ts
+*/
 
 export function AsideMenuMain() {
   const intl = useIntl()
@@ -14,7 +19,6 @@ export function AsideMenuMain() {
         to="/dashboard"
         icon="/media/icons/duotune/art/art002.svg"
         title={intl.formatMessage({ id: 'MENU.DASHBOARD' })}
-        fontIcon="bi-app-indicator"
       />
       <div className="menu-item">
         <div className="menu-content pt-8 pb-2">
@@ -24,16 +28,19 @@ export function AsideMenuMain() {
         </div>
       </div>
       <AsideMenuItem
-        to="#"
-        icon="/media/icons/duotune/general/gen051.svg"
-        title="Query Execute"
-        fontIcon="bi-layers"
+        to="/userManagement/"
+        icon="/media/icons/duotune/communication/com006.svg"
+        title="User Management"
       />
       <AsideMenuItem
-        to="#"
-        icon="/media/icons/duotune/general/gen051.svg"
+        to="/queryExecute/"
+        icon="/media/icons/duotune/general/gen017.svg"
+        title="Query Execute"
+      />
+      <AsideMenuItem
+        to="/queryExecuteHistory/"
+        icon="/media/icons/duotune/general/gen013.svg"
         title="Query Execute History"
-        fontIcon="bi-layers"
       />
     </>
   )

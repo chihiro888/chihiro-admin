@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 
 const Toolbar3: FC = () => {
   return <>Toolbar 3</>

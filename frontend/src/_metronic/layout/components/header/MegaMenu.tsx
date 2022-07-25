@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { FC } from 'react'
+import { FC } from 'react'
 
 const MegaMenu: FC = () => (
   <div className="row" data-kt-menu-dismiss="true">

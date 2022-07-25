@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react'
+import { useRef, useEffect } from 'react'
 import { useLayout } from '../core'
 
 const BG_COLORS = ['bg-body', 'bg-info']

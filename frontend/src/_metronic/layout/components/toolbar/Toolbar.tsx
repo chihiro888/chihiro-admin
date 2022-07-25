@@ -1,4 +1,3 @@
-import React from 'react'
 import { useLayout } from '../../core/LayoutProvider'
 import { Toolbar1 } from './Toolbar1'
 
