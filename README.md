@@ -77,4 +77,4 @@ http://localhost:3000/
 
 <img src="docs/image/License.png" width="300"/>
 
-- https://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469
+https://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469
