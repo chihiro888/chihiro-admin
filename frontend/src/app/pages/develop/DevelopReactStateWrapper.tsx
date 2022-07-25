@@ -2,7 +2,13 @@ import { FC } from 'react'
 import { useIntl } from 'react-intl'
 import { PageTitle } from '../../../_metronic/layout/core'
 
-const DevelopReactStatePage: FC = () => <>ReactState</>
+const DevelopReactStatePage: FC = () => (
+  <>
+    <div className="card card-custom">
+      <div className="card-body">React State Sample</div>
+    </div>
+  </>
+)
 
 const DevelopReactStateWrapper: FC = () => {
   const intl = useIntl()
