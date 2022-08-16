@@ -65,6 +65,16 @@ export function AsideMenuMain() {
         icon="/media/icons/duotune/general/gen029.svg"
         title={intl.formatMessage({ id: 'MENU.DEVELOP.LOTTIE_SAMPLE' })}
       />
+      <AsideMenuItem
+        to="/develop/modal/"
+        icon="/media/icons/duotune/general/gen029.svg"
+        title={intl.formatMessage({ id: 'MENU.DEVELOP.MODAL_SAMPLE' })}
+      />
+      <AsideMenuItem
+        to="/develop/bignumber/"
+        icon="/media/icons/duotune/general/gen029.svg"
+        title={intl.formatMessage({ id: 'MENU.DEVELOP.BIGNUMBER_SAMPLE' })}
+      />
 
       {/* User */}
       <div className="menu-item">

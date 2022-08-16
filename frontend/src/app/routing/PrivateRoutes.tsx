@@ -16,6 +16,8 @@ import { AccountSettingsWrapper } from '../pages/account-settings/AccountSetting
 import { DevelopToastWrapper } from '../pages/develop/DevelopToastWrapper'
 import { DevelopTemplateWrapper } from '../pages/develop/DevelopTemplateWrapper'
 import { DevelopLottieWrapper } from '../pages/develop/DevelopLottieWrapper'
+import { DevelopModalWrapper } from '../pages/develop/DevelopModalWrapper'
+import { DevelopBignumberWrapper } from '../pages/develop/DevelopBigNumberWrapper'
 
 /*
   react-route-dom v6
@@ -54,6 +56,12 @@ const PrivateRoutes = () => {
         />
         <Route path="/develop/toast/" element={<DevelopToastWrapper />} />
         <Route path="/develop/lottie/" element={<DevelopLottieWrapper />} />
+
+        <Route path="/develop/modal/" element={<DevelopModalWrapper />} />
+        <Route
+          path="/develop/bignumber/"
+          element={<DevelopBignumberWrapper />}
+        />
 
         {/* Pages - User */}
         <Route path="/user/management/" element={<UserManagementWrapper />} />
