@@ -4,6 +4,9 @@ import { join } from 'path'
 import { AuthModule } from './api/auth/auth.module'
 import { DevelopModule } from './api/develop/develop.module'
 import { UserModule } from './api/user/user.module'
+import { GlobalConfigModule } from './common/global/config.module'
+import { GlobalDatabaseModule } from './common/global/database.module'
+import { GlobalHttpModule } from './common/global/http.module'
 import configuration from './configuration/configuration'
 
 const envFileName = '.env.' + process.env.NODE_ENV
@@ -22,6 +25,11 @@ console.log('----------------------------')
       envFilePath: envFilePath,
       load: [configuration]
     }),
+
+    // import global module
+    GlobalConfigModule,
+    GlobalDatabaseModule,
+    GlobalHttpModule,
 
     // import app module
     AuthModule,

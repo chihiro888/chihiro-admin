@@ -1,19 +1,20 @@
 import { createPassword } from './../../common/util/auth'
 import { Inject, Injectable } from '@nestjs/common'
 import { CreateUserDto } from 'src/api/user/dto/create-user.dto'
-import { Repository } from 'typeorm'
+
 import { User } from './user.entity'
+import { DataSource } from 'typeorm'
 
 @Injectable()
 export class UserService {
   constructor(
-    @Inject('USER_REPOSITORY')
-    private userRepository: Repository<User>
+    @Inject('DATA_SOURCE')
+    private datasource: DataSource
   ) {}
 
   // ANCHOR find user by account
   async findUserByAccount(account: string): Promise<User> | null {
-    const user = await this.userRepository.findOne({
+    const user = await this.datasource.getRepository(User).findOne({
       where: {
         account
       }
@@ -23,7 +24,7 @@ export class UserService {
 
   // ANCHOR find user by id
   async findUserById(id: number): Promise<User> {
-    const user = await this.userRepository.findOne({
+    const user = await this.datasource.getRepository(User).findOne({
       where: {
         id
       }
@@ -41,7 +42,7 @@ export class UserService {
     user.username = dto.username
 
     // create user
-    const result = await this.userRepository.save(user)
+    const result = await this.datasource.getRepository(User).save(user)
 
     return result
   }

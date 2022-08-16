@@ -1,6 +1,6 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
 
-@Entity('_user', { schema: 'mysql_query_saver' })
+@Entity('_user', { schema: 'save_the_query' })
 export class User {
   @PrimaryGeneratedColumn({ type: 'int', name: 'id', comment: 'id' })
   id: number
