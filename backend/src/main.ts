@@ -1,12 +1,15 @@
 import { NestFactory } from '@nestjs/core'
 import { AppModule } from './app.module'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
-import * as session from 'express-session'
-import { Session } from './app/session/session.entity'
-import { TypeormStore } from 'connect-typeorm/out'
 import { ConfigService } from '@nestjs/config'
-import { DataSource, DataSourceOptions } from 'typeorm'
+import { DataSourceOptions } from 'typeorm'
 import { HttpExceptionFilter } from './common/exception/http-exception.filter'
+import { ValidationPipe } from '@nestjs/common'
+
+// session
+import * as session from 'express-session'
+import * as mysql from 'mysql'
+import * as MySQLStore from 'express-mysql-session'
 
 async function bootstrap() {
   // get nest application
@@ -14,6 +17,13 @@ async function bootstrap() {
 
   // set custom exception
   app.useGlobalFilters(new HttpExceptionFilter())
+
+  // validation
+  app.useGlobalPipes(
+    new ValidationPipe({
+      transform: true
+    })
+  )
 
   // swagger config
   const config = new DocumentBuilder()
@@ -31,11 +41,16 @@ async function bootstrap() {
   // get database information
   const configService = app.get(ConfigService)
   const database = configService.get<DataSourceOptions>('database')
-  const mysqlDataSource = new DataSource(database)
-  mysqlDataSource.initialize()
 
-  // get session repository
-  const sessionRepository = await mysqlDataSource.getRepository(Session)
+  // get session store
+  const options = {
+    host: database['host'],
+    user: database['username'],
+    password: database['password'],
+    database: database['database']
+  }
+  const connection = mysql.createConnection(options)
+  const sessionStore = new MySQLStore({}, connection)
 
   // set express-session
   app.use(
@@ -43,7 +58,7 @@ async function bootstrap() {
       secret: configService.get<string>('sessionSecretKey'),
       resave: false,
       saveUninitialized: false,
-      store: new TypeormStore().connect(sessionRepository)
+      store: sessionStore
     })
   )
 
