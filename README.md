@@ -43,6 +43,18 @@ docker-compose up
 | user          | docker         |
 | password      | docker         |
 
+:warning: issue fix : mysql 8 password protocol
+
+- caching_sha2_password -> mysql_native_password
+
+```sql
+select host, user, plugin, authentication_string from mysql.user;
+
+ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'root';
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root';
+ALTER USER 'docker'@'%' IDENTIFIED WITH mysql_native_password BY 'docker';
+```
+
 ## backend
 
 - Please create the database with docker first.
