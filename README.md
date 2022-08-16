@@ -73,6 +73,22 @@ yarn start:dev
 yarn start:prod
 ```
 
+:warning: issue fix : cross-env not found command
+
+package.json
+
+```bash
+# mac
+    "start:local": "export NODE_ENV=local&&nest start --debug --watch",
+    "start:dev": "export NODE_ENV=development&&nest start --debug --watch",
+    "start:prod": "export NODE_ENV=production&&nest start --debug --watch",
+
+# win
+    "start:local": "set NODE_ENV=local&&nest start --debug --watch",
+    "start:dev": "set NODE_ENV=development&&nest start --debug --watch",
+    "start:prod": "set NODE_ENV=production&&nest start --debug --watch",
+```
+
 http://localhost:9000/api
 
 ## frontend
