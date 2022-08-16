@@ -6,6 +6,8 @@
   "MENU.DEVELOP.REACT_STATE_SAMPLE": "React State Sample",
   "MENU.DEVELOP.REDUX_STATE_SAMPLE": "Redux State Sample",
   "MENU.DEVELOP.TOAST_SAMPLE": "Toast Sample",
+  "MENU.DEVELOP.TEMPLATE_SAMPLE": "Template Sample",
+  "MENU.DEVELOP.LOTTIE_SAMPLE": "Lottie Sample",
   "MENU.USER.USER_MANAGEMENT": "User Management",
   "MENU.QUERY.QUERY_EXECUTE": "Query Execute",
   "MENU.QUERY.QUERY_HISTORY": "Query History",
