@@ -1,29 +1,33 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import clsx from 'clsx'
 import { FC } from 'react'
+import { useIntl } from 'react-intl'
 import { toAbsoluteUrl } from '../../../helpers'
 import { useLang, setLanguage } from '../../../i18n/Metronici18n'
 
-const languages = [
-  {
-    lang: 'en',
-    name: 'English',
-    flag: toAbsoluteUrl('/media/flags/united-states.svg')
-  },
-  {
-    lang: 'ja',
-    name: 'Japanese',
-    flag: toAbsoluteUrl('/media/flags/japan.svg')
-  },
-  {
-    lang: 'ko',
-    name: 'Korean',
-    flag: toAbsoluteUrl('/media/flags/south-korea.svg')
-  }
-]
-
 const Languages: FC = () => {
+  // hooks
   const lang = useLang()
+  const intl = useIntl()
+
+  const languages = [
+    {
+      lang: 'en',
+      name: intl.formatMessage({ id: 'English' }),
+      flag: toAbsoluteUrl('/media/flags/united-states.svg')
+    },
+    {
+      lang: 'ja',
+      name: intl.formatMessage({ id: 'Japanese' }),
+      flag: toAbsoluteUrl('/media/flags/japan.svg')
+    },
+    {
+      lang: 'ko',
+      name: intl.formatMessage({ id: 'Korean' }),
+      flag: toAbsoluteUrl('/media/flags/south-korea.svg')
+    }
+  ]
+
   const currentLanguage = languages.find((x) => x.lang === lang)
   return (
     <div
@@ -34,7 +38,7 @@ const Languages: FC = () => {
     >
       <a href="#" className="menu-link px-5">
         <span className="menu-title position-relative">
-          Language
+          {intl.formatMessage({ id: 'Language' })}
           <span className="fs-8 rounded bg-light px-3 py-2 position-absolute translate-middle-y top-50 end-0">
             {currentLanguage?.name}{' '}
             <img

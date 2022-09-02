@@ -14,6 +14,10 @@ import { DevelopReactStateWrapper } from '../pages/develop/DevelopReactStateWrap
 import { DevelopReduxStateWrapper } from '../pages/develop/DevelopReduxStateWrapper'
 import { AccountSettingsWrapper } from '../pages/account-settings/AccountSettingsWrapper'
 import { DevelopToastWrapper } from '../pages/develop/DevelopToastWrapper'
+import { DevelopTemplateWrapper } from '../pages/develop/DevelopTemplateWrapper'
+import { DevelopLottieWrapper } from '../pages/develop/DevelopLottieWrapper'
+import { DevelopModalWrapper } from '../pages/develop/DevelopModalWrapper'
+import { DevelopBignumberWrapper } from '../pages/develop/DevelopBigNumberWrapper'
 
 /*
   react-route-dom v6
@@ -39,6 +43,7 @@ const PrivateRoutes = () => {
         <Route path="/dashboard/" element={<DashboardWrapper />} />
 
         {/* Pages - Develop */}
+        <Route path="/develop/template/" element={<DevelopTemplateWrapper />} />
         <Route path="/develop/axios/" element={<DevelopAxiosWrapper />} />
         <Route path="/develop/button/" element={<DevelopButtonWrapper />} />
         <Route
@@ -50,6 +55,13 @@ const PrivateRoutes = () => {
           element={<DevelopReduxStateWrapper />}
         />
         <Route path="/develop/toast/" element={<DevelopToastWrapper />} />
+        <Route path="/develop/lottie/" element={<DevelopLottieWrapper />} />
+
+        <Route path="/develop/modal/" element={<DevelopModalWrapper />} />
+        <Route
+          path="/develop/bignumber/"
+          element={<DevelopBignumberWrapper />}
+        />
 
         {/* Pages - User */}
         <Route path="/user/management/" element={<UserManagementWrapper />} />

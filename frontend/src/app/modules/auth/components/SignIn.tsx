@@ -5,6 +5,7 @@ import clsx from 'clsx'
 import { useFormik } from 'formik'
 import { getUserBySession, login } from '../core/_requests'
 import { useAuth } from '../core/Auth'
+import { useIntl } from 'react-intl'
 
 const loginSchema = Yup.object().shape({
   email: Yup.string()
@@ -30,8 +31,12 @@ const initialValues = {
 */
 
 export function SignIn() {
-  const [loading, setLoading] = useState(false)
+  // hooks
+  const intl = useIntl()
   const { saveAuth, setCurrentUser } = useAuth()
+
+  // state
+  const [loading, setLoading] = useState(false)
 
   const formik = useFormik({
     initialValues,
@@ -80,7 +85,9 @@ export function SignIn() {
 
       {/* begin::Form group */}
       <div className="fv-row mb-10">
-        <label className="form-label fs-6 fw-bolder text-dark">Email</label>
+        <label className="form-label fs-6 fw-bolder text-dark">
+          {intl.formatMessage({ id: 'Email' })}
+        </label>
         <input
           placeholder="Email"
           {...formik.getFieldProps('email')}
@@ -109,7 +116,7 @@ export function SignIn() {
           <div className="d-flex flex-stack mb-2">
             {/* begin::Label */}
             <label className="form-label fw-bolder text-dark fs-6 mb-0">
-              Password
+              {intl.formatMessage({ id: 'Password' })}
             </label>
             {/* end::Label */}
           </div>
@@ -146,10 +153,14 @@ export function SignIn() {
           className="btn btn-lg btn-primary w-100 mb-5"
           disabled={formik.isSubmitting || !formik.isValid}
         >
-          {!loading && <span className="indicator-label">Sign in</span>}
+          {!loading && (
+            <span className="indicator-label">
+              {intl.formatMessage({ id: 'Sign in' })}
+            </span>
+          )}
           {loading && (
             <span className="indicator-progress" style={{ display: 'block' }}>
-              Please wait...
+              {intl.formatMessage({ id: 'Please wait...' })}
               <span className="spinner-border spinner-border-sm align-middle ms-2"></span>
             </span>
           )}

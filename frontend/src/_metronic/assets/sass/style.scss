@@ -13,6 +13,79 @@
 @import './core/layout/base';
 @import 'layout/layout';
 
-.custom-tar {
+// modal override
+.modal-content {
+  padding: 20px;
+}
+
+.modal-dialog {
+  margin-top: 100px;
+}
+
+.modal-close {
   text-align: right;
+}
+
+.modal-close-icon {
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.modal-button {
+  margin-top: 20px;
+  text-align: center;
+}
+
+// custom
+.c-tar {
+  text-align: right;
+}
+
+.c-tac {
+  text-align: center;
+}
+
+.c-tal {
+  text-align: left;
+}
+
+// spacing override
+.ml-1 {
+  margin-left: 4px;
+}
+
+.ml-2 {
+  margin-left: 8px;
+}
+
+.ml-3 {
+  margin-left: 12px;
+}
+
+.ml-4 {
+  margin-left: 16px;
+}
+
+.mr-5 {
+  margin-left: 20px;
+}
+
+.mr-1 {
+  margin-right: 4px;
+}
+
+.mr-2 {
+  margin-right: 8px;
+}
+
+.mr-3 {
+  margin-right: 12px;
+}
+
+.mr-4 {
+  margin-right: 16px;
+}
+
+.mr-5 {
+  margin-right: 20px;
 }
