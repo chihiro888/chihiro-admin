@@ -59,5 +59,11 @@
   "oldPassword must be shorter than or equal to 100 characters": "old password must be shorter than or equal to 100 characters",
   "newPassword must be shorter than or equal to 100 characters": "new password must be shorter than or equal to 100 characters",
   "confirmNewPassword must be shorter than or equal to 100 characters": "confirm new password must be shorter than or equal to 100 characters",
-  "confirmNewPassword must match newPassword": "confirm new password must match newPassword"
+  "confirmNewPassword must match newPassword": "confirm new password must match newPassword",
+  "ID": "ID",
+  "Search": "Search",
+  "Select Item": "Select Item",
+  "User": "User",
+  "Admin": "Admin",
+  "Developer": "Developer"
 }

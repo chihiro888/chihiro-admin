@@ -22,7 +22,9 @@ export default () => {
       extra: {
         connectionLimit: 10
       },
-      timezone: 'Z'
+      timezone: 'Z',
+      logging: ['query', 'error', 'schema', 'warn', 'info', 'log']
+      // logging: ['error', 'schema', 'warn', 'info', 'log']
     },
     sessionSecretKey: process.env.SESSION_SECRET_KEY
   }

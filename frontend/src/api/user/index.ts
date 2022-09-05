@@ -16,3 +16,10 @@ export const changePasswordAPI = (params: object) => {
   const response = axios.put<CommonResponse>(url, params)
   return response
 }
+
+// ANCHOR user list pagination API
+export const userListPagination = (params: object) => {
+  const url = `${rootUrl}userListPagination`
+  const response = axios.get<CommonResponse>(url, { params: params })
+  return response
+}

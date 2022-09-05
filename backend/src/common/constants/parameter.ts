@@ -1,7 +1,7 @@
 const PARAMETER = {
   // account
   ACCOUNT: 'account',
-  ACCOUNT_EXAMPLE: 'admin@savethequery.io',
+  ACCOUNT_EXAMPLE: 'chihiro888@github.com',
 
   // password
   PASSWORD: 'password',
@@ -29,7 +29,27 @@ const PARAMETER = {
 
   // confirm new password
   CONFIRM_NEW_PASSWORD: 'confirm new password',
-  CONFIRM_NEW_PASSWORD_EXAMPLE: '22222222'
+  CONFIRM_NEW_PASSWORD_EXAMPLE: '22222222',
+
+  // page
+  PAGE: 'page',
+  PAGE_EXAMPLE: 1,
+
+  // id
+  ID: 'id',
+  ID_EXAMPLE: 1,
+
+  // is admin
+  IS_ADMIN: 'is admin',
+  IS_ADMIN_EXAMPLE: 0,
+
+  // is developer
+  IS_DEVELOPER: 'is developer',
+  IS_DEVELOPER_EXAMPLE: 0,
+
+  // created at
+  CREATED_AT: 'created at',
+  CREATED_AT_EXAMPLE: '2022-09-05'
 }
 
 export default PARAMETER

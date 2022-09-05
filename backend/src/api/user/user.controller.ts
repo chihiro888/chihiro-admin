@@ -5,6 +5,7 @@ import {
   HttpException,
   HttpStatus,
   Put,
+  Query,
   Res,
   Session,
   UseGuards
@@ -14,6 +15,7 @@ import { Response } from 'express'
 import SWAGGER from 'src/common/constants/swagger'
 import { AuthGuard } from 'src/common/guard/auth.guard'
 import { ChangePasswordDto } from './dto/change-password.dto'
+import { UserListPaginationDto } from './dto/user-list-pagination.dto'
 import { UserService } from './user.service'
 
 // ANCHOR user controller
@@ -95,6 +97,43 @@ export class UserController {
       statusCode: HttpStatus.OK,
       message: SWAGGER.USER.CHANGE_PASSWORD.MSG.OK,
       data: null
+    })
+  }
+
+  // ANCHOR user list pagination API
+  @ApiOperation({
+    summary: SWAGGER.USER.USER_LIST_PAGINATION.SUMMARY,
+    description: SWAGGER.USER.USER_LIST_PAGINATION.DESC
+  })
+  @ApiResponse({
+    status: HttpStatus.OK,
+    description: SWAGGER.USER.USER_LIST_PAGINATION.RES.OK
+  })
+  @ApiResponse({
+    status: HttpStatus.UNAUTHORIZED,
+    description: SWAGGER.USER.USER_LIST_PAGINATION.RES.UNAUTHORIZED
+  })
+  @UseGuards(AuthGuard)
+  @Get(SWAGGER.USER.USER_LIST_PAGINATION.URL)
+  async userListPagination(
+    @Res() res: Response,
+    @Session() session: any,
+    @Query() dto: UserListPaginationDto
+  ) {
+    // get user id from session
+    const userId = session.userId
+
+    // inject user id
+    dto.userId = userId
+
+    // user list pagination
+    const userList = await this.userService.userListPagination(dto)
+
+    // return 200 response
+    res.status(HttpStatus.OK).json({
+      statusCode: HttpStatus.OK,
+      message: SWAGGER.USER.USER_LIST_PAGINATION.MSG.OK,
+      data: userList
     })
   }
 }

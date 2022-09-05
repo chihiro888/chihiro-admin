@@ -78,6 +78,19 @@ const SWAGGER = {
         OK: OK,
         INTERNAL_SERVER_ERROR: INTERNAL_SERVER_ERROR
       }
+    },
+    USER_LIST_PAGINATION: {
+      URL: 'userListPagination',
+      SUMMARY: 'user list pagination API',
+      DESC: 'This is user list pagination API',
+      RES: {
+        OK: OK,
+        UNAUTHORIZED: UNAUTHORIZED
+      },
+      MSG: {
+        OK: OK,
+        UNAUTHORIZED: UNAUTHORIZED
+      }
     }
   },
 

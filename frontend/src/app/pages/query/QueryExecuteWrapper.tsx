@@ -2,7 +2,7 @@ import { FC } from 'react'
 import { useIntl } from 'react-intl'
 import { PageTitle } from '../../../_metronic/layout/core'
 
-const QueryExecutePage = ({}) => (
+const QueryExecutePage = () => (
   <>
     <div className="card card-custom">
       <div className="card-body">

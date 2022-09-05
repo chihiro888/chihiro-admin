@@ -59,5 +59,11 @@
   "oldPassword must be shorter than or equal to 100 characters": "既存のパスワードは最大100桁までです。",
   "newPassword must be shorter than or equal to 100 characters": "新しいパスワードは最大100桁です。",
   "confirmNewPassword must be shorter than or equal to 100 characters": "新しいパスワードの確認は最大100桁です。",
-  "confirmNewPassword must match newPassword": "新しいパスワードと新しいパスワードの確認が一致しません。"
+  "confirmNewPassword must match newPassword": "新しいパスワードと新しいパスワードの確認が一致しません。",
+  "ID": "ID",
+  "Search": "検索",
+  "Select Item": "項目選択",
+  "User": "ユーザ",
+  "Admin": "管理者",
+  "Developer": "開発者"
 }
