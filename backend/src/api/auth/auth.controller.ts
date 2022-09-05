@@ -44,6 +44,14 @@ export class AuthController {
     // find account
     const user = await this.userService.findUserByAccount(dto.account)
 
+    if (!user) {
+      // return 401 response
+      throw new HttpException(
+        SWAGGER.AUTH.SIGN_IN.MSG.UNAUTHORIZED,
+        HttpStatus.UNAUTHORIZED
+      )
+    }
+
     // check password
     const condition = await isMatch(dto.password, user.password)
     if (!condition) {

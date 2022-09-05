@@ -23,7 +23,7 @@ export class UserService {
   }
 
   // ANCHOR find user by id
-  async findUserById(id: number): Promise<User> {
+  async findUserById(id: number): Promise<User> | null {
     const user = await this.datasource.getRepository(User).findOne({
       where: {
         id
