@@ -1,3 +1,9 @@
+const OK = 'OK'
+const BAD_REQUEST = 'BAD_REQUEST'
+const UNAUTHORIZED = 'UNAUTHORIZED'
+const FORBIDDEN = 'FORBIDDEN'
+const INTERNAL_SERVER_ERROR = 'INTERNAL_SERVER_ERROR'
+
 const SWAGGER = {
   // auth
   AUTH: {
@@ -8,12 +14,12 @@ const SWAGGER = {
       SUMMARY: 'Sign In API',
       DESC: 'This is Sign In API',
       RES: {
-        OK: 'OK',
-        UNAUTHORIZED: 'UNAUTHORIZED'
+        OK: OK,
+        UNAUTHORIZED: UNAUTHORIZED
       },
       MSG: {
-        OK: '',
-        UNAUTHORIZED: ''
+        OK: OK,
+        UNAUTHORIZED: 'account or password does not match.'
       }
     },
     GET_USER_BY_SESSION: {
@@ -21,12 +27,12 @@ const SWAGGER = {
       SUMMARY: 'Get User By Session API',
       DESC: 'This is Get User By Session API',
       RES: {
-        OK: 'OK',
-        UNAUTHORIZED: 'UNAUTHORIZED'
+        OK: OK,
+        UNAUTHORIZED: UNAUTHORIZED
       },
       MSG: {
-        OK: '',
-        UNAUTHORIZED: ''
+        OK: OK,
+        UNAUTHORIZED: UNAUTHORIZED
       }
     }
   },
@@ -40,10 +46,10 @@ const SWAGGER = {
       SUMMARY: 'Create User API',
       DESC: 'This is Create User API',
       RES: {
-        OK: 'OK'
+        OK: OK
       },
       MSG: {
-        OK: ''
+        OK: OK
       }
     }
   },
@@ -57,10 +63,10 @@ const SWAGGER = {
       SUMMARY: 'GET Method API',
       DESC: 'This is GET Method API',
       RES: {
-        OK: 'OK'
+        OK: OK
       },
       MSG: {
-        OK: ''
+        OK: OK
       }
     },
     postMethod: {
@@ -68,10 +74,10 @@ const SWAGGER = {
       SUMMARY: 'POST Method API',
       DESC: 'This is POST Method API',
       RES: {
-        OK: 'OK'
+        OK: OK
       },
       MSG: {
-        OK: ''
+        OK: OK
       }
     },
     putMethod: {
@@ -79,10 +85,10 @@ const SWAGGER = {
       SUMMARY: 'PUT Method API',
       DESC: 'This is PUT Method API',
       RES: {
-        OK: 'OK'
+        OK: OK
       },
       MSG: {
-        OK: ''
+        OK: OK
       }
     },
     deleteMethod: {
@@ -90,10 +96,10 @@ const SWAGGER = {
       SUMMARY: 'DELETE Method API',
       DESC: 'This is DELETE Method API',
       RES: {
-        OK: 'OK'
+        OK: OK
       },
       MSG: {
-        OK: ''
+        OK: OK
       }
     }
   }

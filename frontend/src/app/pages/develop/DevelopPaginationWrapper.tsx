@@ -2,15 +2,24 @@ import { FC, useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { PageTitle } from '../../../_metronic/layout/core'
 import Pagination from 'react-js-pagination'
+import DatePicker, { registerLocale } from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
+import moment from 'moment'
+import DATE from '../../constants/date'
+import ko from 'date-fns/locale/ko'
+import ja from 'date-fns/locale/ja'
+import en from 'date-fns/locale/en-US'
+import { useLang } from '../../../_metronic/i18n/Metronici18n'
 
-const UserManagementPage = ({
+const DevelopPaginationPage = ({
   search,
   pagination,
   selectBox,
   handleChangePage,
   handleClickSearch,
   handleChangeSample1,
-  handleChangeSample2
+  handleChangeSample2,
+  handleChangeSample3
 }) => (
   <>
     <div className="card card-custom">
@@ -18,7 +27,7 @@ const UserManagementPage = ({
         <div className="row">
           <div className="col-3">
             <div className="form-group">
-              <label htmlFor="sample1">번호</label>
+              <label htmlFor="sample1">sample1</label>
               <input
                 type="text"
                 className="form-control mt-3"
@@ -30,33 +39,7 @@ const UserManagementPage = ({
           </div>
           <div className="col-3">
             <div className="form-group">
-              <label htmlFor="sample1">계정</label>
-              <input
-                type="text"
-                className="form-control mt-3"
-                id="sample1"
-                value={search.sample1}
-                onChange={handleChangeSample1}
-              />
-            </div>
-          </div>
-          <div className="col-3">
-            <div className="form-group">
-              <label htmlFor="sample1">사용자명</label>
-              <input
-                type="text"
-                className="form-control mt-3"
-                id="sample1"
-                value={search.sample1}
-                onChange={handleChangeSample1}
-              />
-            </div>
-          </div>
-        </div>
-        <div className="row mt-3">
-          <div className="col-3">
-            <div className="form-group">
-              <label htmlFor="sample2">관리자여부</label>
+              <label htmlFor="sample2">sample2</label>
               <select
                 className="form-select mt-3"
                 onChange={handleChangeSample2}
@@ -72,29 +55,12 @@ const UserManagementPage = ({
           </div>
           <div className="col-3">
             <div className="form-group">
-              <label htmlFor="sample2">개발자여부</label>
-              <select
-                className="form-select mt-3"
-                onChange={handleChangeSample2}
-              >
-                <option value="">----- select item -----</option>
-                {selectBox.map((item, idx) => (
-                  <option key={idx} value={item.value}>
-                    {item.label}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
-          <div className="col-3">
-            <div className="form-group">
-              <label htmlFor="sample1">등록일시</label>
-              <input
-                type="text"
+              <label htmlFor="sample2">sample3</label>
+              <DatePicker
                 className="form-control mt-3"
-                id="sample1"
-                value={search.sample1}
-                onChange={handleChangeSample1}
+                dateFormat="yyyy-MM-dd"
+                selected={search.sample3}
+                onChange={(date: Date) => handleChangeSample3(date)}
               />
             </div>
           </div>
@@ -155,9 +121,10 @@ const UserManagementPage = ({
   </>
 )
 
-const UserManagementWrapper: FC = () => {
+const DevelopPaginationWrapper: FC = () => {
   // hooks
   const intl = useIntl()
+  const locale = useLang()
 
   // state - pagination
   const [pagination, setPagination] = useState({
@@ -171,7 +138,8 @@ const UserManagementWrapper: FC = () => {
   // state - search
   const [search, setSearch] = useState({
     sample1: '',
-    sample2: ''
+    sample2: '',
+    sample3: new Date()
   })
 
   // state - select box
@@ -185,7 +153,10 @@ const UserManagementWrapper: FC = () => {
 
   // handler - click search
   const handleClickSearch = () => {
-    console.log(`sample1 : ${search.sample1}, sample2 : ${search.sample2}`)
+    const date = moment(search.sample3).format(DATE.ONLY_DATE)
+    console.log(
+      `sample1 : ${search.sample1}, sample2 : ${search.sample2}, sample3 : ${date}`
+    )
   }
 
   // handler - change sample1
@@ -196,6 +167,11 @@ const UserManagementWrapper: FC = () => {
   // handler - change sample2
   const handleChangeSample2 = (e) => {
     setSearch({ ...search, sample2: e.target.value })
+  }
+
+  // handler - change sample2
+  const handleChangeSample3 = (date: Date) => {
+    setSearch({ ...search, sample3: date })
   }
 
   // init data
@@ -229,6 +205,15 @@ const UserManagementWrapper: FC = () => {
   useEffect(() => {
     initData()
 
+    // TODO date picker localization
+    if (locale === 'ko') {
+      registerLocale('ko', ko)
+    } else if (locale === 'ja') {
+      registerLocale('ja', ja)
+    } else {
+      registerLocale('en', en)
+    }
+
     // unmounted
     return () => {}
   }, [])
@@ -236,10 +221,10 @@ const UserManagementWrapper: FC = () => {
   return (
     <>
       <PageTitle breadcrumbs={[]}>
-        {intl.formatMessage({ id: 'MENU.USER.USER_MANAGEMENT' })}
+        {intl.formatMessage({ id: 'MENU.DEVELOP.PAGINATION_SAMPLE' })}
       </PageTitle>
 
-      <UserManagementPage
+      <DevelopPaginationPage
         search={search}
         pagination={pagination}
         selectBox={selectBox}
@@ -247,9 +232,10 @@ const UserManagementWrapper: FC = () => {
         handleClickSearch={handleClickSearch}
         handleChangeSample1={handleChangeSample1}
         handleChangeSample2={handleChangeSample2}
+        handleChangeSample3={handleChangeSample3}
       />
     </>
   )
 }
 
-export { UserManagementWrapper }
+export { DevelopPaginationWrapper }

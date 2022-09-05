@@ -20,7 +20,7 @@ const loginSchema = Yup.object().shape({
 })
 
 const initialValues = {
-  email: 'admin@savethequery.io',
+  email: 'chihiro888@github.com',
   password: '12345'
 }
 
@@ -71,7 +71,7 @@ export function SignIn() {
     >
       {/* begin::Heading */}
       <div className="text-center mb-10">
-        <h1 className="text-dark mb-3">Save The Query</h1>
+        <h1 className="text-dark mb-3">Chihiro Develop Kit</h1>
       </div>
       {/* begin::Heading */}
 

@@ -10,10 +10,10 @@ import {
 } from '@nestjs/common'
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 import { Response } from 'express'
-import { SignInDto } from './dto/sign-in.dto'
-import { UserService } from 'src/app/user/user.service'
-import SWAGGER from 'src/common/constants/swagger'
 import { isMatch, login } from 'src/common/util/auth'
+import { UserService } from '../user/user.service'
+import { SignInDto } from './dto/sign-in.dto'
+import SWAGGER from 'src/common/constants/swagger'
 import { AuthGuard } from 'src/common/guard/auth.guard'
 
 // ANCHOR auth controller
@@ -43,6 +43,14 @@ export class AuthController {
   ) {
     // find account
     const user = await this.userService.findUserByAccount(dto.account)
+
+    if (!user) {
+      // return 401 response
+      throw new HttpException(
+        SWAGGER.AUTH.SIGN_IN.MSG.UNAUTHORIZED,
+        HttpStatus.UNAUTHORIZED
+      )
+    }
 
     // check password
     const condition = await isMatch(dto.password, user.password)

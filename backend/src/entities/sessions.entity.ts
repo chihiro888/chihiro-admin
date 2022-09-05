@@ -1,6 +1,6 @@
 import { Column, Entity } from 'typeorm'
 
-@Entity('sessions', { schema: 'save_the_query' })
+@Entity('sessions', { schema: 'develop' })
 export class Sessions {
   @Column('varchar', { primary: true, name: 'session_id', length: 128 })
   sessionId: string

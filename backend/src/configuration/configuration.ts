@@ -17,7 +17,7 @@ export default () => {
       username: process.env.DATABASE_USERNAME,
       password: process.env.DATABASE_PASSWORD,
       database: process.env.DATABASE_DATABASE,
-      entities: [join(__dirname, '..', 'app', '**', '*.entity{.ts,.js}')],
+      entities: [join(__dirname, '..', 'entities', '*.entity{.ts,.js}')],
       synchronize: false,
       extra: {
         connectionLimit: 10

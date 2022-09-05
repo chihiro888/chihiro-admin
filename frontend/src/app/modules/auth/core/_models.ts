@@ -45,8 +45,10 @@ export interface UserSocialNetworksModel {
 export interface UserModel {
   id: number
   account: string
-  username: string
   password: string | undefined
+  username: string
+  isAdmin: number
+  isDeveloper: number
   signInAt: string | null
   signOutAt: string | null
   createdAt: string | null

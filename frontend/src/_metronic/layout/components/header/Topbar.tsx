@@ -15,10 +15,9 @@ const Topbar: FC = () => {
   return (
     <div className="d-flex align-items-stretch flex-shrink-0">
       {/* Activities */}
-      <div
+      {/* <div
         className={clsx('d-flex align-items-center', toolbarButtonMarginClass)}
       >
-        {/* begin::Drawer toggle */}
         <div
           className={clsx(
             'btn btn-icon btn-active-light-primary btn-custom',
@@ -31,8 +30,7 @@ const Topbar: FC = () => {
             className={toolbarButtonIconSizeClass}
           />
         </div>
-        {/* end::Drawer toggle */}
-      </div>
+      </div> */}
 
       {/* begin::Theme mode */}
       <div
@@ -63,7 +61,7 @@ const Topbar: FC = () => {
           data-kt-menu-placement="bottom-end"
           data-kt-menu-flip="bottom"
         >
-          <img src={toAbsoluteUrl('/media/custom/avatar.jpg')} alt="metronic" />
+          <img src={toAbsoluteUrl('/media/custom/profile.png')} alt="profile" />
         </div>
         <HeaderUserMenu />
         {/* end::Toggle */}

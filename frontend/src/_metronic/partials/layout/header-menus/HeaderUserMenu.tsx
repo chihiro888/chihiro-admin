@@ -19,15 +19,30 @@ const HeaderUserMenu: FC = () => {
       <div className="menu-item px-3">
         <div className="menu-content d-flex align-items-center px-3">
           <div className="symbol symbol-50px me-5">
-            <img alt="Logo" src={toAbsoluteUrl('/media/custom/avatar.jpg')} />
+            <img alt="Logo" src={toAbsoluteUrl('/media/custom/profile.png')} />
           </div>
 
           <div className="d-flex flex-column">
             <div className="fw-bolder d-flex align-items-center fs-5">
               {currentUser?.username}
-              <span className="badge badge-light-success fw-bolder fs-8 px-2 py-1 ms-2">
-                Admin
-              </span>
+              {currentUser?.isAdmin === 1 && currentUser?.isDeveloper === 0 ? (
+                <>
+                  <span className="badge badge-light-success fw-bolder fs-8 px-2 py-1 ms-2">
+                    Admin
+                  </span>
+                </>
+              ) : (
+                <></>
+              )}
+              {currentUser?.isDeveloper === 1 ? (
+                <>
+                  <span className="badge badge-light-info fw-bolder fs-8 px-2 py-1 ms-2">
+                    Developer
+                  </span>
+                </>
+              ) : (
+                <></>
+              )}
             </div>
             <a href="#" className="fw-bold text-muted text-hover-primary fs-7">
               {currentUser?.account}

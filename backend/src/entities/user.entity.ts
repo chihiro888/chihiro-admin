@@ -1,11 +1,17 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
+import { Column, Entity, Index, PrimaryGeneratedColumn } from 'typeorm'
 
-@Entity('_user', { schema: 'save_the_query' })
+@Index('account', ['account'], { unique: true })
+@Entity('_user', { schema: 'develop' })
 export class User {
   @PrimaryGeneratedColumn({ type: 'int', name: 'id', comment: 'id' })
   id: number
 
-  @Column('varchar', { name: 'account', comment: 'account', length: 255 })
+  @Column('varchar', {
+    name: 'account',
+    unique: true,
+    comment: 'account',
+    length: 255
+  })
   account: string
 
   @Column('varchar', { name: 'password', comment: 'password', length: 255 })
@@ -13,6 +19,22 @@ export class User {
 
   @Column('varchar', { name: 'username', comment: 'username', length: 255 })
   username: string
+
+  @Column('int', {
+    name: 'is_admin',
+    nullable: true,
+    comment: 'is admin',
+    default: () => "'0'"
+  })
+  isAdmin: number | null
+
+  @Column('int', {
+    name: 'is_developer',
+    nullable: true,
+    comment: 'is developer',
+    default: () => "'0'"
+  })
+  isDeveloper: number | null
 
   @Column('datetime', {
     name: 'sign_in_at',

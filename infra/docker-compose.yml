@@ -3,10 +3,10 @@ version: "3"
 services:
   db:
     image: mysql:8
-    container_name: save_the_query_db
+    container_name: develop
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: save_the_query
+      MYSQL_DATABASE: develop
       MYSQL_USER: docker
       MYSQL_PASSWORD: docker
       TZ: "Asia/Seoul"
