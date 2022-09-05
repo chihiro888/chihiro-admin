@@ -55,8 +55,8 @@ export class QueryService {
       }
 
       // history insert
-      const sql = `INSERT INTO (type,exec_query, success_cnt,fail_cnt, user_id,ip_address,created_at,updated,deleted_at)
-                    VALUE (${type},${query},${successCnt},${failCnt},${userId},${ipAddress},now())`
+      const sql = `INSERT INTO _query (type,exec_query, success_cnt,fail_cnt, user_id,ip_address,created_at,updated_at, deleted_at)
+                    VALUE ('${type}','${query}',${successCnt},${failCnt},${userId},'${ipAddress}',now(), null, null)`
       const result = await this.datasource.query(sql)
 
       return result
