@@ -11,10 +11,14 @@ export class QueryService {
 
   // ANCHOR execute query
   async executeQuery(dto: ExecuteQueryDto) {
-    const result = await this.datasource.query(`
+    try {
+      const result = await this.datasource.query(`
       ${dto.query}
     `)
 
-    return result
+      return result
+    } catch (error) {
+      return error
+    }
   }
 }

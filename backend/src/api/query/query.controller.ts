@@ -49,11 +49,51 @@ export class QueryController {
     // execute query
     const result = await this.queryService.executeQuery(dto)
 
-    // return 200 response
-    res.status(HttpStatus.OK).json({
-      statusCode: HttpStatus.OK,
-      message: SWAGGER.QUERY.EXECUTE_QUERY.MSG.OK,
-      data: result
-    })
+    if (result.errno) {
+      // return 200 response
+      res.status(HttpStatus.OK).json({
+        statusCode: HttpStatus.OK,
+        message: SWAGGER.QUERY.EXECUTE_QUERY.MSG.OK,
+        data: {
+          queryResultHeader: [],
+          queryResultData: [],
+          affectedRows: 0,
+          error: {
+            errno: result.errno,
+            code: result.code,
+            sqlState: result.sqlState,
+            message: result.message
+          }
+        }
+      })
+    }
+
+    let queryResultHeader = []
+    if (result.length > 0) {
+      queryResultHeader = Object.keys(result[0])
+      // return 200 response
+      res.status(HttpStatus.OK).json({
+        statusCode: HttpStatus.OK,
+        message: SWAGGER.QUERY.EXECUTE_QUERY.MSG.OK,
+        data: {
+          queryResultHeader,
+          queryResultData: result,
+          affectedRows: 0
+        }
+      })
+    }
+
+    if (result.affectedRows) {
+      // return 200 response
+      res.status(HttpStatus.OK).json({
+        statusCode: HttpStatus.OK,
+        message: SWAGGER.QUERY.EXECUTE_QUERY.MSG.OK,
+        data: {
+          queryResultHeader: [],
+          queryResultData: [],
+          affectedRows: result.affectedRows
+        }
+      })
+    }
   }
 }

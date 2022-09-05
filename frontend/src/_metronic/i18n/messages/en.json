@@ -65,5 +65,13 @@
   "Select Item": "Select Item",
   "User": "User",
   "Admin": "Admin",
-  "Developer": "Developer"
+  "Developer": "Developer",
+  "Enter a query": "Enter a query",
+  "Run Query": "Run Query",
+  "Error No": "Error No",
+  "Code": "Code",
+  "SQL State": "SQL State",
+  "Error Message": "Error Message",
+  "Execution results": "Execution results",
+  "Row": "Row"
 }

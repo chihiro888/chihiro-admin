@@ -65,5 +65,13 @@
   "Select Item": "항목 선택",
   "User": "사용자",
   "Admin": "관리자",
-  "Developer": "개발자"
+  "Developer": "개발자",
+  "Enter a query": "쿼리입력",
+  "Run Query": "쿼리실행",
+  "Error No": "에러번호",
+  "Code": "코드",
+  "SQL State": "SQL 상태",
+  "Error Message": "에러 메세지",
+  "Execution results": "실행 결과",
+  "Row": "행"
 }

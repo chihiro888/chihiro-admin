@@ -65,5 +65,13 @@
   "Select Item": "項目選択",
   "User": "ユーザ",
   "Admin": "管理者",
-  "Developer": "開発者"
+  "Developer": "開発者",
+  "Enter a query": "クエリー入力",
+  "Run Query": "クオリ実行",
+  "Error No": "エラー番号",
+  "Code": "コード",
+  "SQL State": "SQL 状態",
+  "Error Message": "エラーメッセージ",
+  "Execution results": "実行結果",
+  "Row": "行"
 }
