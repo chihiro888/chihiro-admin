@@ -2,15 +2,23 @@ import { FC, useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { PageTitle } from '../../../_metronic/layout/core'
 import Pagination from 'react-js-pagination'
+import DatePicker, { registerLocale, setDefaultLocale } from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
+import moment from 'moment'
+import DATE from '../../constants/date'
+import ko from 'date-fns/locale/ko'
+import ja from 'date-fns/locale/ja'
+import en from 'date-fns/locale/en-US'
+import { useLang } from '../../../_metronic/i18n/Metronici18n'
 
 const UserManagementPage = ({
   search,
   pagination,
-  selectBox,
+  selectBoxAdmin,
+  selectBoxDeveloper,
   handleChangePage,
   handleClickSearch,
-  handleChangeSample1,
-  handleChangeSample2
+  handleChangeSearch
 }) => (
   <>
     <div className="card card-custom">
@@ -22,33 +30,33 @@ const UserManagementPage = ({
               <input
                 type="text"
                 className="form-control mt-3"
-                id="sample1"
-                value={search.sample1}
-                onChange={handleChangeSample1}
+                id="id"
+                value={search.id}
+                onChange={(e) => handleChangeSearch('id', e)}
               />
             </div>
           </div>
           <div className="col-3">
             <div className="form-group">
-              <label htmlFor="sample1">계정</label>
+              <label htmlFor="account">계정</label>
               <input
                 type="text"
                 className="form-control mt-3"
-                id="sample1"
-                value={search.sample1}
-                onChange={handleChangeSample1}
+                id="account"
+                value={search.account}
+                onChange={(e) => handleChangeSearch('account', e)}
               />
             </div>
           </div>
           <div className="col-3">
             <div className="form-group">
-              <label htmlFor="sample1">사용자명</label>
+              <label htmlFor="username">사용자명</label>
               <input
                 type="text"
                 className="form-control mt-3"
-                id="sample1"
-                value={search.sample1}
-                onChange={handleChangeSample1}
+                id="username"
+                value={search.username}
+                onChange={(e) => handleChangeSearch('username', e)}
               />
             </div>
           </div>
@@ -56,13 +64,13 @@ const UserManagementPage = ({
         <div className="row mt-3">
           <div className="col-3">
             <div className="form-group">
-              <label htmlFor="sample2">관리자여부</label>
+              <label htmlFor="isAdmin">관리자여부</label>
               <select
                 className="form-select mt-3"
-                onChange={handleChangeSample2}
+                onChange={(e) => handleChangeSearch('isAdmin', e)}
               >
                 <option value="">----- select item -----</option>
-                {selectBox.map((item, idx) => (
+                {selectBoxAdmin.map((item, idx) => (
                   <option key={idx} value={item.value}>
                     {item.label}
                   </option>
@@ -72,13 +80,13 @@ const UserManagementPage = ({
           </div>
           <div className="col-3">
             <div className="form-group">
-              <label htmlFor="sample2">개발자여부</label>
+              <label htmlFor="isDeveloper">개발자여부</label>
               <select
                 className="form-select mt-3"
-                onChange={handleChangeSample2}
+                onChange={(e) => handleChangeSearch('isDeveloper', e)}
               >
                 <option value="">----- select item -----</option>
-                {selectBox.map((item, idx) => (
+                {selectBoxDeveloper.map((item, idx) => (
                   <option key={idx} value={item.value}>
                     {item.label}
                   </option>
@@ -88,13 +96,12 @@ const UserManagementPage = ({
           </div>
           <div className="col-3">
             <div className="form-group">
-              <label htmlFor="sample1">등록일시</label>
-              <input
-                type="text"
+              <label htmlFor="createdAt">등록일시</label>
+              <DatePicker
                 className="form-control mt-3"
-                id="sample1"
-                value={search.sample1}
-                onChange={handleChangeSample1}
+                dateFormat="yyyy-MM-dd"
+                selected={search.createdAt}
+                onChange={(date: Date) => handleChangeSearch('createdAt', date)}
               />
             </div>
           </div>
@@ -180,12 +187,19 @@ const UserManagementWrapper: FC = () => {
 
   // state - search
   const [search, setSearch] = useState({
-    sample1: '',
-    sample2: ''
+    id: '',
+    account: '',
+    username: '',
+    isAdmin: '',
+    isDeveloper: '',
+    createdAt: ''
   })
 
-  // state - select box
-  const [selectBox, setSelectBox] = useState([])
+  // state - admin
+  const [selectBoxAdmin, setSelectBoxAdmin] = useState([])
+
+  // state - developer
+  const [selectBoxDeveloper, setSelectBoxDeveloper] = useState([])
 
   // handler - change page
   const handleChangePage = (pageNumber) => {
@@ -195,26 +209,46 @@ const UserManagementWrapper: FC = () => {
 
   // handler - click search
   const handleClickSearch = () => {
-    console.log(`sample1 : ${search.sample1}, sample2 : ${search.sample2}`)
+    const createdAt = moment(search.createdAt).format(DATE.ONLY_DATE)
+    console.log(`search.id : ${search.id}`)
+    console.log(`search.account : ${search.account}`)
+    console.log(`search.username : ${search.username}`)
+    console.log(`search.isAdmin : ${search.isAdmin}`)
+    console.log(`search.isDeveloper : ${search.isDeveloper}`)
+    console.log(`search.createdAt : ${createdAt}`)
   }
 
-  // handler - change sample1
-  const handleChangeSample1 = (e) => {
-    setSearch({ ...search, sample1: e.target.value })
-  }
-
-  // handler - change sample2
-  const handleChangeSample2 = (e) => {
-    setSearch({ ...search, sample2: e.target.value })
+  // handler - change search
+  const handleChangeSearch = (type: string, data: any) => {
+    if (type === 'id') {
+      setSearch({ ...search, id: data.target.value })
+    } else if (type === 'account') {
+      setSearch({ ...search, account: data.target.value })
+    } else if (type === 'username') {
+      setSearch({ ...search, username: data.target.value })
+    } else if (type === 'isAdmin') {
+      setSearch({ ...search, isAdmin: data.target.value })
+    } else if (type === 'isDeveloper') {
+      setSearch({ ...search, isDeveloper: data.target.value })
+    } else if (type === 'createdAt') {
+      setSearch({ ...search, createdAt: data })
+    }
   }
 
   // init data
   const initData = async () => {
-    // TODO connect api
-    const dummySelectBoxData = [
-      { label: 'Male', value: 'M' },
-      { label: 'Female', value: 'F' }
+    const isAdminData = [
+      { label: 'User', value: 0 },
+      { label: 'Admin', value: 1 }
     ]
+
+    const isDeveloperData = [
+      { label: 'User', value: 0 },
+      { label: 'Developer', value: 1 }
+    ]
+
+    setSelectBoxAdmin(isAdminData)
+    setSelectBoxDeveloper(isDeveloperData)
 
     // TODO connect api
     const dummyTotalItemsCount = 3
@@ -225,8 +259,6 @@ const UserManagementWrapper: FC = () => {
       { no: 2, firstName: 'Joann', lastName: 'Osinski', gender: 'M' },
       { no: 3, firstName: 'Alfonso', lastName: 'Beer', gender: 'M' }
     ]
-
-    setSelectBox(dummySelectBoxData)
 
     setPagination({
       ...pagination,
@@ -252,11 +284,11 @@ const UserManagementWrapper: FC = () => {
       <UserManagementPage
         search={search}
         pagination={pagination}
-        selectBox={selectBox}
+        selectBoxAdmin={selectBoxAdmin}
+        selectBoxDeveloper={selectBoxDeveloper}
         handleChangePage={handleChangePage}
         handleClickSearch={handleClickSearch}
-        handleChangeSample1={handleChangeSample1}
-        handleChangeSample2={handleChangeSample2}
+        handleChangeSearch={handleChangeSearch}
       />
     </>
   )
