@@ -18,6 +18,7 @@ import { DevelopTemplateWrapper } from '../pages/develop/DevelopTemplateWrapper'
 import { DevelopLottieWrapper } from '../pages/develop/DevelopLottieWrapper'
 import { DevelopModalWrapper } from '../pages/develop/DevelopModalWrapper'
 import { DevelopBignumberWrapper } from '../pages/develop/DevelopBigNumberWrapper'
+import { DevelopPaginationWrapper } from '../pages/develop/DevelopPaginationWrapper'
 
 /*
   react-route-dom v6
@@ -61,6 +62,10 @@ const PrivateRoutes = () => {
         <Route
           path="/develop/bignumber/"
           element={<DevelopBignumberWrapper />}
+        />
+        <Route
+          path="/develop/pagination/"
+          element={<DevelopPaginationWrapper />}
         />
 
         {/* Pages - User */}

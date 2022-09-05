@@ -45,31 +45,6 @@ export function HeaderWrapper() {
           </div>
         )}
         {/* end::Aside mobile toggle */}
-        {/* begin::Logo */}
-        {!aside.display && (
-          <div className="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
-            <Link to="/dashboard" className="d-lg-none">
-              <img
-                alt="Logo"
-                src={toAbsoluteUrl('/media/logos/default-small.svg')}
-                className="h-30px"
-              />
-            </Link>
-          </div>
-        )}
-        {/* end::Logo */}
-
-        {aside.display && (
-          <div className="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
-            <Link to="/" className="d-lg-none">
-              <img
-                alt="Logo"
-                src={toAbsoluteUrl('/media/logos/default-small.svg')}
-                className="h-30px"
-              />
-            </Link>
-          </div>
-        )}
 
         {/* begin::Wrapper */}
         <div className="d-flex align-items-stretch justify-content-between flex-lg-grow-1">
