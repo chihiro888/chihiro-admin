@@ -49,7 +49,11 @@ const PARAMETER = {
 
   // created at
   CREATED_AT: 'created at',
-  CREATED_AT_EXAMPLE: '2022-09-05'
+  CREATED_AT_EXAMPLE: '2022-09-05',
+
+  // query
+  QUERY: 'query',
+  QUERY_EXAMPLE: 'select now()'
 }
 
 export default PARAMETER

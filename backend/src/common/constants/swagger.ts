@@ -37,6 +37,25 @@ const SWAGGER = {
     }
   },
 
+  // query
+  QUERY: {
+    TAG: 'query',
+    URL: 'api/query',
+    EXECUTE_QUERY: {
+      URL: 'executeQuery',
+      SUMMARY: 'execute query API',
+      DESC: 'This is execute query API',
+      RES: {
+        OK: OK,
+        UNAUTHORIZED: UNAUTHORIZED
+      },
+      MSG: {
+        OK: OK,
+        UNAUTHORIZED: UNAUTHORIZED
+      }
+    }
+  },
+
   // user
   USER: {
     TAG: 'user',
