@@ -1,9 +1,11 @@
 import * as bcrypt from 'bcrypt'
-import { User } from 'src/app/user/user.entity'
+import { User } from 'src/entities/user.entity'
 
 // ANCHOR login
 export const login = async (session: any, user: User) => {
   session.userId = user.id
+  session.isAdmin = user.isAdmin
+  session.isDeveloper = user.isDeveloper
 }
 
 // ANCHOR create password

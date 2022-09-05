@@ -2,11 +2,7 @@ import { FC } from 'react'
 import { useIntl } from 'react-intl'
 import { PageTitle } from '../../../_metronic/layout/core'
 
-interface QueryExecuteProps {
-  name: string
-}
-
-const QueryExecutePage: FC<QueryExecuteProps> = (props: QueryExecuteProps) => (
+const QueryExecutePage = ({}) => (
   <>
     <div className="card card-custom">
       <div className="card-body">
@@ -15,7 +11,6 @@ const QueryExecutePage: FC<QueryExecuteProps> = (props: QueryExecuteProps) => (
         <div className="mt-5 custom-tar">
           <button className="btn btn-light-primary">Run SQL</button>
         </div>
-        {props.name}
       </div>
     </div>
   </>
@@ -29,7 +24,7 @@ const QueryExecuteWrapper: FC = () => {
       <PageTitle breadcrumbs={[]}>
         {intl.formatMessage({ id: 'MENU.QUERY.QUERY_EXECUTE' })}
       </PageTitle>
-      <QueryExecutePage name="react" />
+      <QueryExecutePage />
     </>
   )
 }

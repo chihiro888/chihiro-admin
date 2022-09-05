@@ -2,6 +2,14 @@ import { FC, useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { PageTitle } from '../../../_metronic/layout/core'
 import Pagination from 'react-js-pagination'
+import DatePicker, { registerLocale } from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
+import moment from 'moment'
+import DATE from '../../constants/date'
+import ko from 'date-fns/locale/ko'
+import ja from 'date-fns/locale/ja'
+import en from 'date-fns/locale/en-US'
+import { useLang } from '../../../_metronic/i18n/Metronici18n'
 
 const DevelopPaginationPage = ({
   search,
@@ -10,7 +18,8 @@ const DevelopPaginationPage = ({
   handleChangePage,
   handleClickSearch,
   handleChangeSample1,
-  handleChangeSample2
+  handleChangeSample2,
+  handleChangeSample3
 }) => (
   <>
     <div className="card card-custom">
@@ -42,6 +51,17 @@ const DevelopPaginationPage = ({
                   </option>
                 ))}
               </select>
+            </div>
+          </div>
+          <div className="col-3">
+            <div className="form-group">
+              <label htmlFor="sample2">sample3</label>
+              <DatePicker
+                className="form-control mt-3"
+                dateFormat="yyyy-MM-dd"
+                selected={search.sample3}
+                onChange={(date: Date) => handleChangeSample3(date)}
+              />
             </div>
           </div>
         </div>
@@ -104,6 +124,7 @@ const DevelopPaginationPage = ({
 const DevelopPaginationWrapper: FC = () => {
   // hooks
   const intl = useIntl()
+  const locale = useLang()
 
   // state - pagination
   const [pagination, setPagination] = useState({
@@ -117,7 +138,8 @@ const DevelopPaginationWrapper: FC = () => {
   // state - search
   const [search, setSearch] = useState({
     sample1: '',
-    sample2: ''
+    sample2: '',
+    sample3: new Date()
   })
 
   // state - select box
@@ -131,7 +153,10 @@ const DevelopPaginationWrapper: FC = () => {
 
   // handler - click search
   const handleClickSearch = () => {
-    console.log(`sample1 : ${search.sample1}, sample2 : ${search.sample2}`)
+    const date = moment(search.sample3).format(DATE.ONLY_DATE)
+    console.log(
+      `sample1 : ${search.sample1}, sample2 : ${search.sample2}, sample3 : ${date}`
+    )
   }
 
   // handler - change sample1
@@ -142,6 +167,11 @@ const DevelopPaginationWrapper: FC = () => {
   // handler - change sample2
   const handleChangeSample2 = (e) => {
     setSearch({ ...search, sample2: e.target.value })
+  }
+
+  // handler - change sample2
+  const handleChangeSample3 = (date: Date) => {
+    setSearch({ ...search, sample3: date })
   }
 
   // init data
@@ -175,6 +205,15 @@ const DevelopPaginationWrapper: FC = () => {
   useEffect(() => {
     initData()
 
+    // TODO date picker localization
+    if (locale === 'ko') {
+      registerLocale('ko', ko)
+    } else if (locale === 'ja') {
+      registerLocale('ja', ja)
+    } else {
+      registerLocale('en', en)
+    }
+
     // unmounted
     return () => {}
   }, [])
@@ -193,6 +232,7 @@ const DevelopPaginationWrapper: FC = () => {
         handleClickSearch={handleClickSearch}
         handleChangeSample1={handleChangeSample1}
         handleChangeSample2={handleChangeSample2}
+        handleChangeSample3={handleChangeSample3}
       />
     </>
   )

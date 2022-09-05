@@ -10,10 +10,10 @@ import {
 } from '@nestjs/common'
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 import { Response } from 'express'
-import { SignInDto } from './dto/sign-in.dto'
-import { UserService } from 'src/app/user/user.service'
-import SWAGGER from 'src/common/constants/swagger'
 import { isMatch, login } from 'src/common/util/auth'
+import { UserService } from '../user/user.service'
+import { SignInDto } from './dto/sign-in.dto'
+import SWAGGER from 'src/common/constants/swagger'
 import { AuthGuard } from 'src/common/guard/auth.guard'
 
 // ANCHOR auth controller

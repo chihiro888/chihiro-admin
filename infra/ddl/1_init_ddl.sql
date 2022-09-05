@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS _user (
   `password` VARCHAR(255) NOT NULL COMMENT 'password',
   `username` VARCHAR(255) NOT NULL COMMENT 'username',
   `is_admin` INT DEFAULT 0 COMMENT 'is admin',
+  `is_developer` INT DEFAULT 0 COMMENT 'is developer',
   `sign_in_at` DATETIME DEFAULT NULL COMMENT 'sign in time',
   `sign_out_at` DATETIME DEFAULT NULL COMMENT 'sign out time',
   `created_at` DATETIME DEFAULT now() COMMENT 'create time',
