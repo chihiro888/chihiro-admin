@@ -118,10 +118,15 @@ const UserManagementPage = ({
           <table className="table table-rounded table-striped border gy-7 gs-7">
             <thead>
               <tr>
-                <th scope="col">No</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Gender</th>
+                <th scope="col">번호</th>
+                <th scope="col">계정</th>
+                <th scope="col">사용자명</th>
+                <th scope="col">관리자권한</th>
+                <th scope="col">개발자권환</th>
+                <th scope="col">로그인일시</th>
+                <th scope="col">로그아웃일시</th>
+                <th scope="col">생성일시</th>
+                <th scope="col">수정일시</th>
               </tr>
             </thead>
             <tbody>
@@ -129,9 +134,14 @@ const UserManagementPage = ({
                 return (
                   <tr key={idx}>
                     <th>{item.no}</th>
-                    <td>{item.firstName}</td>
-                    <td>{item.lastName}</td>
-                    <td>{item.gender === 'M' ? 'Male' : 'Female'}</td>
+                    <th>{item.no}</th>
+                    <th>{item.no}</th>
+                    <th>{item.no}</th>
+                    <th>{item.no}</th>
+                    <th>{item.no}</th>
+                    <th>{item.no}</th>
+                    <th>{item.no}</th>
+                    <th>{item.no}</th>
                   </tr>
                 )
               })}
