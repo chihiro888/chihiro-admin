@@ -1,6 +1,10 @@
 import { Inject, Injectable } from '@nestjs/common'
+import { createPassword } from 'src/common/util/auth'
 import { User } from 'src/entities/user.entity'
 import { DataSource } from 'typeorm'
+import { ChangePasswordDto } from './dto/change-password.dto'
+import * as moment from 'moment'
+import DATE from 'src/common/constants/date'
 
 @Injectable()
 export class UserService {
@@ -27,5 +31,25 @@ export class UserService {
       }
     })
     return user
+  }
+
+  // ANCHOR change password
+  async changePassword(dto: ChangePasswordDto): Promise<boolean> {
+    const hash = await createPassword(dto.newPassword)
+    const result = await this.datasource
+      .createQueryBuilder()
+      .update(User)
+      .set({
+        password: hash,
+        updatedAt: moment().format(DATE.FULL_FORMAT)
+      })
+      .where('id = :id', { id: dto.userId })
+      .execute()
+
+    if (result.affected === 1) {
+      return true
+    } else {
+      return false
+    }
   }
 }

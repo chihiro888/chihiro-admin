@@ -51,6 +51,33 @@ const SWAGGER = {
       MSG: {
         OK: OK
       }
+    },
+    ACCOUNT: {
+      URL: 'account',
+      SUMMARY: 'account API',
+      DESC: 'This is account API',
+      RES: {
+        OK: OK,
+        UNAUTHORIZED: UNAUTHORIZED
+      },
+      MSG: {
+        OK: OK,
+        UNAUTHORIZED: UNAUTHORIZED
+      }
+    },
+    CHANGE_PASSWORD: {
+      URL: 'changePassword',
+      SUMMARY: 'change password API',
+      DESC: 'This is change password API',
+      RES: {
+        OK: OK,
+        UNAUTHORIZED: UNAUTHORIZED,
+        INTERNAL_SERVER_ERROR: INTERNAL_SERVER_ERROR
+      },
+      MSG: {
+        OK: OK,
+        INTERNAL_SERVER_ERROR: INTERNAL_SERVER_ERROR
+      }
     }
   },
 
