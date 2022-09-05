@@ -47,7 +47,18 @@ export class QueryController {
     dto.userId = userId
 
     // execute query
-    const result = await this.queryService.executeQuery(dto)
+    let result = await this.queryService.executeQuery(dto)
+
+    // check exec
+    const execResult = result.errno ? true : false
+    // register history
+    result = await this.queryService.registerHistoryForExecuteQuery(
+      dto,
+      execResult,
+      userId,
+      // TODO
+      'ip_address'
+    )
 
     if (result.errno) {
       // return 200 response

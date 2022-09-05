@@ -65,19 +65,25 @@ const QueryHistoryPage = ({
             <thead>
               <tr>
                 <th scope="col">No</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Gender</th>
+                <th scope="col">Type</th>
+                <th scope="col">execQuery</th>
+                <th scope="col">successCnt</th>
+                <th scope="col">failCnt</th>
+                <th scope="col">ipAddress</th>
+                <th scope="col">createdAt</th>
               </tr>
             </thead>
             <tbody>
               {pagination.data.map((item, idx) => {
                 return (
                   <tr key={idx}>
-                    <th>{item.no}</th>
-                    <td>{item.firstName}</td>
-                    <td>{item.lastName}</td>
-                    <td>{item.gender === 'M' ? 'Male' : 'Female'}</td>
+                    <th>{item.id}</th>
+                    <td>{item.type}</td>
+                    <td>{item.execQuery}</td>
+                    <td>{item.successCnt}</td>
+                    <td>{item.failCnt}</td>
+                    <td>{item.ipAddress}</td>
+                    <td>{item.createdAt}</td>
                   </tr>
                 )
               })}
@@ -157,9 +163,33 @@ const QueryHistoryWrapper: FC = () => {
 
     // TODO connect api
     const dummyPaginationData = [
-      { no: 1, firstName: 'Allen', lastName: 'Brown', gender: 'M' },
-      { no: 2, firstName: 'Joann', lastName: 'Osinski', gender: 'M' },
-      { no: 3, firstName: 'Alfonso', lastName: 'Beer', gender: 'M' }
+      {
+        id: 1,
+        type: 'UPD',
+        execQuery: 'update table set id = 1 where id = 1',
+        successCnt: 1,
+        failCnt: 0,
+        ipAddress: 'ipAddress',
+        createdAt: '2022/09/09 hh:mm:ss'
+      },
+      {
+        id: 2,
+        type: 'SLT',
+        execQuery: 'select * from table  where id = 1',
+        successCnt: 1,
+        failCnt: 0,
+        ipAddress: 'ipAddress',
+        createdAt: '2022/09/09 hh:mm:ss'
+      },
+      {
+        id: 3,
+        type: 'DEL',
+        execQuery: 'delte table where id = 1',
+        successCnt: 1,
+        failCnt: 0,
+        ipAddress: 'ipAddress',
+        createdAt: '2022/09/09 hh:mm:ss'
+      }
     ]
 
     setSelectBox(dummySelectBoxData)
