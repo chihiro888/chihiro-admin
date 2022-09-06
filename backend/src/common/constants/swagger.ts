@@ -50,7 +50,9 @@ const SWAGGER = {
         UNAUTHORIZED: UNAUTHORIZED
       },
       MSG: {
-        OK: OK,
+        OK: 'Query execution is complete.',
+        OK_ERROR: 'There was a problem running the query.',
+        OK_EMPTY: 'No query execution results.',
         UNAUTHORIZED: UNAUTHORIZED
       }
     }
