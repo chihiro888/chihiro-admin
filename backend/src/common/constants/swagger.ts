@@ -53,6 +53,19 @@ const SWAGGER = {
         OK: OK,
         UNAUTHORIZED: UNAUTHORIZED
       }
+    },
+    HISTORY_LIST_PAGINATION: {
+      URL: 'historyListPagination',
+      SUMMARY: 'history list pagination API',
+      DESC: 'This is history list pagination API',
+      RES: {
+        OK: OK,
+        UNAUTHORIZED: UNAUTHORIZED
+      },
+      MSG: {
+        OK: OK,
+        UNAUTHORIZED: UNAUTHORIZED
+      }
     }
   },
 

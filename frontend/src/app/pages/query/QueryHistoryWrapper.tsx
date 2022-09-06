@@ -2,15 +2,25 @@ import { FC, useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { PageTitle } from '../../../_metronic/layout/core'
 import Pagination from 'react-js-pagination'
+import { historyListPagination } from '../../../api/query'
+import { Theme, toast } from 'react-toastify'
+import { useThemeMode } from '../../../_metronic/partials'
+import { useLang } from '../../../_metronic/i18n/Metronici18n'
+import DatePicker, { registerLocale, setDefaultLocale } from 'react-datepicker'
+import moment from 'moment'
+import DATE from '../../constants/date'
+import ko from 'date-fns/locale/ko'
+import ja from 'date-fns/locale/ja'
+import en from 'date-fns/locale/en-US'
 
 const QueryHistoryPage = ({
+  intl,
   search,
   pagination,
-  selectBox,
+  selectBoxType,
   handleChangePage,
   handleClickSearch,
-  handleChangeSample1,
-  handleChangeSample2
+  handleChangeSearch
 }) => (
   <>
     <div className="card card-custom">
@@ -18,30 +28,47 @@ const QueryHistoryPage = ({
         <div className="row">
           <div className="col-3">
             <div className="form-group">
-              <label htmlFor="sample1">sample1</label>
+              <label htmlFor="sample1">
+                {intl.formatMessage({ id: 'ID' })}
+              </label>
               <input
                 type="text"
                 className="form-control mt-3"
-                id="sample1"
-                value={search.sample1}
-                onChange={handleChangeSample1}
+                id="id"
+                value={search.id}
+                onChange={(e) => handleChangeSearch('id', e)}
               />
             </div>
           </div>
           <div className="col-3">
             <div className="form-group">
-              <label htmlFor="sample2">sample2</label>
+              <label htmlFor="type">{intl.formatMessage({ id: 'type' })}</label>
               <select
                 className="form-select mt-3"
-                onChange={handleChangeSample2}
+                onChange={(e) => handleChangeSearch('type', e)}
               >
-                <option value="">----- select item -----</option>
-                {selectBox.map((item, idx) => (
+                <option value="">
+                  ----- {intl.formatMessage({ id: 'Select Item' })} -----
+                </option>
+                {selectBoxType.map((item, idx) => (
                   <option key={idx} value={item.value}>
                     {item.label}
                   </option>
                 ))}
               </select>
+            </div>
+          </div>
+          <div className="col-3">
+            <div className="form-group">
+              <label htmlFor="createdAt">
+                {intl.formatMessage({ id: 'Date and time of creation' })}
+              </label>
+              <DatePicker
+                className="form-control mt-3"
+                dateFormat="yyyy-MM-dd"
+                selected={search.createdAt}
+                onChange={(date: Date) => handleChangeSearch('createdAt', date)}
+              />
             </div>
           </div>
         </div>
@@ -110,6 +137,8 @@ const QueryHistoryPage = ({
 const QueryHistoryWrapper: FC = () => {
   // hooks
   const intl = useIntl()
+  const locale = useLang()
+  const { mode } = useThemeMode()
 
   // state - pagination
   const [pagination, setPagination] = useState({
@@ -122,88 +151,133 @@ const QueryHistoryWrapper: FC = () => {
 
   // state - search
   const [search, setSearch] = useState({
-    sample1: '',
-    sample2: ''
+    id: '',
+    type: '',
+    createdAt: ''
   })
 
   // state - select box
-  const [selectBox, setSelectBox] = useState([])
+  const [selectBoxType, setSelectBoxType] = useState([])
 
   // handler - change page
-  const handleChangePage = (pageNumber) => {
-    // TODO connection api
+  const handleChangePage = async (pageNumber: number) => {
+    const createdAt = search.createdAt
+      ? moment(search.createdAt).format(DATE.ONLY_DATE)
+      : ''
+
+    // change paging
     setPagination({ ...pagination, activePage: pageNumber })
+
+    // set table
+    try {
+      const params = {
+        page: pageNumber,
+        id: search.id,
+        type: search.type,
+        createdAt: createdAt
+      }
+
+      const { data: response } = await historyListPagination(params)
+      if (response.statusCode === 200) {
+        setPagination({
+          ...pagination,
+          totalItemsCount: response.data.historyTotalCount,
+          data: response.data.historyList
+        })
+      }
+    } catch (error) {
+      toast.warning(intl.formatMessage({ id: error.response.data.message }), {
+        theme: mode as Theme
+      })
+    }
   }
 
   // handler - click search
-  const handleClickSearch = () => {
-    console.log(`sample1 : ${search.sample1}, sample2 : ${search.sample2}`)
+  const handleClickSearch = async () => {
+    console.log(`id : ${search.id}, type : ${search.type}`)
+    try {
+      const params = {
+        page: 1,
+        id: search.id,
+        type: search.type,
+        createdAt: search.createdAt
+      }
+      const { data: response } = await historyListPagination(params)
+      if (response.statusCode === 200) {
+        setPagination({
+          ...pagination,
+          totalItemsCount: response.data.historyTotalCount,
+          data: response.data.historyList
+        })
+      }
+    } catch (error) {
+      toast.warning(intl.formatMessage({ id: error.response.data.message }), {
+        theme: mode as Theme
+      })
+    }
   }
 
-  // handler - change sample1
-  const handleChangeSample1 = (e) => {
-    setSearch({ ...search, sample1: e.target.value })
-  }
-
-  // handler - change sample2
-  const handleChangeSample2 = (e) => {
-    setSearch({ ...search, sample2: e.target.value })
+  // handler - change search
+  const handleChangeSearch = (type: string, data: any) => {
+    if (type === 'id') {
+      setSearch({ ...search, id: data.target.value })
+    } else if (type === 'type') {
+      setSearch({ ...search, type: data.target.value })
+    } else if (type === 'createdAt') {
+      setSearch({ ...search, createdAt: data })
+    }
   }
 
   // init data
   const initData = async () => {
-    // TODO connect api
-    const dummySelectBoxData = [
-      { label: 'Male', value: 'M' },
-      { label: 'Female', value: 'F' }
+    // set select box data
+    const typeData = [
+      { label: intl.formatMessage({ id: 'INSERT' }), value: 'INS' },
+      { label: intl.formatMessage({ id: 'SELECT' }), value: 'SEL' },
+      { label: intl.formatMessage({ id: 'UPDATE' }), value: 'UPD' },
+      { label: intl.formatMessage({ id: 'DELETE' }), value: 'DEL' }
     ]
 
-    // TODO connect api
-    const dummyTotalItemsCount = 3
+    setSelectBoxType(typeData)
 
-    // TODO connect api
-    const dummyPaginationData = [
-      {
-        id: 1,
-        type: 'UPD',
-        execQuery: 'update table set id = 1 where id = 1',
-        successCnt: 1,
-        failCnt: 0,
-        ipAddress: 'ipAddress',
-        createdAt: '2022/09/09 hh:mm:ss'
-      },
-      {
-        id: 2,
-        type: 'SLT',
-        execQuery: 'select * from table  where id = 1',
-        successCnt: 1,
-        failCnt: 0,
-        ipAddress: 'ipAddress',
-        createdAt: '2022/09/09 hh:mm:ss'
-      },
-      {
-        id: 3,
-        type: 'DEL',
-        execQuery: 'delte table where id = 1',
-        successCnt: 1,
-        failCnt: 0,
-        ipAddress: 'ipAddress',
-        createdAt: '2022/09/09 hh:mm:ss'
+    // set table
+    try {
+      const createdAt = search.createdAt
+        ? moment(search.createdAt).format(DATE.ONLY_DATE)
+        : ''
+
+      const params = {
+        page: pagination.activePage,
+        id: search.id,
+        type: search.type,
+        createdAt: createdAt
       }
-    ]
-
-    setSelectBox(dummySelectBoxData)
-
-    setPagination({
-      ...pagination,
-      totalItemsCount: dummyTotalItemsCount,
-      data: dummyPaginationData
-    })
+      const { data: response } = await historyListPagination(params)
+      if (response.statusCode === 200) {
+        setPagination({
+          ...pagination,
+          totalItemsCount: response.data.historyTotalCount,
+          data: response.data.historyList
+        })
+      }
+    } catch (error) {
+      toast.warning(intl.formatMessage({ id: error.response.data.message }), {
+        theme: mode as Theme
+      })
+    }
   }
 
   // lifecycle
   useEffect(() => {
     initData()
+
+    // init load lang
+    registerLocale('ko', ko)
+    registerLocale('ja', ja)
+    registerLocale('en', en)
+
+    // change datePicker Lang
+    setDefaultLocale(locale)
 
     // unmounted
     return () => {}
@@ -216,13 +290,13 @@ const QueryHistoryWrapper: FC = () => {
       </PageTitle>
 
       <QueryHistoryPage
+        intl={intl}
         search={search}
         pagination={pagination}
-        selectBox={selectBox}
+        selectBoxType={selectBoxType}
         handleChangePage={handleChangePage}
         handleClickSearch={handleClickSearch}
-        handleChangeSample1={handleChangeSample1}
-        handleChangeSample2={handleChangeSample2}
+        handleChangeSearch={handleChangeSearch}
       />
     </>
   )

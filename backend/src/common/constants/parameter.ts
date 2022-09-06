@@ -53,7 +53,11 @@ const PARAMETER = {
 
   // query
   QUERY: 'query',
-  QUERY_EXAMPLE: 'select now()'
+  QUERY_EXAMPLE: 'select now()',
+
+  // type
+  TYPE: 'type',
+  TYPE_EXAMPLE: 'SLT'
 }
 
 export default PARAMETER

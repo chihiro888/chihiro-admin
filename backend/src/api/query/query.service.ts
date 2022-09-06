@@ -1,7 +1,9 @@
+import { User } from './../../entities/user.entity'
 import { Inject, Injectable } from '@nestjs/common'
 import { DataSource } from 'typeorm'
 import { ExecuteQueryDto } from './dto/execute-query.dto'
-
+import { QueryHistoryDto } from './dto/query-history.dto'
+import { Query } from 'src/entities/query.entity'
 @Injectable()
 export class QueryService {
   constructor(
@@ -62,6 +64,71 @@ export class QueryService {
       return result
     } catch (error) {
       return error
+    }
+  }
+
+  // ANCHOR history list pagination
+  async historyListPagination(dto: QueryHistoryDto) {
+    // setting parameter
+    const limit = 10
+    const offset = (dto.page - 1) * limit
+
+    // execute SQL
+    const historyTotalCount = await this.datasource
+      .getRepository(Query)
+      .createQueryBuilder('q')
+      .select(['count(1) as totalCount'])
+      .where('1=1')
+      .andWhere(dto.id === '' ? '1=1' : 'id = :id', {
+        id: dto.id
+      })
+      .andWhere(dto.type === '' ? '1=1' : 'type = :type', {
+        type: dto.type
+      })
+      .andWhere(
+        dto.createdAt === '' ? '1=1' : 'DATE(created_at) = :createdAt',
+        {
+          createdAt: dto.createdAt
+        }
+      )
+      .getRawOne()
+
+    // execute SQL
+    const historyList = await this.datasource
+      .getRepository(Query)
+      .createQueryBuilder('q')
+      .select([
+        'q.id as id',
+        'q.type as type',
+        'q.exec_query as execQuery',
+        'q.success_cnt as successCnt',
+        'q.fail_cnt as failCnt',
+        'u.account as account',
+        'q.ip_address as ipAddress',
+        'q.created_at as createdAt'
+      ])
+      .innerJoin(User, 'u', 'q.user_id = u.id')
+      .where('1=1')
+      .andWhere(dto.id === '' ? '1=1' : 'q.id = :id', {
+        id: dto.id
+      })
+      .andWhere(dto.type === '' ? '1=1' : 'q.type = :type', {
+        type: dto.type
+      })
+      .andWhere(
+        dto.createdAt === '' ? '1=1' : 'DATE(q.created_at) = :createdAt',
+        {
+          createdAt: dto.createdAt
+        }
+      )
+      .orderBy('q.created_at', 'DESC')
+      .limit(limit)
+      .offset(offset)
+      .getRawMany()
+
+    return {
+      historyTotalCount: Number(historyTotalCount.totalCount),
+      historyList
     }
   }
 }
