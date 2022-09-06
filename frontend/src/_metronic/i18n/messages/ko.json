@@ -73,5 +73,8 @@
   "SQL State": "SQL 상태",
   "Error Message": "에러 메세지",
   "Execution results": "실행 결과",
-  "Row": "행"
+  "Row": "행",
+  "Query execution is complete.": "쿼리 실행이 완료되었습니다.",
+  "There was a problem running the query.": "쿼리 실행 중 문제가 발생하였습니다.",
+  "No query execution results.": "쿼리 실행 결과가 없습니다."
 }

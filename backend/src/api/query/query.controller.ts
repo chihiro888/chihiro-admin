@@ -67,7 +67,7 @@ export class QueryController {
       // return 200 response
       res.status(HttpStatus.OK).json({
         statusCode: HttpStatus.OK,
-        message: SWAGGER.QUERY.EXECUTE_QUERY.MSG.OK,
+        message: SWAGGER.QUERY.EXECUTE_QUERY.MSG.OK_ERROR,
         data: {
           queryResultHeader: [],
           queryResultData: [],
@@ -106,6 +106,19 @@ export class QueryController {
           queryResultHeader: [],
           queryResultData: [],
           affectedRows: result.affectedRows
+        }
+      })
+    }
+
+    if (result.length === 0) {
+      // return 200 response
+      res.status(HttpStatus.OK).json({
+        statusCode: HttpStatus.OK,
+        message: SWAGGER.QUERY.EXECUTE_QUERY.MSG.OK_EMPTY,
+        data: {
+          queryResultHeader: [],
+          queryResultData: [],
+          affectedRows: 0
         }
       })
     }

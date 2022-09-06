@@ -162,6 +162,9 @@ const QueryExecuteWrapper: FC = () => {
         setQueryResultData(response.data.queryResultData)
         setAffectedRows(response.data.affectedRows)
         setError(response.data?.error)
+        toast.info(intl.formatMessage({ id: response.message }), {
+          theme: mode as Theme
+        })
       }
     } catch (error) {
       toast.warning(intl.formatMessage({ id: error.response.data.message }), {
