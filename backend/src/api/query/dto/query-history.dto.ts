@@ -28,6 +28,13 @@ export class QueryHistoryDto {
   type: string
 
   @ApiProperty({
+    description: PARAMETER.ACCOUNT,
+    example: PARAMETER.ACCOUNT_EXAMPLE,
+    required: false
+  })
+  account: string
+
+  @ApiProperty({
     description: PARAMETER.TYPE,
     example: PARAMETER.CREATED_AT_EXAMPLE,
     required: false

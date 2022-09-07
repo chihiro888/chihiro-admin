@@ -62,6 +62,20 @@ const QueryHistoryPage = ({
           </div>
           <div className="col-3">
             <div className="form-group">
+              <label htmlFor="sample1">
+                {intl.formatMessage({ id: 'Account' })}
+              </label>
+              <input
+                type="text"
+                className="form-control mt-3"
+                id="account"
+                value={search.account}
+                onChange={(e) => handleChangeSearch('account', e)}
+              />
+            </div>
+          </div>
+          <div className="col-3">
+            <div className="form-group">
               <label htmlFor="createdAt">
                 {intl.formatMessage({ id: 'Date and time of creation' })}
               </label>
@@ -103,6 +117,7 @@ const QueryHistoryPage = ({
                   {intl.formatMessage({ id: 'Success Count' })}
                 </th>
                 <th scope="col">{intl.formatMessage({ id: 'Fail Count' })}</th>
+                <th scope="col">{intl.formatMessage({ id: 'Account' })}</th>
                 <th scope="col">{intl.formatMessage({ id: 'IP Address' })}</th>
                 <th scope="col">
                   {intl.formatMessage({ id: 'Date and time of creation' })}
@@ -118,6 +133,7 @@ const QueryHistoryPage = ({
                     <td>{item.execQuery}</td>
                     <td>{item.successCnt}</td>
                     <td>{item.failCnt}</td>
+                    <td>{item.account}</td>
                     <td>{item.ipAddress}</td>
                     <td>
                       {item.createdAt
@@ -166,6 +182,7 @@ const QueryHistoryWrapper: FC = () => {
   const [search, setSearch] = useState({
     id: '',
     type: '',
+    account: '',
     createdAt: ''
   })
 
@@ -187,6 +204,7 @@ const QueryHistoryWrapper: FC = () => {
         page: pageNumber,
         id: search.id,
         type: search.type,
+        account: search.account,
         createdAt: createdAt
       }
 
@@ -212,6 +230,7 @@ const QueryHistoryWrapper: FC = () => {
         page: 1,
         id: search.id,
         type: search.type,
+        account: search.account,
         createdAt: search.createdAt
       }
       const { data: response } = await historyListPagination(params)
@@ -235,6 +254,8 @@ const QueryHistoryWrapper: FC = () => {
       setSearch({ ...search, id: data.target.value })
     } else if (type === 'type') {
       setSearch({ ...search, type: data.target.value })
+    } else if (type === 'account') {
+      setSearch({ ...search, account: data.target.value })
     } else if (type === 'createdAt') {
       setSearch({ ...search, createdAt: data })
     }
@@ -263,6 +284,7 @@ const QueryHistoryWrapper: FC = () => {
         page: pagination.activePage,
         id: search.id,
         type: search.type,
+        account: search.account,
         createdAt: createdAt
       }
       const { data: response } = await historyListPagination(params)

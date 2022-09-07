@@ -72,15 +72,19 @@ export class QueryService {
       .getRepository(Query)
       .createQueryBuilder('q')
       .select(['count(1) as totalCount'])
+      .innerJoin(User, 'u', 'q.user_id = u.id')
       .where('1=1')
-      .andWhere(dto.id === '' ? '1=1' : 'id = :id', {
+      .andWhere(dto.id === '' ? '1=1' : 'q.id = :id', {
         id: dto.id
       })
-      .andWhere(dto.type === '' ? '1=1' : 'type = :type', {
+      .andWhere(dto.type === '' ? '1=1' : 'q.type = :type', {
         type: dto.type
       })
+      .andWhere(dto.account === '' ? '1=1' : 'u.account like :account', {
+        account: `%${dto.account}%`
+      })
       .andWhere(
-        dto.createdAt === '' ? '1=1' : 'DATE(created_at) = :createdAt',
+        dto.createdAt === '' ? '1=1' : 'DATE(q.created_at) = :createdAt',
         {
           createdAt: dto.createdAt
         }
@@ -108,6 +112,9 @@ export class QueryService {
       })
       .andWhere(dto.type === '' ? '1=1' : 'q.type = :type', {
         type: dto.type
+      })
+      .andWhere(dto.account === '' ? '1=1' : 'u.account like :account', {
+        account: `%${dto.account}%`
       })
       .andWhere(
         dto.createdAt === '' ? '1=1' : 'DATE(q.created_at) = :createdAt',
