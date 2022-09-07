@@ -5,6 +5,9 @@ export class ExecuteQueryDto {
   /** session */
   userId: number
 
+  /** parameter */
+  ipAddress: string
+
   @ApiProperty({
     description: PARAMETER.QUERY,
     example: PARAMETER.QUERY_EXAMPLE

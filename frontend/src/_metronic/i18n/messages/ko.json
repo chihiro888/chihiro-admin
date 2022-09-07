@@ -76,5 +76,16 @@
   "Row": "행",
   "Query execution is complete.": "쿼리 실행이 완료되었습니다.",
   "There was a problem running the query.": "쿼리 실행 중 문제가 발생하였습니다.",
-  "No query execution results.": "쿼리 실행 결과가 없습니다."
+  "No query execution results.": "쿼리 실행 결과가 없습니다.",
+  "Query Type": "쿼리 타입",
+  "Query executed": "실행된 쿼리",
+  "Success Count": "성공 수",
+  "Fail Count": "실패 수",
+  "IP Address": "아이피",
+  "Insert": "삽입",
+  "Select": "조회",
+  "Update": "수정",
+  "Delete": "삭제",
+  "ETC": "그 외",
+  "Error": "에러"
 }

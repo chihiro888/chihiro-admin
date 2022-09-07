@@ -16,6 +16,7 @@ import { AuthGuard } from 'src/common/guard/auth.guard'
 import { ExecuteQueryDto } from './dto/execute-query.dto'
 import { QueryHistoryDto } from './dto/query-history.dto'
 import { QueryService } from './query.service'
+import { RealIP } from 'nestjs-real-ip'
 
 // ANCHOR query controller
 @ApiTags(SWAGGER.QUERY.TAG)
@@ -41,27 +42,18 @@ export class QueryController {
   async executeSQL(
     @Res() res: Response,
     @Session() session: any,
-    @Body() dto: ExecuteQueryDto
+    @Body() dto: ExecuteQueryDto,
+    @RealIP() ipAddress: string
   ) {
     // get user id from session
     const userId = session.userId
 
     // inject user id
     dto.userId = userId
+    dto.ipAddress = ipAddress
 
     // execute query
-    let result = await this.queryService.executeQuery(dto)
-
-    // check exec
-    const execResult = result.errno ? true : false
-    // register history
-    result = await this.queryService.registerHistoryForExecuteQuery(
-      dto,
-      execResult,
-      userId,
-      // TODO
-      'ip_address'
-    )
+    const result = await this.queryService.executeQuery(dto)
 
     if (result.errno) {
       // return 200 response

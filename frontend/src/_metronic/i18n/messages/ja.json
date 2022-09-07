@@ -76,5 +76,16 @@
   "Row": "行",
   "Query execution is complete.": "クエリー実行が完了しました。",
   "There was a problem running the query.": "クエリー実行中に問題が発生しました。",
-  "No query execution results.": "クエリー実行結果がありません。"
+  "No query execution results.": "クエリー実行結果がありません。",
+  "Query Type": "クオリータイプ",
+  "Query executed": "実行されたクエリー",
+  "Success Count": "成功数",
+  "Fail Count": "失敗数",
+  "IP Address": "IPアドレス",
+  "Insert": "Insert",
+  "Select": "Select",
+  "Update": "Update",
+  "Delete": "Delete",
+  "ETC": "その他",
+  "Error": "エラー"
 }

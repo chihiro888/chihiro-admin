@@ -13,56 +13,50 @@ export class QueryService {
 
   // ANCHOR execute query
   async executeQuery(dto: ExecuteQueryDto) {
+    // check type
+    let type = 'ETC'
+    const selectReg = /^select|SELECT/
+    const insertReg = /^insert|INSERT/
+    const deleteReg = /^delete|DELETE/
+    const updateReg = /^update|UPDATE/
+    if (selectReg.test(dto.query)) {
+      type = 'SEL'
+    } else if (insertReg.test(dto.query)) {
+      type = 'INS'
+    } else if (deleteReg.test(dto.query)) {
+      type = 'DEL'
+    } else if (updateReg.test(dto.query)) {
+      type = 'UPD'
+    }
+
     try {
+      // execute query
       const result = await this.datasource.query(`
       ${dto.query}
     `)
 
-      return result
-    } catch (error) {
-      return error
-    }
-  }
-
-  // ANCHOR register history execute query
-  async registerHistoryForExecuteQuery(
-    dto: ExecuteQueryDto,
-    execResult: boolean,
-    userId: number,
-    ipAddress: string
-  ) {
-    try {
-      // Params
-      const query = dto.query
-      let type = ''
-      let successCnt = 0
-      let failCnt = 0
-
-      // check Query Type
-      if (query.match(/INSERT/g)) {
-        type = 'IST'
-      } else if (query.match(/UPDATE/g)) {
-        type = 'UPD'
-      } else if (query.match(/SELECT/g)) {
-        type = 'SLT'
-      } else if (query.match(/DELETE/g)) {
-        type = 'DEL'
-      }
-
-      // check execQueryResult
-      if (execResult) {
-        successCnt++
-      } else {
-        failCnt++
-      }
-
-      // history insert
-      const sql = `INSERT INTO _query (type,exec_query, success_cnt,fail_cnt, user_id,ip_address,created_at,updated_at, deleted_at)
-                    VALUE ('${type}','${query}',${successCnt},${failCnt},${userId},'${ipAddress}',now(), null, null)`
-      const result = await this.datasource.query(sql)
+      // create history
+      const query = new Query()
+      query.type = type
+      query.execQuery = dto.query
+      query.successCnt = 1
+      query.failCnt = 0
+      query.ipAddress = dto.ipAddress
+      query.userId = dto.userId
+      await this.datasource.getRepository(Query).save(query)
 
       return result
     } catch (error) {
+      // create history
+      const query = new Query()
+      query.type = 'ERR'
+      query.execQuery = dto.query
+      query.successCnt = 0
+      query.failCnt = 1
+      query.ipAddress = dto.ipAddress
+      query.userId = dto.userId
+      await this.datasource.getRepository(Query).save(query)
+
       return error
     }
   }

@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS _query (
   `exec_query` TEXT NOT NULL COMMENT 'execute query',
   `success_cnt` INT NOT NULL COMMENT 'success count',
   `fail_cnt` INT NOT NULL COMMENT 'fail count',
-  `user_id` BIGINT NOT NULL COMMENT 'user id',
+  `user_id` INT NOT NULL COMMENT 'user id',
   `ip_address` VARCHAR(255) NOT NULL COMMENT 'ip address',
   `created_at` DATETIME DEFAULT now() COMMENT 'create time',
   `updated_at` DATETIME DEFAULT NULL COMMENT 'update time',

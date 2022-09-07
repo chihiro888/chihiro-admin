@@ -42,7 +42,9 @@ const QueryHistoryPage = ({
           </div>
           <div className="col-3">
             <div className="form-group">
-              <label htmlFor="type">{intl.formatMessage({ id: 'type' })}</label>
+              <label htmlFor="type">
+                {intl.formatMessage({ id: 'Query Type' })}
+              </label>
               <select
                 className="form-select mt-3"
                 onChange={(e) => handleChangeSearch('type', e)}
@@ -79,7 +81,8 @@ const QueryHistoryPage = ({
       <div className="card-body">
         <div className="c-tar">
           <button className="btn btn-light-primary" onClick={handleClickSearch}>
-            <i className="bi bi-search fs-4 me-2"></i>Search
+            <i className="bi bi-search fs-4 me-2"></i>
+            {intl.formatMessage({ id: 'Search' })}
           </button>
         </div>
       </div>
@@ -91,13 +94,19 @@ const QueryHistoryPage = ({
           <table className="table table-rounded table-striped border gy-7 gs-7">
             <thead>
               <tr>
-                <th scope="col">No</th>
-                <th scope="col">Type</th>
-                <th scope="col">execQuery</th>
-                <th scope="col">successCnt</th>
-                <th scope="col">failCnt</th>
-                <th scope="col">ipAddress</th>
-                <th scope="col">createdAt</th>
+                <th scope="col">{intl.formatMessage({ id: 'ID' })}</th>
+                <th scope="col">{intl.formatMessage({ id: 'Query Type' })}</th>
+                <th scope="col">
+                  {intl.formatMessage({ id: 'Query executed' })}
+                </th>
+                <th scope="col">
+                  {intl.formatMessage({ id: 'Success Count' })}
+                </th>
+                <th scope="col">{intl.formatMessage({ id: 'Fail Count' })}</th>
+                <th scope="col">{intl.formatMessage({ id: 'IP Address' })}</th>
+                <th scope="col">
+                  {intl.formatMessage({ id: 'Date and time of creation' })}
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -110,7 +119,11 @@ const QueryHistoryPage = ({
                     <td>{item.successCnt}</td>
                     <td>{item.failCnt}</td>
                     <td>{item.ipAddress}</td>
-                    <td>{item.createdAt}</td>
+                    <td>
+                      {item.createdAt
+                        ? moment(item.createdAt).format('YYYY-MM-DD HH:mm:ss')
+                        : ''}
+                    </td>
                   </tr>
                 )
               })}
@@ -194,7 +207,6 @@ const QueryHistoryWrapper: FC = () => {
 
   // handler - click search
   const handleClickSearch = async () => {
-    console.log(`id : ${search.id}, type : ${search.type}`)
     try {
       const params = {
         page: 1,
@@ -232,12 +244,13 @@ const QueryHistoryWrapper: FC = () => {
   const initData = async () => {
     // set select box data
     const typeData = [
-      { label: intl.formatMessage({ id: 'INSERT' }), value: 'INS' },
-      { label: intl.formatMessage({ id: 'SELECT' }), value: 'SEL' },
-      { label: intl.formatMessage({ id: 'UPDATE' }), value: 'UPD' },
-      { label: intl.formatMessage({ id: 'DELETE' }), value: 'DEL' }
+      { label: intl.formatMessage({ id: 'Insert' }), value: 'INS' },
+      { label: intl.formatMessage({ id: 'Select' }), value: 'SEL' },
+      { label: intl.formatMessage({ id: 'Update' }), value: 'UPD' },
+      { label: intl.formatMessage({ id: 'Delete' }), value: 'DEL' },
+      { label: intl.formatMessage({ id: 'ETC' }), value: 'ETC' },
+      { label: intl.formatMessage({ id: 'Error' }), value: 'ERR' }
     ]
-
     setSelectBoxType(typeData)
 
     // set table

@@ -17,8 +17,8 @@ export class Query {
   @Column('int', { name: 'fail_cnt', comment: 'fail count' })
   failCnt: number
 
-  @Column('bigint', { name: 'user_id', comment: 'user id' })
-  userId: string
+  @Column('int', { name: 'user_id', comment: 'user id' })
+  userId: number
 
   @Column('varchar', { name: 'ip_address', comment: 'ip address', length: 255 })
   ipAddress: string

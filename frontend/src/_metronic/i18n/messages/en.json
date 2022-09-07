@@ -76,5 +76,16 @@
   "Row": "Row",
   "Query execution is complete.": "Query execution is complete.",
   "There was a problem running the query.": "There was a problem running the query.",
-  "No query execution results.": "No query execution results."
+  "No query execution results.": "No query execution results.",
+  "Query Type": "Query Type",
+  "Query executed": "Query executed",
+  "Success Count": "Success Count",
+  "Fail Count": "Fail Count",
+  "IP Address": "IP Address",
+  "Insert": "Insert",
+  "Select": "Select",
+  "Update": "Update",
+  "Delete": "Delete",
+  "ETC": "ETC",
+  "Error": "Error"
 }
