@@ -5,7 +5,7 @@ import {
   axiosGET,
   axiosPOST,
   axiosPUT
-} from '../../../api/develop/DevelopAxiosApi'
+} from '../../../api/develop'
 import { PageTitle } from '../../../_metronic/layout/core'
 
 interface DevelopAxiosProps {
