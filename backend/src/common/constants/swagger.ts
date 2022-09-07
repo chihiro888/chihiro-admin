@@ -37,6 +37,40 @@ const SWAGGER = {
     }
   },
 
+  // query
+  QUERY: {
+    TAG: 'query',
+    URL: 'api/query',
+    EXECUTE_QUERY: {
+      URL: 'executeQuery',
+      SUMMARY: 'execute query API',
+      DESC: 'This is execute query API',
+      RES: {
+        OK: OK,
+        UNAUTHORIZED: UNAUTHORIZED
+      },
+      MSG: {
+        OK: 'Query execution is complete.',
+        OK_ERROR: 'There was a problem running the query.',
+        OK_EMPTY: 'No query execution results.',
+        UNAUTHORIZED: UNAUTHORIZED
+      }
+    },
+    HISTORY_LIST_PAGINATION: {
+      URL: 'historyListPagination',
+      SUMMARY: 'history list pagination API',
+      DESC: 'This is history list pagination API',
+      RES: {
+        OK: OK,
+        UNAUTHORIZED: UNAUTHORIZED
+      },
+      MSG: {
+        OK: OK,
+        UNAUTHORIZED: UNAUTHORIZED
+      }
+    }
+  },
+
   // user
   USER: {
     TAG: 'user',
@@ -50,6 +84,46 @@ const SWAGGER = {
       },
       MSG: {
         OK: OK
+      }
+    },
+    ACCOUNT: {
+      URL: 'account',
+      SUMMARY: 'account API',
+      DESC: 'This is account API',
+      RES: {
+        OK: OK,
+        UNAUTHORIZED: UNAUTHORIZED
+      },
+      MSG: {
+        OK: OK,
+        UNAUTHORIZED: UNAUTHORIZED
+      }
+    },
+    CHANGE_PASSWORD: {
+      URL: 'changePassword',
+      SUMMARY: 'change password API',
+      DESC: 'This is change password API',
+      RES: {
+        OK: OK,
+        UNAUTHORIZED: UNAUTHORIZED,
+        INTERNAL_SERVER_ERROR: INTERNAL_SERVER_ERROR
+      },
+      MSG: {
+        OK: OK,
+        INTERNAL_SERVER_ERROR: INTERNAL_SERVER_ERROR
+      }
+    },
+    USER_LIST_PAGINATION: {
+      URL: 'userListPagination',
+      SUMMARY: 'user list pagination API',
+      DESC: 'This is user list pagination API',
+      RES: {
+        OK: OK,
+        UNAUTHORIZED: UNAUTHORIZED
+      },
+      MSG: {
+        OK: OK,
+        UNAUTHORIZED: UNAUTHORIZED
       }
     }
   },

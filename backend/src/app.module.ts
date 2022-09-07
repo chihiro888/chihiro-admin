@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config'
 import { join } from 'path'
 import { AuthModule } from './api/auth/auth.module'
 import { DevelopModule } from './api/develop/develop.module'
+import { QueryModule } from './api/query/query.module'
 import { UserModule } from './api/user/user.module'
 import { GlobalConfigModule } from './common/global/config.module'
 import { GlobalDatabaseModule } from './common/global/database.module'
@@ -34,7 +35,8 @@ console.log('----------------------------')
     // import app module
     AuthModule,
     UserModule,
-    DevelopModule
+    DevelopModule,
+    QueryModule
   ]
 })
 export class AppModule {}
