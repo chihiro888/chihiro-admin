@@ -2,15 +2,27 @@ import { FC, useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { PageTitle } from '../../../_metronic/layout/core'
 import Pagination from 'react-js-pagination'
+import DatePicker, { registerLocale, setDefaultLocale } from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
+import moment from 'moment'
+import DATE from '../../constants/date'
+import ko from 'date-fns/locale/ko'
+import ja from 'date-fns/locale/ja'
+import en from 'date-fns/locale/en-US'
+import { useLang } from '../../../_metronic/i18n/Metronici18n'
+import { userListPagination } from '../../../api/user'
+import { Theme, toast } from 'react-toastify'
+import { useThemeMode } from '../../../_metronic/partials'
 
 const UserManagementPage = ({
+  intl,
   search,
   pagination,
-  selectBox,
+  selectBoxAdmin,
+  selectBoxDeveloper,
   handleChangePage,
   handleClickSearch,
-  handleChangeSample1,
-  handleChangeSample2
+  handleChangeSearch
 }) => (
   <>
     <div className="card card-custom">
@@ -18,37 +30,43 @@ const UserManagementPage = ({
         <div className="row">
           <div className="col-3">
             <div className="form-group">
-              <label htmlFor="sample1">번호</label>
+              <label htmlFor="sample1">
+                {intl.formatMessage({ id: 'ID' })}
+              </label>
               <input
                 type="text"
                 className="form-control mt-3"
-                id="sample1"
-                value={search.sample1}
-                onChange={handleChangeSample1}
+                id="id"
+                value={search.id}
+                onChange={(e) => handleChangeSearch('id', e)}
               />
             </div>
           </div>
           <div className="col-3">
             <div className="form-group">
-              <label htmlFor="sample1">계정</label>
+              <label htmlFor="account">
+                {intl.formatMessage({ id: 'Account' })}
+              </label>
               <input
                 type="text"
                 className="form-control mt-3"
-                id="sample1"
-                value={search.sample1}
-                onChange={handleChangeSample1}
+                id="account"
+                value={search.account}
+                onChange={(e) => handleChangeSearch('account', e)}
               />
             </div>
           </div>
           <div className="col-3">
             <div className="form-group">
-              <label htmlFor="sample1">사용자명</label>
+              <label htmlFor="username">
+                {intl.formatMessage({ id: 'Username' })}
+              </label>
               <input
                 type="text"
                 className="form-control mt-3"
-                id="sample1"
-                value={search.sample1}
-                onChange={handleChangeSample1}
+                id="username"
+                value={search.username}
+                onChange={(e) => handleChangeSearch('username', e)}
               />
             </div>
           </div>
@@ -56,13 +74,17 @@ const UserManagementPage = ({
         <div className="row mt-3">
           <div className="col-3">
             <div className="form-group">
-              <label htmlFor="sample2">관리자여부</label>
+              <label htmlFor="isAdmin">
+                {intl.formatMessage({ id: 'Administrator authority' })}
+              </label>
               <select
                 className="form-select mt-3"
-                onChange={handleChangeSample2}
+                onChange={(e) => handleChangeSearch('isAdmin', e)}
               >
-                <option value="">----- select item -----</option>
-                {selectBox.map((item, idx) => (
+                <option value="">
+                  ----- {intl.formatMessage({ id: 'Select Item' })} -----
+                </option>
+                {selectBoxAdmin.map((item, idx) => (
                   <option key={idx} value={item.value}>
                     {item.label}
                   </option>
@@ -72,13 +94,17 @@ const UserManagementPage = ({
           </div>
           <div className="col-3">
             <div className="form-group">
-              <label htmlFor="sample2">개발자여부</label>
+              <label htmlFor="isDeveloper">
+                {intl.formatMessage({ id: 'Developer authority' })}
+              </label>
               <select
                 className="form-select mt-3"
-                onChange={handleChangeSample2}
+                onChange={(e) => handleChangeSearch('isDeveloper', e)}
               >
-                <option value="">----- select item -----</option>
-                {selectBox.map((item, idx) => (
+                <option value="">
+                  ----- {intl.formatMessage({ id: 'Select Item' })} -----
+                </option>
+                {selectBoxDeveloper.map((item, idx) => (
                   <option key={idx} value={item.value}>
                     {item.label}
                   </option>
@@ -88,13 +114,14 @@ const UserManagementPage = ({
           </div>
           <div className="col-3">
             <div className="form-group">
-              <label htmlFor="sample1">등록일시</label>
-              <input
-                type="text"
+              <label htmlFor="createdAt">
+                {intl.formatMessage({ id: 'Date and time of creation' })}
+              </label>
+              <DatePicker
                 className="form-control mt-3"
-                id="sample1"
-                value={search.sample1}
-                onChange={handleChangeSample1}
+                dateFormat="yyyy-MM-dd"
+                selected={search.createdAt}
+                onChange={(date: Date) => handleChangeSearch('createdAt', date)}
               />
             </div>
           </div>
@@ -106,7 +133,8 @@ const UserManagementPage = ({
       <div className="card-body">
         <div className="c-tar">
           <button className="btn btn-light-primary" onClick={handleClickSearch}>
-            <i className="bi bi-search fs-4 me-2"></i>Search
+            <i className="bi bi-search fs-4 me-2"></i>
+            {intl.formatMessage({ id: 'Search' })}
           </button>
         </div>
       </div>
@@ -118,20 +146,58 @@ const UserManagementPage = ({
           <table className="table table-rounded table-striped border gy-7 gs-7">
             <thead>
               <tr>
-                <th scope="col">No</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Gender</th>
+                <th scope="col">{intl.formatMessage({ id: 'ID' })}</th>
+                <th scope="col">{intl.formatMessage({ id: 'Account' })}</th>
+                <th scope="col">{intl.formatMessage({ id: 'Username' })}</th>
+                <th scope="col">
+                  {intl.formatMessage({ id: 'Administrator authority' })}
+                </th>
+                <th scope="col">
+                  {intl.formatMessage({ id: 'Developer authority' })}
+                </th>
+                <th scope="col">
+                  {intl.formatMessage({ id: 'SignIn date and time' })}
+                </th>
+                <th scope="col">
+                  {intl.formatMessage({ id: 'SignOut date and time' })}
+                </th>
+                <th scope="col">
+                  {intl.formatMessage({ id: 'Date and time of creation' })}
+                </th>
+                <th scope="col">
+                  {intl.formatMessage({ id: 'Date and time of update' })}
+                </th>
               </tr>
             </thead>
             <tbody>
               {pagination.data.map((item, idx) => {
                 return (
                   <tr key={idx}>
-                    <th>{item.no}</th>
-                    <td>{item.firstName}</td>
-                    <td>{item.lastName}</td>
-                    <td>{item.gender === 'M' ? 'Male' : 'Female'}</td>
+                    <th>{item.id}</th>
+                    <th>{item.account}</th>
+                    <th>{item.username}</th>
+                    <th>{item.isAdmin}</th>
+                    <th>{item.isDeveloper}</th>
+                    <th>
+                      {item.signInAt
+                        ? moment(item.signInAt).format('YYYY-MM-DD HH:mm:ss')
+                        : ''}
+                    </th>
+                    <th>
+                      {item.signOutAt
+                        ? moment(item.signOutAt).format('YYYY-MM-DD HH:mm:ss')
+                        : ''}
+                    </th>
+                    <th>
+                      {item.createdAt
+                        ? moment(item.createdAt).format('YYYY-MM-DD HH:mm:ss')
+                        : ''}
+                    </th>
+                    <th>
+                      {item.updatedAt
+                        ? moment(item.updatedAt).format('YYYY-MM-DD HH:mm:ss')
+                        : ''}
+                    </th>
                   </tr>
                 )
               })}
@@ -158,6 +224,8 @@ const UserManagementPage = ({
 const UserManagementWrapper: FC = () => {
   // hooks
   const intl = useIntl()
+  const locale = useLang()
+  const { mode } = useThemeMode()
 
   // state - pagination
   const [pagination, setPagination] = useState({
@@ -170,67 +238,165 @@ const UserManagementWrapper: FC = () => {
 
   // state - search
   const [search, setSearch] = useState({
-    sample1: '',
-    sample2: ''
+    id: '',
+    account: '',
+    username: '',
+    isAdmin: '',
+    isDeveloper: '',
+    createdAt: ''
   })
 
-  // state - select box
-  const [selectBox, setSelectBox] = useState([])
+  // state - admin
+  const [selectBoxAdmin, setSelectBoxAdmin] = useState([])
+
+  // state - developer
+  const [selectBoxDeveloper, setSelectBoxDeveloper] = useState([])
 
   // handler - change page
-  const handleChangePage = (pageNumber) => {
-    // TODO connection api
+  const handleChangePage = async (pageNumber: number) => {
+    const createdAt = search.createdAt
+      ? moment(search.createdAt).format(DATE.ONLY_DATE)
+      : ''
+
+    // change paging
     setPagination({ ...pagination, activePage: pageNumber })
+
+    // set table
+    try {
+      const params = {
+        page: pageNumber,
+        id: search.id,
+        account: search.account,
+        username: search.username,
+        isAdmin: search.isAdmin,
+        isDeveloper: search.isDeveloper,
+        createdAt: createdAt
+      }
+      const { data: response } = await userListPagination(params)
+      if (response.statusCode === 200) {
+        setPagination({
+          ...pagination,
+          totalItemsCount: response.data.userTotalCount,
+          data: response.data.userList
+        })
+      }
+    } catch (error) {
+      toast.warning(intl.formatMessage({ id: error.response.data.message }), {
+        theme: mode as Theme
+      })
+    }
   }
 
   // handler - click search
-  const handleClickSearch = () => {
-    console.log(`sample1 : ${search.sample1}, sample2 : ${search.sample2}`)
+  const handleClickSearch = async () => {
+    const createdAt = search.createdAt
+      ? moment(search.createdAt).format(DATE.ONLY_DATE)
+      : ''
+
+    // set table
+    try {
+      const params = {
+        page: 1,
+        id: search.id,
+        account: search.account,
+        username: search.username,
+        isAdmin: search.isAdmin,
+        isDeveloper: search.isDeveloper,
+        createdAt: createdAt
+      }
+      const { data: response } = await userListPagination(params)
+      if (response.statusCode === 200) {
+        setPagination({
+          ...pagination,
+          totalItemsCount: response.data.userTotalCount,
+          data: response.data.userList
+        })
+      }
+    } catch (error) {
+      toast.warning(intl.formatMessage({ id: error.response.data.message }), {
+        theme: mode as Theme
+      })
+    }
   }
 
-  // handler - change sample1
-  const handleChangeSample1 = (e) => {
-    setSearch({ ...search, sample1: e.target.value })
-  }
-
-  // handler - change sample2
-  const handleChangeSample2 = (e) => {
-    setSearch({ ...search, sample2: e.target.value })
+  // handler - change search
+  const handleChangeSearch = (type: string, data: any) => {
+    if (type === 'id') {
+      setSearch({ ...search, id: data.target.value })
+    } else if (type === 'account') {
+      setSearch({ ...search, account: data.target.value })
+    } else if (type === 'username') {
+      setSearch({ ...search, username: data.target.value })
+    } else if (type === 'isAdmin') {
+      setSearch({ ...search, isAdmin: data.target.value })
+    } else if (type === 'isDeveloper') {
+      setSearch({ ...search, isDeveloper: data.target.value })
+    } else if (type === 'createdAt') {
+      setSearch({ ...search, createdAt: data })
+    }
   }
 
   // init data
   const initData = async () => {
-    // TODO connect api
-    const dummySelectBoxData = [
-      { label: 'Male', value: 'M' },
-      { label: 'Female', value: 'F' }
+    // set select box data
+    const isAdminData = [
+      { label: intl.formatMessage({ id: 'User' }), value: 0 },
+      { label: intl.formatMessage({ id: 'Admin' }), value: 1 }
     ]
 
-    // TODO connect api
-    const dummyTotalItemsCount = 3
-
-    // TODO connect api
-    const dummyPaginationData = [
-      { no: 1, firstName: 'Allen', lastName: 'Brown', gender: 'M' },
-      { no: 2, firstName: 'Joann', lastName: 'Osinski', gender: 'M' },
-      { no: 3, firstName: 'Alfonso', lastName: 'Beer', gender: 'M' }
+    const isDeveloperData = [
+      { label: intl.formatMessage({ id: 'User' }), value: 0 },
+      { label: intl.formatMessage({ id: 'Developer' }), value: 1 }
     ]
 
-    setSelectBox(dummySelectBoxData)
+    setSelectBoxAdmin(isAdminData)
+    setSelectBoxDeveloper(isDeveloperData)
 
-    setPagination({
-      ...pagination,
-      totalItemsCount: dummyTotalItemsCount,
-      data: dummyPaginationData
-    })
+    // set table
+    try {
+      const createdAt = search.createdAt
+        ? moment(search.createdAt).format(DATE.ONLY_DATE)
+        : ''
+
+      const params = {
+        page: pagination.activePage,
+        id: search.id,
+        account: search.account,
+        username: search.username,
+        isAdmin: search.isAdmin,
+        isDeveloper: search.isDeveloper,
+        createdAt: createdAt
+      }
+      const { data: response } = await userListPagination(params)
+      if (response.statusCode === 200) {
+        setPagination({
+          ...pagination,
+          totalItemsCount: response.data.userTotalCount,
+          data: response.data.userList
+        })
+      }
+    } catch (error) {
+      toast.warning(intl.formatMessage({ id: error.response.data.message }), {
+        theme: mode as Theme
+      })
+    }
   }
 
   // lifecycle
   useEffect(() => {
     initData()
 
+    // init load lang
+    registerLocale('ko', ko)
+    registerLocale('ja', ja)
+    registerLocale('en', en)
+
+    // change datePicker Lang
+    setDefaultLocale(locale)
+
     // unmounted
     return () => {}
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
@@ -240,13 +406,14 @@ const UserManagementWrapper: FC = () => {
       </PageTitle>
 
       <UserManagementPage
+        intl={intl}
         search={search}
         pagination={pagination}
-        selectBox={selectBox}
+        selectBoxAdmin={selectBoxAdmin}
+        selectBoxDeveloper={selectBoxDeveloper}
         handleChangePage={handleChangePage}
         handleClickSearch={handleClickSearch}
-        handleChangeSample1={handleChangeSample1}
-        handleChangeSample2={handleChangeSample2}
+        handleChangeSearch={handleChangeSearch}
       />
     </>
   )

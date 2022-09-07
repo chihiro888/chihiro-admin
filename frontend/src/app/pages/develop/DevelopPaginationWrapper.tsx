@@ -2,7 +2,7 @@ import { FC, useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { PageTitle } from '../../../_metronic/layout/core'
 import Pagination from 'react-js-pagination'
-import DatePicker, { registerLocale } from 'react-datepicker'
+import DatePicker, { registerLocale, setDefaultLocale } from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import moment from 'moment'
 import DATE from '../../constants/date'
@@ -205,17 +205,17 @@ const DevelopPaginationWrapper: FC = () => {
   useEffect(() => {
     initData()
 
-    // TODO date picker localization
-    if (locale === 'ko') {
-      registerLocale('ko', ko)
-    } else if (locale === 'ja') {
-      registerLocale('ja', ja)
-    } else {
-      registerLocale('en', en)
-    }
+    // init load lang
+    registerLocale('ko', ko)
+    registerLocale('ja', ja)
+    registerLocale('en', en)
+
+    // change datePicker Lang
+    setDefaultLocale(locale)
 
     // unmounted
     return () => {}
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
