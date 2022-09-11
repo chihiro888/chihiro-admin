@@ -9,7 +9,12 @@
       "request": "launch",
       "name": "debug NestJS",
       "runtimeExecutable": "yarn",
-      "runtimeArgs": ["start:dev"],
+      "osx": {
+        "args": ["start:dev"]
+      },
+      "windows": {
+        "args": ["start-win:dev"]
+      },
       "console": "integratedTerminal",
       "restart": true,
       "autoAttachChildProcesses": true,
