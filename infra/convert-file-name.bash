@@ -53,7 +53,7 @@ do
     if $is_convert ; then
         convert_total_count=$((convert_total_count+1))
         mv "$full_path" "$search_dir/${new_file_name::-1}.entity.$ext"
-        echo "convet file : $base_name => ${new_file_name::-1}.$ext"
+        echo "convet file : $base_name => ${new_file_name::-1}.entity.$ext"
     fi
 done
 
