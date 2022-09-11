@@ -7,9 +7,9 @@ import { HttpExceptionFilter } from './common/exception/http-exception.filter'
 import { ValidationPipe } from '@nestjs/common'
 
 // session
-import * as session from 'express-session'
-import * as mysql from 'mysql'
-import * as MySQLStore from 'express-mysql-session'
+import session from 'express-session'
+import mysql from 'mysql'
+import MySQLStore from 'express-mysql-session'
 
 async function bootstrap() {
   // get nest application

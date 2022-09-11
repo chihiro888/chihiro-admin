@@ -3,7 +3,7 @@ import { createPassword } from 'src/common/util/auth'
 import { User } from 'src/entities/user.entity'
 import { DataSource } from 'typeorm'
 import { ChangePasswordDto } from './dto/change-password.dto'
-import * as moment from 'moment'
+import moment from 'moment'
 import DATE from 'src/common/constants/date'
 import { UserListPaginationDto } from './dto/user-list-pagination.dto'
 
