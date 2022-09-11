@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [[ $# -eq 0 ]] ; then
+    echo 'Please enter the file path.'
+    exit 1
+fi
+
 search_dir=$1
 convert_total_count=0
 for full_path in "$search_dir"/*.ts
@@ -47,7 +52,7 @@ do
     #echo "$search_dir/${new_file_name::-1}.$ext"
     if $is_convert ; then
         convert_total_count=$((convert_total_count+1))
-        mv "$full_path" "$search_dir/${new_file_name::-1}.$ext"
+        mv "$full_path" "$search_dir/${new_file_name::-1}.entity.$ext"
         echo "convet file : $base_name => ${new_file_name::-1}.$ext"
     fi
 done
