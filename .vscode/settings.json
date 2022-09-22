@@ -2,13 +2,5 @@
   "files.eol": "\n",
   // enable globally (here: format on save)
   "editor.formatOnSave": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "cSpell.words": [
-    "registartion",
-    "Suspensed",
-    "metronic",
-    "nestjs",
-    "resave",
-    "typeorm"
-  ]
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
 }

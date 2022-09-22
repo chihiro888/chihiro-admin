@@ -27,7 +27,7 @@ async function bootstrap() {
 
   // swagger config
   const config = new DocumentBuilder()
-    .setTitle('Save The Query API')
+    .setTitle('Chihiro Develop Kit API')
     .setDescription('Documentation is quite important. lol')
     .setVersion('1.0')
     .build()
