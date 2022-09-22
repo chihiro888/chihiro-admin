@@ -1,3 +1,4 @@
+// common message
 const OK = 'OK'
 const BAD_REQUEST = 'BAD_REQUEST'
 const UNAUTHORIZED = 'UNAUTHORIZED'
@@ -5,7 +6,7 @@ const FORBIDDEN = 'FORBIDDEN'
 const INTERNAL_SERVER_ERROR = 'INTERNAL_SERVER_ERROR'
 
 const SWAGGER = {
-  // auth
+  // ANCHOR auth
   AUTH: {
     TAG: 'auth',
     URL: 'api/auth',
@@ -37,7 +38,7 @@ const SWAGGER = {
     }
   },
 
-  // query
+  // ANCHOR query
   QUERY: {
     TAG: 'query',
     URL: 'api/query',
@@ -71,7 +72,7 @@ const SWAGGER = {
     }
   },
 
-  // user
+  // ANCHOR user
   USER: {
     TAG: 'user',
     URL: 'api/user',
@@ -128,7 +129,7 @@ const SWAGGER = {
     }
   },
 
-  // develop
+  // ANCHOR develop
   DEVELOP: {
     TAG: 'develop',
     URL: 'api/develop',
