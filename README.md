@@ -61,8 +61,17 @@ ALTER USER 'docker'@'%' IDENTIFIED WITH mysql_native_password BY 'docker';
 
 ```bash
 cd backend
-yarn install
+```
 
+```bash
+yarn install
+```
+
+```bash
+yarn load:yaml
+```
+
+```bash
 # if local
 yarn start:local
 
@@ -73,20 +82,15 @@ yarn start:dev
 yarn start:prod
 ```
 
-:warning: issue fix : cross-env not found command
-
-package.json
-
 ```bash
-# mac
-    "start:local": "export NODE_ENV=local&&nest start --debug --watch",
-    "start:dev": "export NODE_ENV=development&&nest start --debug --watch",
-    "start:prod": "export NODE_ENV=production&&nest start --debug --watch",
+# if local
+yarn start:local_win
 
-# win
-    "start:local": "set NODE_ENV=local&&nest start --debug --watch",
-    "start:dev": "set NODE_ENV=development&&nest start --debug --watch",
-    "start:prod": "set NODE_ENV=production&&nest start --debug --watch",
+# if development
+yarn start:dev_win
+
+# if production
+yarn start:prod_win
 ```
 
 http://localhost:9000/api
