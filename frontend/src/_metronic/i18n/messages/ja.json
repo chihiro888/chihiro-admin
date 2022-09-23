@@ -87,5 +87,12 @@
   "Update": "Update",
   "Delete": "Delete",
   "ETC": "その他",
-  "Error": "エラー"
+  "Error": "エラー",
+  "Minimum 3 symbols": "最低3桁です。",
+  "Maximum 100 symbols": "最大100桁です。",
+  "Minimum 8 symbols": "最低8桁です。",
+  "Wrong email format": "Email形式が違います。",
+  "Email is required": "Emailは必須です。",
+  "Password is required": "パスワードは必須です。",
+  "account or password does not match.": "アカウントまたはパスワードが一致しません。"
 }

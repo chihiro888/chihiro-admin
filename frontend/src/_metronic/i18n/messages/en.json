@@ -87,5 +87,12 @@
   "Update": "Update",
   "Delete": "Delete",
   "ETC": "ETC",
-  "Error": "Error"
+  "Error": "Error",
+  "Minimum 3 symbols": "Minimum 3 symbols",
+  "Maximum 100 symbols": "Maximum 100 symbols",
+  "Minimum 8 symbols": "Minimum 8 symbols",
+  "Wrong email format": "Wrong email format",
+  "Email is required": "Email is required",
+  "Password is required": "Password is required",
+  "account or password does not match.": "account or password does not match."
 }
