@@ -1,7 +1,7 @@
 import { readFileSync } from 'fs'
 import * as yaml from 'js-yaml'
 import { join } from 'path'
-import { Configuration } from './types/configuration.interface'
+import { Configuration } from './interface/configuration.interface'
 
 export default () => {
   // check NODE_ENV and set file name
