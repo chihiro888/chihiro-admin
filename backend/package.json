@@ -21,7 +21,8 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:util": "jest --config ./test/jest-util.json"
+    "test:util": "jest --config ./test/jest-util.json",
+    "load:yaml": "cpx \"src/configuration/*.yaml\" dist/configuration/"
   },
   "dependencies": {
     "@nestjs/axios": "^0.1.0",
@@ -38,6 +39,7 @@
     "class-transformer": "^0.5.1",
     "class-validator": "^0.13.2",
     "connect-typeorm": "^2.0.0",
+    "cpx": "^1.5.0",
     "cross-env": "^7.0.3",
     "express-mysql-session": "^2.1.8",
     "express-session": "^1.17.3",
