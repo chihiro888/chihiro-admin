@@ -14,7 +14,7 @@ export default () => {
 
   // set configuration
   const configuration: Configuration = {
-    port: parseInt(process.env.PORT, 10) || 3000,
+    port: parseInt(data.http.port, 10) || 3000,
     database: {
       type: 'mysql',
       host: data.db.host,
