@@ -97,15 +97,29 @@ yarn start
 
 http://localhost:3000/
 
-# Demo
+## Demo
 
-## backend
+### backend
 
 <img src="/docs/image/backend_init.png" width="350"/>
 
-## frontend
+### frontend
 
 <img src="/docs/image/frontend_init.png" width="350"/>
+
+## Document
+
+English
+
+- in ready
+
+Korean
+
+- https://github.com/chihiro888/chihiro-develop-kit/tree/develop/docs/ko
+
+Japanese
+
+- in ready
 
 ## License
 
