@@ -9,21 +9,10 @@ import { GlobalConfigModule } from './common/global/config.module'
 import { GlobalDatabaseModule } from './common/global/database.module'
 import { GlobalHttpModule } from './common/global/http.module'
 import configuration from './configuration/configuration'
-
-const envFileName = '.env.' + process.env.NODE_ENV
-const envFilePath = join(__dirname, '..', 'src', 'configuration', envFileName)
-
-// for debug
-console.log('----------------------------')
-console.log(envFileName)
-console.log(envFilePath)
-console.log('----------------------------')
-
 @Module({
   imports: [
     // setting configuration
     ConfigModule.forRoot({
-      envFilePath: envFilePath,
       load: [configuration]
     }),
 

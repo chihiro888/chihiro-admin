@@ -10,13 +10,13 @@ import {
   Res
 } from '@nestjs/common'
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
-import SWAGGER from 'src/common/constants/swagger'
 import { Response } from 'express'
+import SWAGGER from './develop.swagger'
 import { MethodDto } from './dto/method.dto'
 
 // ANCHOR auth controller
-@ApiTags(SWAGGER.DEVELOP.TAG)
-@Controller(SWAGGER.DEVELOP.URL)
+@ApiTags(SWAGGER.TAG)
+@Controller(SWAGGER.URL)
 export class DevelopController {
   constructor() {
     //
@@ -24,76 +24,76 @@ export class DevelopController {
 
   // ANCHOR GET Method API
   @ApiOperation({
-    summary: SWAGGER.DEVELOP.getMethod.SUMMARY,
-    description: SWAGGER.DEVELOP.getMethod.DESC
+    summary: SWAGGER.getMethod.SUMMARY,
+    description: SWAGGER.getMethod.DESC
   })
   @ApiResponse({
     status: HttpStatus.OK,
-    description: SWAGGER.DEVELOP.getMethod.RES.OK
+    description: SWAGGER.getMethod.RES.OK
   })
-  @Get(SWAGGER.DEVELOP.getMethod.URL)
+  @Get(SWAGGER.getMethod.URL)
   async getMethod(@Res() res: Response, @Query() dto: MethodDto) {
     // return 200 response
     res.status(HttpStatus.OK).json({
       statusCode: HttpStatus.OK,
-      message: SWAGGER.DEVELOP.getMethod.MSG.OK,
+      message: SWAGGER.getMethod.MSG.OK,
       data: dto
     })
   }
 
   // ANCHOR POST Method API
   @ApiOperation({
-    summary: SWAGGER.DEVELOP.postMethod.SUMMARY,
-    description: SWAGGER.DEVELOP.postMethod.DESC
+    summary: SWAGGER.postMethod.SUMMARY,
+    description: SWAGGER.postMethod.DESC
   })
   @ApiResponse({
     status: HttpStatus.OK,
-    description: SWAGGER.DEVELOP.postMethod.RES.OK
+    description: SWAGGER.postMethod.RES.OK
   })
-  @Post(SWAGGER.DEVELOP.postMethod.URL)
+  @Post(SWAGGER.postMethod.URL)
   async postMethod(@Res() res: Response, @Body() dto: MethodDto) {
     // return 200 response
     res.status(HttpStatus.OK).json({
       statusCode: HttpStatus.OK,
-      message: SWAGGER.DEVELOP.postMethod.MSG.OK,
+      message: SWAGGER.postMethod.MSG.OK,
       data: dto
     })
   }
 
   // ANCHOR PUT Method API
   @ApiOperation({
-    summary: SWAGGER.DEVELOP.putMethod.SUMMARY,
-    description: SWAGGER.DEVELOP.putMethod.DESC
+    summary: SWAGGER.putMethod.SUMMARY,
+    description: SWAGGER.putMethod.DESC
   })
   @ApiResponse({
     status: HttpStatus.OK,
-    description: SWAGGER.DEVELOP.putMethod.RES.OK
+    description: SWAGGER.putMethod.RES.OK
   })
-  @Put(SWAGGER.DEVELOP.putMethod.URL)
+  @Put(SWAGGER.putMethod.URL)
   async putMethod(@Res() res: Response, @Body() dto: MethodDto) {
     // return 200 response
     res.status(HttpStatus.OK).json({
       statusCode: HttpStatus.OK,
-      message: SWAGGER.DEVELOP.putMethod.MSG.OK,
+      message: SWAGGER.putMethod.MSG.OK,
       data: dto
     })
   }
 
   // ANCHOR Delete Method API
   @ApiOperation({
-    summary: SWAGGER.DEVELOP.deleteMethod.SUMMARY,
-    description: SWAGGER.DEVELOP.deleteMethod.DESC
+    summary: SWAGGER.deleteMethod.SUMMARY,
+    description: SWAGGER.deleteMethod.DESC
   })
   @ApiResponse({
     status: HttpStatus.OK,
-    description: SWAGGER.DEVELOP.deleteMethod.RES.OK
+    description: SWAGGER.deleteMethod.RES.OK
   })
-  @Delete(SWAGGER.DEVELOP.deleteMethod.URL)
+  @Delete(SWAGGER.deleteMethod.URL)
   async deleteMethod(@Res() res: Response, @Query() dto: MethodDto) {
     // return 200 response
     res.status(HttpStatus.OK).json({
       statusCode: HttpStatus.OK,
-      message: SWAGGER.DEVELOP.deleteMethod.MSG.OK,
+      message: SWAGGER.deleteMethod.MSG.OK,
       data: dto
     })
   }

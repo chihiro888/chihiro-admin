@@ -1,26 +1,32 @@
 import axios from 'axios'
 import { CommonResponse } from '../../common/interface'
 
-export const axiosGET = (params: object) => {
-  const url = '/api/develop/getMethod'
+const rootURL = '/api/develop/'
+
+// ANCHOR getMethod
+export const getMethod = (params: object) => {
+  const url = `${rootURL}getMethod`
   const response = axios.get<CommonResponse>(url, { params: params })
   return response
 }
 
-export const axiosPOST = (params: object) => {
-  const url = '/api/develop/postMethod'
+// ANCHOR postMethod
+export const postMethod = (params: object) => {
+  const url = `${rootURL}postMethod`
   const response = axios.post<CommonResponse>(url, params)
   return response
 }
 
-export const axiosPUT = (params: object) => {
-  const url = '/api/develop/putMethod'
+// ANCHOR putMethod
+export const putMethod = (params: object) => {
+  const url = `${rootURL}putMethod`
   const response = axios.put<CommonResponse>(url, params)
   return response
 }
 
-export const axiosDELETE = (params: object) => {
-  const url = '/api/develop/deleteMethod'
+// ANCHOR deleteMethod
+export const deleteMethod = (params: object) => {
+  const url = `${rootURL}deleteMethod`
   const response = axios.delete<CommonResponse>(url, { params: params })
   return response
 }

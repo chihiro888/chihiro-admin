@@ -11,8 +11,8 @@ import {
 import { LayoutSplashScreen } from '../../../../_metronic/layout/core'
 import { AuthModel, UserModel } from './_models'
 import * as authHelper from './AuthHelpers'
-import { getUserBySession } from './_requests'
 import { WithChildren } from '../../../../_metronic/helpers'
+import { getUserBySession } from '../../../../api/auth'
 
 type AuthContextProps = {
   auth: AuthModel | undefined

@@ -3,32 +3,9 @@ import { useState } from 'react'
 import * as Yup from 'yup'
 import clsx from 'clsx'
 import { useFormik } from 'formik'
-import { getUserBySession, login } from '../core/_requests'
 import { useAuth } from '../core/Auth'
 import { useIntl } from 'react-intl'
-
-const loginSchema = Yup.object().shape({
-  email: Yup.string()
-    .email('Wrong email format')
-    .min(3, 'Minimum 3 symbols')
-    .max(50, 'Maximum 50 symbols')
-    .required('Email is required'),
-  password: Yup.string()
-    .min(3, 'Minimum 3 symbols')
-    .max(50, 'Maximum 50 symbols')
-    .required('Password is required')
-})
-
-const initialValues = {
-  email: 'chihiro888@github.com',
-  password: '12345'
-}
-
-/*
-  Formik+YUP+Typescript:
-  https://jaredpalmer.com/formik/docs/tutorial#getfieldprops
-  https://medium.com/@maurice.de.beijer/yup-validation-and-typescript-and-formik-6c342578a20e
-*/
+import { getUserBySession, signIn } from '../../../../api/auth'
 
 export function SignIn() {
   // hooks
@@ -38,13 +15,34 @@ export function SignIn() {
   // state
   const [loading, setLoading] = useState(false)
 
+  const loginSchema = Yup.object().shape({
+    email: Yup.string()
+      .email(intl.formatMessage({ id: 'Wrong email format' }))
+      .min(3, intl.formatMessage({ id: 'Minimum 3 symbols' }))
+      .max(100, intl.formatMessage({ id: 'Maximum 100 symbols' }))
+      .required(intl.formatMessage({ id: 'Email is required' })),
+    password: Yup.string()
+      .min(8, intl.formatMessage({ id: 'Minimum 8 symbols' }))
+      .max(100, intl.formatMessage({ id: 'Maximum 100 symbols' }))
+      .required(intl.formatMessage({ id: 'Password is required' }))
+  })
+
+  const initialValues = {
+    email: 'chihiro888@github.com',
+    password: '12341234'
+  }
+
   const formik = useFormik({
     initialValues,
     validationSchema: loginSchema,
     onSubmit: async (values, { setStatus, setSubmitting }) => {
       setLoading(true)
       try {
-        const { data: auth } = await login(values.email, values.password)
+        const params = {
+          account: values.email,
+          password: values.password
+        }
+        const { data: auth } = await signIn(params)
         if (auth.statusCode === 200) {
           saveAuth({ isSignIn: true })
         }
@@ -53,9 +51,8 @@ export function SignIn() {
           setCurrentUser(user.data)
         }
       } catch (error) {
-        console.error(error)
         saveAuth(undefined)
-        setStatus('The login detail is incorrect')
+        setStatus(intl.formatMessage({ id: error.response.data.message }))
         setSubmitting(false)
         setLoading(false)
       }
@@ -122,6 +119,7 @@ export function SignIn() {
           </div>
         </div>
         <input
+          placeholder="Password"
           type="password"
           autoComplete="off"
           {...formik.getFieldProps('password')}

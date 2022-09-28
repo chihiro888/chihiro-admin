@@ -1,10 +1,10 @@
 import { FC, useState } from 'react'
 import { IntlShape, useIntl } from 'react-intl'
 import {
-  axiosDELETE,
-  axiosGET,
-  axiosPOST,
-  axiosPUT
+  getMethod,
+  postMethod,
+  putMethod,
+  deleteMethod
 } from '../../../api/develop'
 import { PageTitle } from '../../../_metronic/layout/core'
 
@@ -144,16 +144,16 @@ const DevelopAxiosWrapper: FC = () => {
       parameter2
     }
     if (method === 'GET') {
-      const { data: response } = await axiosGET(params)
+      const { data: response } = await getMethod(params)
       setResult(JSON.stringify(response))
     } else if (method === 'POST') {
-      const { data: response } = await axiosPOST(params)
+      const { data: response } = await postMethod(params)
       setResult(JSON.stringify(response))
     } else if (method === 'PUT') {
-      const { data: response } = await axiosPUT(params)
+      const { data: response } = await putMethod(params)
       setResult(JSON.stringify(response))
     } else if (method === 'DELETE') {
-      const { data: response } = await axiosDELETE(params)
+      const { data: response } = await deleteMethod(params)
       setResult(JSON.stringify(response))
     }
   }

@@ -87,5 +87,12 @@
   "Update": "수정",
   "Delete": "삭제",
   "ETC": "그 외",
-  "Error": "에러"
+  "Error": "에러",
+  "Minimum 3 symbols": "최소 3자리입니다.",
+  "Maximum 100 symbols": "최대 100자리입니다.",
+  "Minimum 8 symbols": "최소 8자리입니다.",
+  "Wrong email format": "이메일 형식이 틀립니다.",
+  "Email is required": "이메일은 필수입니다.",
+  "Password is required": "비밀번호는 필수입니다.",
+  "account or password does not match.": "아이디 또는 비밀번호가 일치하지 않습니다."
 }

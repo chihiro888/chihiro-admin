@@ -1,35 +1,20 @@
 # Chihiro Develop Kit
 
-## Initial Setting
+- You can easily create an administrator dashboard by providing a large number of samples.
+- Requires node.js 16.16.0 version.
+- Use docker when building a database in a local environment.
 
-### install nodeenv for mac
+## get started
 
-```bash
-brew install nodeenv
-```
+- Proceed in the order of "database -> backend -> frontend"
 
-### create nodeenv
-
-```bash
-nodeenv --node=16.16.0 nenv
-```
-
-### setup nodeenv
-
-```bash
-. nenv/bin/activate
-```
-
-### install yarn
-
-```bash
-npm install -g yarn
-```
-
-## database
+### database
 
 ```bash
 cd infra
+```
+
+```bash
 docker-compose up
 ```
 
@@ -43,8 +28,9 @@ docker-compose up
 | user          | docker    |
 | password      | docker    |
 
-:warning: issue fix : mysql 8 password protocol
+:warning: issue : mysql 8 password protocol
 
+- Run the queries below sequentially.
 - caching_sha2_password -> mysql_native_password
 
 ```sql
@@ -55,54 +41,88 @@ ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root';
 ALTER USER 'docker'@'%' IDENTIFIED WITH mysql_native_password BY 'docker';
 ```
 
-## backend
-
-- Please create the database with docker first.
+### backend
 
 ```bash
 cd backend
-yarn install
+```
 
-# if local
+```bash
+yarn install
+```
+
+```bash
+yarn load:yaml
+```
+
+- Run the commands below according to the situation.
+
+```bash
+# if local in MAC
 yarn start:local
 
-# if development
+# if development in MAC
 yarn start:dev
 
-# if production
+# if production in MAC
 yarn start:prod
 ```
 
-:warning: issue fix : cross-env not found command
-
-package.json
-
 ```bash
-# mac
-    "start:local": "export NODE_ENV=local&&nest start --debug --watch",
-    "start:dev": "export NODE_ENV=development&&nest start --debug --watch",
-    "start:prod": "export NODE_ENV=production&&nest start --debug --watch",
+# if local in Windows
+yarn start:local_win
 
-# win
-    "start:local": "set NODE_ENV=local&&nest start --debug --watch",
-    "start:dev": "set NODE_ENV=development&&nest start --debug --watch",
-    "start:prod": "set NODE_ENV=production&&nest start --debug --watch",
+# if development in Windows
+yarn start:dev_win
+
+# if production in Windows
+yarn start:prod_win
 ```
 
 http://localhost:9000/api
 
-## frontend
+### frontend
 
 ```bash
 cd frontend
+```
+
+```bash
 yarn install
+```
+
+```bash
 yarn start
 ```
 
 http://localhost:3000/
 
-# License
+## Demo
 
-<img src="docs/image/License.png" width="300"/>
+### backend
+
+<img src="/docs/image/backend_init.png" width="350"/>
+
+### frontend
+
+<img src="/docs/image/frontend_init.png" width="350"/>
+
+## Document
+
+English
+
+- in ready
+
+Korean
+
+- https://github.com/chihiro888/chihiro-develop-kit/tree/develop/docs/ko
+
+Japanese
+
+- in ready
+
+## License
+
+<img src="/docs/image/License.png" width="300"/>
 
 https://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469

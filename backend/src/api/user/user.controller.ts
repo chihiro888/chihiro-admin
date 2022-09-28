@@ -12,33 +12,33 @@ import {
 } from '@nestjs/common'
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 import { Response } from 'express'
-import SWAGGER from 'src/common/constants/swagger'
 import { AuthGuard } from 'src/common/guard/auth.guard'
 import { ChangePasswordDto } from './dto/change-password.dto'
 import { UserListPaginationDto } from './dto/user-list-pagination.dto'
 import { UserService } from './user.service'
+import SWAGGER from './user.swagger'
 
 // ANCHOR user controller
-@ApiTags(SWAGGER.USER.TAG)
-@Controller(SWAGGER.USER.URL)
+@ApiTags(SWAGGER.TAG)
+@Controller(SWAGGER.URL)
 export class UserController {
   constructor(private userService: UserService) {}
 
   // ANCHOR account API
   @ApiOperation({
-    summary: SWAGGER.USER.ACCOUNT.SUMMARY,
-    description: SWAGGER.USER.ACCOUNT.DESC
+    summary: SWAGGER.ACCOUNT.SUMMARY,
+    description: SWAGGER.ACCOUNT.DESC
   })
   @ApiResponse({
     status: HttpStatus.OK,
-    description: SWAGGER.USER.ACCOUNT.RES.OK
+    description: SWAGGER.ACCOUNT.RES.OK
   })
   @ApiResponse({
     status: HttpStatus.UNAUTHORIZED,
-    description: SWAGGER.USER.ACCOUNT.RES.UNAUTHORIZED
+    description: SWAGGER.ACCOUNT.RES.UNAUTHORIZED
   })
   @UseGuards(AuthGuard)
-  @Get(SWAGGER.USER.ACCOUNT.URL)
+  @Get(SWAGGER.ACCOUNT.URL)
   async account(@Res() res: Response, @Session() session: any) {
     // find user by id
     const user = await this.userService.findUserById(session.userId)
@@ -46,30 +46,30 @@ export class UserController {
     // return 200 response
     res.status(HttpStatus.OK).json({
       statusCode: HttpStatus.OK,
-      message: SWAGGER.USER.ACCOUNT.MSG.OK,
+      message: SWAGGER.ACCOUNT.MSG.OK,
       data: user
     })
   }
 
   // ANCHOR change password API
   @ApiOperation({
-    summary: SWAGGER.USER.CHANGE_PASSWORD.SUMMARY,
-    description: SWAGGER.USER.CHANGE_PASSWORD.DESC
+    summary: SWAGGER.CHANGE_PASSWORD.SUMMARY,
+    description: SWAGGER.CHANGE_PASSWORD.DESC
   })
   @ApiResponse({
     status: HttpStatus.OK,
-    description: SWAGGER.USER.CHANGE_PASSWORD.RES.OK
+    description: SWAGGER.CHANGE_PASSWORD.RES.OK
   })
   @ApiResponse({
     status: HttpStatus.UNAUTHORIZED,
-    description: SWAGGER.USER.CHANGE_PASSWORD.RES.UNAUTHORIZED
+    description: SWAGGER.CHANGE_PASSWORD.RES.UNAUTHORIZED
   })
   @ApiResponse({
     status: HttpStatus.INTERNAL_SERVER_ERROR,
-    description: SWAGGER.USER.CHANGE_PASSWORD.RES.INTERNAL_SERVER_ERROR
+    description: SWAGGER.CHANGE_PASSWORD.RES.INTERNAL_SERVER_ERROR
   })
   @UseGuards(AuthGuard)
-  @Put(SWAGGER.USER.CHANGE_PASSWORD.URL)
+  @Put(SWAGGER.CHANGE_PASSWORD.URL)
   async changePassword(
     @Res() res: Response,
     @Session() session: any,
@@ -87,7 +87,7 @@ export class UserController {
     if (!result) {
       // return 500 response
       throw new HttpException(
-        SWAGGER.USER.CHANGE_PASSWORD.MSG.INTERNAL_SERVER_ERROR,
+        SWAGGER.CHANGE_PASSWORD.MSG.INTERNAL_SERVER_ERROR,
         HttpStatus.INTERNAL_SERVER_ERROR
       )
     }
@@ -95,26 +95,26 @@ export class UserController {
     // return 200 response
     res.status(HttpStatus.OK).json({
       statusCode: HttpStatus.OK,
-      message: SWAGGER.USER.CHANGE_PASSWORD.MSG.OK,
+      message: SWAGGER.CHANGE_PASSWORD.MSG.OK,
       data: null
     })
   }
 
   // ANCHOR user list pagination API
   @ApiOperation({
-    summary: SWAGGER.USER.USER_LIST_PAGINATION.SUMMARY,
-    description: SWAGGER.USER.USER_LIST_PAGINATION.DESC
+    summary: SWAGGER.USER_LIST_PAGINATION.SUMMARY,
+    description: SWAGGER.USER_LIST_PAGINATION.DESC
   })
   @ApiResponse({
     status: HttpStatus.OK,
-    description: SWAGGER.USER.USER_LIST_PAGINATION.RES.OK
+    description: SWAGGER.USER_LIST_PAGINATION.RES.OK
   })
   @ApiResponse({
     status: HttpStatus.UNAUTHORIZED,
-    description: SWAGGER.USER.USER_LIST_PAGINATION.RES.UNAUTHORIZED
+    description: SWAGGER.USER_LIST_PAGINATION.RES.UNAUTHORIZED
   })
   @UseGuards(AuthGuard)
-  @Get(SWAGGER.USER.USER_LIST_PAGINATION.URL)
+  @Get(SWAGGER.USER_LIST_PAGINATION.URL)
   async userListPagination(
     @Res() res: Response,
     @Session() session: any,
@@ -132,7 +132,7 @@ export class UserController {
     // return 200 response
     res.status(HttpStatus.OK).json({
       statusCode: HttpStatus.OK,
-      message: SWAGGER.USER.USER_LIST_PAGINATION.MSG.OK,
+      message: SWAGGER.USER_LIST_PAGINATION.MSG.OK,
       data: userList
     })
   }

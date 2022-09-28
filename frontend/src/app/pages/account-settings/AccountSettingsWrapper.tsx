@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from 'react'
 import { Modal } from 'react-bootstrap'
 import { useIntl } from 'react-intl'
-import { accountAPI, changePasswordAPI } from '../../../api/user'
+import { account as accountAPI, changePassword } from '../../../api/user'
 import { PageTitle } from '../../../_metronic/layout/core'
 import { Theme, toast } from 'react-toastify'
 import { useAuth } from '../../modules/auth/core/Auth'
@@ -276,7 +276,7 @@ const AccountSettingsWrapper: FC = () => {
         newPassword,
         confirmNewPassword
       }
-      const { data: response } = await changePasswordAPI(params)
+      const { data: response } = await changePassword(params)
       if (response.statusCode === 200) {
         alert(intl.formatMessage({ id: response.message }))
         setIsDisabled(false)

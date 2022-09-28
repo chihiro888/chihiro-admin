@@ -11,34 +11,34 @@ import {
 } from '@nestjs/common'
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 import { Response } from 'express'
-import SWAGGER from 'src/common/constants/swagger'
 import { AuthGuard } from 'src/common/guard/auth.guard'
 import { ExecuteQueryDto } from './dto/execute-query.dto'
 import { QueryHistoryDto } from './dto/query-history.dto'
 import { QueryService } from './query.service'
 import { RealIP } from 'nestjs-real-ip'
+import SWAGGER from './query.swagger'
 
 // ANCHOR query controller
-@ApiTags(SWAGGER.QUERY.TAG)
-@Controller(SWAGGER.QUERY.URL)
+@ApiTags(SWAGGER.TAG)
+@Controller(SWAGGER.URL)
 export class QueryController {
   constructor(private queryService: QueryService) {}
 
   // ANCHOR account API
   @ApiOperation({
-    summary: SWAGGER.QUERY.EXECUTE_QUERY.SUMMARY,
-    description: SWAGGER.QUERY.EXECUTE_QUERY.DESC
+    summary: SWAGGER.EXECUTE_QUERY.SUMMARY,
+    description: SWAGGER.EXECUTE_QUERY.DESC
   })
   @ApiResponse({
     status: HttpStatus.OK,
-    description: SWAGGER.QUERY.EXECUTE_QUERY.RES.OK
+    description: SWAGGER.EXECUTE_QUERY.RES.OK
   })
   @ApiResponse({
     status: HttpStatus.UNAUTHORIZED,
-    description: SWAGGER.QUERY.EXECUTE_QUERY.RES.UNAUTHORIZED
+    description: SWAGGER.EXECUTE_QUERY.RES.UNAUTHORIZED
   })
   @UseGuards(AuthGuard)
-  @Post(SWAGGER.QUERY.EXECUTE_QUERY.URL)
+  @Post(SWAGGER.EXECUTE_QUERY.URL)
   async executeSQL(
     @Res() res: Response,
     @Session() session: any,
@@ -59,7 +59,7 @@ export class QueryController {
       // return 200 response
       res.status(HttpStatus.OK).json({
         statusCode: HttpStatus.OK,
-        message: SWAGGER.QUERY.EXECUTE_QUERY.MSG.OK_ERROR,
+        message: SWAGGER.EXECUTE_QUERY.MSG.OK_ERROR,
         data: {
           queryResultHeader: [],
           queryResultData: [],
@@ -80,7 +80,7 @@ export class QueryController {
       // return 200 response
       res.status(HttpStatus.OK).json({
         statusCode: HttpStatus.OK,
-        message: SWAGGER.QUERY.EXECUTE_QUERY.MSG.OK,
+        message: SWAGGER.EXECUTE_QUERY.MSG.OK,
         data: {
           queryResultHeader,
           queryResultData: result,
@@ -93,7 +93,7 @@ export class QueryController {
       // return 200 response
       res.status(HttpStatus.OK).json({
         statusCode: HttpStatus.OK,
-        message: SWAGGER.QUERY.EXECUTE_QUERY.MSG.OK,
+        message: SWAGGER.EXECUTE_QUERY.MSG.OK,
         data: {
           queryResultHeader: [],
           queryResultData: [],
@@ -106,7 +106,7 @@ export class QueryController {
       // return 200 response
       res.status(HttpStatus.OK).json({
         statusCode: HttpStatus.OK,
-        message: SWAGGER.QUERY.EXECUTE_QUERY.MSG.OK_EMPTY,
+        message: SWAGGER.EXECUTE_QUERY.MSG.OK_EMPTY,
         data: {
           queryResultHeader: [],
           queryResultData: [],
@@ -118,19 +118,19 @@ export class QueryController {
 
   // ANCHOR history list pagination
   @ApiOperation({
-    summary: SWAGGER.QUERY.HISTORY_LIST_PAGINATION.SUMMARY,
-    description: SWAGGER.QUERY.HISTORY_LIST_PAGINATION.DESC
+    summary: SWAGGER.HISTORY_LIST_PAGINATION.SUMMARY,
+    description: SWAGGER.HISTORY_LIST_PAGINATION.DESC
   })
   @ApiResponse({
     status: HttpStatus.OK,
-    description: SWAGGER.QUERY.HISTORY_LIST_PAGINATION.RES.OK
+    description: SWAGGER.HISTORY_LIST_PAGINATION.RES.OK
   })
   @ApiResponse({
     status: HttpStatus.UNAUTHORIZED,
-    description: SWAGGER.QUERY.HISTORY_LIST_PAGINATION.RES.UNAUTHORIZED
+    description: SWAGGER.HISTORY_LIST_PAGINATION.RES.UNAUTHORIZED
   })
   @UseGuards(AuthGuard)
-  @Get(SWAGGER.QUERY.HISTORY_LIST_PAGINATION.URL)
+  @Get(SWAGGER.HISTORY_LIST_PAGINATION.URL)
   async historyListPagination(
     @Res() res: Response,
     @Session() session: any,
@@ -148,7 +148,7 @@ export class QueryController {
     // return 200 response
     res.status(HttpStatus.OK).json({
       statusCode: HttpStatus.OK,
-      message: SWAGGER.QUERY.HISTORY_LIST_PAGINATION.MSG.OK,
+      message: SWAGGER.HISTORY_LIST_PAGINATION.MSG.OK,
       data: historyList
     })
   }
