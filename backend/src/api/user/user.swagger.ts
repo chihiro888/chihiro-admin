@@ -3,17 +3,6 @@ import COMMON_MSG from '../../common/constants/swagger'
 const SWAGGER = {
   TAG: 'user',
   URL: 'api/user',
-  CREATE_USER: {
-    URL: 'createUser',
-    SUMMARY: 'Create User API',
-    DESC: 'This is Create User API',
-    RES: {
-      OK: COMMON_MSG.OK
-    },
-    MSG: {
-      OK: COMMON_MSG.OK
-    }
-  },
   ACCOUNT: {
     URL: 'account',
     SUMMARY: 'account API',
