@@ -61,10 +61,10 @@ export class UserService {
     const offset = (dto.page - 1) * limit
 
     // execute SQL
-    const userTotalCount = await this.datasource
+    const totalItemsCount = await this.datasource
       .getRepository(User)
       .createQueryBuilder('u')
-      .select(['count(1) as totalCount'])
+      .select(['count(1) as totalItemsCount'])
       .where('1=1')
       .andWhere(dto.id === '' ? '1=1' : 'id = :id', {
         id: dto.id
@@ -92,7 +92,7 @@ export class UserService {
       )
       .getRawOne()
 
-    const userList = await this.datasource
+    const data = await this.datasource
       .getRepository(User)
       .createQueryBuilder('u')
       .select([
@@ -137,8 +137,8 @@ export class UserService {
       .getRawMany()
 
     return {
-      userTotalCount: Number(userTotalCount.totalCount),
-      userList
+      totalItemsCount: Number(totalItemsCount.totalItemsCount),
+      data
     }
   }
 }

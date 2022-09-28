@@ -20,6 +20,7 @@
     "clsx": "1.1.1",
     "cross-env": "^7.0.3",
     "formik": "2.2.9",
+    "immer": "^9.0.15",
     "line-awesome": "1.3.0",
     "moment": "^2.29.4",
     "nouislider": "15.5.1",
