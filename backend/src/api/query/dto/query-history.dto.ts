@@ -1,6 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { Type } from 'class-transformer'
-import PARAMETER from 'src/common/constants/parameter'
 
 export class QueryHistoryDto {
   /** session */
@@ -8,35 +7,35 @@ export class QueryHistoryDto {
 
   @Type(() => Number)
   @ApiProperty({
-    description: PARAMETER.PAGE,
-    example: PARAMETER.PAGE_EXAMPLE
+    description: 'page',
+    example: 1
   })
   page: number
 
   @ApiProperty({
-    description: PARAMETER.ID,
-    example: PARAMETER.ID_EXAMPLE,
+    description: 'id',
+    example: 1,
     required: false
   })
   id: string
 
   @ApiProperty({
-    description: PARAMETER.TYPE,
-    example: PARAMETER.TYPE_EXAMPLE,
+    description: 'type',
+    example: 'SLT',
     required: false
   })
   type: string
 
   @ApiProperty({
-    description: PARAMETER.ACCOUNT,
-    example: PARAMETER.ACCOUNT_EXAMPLE,
+    description: 'account',
+    example: 'chihiro888@github.com',
     required: false
   })
   account: string
 
   @ApiProperty({
-    description: PARAMETER.TYPE,
-    example: PARAMETER.CREATED_AT_EXAMPLE,
+    description: 'created at',
+    example: '2022-09-05',
     required: false
   })
   createdAt: string

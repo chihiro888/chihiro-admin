@@ -1,6 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { Type } from 'class-transformer'
-import PARAMETER from 'src/common/constants/parameter'
 
 export class UserListPaginationDto {
   /** session */
@@ -8,44 +7,44 @@ export class UserListPaginationDto {
 
   @Type(() => Number)
   @ApiProperty({
-    description: PARAMETER.PAGE,
-    example: PARAMETER.PAGE_EXAMPLE
+    description: 'page',
+    example: 1
   })
   page: number
 
   @ApiProperty({
-    description: PARAMETER.ID,
-    example: PARAMETER.ID_EXAMPLE
+    description: 'id',
+    example: 1
   })
   id: string
 
   @ApiProperty({
-    description: PARAMETER.ACCOUNT,
-    example: PARAMETER.ACCOUNT_EXAMPLE
+    description: 'account',
+    example: 'chihiro888@github.com'
   })
   account: string
 
   @ApiProperty({
-    description: PARAMETER.USERNAME,
-    example: PARAMETER.USERNAME_EXAMPLE
+    description: 'username',
+    example: 'john'
   })
   username: string
 
   @ApiProperty({
-    description: PARAMETER.IS_ADMIN,
-    example: PARAMETER.IS_ADMIN_EXAMPLE
+    description: 'is admin',
+    example: 0
   })
   isAdmin: string
 
   @ApiProperty({
-    description: PARAMETER.IS_DEVELOPER,
-    example: PARAMETER.IS_DEVELOPER_EXAMPLE
+    description: 'is developer',
+    example: 0
   })
   isDeveloper: string
 
   @ApiProperty({
-    description: PARAMETER.CREATED_AT,
-    example: PARAMETER.CREATED_AT_EXAMPLE
+    description: 'created at',
+    example: '2022-09-05'
   })
   createdAt: string
 }

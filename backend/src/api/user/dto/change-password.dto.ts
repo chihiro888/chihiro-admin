@@ -1,5 +1,4 @@
 import { ApiProperty } from '@nestjs/swagger'
-import PARAMETER from 'src/common/constants/parameter'
 import { IsNotEmpty, Length } from 'class-validator'
 import { Match } from 'src/common/validation/match.decorator'
 
@@ -8,24 +7,24 @@ export class ChangePasswordDto {
   userId: number
 
   @ApiProperty({
-    description: PARAMETER.OLD_PASSWORD,
-    example: PARAMETER.OLD_PASSWORD_EXAMPLE
+    description: 'old password',
+    example: '12341234'
   })
   @IsNotEmpty()
   @Length(8, 100)
   oldPassword: string
 
   @ApiProperty({
-    description: PARAMETER.NEW_PASSWORD,
-    example: PARAMETER.NEW_PASSWORD_EXAMPLE
+    description: 'new password',
+    example: '22222222'
   })
   @IsNotEmpty()
   @Length(8, 100)
   newPassword: string
 
   @ApiProperty({
-    description: PARAMETER.CONFIRM_NEW_PASSWORD,
-    example: PARAMETER.CONFIRM_NEW_PASSWORD_EXAMPLE
+    description: 'confirm new password',
+    example: '22222222'
   })
   @IsNotEmpty()
   @Length(8, 100)

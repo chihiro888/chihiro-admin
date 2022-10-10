@@ -1,5 +1,4 @@
 import { ApiProperty } from '@nestjs/swagger'
-import PARAMETER from 'src/common/constants/parameter'
 
 export class ExecuteQueryDto {
   /** session */
@@ -9,8 +8,8 @@ export class ExecuteQueryDto {
   ipAddress: string
 
   @ApiProperty({
-    description: PARAMETER.QUERY,
-    example: PARAMETER.QUERY_EXAMPLE
+    description: 'query',
+    example: 'select now()'
   })
   query: string
 }
