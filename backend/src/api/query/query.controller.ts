@@ -9,36 +9,23 @@ import {
   Session,
   UseGuards
 } from '@nestjs/common'
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
+import { ApiTags } from '@nestjs/swagger'
 import { Response } from 'express'
 import { AuthGuard } from 'src/common/guard/auth.guard'
 import { ExecuteQueryDto } from './dto/execute-query.dto'
 import { QueryHistoryDto } from './dto/query-history.dto'
 import { QueryService } from './query.service'
 import { RealIP } from 'nestjs-real-ip'
-import SWAGGER from './query.swagger'
 
 // ANCHOR query controller
-@ApiTags(SWAGGER.TAG)
-@Controller(SWAGGER.URL)
+@ApiTags('query')
+@Controller('api/query')
 export class QueryController {
   constructor(private queryService: QueryService) {}
 
   // ANCHOR account API
-  @ApiOperation({
-    summary: SWAGGER.EXECUTE_QUERY.SUMMARY,
-    description: SWAGGER.EXECUTE_QUERY.DESC
-  })
-  @ApiResponse({
-    status: HttpStatus.OK,
-    description: SWAGGER.EXECUTE_QUERY.RES.OK
-  })
-  @ApiResponse({
-    status: HttpStatus.UNAUTHORIZED,
-    description: SWAGGER.EXECUTE_QUERY.RES.UNAUTHORIZED
-  })
   @UseGuards(AuthGuard)
-  @Post(SWAGGER.EXECUTE_QUERY.URL)
+  @Post('executeQuery')
   async executeSQL(
     @Res() res: Response,
     @Session() session: any,
@@ -59,7 +46,7 @@ export class QueryController {
       // return 200 response
       res.status(HttpStatus.OK).json({
         statusCode: HttpStatus.OK,
-        message: SWAGGER.EXECUTE_QUERY.MSG.OK_ERROR,
+        message: 'Query execution is complete.',
         data: {
           queryResultHeader: [],
           queryResultData: [],
@@ -80,7 +67,7 @@ export class QueryController {
       // return 200 response
       res.status(HttpStatus.OK).json({
         statusCode: HttpStatus.OK,
-        message: SWAGGER.EXECUTE_QUERY.MSG.OK,
+        message: 'Query execution is complete.',
         data: {
           queryResultHeader,
           queryResultData: result,
@@ -93,7 +80,7 @@ export class QueryController {
       // return 200 response
       res.status(HttpStatus.OK).json({
         statusCode: HttpStatus.OK,
-        message: SWAGGER.EXECUTE_QUERY.MSG.OK,
+        message: 'Query execution is complete.',
         data: {
           queryResultHeader: [],
           queryResultData: [],
@@ -106,7 +93,7 @@ export class QueryController {
       // return 200 response
       res.status(HttpStatus.OK).json({
         statusCode: HttpStatus.OK,
-        message: SWAGGER.EXECUTE_QUERY.MSG.OK_EMPTY,
+        message: 'Query execution is complete.',
         data: {
           queryResultHeader: [],
           queryResultData: [],
@@ -117,20 +104,8 @@ export class QueryController {
   }
 
   // ANCHOR history list pagination
-  @ApiOperation({
-    summary: SWAGGER.HISTORY_LIST_PAGINATION.SUMMARY,
-    description: SWAGGER.HISTORY_LIST_PAGINATION.DESC
-  })
-  @ApiResponse({
-    status: HttpStatus.OK,
-    description: SWAGGER.HISTORY_LIST_PAGINATION.RES.OK
-  })
-  @ApiResponse({
-    status: HttpStatus.UNAUTHORIZED,
-    description: SWAGGER.HISTORY_LIST_PAGINATION.RES.UNAUTHORIZED
-  })
   @UseGuards(AuthGuard)
-  @Get(SWAGGER.HISTORY_LIST_PAGINATION.URL)
+  @Get('historyListPagination')
   async historyListPagination(
     @Res() res: Response,
     @Session() session: any,
@@ -148,7 +123,7 @@ export class QueryController {
     // return 200 response
     res.status(HttpStatus.OK).json({
       statusCode: HttpStatus.OK,
-      message: SWAGGER.HISTORY_LIST_PAGINATION.MSG.OK,
+      message: '',
       data: historyList
     })
   }
