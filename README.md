@@ -105,7 +105,7 @@ http://localhost:3000/
 
 ### frontend
 
-<img src="/docs/image/frontend_init.png" width="350"/>
+<img src="/docs/image/frontend_init.jpeg" width="350"/>
 
 ## Document
 
@@ -123,6 +123,4 @@ Japanese
 
 ## License
 
-<img src="/docs/image/License.png" width="300"/>
-
-https://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469
+https://themeselection.com/item/sneat-mui-react-nextjs-admin-template/
