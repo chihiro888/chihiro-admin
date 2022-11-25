@@ -4,8 +4,8 @@ http:
 db:
   host: 'localhost'
   port: 3306
-  username: 'docker'
-  password: 'docker'
+  username: 'develop'
+  password: 'develop'
   database: 'develop'
   session:
     secretKey: 'b3aa9ad4-c8e9-4715-9c3f-75d91fe86471'
