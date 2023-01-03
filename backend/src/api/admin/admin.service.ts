@@ -40,6 +40,9 @@ export class AdminService {
     const admin = new Admin()
     admin.account = dto.account
     admin.password = await createPassword(dto.password)
+    admin.username = dto.username
+    admin.isSystemAdmin = 1
+    admin.isAdmin = 1
     await this.datasource.getRepository(Admin).save(admin)
   }
 

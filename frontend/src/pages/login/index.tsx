@@ -39,6 +39,7 @@ import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
 import { useAuth } from 'src/hooks/useAuth'
 import FormHeader from '../components/form-header'
+import { checkAdmin, getAdmin, login } from 'src/apis/admin'
 
 interface State {
   email: string
@@ -74,32 +75,32 @@ const LoginV1 = () => {
   const handleClickAction = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     try {
-      // const params = {
-      //   account: values.email,
-      //   password: values.password
-      // }
-      // const { data: res } = await login(params)
-      // if (res.statusCode === 200) {
-      //   const { data: res } = await getAdmin()
-      //   if (res.statusCode === 200) {
-      //     setUser({ role: 'admin', ...res.data })
-      //     const returnUrl = router.query.returnUrl
-      //     const redirectURL = returnUrl && returnUrl !== '/' ? returnUrl : '/'
-      //     router.replace(redirectURL as string)
-      //   }
-      // }
+      const params = {
+        account: values.email,
+        password: values.password
+      }
+      const { data: res } = await login(params)
+      if (res.statusCode === 200) {
+        const { data: res } = await getAdmin()
+        if (res.statusCode === 200) {
+          setUser({ role: 'admin', ...res.data })
+          const returnUrl = router.query.returnUrl
+          const redirectURL = returnUrl && returnUrl !== '/' ? returnUrl : '/'
+          router.replace(redirectURL as string)
+        }
+      }
     } catch (err: any) {
       toast.error(t(err.response.data.message))
     }
   }
 
   const initData = async () => {
-    // const { data: res } = await checkAdmin()
-    // if (res.statusCode === 200) {
-    //   if (res.data) {
-    //     router.push('/login/init')
-    //   }
-    // }
+    const { data: res } = await checkAdmin()
+    if (res.statusCode === 200) {
+      if (res.data) {
+        router.push('/login/init')
+      }
+    }
   }
 
   useEffect(() => {

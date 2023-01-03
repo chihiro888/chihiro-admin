@@ -40,6 +40,7 @@ import { useRouter } from 'next/router'
 import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
 import FormHeader from '../components/form-header'
+import { checkAdmin, createAdmin } from 'src/apis/admin'
 
 interface State {
   email: string
@@ -47,6 +48,7 @@ interface State {
   showPassword: boolean
   confirmPassword: string
   showConfirmPassword: boolean
+  username: string
 }
 
 const LoginV1 = () => {
@@ -56,7 +58,8 @@ const LoginV1 = () => {
     password: '',
     showPassword: false,
     confirmPassword: '',
-    showConfirmPassword: false
+    showConfirmPassword: false,
+    username: ''
   })
 
   // ** Hook
@@ -76,30 +79,31 @@ const LoginV1 = () => {
   }
 
   const handleClickAction = async (e: FormEvent<HTMLFormElement>) => {
-    // e.preventDefault()
-    // const params = {
-    //   account: values.email,
-    //   password: values.password,
-    //   confirmPassword: values.confirmPassword
-    // }
-    // try {
-    //   const { data: res } = await createAdmin(params)
-    //   if (res.statusCode === 200) {
-    //     toast.success(t(res.message))
-    //     router.push('/login')
-    //   }
-    // } catch (err: any) {
-    //   toast.error(t(err.response.data.message))
-    // }
+    e.preventDefault()
+    const params = {
+      account: values.email,
+      password: values.password,
+      confirmPassword: values.confirmPassword,
+      username: values.username
+    }
+    try {
+      const { data: res } = await createAdmin(params)
+      if (res.statusCode === 200) {
+        toast.success(t(res.message))
+        router.push('/login')
+      }
+    } catch (err: any) {
+      toast.error(t(err.response.data.message))
+    }
   }
 
   const initData = async () => {
-    // const { data: res } = await checkAdmin()
-    // if (res.statusCode === 200) {
-    //   if (!res.data) {
-    //     router.push('/login')
-    //   }
-    // }
+    const { data: res } = await checkAdmin()
+    if (res.statusCode === 200) {
+      if (!res.data) {
+        router.push('/login')
+      }
+    }
   }
 
   useEffect(() => {
@@ -124,6 +128,14 @@ const LoginV1 = () => {
                 label="이메일"
                 sx={{ mb: 4 }}
                 onChange={handleChange('email')}
+              />
+              <TextField
+                autoFocus
+                fullWidth
+                id="username"
+                label="사용자명"
+                sx={{ mb: 4 }}
+                onChange={handleChange('username')}
               />
               <FormControl fullWidth sx={{ mb: 2 }}>
                 <InputLabel htmlFor="auth-login-password">비밀번호</InputLabel>

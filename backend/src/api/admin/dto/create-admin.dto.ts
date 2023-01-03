@@ -25,4 +25,11 @@ export class CreateAdminDto {
   @Length(8, 255)
   @Match('password')
   confirmPassword: string | null
+
+  @ApiProperty({
+    description: 'username',
+    example: ''
+  })
+  @Length(1, 255)
+  username: string | null
 }
