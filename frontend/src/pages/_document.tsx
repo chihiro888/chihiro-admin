@@ -13,16 +13,20 @@ import { createEmotionCache } from 'src/@core/utils/create-emotion-cache'
 class CustomDocument extends Document {
   render() {
     return (
-      <Html lang='en'>
+      <Html lang="en">
         <Head>
-          <link rel='preconnect' href='https://fonts.googleapis.com' />
-          <link rel='preconnect' href='https://fonts.gstatic.com' />
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link
-            rel='stylesheet'
-            href='https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap'
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap"
           />
-          <link rel='apple-touch-icon' sizes='180x180' href='/images/apple-touch-icon.png' />
-          <link rel='shortcut icon' href='/images/favicon.ico' />
+          <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="/images/apple-touch-icon.png"
+          />
+          <link rel="shortcut icon" href="/images/logos/logo.png" />
         </Head>
         <body>
           <Main />
@@ -33,14 +37,14 @@ class CustomDocument extends Document {
   }
 }
 
-CustomDocument.getInitialProps = async ctx => {
+CustomDocument.getInitialProps = async (ctx) => {
   const originalRenderPage = ctx.renderPage
   const cache = createEmotionCache()
   const { extractCriticalToChunks } = createEmotionServer(cache)
 
   ctx.renderPage = () =>
     originalRenderPage({
-      enhanceApp: App => props =>
+      enhanceApp: (App) => (props) =>
         (
           <App
             {...props} // @ts-ignore
@@ -51,7 +55,7 @@ CustomDocument.getInitialProps = async ctx => {
 
   const initialProps = await Document.getInitialProps(ctx)
   const emotionStyles = extractCriticalToChunks(initialProps.html)
-  const emotionStyleTags = emotionStyles.styles.map(style => {
+  const emotionStyleTags = emotionStyles.styles.map((style) => {
     return (
       <style
         key={style.key}

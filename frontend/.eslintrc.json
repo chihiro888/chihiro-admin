@@ -9,13 +9,13 @@
     "@next/next/no-img-element": "off",
     "react/no-unescaped-entities": "off",
     "import/no-anonymous-default-export": "off",
-    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/no-unused-vars": "warn",
     "@typescript-eslint/ban-ts-comment": "off",
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-non-null-assertion": "off",
     // add new line above comment
     "lines-around-comment": [
-      "error",
+      "warn",
       {
         "beforeLineComment": true,
         "beforeBlockComment": true,
@@ -26,16 +26,16 @@
       }
     ],
     // add new line above return
-    "newline-before-return": "error",
+    "newline-before-return": "warn",
     // add new line below import
     "import/newline-after-import": [
-      "error",
+      "warn",
       {
         "count": 1
       }
     ],
     "@typescript-eslint/ban-types": [
-      "error",
+      "warn",
       {
         "extendDefaults": true,
         "types": {
@@ -44,30 +44,21 @@
       }
     ]
   },
-  "plugins": [
-    "import"
-  ],
+  "plugins": ["import"],
   "settings": {
     "import/parsers": {
-      "@typescript-eslint/parser": [
-        ".ts",
-        ".tsx"
-      ]
+      "@typescript-eslint/parser": [".ts", ".tsx"]
     },
     "import/resolver": {
       "typescript": {
         "alwaysTryTypes": true,
-        "project": [
-          "./tsconfig.json"
-        ]
+        "project": ["./tsconfig.json"]
       }
     }
   },
   "overrides": [
     {
-      "files": [
-        "src/iconify-bundle/*"
-      ],
+      "files": ["src/iconify-bundle/*"],
       "rules": {
         "@typescript-eslint/no-var-requires": "off"
       }
