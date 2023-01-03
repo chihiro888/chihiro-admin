@@ -90,7 +90,7 @@ const themeConfig: ThemeConfig = {
   // ** Other Configs
   responsiveFontSizes: true /* true | false */,
   disableRipple: true /* true | false */,
-  disableCustomizer: false /* true | false */,
+  disableCustomizer: true /* true | false */,
   toastPosition:
     'top-right' /* top-left | top-center | top-right | bottom-left | bottom-center | bottom-right */
 }

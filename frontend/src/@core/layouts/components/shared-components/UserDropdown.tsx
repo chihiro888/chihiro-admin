@@ -23,6 +23,9 @@ import { useAuth } from 'src/hooks/useAuth'
 // ** Type Imports
 import { Settings } from 'src/@core/context/settingsContext'
 
+// ** API
+import { logout as logoutAPI } from 'src/apis/admin'
+
 interface Props {
   settings: Settings
 }
@@ -76,15 +79,22 @@ const UserDropdown = (props: Props) => {
     }
   }
 
-  const handleLogout = () => {
-    logout()
-    handleDropdownClose()
+  const handleLogout = async () => {
+    try {
+      const { data: res } = await logoutAPI()
+      if (res.statusCode === 200) {
+        logout()
+        handleDropdownClose()
+      }
+    } catch (err) {
+      //
+    }
   }
 
   return (
     <Fragment>
       <Badge
-        overlap='circular'
+        overlap="circular"
         onClick={handleDropdownOpen}
         sx={{ ml: 2, cursor: 'pointer' }}
         badgeContent={<BadgeContentSpan />}
@@ -94,8 +104,8 @@ const UserDropdown = (props: Props) => {
         }}
       >
         <Avatar
-          alt='John Doe'
-          src='/images/avatars/1.png'
+          alt="John Doe"
+          src="/images/avatars/account.png"
           onClick={handleDropdownOpen}
           sx={{ width: 40, height: 40 }}
         />
@@ -105,68 +115,54 @@ const UserDropdown = (props: Props) => {
         open={Boolean(anchorEl)}
         onClose={() => handleDropdownClose()}
         sx={{ '& .MuiMenu-paper': { width: 230, mt: 4 } }}
-        anchorOrigin={{ vertical: 'bottom', horizontal: direction === 'ltr' ? 'right' : 'left' }}
-        transformOrigin={{ vertical: 'top', horizontal: direction === 'ltr' ? 'right' : 'left' }}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: direction === 'ltr' ? 'right' : 'left'
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: direction === 'ltr' ? 'right' : 'left'
+        }}
       >
         <Box sx={{ py: 2, px: 4 }}>
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
             <Badge
-              overlap='circular'
+              overlap="circular"
               badgeContent={<BadgeContentSpan />}
               anchorOrigin={{
                 vertical: 'bottom',
                 horizontal: 'right'
               }}
             >
-              <Avatar alt='John Doe' src='/images/avatars/1.png' sx={{ width: '2.5rem', height: '2.5rem' }} />
+              <Avatar
+                alt="관리자"
+                src="/images/avatars/account.png"
+                sx={{ width: '2.5rem', height: '2.5rem' }}
+              />
             </Badge>
-            <Box sx={{ ml: 3, display: 'flex', alignItems: 'flex-start', flexDirection: 'column' }}>
-              <Typography sx={{ fontWeight: 500 }}>John Doe</Typography>
-              <Typography variant='body2' sx={{ color: 'text.secondary' }}>
-                Admin
+            <Box
+              sx={{
+                ml: 3,
+                display: 'flex',
+                alignItems: 'flex-start',
+                flexDirection: 'column'
+              }}
+            >
+              <Typography sx={{ fontWeight: 500 }}>관리자</Typography>
+              <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                관리자
               </Typography>
             </Box>
           </Box>
         </Box>
         <Divider sx={{ mt: '0 !important' }} />
-        <MenuItem sx={{ p: 0 }} onClick={() => handleDropdownClose('/pages/user-profile/profile')}>
+        <MenuItem sx={{ p: 0 }} onClick={() => handleDropdownClose('/profile')}>
           <Box sx={styles}>
-            <Icon icon='bx:user' />
-            Profile
+            <Icon icon="bx:user" />
+            프로필
           </Box>
         </MenuItem>
-        <MenuItem sx={{ p: 0 }} onClick={() => handleDropdownClose('/apps/email')}>
-          <Box sx={styles}>
-            <Icon icon='bx:envelope' />
-            Inbox
-          </Box>
-        </MenuItem>
-        <MenuItem sx={{ p: 0 }} onClick={() => handleDropdownClose('/apps/chat')}>
-          <Box sx={styles}>
-            <Icon icon='bx:message' />
-            Chat
-          </Box>
-        </MenuItem>
-        <Divider sx={{ my: theme => `${theme.spacing(2)} !important` }} />
-        <MenuItem sx={{ p: 0 }} onClick={() => handleDropdownClose('/pages/help-center')}>
-          <Box sx={styles}>
-            <Icon icon='bx:cog' />
-            Settings
-          </Box>
-        </MenuItem>
-        <MenuItem sx={{ p: 0 }} onClick={() => handleDropdownClose('/pages/pricing')}>
-          <Box sx={styles}>
-            <Icon icon='bx:dollar' />
-            Pricing
-          </Box>
-        </MenuItem>
-        <MenuItem sx={{ p: 0 }} onClick={() => handleDropdownClose('/pages/faq')}>
-          <Box sx={styles}>
-            <Icon icon='bx:help-circle' />
-            FAQ
-          </Box>
-        </MenuItem>
-        <Divider />
+        <Divider sx={{ my: (theme) => `${theme.spacing(2)} !important` }} />
         <MenuItem
           onClick={handleLogout}
           sx={{
@@ -176,8 +172,8 @@ const UserDropdown = (props: Props) => {
             '& svg': { mr: 2, fontSize: '1.25rem', color: 'text.secondary' }
           }}
         >
-          <Icon icon='bx:power-off' />
-          Sign Out
+          <Icon icon="bx:power-off" />
+          로그아웃
         </MenuItem>
       </Menu>
     </Fragment>
