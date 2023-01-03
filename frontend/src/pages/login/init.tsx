@@ -33,17 +33,20 @@ import BlankLayout from 'src/@core/layouts/BlankLayout'
 
 // ** Demo Imports
 import AuthIllustrationWrapper from 'src/views/pages/auth/AuthIllustrationWrapper'
-// import { checkAdmin, getAdmin, login } from 'src/apis/admin'
+// import { checkAdmin, createAdmin } from 'src/apis/admin'
 import { useRouter } from 'next/router'
+
+// ** Third Party Components
 import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
-import { useAuth } from 'src/hooks/useAuth'
 import FormHeader from '../components/form-header'
 
 interface State {
   email: string
   password: string
   showPassword: boolean
+  confirmPassword: string
+  showConfirmPassword: boolean
 }
 
 const LoginV1 = () => {
@@ -51,11 +54,12 @@ const LoginV1 = () => {
   const [values, setValues] = useState<State>({
     email: '',
     password: '',
-    showPassword: false
+    showPassword: false,
+    confirmPassword: '',
+    showConfirmPassword: false
   })
 
   // ** Hook
-  const { setUser } = useAuth()
   const theme = useTheme()
   const router = useRouter()
   const { t } = useTranslation()
@@ -72,32 +76,28 @@ const LoginV1 = () => {
   }
 
   const handleClickAction = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    try {
-      // const params = {
-      //   account: values.email,
-      //   password: values.password
-      // }
-      // const { data: res } = await login(params)
-      // if (res.statusCode === 200) {
-      //   const { data: res } = await getAdmin()
-      //   if (res.statusCode === 200) {
-      //     setUser({ role: 'admin', ...res.data })
-      //     const returnUrl = router.query.returnUrl
-      //     const redirectURL = returnUrl && returnUrl !== '/' ? returnUrl : '/'
-      //     router.replace(redirectURL as string)
-      //   }
-      // }
-    } catch (err: any) {
-      toast.error(t(err.response.data.message))
-    }
+    // e.preventDefault()
+    // const params = {
+    //   account: values.email,
+    //   password: values.password,
+    //   confirmPassword: values.confirmPassword
+    // }
+    // try {
+    //   const { data: res } = await createAdmin(params)
+    //   if (res.statusCode === 200) {
+    //     toast.success(t(res.message))
+    //     router.push('/login')
+    //   }
+    // } catch (err: any) {
+    //   toast.error(t(err.response.data.message))
+    // }
   }
 
   const initData = async () => {
     // const { data: res } = await checkAdmin()
     // if (res.statusCode === 200) {
-    //   if (res.data) {
-    //     router.push('/login/init')
+    //   if (!res.data) {
+    //     router.push('/login')
     //   }
     // }
   }
@@ -150,6 +150,35 @@ const LoginV1 = () => {
                   }
                 />
               </FormControl>
+              <FormControl fullWidth sx={{ mb: 2, mt: 2 }}>
+                <InputLabel htmlFor="auth-login-password">
+                  비밀번호 확인
+                </InputLabel>
+                <OutlinedInput
+                  label="Password"
+                  value={values.confirmPassword}
+                  id="auth-login-password"
+                  onChange={handleChange('confirmPassword')}
+                  type={values.showConfirmPassword ? 'text' : 'password'}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        edge="end"
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                        aria-label="toggle password visibility"
+                      >
+                        <Icon
+                          fontSize={20}
+                          icon={
+                            values.showConfirmPassword ? 'bx:show' : 'bx:hide'
+                          }
+                        />
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                />
+              </FormControl>
               <Button
                 fullWidth
                 size="large"
@@ -157,7 +186,7 @@ const LoginV1 = () => {
                 variant="contained"
                 sx={{ mb: 4, mt: 5 }}
               >
-                로그인
+                관리자 계정 생성
               </Button>
             </form>
           </CardContent>
