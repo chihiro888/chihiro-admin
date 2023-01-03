@@ -18,6 +18,14 @@ const navigation = (): VerticalNavItemsType => {
       title: '관리자 관리',
       icon: 'material-symbols:person',
       path: '/admin'
+    },
+    {
+      sectionTitle: '설정'
+    },
+    {
+      title: '설정',
+      icon: 'mdi:gear',
+      path: '/settings'
     }
   ]
 }

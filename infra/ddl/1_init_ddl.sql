@@ -26,3 +26,16 @@ CREATE TABLE IF NOT EXISTS _login_history (
   `updated_at` DATETIME DEFAULT NULL COMMENT 'update time', -- not used
   `deleted_at` DATETIME DEFAULT NULL COMMENT 'delete time' -- not used
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT="login history";
+
+/*
+    global table
+*/
+DROP TABLE IF EXISTS _global;
+CREATE TABLE IF NOT EXISTS _global (
+  `key` VARCHAR(255) PRIMARY KEY NOT NULL COMMENT 'key',
+  `value` VARCHAR(255) NOT NULL COMMENT 'value',
+  `memo` VARCHAR(255) COMMENT 'memo',
+  `created_at` DATETIME DEFAULT now() COMMENT 'create time',
+  `updated_at` DATETIME DEFAULT NULL COMMENT 'update time',
+  `deleted_at` DATETIME DEFAULT NULL COMMENT 'delete time' -- pysical delete
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT="global";
