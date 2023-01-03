@@ -11,6 +11,14 @@ export const checkAdmin = () => {
   return response
 }
 
+// ANCHOR get admin list
+export const getAdminList = (params: object) => {
+  const url = `${rootUrl}getAdminList`
+  const response = axios.get<CommonResponse>(url, { params })
+
+  return response
+}
+
 // ANCHOR get admin
 export const getAdmin = () => {
   const url = `${rootUrl}getAdmin`

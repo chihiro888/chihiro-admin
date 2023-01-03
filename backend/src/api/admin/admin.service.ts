@@ -2,11 +2,12 @@ import { Inject, Injectable } from '@nestjs/common'
 import DATE from 'src/common/constants/date'
 import { createPassword, isMatch } from 'src/common/util/auth'
 import { Admin } from 'src/entities/admin.entity'
-import { DataSource } from 'typeorm'
+import { DataSource, IsNull } from 'typeorm'
 import { CreateAdminDto } from './dto/create-admin.dto'
 import { LoginDto } from './dto/login.dto'
 import { UpdatePasswordDto } from './dto/update-password.dto'
 import moment from 'moment'
+import { GetAdminListDto } from './dto/get-admin-list.dto'
 @Injectable()
 export class AdminService {
   constructor(
@@ -21,6 +22,50 @@ export class AdminService {
       return true
     } else {
       return false
+    }
+  }
+
+  // ANCHOR get admin list
+  async getAdminList(dto: GetAdminListDto) {
+    const limit = 12
+    const offset = (dto.page - 1) * limit
+
+    // count
+    const count = await this.datasource
+      .getRepository(Admin)
+      .createQueryBuilder('a')
+      .select(['count(1) as count'])
+      .where('1=1')
+      .getRawOne()
+
+    // data
+    const data = await this.datasource
+      .getRepository(Admin)
+      .createQueryBuilder('a')
+      .select([
+        'id as id',
+        'account as account',
+        'password as password',
+        'username as username',
+        `case 
+          when is_system_admin = 1 and is_admin = 1
+          then 1
+          else 0
+        end as level`,
+        'is_system_admin as isSystemAdmin',
+        'is_admin as isAdmin',
+        'created_at as createdAt',
+        'updated_at as updatedAt'
+      ])
+      .where('1=1')
+      .orderBy('a.created_at', 'DESC')
+      .limit(limit)
+      .offset(offset)
+      .getRawMany()
+
+    return {
+      count: Number(count.count),
+      data
     }
   }
 

@@ -20,6 +20,7 @@ import { Response } from 'express'
 import { UpdatePasswordDto } from './dto/update-password.dto'
 import { AuthGuard } from 'src/common/guard/auth.guard'
 import SWAGGER from 'src/common/constants/swagger'
+import { GetAdminListDto } from './dto/get-admin-list.dto'
 
 // ANCHOR admin controller
 @ApiTags('admin')
@@ -47,6 +48,37 @@ export class AdminController {
       statusCode: HttpStatus.OK,
       message: '',
       data: data
+    })
+  }
+
+  // ANCHOR get admin list
+  @UseGuards(AuthGuard)
+  @Get('getAdminList')
+  @ApiOperation({
+    summary: '관리자 리스트 조회',
+    description: '세션이 유효한 경우 관리자 리스트를 반환합니다.'
+  })
+  @ApiResponse({
+    status: HttpStatus.OK,
+    description: '관리자 리스트 조회가 성공적인 경우 반환'
+  })
+  @ApiResponse({
+    status: HttpStatus.UNAUTHORIZED,
+    description: SWAGGER.UNAUTHORIZED
+  })
+  async getAdminList(
+    @Res() res: Response,
+    @Session() session: any,
+    @Query() dto: GetAdminListDto
+  ) {
+    // get admin
+    const adminList = await this.adminService.getAdminList(dto)
+
+    // return 200 response
+    res.status(HttpStatus.OK).json({
+      statusCode: HttpStatus.OK,
+      message: '',
+      data: adminList
     })
   }
 
