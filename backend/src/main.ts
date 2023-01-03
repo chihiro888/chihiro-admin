@@ -27,7 +27,7 @@ async function bootstrap() {
 
   // swagger config
   const config = new DocumentBuilder()
-    .setTitle('Chihiro Develop Kit API')
+    .setTitle('Chihiro Admin API')
     .setDescription('Documentation is quite important. lol')
     .setVersion('1.0')
     .build()
@@ -47,7 +47,8 @@ async function bootstrap() {
     host: database['host'],
     user: database['username'],
     password: database['password'],
-    database: database['database']
+    database: database['database'],
+    port: database['port']
   }
   const connection = mysql.createConnection(options)
   const sessionStore = new MySQLStore({}, connection)

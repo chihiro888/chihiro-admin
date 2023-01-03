@@ -1,22 +1,11 @@
-# Chihiro Develop Kit
+# Chihiro Admin
 
-- You can easily create an administrator dashboard by providing a large number of samples.
-- Requires node.js 16.16.0 version.
-- Use docker when building a database in a local environment.
+- Node.js 16.16.0 을 요구합니다.
+- Docker Engine 1.13.0+ 을 요구합니다.
 
-## get started
+## 시작하기
 
-- Proceed in the order of "database -> backend -> frontend"
-
-### database
-
-```bash
-cd infra
-```
-
-```bash
-docker-compose up
-```
+### 데이터베이스 접속정보
 
 | key           | value     |
 | ------------- | --------- |
@@ -28,20 +17,7 @@ docker-compose up
 | user          | docker    |
 | password      | docker    |
 
-:warning: issue : mysql 8 password protocol
-
-- Run the queries below sequentially.
-- caching_sha2_password -> mysql_native_password
-
-```sql
-select host, user, plugin, authentication_string from mysql.user;
-
-ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'root';
-ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root';
-ALTER USER 'docker'@'%' IDENTIFIED WITH mysql_native_password BY 'docker';
-```
-
-### backend
+### 백엔드
 
 ```bash
 cd backend
@@ -51,11 +27,10 @@ cd backend
 yarn install
 ```
 
-```bash
-yarn load:yaml
-```
+Run And Debug -> "debug NestJS" 클릭
 
-- Run the commands below according to the situation.
+- 환경변수를 변경하여 실행하고싶을 경우 ".vscode/launch.json" 을 수정해주세요. (default: local)
+- 명령어는 아래를 참고해주세요.
 
 ```bash
 # if local in MAC
@@ -81,7 +56,7 @@ yarn start:prod_win
 
 http://localhost:9000/api
 
-### frontend
+### 프론트엔드
 
 ```bash
 cd frontend
@@ -92,34 +67,14 @@ yarn install
 ```
 
 ```bash
-yarn start
+yarn dev
 ```
 
 http://localhost:3000/
 
-## Demo
-
-### backend
-
-<img src="/docs/image/backend_init.png" width="350"/>
-
-### frontend
-
-<img src="/docs/image/frontend_init.jpeg" width="350"/>
-
 ## Document
 
-English
-
-- in ready
-
-Korean
-
-- https://github.com/chihiro888/chihiro-develop-kit/tree/develop/docs/ko
-
-Japanese
-
-- in ready
+- 준비중입니다.
 
 ## License
 

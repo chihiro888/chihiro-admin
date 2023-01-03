@@ -18,12 +18,20 @@ module.exports = withTM({
   experimental: {
     esmExternals: false
   },
-  webpack: config => {
+  webpack: (config) => {
     config.resolve.alias = {
       ...config.resolve.alias,
       apexcharts: path.resolve(__dirname, './node_modules/apexcharts-clevision')
     }
 
     return config
+  },
+  async rewrites() {
+    return [
+      {
+        source: '/api/:path*',
+        destination: 'http://localhost:9000/api/:path*'
+      }
+    ]
   }
 })
