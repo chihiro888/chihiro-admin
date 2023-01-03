@@ -1,10 +1,6 @@
-// common message
-const COMMON_MSG = {
-  OK: 'OK',
-  BAD_REQUEST: 'BAD_REQUEST',
-  UNAUTHORIZED: 'UNAUTHORIZED',
-  FORBIDDEN: 'FORBIDDEN',
-  INTERNAL_SERVER_ERROR: 'INTERNAL_SERVER_ERROR'
+const SWAGGER = {
+  BAD_REQUEST: '파라미터가 유효하지 않는 경우 반환',
+  UNAUTHORIZED: '세션이 유효하지 않은 경우 반환'
 }
 
-export default COMMON_MSG
+export default SWAGGER

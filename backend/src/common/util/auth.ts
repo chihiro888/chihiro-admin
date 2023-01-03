@@ -1,12 +1,4 @@
 import bcrypt from 'bcrypt'
-import { User } from 'src/entities/user.entity'
-
-// ANCHOR login
-export const login = async (session: any, user: User) => {
-  session.userId = user.id
-  session.isAdmin = user.isAdmin
-  session.isDeveloper = user.isDeveloper
-}
 
 // ANCHOR create password
 export const createPassword = async (password: string): Promise<string> => {
@@ -22,4 +14,17 @@ export const isMatch = async (
 ): Promise<boolean> => {
   const isMatch = await bcrypt.compare(password, hash)
   return isMatch
+}
+
+// ANCHOR bytes formatting
+export const formatBytes = (bytes: number, decimals = 2) => {
+  if (bytes <= 0) return '0Bytes'
+
+  const k = 1024
+  const dm = decimals < 0 ? 0 : decimals
+  const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
+
+  const i = Math.floor(Math.log(bytes) / Math.log(k))
+
+  return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))}${sizes[i]}`
 }

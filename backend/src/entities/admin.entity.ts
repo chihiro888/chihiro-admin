@@ -1,8 +1,8 @@
 import { Column, Entity, Index, PrimaryGeneratedColumn } from 'typeorm'
 
 @Index('account', ['account'], { unique: true })
-@Entity('_user', { schema: 'develop' })
-export class User {
+@Entity('_admin', { schema: 'develop' })
+export class Admin {
   @PrimaryGeneratedColumn({ type: 'int', name: 'id', comment: 'id' })
   id: number
 
@@ -21,6 +21,14 @@ export class User {
   username: string
 
   @Column('int', {
+    name: 'is_system_admin',
+    nullable: true,
+    comment: 'is system admin',
+    default: () => "'0'"
+  })
+  isSystemAdmin: number | null
+
+  @Column('int', {
     name: 'is_admin',
     nullable: true,
     comment: 'is admin',
@@ -28,47 +36,25 @@ export class User {
   })
   isAdmin: number | null
 
-  @Column('int', {
-    name: 'is_developer',
-    nullable: true,
-    comment: 'is developer',
-    default: () => "'0'"
-  })
-  isDeveloper: number | null
-
-  @Column('datetime', {
-    name: 'sign_in_at',
-    nullable: true,
-    comment: 'sign in time'
-  })
-  signInAt: Date | null
-
-  @Column('datetime', {
-    name: 'sign_out_at',
-    nullable: true,
-    comment: 'sign out time'
-  })
-  signOutAt: Date | null
-
   @Column('datetime', {
     name: 'created_at',
     nullable: true,
     comment: 'create time',
     default: () => 'CURRENT_TIMESTAMP'
   })
-  createdAt: Date | null
+  createdAt: String | Date | null
 
   @Column('datetime', {
     name: 'updated_at',
     nullable: true,
     comment: 'update time'
   })
-  updatedAt: Date | null
+  updatedAt: String | Date | null
 
   @Column('datetime', {
     name: 'deleted_at',
     nullable: true,
     comment: 'delete time'
   })
-  deletedAt: Date | null
+  deletedAt: String | Date | null
 }

@@ -1,8 +1,7 @@
 import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
-import { AuthModule } from './api/auth/auth.module'
+import { AdminModule } from './api/admin/admin.module'
 import { DevelopModule } from './api/develop/develop.module'
-import { UserModule } from './api/user/user.module'
 import { GlobalConfigModule } from './common/global/config.module'
 import { GlobalDatabaseModule } from './common/global/database.module'
 import { GlobalHttpModule } from './common/global/http.module'
@@ -20,9 +19,8 @@ import configuration from './configuration/configuration'
     GlobalHttpModule,
 
     // import app module
-    AuthModule,
-    UserModule,
-    DevelopModule
+    DevelopModule,
+    AdminModule
   ]
 })
 export class AppModule {}

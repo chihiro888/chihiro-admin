@@ -11,19 +11,20 @@ import {
 } from '@nestjs/common'
 import { ApiTags } from '@nestjs/swagger'
 import { Response } from 'express'
+import { DevelopService } from './develop.service'
 import { MethodDto } from './dto/method.dto'
 
-// ANCHOR auth controller
+// ANCHOR develop controller
 @ApiTags('develop')
 @Controller('api/develop')
 export class DevelopController {
-  constructor() {
-    //
-  }
+  constructor(private developService: DevelopService) {}
 
   // ANCHOR GET Method API
   @Get('getMethod')
   async getMethod(@Res() res: Response, @Query() dto: MethodDto) {
+    // const data = await this.developService.throwTest()
+
     // return 200 response
     res.status(HttpStatus.OK).json({
       statusCode: HttpStatus.OK,
