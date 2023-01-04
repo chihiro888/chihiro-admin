@@ -20,9 +20,17 @@ const AddModal = ({
   addForm,
   setAddForm
 }) => {
+  // ** State
   const [openConfirmModal, setOpenConfirmModal] = useState<boolean>(false)
+
+  // ** Handler
+  // 확인 모달 열기
   const handleClickOpenConfirmModal = () => setOpenConfirmModal(true)
+
+  // 확인 모달 닫기
   const handleClickCloseConfirmModal = () => setOpenConfirmModal(false)
+
+  // 폼 데이터 변경
   const handleChangeForm = (key: string, value: string) => {
     const nextState = produce(addForm, (draftState) => {
       draftState.map((item) => {

@@ -5,39 +5,54 @@ import DialogContent from '@mui/material/DialogContent'
 import DialogContentText from '@mui/material/DialogContentText'
 import DialogActions from '@mui/material/DialogActions'
 import Button from '@mui/material/Button'
+import EditConfirmModal from './edit-confirm-modal'
 
-const EditModal = () => {
-  const [open, setOpen] = useState<boolean>(false)
-  const handleClickOpen = () => setOpen(true)
-  const handleCloseClose = () => setOpen(false)
+const EditModal = ({ openEditModal, setOpenEditModal }) => {
+  const [openConfirmModal, setOpenConfirmModal] = useState<boolean>(false)
+  const handleClickOpenConfirmModal = () => setOpenConfirmModal(true)
+  const handleClickCloseConfirmModal = () => setOpenConfirmModal(false)
 
   return (
     <>
       <Dialog
-        open={open}
-        onClose={handleCloseClose}
+        open={openEditModal}
+        onClose={() => {
+          setOpenEditModal(false)
+        }}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">저장</DialogTitle>
+        <DialogTitle id="alert-dialog-title">수정</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            현재 내용으로 저장하시겠습니까?
+            TODO
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button
             variant="outlined"
             color="secondary"
-            onClick={handleCloseClose}
+            onClick={() => {
+              setOpenEditModal(false)
+            }}
           >
             취소
           </Button>
-          <Button variant="contained" onClick={handleCloseClose}>
-            저장
+          <Button
+            variant="contained"
+            onClick={() => {
+              handleClickOpenConfirmModal()
+            }}
+          >
+            수정
           </Button>
         </DialogActions>
       </Dialog>
+
+      <EditConfirmModal
+        openConfirmModal={openConfirmModal}
+        handleClickCloseConfirmModal={handleClickCloseConfirmModal}
+      />
     </>
   )
 }

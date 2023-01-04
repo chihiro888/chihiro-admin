@@ -1,7 +1,7 @@
 import produce from 'immer'
 import moment from 'moment'
 import { useState } from 'react'
-import { useTheme } from '@mui/material'
+import { getPaginationCount } from 'src/utils'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import CardActions from '@mui/material/CardActions'
@@ -22,18 +22,24 @@ import DatePickerWrapper from 'src/@core/styles/libs/react-datepicker'
 import DatePicker from 'react-datepicker'
 import CustomInput from 'src/components/pickers-compoent'
 import DATE from 'src/common/constants/date'
+import toast from 'react-hot-toast'
 
-const SearchContainer = ({ searchForm, setSearchForm }) => {
+const SearchContainer = ({
+  searchForm,
+  setSearchForm,
+  setPagination,
+  listAPI
+}) => {
   // ** State
   const [collapse, setCollapse] = useState<boolean>(false)
-  const theme = useTheme()
-  const { direction } = theme
-  const [date, setDate] = useState(new Date())
 
   // ** Handler
+  // 검색 필터 토글
   const handleClickCollapse = () => {
     setCollapse(!collapse)
   }
+
+  // 검색 폼 데이터 변경
   const handleChangeForm = (key: string, value: string) => {
     const nextState = produce(searchForm, (draftState) => {
       draftState.map((item) => {
@@ -44,6 +50,8 @@ const SearchContainer = ({ searchForm, setSearchForm }) => {
     })
     setSearchForm(nextState)
   }
+
+  // 검색 폼 데이터 초기화
   const handleInitForm = () => {
     const nextState = produce(searchForm, (draftState) => {
       draftState.map((item) => {
@@ -51,6 +59,25 @@ const SearchContainer = ({ searchForm, setSearchForm }) => {
       })
     })
     setSearchForm(nextState)
+    toast.success('검색 필터가 초기화 되었습니다.')
+  }
+
+  // 검색
+  const handleClickSearch = async () => {
+    const params = {
+      // TODO 검색 폼 데이터
+      page: 1
+    }
+    const { data: res } = await listAPI(params)
+    if (res.statusCode === 200) {
+      const data = res.data
+      setPagination({
+        activePage: 1,
+        count: getPaginationCount(data.count),
+        data: data.data
+      })
+      toast.success('검색 필터가 적용되었습니다.')
+    }
   }
 
   return (
@@ -147,11 +174,6 @@ const SearchContainer = ({ searchForm, setSearchForm }) => {
                                       : null
                                   }
                                   id="basic-input"
-                                  popperPlacement={
-                                    direction === 'ltr'
-                                      ? 'bottom-start'
-                                      : 'bottom-end'
-                                  }
                                   onChange={(date: Date) => {
                                     handleChangeForm(
                                       item.key,
@@ -184,7 +206,9 @@ const SearchContainer = ({ searchForm, setSearchForm }) => {
                   >
                     초기화
                   </Button>
-                  <Button variant="contained">검색</Button>
+                  <Button variant="contained" onClick={handleClickSearch}>
+                    검색
+                  </Button>
                 </div>
               </Stack>
             </CardContent>

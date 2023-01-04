@@ -1,5 +1,4 @@
 import { useEffect } from 'react'
-import { getAdminList } from 'src/apis/admin'
 import { getPaginationCount } from 'src/utils'
 import CustomLottie from 'src/components/custom-lottie'
 import Stack from '@mui/material/Stack'
@@ -13,12 +12,19 @@ import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import Pagination from '@mui/material/Pagination'
 
-const ListContainer = ({ tableHeader, content, pagination, setPagination }) => {
+const ListContainer = ({
+  children,
+  tableHeader,
+  pagination,
+  setPagination,
+  listAPI
+}) => {
   const handleChangePage = async (e: any, value: number) => {
     const params = {
+      // TODO 검색 폼 데이터
       page: value
     }
-    const { data: res } = await getAdminList(params)
+    const { data: res } = await listAPI(params)
     if (res.statusCode === 200) {
       const data = res.data
       setPagination({
@@ -33,7 +39,7 @@ const ListContainer = ({ tableHeader, content, pagination, setPagination }) => {
     const params = {
       page: 1
     }
-    const { data: res } = await getAdminList(params)
+    const { data: res } = await listAPI(params)
     if (res.statusCode === 200) {
       const data = res.data
       setPagination({
@@ -72,7 +78,7 @@ const ListContainer = ({ tableHeader, content, pagination, setPagination }) => {
                         })}
                       </TableRow>
                     </TableHead>
-                    {content}
+                    {children}
                   </Table>
                 </TableContainer>
               </CardContent>

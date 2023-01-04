@@ -4,7 +4,7 @@ import Stack from '@mui/material/Stack'
 import Button from '@mui/material/Button'
 import AddModal from 'src/components/core/add-modal'
 
-const AddContainer = ({ addForm, setAddForm }) => {
+const AddContainer = ({ addForm, setAddForm, createAPI }) => {
   const [openModal, setOpenModal] = useState<boolean>(false)
   const handleClickOpenModal = () => {
     const nextState = produce(addForm, (draftState) => {

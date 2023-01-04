@@ -7,6 +7,13 @@ import SearchContainer from 'src/components/core/search-container'
 import ListContainer from 'src/components/core/list-container'
 import Content from 'src/components/admin/content'
 
+// ** API
+import { getAdminList as listAPI } from 'src/apis/admin'
+import { getAdminList as detailAPI } from 'src/apis/admin'
+import { getAdminList as createAPI } from 'src/apis/admin'
+import { getAdminList as updateAPI } from 'src/apis/admin'
+import { getAdminList as deleteAPI } from 'src/apis/admin'
+
 const Admin = () => {
   // NOTE 헤더 설정
   const header = {
@@ -121,15 +128,38 @@ const Admin = () => {
 
   return (
     <>
+      {/* 헤더 컨테이너 */}
       <HeaderContainer header={header} />
-      <AddContainer addForm={addForm} setAddForm={setAddForm} />
-      <SearchContainer searchForm={searchForm} setSearchForm={setSearchForm} />
+
+      {/* 추가 컨테이너 */}
+      <AddContainer
+        addForm={addForm}
+        setAddForm={setAddForm}
+        createAPI={createAPI}
+      />
+
+      {/* 검색 컨테이너 */}
+      <SearchContainer
+        searchForm={searchForm}
+        setSearchForm={setSearchForm}
+        setPagination={setPagination}
+        listAPI={listAPI}
+      />
+
+      {/* 리스트 컨테이너 */}
       <ListContainer
         tableHeader={tableHeader}
-        content={<Content pagination={pagination} />}
         pagination={pagination}
         setPagination={setPagination}
-      />
+        listAPI={listAPI}
+      >
+        <Content
+          pagination={pagination}
+          detailAPI={detailAPI}
+          updateAPI={updateAPI}
+          deleteAPI={deleteAPI}
+        />
+      </ListContainer>
     </>
   )
 }

@@ -9,7 +9,7 @@ import Snackbar from '@mui/material/Snackbar'
 import ActionContainer from 'src/components/core/action-container'
 import DATE from 'src/common/constants/date'
 
-const Content = ({ pagination }) => {
+const Content = ({ pagination, detailAPI, updateAPI, deleteAPI }) => {
   const [state, setState] = useState({
     openSnack: false,
     snackContent: ''
@@ -69,7 +69,7 @@ const Content = ({ pagination }) => {
                 : '-'}
             </TableCell>
             <TableCell>
-              <ActionContainer id={''} />
+              <ActionContainer id={row.id} />
             </TableCell>
           </TableRow>
         ))}

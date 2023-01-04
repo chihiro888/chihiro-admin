@@ -34,7 +34,7 @@ import {
   getGlobalList,
   saveGlobal
 } from 'src/apis/global'
-import CustomCloseButton from '../components/custom-close-button'
+import CustomCloseButton from '../../components/custom-close-button'
 
 const Settings = () => {
   // ** Hooks
