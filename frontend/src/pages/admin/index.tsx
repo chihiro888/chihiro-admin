@@ -4,8 +4,11 @@ import {
   CardMedia,
   Grid,
   Pagination,
-  Stack
+  Snackbar,
+  Stack,
+  TableContainer
 } from '@mui/material'
+import Paper from '@mui/material/Paper'
 import { useEffect, useState, Fragment } from 'react'
 import PageHeader from 'src/@core/components/page-header'
 import toast from 'react-hot-toast'
@@ -42,6 +45,23 @@ const Admin = () => {
   const [open, setOpen] = useState<boolean>(false)
   const [detail, setDetail] = useState<any>()
 
+  const [state, setState] = useState({
+    openSnack: false,
+    content: ''
+  })
+  const { openSnack, content } = state
+
+  const handleClickSnack = (password: string) => {
+    setState({
+      openSnack: true,
+      content: password
+    })
+  }
+
+  const handleCloseSnack = () => {
+    setState({ ...state, openSnack: false })
+  }
+
   // ** Handler
   const handleClickOpen = (id: number) => {
     const item = pagination.data.filter((item: any) => {
@@ -55,20 +75,6 @@ const Admin = () => {
     }
   }
   const handleClose = () => setOpen(false)
-
-  const handleClickCopy = (value: number) => {
-    if (navigator.clipboard) {
-      // (IE는 사용 못하고, 크롬은 66버전 이상일때 사용 가능합니다.)
-      navigator.clipboard
-        .writeText(pagination.data[value]?.url)
-        .then(() => {
-          toast.success('클립보드에 복사되었습니다.')
-        })
-        .catch(() => {
-          toast.error('클립보드 복사 중 에러가 발생하였습니다.')
-        })
-    }
-  }
 
   const handleChangePage = async (e: any, value: number) => {
     const params = {
@@ -122,58 +128,67 @@ const Admin = () => {
           <Stack sx={{ mt: 5 }}>
             <Card>
               <CardContent>
-                <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                  <TableHead>
-                    <TableRow>
-                      <TableCell>아이디</TableCell>
-                      <TableCell>계정</TableCell>
-                      <TableCell>비밀번호</TableCell>
-                      <TableCell>사용자명</TableCell>
-                      <TableCell>권한</TableCell>
-                      <TableCell>생성일자</TableCell>
-                      <TableCell>수정일자</TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {pagination.data.map((row: any, idx: number) => (
-                      <TableRow key={idx}>
-                        <TableCell>{row.id}</TableCell>
-                        <TableCell>{row.account}</TableCell>
-                        <TableCell>{row.password}</TableCell>
-                        <TableCell>{row.username}</TableCell>
-                        <TableCell>
-                          {Number(row.level) === 1 ? (
-                            <>
-                              <Chip
-                                label="시스템관리자"
-                                color="primary"
-                                variant="outlined"
-                              />
-                            </>
-                          ) : (
-                            <>
-                              <Chip
-                                label="관리자"
-                                color="secondary"
-                                variant="outlined"
-                              />
-                            </>
-                          )}
-                        </TableCell>
-                        <TableCell>
-                          {row?.createdAt
-                            ? moment(row?.createdAt).format(DATE.DATETIME)
-                            : '-'}
-                        </TableCell>
-                        <TableCell>
-                          {row?.updatedAt
-                            ? moment(row?.updatedAt).format(DATE.DATETIME)
-                            : '-'}
-                        </TableCell>
+                <TableContainer component={Paper}>
+                  <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                    <TableHead>
+                      <TableRow>
+                        <TableCell>아이디</TableCell>
+                        <TableCell>계정</TableCell>
+                        <TableCell>비밀번호</TableCell>
+                        <TableCell>사용자명</TableCell>
+                        <TableCell>권한</TableCell>
+                        <TableCell>생성일자</TableCell>
+                        <TableCell>수정일자</TableCell>
                       </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
+                    </TableHead>
+                    <TableBody>
+                      {pagination.data.map((row: any, idx: number) => (
+                        <TableRow key={idx}>
+                          <TableCell>{row.id}</TableCell>
+                          <TableCell>{row.account}</TableCell>
+                          <TableCell>
+                            <Button
+                              variant="text"
+                              onClick={() => handleClickSnack(row.password)}
+                            >
+                              비밀번호
+                            </Button>
+                          </TableCell>
+                          <TableCell>{row.username}</TableCell>
+                          <TableCell>
+                            {Number(row.level) === 1 ? (
+                              <>
+                                <Chip
+                                  label="시스템관리자"
+                                  color="primary"
+                                  variant="outlined"
+                                />
+                              </>
+                            ) : (
+                              <>
+                                <Chip
+                                  label="관리자"
+                                  color="secondary"
+                                  variant="outlined"
+                                />
+                              </>
+                            )}
+                          </TableCell>
+                          <TableCell>
+                            {row?.createdAt
+                              ? moment(row?.createdAt).format(DATE.DATETIME)
+                              : '-'}
+                          </TableCell>
+                          <TableCell>
+                            {row?.updatedAt
+                              ? moment(row?.updatedAt).format(DATE.DATETIME)
+                              : '-'}
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </TableContainer>
               </CardContent>
             </Card>
           </Stack>
@@ -187,6 +202,14 @@ const Admin = () => {
               onChange={handleChangePage}
             />
           </Stack>
+
+          <Snackbar
+            open={openSnack}
+            onClose={handleCloseSnack}
+            message={content}
+            autoHideDuration={3000}
+            anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+          />
         </>
       )}
     </>
