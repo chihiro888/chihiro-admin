@@ -38,8 +38,8 @@ import { useRouter } from 'next/router'
 import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
 import { useAuth } from 'src/hooks/useAuth'
-import FormHeader from '../components/form-header'
 import { checkAdmin, getAdmin, login } from 'src/apis/admin'
+import FormHeader from 'src/components/form-header'
 
 interface State {
   email: string

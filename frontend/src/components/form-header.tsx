@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography'
 import themeConfig from 'src/configs/themeConfig'
 
 // ** Custom
-import Logo from 'src/pages/components/logo'
+import Logo from './logo'
 
 const FormHeader = () => {
   return (

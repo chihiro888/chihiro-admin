@@ -39,8 +39,8 @@ import { useRouter } from 'next/router'
 // ** Third Party Components
 import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
-import FormHeader from '../components/form-header'
 import { checkAdmin, createAdmin } from 'src/apis/admin'
+import FormHeader from 'src/components/form-header'
 
 interface State {
   email: string
