@@ -7,7 +7,7 @@ import DeleteConfirmModal from './delete-confirm-modal'
 import EditModal from './edit-modal'
 import DetailModal from './\bdetail-modal'
 
-const ActionContainer = ({ id }) => {
+const ActionContainer = ({ id, detailForm, editForm }) => {
   // ** State
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const rowOptionsOpen = Boolean(anchorEl)
@@ -54,12 +54,11 @@ const ActionContainer = ({ id }) => {
         PaperProps={{ style: { minWidth: '8rem' } }}
       >
         <MenuItem
-          component="a"
-          sx={{ '& svg': { mr: 2 } }}
           onClick={() => {
             setOpenDetailModal(true)
             handleRowOptionsClose()
           }}
+          sx={{ '& svg': { mr: 2 } }}
         >
           <Icon icon="bx:show" fontSize={20} />
           상세
@@ -90,6 +89,7 @@ const ActionContainer = ({ id }) => {
       <DetailModal
         openDetailModal={openDetailModal}
         setOpenDetailModal={setOpenDetailModal}
+        detailForm={detailForm}
       />
 
       {/* 수정 모달 */}

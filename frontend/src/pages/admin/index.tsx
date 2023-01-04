@@ -36,6 +36,12 @@ const Admin = () => {
       value: ''
     },
     {
+      type: 'password',
+      label: '비밀번호 확인',
+      key: 'confirmPassword',
+      value: ''
+    },
+    {
       type: 'text',
       label: '사용자명',
       key: 'username',
@@ -72,6 +78,110 @@ const Admin = () => {
           value: 0
         }
       ]
+    }
+  ])
+
+  // NOTE 수정 폼 설정
+  const [editForm, setEditForm] = useState([
+    {
+      type: 'text',
+      label: '계정',
+      key: 'account',
+      value: ''
+    },
+    {
+      type: 'password',
+      label: '비밀번호',
+      key: 'password',
+      value: ''
+    },
+    {
+      type: 'text',
+      label: '사용자명',
+      key: 'username',
+      value: ''
+    },
+    {
+      type: 'select',
+      label: '시스템관리자',
+      key: 'isSystemAdmin',
+      value: '',
+      list: [
+        {
+          label: '활성화',
+          value: 1
+        },
+        {
+          label: '비활성화',
+          value: 0
+        }
+      ]
+    },
+    {
+      type: 'select',
+      label: '관리자',
+      key: 'isAdmin',
+      value: '',
+      list: [
+        {
+          label: '활성화',
+          value: 1
+        },
+        {
+          label: '비활성화',
+          value: 0
+        }
+      ]
+    }
+  ])
+
+  // NOTE 상세 폼 설정
+  const [detailForm, setDetailForm] = useState([
+    {
+      label: '아이디',
+      key: 'id',
+      value: ''
+    },
+    {
+      label: '계정',
+      key: 'account',
+      value: ''
+    },
+    {
+      label: '비밀번호',
+      key: 'password',
+      value: ''
+    },
+    {
+      label: '사용자명',
+      key: 'username',
+      value: ''
+    },
+    {
+      label: '시스템관리자',
+      key: 'isSystemAdmin',
+      value: ''
+    },
+    {
+      label: '관리자',
+      key: 'isAdmin',
+      value: ''
+    },
+    {
+      label: '생성일자',
+      key: 'createdAt',
+      value: ''
+    },
+    {
+      label: '수정일자',
+      key: 'updatedAt',
+      value: ''
+    },
+    ,
+    {
+      label: '삭제일자',
+      key: 'deletedAt',
+      value: ''
     }
   ])
 
@@ -155,6 +265,8 @@ const Admin = () => {
       >
         <Content
           pagination={pagination}
+          detailForm={detailForm}
+          editForm={editForm}
           detailAPI={detailAPI}
           updateAPI={updateAPI}
           deleteAPI={deleteAPI}

@@ -4,8 +4,10 @@ import DialogContent from '@mui/material/DialogContent'
 import DialogContentText from '@mui/material/DialogContentText'
 import CustomCloseButton from '../custom-close-button'
 import Icon from 'src/@core/components/icon'
+import Typography from '@mui/material/Typography'
+import Stack from '@mui/material/Stack'
 
-const DetailModal = ({ openDetailModal, setOpenDetailModal }) => {
+const DetailModal = ({ openDetailModal, setOpenDetailModal, detailForm }) => {
   return (
     <>
       <Dialog
@@ -26,9 +28,18 @@ const DetailModal = ({ openDetailModal, setOpenDetailModal }) => {
         >
           <Icon icon="bx:x" />
         </CustomCloseButton>
-        <DialogContent>
+        <DialogContent style={{ minWidth: '300px' }}>
           <DialogContentText id="alert-dialog-description">
-            TODO
+            {detailForm?.map((item, idx) => {
+              return (
+                <>
+                  <Stack key={idx} sx={{ mb: 3 }}>
+                    <Typography variant="body2">{item.label}</Typography>
+                    <Typography>{item.value ? item.value : '-'}</Typography>
+                  </Stack>
+                </>
+              )
+            })}
           </DialogContentText>
         </DialogContent>
       </Dialog>
