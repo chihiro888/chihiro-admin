@@ -81,60 +81,6 @@ const Admin = () => {
     }
   ])
 
-  // NOTE 수정 폼 설정
-  const [editForm, setEditForm] = useState([
-    {
-      type: 'text',
-      label: '계정',
-      key: 'account',
-      value: ''
-    },
-    {
-      type: 'password',
-      label: '비밀번호',
-      key: 'password',
-      value: ''
-    },
-    {
-      type: 'text',
-      label: '사용자명',
-      key: 'username',
-      value: ''
-    },
-    {
-      type: 'select',
-      label: '시스템관리자',
-      key: 'isSystemAdmin',
-      value: '',
-      list: [
-        {
-          label: '활성화',
-          value: 1
-        },
-        {
-          label: '비활성화',
-          value: 0
-        }
-      ]
-    },
-    {
-      type: 'select',
-      label: '관리자',
-      key: 'isAdmin',
-      value: '',
-      list: [
-        {
-          label: '활성화',
-          value: 1
-        },
-        {
-          label: '비활성화',
-          value: 0
-        }
-      ]
-    }
-  ])
-
   // NOTE 상세 폼 설정
   const [detailForm, setDetailForm] = useState([
     {
@@ -236,6 +182,90 @@ const Admin = () => {
     activePage: 1
   })
 
+  // NOTE 액션 정의
+  const action = [
+    {
+      icon: 'bx:pencil',
+      label: '비밀번호 변경',
+      content: [
+        {
+          type: 'password',
+          label: '기존 비밀번호',
+          key: 'oldPassword',
+          value: ''
+        },
+        {
+          type: 'password',
+          label: '새로운 비밀번호',
+          key: 'newPassword',
+          value: ''
+        },
+        {
+          type: 'password',
+          label: '새로운 비밀번호 확인',
+          key: 'newConfirmPassword',
+          value: ''
+        }
+      ],
+      load: () => detailAPI([]),
+      update: () => updateAPI([])
+    },
+    {
+      icon: 'bx:pencil',
+      label: '사용자명 변경',
+      content: [
+        {
+          type: 'text',
+          label: '사용자명',
+          key: 'username',
+          value: ''
+        }
+      ],
+      load: () => detailAPI([]),
+      update: () => updateAPI([])
+    },
+    {
+      icon: 'bx:pencil',
+      label: '권한 변경',
+      content: [
+        {
+          type: 'select',
+          label: '시스템관리자',
+          key: 'isSystemAdmin',
+          value: '',
+          list: [
+            {
+              label: '활성화',
+              value: 1
+            },
+            {
+              label: '비활성화',
+              value: 0
+            }
+          ]
+        },
+        {
+          type: 'select',
+          label: '관리자',
+          key: 'isAdmin',
+          value: '',
+          list: [
+            {
+              label: '활성화',
+              value: 1
+            },
+            {
+              label: '비활성화',
+              value: 0
+            }
+          ]
+        }
+      ],
+      load: () => detailAPI([]),
+      update: (s) => alert(s)
+    }
+  ]
+
   return (
     <>
       {/* 헤더 컨테이너 */}
@@ -266,10 +296,9 @@ const Admin = () => {
         <Content
           pagination={pagination}
           detailForm={detailForm}
-          editForm={editForm}
           detailAPI={detailAPI}
-          updateAPI={updateAPI}
           deleteAPI={deleteAPI}
+          action={action}
         />
       </ListContainer>
     </>

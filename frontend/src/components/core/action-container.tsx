@@ -7,10 +7,15 @@ import DeleteConfirmModal from './delete-confirm-modal'
 import EditModal from './edit-modal'
 import DetailModal from './\bdetail-modal'
 
-const ActionContainer = ({ id, detailForm, editForm }) => {
+const ActionContainer = ({ id, detailForm, action }) => {
   // ** State
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const rowOptionsOpen = Boolean(anchorEl)
+
+  const [title, setTitle] = useState('')
+  const [content, setContent] = useState([])
+  const [load, setLoad] = useState()
+  const [update, setUpdate] = useState()
 
   // 상세 모달
   const [openDetailModal, setOpenDetailModal] = useState<boolean>(false)
@@ -65,16 +70,6 @@ const ActionContainer = ({ id, detailForm, editForm }) => {
         </MenuItem>
         <MenuItem
           onClick={() => {
-            setOpenEditModal(true)
-            handleRowOptionsClose()
-          }}
-          sx={{ '& svg': { mr: 2 } }}
-        >
-          <Icon icon="bx:pencil" fontSize={20} />
-          수정
-        </MenuItem>
-        <MenuItem
-          onClick={() => {
             setOpenDeleteConfirmModal(true)
             handleRowOptionsClose()
           }}
@@ -83,6 +78,27 @@ const ActionContainer = ({ id, detailForm, editForm }) => {
           <Icon icon="bx:trash-alt" fontSize={20} />
           삭제
         </MenuItem>
+        {action.map((item, idx) => {
+          return (
+            <>
+              <MenuItem
+                key={idx}
+                onClick={() => {
+                  setTitle(item.label)
+                  setContent(item.content)
+                  setLoad(item.load)
+                  setUpdate((s) => item.update(s))
+                  setOpenEditModal(true)
+                  handleRowOptionsClose()
+                }}
+                sx={{ '& svg': { mr: 2 } }}
+              >
+                <Icon icon={item.icon} fontSize={20} />
+                {item.label}
+              </MenuItem>
+            </>
+          )
+        })}
       </Menu>
 
       {/* 상세 모달 */}
@@ -96,6 +112,10 @@ const ActionContainer = ({ id, detailForm, editForm }) => {
       <EditModal
         openEditModal={openEditModal}
         setOpenEditModal={setOpenEditModal}
+        title={title}
+        content={content}
+        setContent={setContent}
+        update={update}
       />
 
       {/* 삭제 확인 모달 */}
