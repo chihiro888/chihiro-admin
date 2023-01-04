@@ -137,7 +137,7 @@ const EditModal = ({
           >
             취소
           </Button>
-          <Button variant="contained" onClick={() => update('333')}>
+          <Button variant="contained" onClick={() => update()}>
             수정
           </Button>
         </DialogActions>

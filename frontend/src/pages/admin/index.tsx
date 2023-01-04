@@ -262,7 +262,7 @@ const Admin = () => {
         }
       ],
       load: () => detailAPI([]),
-      update: (s) => alert(s)
+      update: () => alert('333')
     }
   ]
 

@@ -87,7 +87,7 @@ const ActionContainer = ({ id, detailForm, action }) => {
                   setTitle(item.label)
                   setContent(item.content)
                   setLoad(item.load)
-                  setUpdate((s) => item.update(s))
+                  setUpdate(() => item.update)
                   setOpenEditModal(true)
                   handleRowOptionsClose()
                 }}
