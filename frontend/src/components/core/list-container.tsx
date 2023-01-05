@@ -25,21 +25,21 @@ const ListContainer = ({ children }) => {
 
   // ** Handler
   const handleChangePage = async (e: any, value: number) => {
-    // const params = {
-    //   // TODO 검색 폼 데이터
-    //   page: value
-    // }
-    // const { data: res } = await listAPI(params)
-    // if (res.statusCode === 200) {
-    //   const data = res.data
-    //   dispatch(
-    //     setPagination({
-    //       activePage: value,
-    //       count: getPaginationCount(data.count),
-    //       data: data.data
-    //     })
-    //   )
-    // }
+    const params = {
+      // TODO 검색 폼 데이터
+      page: value
+    }
+    const { data: res } = await listAPI(params)
+    if (res.statusCode === 200) {
+      const data = res.data
+      dispatch(
+        setPagination({
+          activePage: value,
+          count: getPaginationCount(data.count),
+          data: data.data
+        })
+      )
+    }
   }
 
   const initData = async () => {
