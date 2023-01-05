@@ -13,7 +13,10 @@ import {
   getAdminList,
   createAdmin,
   getAdminDetail,
-  deleteAdmin
+  deleteAdmin,
+  updateAdminPassword,
+  updateAdminUsername,
+  updateAdminLevel
 } from 'src/apis/admin'
 
 // ** Redux
@@ -23,11 +26,11 @@ import {
   setAddForm,
   setSearchForm,
   setDetailForm,
-  setActionForm,
   setListAPI,
   setCreateAPI,
   setDetailAPI,
-  setDeleteAPI
+  setDeleteAPI,
+  setActionList
 } from 'src/store/apps/crud'
 
 const Admin = () => {
@@ -202,7 +205,7 @@ const Admin = () => {
 
   // NOTE 액션 정의
   dispatch(
-    setActionForm([
+    setActionList([
       {
         icon: 'bx:pencil',
         label: '비밀번호 변경',
@@ -222,12 +225,11 @@ const Admin = () => {
           {
             type: 'password',
             label: '새로운 비밀번호 확인',
-            key: 'newConfirmPassword',
+            key: 'confirmNewPassword',
             value: ''
           }
-        ]
-        // load: () => detailAPI([]),
-        // update: () => updateAPI([])
+        ],
+        updateAPI: updateAdminPassword
       },
       {
         icon: 'bx:pencil',
@@ -239,9 +241,8 @@ const Admin = () => {
             key: 'username',
             value: ''
           }
-        ]
-        // load: () => detailAPI([]),
-        // update: () => updateAPI([])
+        ],
+        updateAPI: updateAdminUsername
       },
       {
         icon: 'bx:pencil',
@@ -249,39 +250,22 @@ const Admin = () => {
         content: [
           {
             type: 'select',
-            label: '시스템관리자',
-            key: 'isSystemAdmin',
+            label: '권한',
+            key: 'level',
             value: '',
             list: [
               {
-                label: '활성화',
-                value: 1
+                label: '시스템 관리자',
+                value: 'SA'
               },
               {
-                label: '비활성화',
-                value: 0
-              }
-            ]
-          },
-          {
-            type: 'select',
-            label: '관리자',
-            key: 'isAdmin',
-            value: '',
-            list: [
-              {
-                label: '활성화',
-                value: 1
-              },
-              {
-                label: '비활성화',
-                value: 0
+                label: '관리자',
+                value: 'A'
               }
             ]
           }
-        ]
-        // load: () => detailAPI([]),
-        // update: () => alert('333')
+        ],
+        updateAPI: updateAdminLevel
       }
     ])
   )

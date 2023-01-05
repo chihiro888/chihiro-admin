@@ -25,5 +25,7 @@
   "username must be longer than or equal to 1 characters": "사용자명은 1글자 이상입니다.",
   "Administrator addition is complete.": "관리자 추가가 완료되었습니다.",
   "Target to delete does not exist.": "삭제하려는 대상이 존재하지 않습니다.",
-  "Administrator successfully deleted.": "관리자를 성공적으로 삭제하였습니다."
+  "Administrator successfully deleted.": "관리자를 성공적으로 삭제하였습니다.",
+  "User name change is complete.": "사용자명 변경이 완료되었습니다.",
+  "Permission change completed.": "권한 변경이 완료되었습니다."
 }

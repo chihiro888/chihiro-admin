@@ -1,15 +1,70 @@
-import { useState } from 'react'
 import Dialog from '@mui/material/Dialog'
 import DialogTitle from '@mui/material/DialogTitle'
 import DialogContent from '@mui/material/DialogContent'
 import DialogContentText from '@mui/material/DialogContentText'
 import DialogActions from '@mui/material/DialogActions'
 import Button from '@mui/material/Button'
+import { useTranslation } from 'react-i18next'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from 'src/store'
+import { getPaginationCount, getParamsFromForm } from 'src/utils'
+import toast from 'react-hot-toast'
+import { setPagination } from 'src/store/apps/crud'
 
 const EditConfirmModal = ({
   openConfirmModal,
-  handleClickCloseConfirmModal
+  handleClickCloseConfirmModal,
+  setOpenEditModal
 }) => {
+  // ** Hooks
+  const { t } = useTranslation()
+  const dispatch = useDispatch()
+  const crud = useSelector((state: RootState) => state.crud)
+  const actionId = crud.actionId
+  const actionForm = crud.actionForm
+  const listAPI = crud.listAPI
+  const updateAPI = crud.updateAPI
+
+  // 수정 버튼 클릭 시
+  const handleClickEdit = async () => {
+    try {
+      const params = getParamsFromForm(actionForm)
+      params['userId'] = actionId
+      const { data: res } = await updateAPI(params)
+      if (res.statusCode === 200) {
+        toast.success(t(res.message))
+
+        // 수정 확인 모달 닫기
+        handleClickCloseConfirmModal()
+
+        // 수정 모달 닫기
+        setOpenEditModal(false)
+
+        // 데이터 리로드
+        reloadData()
+      }
+    } catch (err) {
+      toast.error(t(err.response.data.message))
+    }
+  }
+
+  const reloadData = async () => {
+    const params = {
+      page: 1
+    }
+    const { data: res } = await listAPI(params)
+    if (res.statusCode === 200) {
+      const data = res.data
+      dispatch(
+        setPagination({
+          activePage: 1,
+          count: getPaginationCount(data.count),
+          data: data.data
+        })
+      )
+    }
+  }
+
   return (
     <>
       <Dialog
@@ -32,12 +87,7 @@ const EditConfirmModal = ({
           >
             취소
           </Button>
-          <Button
-            variant="contained"
-            onClick={() => {
-              //
-            }}
-          >
+          <Button variant="contained" onClick={handleClickEdit}>
             수정
           </Button>
         </DialogActions>

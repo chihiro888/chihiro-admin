@@ -1,9 +1,7 @@
 // ** Redux Imports
-import { Dispatch } from 'redux'
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 
 // ** Axios Imports
-import axios from 'axios'
 import produce from 'immer'
 
 export const appCrudSlice = createSlice({
@@ -37,7 +35,10 @@ export const appCrudSlice = createSlice({
     // detail form
     detailForm: [],
 
-    // action
+    // action list
+    actionList: [],
+
+    // action form
     actionForm: [],
 
     // list API
@@ -50,7 +51,10 @@ export const appCrudSlice = createSlice({
     detailAPI: null,
 
     // delete API
-    deleteAPI: null
+    deleteAPI: null,
+
+    // update API
+    updateAPI: null
   },
   reducers: {
     setActionId(state, action) {
@@ -74,6 +78,9 @@ export const appCrudSlice = createSlice({
     setDetailForm(state, action) {
       state.detailForm = action.payload
     },
+    setActionList(state, action) {
+      state.actionList = action.payload
+    },
     setActionForm(state, action) {
       state.actionForm = action.payload
     },
@@ -94,6 +101,16 @@ export const appCrudSlice = createSlice({
         })
       })
       state.addForm = nextState
+    },
+    updateActionForm(state, action) {
+      const nextState = produce(state.actionForm, (draftState) => {
+        draftState.map((item) => {
+          if (item.key === action.payload.key) {
+            item.value = action.payload.value
+          }
+        })
+      })
+      state.actionForm = nextState
     },
     initSearchForm(state) {
       const nextState = produce(state.searchForm, (draftState) => {
@@ -124,6 +141,9 @@ export const appCrudSlice = createSlice({
     },
     setDeleteAPI(state, action) {
       state.deleteAPI = action.payload
+    },
+    setUpdateAPI(state, action) {
+      state.updateAPI = action.payload
     }
   }
 })
@@ -136,15 +156,18 @@ export const {
   setAddForm,
   setSearchForm,
   setDetailForm,
+  setActionList,
   setActionForm,
   initAddForm,
   updateAddForm,
+  updateActionForm,
   initSearchForm,
   updateSearchForm,
   setListAPI,
   setCreateAPI,
   setDetailAPI,
-  setDeleteAPI
+  setDeleteAPI,
+  setUpdateAPI
 } = appCrudSlice.actions
 
 export default appCrudSlice.reducer

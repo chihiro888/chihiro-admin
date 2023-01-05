@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { Length } from 'class-validator'
+import { Match } from 'src/common/validation/match.decorator'
 
 export class UpdateAdminPasswordDto {
   @ApiProperty({
@@ -27,5 +28,6 @@ export class UpdateAdminPasswordDto {
     example: ''
   })
   @Length(8, 255)
+  @Match('newPassword')
   confirmNewPassword: string | null
 }

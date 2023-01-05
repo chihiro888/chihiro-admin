@@ -25,5 +25,7 @@
   "username must be longer than or equal to 1 characters": "username must be longer than or equal to 1 characters",
   "Administrator addition is complete.": "Administrator addition is complete.",
   "Target to delete does not exist.": "Target to delete does not exist.",
-  "Administrator successfully deleted.": "Administrator successfully deleted."
+  "Administrator successfully deleted.": "Administrator successfully deleted.",
+  "User name change is complete.": "User name change is complete.",
+  "Permission change completed.": "Permission change completed."
 }

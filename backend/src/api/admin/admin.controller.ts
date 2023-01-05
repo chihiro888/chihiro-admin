@@ -384,7 +384,7 @@ export class AdminController {
     // return 200 response
     res.status(HttpStatus.OK).json({
       statusCode: HttpStatus.OK,
-      message: '',
+      message: 'Password change is complete.',
       data: null
     })
   }
@@ -406,7 +406,7 @@ export class AdminController {
     // return 200 response
     res.status(HttpStatus.OK).json({
       statusCode: HttpStatus.OK,
-      message: '',
+      message: 'User name change is complete.',
       data: null
     })
   }
@@ -428,7 +428,7 @@ export class AdminController {
     // return 200 response
     res.status(HttpStatus.OK).json({
       statusCode: HttpStatus.OK,
-      message: '',
+      message: 'Permission change completed.',
       data: null
     })
   }

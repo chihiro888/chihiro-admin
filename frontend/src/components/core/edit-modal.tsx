@@ -13,8 +13,16 @@ import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
 import MenuItem from '@mui/material/MenuItem'
 import produce from 'immer'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from 'src/store'
+import { updateActionForm } from 'src/store/apps/crud'
 
 const EditModal = ({ openEditModal, setOpenEditModal, title }) => {
+  // ** Hooks
+  const dispatch = useDispatch()
+  const crud = useSelector((state: RootState) => state.crud)
+  const actionForm = crud.actionForm
+
   // ** State
   const [openConfirmModal, setOpenConfirmModal] = useState<boolean>(false)
 
@@ -27,14 +35,7 @@ const EditModal = ({ openEditModal, setOpenEditModal, title }) => {
 
   // 폼 데이터 변경
   const handleChangeForm = (key: string, value: string) => {
-    // const nextState = produce(content, (draftState) => {
-    //   draftState.map((item) => {
-    //     if (item.key === key) {
-    //       item.value = value
-    //     }
-    //   })
-    // })
-    // setContent(nextState)
+    dispatch(updateActionForm({ key, value }))
   }
 
   return (
@@ -50,7 +51,7 @@ const EditModal = ({ openEditModal, setOpenEditModal, title }) => {
         <DialogTitle id="alert-dialog-title">{title}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            {/* {content.map((item, idx) => {
+            {actionForm.map((item, idx) => {
               return (
                 <>
                   <Stack key={idx} sx={{ mb: 3 }}>
@@ -117,7 +118,7 @@ const EditModal = ({ openEditModal, setOpenEditModal, title }) => {
                   </Stack>
                 </>
               )
-            })} */}
+            })}
           </DialogContentText>
         </DialogContent>
         <DialogActions>
@@ -130,15 +131,16 @@ const EditModal = ({ openEditModal, setOpenEditModal, title }) => {
           >
             취소
           </Button>
-          {/* <Button variant="contained" onClick={() => update()}>
+          <Button variant="contained" onClick={handleClickOpenConfirmModal}>
             수정
-          </Button> */}
+          </Button>
         </DialogActions>
       </Dialog>
 
       <EditConfirmModal
         openConfirmModal={openConfirmModal}
         handleClickCloseConfirmModal={handleClickCloseConfirmModal}
+        setOpenEditModal={setOpenEditModal}
       />
     </>
   )

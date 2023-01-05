@@ -9,13 +9,18 @@ import DetailModal from './\bdetail-modal'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'src/store'
 import produce from 'immer'
-import { setActionId, setDetailForm } from 'src/store/apps/crud'
+import {
+  setActionForm,
+  setActionId,
+  setDetailForm,
+  setUpdateAPI
+} from 'src/store/apps/crud'
 
 const ActionContainer = ({ id }) => {
   // ** Hooks
   const dispatch = useDispatch()
   const crud = useSelector((state: RootState) => state.crud)
-  const actionForm = crud.actionForm
+  const actionList = crud.actionList
   const detailForm = crud.detailForm
   const detailAPI = crud.detailAPI
 
@@ -85,6 +90,27 @@ const ActionContainer = ({ id }) => {
     handleRowOptionsClose()
   }
 
+  // 수정 열기
+  const handleClickEdit = async (action) => {
+    // 수정 모달 제목
+    setTitle(action.label)
+
+    // 액션에 해당하는 PK 설정
+    dispatch(setActionId({ actionId: id }))
+
+    // 수정 API 설정
+    dispatch(setUpdateAPI(action.updateAPI))
+
+    // 수정 폼 설정
+    dispatch(setActionForm(action.content))
+
+    // 수정 모달 열기
+    setOpenEditModal(true)
+
+    // 액셕 메뉴 닫기
+    handleRowOptionsClose()
+  }
+
   return (
     <>
       <IconButton size="small" onClick={handleRowOptionsClick}>
@@ -113,19 +139,12 @@ const ActionContainer = ({ id }) => {
           <Icon icon="bx:trash-alt" fontSize={20} />
           삭제
         </MenuItem>
-        {actionForm.map((item, idx) => {
+        {actionList.map((item, idx) => {
           return (
             <>
               <MenuItem
                 key={idx}
-                onClick={() => {
-                  // setTitle(item.label)
-                  // setContent(item.content)
-                  // setLoad(item.load)
-                  // setUpdate(() => item.update)
-                  // setOpenEditModal(true)
-                  // handleRowOptionsClose()
-                }}
+                onClick={() => handleClickEdit(item)}
                 sx={{ '& svg': { mr: 2 } }}
               >
                 <Icon icon={item.icon} fontSize={20} />

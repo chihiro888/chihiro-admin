@@ -61,6 +61,7 @@ const ListContainer = ({ children }) => {
 
   useEffect(() => {
     initData()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
