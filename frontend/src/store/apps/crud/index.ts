@@ -38,7 +38,13 @@ export const appCrudSlice = createSlice({
     actionForm: [],
 
     // listAPI
-    listAPI: null
+    listAPI: null,
+
+    // createAPI
+    createAPI: null,
+
+    // create parameter
+    createParams: {}
   },
   reducers: {
     setPagination(state, action) {
@@ -100,6 +106,9 @@ export const appCrudSlice = createSlice({
     },
     setListAPI(state, action) {
       state.listAPI = action.payload
+    },
+    setCreateAPI(state, action) {
+      state.createAPI = action.payload
     }
   }
 })
@@ -116,7 +125,8 @@ export const {
   updateAddForm,
   initSearchForm,
   updateSearchForm,
-  setListAPI
+  setListAPI,
+  setCreateAPI
 } = appCrudSlice.actions
 
 export default appCrudSlice.reducer

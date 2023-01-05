@@ -9,7 +9,7 @@ import ListContainer from 'src/components/core/list-container'
 import Content from 'src/components/admin/content'
 
 // ** API
-import { getAdminList } from 'src/apis/admin'
+import { getAdminList, createAdmin } from 'src/apis/admin'
 
 // ** Redux
 import {
@@ -19,7 +19,8 @@ import {
   setSearchForm,
   setDetailForm,
   setActionForm,
-  setListAPI
+  setListAPI,
+  setCreateAPI
 } from 'src/store/apps/crud'
 
 const Admin = () => {
@@ -28,6 +29,9 @@ const Admin = () => {
 
   // NOTE 리스트 조회 API 정의
   dispatch(setListAPI(getAdminList))
+
+  // NOTE 생성 API 정의
+  dispatch(setCreateAPI(createAdmin))
 
   // NOTE 페이지 헤더 정의
   dispatch(
@@ -80,33 +84,17 @@ const Admin = () => {
       },
       {
         type: 'select',
-        label: '시스템관리자',
-        key: 'isSystemAdmin',
+        label: '권한',
+        key: 'level',
         value: '',
         list: [
           {
-            label: '활성화',
-            value: 1
+            label: '시스템 관리자',
+            value: 'SA'
           },
           {
-            label: '비활성화',
-            value: 0
-          }
-        ]
-      },
-      {
-        type: 'select',
-        label: '관리자',
-        key: 'isAdmin',
-        value: '',
-        list: [
-          {
-            label: '활성화',
-            value: 1
-          },
-          {
-            label: '비활성화',
-            value: 0
+            label: '관리자',
+            value: 'A'
           }
         ]
       }

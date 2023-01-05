@@ -39,7 +39,7 @@ import { useRouter } from 'next/router'
 // ** Third Party Components
 import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
-import { checkAdmin, createAdmin } from 'src/apis/admin'
+import { checkSystemAdmin, createSystemAdmin } from 'src/apis/admin'
 import FormHeader from 'src/components/form-header'
 
 interface State {
@@ -87,7 +87,7 @@ const LoginV1 = () => {
       username: values.username
     }
     try {
-      const { data: res } = await createAdmin(params)
+      const { data: res } = await createSystemAdmin(params)
       if (res.statusCode === 200) {
         toast.success(t(res.message))
         router.push('/login')
@@ -98,7 +98,7 @@ const LoginV1 = () => {
   }
 
   const initData = async () => {
-    const { data: res } = await checkAdmin()
+    const { data: res } = await checkSystemAdmin()
     if (res.statusCode === 200) {
       if (!res.data) {
         router.push('/login')

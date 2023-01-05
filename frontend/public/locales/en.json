@@ -22,5 +22,6 @@
   "note must be longer than or equal to 1 characters": "note must be longer than or equal to 1 characters",
   "File does not exist": "File does not exist",
   "page should not be empty": "page should not be empty",
-  "username must be longer than or equal to 1 characters": "username must be longer than or equal to 1 characters"
+  "username must be longer than or equal to 1 characters": "username must be longer than or equal to 1 characters",
+  "Administrator addition is complete.": "Administrator addition is complete."
 }

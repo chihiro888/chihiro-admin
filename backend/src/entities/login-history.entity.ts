@@ -1,18 +1,12 @@
-import { Column, Entity, Index, PrimaryGeneratedColumn } from 'typeorm'
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
 
-@Index('user_id', ['userId'], { unique: true })
 @Entity('_login_history', { schema: 'develop' })
 export class LoginHistory {
   @PrimaryGeneratedColumn({ type: 'int', name: 'id', comment: 'id' })
   id: number
 
-  @Column('varchar', {
-    name: 'user_id',
-    unique: true,
-    comment: 'account',
-    length: 255
-  })
-  userId: string
+  @Column('int', { name: 'user_id', comment: 'user id' })
+  userId: number
 
   @Column('int', {
     name: 'type',

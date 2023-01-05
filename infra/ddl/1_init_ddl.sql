@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS _admin (
 DROP TABLE IF EXISTS _login_history;
 CREATE TABLE IF NOT EXISTS _login_history (
   `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `user_id` VARCHAR(255) UNIQUE NOT NULL COMMENT 'account',
+  `user_id` INT NOT NULL COMMENT 'user id',
   `type` INT COMMENT 'login = 1, logout = 0',
   `created_at` DATETIME DEFAULT now() COMMENT 'create time',
   `updated_at` DATETIME DEFAULT NULL COMMENT 'update time', -- not used

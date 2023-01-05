@@ -38,7 +38,7 @@ import { useRouter } from 'next/router'
 import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
 import { useAuth } from 'src/hooks/useAuth'
-import { checkAdmin, getAdmin, login } from 'src/apis/admin'
+import { checkSystemAdmin, getAdmin, login } from 'src/apis/admin'
 import FormHeader from 'src/components/form-header'
 
 interface State {
@@ -95,7 +95,7 @@ const LoginV1 = () => {
   }
 
   const initData = async () => {
-    const { data: res } = await checkAdmin()
+    const { data: res } = await checkSystemAdmin()
     if (res.statusCode === 200) {
       if (res.data) {
         router.push('/login/init')

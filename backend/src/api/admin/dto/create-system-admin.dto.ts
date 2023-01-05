@@ -2,40 +2,34 @@ import { ApiProperty } from '@nestjs/swagger'
 import { IsEmail, Length } from 'class-validator'
 import { Match } from 'src/common/validation/match.decorator'
 
-export class CreateAdminDto {
+export class CreateSystemAdminDto {
   @ApiProperty({
     description: 'account',
     example: ''
   })
   @Length(5, 255)
   @IsEmail()
-  account: string
+  account: string | null
 
   @ApiProperty({
     description: 'password',
     example: ''
   })
   @Length(8, 255)
-  password: string
+  password: string | null
 
   @ApiProperty({
-    description: 'confirmPassword',
+    description: 'confirm password',
     example: ''
   })
   @Length(8, 255)
   @Match('password')
-  confirmPassword: string
+  confirmPassword: string | null
 
   @ApiProperty({
     description: 'username',
     example: ''
   })
   @Length(1, 255)
-  username: string
-
-  @ApiProperty({
-    description: 'level',
-    example: 'SA'
-  })
-  level: string
+  username: string | null
 }

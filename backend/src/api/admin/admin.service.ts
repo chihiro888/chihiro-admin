@@ -3,11 +3,18 @@ import DATE from 'src/common/constants/date'
 import { createPassword, isMatch } from 'src/common/util/auth'
 import { Admin } from 'src/entities/admin.entity'
 import { DataSource, IsNull } from 'typeorm'
-import { CreateAdminDto } from './dto/create-admin.dto'
+import { CreateSystemAdminDto } from './dto/create-system-admin.dto'
 import { LoginDto } from './dto/login.dto'
 import { UpdatePasswordDto } from './dto/update-password.dto'
 import moment from 'moment'
 import { GetAdminListDto } from './dto/get-admin-list.dto'
+import { LoginHistory } from 'src/entities/login-history.entity'
+import { GetAdminDetailDto } from './dto/get-admin-detail.dto'
+import { CreateAdminDto } from './dto/create-admin.dto'
+import { DeleteAdminDto } from './dto/delete-admin.dto'
+import { UpdateAdminPasswordDto } from './dto/update-admin-password.dto'
+import { UpdateAdminUsernameDto } from './dto/update-admin-username.dto'
+import { UpdateAdminLevelDto } from './dto/update-admin-level.dto'
 @Injectable()
 export class AdminService {
   constructor(
@@ -15,9 +22,13 @@ export class AdminService {
     private datasource: DataSource
   ) {}
 
-  // ANCHOR check admin
-  async checkAdmin(): Promise<boolean> {
-    const adminList = await this.datasource.getRepository(Admin).find()
+  // ANCHOR check system admin
+  async checkSystemAdmin(): Promise<boolean> {
+    const adminList = await this.datasource.getRepository(Admin).find({
+      where: {
+        isSystemAdmin: 1
+      }
+    })
     if (adminList.length === 0) {
       return true
     } else {
@@ -69,8 +80,8 @@ export class AdminService {
     }
   }
 
-  // ANCHOR get admin
-  async getAdmin(userId: number) {
+  // ANCHOR get admin by user id
+  async getAdminByUserId(userId: number) {
     const admin = await this.datasource.getRepository(Admin).findOne({
       where: {
         id: userId
@@ -80,8 +91,19 @@ export class AdminService {
     return admin
   }
 
-  // ANCHOR create admin
-  async createAdmin(dto: CreateAdminDto) {
+  // ANCHOR get admin by account
+  async getAdminByAccount(account: string) {
+    const admin = await this.datasource.getRepository(Admin).findOne({
+      where: {
+        account
+      }
+    })
+
+    return admin
+  }
+
+  // ANCHOR create system admin
+  async createSystemAdmin(dto: CreateSystemAdminDto) {
     const admin = new Admin()
     admin.account = dto.account
     admin.password = await createPassword(dto.password)
@@ -117,9 +139,11 @@ export class AdminService {
     }
 
     if (await isMatch(dto.password, admin.password)) {
-      // update login date time
-      // admin.loginAt = moment().format(DATE.DATETIME)
-      // await this.datasource.getRepository(Admin).save(admin)
+      // insert login history
+      const loginHistory = new LoginHistory()
+      loginHistory.userId = admin.id
+      loginHistory.type = 1
+      await this.datasource.getRepository(LoginHistory).save(loginHistory)
       return { result: true, data: admin }
     } else {
       return { result: false, data: null }
@@ -128,12 +152,86 @@ export class AdminService {
 
   // ANCHOR logout
   async logout(userId) {
-    // const admin = await this.datasource.getRepository(Admin).findOne({
-    //   where: {
-    //     id: userId
-    //   }
-    // })
-    // admin.logoutAt = moment().format(DATE.DATETIME)
-    // await this.datasource.getRepository(Admin).save(admin)
+    // insert login history
+    const loginHistory = new LoginHistory()
+    loginHistory.userId = userId
+    loginHistory.type = 0
+    await this.datasource.getRepository(LoginHistory).save(loginHistory)
+  }
+
+  // ANCHOR get admin detail
+  async getAdminDetail(dto: GetAdminDetailDto) {
+    const admin = await this.datasource.getRepository(Admin).findOne({
+      where: {
+        id: dto.userId
+      }
+    })
+    return admin
+  }
+
+  // ANCHOR create admin
+  async createAdmin(dto: CreateAdminDto) {
+    const admin = new Admin()
+    admin.account = dto.account
+    admin.password = await createPassword(dto.password)
+    admin.username = dto.username
+    if (dto.level === 'SA') {
+      admin.isSystemAdmin = 1
+      admin.isAdmin = 1
+    } else {
+      admin.isSystemAdmin = 0
+      admin.isAdmin = 1
+    }
+    await this.datasource.getRepository(Admin).save(admin)
+  }
+
+  // ANCHOR delete admin
+  async deleteAdmin(dto: DeleteAdminDto) {
+    const admin = await this.datasource.getRepository(Admin).findOne({
+      where: {
+        id: dto.userId
+      }
+    })
+    admin.deletedAt = moment().format(DATE.DATETIME)
+    await this.datasource.getRepository(Admin).save(admin)
+  }
+
+  // ANCHOR update admin password
+  async updateAdminPassword(dto: UpdateAdminPasswordDto) {
+    const admin = await this.datasource.getRepository(Admin).findOne({
+      where: {
+        id: dto.userId
+      }
+    })
+    admin.password = await createPassword(dto.newPassword)
+    await this.datasource.getRepository(Admin).save(admin)
+  }
+
+  // ANCHOR update admin username
+  async updateAdminUsername(dto: UpdateAdminUsernameDto) {
+    const admin = await this.datasource.getRepository(Admin).findOne({
+      where: {
+        id: dto.userId
+      }
+    })
+    admin.username = dto.username
+    await this.datasource.getRepository(Admin).save(admin)
+  }
+
+  // ANCHOR update admin level
+  async updateAdminLevel(dto: UpdateAdminLevelDto) {
+    const admin = await this.datasource.getRepository(Admin).findOne({
+      where: {
+        id: dto.userId
+      }
+    })
+    if (dto.level === 'SA') {
+      admin.isSystemAdmin = 1
+      admin.isAdmin = 1
+    } else {
+      admin.isSystemAdmin = 0
+      admin.isAdmin = 1
+    }
+    await this.datasource.getRepository(Admin).save(admin)
   }
 }

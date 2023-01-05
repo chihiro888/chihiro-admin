@@ -135,6 +135,7 @@ const AddModal = ({ openModal, handleClickCloseModal }) => {
 
       <AddConfirmModal
         openConfirmModal={openConfirmModal}
+        handleClickCloseModal={handleClickCloseModal}
         handleClickCloseConfirmModal={handleClickCloseConfirmModal}
       />
     </>
