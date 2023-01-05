@@ -6,7 +6,7 @@ import DialogActions from '@mui/material/DialogActions'
 import Button from '@mui/material/Button'
 import { useTranslation } from 'react-i18next'
 import { setPagination } from 'src/store/apps/crud'
-import { getPaginationCount } from 'src/utils'
+import { getPaginationCount, getParamsFromForm } from 'src/utils'
 import toast from 'react-hot-toast'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'src/store'
@@ -20,6 +20,7 @@ const DeleteConfirmModal = ({
   const crud = useSelector((state: RootState) => state.crud)
   const dispatch = useDispatch()
   const actionId = crud.actionId
+  const searchForm = crud.searchForm
   const deleteAPI = crud.deleteAPI
   const listAPI = crud.listAPI
 
@@ -46,9 +47,8 @@ const DeleteConfirmModal = ({
 
   // 데이터 리로드
   const reloadData = async () => {
-    const params = {
-      page: 1
-    }
+    const params = getParamsFromForm(searchForm)
+    params['page'] = 1
     const { data: res } = await listAPI(params)
     if (res.statusCode === 200) {
       const data = res.data

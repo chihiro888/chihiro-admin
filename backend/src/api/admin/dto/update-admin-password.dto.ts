@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger'
-import { Length } from 'class-validator'
+import { IsNotEmpty, Length } from 'class-validator'
 import { Match } from 'src/common/validation/match.decorator'
 
 export class UpdateAdminPasswordDto {
@@ -7,6 +7,7 @@ export class UpdateAdminPasswordDto {
     description: 'user id',
     example: 1
   })
+  @IsNotEmpty()
   userId: number
 
   @ApiProperty({

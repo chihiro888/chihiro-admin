@@ -21,6 +21,7 @@ const AddConfirmModal = ({
   const dispatch = useDispatch()
   const crud = useSelector((state: RootState) => state.crud)
   const addForm = crud.addForm
+  const searchForm = crud.searchForm
   const listAPI = crud.listAPI
   const createAPI = crud.createAPI
 
@@ -41,9 +42,8 @@ const AddConfirmModal = ({
   }
 
   const reloadData = async () => {
-    const params = {
-      page: 1
-    }
+    const params = getParamsFromForm(searchForm)
+    params['page'] = 1
     const { data: res } = await listAPI(params)
     if (res.statusCode === 200) {
       const data = res.data

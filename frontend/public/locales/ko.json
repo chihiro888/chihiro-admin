@@ -27,5 +27,9 @@
   "Target to delete does not exist.": "삭제하려는 대상이 존재하지 않습니다.",
   "Administrator successfully deleted.": "관리자를 성공적으로 삭제하였습니다.",
   "User name change is complete.": "사용자명 변경이 완료되었습니다.",
-  "Permission change completed.": "권한 변경이 완료되었습니다."
+  "Permission change completed.": "권한 변경이 완료되었습니다.",
+  "level must be a valid enum value": "유효하지 않은 권한입니다.",
+  "oldPassword must be longer than or equal to 8 characters": "기존 비밀번호는 8글자 이상입니다.",
+  "newPassword must be longer than or equal to 8 characters": "새로운 비밀번호는 8글자 이상입니다.",
+  "confirmNewPassword must match newPassword": "새로운 비밀번호와 새로운 비밀번호 확인이 일치하지 않습니다."
 }

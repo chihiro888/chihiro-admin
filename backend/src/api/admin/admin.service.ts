@@ -26,7 +26,8 @@ export class AdminService {
   async checkSystemAdmin(): Promise<boolean> {
     const adminList = await this.datasource.getRepository(Admin).find({
       where: {
-        isSystemAdmin: 1
+        isSystemAdmin: 1,
+        deletedAt: IsNull()
       }
     })
     if (adminList.length === 0) {
@@ -51,7 +52,8 @@ export class AdminService {
   async login(dto: LoginDto) {
     const admin = await this.datasource.getRepository(Admin).findOne({
       where: {
-        account: dto.account
+        account: dto.account,
+        deletedAt: IsNull()
       }
     })
 
@@ -84,7 +86,8 @@ export class AdminService {
   async getAdminByUserId(userId: number) {
     const admin = await this.datasource.getRepository(Admin).findOne({
       where: {
-        id: userId
+        id: userId,
+        deletedAt: IsNull()
       }
     })
 
@@ -95,7 +98,8 @@ export class AdminService {
   async getAdminByAccount(account: string) {
     const admin = await this.datasource.getRepository(Admin).findOne({
       where: {
-        account
+        account,
+        deletedAt: IsNull()
       }
     })
 
@@ -106,7 +110,8 @@ export class AdminService {
   async updatePassword(dto: UpdatePasswordDto) {
     const admin = await this.datasource.getRepository(Admin).findOne({
       where: {
-        id: dto.userId
+        id: dto.userId,
+        deletedAt: IsNull()
       }
     })
 
@@ -126,6 +131,22 @@ export class AdminService {
       .createQueryBuilder('a')
       .select(['count(1) as count'])
       .where('1=1')
+      .andWhere('deleted_at is null')
+      .andWhere(dto.account === '' ? '1=1' : 'a.account like :account', {
+        account: `%${dto.account}%`
+      })
+      .andWhere(
+        dto.level === 'SA' ? 'is_system_admin = 1 and is_admin = 1' : '1=1'
+      )
+      .andWhere(
+        dto.level === 'A' ? 'is_system_admin = 0 and is_admin = 1' : '1=1'
+      )
+      .andWhere(
+        dto.createdAt === '' ? '1=1' : 'DATE(a.created_at) = :createdAt',
+        {
+          createdAt: dto.createdAt
+        }
+      )
       .getRawOne()
 
     // data
@@ -179,7 +200,8 @@ export class AdminService {
   async getAdminDetail(dto: GetAdminDetailDto) {
     const admin = await this.datasource.getRepository(Admin).findOne({
       where: {
-        id: dto.userId
+        id: dto.userId,
+        deletedAt: IsNull()
       }
     })
     return admin
@@ -205,7 +227,8 @@ export class AdminService {
   async deleteAdmin(dto: DeleteAdminDto) {
     const admin = await this.datasource.getRepository(Admin).findOne({
       where: {
-        id: dto.userId
+        id: dto.userId,
+        deletedAt: IsNull()
       }
     })
 
@@ -228,10 +251,12 @@ export class AdminService {
   async updateAdminPassword(dto: UpdateAdminPasswordDto) {
     const admin = await this.datasource.getRepository(Admin).findOne({
       where: {
-        id: dto.userId
+        id: dto.userId,
+        deletedAt: IsNull()
       }
     })
     admin.password = await createPassword(dto.newPassword)
+    admin.updatedAt = moment().format(DATE.DATETIME)
     await this.datasource.getRepository(Admin).save(admin)
   }
 
@@ -239,10 +264,12 @@ export class AdminService {
   async updateAdminUsername(dto: UpdateAdminUsernameDto) {
     const admin = await this.datasource.getRepository(Admin).findOne({
       where: {
-        id: dto.userId
+        id: dto.userId,
+        deletedAt: IsNull()
       }
     })
     admin.username = dto.username
+    admin.updatedAt = moment().format(DATE.DATETIME)
     await this.datasource.getRepository(Admin).save(admin)
   }
 
@@ -250,7 +277,8 @@ export class AdminService {
   async updateAdminLevel(dto: UpdateAdminLevelDto) {
     const admin = await this.datasource.getRepository(Admin).findOne({
       where: {
-        id: dto.userId
+        id: dto.userId,
+        deletedAt: IsNull()
       }
     })
     if (dto.level === 'SA') {
@@ -260,6 +288,7 @@ export class AdminService {
       admin.isSystemAdmin = 0
       admin.isAdmin = 1
     }
+    admin.updatedAt = moment().format(DATE.DATETIME)
     await this.datasource.getRepository(Admin).save(admin)
   }
 }
