@@ -16,7 +16,7 @@ import {
   setUpdateAPI
 } from 'src/store/apps/crud'
 
-const ActionContainer = ({ id }) => {
+const ActionContainer = ({ id, detailAction, deleteAction }) => {
   // ** Hooks
   const dispatch = useDispatch()
   const crud = useSelector((state: RootState) => state.crud)
@@ -56,7 +56,7 @@ const ActionContainer = ({ id }) => {
   const handleClickDetail = async () => {
     // 상세 API 호출
     const params = {
-      userId: id
+      id
     }
     const { data: res } = await detailAPI(params)
     const data = res.data
@@ -131,14 +131,24 @@ const ActionContainer = ({ id }) => {
         }}
         PaperProps={{ style: { minWidth: '8rem' } }}
       >
-        <MenuItem onClick={handleClickDetail} sx={{ '& svg': { mr: 2 } }}>
-          <Icon icon="bx:show" fontSize={20} />
-          상세
-        </MenuItem>
-        <MenuItem onClick={handleClickDelete} sx={{ '& svg': { mr: 2 } }}>
-          <Icon icon="bx:trash-alt" fontSize={20} />
-          삭제
-        </MenuItem>
+        {detailAction ? (
+          <MenuItem onClick={handleClickDetail} sx={{ '& svg': { mr: 2 } }}>
+            <Icon icon="bx:show" fontSize={20} />
+            상세
+          </MenuItem>
+        ) : (
+          <></>
+        )}
+
+        {deleteAction ? (
+          <MenuItem onClick={handleClickDelete} sx={{ '& svg': { mr: 2 } }}>
+            <Icon icon="bx:trash-alt" fontSize={20} />
+            삭제
+          </MenuItem>
+        ) : (
+          <></>
+        )}
+
         {actionList.map((item, idx) => {
           return (
             <>

@@ -28,6 +28,8 @@ import { GetAdminDetailDto } from './dto/get-admin-detail.dto'
 import { CreateAdminDto } from './dto/create-admin.dto'
 import { UpdateAdminUsernameDto } from './dto/update-admin-username.dto'
 import { UpdateAdminLevelDto } from './dto/update-admin-level.dto'
+import { GetLoginHistoryDetailDto } from './dto/get-login-history-detail.dto'
+import { GetLoginHistoryListDto } from './dto/get-login-history-list.dto'
 
 // ANCHOR admin controller
 @ApiTags('admin')
@@ -430,6 +432,50 @@ export class AdminController {
       statusCode: HttpStatus.OK,
       message: 'Permission change completed.',
       data: null
+    })
+  }
+
+  // ANCHOR get login history list
+  @UseGuards(SystemAdminGuard)
+  @Get('getLoginHistoryList')
+  @ApiOperation({
+    summary: '로그인 이력 리스트 조회 (시스템 관리자 기능)',
+    description: '로그인 이력 리스트를 조회합니다.'
+  })
+  async getLoginHistoryList(
+    @Res() res: Response,
+    @Query() dto: GetLoginHistoryListDto
+  ) {
+    // get login history list
+    const data = await this.adminService.getLoginHistoryList(dto)
+
+    // return 200 response
+    res.status(HttpStatus.OK).json({
+      statusCode: HttpStatus.OK,
+      message: '',
+      data
+    })
+  }
+
+  // ANCHOR get login history detail
+  @UseGuards(SystemAdminGuard)
+  @Get('getLoginHistoryDetail')
+  @ApiOperation({
+    summary: '로그인 이력 상세 조회 (시스템 관리자 기능)',
+    description: '로그인 이력 상세를 조회합니다.'
+  })
+  async getLoginHistoryDetail(
+    @Res() res: Response,
+    @Query() dto: GetLoginHistoryDetailDto
+  ) {
+    // get login history detail
+    const data = await this.adminService.getLoginHistoryDetail(dto)
+
+    // return 200 response
+    res.status(HttpStatus.OK).json({
+      statusCode: HttpStatus.OK,
+      message: '',
+      data
     })
   }
 }

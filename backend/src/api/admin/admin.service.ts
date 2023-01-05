@@ -15,6 +15,8 @@ import { DeleteAdminDto } from './dto/delete-admin.dto'
 import { UpdateAdminPasswordDto } from './dto/update-admin-password.dto'
 import { UpdateAdminUsernameDto } from './dto/update-admin-username.dto'
 import { UpdateAdminLevelDto } from './dto/update-admin-level.dto'
+import { GetLoginHistoryDetailDto } from './dto/get-login-history-detail.dto'
+import { GetLoginHistoryListDto } from './dto/get-login-history-list.dto'
 @Injectable()
 export class AdminService {
   constructor(
@@ -200,7 +202,7 @@ export class AdminService {
   async getAdminDetail(dto: GetAdminDetailDto) {
     const admin = await this.datasource.getRepository(Admin).findOne({
       where: {
-        id: dto.userId,
+        id: dto.id,
         deletedAt: IsNull()
       }
     })
@@ -290,5 +292,80 @@ export class AdminService {
     }
     admin.updatedAt = moment().format(DATE.DATETIME)
     await this.datasource.getRepository(Admin).save(admin)
+  }
+
+  // ANCHOR get login history list
+  async getLoginHistoryList(dto: GetLoginHistoryListDto) {
+    const limit = 12
+    const offset = (dto.page - 1) * limit
+
+    // count
+    const count = await this.datasource
+      .getRepository(LoginHistory)
+      .createQueryBuilder('lh')
+      .select(['count(1) as count'])
+      .innerJoin(Admin, 'a', 'lh.user_id = a.id')
+      .where('1=1')
+      .andWhere('lh.deleted_at is null')
+      .andWhere(dto.account === '' ? '1=1' : 'a.account like :account', {
+        account: `%${dto.account}%`
+      })
+      .andWhere(dto.type === '' ? '1=1' : 'lh.type = :type', {
+        type: `${dto.type}`
+      })
+      .andWhere(
+        dto.createdAt === '' ? '1=1' : 'DATE(lh.created_at) = :createdAt',
+        {
+          createdAt: dto.createdAt
+        }
+      )
+      .getRawOne()
+
+    // data
+    const data = await this.datasource
+      .getRepository(LoginHistory)
+      .createQueryBuilder('lh')
+      .select([
+        'lh.id as id',
+        'lh.user_id as userId',
+        'a.account as account',
+        'a.username as username',
+        'lh.type as type',
+        'lh.created_at as createdAt',
+        'lh.updated_at as updatedAt'
+      ])
+      .innerJoin(Admin, 'a', 'lh.user_id = a.id')
+      .where('1=1')
+      .andWhere('lh.deleted_at is null')
+      .andWhere(dto.account === '' ? '1=1' : 'a.account like :account', {
+        account: `%${dto.account}%`
+      })
+      .andWhere(dto.type === '' ? '1=1' : 'lh.type = :type', {
+        type: `${dto.type}`
+      })
+      .andWhere(
+        dto.createdAt === '' ? '1=1' : 'DATE(lh.created_at) = :createdAt',
+        {
+          createdAt: dto.createdAt
+        }
+      )
+      .orderBy('lh.created_at', 'DESC')
+      .limit(limit)
+      .offset(offset)
+      .getRawMany()
+
+    return {
+      count: Number(count.count),
+      data
+    }
+  }
+
+  // ANCHOR get login history detail
+  async getLoginHistoryDetail(dto: GetLoginHistoryDetailDto) {
+    const data = await this.datasource
+      .getRepository(LoginHistory)
+      .findOne({ where: { id: dto.id } })
+
+    return data
   }
 }

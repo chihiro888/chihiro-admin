@@ -106,3 +106,19 @@ export const updateAdminLevel = (params: object) => {
 
   return response
 }
+
+// ANCHOR get login history list
+export const getLoginHistoryList = (params: object) => {
+  const url = `${rootUrl}getLoginHistoryList`
+  const response = axios.get<CommonResponse>(url, { params })
+
+  return response
+}
+
+// ANCHOR get login history detail
+export const getLoginHistoryDetail = (params: object) => {
+  const url = `${rootUrl}getLoginHistoryDetail`
+  const response = axios.get<CommonResponse>(url, { params })
+
+  return response
+}
