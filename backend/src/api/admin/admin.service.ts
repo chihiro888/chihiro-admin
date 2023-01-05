@@ -149,6 +149,21 @@ export class AdminService {
       ])
       .where('1=1')
       .andWhere('deleted_at is null')
+      .andWhere(dto.account === '' ? '1=1' : 'a.account like :account', {
+        account: `%${dto.account}%`
+      })
+      .andWhere(
+        dto.level === 'SA' ? 'is_system_admin = 1 and is_admin = 1' : '1=1'
+      )
+      .andWhere(
+        dto.level === 'A' ? 'is_system_admin = 0 and is_admin = 1' : '1=1'
+      )
+      .andWhere(
+        dto.createdAt === '' ? '1=1' : 'DATE(a.created_at) = :createdAt',
+        {
+          createdAt: dto.createdAt
+        }
+      )
       .orderBy('a.created_at', 'DESC')
       .limit(limit)
       .offset(offset)

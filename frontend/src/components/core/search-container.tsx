@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import moment from 'moment'
 import { useState } from 'react'
-import { getPaginationCount } from 'src/utils'
+import { getPaginationCount, getParamsFromForm } from 'src/utils'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import CardActions from '@mui/material/CardActions'
@@ -59,10 +59,8 @@ const SearchContainer = () => {
 
   // 검색
   const handleClickSearch = async () => {
-    const params = {
-      // TODO 검색 폼 데이터
-      page: 1
-    }
+    const params = getParamsFromForm(searchForm)
+    params['page'] = 1
     const { data: res } = await listAPI(params)
     if (res.statusCode === 200) {
       const data = res.data

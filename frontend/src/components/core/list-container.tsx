@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { getPaginationCount } from 'src/utils'
+import { getPaginationCount, getParamsFromForm } from 'src/utils'
 import CustomLottie from 'src/components/custom-lottie'
 import Stack from '@mui/material/Stack'
 import Table from '@mui/material/Table'
@@ -21,14 +21,13 @@ const ListContainer = ({ children }) => {
   const crud = useSelector((state: RootState) => state.crud)
   const pagination = crud.pagination
   const tableHeader = crud.tableHeader
+  const searchForm = crud.searchForm
   const listAPI = crud.listAPI
 
   // ** Handler
   const handleChangePage = async (e: any, value: number) => {
-    const params = {
-      // TODO 검색 폼 데이터
-      page: value
-    }
+    const params = getParamsFromForm(searchForm)
+    params['page'] = value
     const { data: res } = await listAPI(params)
     if (res.statusCode === 200) {
       const data = res.data

@@ -14,7 +14,6 @@ import Card from '@mui/material/Card'
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
 import InputLabel from '@mui/material/InputLabel'
-import Typography from '@mui/material/Typography'
 import IconButton from '@mui/material/IconButton'
 import CardContent from '@mui/material/CardContent'
 import FormControl from '@mui/material/FormControl'
@@ -25,15 +24,11 @@ import InputAdornment from '@mui/material/InputAdornment'
 // ** Icon Imports
 import Icon from 'src/@core/components/icon'
 
-// ** Configs
-import themeConfig from 'src/configs/themeConfig'
-
 // ** Layout Import
 import BlankLayout from 'src/@core/layouts/BlankLayout'
 
 // ** Demo Imports
 import AuthIllustrationWrapper from 'src/views/pages/auth/AuthIllustrationWrapper'
-// import { checkAdmin, createAdmin } from 'src/apis/admin'
 import { useRouter } from 'next/router'
 
 // ** Third Party Components
@@ -108,6 +103,7 @@ const LoginV1 = () => {
 
   useEffect(() => {
     initData()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (

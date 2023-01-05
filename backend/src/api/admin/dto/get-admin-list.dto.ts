@@ -8,4 +8,22 @@ export class GetAdminListDto {
   })
   @IsNotEmpty()
   page: number
+
+  @ApiProperty({
+    description: 'account',
+    example: ''
+  })
+  account: string
+
+  @ApiProperty({
+    description: 'level',
+    example: ''
+  })
+  level: string
+
+  @ApiProperty({
+    description: 'created at',
+    example: ''
+  })
+  createdAt: string
 }
