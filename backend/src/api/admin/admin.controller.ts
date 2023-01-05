@@ -308,13 +308,13 @@ export class AdminController {
   })
   async getAdminDetail(@Res() res: Response, @Query() dto: GetAdminDetailDto) {
     // get admin detail
-    const detail = await this.adminService.getAdminDetail(dto)
+    const admin = await this.adminService.getAdminDetail(dto)
 
     // return 200 response
     res.status(HttpStatus.OK).json({
       statusCode: HttpStatus.OK,
       message: '',
-      data: null
+      data: admin
     })
   }
 
@@ -362,7 +362,7 @@ export class AdminController {
     // return 200 response
     res.status(HttpStatus.OK).json({
       statusCode: HttpStatus.OK,
-      message: '',
+      message: 'Administrator successfully deleted.',
       data: null
     })
   }

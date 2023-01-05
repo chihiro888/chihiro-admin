@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@nestjs/common'
+import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common'
 import DATE from 'src/common/constants/date'
 import { createPassword, isMatch } from 'src/common/util/auth'
 import { Admin } from 'src/entities/admin.entity'
@@ -36,72 +36,6 @@ export class AdminService {
     }
   }
 
-  // ANCHOR get admin list
-  async getAdminList(dto: GetAdminListDto) {
-    const limit = 12
-    const offset = (dto.page - 1) * limit
-
-    // count
-    const count = await this.datasource
-      .getRepository(Admin)
-      .createQueryBuilder('a')
-      .select(['count(1) as count'])
-      .where('1=1')
-      .getRawOne()
-
-    // data
-    const data = await this.datasource
-      .getRepository(Admin)
-      .createQueryBuilder('a')
-      .select([
-        'id as id',
-        'account as account',
-        'password as password',
-        'username as username',
-        `case 
-          when is_system_admin = 1 and is_admin = 1
-          then 1
-          else 0
-        end as level`,
-        'is_system_admin as isSystemAdmin',
-        'is_admin as isAdmin',
-        'created_at as createdAt',
-        'updated_at as updatedAt'
-      ])
-      .where('1=1')
-      .orderBy('a.created_at', 'DESC')
-      .limit(limit)
-      .offset(offset)
-      .getRawMany()
-
-    return {
-      count: Number(count.count),
-      data
-    }
-  }
-
-  // ANCHOR get admin by user id
-  async getAdminByUserId(userId: number) {
-    const admin = await this.datasource.getRepository(Admin).findOne({
-      where: {
-        id: userId
-      }
-    })
-
-    return admin
-  }
-
-  // ANCHOR get admin by account
-  async getAdminByAccount(account: string) {
-    const admin = await this.datasource.getRepository(Admin).findOne({
-      where: {
-        account
-      }
-    })
-
-    return admin
-  }
-
   // ANCHOR create system admin
   async createSystemAdmin(dto: CreateSystemAdminDto) {
     const admin = new Admin()
@@ -110,19 +44,6 @@ export class AdminService {
     admin.username = dto.username
     admin.isSystemAdmin = 1
     admin.isAdmin = 1
-    await this.datasource.getRepository(Admin).save(admin)
-  }
-
-  // ANCHOR update password
-  async updatePassword(dto: UpdatePasswordDto) {
-    const admin = await this.datasource.getRepository(Admin).findOne({
-      where: {
-        id: dto.userId
-      }
-    })
-
-    admin.password = await createPassword(dto.newPassword)
-    admin.updatedAt = moment().format(DATE.DATETIME)
     await this.datasource.getRepository(Admin).save(admin)
   }
 
@@ -159,6 +80,86 @@ export class AdminService {
     await this.datasource.getRepository(LoginHistory).save(loginHistory)
   }
 
+  // ANCHOR get admin by user id
+  async getAdminByUserId(userId: number) {
+    const admin = await this.datasource.getRepository(Admin).findOne({
+      where: {
+        id: userId
+      }
+    })
+
+    return admin
+  }
+
+  // ANCHOR get admin by account
+  async getAdminByAccount(account: string) {
+    const admin = await this.datasource.getRepository(Admin).findOne({
+      where: {
+        account
+      }
+    })
+
+    return admin
+  }
+
+  // ANCHOR update password
+  async updatePassword(dto: UpdatePasswordDto) {
+    const admin = await this.datasource.getRepository(Admin).findOne({
+      where: {
+        id: dto.userId
+      }
+    })
+
+    admin.password = await createPassword(dto.newPassword)
+    admin.updatedAt = moment().format(DATE.DATETIME)
+    await this.datasource.getRepository(Admin).save(admin)
+  }
+
+  // ANCHOR get admin list
+  async getAdminList(dto: GetAdminListDto) {
+    const limit = 12
+    const offset = (dto.page - 1) * limit
+
+    // count
+    const count = await this.datasource
+      .getRepository(Admin)
+      .createQueryBuilder('a')
+      .select(['count(1) as count'])
+      .where('1=1')
+      .getRawOne()
+
+    // data
+    const data = await this.datasource
+      .getRepository(Admin)
+      .createQueryBuilder('a')
+      .select([
+        'id as id',
+        'account as account',
+        'password as password',
+        'username as username',
+        `case 
+          when is_system_admin = 1 and is_admin = 1
+          then 1
+          else 0
+        end as level`,
+        'is_system_admin as isSystemAdmin',
+        'is_admin as isAdmin',
+        'created_at as createdAt',
+        'updated_at as updatedAt'
+      ])
+      .where('1=1')
+      .andWhere('deleted_at is null')
+      .orderBy('a.created_at', 'DESC')
+      .limit(limit)
+      .offset(offset)
+      .getRawMany()
+
+    return {
+      count: Number(count.count),
+      data
+    }
+  }
+
   // ANCHOR get admin detail
   async getAdminDetail(dto: GetAdminDetailDto) {
     const admin = await this.datasource.getRepository(Admin).findOne({
@@ -192,6 +193,18 @@ export class AdminService {
         id: dto.userId
       }
     })
+
+    if (!admin) {
+      throw new HttpException(
+        {
+          statusCode: HttpStatus.BAD_REQUEST,
+          message: 'Target to delete does not exist.',
+          data: null
+        },
+        HttpStatus.BAD_REQUEST
+      )
+    }
+
     admin.deletedAt = moment().format(DATE.DATETIME)
     await this.datasource.getRepository(Admin).save(admin)
   }

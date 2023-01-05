@@ -9,6 +9,9 @@ import produce from 'immer'
 export const appCrudSlice = createSlice({
   name: 'appCrud',
   initialState: {
+    // action id
+    actionId: 0,
+
     // pagination
     pagination: {
       count: 0,
@@ -37,16 +40,22 @@ export const appCrudSlice = createSlice({
     // action
     actionForm: [],
 
-    // listAPI
+    // list API
     listAPI: null,
 
-    // createAPI
+    // create API
     createAPI: null,
 
-    // create parameter
-    createParams: {}
+    // detail API
+    detailAPI: null,
+
+    // delete API
+    deleteAPI: null
   },
   reducers: {
+    setActionId(state, action) {
+      state.actionId = action.payload.actionId
+    },
     setPagination(state, action) {
       state.pagination = action.payload
     },
@@ -109,11 +118,18 @@ export const appCrudSlice = createSlice({
     },
     setCreateAPI(state, action) {
       state.createAPI = action.payload
+    },
+    setDetailAPI(state, action) {
+      state.detailAPI = action.payload
+    },
+    setDeleteAPI(state, action) {
+      state.deleteAPI = action.payload
     }
   }
 })
 
 export const {
+  setActionId,
   setPagination,
   setTableHeader,
   setPageHeader,
@@ -126,7 +142,9 @@ export const {
   initSearchForm,
   updateSearchForm,
   setListAPI,
-  setCreateAPI
+  setCreateAPI,
+  setDetailAPI,
+  setDeleteAPI
 } = appCrudSlice.actions
 
 export default appCrudSlice.reducer

@@ -23,7 +23,9 @@ export class HttpExceptionFilter implements ExceptionFilter {
       // throw exception error message
       message = exception.message
     } else {
-      message = message[0]
+      if (typeof message !== 'string') {
+        message = message[0]
+      }
     }
 
     let userId = undefined

@@ -23,5 +23,7 @@
   "File does not exist": "파일이 존재하지 않습니다.",
   "page should not be empty": "page는 비어있을 수 없습니다.",
   "username must be longer than or equal to 1 characters": "사용자명은 1글자 이상입니다.",
-  "Administrator addition is complete.": "관리자 추가가 완료되었습니다."
+  "Administrator addition is complete.": "관리자 추가가 완료되었습니다.",
+  "Target to delete does not exist.": "삭제하려는 대상이 존재하지 않습니다.",
+  "Administrator successfully deleted.": "관리자를 성공적으로 삭제하였습니다."
 }

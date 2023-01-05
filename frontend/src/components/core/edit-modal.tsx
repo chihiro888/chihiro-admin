@@ -14,14 +14,7 @@ import Select from '@mui/material/Select'
 import MenuItem from '@mui/material/MenuItem'
 import produce from 'immer'
 
-const EditModal = ({
-  openEditModal,
-  setOpenEditModal,
-  title,
-  content,
-  setContent,
-  update
-}) => {
+const EditModal = ({ openEditModal, setOpenEditModal, title }) => {
   // ** State
   const [openConfirmModal, setOpenConfirmModal] = useState<boolean>(false)
 
@@ -34,14 +27,14 @@ const EditModal = ({
 
   // 폼 데이터 변경
   const handleChangeForm = (key: string, value: string) => {
-    const nextState = produce(content, (draftState) => {
-      draftState.map((item) => {
-        if (item.key === key) {
-          item.value = value
-        }
-      })
-    })
-    setContent(nextState)
+    // const nextState = produce(content, (draftState) => {
+    //   draftState.map((item) => {
+    //     if (item.key === key) {
+    //       item.value = value
+    //     }
+    //   })
+    // })
+    // setContent(nextState)
   }
 
   return (
@@ -57,7 +50,7 @@ const EditModal = ({
         <DialogTitle id="alert-dialog-title">{title}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            {content.map((item, idx) => {
+            {/* {content.map((item, idx) => {
               return (
                 <>
                   <Stack key={idx} sx={{ mb: 3 }}>
@@ -124,7 +117,7 @@ const EditModal = ({
                   </Stack>
                 </>
               )
-            })}
+            })} */}
           </DialogContentText>
         </DialogContent>
         <DialogActions>
@@ -137,9 +130,9 @@ const EditModal = ({
           >
             취소
           </Button>
-          <Button variant="contained" onClick={() => update()}>
+          {/* <Button variant="contained" onClick={() => update()}>
             수정
-          </Button>
+          </Button> */}
         </DialogActions>
       </Dialog>
 

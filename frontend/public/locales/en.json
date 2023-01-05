@@ -23,5 +23,7 @@
   "File does not exist": "File does not exist",
   "page should not be empty": "page should not be empty",
   "username must be longer than or equal to 1 characters": "username must be longer than or equal to 1 characters",
-  "Administrator addition is complete.": "Administrator addition is complete."
+  "Administrator addition is complete.": "Administrator addition is complete.",
+  "Target to delete does not exist.": "Target to delete does not exist.",
+  "Administrator successfully deleted.": "Administrator successfully deleted."
 }

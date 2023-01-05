@@ -9,7 +9,12 @@ import ListContainer from 'src/components/core/list-container'
 import Content from 'src/components/admin/content'
 
 // ** API
-import { getAdminList, createAdmin } from 'src/apis/admin'
+import {
+  getAdminList,
+  createAdmin,
+  getAdminDetail,
+  deleteAdmin
+} from 'src/apis/admin'
 
 // ** Redux
 import {
@@ -20,7 +25,9 @@ import {
   setDetailForm,
   setActionForm,
   setListAPI,
-  setCreateAPI
+  setCreateAPI,
+  setDetailAPI,
+  setDeleteAPI
 } from 'src/store/apps/crud'
 
 const Admin = () => {
@@ -32,6 +39,12 @@ const Admin = () => {
 
   // NOTE 생성 API 정의
   dispatch(setCreateAPI(createAdmin))
+
+  // NOTE 상세 API 정의
+  dispatch(setDetailAPI(getAdminDetail))
+
+  // NOTE 삭제 API 정의
+  dispatch(setDeleteAPI(deleteAdmin))
 
   // NOTE 페이지 헤더 정의
   dispatch(
