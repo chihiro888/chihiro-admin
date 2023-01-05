@@ -42,9 +42,8 @@ const ListContainer = ({ children }) => {
   }
 
   const initData = async () => {
-    const params = {
-      page: 1
-    }
+    const params = getParamsFromForm(searchForm)
+    params['page'] = 1
     const { data: res } = await listAPI(params)
     if (res.statusCode === 200) {
       const data = res.data
