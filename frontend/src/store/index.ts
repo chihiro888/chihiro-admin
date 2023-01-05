@@ -9,6 +9,8 @@ import invoice from 'src/store/apps/invoice'
 import calendar from 'src/store/apps/calendar'
 import permissions from 'src/store/apps/permissions'
 
+import crud from 'src/store/apps/crud'
+
 export const store = configureStore({
   reducer: {
     user,
@@ -16,9 +18,10 @@ export const store = configureStore({
     email,
     invoice,
     calendar,
-    permissions
+    permissions,
+    crud
   },
-  middleware: getDefaultMiddleware =>
+  middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false
     })

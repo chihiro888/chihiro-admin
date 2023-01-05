@@ -13,13 +13,16 @@ import Select from '@mui/material/Select'
 import MenuItem from '@mui/material/MenuItem'
 import Button from '@mui/material/Button'
 import AddConfirmModal from 'src/components/core/add-confirm-modal'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from 'src/store'
+import { updateAddForm } from 'src/store/apps/crud'
 
-const AddModal = ({
-  openModal,
-  handleClickCloseModal,
-  addForm,
-  setAddForm
-}) => {
+const AddModal = ({ openModal, handleClickCloseModal }) => {
+  // ** Hooks
+  const dispatch = useDispatch()
+  const crud = useSelector((state: RootState) => state.crud)
+  const addForm = crud.addForm
+
   // ** State
   const [openConfirmModal, setOpenConfirmModal] = useState<boolean>(false)
 
@@ -32,14 +35,7 @@ const AddModal = ({
 
   // 폼 데이터 변경
   const handleChangeForm = (key: string, value: string) => {
-    const nextState = produce(addForm, (draftState) => {
-      draftState.map((item) => {
-        if (item.key === key) {
-          item.value = value
-        }
-      })
-    })
-    setAddForm(nextState)
+    dispatch(updateAddForm({ key, value }))
   }
 
   return (

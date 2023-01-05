@@ -1,20 +1,24 @@
-import produce from 'immer'
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import Stack from '@mui/material/Stack'
 import Button from '@mui/material/Button'
 import AddModal from 'src/components/core/add-modal'
+import { initAddForm } from 'src/store/apps/crud'
 
-const AddContainer = ({ addForm, setAddForm, createAPI }) => {
+const AddContainer = () => {
+  // ** Hooks
+  const dispatch = useDispatch()
+
+  // 추가 모달
   const [openModal, setOpenModal] = useState<boolean>(false)
+
+  // 추가 모달 열기
   const handleClickOpenModal = () => {
-    const nextState = produce(addForm, (draftState) => {
-      draftState.map((item) => {
-        item.value = ''
-      })
-    })
-    setAddForm(nextState)
+    dispatch(initAddForm())
     setOpenModal(true)
   }
+
+  // 추가 모달 닫기
   const handleClickCloseModal = () => setOpenModal(false)
 
   return (
@@ -30,8 +34,6 @@ const AddContainer = ({ addForm, setAddForm, createAPI }) => {
       <AddModal
         openModal={openModal}
         handleClickCloseModal={handleClickCloseModal}
-        addForm={addForm}
-        setAddForm={setAddForm}
       />
     </>
   )

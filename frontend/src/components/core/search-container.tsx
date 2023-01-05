@@ -1,3 +1,4 @@
+import { useDispatch, useSelector } from 'react-redux'
 import produce from 'immer'
 import moment from 'moment'
 import { useState } from 'react'
@@ -23,13 +24,20 @@ import DatePicker from 'react-datepicker'
 import CustomInput from 'src/components/pickers-compoent'
 import DATE from 'src/common/constants/date'
 import toast from 'react-hot-toast'
-
-const SearchContainer = ({
-  searchForm,
-  setSearchForm,
+import { RootState } from 'src/store'
+import {
+  initSearchForm,
   setPagination,
-  listAPI
-}) => {
+  updateSearchForm
+} from 'src/store/apps/crud'
+
+const SearchContainer = () => {
+  // ** Hooks
+  const dispatch = useDispatch()
+  const crud = useSelector((state: RootState) => state.crud)
+  const searchForm = crud.searchForm
+  const listAPI = crud.listAPI
+
   // ** State
   const [collapse, setCollapse] = useState<boolean>(false)
 
@@ -41,24 +49,12 @@ const SearchContainer = ({
 
   // 검색 폼 데이터 변경
   const handleChangeForm = (key: string, value: string) => {
-    const nextState = produce(searchForm, (draftState) => {
-      draftState.map((item) => {
-        if (item.key === key) {
-          item.value = value
-        }
-      })
-    })
-    setSearchForm(nextState)
+    dispatch(updateSearchForm({ key, value }))
   }
 
   // 검색 폼 데이터 초기화
   const handleInitForm = () => {
-    const nextState = produce(searchForm, (draftState) => {
-      draftState.map((item) => {
-        item.value = ''
-      })
-    })
-    setSearchForm(nextState)
+    dispatch(initSearchForm())
     toast.success('검색 필터가 초기화 되었습니다.')
   }
 
@@ -71,11 +67,13 @@ const SearchContainer = ({
     const { data: res } = await listAPI(params)
     if (res.statusCode === 200) {
       const data = res.data
-      setPagination({
-        activePage: 1,
-        count: getPaginationCount(data.count),
-        data: data.data
-      })
+      dispatch(
+        setPagination({
+          activePage: 1,
+          count: getPaginationCount(data.count),
+          data: data.data
+        })
+      )
       toast.success('검색 필터가 적용되었습니다.')
     }
   }

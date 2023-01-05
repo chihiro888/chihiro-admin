@@ -6,8 +6,14 @@ import CustomCloseButton from '../custom-close-button'
 import Icon from 'src/@core/components/icon'
 import Typography from '@mui/material/Typography'
 import Stack from '@mui/material/Stack'
+import { RootState } from 'src/store'
+import { useSelector } from 'react-redux'
 
-const DetailModal = ({ openDetailModal, setOpenDetailModal, detailForm }) => {
+const DetailModal = ({ openDetailModal, setOpenDetailModal }) => {
+  // ** Hooks
+  const crud = useSelector((state: RootState) => state.crud)
+  const detailForm = crud.detailForm
+
   return (
     <>
       <Dialog

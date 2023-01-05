@@ -8,8 +8,14 @@ import Chip from '@mui/material/Chip'
 import Snackbar from '@mui/material/Snackbar'
 import ActionContainer from 'src/components/core/action-container'
 import DATE from 'src/common/constants/date'
+import { useSelector } from 'react-redux'
+import { RootState } from 'src/store'
 
-const Content = ({ pagination, detailForm, detailAPI, deleteAPI, action }) => {
+const Content = () => {
+  // ** Hooks
+  const crud = useSelector((state: RootState) => state.crud)
+  const pagination = crud.pagination
+
   const [state, setState] = useState({
     openSnack: false,
     snackContent: ''
@@ -69,11 +75,7 @@ const Content = ({ pagination, detailForm, detailAPI, deleteAPI, action }) => {
                 : '-'}
             </TableCell>
             <TableCell>
-              <ActionContainer
-                id={row.id}
-                detailForm={detailForm}
-                action={action}
-              />
+              <ActionContainer id={row.id} />
             </TableCell>
           </TableRow>
         ))}

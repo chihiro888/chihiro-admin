@@ -6,8 +6,14 @@ import MenuItem from '@mui/material/MenuItem'
 import DeleteConfirmModal from './delete-confirm-modal'
 import EditModal from './edit-modal'
 import DetailModal from './\bdetail-modal'
+import { useSelector } from 'react-redux'
+import { RootState } from 'src/store'
 
-const ActionContainer = ({ id, detailForm, action }) => {
+const ActionContainer = ({ id }) => {
+  // ** Hooks
+  const crud = useSelector((state: RootState) => state.crud)
+  const actionForm = crud.actionForm
+
   // ** State
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const rowOptionsOpen = Boolean(anchorEl)
@@ -78,18 +84,18 @@ const ActionContainer = ({ id, detailForm, action }) => {
           <Icon icon="bx:trash-alt" fontSize={20} />
           삭제
         </MenuItem>
-        {action.map((item, idx) => {
+        {actionForm.map((item, idx) => {
           return (
             <>
               <MenuItem
                 key={idx}
                 onClick={() => {
-                  setTitle(item.label)
-                  setContent(item.content)
-                  setLoad(item.load)
-                  setUpdate(() => item.update)
-                  setOpenEditModal(true)
-                  handleRowOptionsClose()
+                  // setTitle(item.label)
+                  // setContent(item.content)
+                  // setLoad(item.load)
+                  // setUpdate(() => item.update)
+                  // setOpenEditModal(true)
+                  // handleRowOptionsClose()
                 }}
                 sx={{ '& svg': { mr: 2 } }}
               >
@@ -105,7 +111,6 @@ const ActionContainer = ({ id, detailForm, action }) => {
       <DetailModal
         openDetailModal={openDetailModal}
         setOpenDetailModal={setOpenDetailModal}
-        detailForm={detailForm}
       />
 
       {/* 수정 모달 */}
