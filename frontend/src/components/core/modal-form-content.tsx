@@ -22,9 +22,8 @@ import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
 
 
 import DropzoneWrapper from 'src/@core/styles/libs/react-dropzone'
-import CustomFileUploaderMultiple from './custom-file-uploader-multiple'
-import CustomFileUploaderSingle from './custom-file-uploader-single'
 import dynamic from 'next/dynamic'
+import CustomFileUploader from './custom-file-uploader'
 
 const ModalFormContent = ({ formContent, handleChangeForm }) => {
 
@@ -129,34 +128,21 @@ const ModalFormContent = ({ formContent, handleChangeForm }) => {
                   ) : (
                     <></>
                   )}
-                  {item.type === 'upload-single' ? (
+									{item.type === 'upload' ? (
                     <>
                       <Typography variant="subtitle1" sx={{ mb: 2 }}>
                         {item.label}
                       </Typography>
                       <DropzoneWrapper>
                         <Grid item xs={12}>
-                          <CustomFileUploaderSingle maxFileSizeBytes={item.maxFileSizeBytes} allowFileExt={item.allowFileExt} />
+                          <CustomFileUploader handleChangeForm={handleChangeForm} item={item} />
                         </Grid>
                       </DropzoneWrapper>
                     </>
                   ) : (
                     <></>
                   )}
-                  {item.type === 'upload-multiple' ? (
-                    <>
-                      <Typography variant="subtitle1" sx={{ mb: 2 }}>
-                        {item.label}
-                      </Typography>
-                      <DropzoneWrapper>
-                        <Grid item xs={12}>
-                          <CustomFileUploaderMultiple maxFileSizeBytes={item.maxFileSizeBytes} maxFileCount={item.maxFileCount} allowFileExt={item.allowFileExt} />
-                        </Grid>
-                      </DropzoneWrapper>
-                    </>
-                  ) : (
-                    <></>
-                  )}
+
                 </div>
               </Stack>
             </>

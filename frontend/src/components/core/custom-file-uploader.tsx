@@ -14,6 +14,7 @@ import { formatBytes } from 'src/utils'
 // ** Icon Imports
 import Icon from 'src/@core/components/icon'
 
+
 // ** Third Party Components
 import toast from 'react-hot-toast'
 import { useDropzone } from 'react-dropzone'
@@ -47,23 +48,26 @@ const HeadingTypography = styled(Typography)<TypographyProps>(({ theme }) => ({
   }
 }))
 
-const CustomFileUploaderMultiple = ({ maxFileSizeBytes, maxFileCount , allowFileExt }) => {
+const CustomFileUploader = ({ handleChangeForm, item }) => {
   // ** State
   const [files, setFiles] = useState<File[]>([])
 
   // ** Hooks
   const theme = useTheme()
   const { getRootProps, getInputProps } = useDropzone({
-    maxFiles: maxFileCount,
-    maxSize: maxFileSizeBytes,
+    maxFiles: item.maxFileCount,
+    maxSize: item.maxFileSizeBytes,
     accept: {
-      'image/*': allowFileExt
+      'image/*': item.allowFileExt
     },
     onDrop: (acceptedFiles: File[]) => {
       setFiles(acceptedFiles.map((file: File) => Object.assign(file)))
+      handleChangeForm(item.key, acceptedFiles)
+      console.log('files', files)
+
     },
     onDropRejected: () => {
-      toast.error(`최대 ${maxFileCount}개의 파일과  ${formatBytes(maxFileSizeBytes)}까지 업로드하실 수 있습니다.`, {
+      toast.error(`최대 ${item.maxFileCount}개의 파일과  ${formatBytes(item.maxFileSizeBytes)}까지 업로드하실 수 있습니다.`, {
         duration: 2000
       })
     }
@@ -95,7 +99,7 @@ const CustomFileUploaderMultiple = ({ maxFileSizeBytes, maxFileCount , allowFile
         </div>
       </div>
       <IconButton onClick={() => handleRemoveFile(file)}>
-        <Icon icon='close' fontSize={20} />
+        <Icon icon='icon' fontSize={20} />
       </IconButton>
     </ListItem>
   ))
@@ -112,8 +116,8 @@ const CustomFileUploaderMultiple = ({ maxFileSizeBytes, maxFileCount , allowFile
           <Img alt='Upload img' src={`/images/misc/upload-${theme.palette.mode}.png`} />
           <Box sx={{ display: 'flex', flexDirection: 'column', textAlign: ['center', 'center', 'inherit'] }}>
             <HeadingTypography variant='h6'>파일을 드롭다운 하거나 클릭하여 파일을 업로드 하십시오.</HeadingTypography>
-            <Typography color='textSecondary'>허용되는 확장자 : <br/>{allowFileExt.join(' ')}</Typography>
-            <Typography color='textSecondary'><br />최대 {maxFileCount}개의 파일과 {formatBytes(maxFileSizeBytes)}까지 업로드하실 수 있습니다.</Typography>
+            <Typography color='textSecondary'>허용되는 확장자 : <br/>{item.allowFileExt.join(' ')}</Typography>
+            <Typography color='textSecondary'><br />최대 {item.maxFileCount}개의 파일과 {formatBytes(item.maxFileSizeBytes)}까지 업로드하실 수 있습니다.</Typography>
           </Box>
         </Box>
       </div>
@@ -126,4 +130,4 @@ const CustomFileUploaderMultiple = ({ maxFileSizeBytes, maxFileCount , allowFile
   )
 }
 
-export default CustomFileUploaderMultiple
+export default CustomFileUploader
