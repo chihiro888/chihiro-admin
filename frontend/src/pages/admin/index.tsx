@@ -100,6 +100,23 @@ const Admin = () => {
           key: 'username',
           value: ''
         },
+        // {
+        //   type: 'upload-single',
+        //   label: '싱글 이미지',
+        //   key: 'upload-single',
+        //   value: '',
+        //   allowFileExt: ['.png', '.jpg', '.jpeg', '.gif'],
+        //   maxFileSizeBytes: 1024*1024
+        // },
+        // {
+        //   type: 'upload-multiple',
+        //   label: '다중 이미지',
+        //   key: 'upload-multiple',
+        //   value: '',
+        //   allowFileExt: ['.png', '.jpg', '.jpeg', '.gif'],
+        //   maxFileCount: 2,
+        //   maxFileSizeBytes: 10
+        // },
         {
           type: 'select',
           label: '권한',
