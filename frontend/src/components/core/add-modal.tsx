@@ -15,6 +15,7 @@ import AddConfirmModal from 'src/components/core/add-confirm-modal'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'src/store'
 import { updateAddForm } from 'src/store/apps/crud'
+import ModalFormContent from './modal-form-content'
 
 const AddModal = ({ openModal, handleClickCloseModal }) => {
   // ** Hooks
@@ -47,76 +48,7 @@ const AddModal = ({ openModal, handleClickCloseModal }) => {
       >
         <DialogTitle id="alert-dialog-title">추가</DialogTitle>
         <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            {addForm.map((item, idx) => {
-              return (
-                <>
-                  <Stack key={idx} sx={{ mb: 3 }}>
-                    <div>
-                      {item.type === 'text' ? (
-                        <>
-                          <TextField
-                            id="outlined-basic"
-                            label={item.label}
-                            value={item.value}
-                            onChange={(e) =>
-                              handleChangeForm(item.key, e.target.value)
-                            }
-                          />
-                        </>
-                      ) : (
-                        <></>
-                      )}
-                      {item.type === 'password' ? (
-                        <>
-                          <TextField
-                            id="outlined-basic"
-                            type="password"
-                            label={item.label}
-                            value={item.value}
-                            onChange={(e) =>
-                              handleChangeForm(item.key, e.target.value)
-                            }
-                          />
-                        </>
-                      ) : (
-                        <></>
-                      )}
-                      {item.type === 'select' ? (
-                        <>
-                          <FormControl style={{ width: '100%' }}>
-                            <InputLabel id={item.label}>
-                              {item.label}
-                            </InputLabel>
-                            <Select
-                              label={item.label}
-                              defaultValue=""
-                              id={item.label}
-                              labelId={item.label}
-                              style={{ width: '100%' }}
-                              onChange={(e) =>
-                                handleChangeForm(item.key, e.target.value)
-                              }
-                            >
-                              {item.list.map((item, idx) => {
-                                return (
-                                  <MenuItem key={idx} value={item.value}>
-                                    {item.label}
-                                  </MenuItem>
-                                )
-                              })}
-                            </Select>
-                          </FormControl>
-                        </>
-                      ) : (
-                        <></>
-                      )}
-                    </div>
-                  </Stack>
-                </>
-              )
-            })}
-          </DialogContentText>
+          <ModalFormContent formContent={addForm} handleChangeForm={handleChangeForm} />
         </DialogContent>
         <DialogActions>
           <Button
