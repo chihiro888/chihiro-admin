@@ -99,7 +99,7 @@ const CustomFileUploader = ({ handleChangeForm, item }) => {
         </div>
       </div>
       <IconButton onClick={() => handleRemoveFile(file)}>
-        <Icon icon='icon' fontSize={20} />
+        <Icon icon='material-symbols:close' fontSize={20} color='rgba(50, 71, 92, 0.87)' />
       </IconButton>
     </ListItem>
   ))
