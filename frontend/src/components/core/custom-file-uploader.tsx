@@ -61,9 +61,10 @@ const CustomFileUploader = ({ handleChangeForm, item }) => {
       'image/*': item.allowFileExt
     },
     onDrop: (acceptedFiles: File[]) => {
+      
       setFiles(acceptedFiles.map((file: File) => Object.assign(file)))
-      handleChangeForm(item.key, acceptedFiles)
-      console.log('files', files)
+      handleChangeForm(item.key, acceptedFiles.map((file: File) => Object.assign(file)))
+
 
     },
     onDropRejected: () => {
@@ -85,6 +86,7 @@ const CustomFileUploader = ({ handleChangeForm, item }) => {
     const uploadedFiles = files
     const filtered = uploadedFiles.filter((i: FileProp) => i.name !== file.name)
     setFiles([...filtered])
+    handleChangeForm(item.key, [...filtered])
   }
 
   const fileList = files.map((file: FileProp) => (

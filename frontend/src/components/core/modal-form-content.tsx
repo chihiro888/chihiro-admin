@@ -1,7 +1,7 @@
 // ** Module
 import { useState } from 'react'
 import { EditorWrapper } from 'src/@core/styles/libs/react-draft-wysiwyg'
-import { Editor } from 'react-draft-wysiwyg'
+// import { Editor } from 'react-draft-wysiwyg'
 import { EditorState, convertToRaw } from 'draft-js'
 import draftToHtml from 'draftjs-to-html'
 
@@ -17,21 +17,30 @@ import Select from '@mui/material/Select'
 import MenuItem from '@mui/material/MenuItem'
 import Typography from '@mui/material/Typography'
 
+
+// ** Component Import
+import ReactDraftWysiwyg from 'src/@core/components/react-draft-wysiwyg'
+
 // ** Styles
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
 
 
 import DropzoneWrapper from 'src/@core/styles/libs/react-dropzone'
-import dynamic from 'next/dynamic'
 import CustomFileUploader from './custom-file-uploader'
+import dynamic from 'next/dynamic'
 
 const ModalFormContent = ({ formContent, handleChangeForm }) => {
 
+	const localization = {
+		locale: 'ko'
+	}
+
 	// Next js react draft Editor Window error
 	// reference: https://github.com/jpuri/react-draft-wysiwyg/issues/893
-	const Editor = dynamic(
-		() => import('react-draft-wysiwyg').then(mod => mod.Editor),
-		{ ssr: false })
+	// const Editor = dynamic(
+	// 	() => import('react-draft-wysiwyg').then(mod => mod.Editor),
+	// 	{ ssr: false })
+
 		
   // ** State
   const [editorState, setEditorState] = useState(EditorState.createEmpty())
@@ -40,6 +49,7 @@ const ModalFormContent = ({ formContent, handleChangeForm }) => {
   // editor 수정 이벤트
   const onEditorStateChange = (key, data) => {
     const rawContentState = draftToHtml(convertToRaw(data.getCurrentContent()))
+
     setEditorState(data)
     handleChangeForm(key, rawContentState)
   }
@@ -117,11 +127,12 @@ const ModalFormContent = ({ formContent, handleChangeForm }) => {
                         {item.label}
                       </Typography>
                       <EditorWrapper>
-                        <Editor
+                        <ReactDraftWysiwyg
                           editorState={editorState}
                           onEditorStateChange={(data) =>
                             onEditorStateChange(item.key, data)
                           }
+													localization={localization}
                         />
                       </EditorWrapper>
                     </>

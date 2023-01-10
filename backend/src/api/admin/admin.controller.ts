@@ -30,6 +30,7 @@ import { UpdateAdminUsernameDto } from './dto/update-admin-username.dto'
 import { UpdateAdminLevelDto } from './dto/update-admin-level.dto'
 import { GetLoginHistoryDetailDto } from './dto/get-login-history-detail.dto'
 import { GetLoginHistoryListDto } from './dto/get-login-history-list.dto'
+import { ApiFiles } from 'src/common/decorator/api-files.decorator'
 
 // ANCHOR admin controller
 @ApiTags('admin')
@@ -323,6 +324,7 @@ export class AdminController {
   // ANCHOR create admin
   @UseGuards(SystemAdminGuard)
   @Post('createAdmin')
+  @ApiFiles()
   @ApiOperation({
     summary: '관리자 생성 (시스템 관리자 기능)',
     description: '관리자를 생성합니다'

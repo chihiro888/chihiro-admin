@@ -100,15 +100,21 @@ const Admin = () => {
           key: 'username',
           value: ''
         },
-        // {
-        //   type: 'upload',
-        //   label: '이미지',
-        //   key: 'upload',
-        //   value: '',
-        //   allowFileExt: ['.png', '.jpg', '.jpeg', '.gif'],
-        //   maxFileCount: 1,
-        //   maxFileSizeBytes: 1024*1024
-        // },
+        {
+          type: 'upload',
+          label: '이미지',
+          key: 'upload',
+          value: '',
+          allowFileExt: ['.png', '.jpg', '.jpeg', '.gif'],
+          maxFileCount: 1,
+          maxFileSizeBytes: 1024*1024
+        },
+        {
+          type: 'editor',
+          label: '에디터',
+          key: 'editor',
+          value: '',
+        },
 
         {
           type: 'select',
