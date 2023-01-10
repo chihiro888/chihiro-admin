@@ -25,6 +25,19 @@ const navigation = (): VerticalNavItemsType => {
       path: '/admin/history'
     },
     {
+      sectionTitle: '이미지'
+    },
+    {
+      title: '이미지 등록',
+      icon: 'material-symbols:upload-file-outline',
+      path: '/image/register'
+    },
+    {
+      title: '이미지 관리',
+      icon: 'material-symbols:image-outline',
+      path: '/image/list'
+    },
+    {
       sectionTitle: '설정'
     },
     {

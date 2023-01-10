@@ -9,15 +9,23 @@ import {
   UploadedFile,
   UseGuards,
   UseInterceptors,
-  UploadedFiles
+  UploadedFiles,
+  Get,
+  Query
 } from '@nestjs/common'
-import { ApiConsumes, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
+import {
+  ApiConsumes,
+  ApiOperation,
+  ApiResponse,
+  ApiTags
+} from '@nestjs/swagger'
 import { Response } from 'express'
 import SWAGGER from 'src/common/constants/swagger'
 import { ApiFiles } from 'src/common/decorator/api-files.decorator'
 import { UploadDto } from './dto/upload.dto'
 import { AuthGuard } from 'src/common/guard/auth.guard'
 import { AnyFilesInterceptor, FilesInterceptor } from '@nestjs/platform-express'
+import { GetListDto } from './dto/get-list.dto'
 
 // ANCHOR image controller
 @Controller('api/image')
@@ -28,7 +36,6 @@ export class ImageController {
   @UseGuards(AuthGuard)
   @Post('upload')
   @ApiTags('image')
-
   @ApiFiles()
   @ApiOperation({
     summary: '이미지 업로드',
@@ -38,7 +45,6 @@ export class ImageController {
     status: HttpStatus.OK,
     description: '이미지 업로드가 성공적인 경우 반환'
   })
-
   @ApiResponse({
     status: HttpStatus.UNAUTHORIZED,
     description: SWAGGER.UNAUTHORIZED
@@ -49,11 +55,7 @@ export class ImageController {
   })
   @UseInterceptors(FilesInterceptor('files', 10))
   @ApiConsumes('multipart/form-data')
-  async upload(
-    @Res() res: Response,
-    @UploadedFiles() files
-  ) {
-
+  async upload(@Res() res: Response, @UploadedFiles() files) {
     console.log('files', files)
     try {
       for (const file of files) {
@@ -68,7 +70,6 @@ export class ImageController {
       )
     }
 
-
     res.status(HttpStatus.OK).json({
       statusCode: HttpStatus.OK,
       message: 'Image upload is complete.',
@@ -76,5 +77,34 @@ export class ImageController {
     })
   }
 
+  // ANCHOR get list
+  @Get('getList')
+  @ApiTags('image')
+  @ApiOperation({
+    summary: '이미지 리스트 조회',
+    description: '이미지 리스트를 반환합니다.'
+  })
+  @ApiResponse({
+    status: HttpStatus.OK,
+    description: '이미지 리스트 조회가 성공적인 경우 반환'
+  })
+  @ApiResponse({
+    status: HttpStatus.BAD_REQUEST,
+    description: SWAGGER.BAD_REQUEST
+  })
+  @ApiResponse({
+    status: HttpStatus.UNAUTHORIZED,
+    description: SWAGGER.UNAUTHORIZED
+  })
+  async getList(@Res() res: Response, @Query() dto: GetListDto) {
+    // get list
+    const pagination = await this.imageService.getList(dto)
 
+    // return 200 response
+    res.status(HttpStatus.OK).json({
+      statusCode: HttpStatus.OK,
+      message: '',
+      data: pagination
+    })
+  }
 }

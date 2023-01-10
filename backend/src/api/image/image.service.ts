@@ -9,6 +9,7 @@ import { File } from 'src/entities/file.entity'
 import { Result } from 'src/common/interface'
 // import { GetListDto } from './dto/get-list.dto'
 import { GlobalService } from '../global/global.service'
+import { GetListDto } from './dto/get-list.dto'
 
 @Injectable()
 export class ImageService {
@@ -16,7 +17,7 @@ export class ImageService {
     @Inject('DATA_SOURCE')
     private datasource: DataSource,
 
-    // private globalService: GlobalService
+    private globalService: GlobalService
   ) {}
 
   // ANCHOR upload
@@ -59,4 +60,48 @@ export class ImageService {
     return { result: true, message: '' }
   }
 
+  // ANCHOR get list
+  async getList(dto: GetListDto) {
+    const limit = 12
+    const offset = (dto.page - 1) * limit
+
+    // count
+    const count = await this.datasource
+      .getRepository(File)
+      .createQueryBuilder('f')
+      .select(['count(1) as count'])
+      .where('1=1')
+      .getRawOne()
+
+    // data
+    const data = await this.datasource
+      .getRepository(File)
+      .createQueryBuilder('f')
+      .select([
+        'id as id',
+        'raw_name as rawName',
+        'enc_name as encName',
+        'extension as extension',
+        'size as size',
+        'h_size as hSize',
+        'abs_path as absPath',
+        'note as note',
+        `concat('${await this.globalService.getGlobal(
+          'imageDomain'
+        )}', '/', enc_name) as url`,
+        'created_at as createdAt',
+        'updated_at as updatedAt',
+        'deleted_at as deletedAt'
+      ])
+      .where('1=1')
+      .orderBy('f.created_at', 'DESC')
+      .limit(limit)
+      .offset(offset)
+      .getRawMany()
+
+    return {
+      count: Number(count.count),
+      data
+    }
+  }
 }

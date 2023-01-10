@@ -39,3 +39,21 @@ CREATE TABLE IF NOT EXISTS _global (
   `updated_at` DATETIME DEFAULT NULL COMMENT 'update time',
   `deleted_at` DATETIME DEFAULT NULL COMMENT 'delete time' -- pysical delete
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT="global";
+
+/*
+    file table
+*/
+DROP TABLE IF EXISTS _file;
+CREATE TABLE IF NOT EXISTS _file (
+  `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `raw_name` VARCHAR(255) NOT NULL COMMENT 'raw name',
+  `enc_name` VARCHAR(255) NOT NULL COMMENT 'enc name',
+  `extension` VARCHAR(255) NOT NULL COMMENT 'extension',
+  `size` INT NOT NULL COMMENT 'size',
+  `h_size` VARCHAR(255) NOT NULL COMMENT 'human size',
+  `abs_path` VARCHAR(255) NOT NULL COMMENT 'abs path',
+  `note` VARCHAR(255) NOT NULL COMMENT 'note',
+  `created_at` DATETIME DEFAULT now() COMMENT 'create time',
+  `updated_at` DATETIME DEFAULT NULL COMMENT 'update time',
+  `deleted_at` DATETIME DEFAULT NULL COMMENT 'delete time'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT="file";
