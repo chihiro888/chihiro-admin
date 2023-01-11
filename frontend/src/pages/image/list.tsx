@@ -20,6 +20,7 @@ import Typography from '@mui/material/Typography'
 import DialogTitle from '@mui/material/DialogTitle'
 import DialogContent from '@mui/material/DialogContent'
 import CustomCloseButton from 'src/components/custom-close-button'
+import CustomChip from 'src/@core/components/mui/chip'
 
 // ** Icon Imports
 import Icon from 'src/@core/components/icon'
@@ -119,7 +120,7 @@ const List = () => {
         <>
           <Grid container spacing={2} sx={{ mt: 3 }}>
             {pagination.data.map((value: any, index: number) => (
-              <Grid item key={index} {...{ xs: 4, sm: 3, md: 3, lg: 2 }}>
+              <Grid item key={index} {...{ xs: 6, sm: 4, md: 3, lg: 2 }}>
                 <Card>
                   <CardMedia
                     component="img"
@@ -129,9 +130,23 @@ const List = () => {
                     onClick={() => handleClickOpen(value.id)}
                   />
                   <CardContent>
-                    <Box sx={{ mb: 5}}>
-                      <Typography variant="body2">매핑 테이블 : {detail?.tableName ? detail?.tableName : '-'}</Typography>
-                      <Typography variant="body2">매핑 테이블 ID : {detail?.tableName ? detail?.tableName : '-'}</Typography>
+                    <Box sx={{ mb: 5 }}>
+                      <Stack>
+                        <CustomChip
+                          rounded
+                          label={value?.tableName ? value?.tableName : '-'}
+                          skin="light"
+                          color="primary"
+                        />
+                      </Stack>
+                      <Stack>
+                        <CustomChip
+                          rounded
+                          label={value?.tablePk ? value?.tablePk : '-'}
+                          skin="light"
+                          color="success"
+                        />
+                      </Stack>
                     </Box>
                     <Button
                       size="small"
@@ -186,15 +201,21 @@ const List = () => {
             <Typography variant="body1">{detail?.id}</Typography>
 
             <Typography variant="body2">매핑된 테이블 이름</Typography>
-            <Typography variant="body1">{detail?.tableName ? detail?.tableName : '-'}</Typography>
+            <Typography variant="body1">
+              {detail?.tableName ? detail?.tableName : '-'}
+            </Typography>
 
             <Typography variant="body2">매핑된 테이블 ID</Typography>
-            <Typography variant="body1">{detail?.tablePk ? detail?.tablePk : '-'}</Typography>
+            <Typography variant="body1">
+              {detail?.tablePk ? detail?.tablePk : '-'}
+            </Typography>
 
             <Typography variant="body2" sx={{ mt: 3 }}>
               메모
             </Typography>
-            <Typography variant="body1">{detail?.note ? detail?.note : '-'}</Typography>
+            <Typography variant="body1">
+              {detail?.note ? detail?.note : '-'}
+            </Typography>
 
             <Typography variant="body2" sx={{ mt: 3 }}>
               파일명

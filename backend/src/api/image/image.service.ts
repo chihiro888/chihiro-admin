@@ -36,7 +36,7 @@ export class ImageService {
     }
 
     for (const file of files) {
-        // 파일 정보 파싱
+      // 파일 정보 파싱
       const rawName = file.originalname
       const extension = file.originalname.split('.').pop()
       const uuid = uuidv4()
@@ -59,9 +59,7 @@ export class ImageService {
 
       // 파일 저장
       fs.writeFileSync(absPath, file.buffer)
-
     }
-    
 
     return { result: true, data: fileIdList }
   }
@@ -85,6 +83,8 @@ export class ImageService {
       .createQueryBuilder('f')
       .select([
         'id as id',
+        'table_name as tableName',
+        'table_pk as tablePk',
         'raw_name as rawName',
         'enc_name as encName',
         'extension as extension',
@@ -111,18 +111,16 @@ export class ImageService {
     }
   }
 
-
   // ANCHOR image mapping
   async mapping(tableName: string, tablePK: number, imagePK: number) {
     const image = await this.datasource.getRepository(File).findOne({
       where: {
-        id: imagePK,
+        id: imagePK
       }
     })
 
     image.tableName = tableName
     image.tablePk = tablePK
     await this.datasource.getRepository(File).save(image)
-
   }
 }
