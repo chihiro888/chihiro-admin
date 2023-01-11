@@ -13,13 +13,8 @@ export class File {
   })
   tableName: string | null;
 
-  @Column("varchar", {
-    name: "table_pk",
-    nullable: true,
-    comment: "table pk",
-    length: 255,
-  })
-  tablePk: string | null;
+  @Column("int", { name: "table_pk", nullable: true, comment: "table pk" })
+  tablePk: number | null;
 
   @Column("varchar", { name: "raw_name", comment: "raw name", length: 255 })
   rawName: string;
