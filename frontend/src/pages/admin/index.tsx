@@ -30,7 +30,8 @@ import {
   setCreateAPI,
   setDetailAPI,
   setDeleteAPI,
-  setActionList
+  setActionList,
+  setLoadAPI
 } from 'src/store/apps/crud'
 import { useEffect } from 'react'
 
@@ -50,6 +51,9 @@ const Admin = () => {
 
     // NOTE 삭제 API 정의
     dispatch(setDeleteAPI(deleteAdmin))
+
+    // NOTE 수정 모달 로드 API 정의
+    dispatch(setLoadAPI(getAdminDetail))
 
     // NOTE 페이지 헤더 정의
     dispatch(
@@ -100,21 +104,21 @@ const Admin = () => {
           key: 'username',
           value: ''
         },
-        {
-          type: 'upload',
-          label: '이미지',
-          key: 'upload',
-          value: '',
-          allowFileExt: ['.png', '.jpg', '.jpeg', '.gif'],
-          maxFileCount: 1,
-          maxFileSizeBytes: 1024*1024
-        },
-        {
-          type: 'editor',
-          label: '에디터',
-          key: 'editor',
-          value: '',
-        },
+        // {
+        //   type: 'upload',
+        //   label: '이미지',
+        //   key: 'upload',
+        //   value: [1, 2],
+        //   allowFileExt: ['.png', '.jpg', '.jpeg', '.gif'],
+        //   maxFileCount: 3,
+        //   maxFileSizeBytes: 1024*1024
+        // },
+        // {
+        //   type: 'editor',
+        //   label: '에디터',
+        //   key: 'editor',
+        //   value: '',
+        // },
 
         {
           type: 'select',
@@ -247,6 +251,7 @@ const Admin = () => {
               value: ''
             }
           ],
+          loadAPI: null,
           updateAPI: updateAdminPassword
         },
         {
@@ -257,9 +262,10 @@ const Admin = () => {
               type: 'text',
               label: '사용자명',
               key: 'username',
-              value: ''
+              value: '',
             }
           ],
+          loadAPI: getAdminDetail,
           updateAPI: updateAdminUsername
         },
         {
@@ -283,6 +289,7 @@ const Admin = () => {
               ]
             }
           ],
+          loadAPI: null,
           updateAPI: updateAdminLevel
         }
       ])

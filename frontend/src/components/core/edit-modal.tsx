@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Dialog from '@mui/material/Dialog'
 import DialogTitle from '@mui/material/DialogTitle'
 import DialogContent from '@mui/material/DialogContent'
@@ -10,12 +10,15 @@ import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'src/store'
 import { updateActionForm } from 'src/store/apps/crud'
 import ModalFormContent from './modal-form-content'
+import { getAdminDetail } from 'src/apis/admin'
 
 const EditModal = ({ openEditModal, setOpenEditModal, title }) => {
   // ** Hooks
   const dispatch = useDispatch()
   const crud = useSelector((state: RootState) => state.crud)
   const actionForm = crud.actionForm
+
+  // const 
 
   // ** State
   const [openConfirmModal, setOpenConfirmModal] = useState<boolean>(false)
@@ -31,6 +34,9 @@ const EditModal = ({ openEditModal, setOpenEditModal, title }) => {
   const handleChangeForm = (key: string, value: string) => {
     dispatch(updateActionForm({ key, value }))
   }
+
+
+
 
   return (
     <>

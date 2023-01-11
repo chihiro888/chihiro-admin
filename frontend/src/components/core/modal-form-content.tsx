@@ -1,10 +1,9 @@
 // ** Module
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { EditorWrapper } from 'src/@core/styles/libs/react-draft-wysiwyg'
 // import { Editor } from 'react-draft-wysiwyg'
 import { EditorState, convertToRaw } from 'draft-js'
 import draftToHtml from 'draftjs-to-html'
-
 
 // ** Mui
 import Grid from '@mui/material/Grid'
@@ -17,26 +16,29 @@ import Select from '@mui/material/Select'
 import MenuItem from '@mui/material/MenuItem'
 import Typography from '@mui/material/Typography'
 
-
 // ** Component Import
 import ReactDraftWysiwyg from 'src/@core/components/react-draft-wysiwyg'
 
 // ** Styles
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
 
-
 import DropzoneWrapper from 'src/@core/styles/libs/react-dropzone'
 import CustomFileUploader from './custom-file-uploader'
 import dynamic from 'next/dynamic'
+import { getAdminDetail } from 'src/apis/admin'
+import crud, { initEditForm } from 'src/store/apps/crud'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from 'src/store'
 
 const ModalFormContent = ({ formContent, handleChangeForm }) => {
+	const dispatch = useDispatch()
+	const crud = useSelector((state: RootState) => state.crud)
+	const loadAPI = crud.loadAPI
 
-	const localization = {
-		locale: 'ko'
-	}
+  const localization = {
+    locale: 'ko'
+  }
 
-
-		
   // ** State
   const [editorState, setEditorState] = useState(EditorState.createEmpty())
 
@@ -48,7 +50,21 @@ const ModalFormContent = ({ formContent, handleChangeForm }) => {
     setEditorState(data)
     handleChangeForm(key, rawContentState)
   }
+  // 폼 데이터 로드
+  const initData = async () => {
+      const param = { id: 1 }
+      try {
+        const { data: res } = await loadAPI(param)
+        const data = res.data
+				dispatch(initEditForm(data))
+      } catch (err) {
+				console.log('err =>', err)
+			}
+  }
 
+  useEffect(() => {
+    initData()
+  }, [])
 
   return (
     <>
@@ -127,28 +143,30 @@ const ModalFormContent = ({ formContent, handleChangeForm }) => {
                           onEditorStateChange={(data) =>
                             onEditorStateChange(item.key, data)
                           }
-													localization={localization}
+                          localization={localization}
                         />
                       </EditorWrapper>
                     </>
                   ) : (
                     <></>
                   )}
-									{item.type === 'upload' ? (
+                  {item.type === 'upload' ? (
                     <>
                       <Typography variant="subtitle1" sx={{ mb: 2 }}>
                         {item.label}
                       </Typography>
                       <DropzoneWrapper>
                         <Grid item xs={12}>
-                          <CustomFileUploader handleChangeForm={handleChangeForm} item={item} />
+                          <CustomFileUploader
+                            handleChangeForm={handleChangeForm}
+                            item={item}
+                          />
                         </Grid>
                       </DropzoneWrapper>
                     </>
                   ) : (
                     <></>
                   )}
-
                 </div>
               </Stack>
             </>

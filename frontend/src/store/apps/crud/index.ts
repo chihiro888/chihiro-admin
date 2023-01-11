@@ -54,7 +54,10 @@ export const appCrudSlice = createSlice({
     deleteAPI: null,
 
     // update API
-    updateAPI: null
+    updateAPI: null,
+
+    // load API
+    loadAPI: null,
   },
   reducers: {
     setActionId(state, action) {
@@ -112,6 +115,16 @@ export const appCrudSlice = createSlice({
       })
       state.actionForm = nextState
     },
+    initEditForm(state, action) {
+
+      const nextState = produce(state.actionForm, (draftState) => {
+        draftState.map((item) => {
+            item.value = action.payload[item.key]
+        })
+      })
+      state.actionForm = nextState
+    },
+
     initSearchForm(state) {
       const nextState = produce(state.searchForm, (draftState) => {
         draftState.map((item) => {
@@ -144,6 +157,9 @@ export const appCrudSlice = createSlice({
     },
     setUpdateAPI(state, action) {
       state.updateAPI = action.payload
+    },
+    setLoadAPI(state, action) {
+      state.loadAPI = action.payload
     }
   }
 })
@@ -161,13 +177,15 @@ export const {
   initAddForm,
   updateAddForm,
   updateActionForm,
+  initEditForm,
   initSearchForm,
   updateSearchForm,
   setListAPI,
   setCreateAPI,
   setDetailAPI,
   setDeleteAPI,
-  setUpdateAPI
+  setUpdateAPI,
+  setLoadAPI
 } = appCrudSlice.actions
 
 export default appCrudSlice.reducer
