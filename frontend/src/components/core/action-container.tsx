@@ -151,7 +151,6 @@ const ActionContainer = ({ id, detailAction, deleteAction }) => {
 
         {actionList.map((item, idx) => {
           return (
-            <>
               <MenuItem
                 key={idx}
                 onClick={() => handleClickEdit(item)}
@@ -160,7 +159,6 @@ const ActionContainer = ({ id, detailAction, deleteAction }) => {
                 <Icon icon={item.icon} fontSize={20} />
                 {item.label}
               </MenuItem>
-            </>
           )
         })}
       </Menu>
