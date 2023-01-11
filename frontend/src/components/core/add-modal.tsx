@@ -35,6 +35,7 @@ const AddModal = ({ openModal, handleClickCloseModal }) => {
 
   // 폼 데이터 변경
   const handleChangeForm = (key: string, value: string) => {
+    
     dispatch(updateAddForm({ key, value }))
   }
 

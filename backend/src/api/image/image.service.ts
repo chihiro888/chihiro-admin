@@ -1,6 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common'
 import { DataSource } from 'typeorm'
-import { UploadDto } from './dto/upload.dto'
 import { v4 as uuidv4 } from 'uuid'
 import * as fs from 'fs'
 import { formatBytes } from 'src/common/util/auth'
@@ -21,9 +20,10 @@ export class ImageService {
   ) {}
 
   // ANCHOR upload
-  async upload(file: any): Promise<Result> {
+  async upload(files: any): Promise<object> {
     // 업로드 경로 가져오기
     const uploadPath = getUploadPath()
+    const fileIdList = []
 
     // upload 디렉토리가 존재하지 않을시 생성
     if (!fs.existsSync(uploadPath)) {
@@ -31,33 +31,39 @@ export class ImageService {
     }
 
     // validation
-    if (!file) {
+    if (!files) {
       return { result: false, message: 'File does not exist' }
     }
 
-    // 파일 정보 파싱
-    const rawName = file.originalname
-    const extension = file.originalname.split('.').pop()
-    const uuid = uuidv4()
-    const encName = `${uuid}.${extension}`
-    const size = file.size
-    const hSize = formatBytes(size)
-    const absPath = `${uploadPath}/${encName}`
+    for (const file of files) {
+        // 파일 정보 파싱
+      const rawName = file.originalname
+      const extension = file.originalname.split('.').pop()
+      const uuid = uuidv4()
+      const encName = `${uuid}.${extension}`
+      const size = file.size
+      const hSize = formatBytes(size)
+      const absPath = `${uploadPath}/${encName}`
 
-    // 파일 데이터 저장
-    const f = new File()
-    f.rawName = rawName
-    f.encName = encName
-    f.extension = extension
-    f.size = size
-    f.hSize = hSize
-    f.absPath = absPath
-    await this.datasource.getRepository(File).save(f)
+      // 파일 데이터 저장
+      const f = new File()
+      f.rawName = rawName
+      f.encName = encName
+      f.extension = extension
+      f.size = size
+      f.hSize = hSize
+      f.absPath = absPath
+      const fileData = await this.datasource.getRepository(File).save(f)
 
-    // 파일 저장
-    fs.writeFileSync(absPath, file.buffer)
+      fileIdList.push(fileData.id)
 
-    return { result: true, message: '' }
+      // 파일 저장
+      fs.writeFileSync(absPath, file.buffer)
+
+    }
+    
+
+    return { result: true, data: fileIdList }
   }
 
   // ANCHOR get list
@@ -103,5 +109,20 @@ export class ImageService {
       count: Number(count.count),
       data
     }
+  }
+
+
+  // ANCHOR image mapping
+  async mapping(tableName: string, tablePK: number, imagePK: number) {
+    const image = await this.datasource.getRepository(File).findOne({
+      where: {
+        id: imagePK,
+      }
+    })
+
+    image.tableName = tableName
+    image.tablePk = tablePK
+    await this.datasource.getRepository(File).save(image)
+
   }
 }

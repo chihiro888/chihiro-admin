@@ -27,6 +27,7 @@ export const ApiFiles = (fileName: string = 'files'): MethodDecorator => (
       schema: {
           type: 'object',
           properties: {
+            note: { type: 'string' },
               [fileName]: {
                   type: 'array',
                   items: {

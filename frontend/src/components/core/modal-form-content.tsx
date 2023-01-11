@@ -35,11 +35,6 @@ const ModalFormContent = ({ formContent, handleChangeForm }) => {
 		locale: 'ko'
 	}
 
-	// Next js react draft Editor Window error
-	// reference: https://github.com/jpuri/react-draft-wysiwyg/issues/893
-	// const Editor = dynamic(
-	// 	() => import('react-draft-wysiwyg').then(mod => mod.Editor),
-	// 	{ ssr: false })
 
 		
   // ** State

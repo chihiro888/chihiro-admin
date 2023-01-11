@@ -22,16 +22,17 @@ import {
 import { Response } from 'express'
 import SWAGGER from 'src/common/constants/swagger'
 import { ApiFiles } from 'src/common/decorator/api-files.decorator'
-import { UploadDto } from './dto/upload.dto'
 import { AuthGuard } from 'src/common/guard/auth.guard'
 import { AnyFilesInterceptor, FilesInterceptor } from '@nestjs/platform-express'
 import { GetListDto } from './dto/get-list.dto'
+import { UploadDto } from './dto/upload.dto'
 
 // ANCHOR image controller
 @ApiTags('image')
 @Controller('api/image')
 export class ImageController {
   constructor(private imageService: ImageService) {}
+
 
   // ANCHOR image upload
   @UseGuards(AuthGuard)
@@ -55,12 +56,12 @@ export class ImageController {
   })
   @UseInterceptors(FilesInterceptor('files', 10))
   @ApiConsumes('multipart/form-data')
-  async upload(@Res() res: Response, @UploadedFiles() files) {
-    console.log('files', files)
+  
+  async upload(@Res() res: Response, @Body() dto: UploadDto, @UploadedFiles() files) {
+    let result;
+
     try {
-      for (const file of files) {
-        await this.imageService.upload(file)
-      }
+      result = await this.imageService.upload(files)
     } catch (err) {
       console.log('err = ', err)
       // return 500 response
@@ -73,7 +74,7 @@ export class ImageController {
     res.status(HttpStatus.OK).json({
       statusCode: HttpStatus.OK,
       message: 'Image upload is complete.',
-      data: null
+      data: result.data
     })
   }
 

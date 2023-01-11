@@ -4,7 +4,7 @@ import { CommonResponse } from 'src/common/interface'
 const rootUrl = '/api/image/'
 
 // ANCHOR upload
-export const upload = (params: object) => {
+export const upload = (params) => {
   const url = `${rootUrl}upload`
   const response = axios.post<CommonResponse>(url, params)
 

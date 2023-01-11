@@ -18,6 +18,7 @@ import Icon from 'src/@core/components/icon'
 // ** Third Party Components
 import toast from 'react-hot-toast'
 import { useDropzone } from 'react-dropzone'
+import { upload } from 'src/apis/image'
 
 interface FileProp {
   name: string
@@ -51,6 +52,7 @@ const HeadingTypography = styled(Typography)<TypographyProps>(({ theme }) => ({
 const CustomFileUploader = ({ handleChangeForm, item }) => {
   // ** State
   const [files, setFiles] = useState<File[]>([])
+  const [filesId, setFilesId] = useState([])
 
   // ** Hooks
   const theme = useTheme()
@@ -60,10 +62,21 @@ const CustomFileUploader = ({ handleChangeForm, item }) => {
     accept: {
       'image/*': item.allowFileExt
     },
-    onDrop: (acceptedFiles: File[]) => {
+    onDrop: async (acceptedFiles: File[]) => {
+
+      const formData = new FormData()
       
+
+      for (const file of acceptedFiles) {
+        formData.append('files', file)
+      }
+
+      const { data: res } = await upload(formData)
+
+      setFilesId(res.data)
+
       setFiles(acceptedFiles.map((file: File) => Object.assign(file)))
-      handleChangeForm(item.key, acceptedFiles.map((file: File) => Object.assign(file)))
+      handleChangeForm(item.key, res.data)
 
 
     },
@@ -82,14 +95,19 @@ const CustomFileUploader = ({ handleChangeForm, item }) => {
     }
   }
 
-  const handleRemoveFile = (file: FileProp) => {
+  const handleRemoveFile = (file: FileProp, index) => {
     const uploadedFiles = files
+    const uploadedFilesId = filesId
     const filtered = uploadedFiles.filter((i: FileProp) => i.name !== file.name)
+    const filteredId = uploadedFilesId.filter((tmp, i) => i !== index)
     setFiles([...filtered])
-    handleChangeForm(item.key, [...filtered])
+    setFilesId([...filteredId])
+    handleChangeForm(item.key, [...filteredId])
+
+
   }
 
-  const fileList = files.map((file: FileProp) => (
+  const fileList = files.map((file: FileProp, index) => (
     <ListItem key={file.name}>
       <div className='file-details'>
         <div className='file-preview'>{renderFilePreview(file)}</div>
@@ -100,7 +118,7 @@ const CustomFileUploader = ({ handleChangeForm, item }) => {
           </Typography>
         </div>
       </div>
-      <IconButton onClick={() => handleRemoveFile(file)}>
+      <IconButton onClick={() => handleRemoveFile(file, index)}>
         <Icon icon='material-symbols:close' fontSize={20} color='rgba(50, 71, 92, 0.87)' />
       </IconButton>
     </ListItem>
