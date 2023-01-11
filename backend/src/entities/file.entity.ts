@@ -5,11 +5,21 @@ export class File {
   @PrimaryGeneratedColumn({ type: "int", name: "id", comment: "id" })
   id: number;
 
-  @Column("varchar", { name: "table_name", comment: "table name", length: 255 })
-  tableName: string;
+  @Column("varchar", {
+    name: "table_name",
+    nullable: true,
+    comment: "table name",
+    length: 255,
+  })
+  tableName: string | null;
 
-  @Column("varchar", { name: "table_pk", comment: "table pk", length: 255 })
-  tablePk: string;
+  @Column("varchar", {
+    name: "table_pk",
+    nullable: true,
+    comment: "table pk",
+    length: 255,
+  })
+  tablePk: string | null;
 
   @Column("varchar", { name: "raw_name", comment: "raw name", length: 255 })
   rawName: string;

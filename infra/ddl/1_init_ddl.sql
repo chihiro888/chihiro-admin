@@ -46,8 +46,8 @@ CREATE TABLE IF NOT EXISTS _global (
 DROP TABLE IF EXISTS _file;
 CREATE TABLE IF NOT EXISTS _file (
   `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `table_name` VARCHAR(255) NOT NULL COMMENT 'table name',
-  `table_pk` VARCHAR(255) NOT NULL COMMENT 'table pk',
+  `table_name` VARCHAR(255) COMMENT 'table name',
+  `table_pk` VARCHAR(255) COMMENT 'table pk',
   `raw_name` VARCHAR(255) NOT NULL COMMENT 'raw name',
   `enc_name` VARCHAR(255) NOT NULL COMMENT 'enc name',
   `extension` VARCHAR(255) NOT NULL COMMENT 'extension',
