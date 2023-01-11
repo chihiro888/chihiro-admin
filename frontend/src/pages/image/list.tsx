@@ -1,4 +1,5 @@
 import {
+  Box,
   Card,
   CardContent,
   CardMedia,
@@ -128,6 +129,10 @@ const List = () => {
                     onClick={() => handleClickOpen(value.id)}
                   />
                   <CardContent>
+                    <Box sx={{ mb: 5}}>
+                      <Typography variant="body2">매핑 테이블 : {detail?.tableName ? detail?.tableName : '-'}</Typography>
+                      <Typography variant="body2">매핑 테이블 ID : {detail?.tableName ? detail?.tableName : '-'}</Typography>
+                    </Box>
                     <Button
                       size="small"
                       onClick={() => handleClickCopy(index)}
@@ -180,10 +185,16 @@ const List = () => {
             <Typography variant="body2">아이디</Typography>
             <Typography variant="body1">{detail?.id}</Typography>
 
+            <Typography variant="body2">매핑된 테이블 이름</Typography>
+            <Typography variant="body1">{detail?.tableName ? detail?.tableName : '-'}</Typography>
+
+            <Typography variant="body2">매핑된 테이블 ID</Typography>
+            <Typography variant="body1">{detail?.tablePk ? detail?.tablePk : '-'}</Typography>
+
             <Typography variant="body2" sx={{ mt: 3 }}>
               메모
             </Typography>
-            <Typography variant="body1">{detail?.note}</Typography>
+            <Typography variant="body1">{detail?.note ? detail?.note : '-'}</Typography>
 
             <Typography variant="body2" sx={{ mt: 3 }}>
               파일명
