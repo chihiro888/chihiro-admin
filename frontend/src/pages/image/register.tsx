@@ -74,7 +74,7 @@ const List = () => {
     try {
       const formData = new FormData()
       formData.append('note', memo)
-      formData.append('file', files[0])
+      formData.append('files', files[0])
       const { data: res } = await upload(formData)
       if (res.statusCode === 200) {
         toast.success(t(res.message))

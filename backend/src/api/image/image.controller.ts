@@ -28,6 +28,7 @@ import { AnyFilesInterceptor, FilesInterceptor } from '@nestjs/platform-express'
 import { GetListDto } from './dto/get-list.dto'
 
 // ANCHOR image controller
+@ApiTags('image')
 @Controller('api/image')
 export class ImageController {
   constructor(private imageService: ImageService) {}
@@ -35,7 +36,6 @@ export class ImageController {
   // ANCHOR image upload
   @UseGuards(AuthGuard)
   @Post('upload')
-  @ApiTags('image')
   @ApiFiles()
   @ApiOperation({
     summary: '이미지 업로드',
