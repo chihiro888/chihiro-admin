@@ -46,13 +46,15 @@ CREATE TABLE IF NOT EXISTS _global (
 DROP TABLE IF EXISTS _file;
 CREATE TABLE IF NOT EXISTS _file (
   `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `table_name` VARCHAR(255) NOT NULL COMMENT 'table name',
+  `table_pk` VARCHAR(255) NOT NULL COMMENT 'table pk',
   `raw_name` VARCHAR(255) NOT NULL COMMENT 'raw name',
   `enc_name` VARCHAR(255) NOT NULL COMMENT 'enc name',
   `extension` VARCHAR(255) NOT NULL COMMENT 'extension',
   `size` INT NOT NULL COMMENT 'size',
   `h_size` VARCHAR(255) NOT NULL COMMENT 'human size',
   `abs_path` VARCHAR(255) NOT NULL COMMENT 'abs path',
-  `note` VARCHAR(255) NOT NULL COMMENT 'note',
+  `note` VARCHAR(255) COMMENT 'note',
   `created_at` DATETIME DEFAULT now() COMMENT 'create time',
   `updated_at` DATETIME DEFAULT NULL COMMENT 'update time',
   `deleted_at` DATETIME DEFAULT NULL COMMENT 'delete time'

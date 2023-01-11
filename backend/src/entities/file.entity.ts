@@ -1,69 +1,61 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
+import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity('_file', { schema: 'develop' })
+@Entity("_file", { schema: "develop" })
 export class File {
-  @PrimaryGeneratedColumn({ type: 'int', name: 'id', comment: 'id' })
-  id: number
+  @PrimaryGeneratedColumn({ type: "int", name: "id", comment: "id" })
+  id: number;
 
-  @Column('varchar', {
-    name: 'raw_name',
-    comment: 'original file name',
-    length: 255
-  })
-  rawName: string
+  @Column("varchar", { name: "table_name", comment: "table name", length: 255 })
+  tableName: string;
 
-  @Column('varchar', {
-    name: 'enc_name',
-    comment: 'encoded file name',
-    length: 255
-  })
-  encName: string
+  @Column("varchar", { name: "table_pk", comment: "table pk", length: 255 })
+  tablePk: string;
 
-  @Column('varchar', {
-    name: 'extension',
-    comment: 'file extension',
-    length: 255
-  })
-  extension: string
+  @Column("varchar", { name: "raw_name", comment: "raw name", length: 255 })
+  rawName: string;
 
-  @Column({ type: 'int', name: 'size', comment: 'file bytes size' })
-  size: number
+  @Column("varchar", { name: "enc_name", comment: "enc name", length: 255 })
+  encName: string;
 
-  @Column('varchar', {
-    name: 'h_size',
-    comment: 'file human size',
-    length: 255
-  })
-  hSize: string
+  @Column("varchar", { name: "extension", comment: "extension", length: 255 })
+  extension: string;
 
-  @Column('varchar', {
-    name: 'abs_path',
-    comment: 'file absolute path',
-    length: 255
-  })
-  absPath: string
+  @Column("int", { name: "size", comment: "size" })
+  size: number;
 
+  @Column("varchar", { name: "h_size", comment: "human size", length: 255 })
+  hSize: string;
 
-  @Column('datetime', {
-    name: 'created_at',
+  @Column("varchar", { name: "abs_path", comment: "abs path", length: 255 })
+  absPath: string;
+
+  @Column("varchar", {
+    name: "note",
     nullable: true,
-    comment: 'file upload time',
-    default: () => 'CURRENT_TIMESTAMP'
+    comment: "note",
+    length: 255,
   })
-  createdAt: String | Date | null
+  note: string | null;
 
-  @Column('datetime', {
-    name: 'updated_at',
+  @Column("datetime", {
+    name: "created_at",
     nullable: true,
-    comment: 'file updated time'
+    comment: "create time",
+    default: () => "CURRENT_TIMESTAMP",
   })
-  updatedAt: String | Date | null
+  createdAt: Date | null | string;
 
-  @Column('datetime', {
-    name: 'deleted_at',
+  @Column("datetime", {
+    name: "updated_at",
     nullable: true,
-    comment: 'create time',
-    default: () => 'CURRENT_TIMESTAMP'
+    comment: "update time",
   })
-  deletedAt: String | Date | null
+  updatedAt: Date | null | string;
+
+  @Column("datetime", {
+    name: "deleted_at",
+    nullable: true,
+    comment: "delete time",
+  })
+  deletedAt: Date | null | string;
 }
