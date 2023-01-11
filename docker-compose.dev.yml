@@ -1,0 +1,29 @@
+version: "3"
+
+services:
+  titan-db-dev:
+    image: mysql:8
+    container_name: titan-db-dev
+    environment:
+      # LANGUAGE OR LANG UTF-8 설정을 하지 않으면
+      # docker-entrypoint-initdb.d 사용시 한글이 깨져서 데이터가 들어가게됨
+      LANGUAGE: ko_KR.UTF-8
+      LANG: ko_KR.UTF-8
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: develop
+      MYSQL_USER: docker
+      MYSQL_PASSWORD: docker
+      TZ: "Asia/Seoul"
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - ./docker/ddl:/docker-entrypoint-initdb.d
+    ports:
+      - 3306:3306
+  titan-img-dev:
+    image: nginx:1.23.2
+    container_name: titan-img-dev
+    ports:
+      - 7000:7000
+    volumes:
+      - ./docker/nginx/nginx-img.conf:/etc/nginx/nginx.conf
+      - ./backend/upload:/upload

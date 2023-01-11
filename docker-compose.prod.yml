@@ -1,0 +1,34 @@
+version: "3"
+
+services:
+  titan-db-prod:
+    image: mysql:8
+    container_name: titan-db-prod
+    environment:
+      # LANGUAGE OR LANG UTF-8 설정을 하지 않으면
+      # docker-entrypoint-initdb.d 사용시 한글이 깨져서 데이터가 들어가게됨
+      LANGUAGE: ko_KR.UTF-8
+      LANG: ko_KR.UTF-8
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: develop
+      MYSQL_USER: docker
+      MYSQL_PASSWORD: docker
+      TZ: "Asia/Seoul"
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - ./docker/ddl:/docker-entrypoint-initdb.d
+    ports:
+      - 10000:3306
+  titan-app-prod:
+    container_name: titan-app-prod
+    build:
+      context: .
+      dockerfile: ./dockerfile
+    command: bash -c "service nginx start && cd backend && yarn install --ignore-engines && yarn build && yarn load:yaml && pm2 restart ecosystem.config.js --env production --time && cd ../frontend && yarn install --ignore-engines && yarn build && pm2 start yarn --time --name frontend -- start && tail -f /dev/null"
+    tty: true
+    ports:
+      - "80:80"
+    volumes:
+      - ./backend/upload:/usr/src/app/backend/upload
+    depends_on:
+      - titan-db-prod
