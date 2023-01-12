@@ -13,7 +13,7 @@
         "args": ["start:dev"]
       },
       "windows": {
-        "args": ["start-win:dev"]
+        "args": ["start:dev_win"]
       },
       "console": "integratedTerminal",
       "restart": true,
