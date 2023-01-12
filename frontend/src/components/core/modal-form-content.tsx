@@ -22,6 +22,7 @@ import ReactDraftWysiwyg from 'src/@core/components/react-draft-wysiwyg'
 // ** Styles
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
 
+
 import DropzoneWrapper from 'src/@core/styles/libs/react-dropzone'
 import CustomFileUploader from './custom-file-uploader'
 import dynamic from 'next/dynamic'
@@ -33,6 +34,8 @@ import { RootState } from 'src/store'
 const ModalFormContent = ({ formContent, handleChangeForm }) => {
 	const dispatch = useDispatch()
 	const crud = useSelector((state: RootState) => state.crud)
+
+	const actionId = crud.actionId
 	const loadAPI = crud.loadAPI
 
   const localization = {
@@ -52,7 +55,7 @@ const ModalFormContent = ({ formContent, handleChangeForm }) => {
   }
   // 폼 데이터 로드
   const initData = async () => {
-      const param = { id: 1 }
+      const param = { id: actionId }
       try {
         const { data: res } = await loadAPI(param)
         const data = res.data
