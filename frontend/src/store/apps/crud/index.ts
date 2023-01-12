@@ -116,9 +116,16 @@ export const appCrudSlice = createSlice({
       state.actionForm = nextState
     },
     initEditForm(state, action) {
-
       const nextState = produce(state.actionForm, (draftState) => {
         draftState.map((item) => {
+          // 어드민 권한 로직
+          if( item.key === 'level' ) {
+            if ( action.payload.isAdmin === 1 && action.payload.isSystemAdmin === 1)
+              item.value = 'SA'
+            if ( action.payload.isAdmin === 1 && action.payload.isSystemAdmin === 0 )
+              item.value = 'A'
+          }
+          else
             item.value = action.payload[item.key]
         })
       })

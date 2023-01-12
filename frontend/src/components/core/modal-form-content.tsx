@@ -27,6 +27,7 @@ import DropzoneWrapper from 'src/@core/styles/libs/react-dropzone'
 import CustomFileUploader from './custom-file-uploader'
 import dynamic from 'next/dynamic'
 import { getAdminDetail } from 'src/apis/admin'
+import { getPaginationCount, getParamsFromForm } from 'src/utils'
 import crud, { initEditForm } from 'src/store/apps/crud'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'src/store'
@@ -55,9 +56,9 @@ const ModalFormContent = ({ formContent, handleChangeForm }) => {
   }
   // 폼 데이터 로드
   const initData = async () => {
-      const param = { id: actionId }
+			const params = {'id': actionId}
       try {
-        const { data: res } = await loadAPI(param)
+        const { data: res } = await loadAPI(params)
         const data = res.data
 				dispatch(initEditForm(data))
       } catch (err) {
@@ -114,7 +115,7 @@ const ModalFormContent = ({ formContent, handleChangeForm }) => {
                         <InputLabel id={item.label}>{item.label}</InputLabel>
                         <Select
                           label={item.label}
-                          defaultValue=""
+                          value={item.value}
                           id={item.label}
                           labelId={item.label}
                           style={{ width: '100%' }}

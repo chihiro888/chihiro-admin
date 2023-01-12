@@ -17,8 +17,8 @@ const EditModal = ({ openEditModal, setOpenEditModal, title }) => {
   const dispatch = useDispatch()
   const crud = useSelector((state: RootState) => state.crud)
   const actionForm = crud.actionForm
+  
 
-  // const 
 
   // ** State
   const [openConfirmModal, setOpenConfirmModal] = useState<boolean>(false)
