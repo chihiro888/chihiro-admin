@@ -80,11 +80,14 @@ const Home = () => {
         }
       ])
     )
-    initData()
   }, [])
 
+  useEffect(() => {
+      initData()
+  }, [dashboardList.length])
+
   const initData = () => {
-    dashboardList.map(async (item) => {
+    dashboardList.map( async (item) => {
       const { data: res } = await item.loadAPI()
       dispatch(initDashboard({ item, res }))
     })
