@@ -41,6 +41,9 @@ export const appCrudSlice = createSlice({
     // action form
     actionForm: [],
 
+    // dashboard list
+    dashboardList: [],
+
     // list API
     listAPI: null,
 
@@ -86,6 +89,9 @@ export const appCrudSlice = createSlice({
     },
     setActionForm(state, action) {
       state.actionForm = action.payload
+    },
+    setDashboardList(state, action) {
+      state.dashboardList = action.payload
     },
     initAddForm(state) {
       const nextState = produce(state.addForm, (draftState) => {
@@ -150,6 +156,17 @@ export const appCrudSlice = createSlice({
       })
       state.searchForm = nextState
     },
+
+    initDashboard(state, action) {
+      const nextState = produce(state.dashboardList, (draftState) => {
+        draftState.map((item) => {
+          if (item.key === action.payload.item.key) {
+            item.value = action.payload.res.data
+          }
+        })
+      })
+      state.dashboardList = nextState
+    },
     setListAPI(state, action) {
       state.listAPI = action.payload
     },
@@ -181,11 +198,13 @@ export const {
   setDetailForm,
   setActionList,
   setActionForm,
+  setDashboardList,
   initAddForm,
   updateAddForm,
   updateActionForm,
   initEditForm,
   initSearchForm,
+  initDashboard,
   updateSearchForm,
   setListAPI,
   setCreateAPI,
