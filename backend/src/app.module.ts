@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 import { AdminModule } from './api/admin/admin.module'
+import { DashboardModule } from './api/dashboard/dashboard.module'
 import { DevelopModule } from './api/develop/develop.module'
 import { GlobalModule } from './api/global/global.module'
 import { ImageModule } from './api/image/image.module'
@@ -24,7 +25,8 @@ import configuration from './configuration/configuration'
     DevelopModule,
     AdminModule,
     GlobalModule,
-    ImageModule
+    ImageModule,
+    DashboardModule
   ]
 })
 export class AppModule {}
