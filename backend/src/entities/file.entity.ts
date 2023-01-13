@@ -16,6 +16,14 @@ export class File {
   @Column("int", { name: "table_pk", nullable: true, comment: "table pk" })
   tablePk: number | null;
 
+  @Column("varchar", {
+    name: "type",
+    nullable: true,
+    comment: "type",
+    length: 255,
+  })
+  type: string | null;
+
   @Column("varchar", { name: "raw_name", comment: "raw name", length: 255 })
   rawName: string;
 
@@ -48,19 +56,19 @@ export class File {
     comment: "create time",
     default: () => "CURRENT_TIMESTAMP",
   })
-  createdAt: Date | null | string;
+  createdAt: String | Date | null;
 
   @Column("datetime", {
     name: "updated_at",
     nullable: true,
     comment: "update time",
   })
-  updatedAt: Date | null | string;
+  updatedAt: String | Date | null;
 
   @Column("datetime", {
     name: "deleted_at",
     nullable: true,
     comment: "delete time",
   })
-  deletedAt: Date | null | string;
+  deletedAt: String | Date | null;
 }
