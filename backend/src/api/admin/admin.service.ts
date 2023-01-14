@@ -330,31 +330,34 @@ export class AdminService {
 
   // ANCHOR update admin profile
   async updateAdminProfile(dto: UpdateAdminProfileDto) {
-    const file = await this.datasource.getRepository(File).findOne({
+    console.log('dto =>', dto)
+
+    // profile [], userId 1
+    const adminProfile = await this.datasource.getRepository(File).findOne({
       where: {
         tableName: '_admin',
         tablePk: dto.userId
       }
     })
 
-    if(file) {
-      file.tableName = null
-      file.tablePk = null
-      file.updatedAt = moment().format(DATE.DATETIME)
-      await this.datasource.getRepository(File).save(file)
+    if(adminProfile) {
+      adminProfile.tableName = null
+      adminProfile.tablePk = null
+      adminProfile.updatedAt = moment().format(DATE.DATETIME)
+      await this.datasource.getRepository(File).save(adminProfile)
 
 
     }
-    const updateFile = await this.datasource.getRepository(File).findOne({
-      where: {
-        id: dto.profile[0]
-      }
-    })
-
-    updateFile.tableName = '_admin'
-    updateFile.tablePk = dto.userId
-    
-    await this.datasource.getRepository(File).save(updateFile)
+    if (dto.profile[0]){
+      const updateProfile = await this.datasource.getRepository(File).findOne({
+        where: {
+          id: dto.profile[0]
+        }
+      })
+      updateProfile.tableName = '_admin'
+      updateProfile.tablePk = dto.userId
+      await this.datasource.getRepository(File).save(updateProfile)
+    }
   }
 
   // ANCHOR get login history list

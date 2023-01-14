@@ -57,6 +57,18 @@ const CustomFileUploader = ({ handleChangeForm, item }) => {
   // ** Hooks
   const theme = useTheme()
 
+  const initData = () => {
+    setFiles(item.value)
+  }
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    if(item.value[0]?.id) {
+      setFiles(item.value)
+    }
+  }, [item.value])
+  
+
 
   const { getRootProps, getInputProps } = useDropzone({
     maxFiles: item.maxFileCount,
@@ -72,14 +84,10 @@ const CustomFileUploader = ({ handleChangeForm, item }) => {
       for (const file of acceptedFiles) {
         formData.append('files', file)
       }
-
       const { data: res } = await upload(formData)
 
       setFiles(res.data)
-
-
       handleChangeForm(item.key, res.data.map(file => file.id))
-
 
     },
     onDropRejected: () => {
