@@ -6,7 +6,6 @@ CREATE TABLE IF NOT EXISTS _admin (
   `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT COMMENT 'id',
   `account` VARCHAR(255) UNIQUE NOT NULL COMMENT 'account',
   `password` VARCHAR(255) NOT NULL COMMENT 'password',
-  `profile` VARCHAR(255) COMMENT 'profile',
   `intro` VARCHAR(255) COMMENT 'intro',
   `username` VARCHAR(255) NOT NULL COMMENT 'username',
   `is_system_admin` INT DEFAULT 0 COMMENT 'is system admin',

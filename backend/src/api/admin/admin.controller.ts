@@ -15,9 +15,11 @@ import {
   Session,
   Res,
   HttpException,
-  UseGuards
+  UseGuards,
+  UseInterceptors,
+  UploadedFiles
 } from '@nestjs/common'
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
+import { ApiConsumes, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 import { Response } from 'express'
 import { UpdatePasswordDto } from './dto/update-password.dto'
 import SWAGGER from 'src/common/constants/swagger'
@@ -28,9 +30,11 @@ import { GetAdminDetailDto } from './dto/get-admin-detail.dto'
 import { CreateAdminDto } from './dto/create-admin.dto'
 import { UpdateAdminUsernameDto } from './dto/update-admin-username.dto'
 import { UpdateAdminLevelDto } from './dto/update-admin-level.dto'
+import { UpdateAdminProfileDto } from './dto/update-admin-profile.dto'
 import { GetLoginHistoryDetailDto } from './dto/get-login-history-detail.dto'
 import { GetLoginHistoryListDto } from './dto/get-login-history-list.dto'
 import { ApiFiles } from 'src/common/decorator/api-files.decorator'
+import { FilesInterceptor } from '@nestjs/platform-express'
 
 // ANCHOR admin controller
 @ApiTags('admin')
@@ -436,6 +440,28 @@ export class AdminController {
       data: null
     })
   }
+
+    // ANCHOR update admin level
+    @UseGuards(SystemAdminGuard)
+    @Put('updateAdminProfile')
+    @ApiOperation({
+      summary: '관리자 프로필 변경 (시스템 관리자 기능)',
+      description: '관리자의 프로필을 변경합니다.'
+    })
+    async updateAdminProfile(
+      @Res() res: Response,
+      @Body() dto: UpdateAdminProfileDto,
+    ) {
+      // update admin level
+      await this.adminService.updateAdminProfile(dto)
+  
+      // return 200 response
+      res.status(HttpStatus.OK).json({
+        statusCode: HttpStatus.OK,
+        message: 'Profile change completed.',
+        data: null
+      })
+    }
 
   // ANCHOR get login history list
   @UseGuards(SystemAdminGuard)

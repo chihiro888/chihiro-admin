@@ -99,6 +99,14 @@ export const updateAdminUsername = (params: object) => {
   return response
 }
 
+// ANCHOR update admin profile
+export const updateAdminProfile = (params: object) => {
+  const url = `${rootUrl}updateAdminProfile`
+  const response = axios.put<CommonResponse>(url, params)
+
+  return response
+}
+
 // ANCHOR update admin level
 export const updateAdminLevel = (params: object) => {
   const url = `${rootUrl}updateAdminLevel`

@@ -23,7 +23,7 @@ export class ImageService {
   async upload(files: any): Promise<object> {
     // 업로드 경로 가져오기
     const uploadPath = getUploadPath()
-    const fileIdList = []
+    const fileList = []
 
     // upload 디렉토리가 존재하지 않을시 생성
     if (!fs.existsSync(uploadPath)) {
@@ -55,13 +55,14 @@ export class ImageService {
       f.absPath = absPath
       const fileData = await this.datasource.getRepository(File).save(f)
 
-      fileIdList.push(fileData.id)
+      fileList.push(fileData)
 
       // 파일 저장
       fs.writeFileSync(absPath, file.buffer)
     }
 
-    return { result: true, data: fileIdList }
+
+    return { result: true, data: fileList }
   }
 
   // ANCHOR get list

@@ -5,7 +5,7 @@ import Grid from '@mui/material/Grid'
 import ApexChartWrapper from 'src/@core/styles/libs/react-apexcharts'
 
 // ** Demo Component Imports
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import Congratulations from 'src/components/congratulations'
 import CardStatsVertical from 'src/components/card-stats-vertical'
 import {
@@ -14,7 +14,6 @@ import {
   getLoginHistoryCount,
   getSettingCount
 } from 'src/apis/dashboard'
-import produce from 'immer'
 import { useDispatch, useSelector } from 'react-redux'
 
 // ** Redux
@@ -83,11 +82,12 @@ const Home = () => {
   }, [])
 
   useEffect(() => {
-      initData()
+    initData()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dashboardList.length])
 
   const initData = () => {
-    dashboardList.map( async (item) => {
+    dashboardList.map(async (item) => {
       const { data: res } = await item.loadAPI()
       dispatch(initDashboard({ item, res }))
     })

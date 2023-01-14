@@ -32,6 +32,7 @@ const EditModal = ({ openEditModal, setOpenEditModal, title }) => {
 
   // 폼 데이터 변경
   const handleChangeForm = (key: string, value: string) => {
+    console.log('key value', key, value)
     dispatch(updateActionForm({ key, value }))
   }
 

@@ -18,14 +18,6 @@ export class Admin {
   password: string;
 
   @Column("varchar", {
-    name: "profile",
-    nullable: true,
-    comment: "profile",
-    length: 255,
-  })
-  profile: string | null;
-
-  @Column("varchar", {
     name: "intro",
     nullable: true,
     comment: "intro",

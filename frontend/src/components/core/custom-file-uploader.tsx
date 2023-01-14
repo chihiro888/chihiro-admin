@@ -1,5 +1,5 @@
 // ** React Imports
-import { Fragment, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 
 // ** MUI Imports
 import Box from '@mui/material/Box'
@@ -51,11 +51,13 @@ const HeadingTypography = styled(Typography)<TypographyProps>(({ theme }) => ({
 
 const CustomFileUploader = ({ handleChangeForm, item }) => {
   // ** State
-  const [files, setFiles] = useState<File[]>([])
-  const [filesId, setFilesId] = useState([])
+  const [files, setFiles] = useState([])
+
 
   // ** Hooks
   const theme = useTheme()
+
+
   const { getRootProps, getInputProps } = useDropzone({
     maxFiles: item.maxFileCount,
     maxSize: item.maxFileSizeBytes,
@@ -73,10 +75,10 @@ const CustomFileUploader = ({ handleChangeForm, item }) => {
 
       const { data: res } = await upload(formData)
 
-      setFilesId(res.data)
+      setFiles(res.data)
 
-      setFiles(acceptedFiles.map((file: File) => Object.assign(file)))
-      handleChangeForm(item.key, res.data)
+
+      handleChangeForm(item.key, res.data.map(file => file.id))
 
 
     },
@@ -87,38 +89,38 @@ const CustomFileUploader = ({ handleChangeForm, item }) => {
     }
   })
 
-  const renderFilePreview = (file: FileProp) => {
-    if (file.type.startsWith('image')) {
-      return <img width={38} height={38} alt={file.name} src={URL.createObjectURL(file as any)} />
+  const renderFilePreview = (file) => {
+
+
+    if (file.extension == 'png' || file.extension == 'jpg' || file.extension == 'gif') {
+      return <img width={38} height={38} alt={file.rawName} src={file.absPath} />
     } else {
       return <Icon icon='bx:file' />
     }
   }
 
-  const handleRemoveFile = (file: FileProp, index) => {
+  const handleRemoveFile = (file) => {
+
     const uploadedFiles = files
-    const uploadedFilesId = filesId
-    const filtered = uploadedFiles.filter((i: FileProp) => i.name !== file.name)
-    const filteredId = uploadedFilesId.filter((tmp, i) => i !== index)
+    const filtered = uploadedFiles.filter((i) => i.rawName !== file.rawName)
     setFiles([...filtered])
-    setFilesId([...filteredId])
-    handleChangeForm(item.key, [...filteredId])
+    handleChangeForm(item.key, filtered.map(file => file.id))
 
 
   }
 
-  const fileList = files.map((file: FileProp, index) => (
+  const fileList = files.map((file) => (
     <ListItem key={file.name}>
       <div className='file-details'>
         <div className='file-preview'>{renderFilePreview(file)}</div>
         <div>
-          <Typography className='file-name'>{file.name}</Typography>
+          <Typography className='file-name'>{file.rawName}</Typography>
           <Typography className='file-size' variant='body2'>
             {formatBytes(file.size)}
           </Typography>
         </div>
       </div>
-      <IconButton onClick={() => handleRemoveFile(file, index)}>
+      <IconButton onClick={() => handleRemoveFile(file)}>
         <Icon icon='material-symbols:close' fontSize={20} color='rgba(50, 71, 92, 0.87)' />
       </IconButton>
     </ListItem>

@@ -11,6 +11,8 @@ import DATE from 'src/common/constants/date'
 import { useSelector } from 'react-redux'
 import { RootState } from 'src/store'
 
+import CustomAvatar from 'src/@core/components/mui/avatar'
+
 const Content = () => {
   // ** Hooks
   const crud = useSelector((state: RootState) => state.crud)
@@ -38,8 +40,17 @@ const Content = () => {
       <TableBody>
         {pagination.data.map((row: any, idx: number) => (
           <TableRow key={idx}>
+            <TableCell>
+              <CustomAvatar
+                src={row.abs_path}
+                variant="rounded"
+                sx={{ width: 35, height: 35 }}
+              />
+            </TableCell>
             <TableCell>{row.id}</TableCell>
             <TableCell>{row.account}</TableCell>
+            <TableCell>{row.intro}</TableCell>
+
             <TableCell>
               <Button
                 variant="text"

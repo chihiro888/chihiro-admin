@@ -17,6 +17,8 @@ import { UpdateAdminUsernameDto } from './dto/update-admin-username.dto'
 import { UpdateAdminLevelDto } from './dto/update-admin-level.dto'
 import { GetLoginHistoryDetailDto } from './dto/get-login-history-detail.dto'
 import { GetLoginHistoryListDto } from './dto/get-login-history-list.dto'
+import { File } from 'src/entities/file.entity'
+import { UpdateAdminProfileDto } from './dto/update-admin-profile.dto'
 @Injectable()
 export class AdminService {
   constructor(
@@ -132,8 +134,16 @@ export class AdminService {
       .getRepository(Admin)
       .createQueryBuilder('a')
       .select(['count(1) as count'])
+      .leftJoin(
+        (qb) => qb
+        .from(File, 'file')
+        .select('file.table_pk')
+        .where('file.table_name = :table_name', { table_name : '_admin'}),
+        'f',
+        'a.id = f.table_pk'
+      )
       .where('1=1')
-      .andWhere('deleted_at is null')
+      .andWhere('a.deleted_at is null')
       .andWhere(dto.account === '' ? '1=1' : 'a.account like :account', {
         account: `%${dto.account}%`
       })
@@ -156,10 +166,13 @@ export class AdminService {
       .getRepository(Admin)
       .createQueryBuilder('a')
       .select([
-        'id as id',
-        'account as account',
-        'password as password',
-        'username as username',
+        'a.id as id',
+        'a.account as account',
+        'a.password as password',
+        'a.username as username',
+        'a.intro as intro',
+        'file_id as profileId',
+        'f.abs_path as abs_path',
         `case 
           when is_system_admin = 1 and is_admin = 1
           then 1
@@ -167,11 +180,23 @@ export class AdminService {
         end as level`,
         'is_system_admin as isSystemAdmin',
         'is_admin as isAdmin',
-        'created_at as createdAt',
-        'updated_at as updatedAt'
+        'a.created_at as createdAt',
+        'a.updated_at as updatedAt'
       ])
+      .leftJoin(
+        (qb) => qb
+        .from(File, 'file')
+        .select([
+          'file.id as file_id',
+          'file.abs_path',
+          'file.table_pk'
+        ])
+        .where('file.table_name = :table_name', { table_name : '_admin'}),
+        'f',
+        'a.id = f.table_pk'
+      )
       .where('1=1')
-      .andWhere('deleted_at is null')
+      .andWhere('a.deleted_at is null')
       .andWhere(dto.account === '' ? '1=1' : 'a.account like :account', {
         account: `%${dto.account}%`
       })
@@ -206,6 +231,15 @@ export class AdminService {
         deletedAt: IsNull()
       }
     })
+
+    const profile = await this.datasource.getRepository(File).find({
+      where: {
+        tableName: '_admin',
+        tablePk: dto.id
+      }
+    })
+    admin['profile'] = profile
+
     return admin
   }
 
@@ -292,6 +326,35 @@ export class AdminService {
     }
     admin.updatedAt = moment().format(DATE.DATETIME)
     await this.datasource.getRepository(Admin).save(admin)
+  }
+
+  // ANCHOR update admin profile
+  async updateAdminProfile(dto: UpdateAdminProfileDto) {
+    const file = await this.datasource.getRepository(File).findOne({
+      where: {
+        tableName: '_admin',
+        tablePk: dto.userId
+      }
+    })
+
+    if(file) {
+      file.tableName = null
+      file.tablePk = null
+      file.updatedAt = moment().format(DATE.DATETIME)
+      await this.datasource.getRepository(File).save(file)
+
+
+    }
+    const updateFile = await this.datasource.getRepository(File).findOne({
+      where: {
+        id: dto.profile[0]
+      }
+    })
+
+    updateFile.tableName = '_admin'
+    updateFile.tablePk = dto.userId
+    
+    await this.datasource.getRepository(File).save(updateFile)
   }
 
   // ANCHOR get login history list

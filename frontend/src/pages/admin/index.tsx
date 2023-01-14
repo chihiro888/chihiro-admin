@@ -16,7 +16,8 @@ import {
   deleteAdmin,
   updateAdminPassword,
   updateAdminUsername,
-  updateAdminLevel
+  updateAdminLevel,
+  updateAdminProfile
 } from 'src/apis/admin'
 
 // ** Redux
@@ -66,8 +67,10 @@ const Admin = () => {
     // NOTE 테이블 헤더 정의
     dispatch(
       setTableHeader([
+        '프로필',
         '아이디',
         '계정',
+        '소개',
         '비밀번호',
         '사용자명',
         '권한',
@@ -104,21 +107,21 @@ const Admin = () => {
           key: 'username',
           value: ''
         },
-        // {
-        //   type: 'upload',
-        //   label: '이미지',
-        //   key: 'upload',
-        //   value: [1, 2],
-        //   allowFileExt: ['.png', '.jpg', '.jpeg', '.gif'],
-        //   maxFileCount: 3,
-        //   maxFileSizeBytes: 1024*1024
-        // },
-        // {
-        //   type: 'editor',
-        //   label: '에디터',
-        //   key: 'editor',
-        //   value: '',
-        // },
+        {
+          type: 'upload',
+          label: '이미지',
+          key: 'profile',
+          value: [],
+          allowFileExt: ['.png', '.jpg', '.jpeg', '.gif'],
+          maxFileCount: 3,
+          maxFileSizeBytes: 1024*1024
+        },
+        {
+          type: 'editor',
+          label: '에디터',
+          key: 'editor',
+          value: '',
+        },
 
         {
           type: 'select',
@@ -228,6 +231,23 @@ const Admin = () => {
     // NOTE 액션 정의
     dispatch(
       setActionList([
+        {
+          icon: 'bx:user-circle',
+          label: '프로필 변경',
+          content: [
+            {
+              type: 'upload',
+              label: '변경할 이미지',
+              key: 'profile',
+              value: [],
+              allowFileExt: ['.png', '.jpg', '.jpeg', '.gif'],
+              maxFileCount: 1,
+              maxFileSizeBytes: 1024*1024
+            }
+          ],
+          loadAPI: getAdminDetail,
+          updateAPI: updateAdminProfile
+        },
         {
           icon: 'bx:pencil',
           label: '비밀번호 변경',
