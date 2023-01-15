@@ -19,6 +19,7 @@ import { GetLoginHistoryDetailDto } from './dto/get-login-history-detail.dto'
 import { GetLoginHistoryListDto } from './dto/get-login-history-list.dto'
 import { File } from 'src/entities/file.entity'
 import { UpdateAdminProfileDto } from './dto/update-admin-profile.dto'
+import { UpdateAdminIntroDto } from './dto/update-admin-intro.dto'
 @Injectable()
 export class AdminService {
   constructor(
@@ -135,10 +136,11 @@ export class AdminService {
       .createQueryBuilder('a')
       .select(['count(1) as count'])
       .leftJoin(
-        (qb) => qb
-        .from(File, 'file')
-        .select('file.table_pk')
-        .where('file.table_name = :table_name', { table_name : '_admin'}),
+        (qb) =>
+          qb
+            .from(File, 'file')
+            .select('file.table_pk')
+            .where('file.table_name = :table_name', { table_name: '_admin' }),
         'f',
         'a.id = f.table_pk'
       )
@@ -184,14 +186,11 @@ export class AdminService {
         'a.updated_at as updatedAt'
       ])
       .leftJoin(
-        (qb) => qb
-        .from(File, 'file')
-        .select([
-          'file.id as file_id',
-          'file.abs_path',
-          'file.table_pk'
-        ])
-        .where('file.table_name = :table_name', { table_name : '_admin'}),
+        (qb) =>
+          qb
+            .from(File, 'file')
+            .select(['file.id as file_id', 'file.abs_path', 'file.table_pk'])
+            .where('file.table_name = :table_name', { table_name: '_admin' }),
         'f',
         'a.id = f.table_pk'
       )
@@ -332,7 +331,6 @@ export class AdminService {
   async updateAdminProfile(dto: UpdateAdminProfileDto) {
     console.log('dto =>', dto)
 
-    // profile [], userId 1
     const adminProfile = await this.datasource.getRepository(File).findOne({
       where: {
         tableName: '_admin',
@@ -340,15 +338,13 @@ export class AdminService {
       }
     })
 
-    if(adminProfile) {
+    if (adminProfile) {
       adminProfile.tableName = null
       adminProfile.tablePk = null
       adminProfile.updatedAt = moment().format(DATE.DATETIME)
       await this.datasource.getRepository(File).save(adminProfile)
-
-
     }
-    if (dto.profile[0]){
+    if (dto.profile[0]) {
       const updateProfile = await this.datasource.getRepository(File).findOne({
         where: {
           id: dto.profile[0]
@@ -358,6 +354,19 @@ export class AdminService {
       updateProfile.tablePk = dto.userId
       await this.datasource.getRepository(File).save(updateProfile)
     }
+  }
+
+  // ANCHOR update admin intro
+  async updateAdminIntro(dto: UpdateAdminIntroDto) {
+    const admin = await this.datasource.getRepository(Admin).findOne({
+      where: {
+        id: dto.userId,
+        deletedAt: IsNull()
+      }
+    })
+
+    admin.intro = dto.intro
+    await this.datasource.getRepository(Admin).save(admin)
   }
 
   // ANCHOR get login history list
