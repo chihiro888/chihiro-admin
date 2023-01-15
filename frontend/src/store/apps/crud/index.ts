@@ -4,6 +4,9 @@ import { createSlice } from '@reduxjs/toolkit'
 // ** Axios Imports
 import produce from 'immer'
 
+import { EditorState, convertToRaw, ContentState } from 'draft-js'
+import htmlToDraft from 'html-to-draftjs'
+
 export const appCrudSlice = createSlice({
   name: 'appCrud',
   initialState: {
@@ -60,7 +63,7 @@ export const appCrudSlice = createSlice({
     updateAPI: null,
 
     // load API
-    loadAPI: null,
+    loadAPI: null
   },
   reducers: {
     setActionId(state, action) {
@@ -125,14 +128,18 @@ export const appCrudSlice = createSlice({
       const nextState = produce(state.actionForm, (draftState) => {
         draftState.map((item) => {
           // 어드민 권한 로직
-          if( item.key === 'level' ) {
-            if ( action.payload.isAdmin === 1 && action.payload.isSystemAdmin === 1)
+          if (item.key === 'level') {
+            if (
+              action.payload.isAdmin === 1 &&
+              action.payload.isSystemAdmin === 1
+            )
               item.value = 'SA'
-            if ( action.payload.isAdmin === 1 && action.payload.isSystemAdmin === 0 )
+            if (
+              action.payload.isAdmin === 1 &&
+              action.payload.isSystemAdmin === 0
+            )
               item.value = 'A'
-          }
-          else
-            item.value = action.payload[item.key]
+          } else item.value = action.payload[item.key]
         })
       })
       state.actionForm = nextState

@@ -17,7 +17,8 @@ import {
   updateAdminPassword,
   updateAdminUsername,
   updateAdminLevel,
-  updateAdminProfile
+  updateAdminProfile,
+  updateAdminIntro
 } from 'src/apis/admin'
 
 // ** Redux
@@ -114,13 +115,13 @@ const Admin = () => {
           value: [],
           allowFileExt: ['.png', '.jpg', '.jpeg', '.gif'],
           maxFileCount: 3,
-          maxFileSizeBytes: 1024*1024
+          maxFileSizeBytes: 1024 * 1024
         },
         {
           type: 'editor',
           label: '에디터',
           key: 'editor',
-          value: '',
+          value: ''
         },
 
         {
@@ -185,7 +186,6 @@ const Admin = () => {
           key: 'updatedAt',
           value: ''
         },
-        ,
         {
           label: '삭제일자',
           key: 'deletedAt',
@@ -242,12 +242,28 @@ const Admin = () => {
               value: [],
               allowFileExt: ['.png', '.jpg', '.jpeg', '.gif'],
               maxFileCount: 1,
-              maxFileSizeBytes: 1024*1024
+              maxFileSizeBytes: 1024 * 1024
             }
           ],
           loadAPI: getAdminDetail,
           updateAPI: updateAdminProfile
         },
+
+        {
+          icon: 'bx:user-circle',
+          label: '자기소개 변경',
+          content: [
+            {
+              type: 'editor',
+              label: '변경할 자기소개',
+              key: 'intro',
+              value: ''
+            }
+          ],
+          loadAPI: getAdminDetail,
+          updateAPI: updateAdminIntro
+        },
+
         {
           icon: 'bx:pencil',
           label: '비밀번호 변경',
@@ -282,7 +298,7 @@ const Admin = () => {
               type: 'text',
               label: '사용자명',
               key: 'username',
-              value: '',
+              value: ''
             }
           ],
           loadAPI: getAdminDetail,
