@@ -1,9 +1,5 @@
 // ** Module
-import { useEffect, useRef, useState } from 'react'
-import { EditorWrapper } from 'src/@core/styles/libs/react-draft-wysiwyg'
-// import { Editor } from 'react-draft-wysiwyg'
-import { EditorState, convertToRaw, ContentState } from 'draft-js'
-import draftToHtml from 'draftjs-to-html'
+import { useEffect } from 'react'
 
 // ** Mui
 import Grid from '@mui/material/Grid'
@@ -18,22 +14,14 @@ import Typography from '@mui/material/Typography'
 
 // ** Component Import
 
-// ** Styles
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
-
 import DropzoneWrapper from 'src/@core/styles/libs/react-dropzone'
 import CustomFileUploader from './custom-file-uploader'
-import dynamic from 'next/dynamic'
-import { getAdminDetail } from 'src/apis/admin'
-import { getPaginationCount, getParamsFromForm } from 'src/utils'
-import crud, { initEditForm } from 'src/store/apps/crud'
+import { initEditForm } from 'src/store/apps/crud'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'src/store'
-
-import htmlToDraft from 'html-to-draftjs'
-
-import ReactDraftWysiwyg from 'src/@core/components/react-draft-wysiwyg'
-import { render } from 'nprogress'
+import React from 'react'
+import ToastEditor from 'src/@core/components/tui-editor'
+import '@toast-ui/editor/dist/toastui-editor.css'
 
 const ModalFormContent = ({ formContent, handleChangeForm }) => {
   const dispatch = useDispatch()
@@ -42,21 +30,10 @@ const ModalFormContent = ({ formContent, handleChangeForm }) => {
   const actionId = crud.actionId
   const loadAPI = crud.loadAPI
 
-  const localization = {
-    locale: 'ko'
-  }
-
-  // ** State
-  // const [editorState, setEditorState] = useState(EditorState.createEmpty())
-  const rendered = useRef(false)
-
   // ** Handler
   // editor 수정 이벤트
-  const onEditorStateChange = (key, data) => {
-    const rawContentState = draftToHtml(convertToRaw(data.getCurrentContent()))
-
-    // setEditorState(data)
-    handleChangeForm(key, rawContentState)
+  const onEditorChange = (key, value) => {
+    handleChangeForm(key, value)
   }
   // 폼 데이터 로드
   const initData = async () => {
@@ -73,31 +50,6 @@ const ModalFormContent = ({ formContent, handleChangeForm }) => {
   useEffect(() => {
     initData()
   }, [])
-
-  // TODO 글 작성 시 커서 처음오로 가는 오류 픽스
-  const rawToDraft = (data) => {
-    const htmlToDraft =
-      // eslint-disable-next-line @typescript-eslint/no-var-requires
-      typeof window === 'object' && require('html-to-draftjs').default
-    const blocksFromHtml = htmlToDraft(data)
-    if (blocksFromHtml) {
-      const { contentBlocks, entityMap } = blocksFromHtml
-      const contentState = ContentState.createFromBlockArray(
-        contentBlocks,
-        entityMap
-      )
-      const editorState = EditorState.createWithContent(contentState)
-      return editorState
-    }
-  }
-
-  useEffect(() => {
-    formContent.map((item) => {
-      if (item.type == 'editor') {
-        console.log()
-      }
-    })
-  }, [loadAPI])
 
   return (
     <>
@@ -170,15 +122,10 @@ const ModalFormContent = ({ formContent, handleChangeForm }) => {
                       <Typography variant="subtitle1" sx={{ mb: 2 }}>
                         {item.label}
                       </Typography>
-                      <EditorWrapper>
-                        <ReactDraftWysiwyg
-                          editorState={rawToDraft(item.value)}
-                          onEditorStateChange={(data) =>
-                            onEditorStateChange(item.key, data)
-                          }
-                          localization={localization}
-                        />
-                      </EditorWrapper>
+                      <ToastEditor
+                        initialValue={item.value}
+                        onChange={(value) => onEditorChange(item.key, value)}
+                      />
                     </>
                   ) : (
                     <></>

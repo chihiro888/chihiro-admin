@@ -329,8 +329,6 @@ export class AdminService {
 
   // ANCHOR update admin profile
   async updateAdminProfile(dto: UpdateAdminProfileDto) {
-    console.log('dto =>', dto)
-
     const adminProfile = await this.datasource.getRepository(File).findOne({
       where: {
         tableName: '_admin',

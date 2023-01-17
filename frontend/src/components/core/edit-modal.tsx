@@ -17,8 +17,6 @@ const EditModal = ({ openEditModal, setOpenEditModal, title }) => {
   const dispatch = useDispatch()
   const crud = useSelector((state: RootState) => state.crud)
   const actionForm = crud.actionForm
-  
-
 
   // ** State
   const [openConfirmModal, setOpenConfirmModal] = useState<boolean>(false)
@@ -32,12 +30,8 @@ const EditModal = ({ openEditModal, setOpenEditModal, title }) => {
 
   // 폼 데이터 변경
   const handleChangeForm = (key: string, value: string) => {
-    console.log('key value', key, value)
     dispatch(updateActionForm({ key, value }))
   }
-
-
-
 
   return (
     <>
@@ -51,7 +45,10 @@ const EditModal = ({ openEditModal, setOpenEditModal, title }) => {
       >
         <DialogTitle id="alert-dialog-title">{title}</DialogTitle>
         <DialogContent>
-          <ModalFormContent formContent={actionForm} handleChangeForm={handleChangeForm} />
+          <ModalFormContent
+            formContent={actionForm}
+            handleChangeForm={handleChangeForm}
+          />
         </DialogContent>
         <DialogActions>
           <Button
