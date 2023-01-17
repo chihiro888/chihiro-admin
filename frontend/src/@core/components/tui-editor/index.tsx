@@ -55,13 +55,15 @@ const ToastEditor: React.FC<Props> = (props) => {
         placeholder="내용을 입력해주세요."
         initialEditType="wysiwyg" // 초기 입력모드 설정(디폴트 markdown)
         ref={editorRef}
+        useCommandShortcut={false}
         hideModeSwitch={true}
+        usageStatistics={false}
         toolbarItems={[
           // 툴바 옵션 설정
           ['heading', 'bold', 'italic', 'strike'],
           ['hr', 'quote'],
           ['ul', 'ol', 'task', 'indent', 'outdent'],
-          ['table', 'image', 'link'],
+          ['table', 'link'],
           ['code', 'codeblock']
         ]}
         onChange={handleChange}
