@@ -14,7 +14,6 @@ import { formatBytes } from 'src/utils'
 // ** Icon Imports
 import Icon from 'src/@core/components/icon'
 
-
 // ** Third Party Components
 import toast from 'react-hot-toast'
 import { useDropzone } from 'react-dropzone'
@@ -53,7 +52,6 @@ const CustomFileUploader = ({ handleChangeForm, item }) => {
   // ** State
   const [files, setFiles] = useState([])
 
-
   // ** Hooks
   const theme = useTheme()
 
@@ -63,12 +61,10 @@ const CustomFileUploader = ({ handleChangeForm, item }) => {
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
-    if(item.value[0]?.id) {
+    if (item.value[0]?.id) {
       setFiles(item.value)
     }
   }, [item.value])
-  
-
 
   const { getRootProps, getInputProps } = useDropzone({
     maxFiles: item.maxFileCount,
@@ -77,9 +73,7 @@ const CustomFileUploader = ({ handleChangeForm, item }) => {
       'image/*': item.allowFileExt
     },
     onDrop: async (acceptedFiles: File[]) => {
-
       const formData = new FormData()
-      
 
       for (const file of acceptedFiles) {
         formData.append('files', file)
@@ -87,67 +81,104 @@ const CustomFileUploader = ({ handleChangeForm, item }) => {
       const { data: res } = await upload(formData)
 
       setFiles(res.data)
-      handleChangeForm(item.key, res.data.map(file => file.id))
-
+      handleChangeForm(
+        item.key,
+        res.data.map((file) => file.id)
+      )
     },
     onDropRejected: () => {
-      toast.error(`최대 ${item.maxFileCount}개의 파일과  ${formatBytes(item.maxFileSizeBytes)}까지 업로드하실 수 있습니다.`, {
-        duration: 2000
-      })
+      toast.error(
+        `최대 ${item.maxFileCount}개의 파일과  ${formatBytes(
+          item.maxFileSizeBytes
+        )}까지 업로드하실 수 있습니다.`,
+        {
+          duration: 2000
+        }
+      )
     }
   })
 
   const renderFilePreview = (file) => {
-
-
-    if (file.extension == 'png' || file.extension == 'jpg' || file.extension == 'gif') {
-      return <img width={38} height={38} alt={file.rawName} src={file.absPath} />
+    if (
+      file.extension == 'png' ||
+      file.extension == 'jpg' ||
+      file.extension == 'gif'
+    ) {
+      return <img width={38} height={38} src={file.absPath} />
     } else {
-      return <Icon icon='bx:file' />
+      return <Icon icon="bx:file" />
     }
   }
 
   const handleRemoveFile = (file) => {
-
     const uploadedFiles = files
     const filtered = uploadedFiles.filter((i) => i.rawName !== file.rawName)
     setFiles([...filtered])
-    handleChangeForm(item.key, filtered.map(file => file.id))
-
-
+    handleChangeForm(
+      item.key,
+      filtered.map((file) => file.id)
+    )
   }
 
   const fileList = files.map((file) => (
     <ListItem key={file.name}>
-      <div className='file-details'>
-        <div className='file-preview'>{renderFilePreview(file)}</div>
+      <div className="file-details">
+        <div className="file-preview">{renderFilePreview(file)}</div>
         <div>
-          <Typography className='file-name'>{file.rawName}</Typography>
-          <Typography className='file-size' variant='body2'>
+          <Typography className="file-name">{file.rawName}</Typography>
+          <Typography className="file-size" variant="body2">
             {formatBytes(file.size)}
           </Typography>
         </div>
       </div>
       <IconButton onClick={() => handleRemoveFile(file)}>
-        <Icon icon='material-symbols:close' fontSize={20} color='rgba(50, 71, 92, 0.87)' />
+        <Icon
+          icon="material-symbols:close"
+          fontSize={20}
+          color="rgba(50, 71, 92, 0.87)"
+        />
       </IconButton>
     </ListItem>
   ))
 
-//   const handleRemoveAllFiles = () => {
-//     setFiles([])
-//   }
+  //   const handleRemoveAllFiles = () => {
+  //     setFiles([])
+  //   }
 
   return (
     <Fragment>
       <div {...getRootProps({ className: 'dropzone' })}>
         <input {...getInputProps()} />
-        <Box sx={{ display: 'flex', flexDirection: ['column', 'column', 'row'], alignItems: 'center' }}>
-          <Img alt='Upload img' src={`/images/misc/upload-${theme.palette.mode}.png`} />
-          <Box sx={{ display: 'flex', flexDirection: 'column', textAlign: ['center', 'center', 'inherit'] }}>
-            <HeadingTypography variant='h6'>파일을 드롭다운 하거나 클릭하여 파일을 업로드 하십시오.</HeadingTypography>
-            <Typography color='textSecondary'>허용되는 확장자 : <br/>{item.allowFileExt.join(' ')}</Typography>
-            <Typography color='textSecondary'><br />최대 {item.maxFileCount}개의 파일과 {formatBytes(item.maxFileSizeBytes)}까지 업로드하실 수 있습니다.</Typography>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: ['column', 'column', 'row'],
+            alignItems: 'center'
+          }}
+        >
+          <Img
+            alt="Upload img"
+            src={`/images/misc/upload-${theme.palette.mode}.png`}
+          />
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              textAlign: ['center', 'center', 'inherit']
+            }}
+          >
+            <HeadingTypography variant="h6">
+              파일을 드롭다운 하거나 클릭하여 파일을 업로드 하십시오.
+            </HeadingTypography>
+            <Typography color="textSecondary">
+              허용되는 확장자 : <br />
+              {item.allowFileExt.join(' ')}
+            </Typography>
+            <Typography color="textSecondary">
+              <br />
+              최대 {item.maxFileCount}개의 파일과{' '}
+              {formatBytes(item.maxFileSizeBytes)}까지 업로드하실 수 있습니다.
+            </Typography>
           </Box>
         </Box>
       </div>
