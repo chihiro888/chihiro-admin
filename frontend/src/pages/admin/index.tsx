@@ -114,13 +114,13 @@ const Admin = () => {
           key: 'profile',
           value: [],
           allowFileExt: ['.png', '.jpg', '.jpeg', '.gif'],
-          maxFileCount: 3,
-          maxFileSizeBytes: 1024 * 1024
+          maxFileCount: 1,
+          maxFileSizeBytes: 1024 * 1024 * 4
         },
         {
           type: 'editor',
           label: '에디터',
-          key: 'editor',
+          key: 'intro',
           value: ''
         },
 
@@ -242,7 +242,7 @@ const Admin = () => {
               value: [],
               allowFileExt: ['.png', '.jpg', '.jpeg', '.gif'],
               maxFileCount: 1,
-              maxFileSizeBytes: 1024 * 1024
+              maxFileSizeBytes: 1024 * 1024 * 4
             }
           ],
           loadAPI: getAdminDetail,

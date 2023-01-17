@@ -11,8 +11,8 @@ export class UpdateAdminIntroDto {
   userId: number
 
   @ApiProperty({
-    description: 'image id',
-    example: 1
+    description: 'intro id',
+    example: 'hello'
   })
   intro: string
 }

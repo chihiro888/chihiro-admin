@@ -248,6 +248,8 @@ export class AdminService {
     admin.account = dto.account
     admin.password = await createPassword(dto.password)
     admin.username = dto.username
+    admin.intro = dto.intro
+
     if (dto.level === 'SA') {
       admin.isSystemAdmin = 1
       admin.isAdmin = 1
@@ -255,7 +257,10 @@ export class AdminService {
       admin.isSystemAdmin = 0
       admin.isAdmin = 1
     }
-    await this.datasource.getRepository(Admin).save(admin)
+    const createdAdmin = await this.datasource.getRepository(Admin).save(admin)
+    if (dto.profile) {
+      await this.updateAdminProfile(createdAdmin.id, dto.profile)
+    }
   }
 
   // ANCHOR delete admin
@@ -328,11 +333,11 @@ export class AdminService {
   }
 
   // ANCHOR update admin profile
-  async updateAdminProfile(dto: UpdateAdminProfileDto) {
+  async updateAdminProfile(userId: number, profile: number[]) {
     const adminProfile = await this.datasource.getRepository(File).findOne({
       where: {
         tableName: '_admin',
-        tablePk: dto.userId
+        tablePk: userId
       }
     })
 
@@ -342,14 +347,14 @@ export class AdminService {
       adminProfile.updatedAt = moment().format(DATE.DATETIME)
       await this.datasource.getRepository(File).save(adminProfile)
     }
-    if (dto.profile[0]) {
+    if (profile[0]) {
       const updateProfile = await this.datasource.getRepository(File).findOne({
         where: {
-          id: dto.profile[0]
+          id: profile[0]
         }
       })
       updateProfile.tableName = '_admin'
-      updateProfile.tablePk = dto.userId
+      updateProfile.tablePk = userId
       await this.datasource.getRepository(File).save(updateProfile)
     }
   }

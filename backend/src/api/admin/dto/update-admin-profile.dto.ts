@@ -12,9 +12,8 @@ export class UpdateAdminProfileDto {
 
   @ApiProperty({
     description: 'image id',
-    example: 1
+    example: [1]
   })
   @IsArray()
-  profile: number
-
+  profile: number[]
 }

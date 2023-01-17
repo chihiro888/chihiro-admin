@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger'
-import { IsEmail, IsEnum, Length } from 'class-validator'
+import { IsArray, IsEmail, IsEnum, Length } from 'class-validator'
 import { Match } from 'src/common/validation/match.decorator'
 
 enum Level {
@@ -37,6 +37,19 @@ export class CreateAdminDto {
   })
   @Length(1, 255)
   username: string
+
+  @ApiProperty({
+    description: 'intro id',
+    example: 'hello'
+  })
+  intro: string
+
+  @ApiProperty({
+    description: 'image id',
+    example: [1]
+  })
+  @IsArray()
+  profile: number[]
 
   @ApiProperty({
     description: 'level',
