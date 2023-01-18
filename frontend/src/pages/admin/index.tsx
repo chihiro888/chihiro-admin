@@ -33,7 +33,8 @@ import {
   setDetailAPI,
   setDeleteAPI,
   setActionList,
-  setLoadAPI
+  setLoadAPI,
+  initData
 } from 'src/store/apps/crud'
 import { useEffect } from 'react'
 
@@ -330,6 +331,8 @@ const Admin = () => {
         }
       ])
     )
+
+    dispatch(initData())
   }, [])
 
   return (

@@ -8,11 +8,7 @@ import ListContainer from 'src/components/core/list-container'
 import Content from 'src/components/admin/history/content'
 
 // ** API
-import {
-  getLoginHistoryList,
-  getLoginHistoryDetail,
-  getAdminDetail
-} from 'src/apis/admin'
+import { getLoginHistoryList, getLoginHistoryDetail } from 'src/apis/admin'
 
 // ** Redux
 import {
@@ -22,7 +18,8 @@ import {
   setDetailForm,
   setListAPI,
   setDetailAPI,
-  setActionList
+  setActionList,
+  initData
 } from 'src/store/apps/crud'
 import { useEffect } from 'react'
 
@@ -132,6 +129,8 @@ const AdminHistory = () => {
 
     // NOTE 액션 정의
     dispatch(setActionList([]))
+
+    dispatch(initData())
   }, [])
 
   return (

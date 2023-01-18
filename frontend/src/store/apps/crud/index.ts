@@ -1,8 +1,36 @@
 // ** Redux Imports
-import { createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice, Dispatch } from '@reduxjs/toolkit'
 
-// ** Axios Imports
+// ** Etc
 import produce from 'immer'
+import { getPaginationCount, getParamsFromForm } from 'src/utils'
+
+interface ReduxType {
+  getState: any
+  dispatch: Dispatch<any>
+}
+
+export const initData = createAsyncThunk(
+  'appCrud/initData',
+  async (_: any, { getState, dispatch }: ReduxType) => {
+    const crud = getState().crud
+    const listAPI = crud.listAPI
+    const searchForm = crud.searchForm
+    const params = getParamsFromForm(searchForm)
+    params['page'] = 1
+    const { data: res } = await listAPI(params)
+    if (res.statusCode === 200) {
+      const data = res.data
+      dispatch(
+        setPagination({
+          activePage: 1,
+          count: getPaginationCount(data.count),
+          data: data.data
+        })
+      )
+    }
+  }
+)
 
 export const appCrudSlice = createSlice({
   name: 'appCrud',
@@ -173,6 +201,7 @@ export const appCrudSlice = createSlice({
     },
     setListAPI(state, action) {
       state.listAPI = action.payload
+      //
     },
     setCreateAPI(state, action) {
       state.createAPI = action.payload

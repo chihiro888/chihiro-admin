@@ -41,29 +41,6 @@ const ListContainer = ({ children }) => {
     }
   }
 
-  const initData = async () => {
-    if (listAPI) {
-      const params = getParamsFromForm(searchForm)
-      params['page'] = 1
-      const { data: res } = await listAPI(params)
-      if (res.statusCode === 200) {
-        const data = res.data
-        dispatch(
-          setPagination({
-            activePage: 1,
-            count: getPaginationCount(data.count),
-            data: data.data
-          })
-        )
-      }
-    }
-  }
-
-  useEffect(() => {
-    initData()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [listAPI])
-
   return (
     <>
       {pagination?.data.length === 0 ? (

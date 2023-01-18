@@ -106,6 +106,7 @@ const Home = () => {
                 {item.type === 'count' ? (
                   <Grid key={idx} item xs={6} md={6} lg={2} sx={{ order: -1 }}>
                     <CardStatsVertical
+                      key={idx}
                       image={item.image}
                       title={item.title}
                       total={item.value.total}
