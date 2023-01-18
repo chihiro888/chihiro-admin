@@ -12,7 +12,9 @@ import LanguageDropdown from 'src/@core/layouts/components/shared-components/Lan
 import NotificationDropdown, {
   NotificationsType
 } from 'src/@core/layouts/components/shared-components/NotificationDropdown'
-import ShortcutsDropdown, { ShortcutsType } from 'src/@core/layouts/components/shared-components/ShortcutsDropdown'
+import ShortcutsDropdown, {
+  ShortcutsType
+} from 'src/@core/layouts/components/shared-components/ShortcutsDropdown'
 
 interface Props {
   hidden: boolean

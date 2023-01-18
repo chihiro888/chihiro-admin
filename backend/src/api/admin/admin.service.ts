@@ -98,6 +98,21 @@ export class AdminService {
       }
     })
 
+    const profile = await this.datasource.getRepository(File).find({
+      where: {
+        tableName: '_admin',
+        tablePk: userId
+      }
+    })
+
+    if (profile.length !== 0) {
+      profile[0]['url'] =
+        (await this.globalService.getGlobal('imageDomain')) +
+        '/' +
+        profile[0].encName
+    }
+    admin['profile'] = profile[0]
+
     return admin
   }
 

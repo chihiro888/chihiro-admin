@@ -40,6 +40,9 @@ const BadgeContentSpan = styled('span')(({ theme }) => ({
 }))
 
 const UserDropdown = (props: Props) => {
+  // ** Auth
+  const auth = useAuth()
+
   // ** Props
   const { settings } = props
 
@@ -104,8 +107,8 @@ const UserDropdown = (props: Props) => {
         }}
       >
         <Avatar
-          alt="John Doe"
-          src="/images/avatars/account.png"
+          alt={auth.user.fullName}
+          src={auth ? auth.user.profile.url : '/images/avatars/account.png'}
           onClick={handleDropdownOpen}
           sx={{ width: 40, height: 40 }}
         />
@@ -136,7 +139,9 @@ const UserDropdown = (props: Props) => {
             >
               <Avatar
                 alt="관리자"
-                src="/images/avatars/account.png"
+                src={
+                  auth ? auth.user.profile.url : '/images/avatars/account.png'
+                }
                 sx={{ width: '2.5rem', height: '2.5rem' }}
               />
             </Badge>
@@ -148,9 +153,13 @@ const UserDropdown = (props: Props) => {
                 flexDirection: 'column'
               }}
             >
-              <Typography sx={{ fontWeight: 500 }}>관리자</Typography>
+              <Typography sx={{ fontWeight: 500 }}>
+                {auth.user.username}
+              </Typography>
               <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                관리자
+                {auth.user.isAdmin && auth.user.isSystemAdmin
+                  ? '시스템관리자'
+                  : '관리자'}
               </Typography>
             </Box>
           </Box>

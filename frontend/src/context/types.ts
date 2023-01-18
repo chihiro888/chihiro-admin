@@ -18,7 +18,14 @@ export type UserDataType = {
   fullName: string
   username: string
   password: string
+  isAdmin: number
+  isSystemAdmin: number
+  profile: UserProfileType
   avatar?: string | null
+}
+
+export type UserProfileType = {
+  url: string
 }
 
 export type AuthValuesType = {
