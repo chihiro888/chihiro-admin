@@ -5,15 +5,13 @@
 
 ## 시작하기
 
-### 데이터베이스
+### 인프라
 
 ```bash
-cd infra
+bash start_dev.bash
 ```
 
-```bash
-docker-compose up
-```
+#### 데이터베이스 접속정보
 
 | key           | value     |
 | ------------- | --------- |
@@ -24,6 +22,10 @@ docker-compose up
 | root password | root      |
 | user          | docker    |
 | password      | docker    |
+
+#### 이미지서버
+
+http://localhost:7000
 
 ### 백엔드
 
