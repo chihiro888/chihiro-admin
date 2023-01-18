@@ -37,10 +37,11 @@ import {
   initData
 } from 'src/store/apps/crud'
 import { useEffect } from 'react'
+import { AppDispatch } from 'src/store'
 
 const Admin = () => {
   // ** Hooks
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
 
   useEffect(() => {
     // NOTE 리스트 조회 API 정의

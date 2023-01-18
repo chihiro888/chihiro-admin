@@ -12,7 +12,7 @@ interface ReduxType {
 
 export const initData = createAsyncThunk(
   'appCrud/initData',
-  async (_: any, { getState, dispatch }: ReduxType) => {
+  async (_, { getState, dispatch }: ReduxType) => {
     const crud = getState().crud
     const listAPI = crud.listAPI
     const searchForm = crud.searchForm
