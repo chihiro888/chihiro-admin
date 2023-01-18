@@ -20,11 +20,13 @@ import { GetLoginHistoryListDto } from './dto/get-login-history-list.dto'
 import { File } from 'src/entities/file.entity'
 import { UpdateAdminProfileDto } from './dto/update-admin-profile.dto'
 import { UpdateAdminIntroDto } from './dto/update-admin-intro.dto'
+import { GlobalService } from '../global/global.service'
 @Injectable()
 export class AdminService {
   constructor(
     @Inject('DATA_SOURCE')
-    private datasource: DataSource
+    private datasource: DataSource,
+    private globalService: GlobalService
   ) {}
 
   // ANCHOR check system admin
@@ -175,6 +177,9 @@ export class AdminService {
         'a.intro as intro',
         'file_id as profileId',
         'f.abs_path as abs_path',
+        `concat('${await this.globalService.getGlobal(
+          'imageDomain'
+        )}', '/', f.enc_name) as url`,
         `case 
           when is_system_admin = 1 and is_admin = 1
           then 1
@@ -189,7 +194,12 @@ export class AdminService {
         (qb) =>
           qb
             .from(File, 'file')
-            .select(['file.id as file_id', 'file.abs_path', 'file.table_pk'])
+            .select([
+              'file.id as file_id',
+              'file.abs_path',
+              'file.table_pk',
+              'file.enc_name'
+            ])
             .where('file.table_name = :table_name', { table_name: '_admin' }),
         'f',
         'a.id = f.table_pk'
@@ -237,6 +247,13 @@ export class AdminService {
         tablePk: dto.id
       }
     })
+
+    if (profile.length !== 0) {
+      profile[0]['url'] =
+        (await this.globalService.getGlobal('imageDomain')) +
+        '/' +
+        profile[0].encName
+    }
     admin['profile'] = profile
 
     return admin

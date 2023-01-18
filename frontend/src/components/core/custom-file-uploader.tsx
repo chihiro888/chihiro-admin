@@ -104,7 +104,7 @@ const CustomFileUploader = ({ handleChangeForm, item }) => {
       file.extension == 'jpg' ||
       file.extension == 'gif'
     ) {
-      return <img width={38} height={38} src={file.absPath} />
+      return <img width={38} height={38} src={file.url} />
     } else {
       return <Icon icon="bx:file" />
     }

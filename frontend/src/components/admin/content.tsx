@@ -42,9 +42,9 @@ const Content = () => {
           <TableRow key={idx}>
             <TableCell>
               <CustomAvatar
-                src={row.abs_path}
+                src={row.url}
                 variant="rounded"
-                sx={{ width: 35, height: 35 }}
+                sx={{ width: 40, height: 40 }}
               />
             </TableCell>
             <TableCell>{row.id}</TableCell>
