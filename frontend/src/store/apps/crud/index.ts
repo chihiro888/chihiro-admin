@@ -4,9 +4,6 @@ import { createSlice } from '@reduxjs/toolkit'
 // ** Axios Imports
 import produce from 'immer'
 
-import { EditorState, convertToRaw, ContentState } from 'draft-js'
-import htmlToDraft from 'html-to-draftjs'
-
 export const appCrudSlice = createSlice({
   name: 'appCrud',
   initialState: {

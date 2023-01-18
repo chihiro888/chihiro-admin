@@ -8,7 +8,11 @@ import ListContainer from 'src/components/core/list-container'
 import Content from 'src/components/admin/history/content'
 
 // ** API
-import { getLoginHistoryList, getLoginHistoryDetail, getAdminDetail } from 'src/apis/admin'
+import {
+  getLoginHistoryList,
+  getLoginHistoryDetail,
+  getAdminDetail
+} from 'src/apis/admin'
 
 // ** Redux
 import {

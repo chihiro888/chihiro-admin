@@ -1,5 +1,12 @@
 // ** React Imports
-import { Ref, useState, forwardRef, ReactElement, MouseEvent, Fragment } from 'react'
+import {
+  Ref,
+  useState,
+  forwardRef,
+  ReactElement,
+  MouseEvent,
+  Fragment
+} from 'react'
 
 // ** MUI Imports
 import Box from '@mui/material/Box'
@@ -41,10 +48,10 @@ interface DataType {
   avatar: string
 }
 
-interface OptionsType {
-  name: string
-  avatar: string
-}
+// interface OptionsType {
+//   name: string
+//   avatar: string
+// }
 
 const Transition = forwardRef(function Transition(
   props: FadeProps & { children?: ReactElement<any, any> },
@@ -104,7 +111,7 @@ const data: DataType[] = [
   }
 ]
 
-const options: OptionsType[] = [
+const options: any[] = [
   {
     avatar: '1.png',
     name: 'Chandler Bing'
@@ -153,91 +160,127 @@ const DialogShareProject = () => {
   return (
     <Card>
       <CardContent sx={{ textAlign: 'center', '& svg': { mb: 2 } }}>
-        <Icon icon='bx:file' fontSize='2rem' />
-        <Typography variant='h6' sx={{ mb: 4 }}>
+        <Icon icon="bx:file" fontSize="2rem" />
+        <Typography variant="h6" sx={{ mb: 4 }}>
           Share Project
         </Typography>
         <Typography sx={{ mb: 3 }}>
-          Elegant Share Project options modal popup example, easy to use in any page.
+          Elegant Share Project options modal popup example, easy to use in any
+          page.
         </Typography>
-        <Button variant='contained' onClick={() => setShow(true)}>
+        <Button variant="contained" onClick={() => setShow(true)}>
           Show
         </Button>
       </CardContent>
       <Dialog
         fullWidth
         open={show}
-        maxWidth='md'
-        scroll='body'
+        maxWidth="md"
+        scroll="body"
         onClose={() => setShow(false)}
         TransitionComponent={Transition}
         onBackdropClick={() => setShow(false)}
       >
-        <DialogContent sx={{ px: { xs: 8, sm: 15 }, py: { xs: 8, sm: 12.5 }, position: 'relative' }}>
+        <DialogContent
+          sx={{
+            px: { xs: 8, sm: 15 },
+            py: { xs: 8, sm: 12.5 },
+            position: 'relative'
+          }}
+        >
           <IconButton
-            size='small'
+            size="small"
             onClick={() => setShow(false)}
             sx={{ position: 'absolute', right: '1rem', top: '1rem' }}
           >
-            <Icon icon='bx:x' />
+            <Icon icon="bx:x" />
           </IconButton>
           <Box sx={{ mb: 4, textAlign: 'center' }}>
-            <Typography variant='h5' sx={{ mb: 3 }}>
+            <Typography variant="h5" sx={{ mb: 3 }}>
               Share Project
             </Typography>
-            <Typography variant='body2'>Share project with a team members</Typography>
+            <Typography variant="body2">
+              Share project with a team members
+            </Typography>
           </Box>
           <InputLabel
-            htmlFor='add-members'
-            sx={{ mb: 2, display: 'inline-flex', fontWeight: 500, fontSize: ['1.125rem', '1.25rem'] }}
+            htmlFor="add-members"
+            sx={{
+              mb: 2,
+              display: 'inline-flex',
+              fontWeight: 500,
+              fontSize: ['1.125rem', '1.25rem']
+            }}
           >
             Add Members
           </InputLabel>
           <Autocomplete
             autoHighlight
             sx={{ mb: 6 }}
-            id='add-members'
+            id="add-members"
             options={options}
             ListboxComponent={List}
-            getOptionLabel={option => option.name}
-            renderInput={params => <TextField {...params} size='small' placeholder='Add project members...' />}
+            getOptionLabel={(option) => option.name}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                size="small"
+                placeholder="Add project members..."
+              />
+            )}
             renderOption={(props, option) => (
               <ListItem {...props}>
                 <ListItemAvatar>
-                  <Avatar src={`/images/avatars/${option.avatar}`} alt={option.name} sx={{ height: 28, width: 28 }} />
+                  <Avatar
+                    src={`/images/avatars/${option.avatar}`}
+                    alt={option.name}
+                    sx={{ height: 28, width: 28 }}
+                  />
                 </ListItemAvatar>
                 <ListItemText primary={option.name} />
               </ListItem>
             )}
           />
-          <Typography variant='h6'>{`${data.length} Members`}</Typography>
+          <Typography variant="h6">{`${data.length} Members`}</Typography>
           <List dense sx={{ mb: 3 }}>
-            {data.map(member => {
+            {data.map((member) => {
               return (
-                <ListItem key={member.name} sx={{ px: 0, py: 2, display: 'flex', flexWrap: 'wrap' }}>
+                <ListItem
+                  key={member.name}
+                  sx={{ px: 0, py: 2, display: 'flex', flexWrap: 'wrap' }}
+                >
                   <ListItemAvatar>
-                    <Avatar src={`/images/avatars/${member.avatar}`} alt={member.name} />
+                    <Avatar
+                      src={`/images/avatars/${member.avatar}`}
+                      alt={member.name}
+                    />
                   </ListItemAvatar>
-                  <ListItemText sx={{ m: 0 }} primary={member.name} secondary={member.email} />
+                  <ListItemText
+                    sx={{ m: 0 }}
+                    primary={member.name}
+                    secondary={member.email}
+                  />
                   <ListItemSecondaryAction sx={{ right: 0 }}>
                     {hidden ? (
                       <IconButton
-                        size='small'
-                        aria-haspopup='true'
+                        size="small"
+                        aria-haspopup="true"
                         onClick={handleClick}
-                        aria-controls='modal-share-examples'
+                        aria-controls="modal-share-examples"
                       >
-                        <Icon icon='bx:chevron-down' fontSize={20} />
+                        <Icon icon="bx:chevron-down" fontSize={20} />
                       </IconButton>
                     ) : (
                       <Fragment>
                         <Button
-                          color='secondary'
-                          aria-haspopup='true'
+                          color="secondary"
+                          aria-haspopup="true"
                           onClick={handleClick}
                           sx={{ textTransform: 'capitalize' }}
-                          aria-controls='modal-share-examples'
-                          endIcon={<Icon icon='bx:chevron-down' fontSize={20} />}
+                          aria-controls="modal-share-examples"
+                          endIcon={
+                            <Icon icon="bx:chevron-down" fontSize={20} />
+                          }
                         >
                           {member.value}
                         </Button>
@@ -248,15 +291,24 @@ const DialogShareProject = () => {
               )
             })}
           </List>
-          <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between' }}>
-            <Box sx={{ display: 'flex', alignItems: 'center', '& svg': { mr: 2 } }}>
-              <Icon icon='bx:group' />
+          <Box
+            sx={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              alignItems: 'center',
+              justifyContent: 'space-between'
+            }}
+          >
+            <Box
+              sx={{ display: 'flex', alignItems: 'center', '& svg': { mr: 2 } }}
+            >
+              <Icon icon="bx:group" />
               <Typography sx={{ fontWeight: 600, fontSize: '0.875rem' }}>
                 {`Public to ${themeConfig.templateName} - ThemeSelection`}
               </Typography>
             </Box>
             <Button sx={{ '& svg': { mr: 2 } }}>
-              <Icon icon='bx:link' fontSize={20} />
+              <Icon icon="bx:link" fontSize={20} />
               Copy Project Link
             </Button>
           </Box>
@@ -265,20 +317,42 @@ const DialogShareProject = () => {
             anchorEl={anchorEl}
             onClose={handleClose}
             open={Boolean(anchorEl)}
-            id='modal-share-examples'
-            anchorOrigin={{ vertical: 'bottom', horizontal: direction === 'ltr' ? 'right' : 'left' }}
-            transformOrigin={{ vertical: 'top', horizontal: direction === 'ltr' ? 'right' : 'left' }}
+            id="modal-share-examples"
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: direction === 'ltr' ? 'right' : 'left'
+            }}
+            transformOrigin={{
+              vertical: 'top',
+              horizontal: direction === 'ltr' ? 'right' : 'left'
+            }}
           >
-            <MenuItem value='owner' sx={{ fontSize: '0.875rem' }} onClick={handleClose}>
+            <MenuItem
+              value="owner"
+              sx={{ fontSize: '0.875rem' }}
+              onClick={handleClose}
+            >
               Owner
             </MenuItem>
-            <MenuItem value='Can Edit' sx={{ fontSize: '0.875rem' }} onClick={handleClose}>
+            <MenuItem
+              value="Can Edit"
+              sx={{ fontSize: '0.875rem' }}
+              onClick={handleClose}
+            >
               Can Edit
             </MenuItem>
-            <MenuItem value='Can Comment' sx={{ fontSize: '0.875rem' }} onClick={handleClose}>
+            <MenuItem
+              value="Can Comment"
+              sx={{ fontSize: '0.875rem' }}
+              onClick={handleClose}
+            >
               Can Comment
             </MenuItem>
-            <MenuItem value='Can View' sx={{ fontSize: '0.875rem' }} onClick={handleClose}>
+            <MenuItem
+              value="Can View"
+              sx={{ fontSize: '0.875rem' }}
+              onClick={handleClose}
+            >
               Can View
             </MenuItem>
           </Menu>
