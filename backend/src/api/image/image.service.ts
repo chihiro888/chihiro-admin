@@ -54,13 +54,13 @@ export class ImageService {
       f.hSize = hSize
       f.absPath = absPath
       const fileData = await this.datasource.getRepository(File).save(f)
-
+      fileData['url'] =
+        (await this.globalService.getGlobal('imageDomain')) + '/' + encName
       fileList.push(fileData)
 
       // 파일 저장
       fs.writeFileSync(absPath, file.buffer)
     }
-
 
     return { result: true, data: fileList }
   }
