@@ -27,6 +27,16 @@ interface Props extends EditorProps {
 const ToastEditor: React.FC<Props> = (props) => {
   const editorRef = React.useRef<EditorType>()
 
+  React.useEffect(() => {
+    if (!editorRef.current) {
+      return
+    }
+    if (props.initialValue) {
+      const instance = editorRef.current.getInstance()
+      instance.setHTML(props.initialValue)
+    }
+  }, [editorRef.current])
+
   const handleChange = React.useCallback(() => {
     if (!editorRef.current) {
       return
@@ -42,27 +52,25 @@ const ToastEditor: React.FC<Props> = (props) => {
 
   return (
     <>
-      {props.initialValue && (
-        <>
-          <EditorWithForwardedRef
-            initialValue={props.initialValue || ''}
-            placeholder="내용을 입력해주세요."
-            initialEditType="wysiwyg" // 초기 입력모드 설정(디폴트 markdown)
-            ref={editorRef}
-            useCommandShortcut={false}
-            hideModeSwitch={true}
-            toolbarItems={[
-              // 툴바 옵션 설정
-              ['heading', 'bold', 'italic', 'strike'],
-              ['hr', 'quote'],
-              ['ul', 'ol', 'task', 'indent', 'outdent'],
-              ['table', 'link'],
-              ['code', 'codeblock']
-            ]}
-            onChange={handleChange}
-          />
-        </>
-      )}
+      <>
+        <EditorWithForwardedRef
+          initialValue={props.initialValue}
+          placeholder="내용을 입력해주세요."
+          initialEditType="wysiwyg" // 초기 입력모드 설정(디폴트 markdown)
+          ref={editorRef}
+          useCommandShortcut={false}
+          hideModeSwitch={true}
+          toolbarItems={[
+            // 툴바 옵션 설정
+            ['heading', 'bold', 'italic', 'strike'],
+            ['hr', 'quote'],
+            ['ul', 'ol', 'task', 'indent', 'outdent'],
+            ['table', 'link'],
+            ['code', 'codeblock']
+          ]}
+          onChange={handleChange}
+        />
+      </>
     </>
   )
 }
