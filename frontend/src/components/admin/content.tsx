@@ -12,6 +12,7 @@ import { useSelector } from 'react-redux'
 import { RootState } from 'src/store'
 
 import CustomAvatar from 'src/@core/components/mui/avatar'
+import ModalEditorViewerContainer from '../core/modal-editor-viewer-container'
 
 const Content = () => {
   // ** Hooks
@@ -49,7 +50,12 @@ const Content = () => {
             </TableCell>
             <TableCell>{row.id}</TableCell>
             <TableCell>{row.account}</TableCell>
-            <TableCell>{row.intro}</TableCell>
+            <TableCell>
+              <ModalEditorViewerContainer
+                title="자기소개"
+                content={row.intro}
+              />
+            </TableCell>
 
             <TableCell>
               <Button
