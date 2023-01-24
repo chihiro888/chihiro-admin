@@ -10,10 +10,16 @@ import Typography from '@mui/material/Typography'
 import Fade, { FadeProps } from '@mui/material/Fade'
 import DialogContent from '@mui/material/DialogContent'
 import DialogActions from '@mui/material/DialogActions'
-import { Viewer } from '@toast-ui/react-editor'
+// import { Viewer } from '@toast-ui/react-editor'
 
 // ** Icon Imports
 import Icon from 'src/@core/components/icon'
+import dynamic from 'next/dynamic'
+
+const Viewer = dynamic(
+  () => import('@toast-ui/react-editor').then((mod) => mod.Viewer),
+  { ssr: false }
+)
 
 const Transition = forwardRef(function Transition(
   props: FadeProps & { children?: ReactElement<any, any> },
