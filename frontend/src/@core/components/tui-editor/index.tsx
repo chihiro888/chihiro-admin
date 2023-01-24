@@ -54,7 +54,7 @@ const ToastEditor: React.FC<Props> = (props) => {
     <>
       <>
         <EditorWithForwardedRef
-          initialValue={props.initialValue}
+          initialValue={props.initialValue ? props.initialValue : ''}
           placeholder="내용을 입력해주세요."
           initialEditType="wysiwyg" // 초기 입력모드 설정(디폴트 markdown)
           ref={editorRef}
