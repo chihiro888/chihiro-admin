@@ -108,7 +108,7 @@ const UserDropdown = (props: Props) => {
       >
         <Avatar
           alt={auth.user.fullName}
-          src={auth ? auth.user.profile.url : '/images/avatars/account.png'}
+          src={auth.user.profile ? auth.user.profile.url : '/images/avatars/account.png'}
           onClick={handleDropdownOpen}
           sx={{ width: 40, height: 40 }}
         />
@@ -140,7 +140,7 @@ const UserDropdown = (props: Props) => {
               <Avatar
                 alt="관리자"
                 src={
-                  auth ? auth.user.profile.url : '/images/avatars/account.png'
+                  auth.user.profile  ? auth.user.profile.url : '/images/avatars/account.png'
                 }
                 sx={{ width: '2.5rem', height: '2.5rem' }}
               />
