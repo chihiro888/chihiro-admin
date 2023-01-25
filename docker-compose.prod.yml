@@ -1,9 +1,9 @@
 version: "3"
 
 services:
-  titan-db-prod:
+  cdk-db-prod:
     image: mysql:8
-    container_name: titan-db-prod
+    container_name: cdk-db-prod
     environment:
       # LANGUAGE OR LANG UTF-8 설정을 하지 않으면
       # docker-entrypoint-initdb.d 사용시 한글이 깨져서 데이터가 들어가게됨
@@ -19,8 +19,8 @@ services:
       - ./docker/ddl:/docker-entrypoint-initdb.d
     ports:
       - 10000:3306
-  titan-app-prod:
-    container_name: titan-app-prod
+  cdk-app-prod:
+    container_name: cdk-app-prod
     build:
       context: .
       dockerfile: ./dockerfile
