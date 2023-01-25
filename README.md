@@ -1,4 +1,4 @@
-# Chihiro Admin
+# Chihiro Admin / Chihiro Develop Kit (CDK)
 
 - Node.js 16.16.0 을 요구합니다.
 - Docker Engine 1.13.0+ 을 요구합니다.
@@ -16,7 +16,7 @@ bash start_dev.bash
 | key           | value     |
 | ------------- | --------- |
 | host          | localhost |
-| port          | 3306      |
+| port          | 4001      |
 | database      | develop   |
 | root user     | root      |
 | root password | root      |
@@ -25,7 +25,7 @@ bash start_dev.bash
 
 #### 이미지서버
 
-http://localhost:7000
+http://localhost:5001/<enc_name>
 
 ### 백엔드
 
@@ -64,7 +64,7 @@ yarn start:dev_win
 yarn start:prod_win
 ```
 
-http://localhost:9000/api
+http://localhost:9001/api
 
 ### 프론트엔드
 
@@ -80,7 +80,7 @@ yarn install
 yarn dev
 ```
 
-http://localhost:3000/
+http://localhost:3001
 
 ## Document
 

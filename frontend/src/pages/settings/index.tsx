@@ -217,7 +217,7 @@ const Settings = () => {
               <Card>
                 <CardContent>
                   <Grid container justifyContent="center" spacing={3}>
-                    <Grid item xs={4}>
+                    <Grid item xs={12} md={4}>
                       <TextField
                         label="키"
                         size="small"
@@ -229,7 +229,7 @@ const Settings = () => {
                         }
                       />
                     </Grid>
-                    <Grid item xs={4}>
+                    <Grid item xs={12} md={4}>
                       <TextField
                         label="값"
                         size="small"
@@ -240,7 +240,7 @@ const Settings = () => {
                         }
                       />
                     </Grid>
-                    <Grid item xs={4}>
+                    <Grid item xs={12} md={4}>
                       <TextField
                         label="메모"
                         size="small"

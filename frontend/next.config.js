@@ -30,7 +30,7 @@ module.exports = withTM({
     return [
       {
         source: '/api/:path*',
-        destination: 'http://localhost:9000/api/:path*'
+        destination: 'http://localhost:9001/api/:path*'
       }
     ]
   }

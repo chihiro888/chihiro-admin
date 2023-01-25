@@ -18,12 +18,12 @@ services:
     volumes:
       - ./docker/ddl:/docker-entrypoint-initdb.d
     ports:
-      - 4000:3306
+      - 4001:3306
   cdk-img-dev:
     image: nginx:1.23.2
     container_name: cdk-img-dev
     ports:
-      - 5000:7000
+      - 5001:7000
     volumes:
       - ./docker/nginx/nginx-img.conf:/etc/nginx/nginx.conf
       - ./backend/upload:/upload
