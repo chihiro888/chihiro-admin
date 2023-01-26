@@ -22,7 +22,7 @@ import configuration from './configuration/configuration'
     GlobalHttpModule,
 
     // import app module
-    DevelopModule,
+    // DevelopModule,
     AdminModule,
     GlobalModule,
     ImageModule,
