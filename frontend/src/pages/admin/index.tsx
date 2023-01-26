@@ -125,7 +125,6 @@ const Admin = () => {
           key: 'intro',
           value: ''
         },
-
         {
           type: 'select',
           label: '권한',
@@ -250,7 +249,6 @@ const Admin = () => {
           loadAPI: getAdminDetail,
           updateAPI: updateAdminProfile
         },
-
         {
           icon: 'bx:user-circle',
           label: '자기소개 변경',
@@ -265,7 +263,6 @@ const Admin = () => {
           loadAPI: getAdminDetail,
           updateAPI: updateAdminIntro
         },
-
         {
           icon: 'bx:pencil',
           label: '비밀번호 변경',
@@ -334,6 +331,7 @@ const Admin = () => {
     )
 
     dispatch(initData())
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (

@@ -1,4 +1,3 @@
-import { XAxis } from 'recharts'
 // ** Redux Imports
 import { createAsyncThunk, createSlice, Dispatch } from '@reduxjs/toolkit'
 
