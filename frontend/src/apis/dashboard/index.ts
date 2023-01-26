@@ -34,3 +34,35 @@ export const getSettingCount = () => {
 
   return response
 }
+
+// ANCHOR get admin line chart
+export const getAdminLineChart = () => {
+  const url = `${rootUrl}getAdminLineChart`
+  const response = axios.get<CommonResponse>(url)
+
+  return response
+}
+
+// ANCHOR get login history line chart
+export const getLoginHistoryLineChart = () => {
+  const url = `${rootUrl}getLoginHistoryLineChart`
+  const response = axios.get<CommonResponse>(url)
+
+  return response
+}
+
+// ANCHOR get image line chart
+export const getImageLineChart = () => {
+  const url = `${rootUrl}getImageLineChart`
+  const response = axios.get<CommonResponse>(url)
+
+  return response
+}
+
+// ANCHOR get setting line chart
+export const getSettingLineChart = () => {
+  const url = `${rootUrl}getSettingLineChart`
+  const response = axios.get<CommonResponse>(url)
+
+  return response
+}

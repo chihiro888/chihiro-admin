@@ -10,15 +10,20 @@ import Congratulations from 'src/components/congratulations'
 import CardStatsVertical from 'src/components/card-stats-vertical'
 import {
   getAdminCount,
+  getAdminLineChart,
   getImageCount,
+  getImageLineChart,
   getLoginHistoryCount,
-  getSettingCount
+  getLoginHistoryLineChart,
+  getSettingCount,
+  getSettingLineChart
 } from 'src/apis/dashboard'
 import { useDispatch, useSelector } from 'react-redux'
 
 // ** Redux
 import { initDashboard, setDashboardList } from 'src/store/apps/crud'
 import { RootState } from 'src/store'
+import ApexLineChart from 'src/components/apex-line-chart'
 
 const Home = () => {
   const dispatch = useDispatch()
@@ -76,6 +81,50 @@ const Home = () => {
             diff: 0
           },
           loadAPI: getSettingCount
+        },
+        {
+          type: 'lineChart',
+          key: 'adminChart',
+          title: '관리자',
+          color: '#cbcdff',
+          symbol: '',
+          height: 200,
+          xAxis: [],
+          yAxis: [],
+          loadAPI: getAdminLineChart
+        },
+        {
+          type: 'lineChart',
+          key: 'loginHistoryChart',
+          title: '로그인이력',
+          color: '#cbcdff',
+          symbol: '',
+          height: 200,
+          xAxis: [],
+          yAxis: [],
+          loadAPI: getLoginHistoryLineChart
+        },
+        {
+          type: 'lineChart',
+          key: 'imageChart',
+          title: '이미지',
+          color: '#cbcdff',
+          symbol: '',
+          height: 200,
+          xAxis: [],
+          yAxis: [],
+          loadAPI: getImageLineChart
+        },
+        {
+          type: 'lineChart',
+          key: 'settingChart',
+          title: '설정',
+          color: '#cbcdff',
+          symbol: '',
+          height: 200,
+          xAxis: [],
+          yAxis: [],
+          loadAPI: getSettingLineChart
         }
       ])
     )
@@ -112,6 +161,20 @@ const Home = () => {
                       total={item.value.total}
                       today={item.value.today}
                       diff={item.value.diff}
+                    />
+                  </Grid>
+                ) : (
+                  <></>
+                )}
+                {item.type === 'lineChart' ? (
+                  <Grid item xs={6} md={6} lg={6} sx={{ order: -1 }}>
+                    <ApexLineChart
+                      title={item.title}
+                      color={item.color}
+                      symbol={item.symbol}
+                      height={item.height}
+                      xAxis={item.xAxis}
+                      yAxis={item.yAxis}
                     />
                   </Grid>
                 ) : (

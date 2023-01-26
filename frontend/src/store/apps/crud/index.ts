@@ -1,3 +1,4 @@
+import { XAxis } from 'recharts'
 // ** Redux Imports
 import { createAsyncThunk, createSlice, Dispatch } from '@reduxjs/toolkit'
 
@@ -169,7 +170,6 @@ export const appCrudSlice = createSlice({
       })
       state.actionForm = nextState
     },
-
     initSearchForm(state) {
       const nextState = produce(state.searchForm, (draftState) => {
         draftState.map((item) => {
@@ -188,20 +188,31 @@ export const appCrudSlice = createSlice({
       })
       state.searchForm = nextState
     },
-
     initDashboard(state, action) {
-      const nextState = produce(state.dashboardList, (draftState) => {
-        draftState.map((item) => {
-          if (item.key === action.payload.item.key) {
-            item.value = action.payload.res.data
-          }
+      if (action.payload.item.type === 'count') {
+        const nextState = produce(state.dashboardList, (draftState) => {
+          draftState.map((item) => {
+            if (item.key === action.payload.item.key) {
+              item.value = action.payload.res.data
+            }
+          })
         })
-      })
-      state.dashboardList = nextState
+        state.dashboardList = nextState
+      } else if (action.payload.item.type === 'lineChart') {
+        const nextState = produce(state.dashboardList, (draftState) => {
+          draftState.map((item) => {
+            if (item.key === action.payload.item.key) {
+              item.xAxis = action.payload.res.data.xAxis
+              item.yAxis = action.payload.res.data.yAxis
+            }
+          })
+        })
+        state.dashboardList = nextState
+      }
+      console.log('state.dashboardList -> ', state.dashboardList)
     },
     setListAPI(state, action) {
       state.listAPI = action.payload
-      //
     },
     setCreateAPI(state, action) {
       state.createAPI = action.payload
