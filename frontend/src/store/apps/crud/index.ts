@@ -209,7 +209,6 @@ export const appCrudSlice = createSlice({
         })
         state.dashboardList = nextState
       }
-      console.log('state.dashboardList -> ', state.dashboardList)
     },
     setListAPI(state, action) {
       state.listAPI = action.payload
