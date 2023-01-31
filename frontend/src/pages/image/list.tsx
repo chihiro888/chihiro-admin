@@ -134,7 +134,11 @@ const List = () => {
                       <Stack>
                         <CustomChip
                           rounded
-                          label={value?.tableName ? value?.tableName : '-'}
+                          label={
+                            value?.tableName
+                              ? `table : ${value?.tableName}`
+                              : 'table : -'
+                          }
                           skin="light"
                           color="primary"
                         />
@@ -142,9 +146,21 @@ const List = () => {
                       <Stack>
                         <CustomChip
                           rounded
-                          label={value?.tablePk ? value?.tablePk : '-'}
+                          label={
+                            value?.tablePk ? `PK : ${value?.tablePk}` : 'PK : -'
+                          }
                           skin="light"
                           color="success"
+                        />
+                      </Stack>
+                      <Stack>
+                        <CustomChip
+                          rounded
+                          label={
+                            value?.type ? `type : ${value?.type}` : 'type : -'
+                          }
+                          skin="light"
+                          color="secondary"
                         />
                       </Stack>
                     </Box>
@@ -208,6 +224,11 @@ const List = () => {
             <Typography variant="body2">매핑된 테이블 ID</Typography>
             <Typography variant="body1">
               {detail?.tablePk ? detail?.tablePk : '-'}
+            </Typography>
+
+            <Typography variant="body2">타입</Typography>
+            <Typography variant="body1">
+              {detail?.type ? detail?.type : '-'}
             </Typography>
 
             <Typography variant="body2" sx={{ mt: 3 }}>

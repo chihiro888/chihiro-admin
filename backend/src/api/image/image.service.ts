@@ -86,6 +86,7 @@ export class ImageService {
         'id as id',
         'table_name as tableName',
         'table_pk as tablePk',
+        'type as type',
         'raw_name as rawName',
         'enc_name as encName',
         'extension as extension',
