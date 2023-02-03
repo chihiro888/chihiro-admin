@@ -137,7 +137,7 @@ const ActionContainer = ({ id, detailAction, deleteAction }) => {
             상세
           </MenuItem>
         ) : (
-          <></>
+          []
         )}
 
         {deleteAction ? (
@@ -146,19 +146,19 @@ const ActionContainer = ({ id, detailAction, deleteAction }) => {
             삭제
           </MenuItem>
         ) : (
-          <></>
+          []
         )}
 
         {actionList.map((item, idx) => {
           return (
-              <MenuItem
-                key={idx}
-                onClick={() => handleClickEdit(item)}
-                sx={{ '& svg': { mr: 2 } }}
-              >
-                <Icon icon={item.icon} fontSize={20} />
-                {item.label}
-              </MenuItem>
+            <MenuItem
+              key={idx}
+              onClick={() => handleClickEdit(item)}
+              sx={{ '& svg': { mr: 2 } }}
+            >
+              <Icon icon={item.icon} fontSize={20} />
+              {item.label}
+            </MenuItem>
           )
         })}
       </Menu>
