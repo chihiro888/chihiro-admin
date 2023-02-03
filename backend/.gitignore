@@ -33,3 +33,16 @@ lerna-debug.log*
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+
+# Banner
+!upload/11b83d16-a4bb-4c09-a70d-77b1a1c7c4b0.jpeg
+!upload/9855001b-7464-415d-a48a-bc4aed4ba3a9.jpeg
+!upload/c0cbfe63-450d-42c9-b2fe-87b878f48919.jpeg
+
+# NFT Sample
+!upload/bbfbf411-304f-4d84-97f5-6afe62e176c4.png
+!upload/dabbbe02-2e57-4fa3-bf28-c66699143fc8.png
+!upload/dca3cd61-48d1-44a1-89c1-fbdbbeb27ae6.png
+!upload/f04a9bfe-f894-438a-9ab8-e7c26d1b1626.png
+!upload/fd3e1edf-deaf-4692-9c53-d2c1079d47f3.png
+!upload/ff284956-e512-4fb6-a38d-c5fbd16c4339.png
