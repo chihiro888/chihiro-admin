@@ -119,13 +119,13 @@ const List = () => {
             >
               <Box
                 {...getRootProps({ className: 'dropzone' })}
-                sx={files.length ? { minHeight: 450 } : {}}
+                sx={files.length ? { minHeight: 241 } : {}}
               >
                 <input {...getInputProps()} />
                 {files.length ? (
                   <Box
                     sx={{
-                      height: 450,
+                      height: 241,
                       display: 'flex',
                       flexDirection: ['column', 'column', 'row'],
                       alignItems: 'center',
