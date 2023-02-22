@@ -33,7 +33,6 @@ import { UploadDto } from './dto/upload.dto'
 export class ImageController {
   constructor(private imageService: ImageService) {}
 
-
   // ANCHOR image upload
   @UseGuards(AuthGuard)
   @Post('upload')
@@ -56,26 +55,30 @@ export class ImageController {
   })
   @UseInterceptors(FilesInterceptor('files', 10))
   @ApiConsumes('multipart/form-data')
-  
-  async upload(@Res() res: Response, @Body() dto: UploadDto, @UploadedFiles() files) {
-    let result;
-
+  async upload(
+    @Res() res: Response,
+    @Body() dto: UploadDto,
+    @UploadedFiles() files
+  ) {
     try {
-      result = await this.imageService.upload(files)
-    } catch (err) {
-      console.log('err = ', err)
-      // return 500 response
-      throw new HttpException(
-        'An error occurred during file uploading.',
-        HttpStatus.INTERNAL_SERVER_ERROR
-      )
-    }
+      // 이미지 업로드
+      const result = await this.imageService.upload(files, dto.note)
 
-    res.status(HttpStatus.OK).json({
-      statusCode: HttpStatus.OK,
-      message: 'Image upload is complete.',
-      data: result.data
-    })
+      res.status(HttpStatus.OK).json({
+        statusCode: HttpStatus.OK,
+        message: 'Image upload is complete.',
+        data: result.data
+      })
+    } catch (err) {
+      // logging
+      console.log('err = ', err)
+
+      res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
+        statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+        message: 'An error occurred during file uploading.',
+        data: []
+      })
+    }
   }
 
   // ANCHOR get list

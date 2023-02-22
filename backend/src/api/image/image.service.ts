@@ -20,7 +20,7 @@ export class ImageService {
   ) {}
 
   // ANCHOR upload
-  async upload(files: any): Promise<object> {
+  async upload(files: any, note: string): Promise<Result> {
     // 업로드 경로 가져오기
     const uploadPath = getUploadPath()
     const fileList = []
@@ -53,6 +53,7 @@ export class ImageService {
       f.size = size
       f.hSize = hSize
       f.absPath = absPath
+      f.note = note
       const fileData = await this.datasource.getRepository(File).save(f)
       fileData['url'] =
         (await this.globalService.getGlobal('imageDomain')) + '/' + encName
@@ -62,7 +63,7 @@ export class ImageService {
       fs.writeFileSync(absPath, file.buffer)
     }
 
-    return { result: true, data: fileList }
+    return { result: true, message: '', data: fileList }
   }
 
   // ANCHOR get list

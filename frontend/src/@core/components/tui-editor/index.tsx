@@ -2,6 +2,7 @@ import dynamic from 'next/dynamic'
 import * as React from 'react'
 import { Editor as EditorType, EditorProps } from '@toast-ui/react-editor'
 import { TuiEditorWithForwardedProps } from './tui-editor-wrapper'
+import { upload } from 'src/apis/image'
 
 interface EditorPropsWithHandlers extends EditorProps {
   onChange?(value: string): void
@@ -27,6 +28,28 @@ interface Props extends EditorProps {
 const ToastEditor: React.FC<Props> = (props) => {
   const editorRef = React.useRef<EditorType>()
 
+  // 에디터에서 이미지 업로드
+  const uploadImage = async (blob: Blob | File) => {
+    // 파라미터 생성
+    const formData = new FormData()
+    formData.append('files', blob)
+    formData.append('note', 'editor')
+
+    // API 호출
+    const { data: res } = await upload(formData)
+
+    // 처리가 정상이 아닌 경우
+    if (res.statusCode !== 200) {
+      return ''
+    }
+
+    // 처리가 정상인 경우 URL 반환
+    const { data } = res
+    const url = data[0].url
+
+    return url
+  }
+
   React.useEffect(() => {
     if (!editorRef.current) {
       return
@@ -35,6 +58,7 @@ const ToastEditor: React.FC<Props> = (props) => {
       const instance = editorRef.current.getInstance()
       instance.setHTML(props.initialValue)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [editorRef.current])
 
   const handleChange = React.useCallback(() => {
@@ -65,10 +89,23 @@ const ToastEditor: React.FC<Props> = (props) => {
             ['heading', 'bold', 'italic', 'strike'],
             ['hr', 'quote'],
             ['ul', 'ol', 'task', 'indent', 'outdent'],
-            ['table', 'link'],
+            ['table', 'image', 'link'],
             ['code', 'codeblock']
           ]}
           onChange={handleChange}
+          hooks={{
+            // 이미지 서버 사이드 업로드
+            // https://paigekim29.medium.com/toast-ui-editor-next-js-c9b48927fbf7
+            addImageBlobHook: async (blob, callback) => {
+              // 이미지 업로드
+              const uploadedImageURL = await uploadImage(blob)
+
+              // 업로드된 이미지 URL을 에디터에 삽입
+              callback(uploadedImageURL, '')
+
+              return false
+            }
+          }}
         />
       </>
     </>
