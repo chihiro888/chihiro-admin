@@ -92,6 +92,7 @@ const List = () => {
       alt={file.name}
       className="single-file-image"
       src={URL.createObjectURL(file as any)}
+      style={{ maxWidth: '100%', maxHeight: '100%' }}
     />
   ))
 
@@ -122,7 +123,17 @@ const List = () => {
               >
                 <input {...getInputProps()} />
                 {files.length ? (
-                  img
+                  <Box
+                    sx={{
+                      height: 450,
+                      display: 'flex',
+                      flexDirection: ['column', 'column', 'row'],
+                      alignItems: 'center',
+                      justifyContent: 'center'
+                    }}
+                  >
+                    {img}
+                  </Box>
                 ) : (
                   <Box
                     sx={{
