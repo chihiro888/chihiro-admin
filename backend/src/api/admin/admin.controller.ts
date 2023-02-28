@@ -459,7 +459,7 @@ export class AdminController {
     @Body() dto: UpdateAdminProfileDto
   ) {
     // update admin profile
-    await this.adminService.updateAdminProfile(dto.userId, dto.profile)
+    await this.adminService.updateAdminProfile(dto.id, dto.profile)
 
     // return 200 response
     res.status(HttpStatus.OK).json({
