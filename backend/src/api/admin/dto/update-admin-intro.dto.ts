@@ -8,7 +8,7 @@ export class UpdateAdminIntroDto {
     example: 1
   })
   @IsNotEmpty()
-  userId: number
+  id: number
 
   @ApiProperty({
     description: 'intro id',

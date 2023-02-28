@@ -8,7 +8,7 @@ export class UpdateAdminProfileDto {
     example: 1
   })
   @IsNotEmpty()
-  userId: number
+  id: number
 
   @ApiProperty({
     description: 'image id',

@@ -8,7 +8,7 @@ export class UpdateAdminPasswordDto {
     example: 1
   })
   @IsNotEmpty()
-  userId: number
+  id: number
 
   @ApiProperty({
     description: 'old password',

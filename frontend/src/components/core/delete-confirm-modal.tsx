@@ -28,7 +28,7 @@ const DeleteConfirmModal = ({
     try {
       // 삭제 API 호출
       const params = {
-        userId: actionId
+        id: actionId
       }
       const { data: res } = await deleteAPI(params)
       if (res.statusCode === 200) {
