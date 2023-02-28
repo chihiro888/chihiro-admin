@@ -30,7 +30,7 @@ const EditConfirmModal = ({
   const handleClickEdit = async () => {
     try {
       const params = getParamsFromForm(actionForm)
-      params['userId'] = actionId
+      params['id'] = actionId
       const { data: res } = await updateAPI(params)
       if (res.statusCode === 200) {
         toast.success(t(res.message))

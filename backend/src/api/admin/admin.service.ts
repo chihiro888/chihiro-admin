@@ -299,7 +299,7 @@ export class AdminService {
   async deleteAdmin(dto: DeleteAdminDto) {
     const admin = await this.datasource.getRepository(Admin).findOne({
       where: {
-        id: dto.userId,
+        id: dto.id,
         deletedAt: IsNull()
       }
     })
@@ -323,7 +323,7 @@ export class AdminService {
   async updateAdminPassword(dto: UpdateAdminPasswordDto) {
     const admin = await this.datasource.getRepository(Admin).findOne({
       where: {
-        id: dto.userId,
+        id: dto.id,
         deletedAt: IsNull()
       }
     })
@@ -336,7 +336,7 @@ export class AdminService {
   async updateAdminUsername(dto: UpdateAdminUsernameDto) {
     const admin = await this.datasource.getRepository(Admin).findOne({
       where: {
-        id: dto.userId,
+        id: dto.id,
         deletedAt: IsNull()
       }
     })
@@ -349,7 +349,7 @@ export class AdminService {
   async updateAdminLevel(dto: UpdateAdminLevelDto) {
     const admin = await this.datasource.getRepository(Admin).findOne({
       where: {
-        id: dto.userId,
+        id: dto.id,
         deletedAt: IsNull()
       }
     })
@@ -395,7 +395,7 @@ export class AdminService {
   async updateAdminIntro(dto: UpdateAdminIntroDto) {
     const admin = await this.datasource.getRepository(Admin).findOne({
       where: {
-        id: dto.userId,
+        id: dto.id,
         deletedAt: IsNull()
       }
     })
