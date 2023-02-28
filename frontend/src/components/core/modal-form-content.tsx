@@ -152,14 +152,18 @@ const ModalFormContent = ({ formContent, handleChangeForm }) => {
                   {item.type === 'line' ? (
                     <>
                       <Divider sx={item.sx}>
-                        {item.chipLabel ? (
+                        {item.chip ? (
                           <Chip
-                            label={item.chipLabel}
+                            label={item.label}
                             color="primary"
                             style={{ fontSize: 16, fontWeight: 'bold' }}
                           />
                         ) : (
-                          item.label
+                          <Typography
+                            style={{ fontSize: 16, fontWeight: 'bold' }}
+                          >
+                            {item.label}
+                          </Typography>
                         )}
                       </Divider>
                     </>
