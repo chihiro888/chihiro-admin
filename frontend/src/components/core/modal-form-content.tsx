@@ -22,6 +22,7 @@ import { RootState } from 'src/store'
 import React from 'react'
 import ToastEditor from 'src/@core/components/tui-editor'
 import '@toast-ui/editor/dist/toastui-editor.css'
+import { Chip, Divider } from '@mui/material'
 
 const ModalFormContent = ({ formContent, handleChangeForm }) => {
   const dispatch = useDispatch()
@@ -35,6 +36,7 @@ const ModalFormContent = ({ formContent, handleChangeForm }) => {
   const onEditorChange = (key, value) => {
     handleChangeForm(key, value)
   }
+
   // 폼 데이터 로드
   const initData = async () => {
     const params = { id: actionId }
@@ -143,6 +145,23 @@ const ModalFormContent = ({ formContent, handleChangeForm }) => {
                           />
                         </Grid>
                       </DropzoneWrapper>
+                    </>
+                  ) : (
+                    <></>
+                  )}
+                  {item.type === 'line' ? (
+                    <>
+                      <Divider sx={item.sx}>
+                        {item.chipLabel ? (
+                          <Chip
+                            label={item.chipLabel}
+                            color="primary"
+                            style={{ fontSize: 16, fontWeight: 'bold' }}
+                          />
+                        ) : (
+                          item.label
+                        )}
+                      </Divider>
                     </>
                   ) : (
                     <></>
