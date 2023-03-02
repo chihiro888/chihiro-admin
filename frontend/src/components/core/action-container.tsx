@@ -13,6 +13,7 @@ import {
   setActionForm,
   setActionId,
   setDetailForm,
+  setLoadAPI,
   setUpdateAPI
 } from 'src/store/apps/crud'
 
@@ -100,6 +101,9 @@ const ActionContainer = ({ id, detailAction, deleteAction }) => {
 
     // 수정 API 설정
     dispatch(setUpdateAPI(action.updateAPI))
+
+    // 로드 API 설정
+    dispatch(setLoadAPI(action.loadAPI))
 
     // 수정 폼 설정
     dispatch(setActionForm(action.content))

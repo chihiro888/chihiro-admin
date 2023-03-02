@@ -56,9 +56,6 @@ const Admin = () => {
     // NOTE 삭제 API 정의
     dispatch(setDeleteAPI(deleteAdmin))
 
-    // NOTE 수정 모달 로드 API 정의
-    dispatch(setLoadAPI(getAdminDetail))
-
     // NOTE 페이지 헤더 정의
     dispatch(
       setPageHeader({
@@ -324,7 +321,7 @@ const Admin = () => {
               ]
             }
           ],
-          loadAPI: null,
+          loadAPI: getAdminDetail,
           updateAPI: updateAdminLevel
         }
       ])
