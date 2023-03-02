@@ -76,6 +76,42 @@ const ModalFormContent = ({ formContent, handleChangeForm }) => {
                   ) : (
                     <></>
                   )}
+                  {item.type === 'textField' ? (
+                    <>
+                      <TextField
+                        id="outlined-basic"
+                        label={item.label}
+                        value={item.value}
+                        multiline
+                        rows={item.rows}
+                        onChange={(e) =>
+                          handleChangeForm(item.key, e.target.value)
+                        }
+                        fullWidth
+                      />
+                    </>
+                  ) : (
+                    <></>
+                  )}
+                  {item.type === 'number' ? (
+                    <>
+                      <TextField
+                        id="outlined-number"
+                        type="number"
+                        InputLabelProps={{
+                          shrink: true,
+                        }}
+                        label={item.label}
+                        value={item.value}
+                        onChange={(e) =>
+                          handleChangeForm(item.key, e.target.value)
+                        }
+                        fullWidth
+                      />
+                    </>
+                  ) : (
+                    <></>
+                  )}
                   {item.type === 'password' ? (
                     <>
                       <TextField
