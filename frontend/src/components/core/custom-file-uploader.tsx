@@ -63,7 +63,13 @@ const CustomFileUploader = ({ handleChangeForm, item }) => {
   useEffect(() => {
     if (item.value[0]?.id) {
       setFiles(item.value)
+      handleChangeForm(
+        item.key,
+        item.value.map((file) => file.id)
+      )
     }
+    
+
   }, [item.value])
 
   const { getRootProps, getInputProps } = useDropzone({
