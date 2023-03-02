@@ -76,7 +76,7 @@ const ModalFormContent = ({ formContent, handleChangeForm }) => {
                   ) : (
                     <></>
                   )}
-                  {item.type === 'textField' ? (
+                  {item.type === 'textarea' ? (
                     <>
                       <TextField
                         id="outlined-basic"
