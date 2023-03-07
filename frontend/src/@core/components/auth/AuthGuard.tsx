@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 
 // ** Hooks Import
 import { useAuth } from 'src/hooks/useAuth'
-import { getAdmin } from 'src/apis/admin'
+import { getAdmin} from 'src/apis/auth'
 
 interface AuthGuardProps {
   children: ReactNode

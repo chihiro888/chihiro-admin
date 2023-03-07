@@ -34,12 +34,13 @@ import { useRouter } from 'next/router'
 import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
 import { useAuth } from 'src/hooks/useAuth'
-import { checkSystemAdmin, getAdmin, login } from 'src/apis/admin'
+import { getAdmin, login } from 'src/apis/auth'
 import FormHeader from 'src/components/form-header'
 import { getAppInfo } from 'src/apis/global'
 import { AppDispatch } from 'src/store'
 import { useDispatch } from 'react-redux'
 import { setAppInfo } from 'src/store/apps/app'
+import { checkSystemAdmin } from 'src/apis/admin'
 
 interface State {
   email: string

@@ -6,7 +6,6 @@ import { CreateSystemAdminDto } from './dto/create-system-admin.dto'
 import { LoginDto } from './dto/login.dto'
 import { UpdatePasswordDto } from './dto/update-password.dto'
 import moment from 'moment'
-import { GetAdminListDto } from './dto/get-admin-list.dto'
 import { LoginHistory } from 'src/entities/login-history.entity'
 import { UpdateAdminPasswordDto } from './dto/update-admin-password.dto'
 import { GetLoginHistoryDetailDto } from './dto/get-login-history-detail.dto'
@@ -20,6 +19,7 @@ import { GetUserDetailDto } from './dto/get-user-detail.dto'
 import { UpdateUserLevelDto } from './dto/update-user-level.dto'
 import { DeleteUserDto } from './dto/delete-user.dto'
 import { UpdateUserIntroDto } from './dto/update-user-intro.dto'
+import { GetUserListDto } from './dto/get-user-list.dto'
 @Injectable()
 export class UserService {
   constructor(
@@ -53,69 +53,9 @@ export class UserService {
     await this.datasource.getRepository(User).save(user)
   }
 
-  // ANCHOR login
-  async login(dto: LoginDto) {
-    const user = await this.datasource.getRepository(User).findOne({
-      where: {
-        account: dto.account,
-        deletedAt: IsNull()
-      }
-    })
 
-    if (!user) {
-      return { result: false, data: null }
-    }
-
-    if (await isMatch(dto.password, user.password)) {
-      // insert login history
-      const loginHistory = new LoginHistory()
-      loginHistory.userId = user.id
-      loginHistory.type = 1
-      await this.datasource.getRepository(LoginHistory).save(loginHistory)
-      return { result: true, data: user }
-    } else {
-      return { result: false, data: null }
-    }
-  }
-
-  // ANCHOR logout
-  async logout(userId) {
-    // insert login history
-    const loginHistory = new LoginHistory()
-    loginHistory.userId = userId
-    loginHistory.type = 0
-    await this.datasource.getRepository(LoginHistory).save(loginHistory)
-  }
-
-  // ANCHOR get admin by user id
-  async getAdminByUserId(userId: number) {
-    const user = await this.datasource.getRepository(User).findOne({
-      where: {
-        id: userId,
-        deletedAt: IsNull()
-      }
-    })
-
-    const profile = await this.datasource.getRepository(File).find({
-      where: {
-        tableName: '_user',
-        tablePk: userId
-      }
-    })
-
-    if (profile.length !== 0) {
-      profile[0]['url'] =
-        (await this.globalService.getGlobal('imageDomain')) +
-        '/' +
-        profile[0].encName
-    }
-    user['profile'] = profile[0]
-
-    return user
-  }
-
-  // ANCHOR get admin by account
-  async getAdminByAccount(account: string) {
+  // ANCHOR get user by account
+  async getUserByAccount(account: string) {
     const user = await this.datasource.getRepository(User).findOne({
       where: {
         account,
@@ -140,8 +80,8 @@ export class UserService {
     await this.datasource.getRepository(User).save(user)
   }
 
-  // ANCHOR get admin list
-  async getAdminList(dto: GetAdminListDto) {
+  // ANCHOR get user list
+  async getUserList(dto: GetUserListDto) {
     const limit = 12
     const offset = (dto.page - 1) * limit
 
@@ -155,7 +95,7 @@ export class UserService {
           qb
             .from(File, 'file')
             .select('file.table_pk')
-            .where('file.table_name = :table_name', { table_name: '_admin' }),
+            .where('file.table_name = :table_name', { table_name: '_user' }),
         'f',
         'a.id = f.table_pk'
       )

@@ -8,4 +8,4 @@ import { GlobalService } from '../global/global.service'
   controllers: [UserController],
   providers: [UserService, GlobalService]
 })
-export class AdminModule {}
+export class UserModule {}

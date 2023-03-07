@@ -1,3 +1,5 @@
+import { AuthModule } from './api/auth/auth.module';
+import { UserModule } from './api/user/user.module';
 import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 import { AdminModule } from './api/admin/admin.module'
@@ -24,6 +26,8 @@ import configuration from './configuration/configuration'
     // import app module
     // DevelopModule,
     AdminModule,
+    UserModule,
+    AuthModule,
     GlobalModule,
     ImageModule,
     DashboardModule

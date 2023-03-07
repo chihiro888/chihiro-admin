@@ -27,7 +27,6 @@ import {
 import { Response } from 'express'
 import { UpdatePasswordDto } from './dto/update-password.dto'
 import SWAGGER from 'src/common/constants/swagger'
-import { GetAdminListDto } from './dto/get-admin-list.dto'
 import { SystemAdminGuard } from 'src/common/guard/system-admin.guard'
 import { AuthGuard } from 'src/common/guard/auth.guard'
 import { GetUserDetailDto } from './dto/get-user-detail.dto'
@@ -41,6 +40,7 @@ import { ApiFiles } from 'src/common/decorator/api-files.decorator'
 import { FilesInterceptor } from '@nestjs/platform-express'
 import { UpdateUserIntroDto } from './dto/update-user-intro.dto'
 import { DeleteUserDto } from './dto/delete-user.dto'
+import { GetUserListDto } from './dto/get-user-list.dto'
 
 // ANCHOR admin controller
 @ApiTags('user')
@@ -48,109 +48,8 @@ import { DeleteUserDto } from './dto/delete-user.dto'
 export class UserController {
   constructor(private userService: UserService) {}
 
-  // ANCHOR login
-  @Post('login')
-  @ApiOperation({
-    summary: '로그인',
-    description: '파라미터를 입력받아 로그인을 처리합니다.'
-  })
-  @ApiResponse({
-    status: HttpStatus.OK,
-    description: '로그인이 성공적인 경우 반환'
-  })
-  @ApiResponse({
-    status: HttpStatus.BAD_REQUEST,
-    description: SWAGGER.BAD_REQUEST
-  })
-  @ApiResponse({
-    status: HttpStatus.UNAUTHORIZED,
-    description: '아이디 또는 비밀번호가 유효하지 않은 경우 반환'
-  })
-  async login(
-    @Res() res: Response,
-    @Body() dto: LoginDto,
-    @Session() session: any
-  ) {
-    // login
-    const result = await this.userService.login(dto)
 
-    if (!result.result) {
-      // return 403 response
-      throw new HttpException(
-        'The account or password is not valid.',
-        HttpStatus.UNAUTHORIZED
-      )
-    }
 
-    // login
-    session.userId = result.data.id
-    session.role = result.data.role
-
-    // return 200 response
-    res.status(HttpStatus.OK).json({
-      statusCode: HttpStatus.OK,
-      message: 'Login Successful',
-      data: null
-    })
-  }
-
-  // ANCHOR logout
-  @Delete('logout')
-  @ApiOperation({
-    summary: '로그아웃 (본인)',
-    description: '세션정보를 조회하며 로그아웃 처리합니다.'
-  })
-  @ApiResponse({
-    status: HttpStatus.OK,
-    description: '로그아웃이 성공적인 경우 반환'
-  })
-  async logout(@Res() res: Response, @Session() session: any) {
-    // get user id from session
-    const userId = session.userId
-
-    // logout
-    await this.userService.logout(userId)
-
-    // logout
-    session.destroy()
-
-    // return 200 response
-    res.status(HttpStatus.OK).json({
-      statusCode: HttpStatus.OK,
-      message: '',
-      data: null
-    })
-  }
-
-  // ANCHOR get admin
-  @UseGuards(AuthGuard)
-  @Get('getAdmin')
-  @ApiOperation({
-    summary: '관리자 정보 조회 (본인)',
-    description: '세션이 유효한 경우 관리자 정보를 반환합니다.'
-  })
-  @ApiResponse({
-    status: HttpStatus.OK,
-    description: '관리자 조회가 성공적인 경우 반환'
-  })
-  @ApiResponse({
-    status: HttpStatus.UNAUTHORIZED,
-    description: SWAGGER.UNAUTHORIZED
-  })
-  async getAdmin(@Res() res: Response, @Session() session: any) {
-    // get user id from session
-    const userId = session.userId
-
-    // get admin by user id
-    const admin = await this.userService.getAdminByUserId(userId)
-
-    // return 200 response
-    res.status(HttpStatus.OK).json({
-      statusCode: HttpStatus.OK,
-      message: '',
-      data: admin
-    })
-  }
 
   // ANCHOR update password
   @UseGuards(AuthGuard)
@@ -203,7 +102,7 @@ export class UserController {
 
   // ANCHOR get admin list
   @UseGuards(SystemAdminGuard)
-  @Get('getAdminList')
+  @Get('getUserList')
   @ApiOperation({
     summary: '관리자 리스트 조회 (시스템 관리자 기능)',
     description: '세션이 유효한 경우 관리자 리스트를 반환합니다.'
@@ -216,19 +115,19 @@ export class UserController {
     status: HttpStatus.UNAUTHORIZED,
     description: SWAGGER.UNAUTHORIZED
   })
-  async getAdminList(
+  async getUserList(
     @Res() res: Response,
     @Session() session: any,
-    @Query() dto: GetAdminListDto
+    @Query() dto: GetUserListDto
   ) {
-    // get admin
-    const adminList = await this.userService.getAdminList(dto)
+    // get user
+    const userList = await this.userService.getUserList(dto)
 
     // return 200 response
     res.status(HttpStatus.OK).json({
       statusCode: HttpStatus.OK,
       message: '',
-      data: adminList
+      data: userList
     })
   }
 
@@ -240,14 +139,14 @@ export class UserController {
     description: '관리자 상세정보를 조회합니다.'
   })
   async getUserDetail(@Res() res: Response, @Query() dto: GetUserDetailDto) {
-    // get admin detail
-    const admin = await this.userService.getUserDetail(dto)
+    // get user detail
+    const user = await this.userService.getUserDetail(dto)
 
     // return 200 response
     res.status(HttpStatus.OK).json({
       statusCode: HttpStatus.OK,
       message: '',
-      data: admin
+      data: user
     })
   }
 
@@ -261,23 +160,23 @@ export class UserController {
   })
   async createUser(@Res() res: Response, @Body() dto: CreateUserDto) {
     // get user by account
-    const admin = await this.userService.getAdminByAccount(dto.account)
+    const user = await this.userService.getUserByAccount(dto.account)
 
-    if (admin) {
+    if (user) {
       // return 400 response
       throw new HttpException(
-        'Administrator already exists.',
+        'user already exists.',
         HttpStatus.BAD_REQUEST
       )
     }
 
-    // create admin
+    // create user
     await this.userService.createUser(dto)
 
     // return 200 response
     res.status(HttpStatus.OK).json({
       statusCode: HttpStatus.OK,
-      message: 'Administrator addition is complete.',
+      message: 'user addition is complete.',
       data: null
     })
   }
@@ -290,18 +189,18 @@ export class UserController {
     description: '관리자를 삭제합니다.'
   })
   async deleteUser(@Res() res: Response, @Query() dto: DeleteUserDto) {
-    // delete admin
+    // delete user
     await this.userService.deleteUser(dto)
 
     // return 200 response
     res.status(HttpStatus.OK).json({
       statusCode: HttpStatus.OK,
-      message: 'Administrator successfully deleted.',
+      message: 'user successfully deleted.',
       data: null
     })
   }
 
-  // ANCHOR update admin password
+  // ANCHOR update user password
   @UseGuards(SystemAdminGuard)
   @Put('updateUserPassword')
   @ApiOperation({
@@ -349,14 +248,14 @@ export class UserController {
   @UseGuards(SystemAdminGuard)
   @Put('updateUserLevel')
   @ApiOperation({
-    summary: '관리자 권한 변경 (시스템 관리자 기능)',
-    description: '관리자 권한을 변경합니다.'
+    summary: '유저 권한 변경 (시스템 관리자 기능)',
+    description: '유저 권한을 변경합니다.'
   })
   async updateUserLevel(
     @Res() res: Response,
     @Body() dto: UpdateUserLevelDto
   ) {
-    // update admin level
+    // update user level
     await this.userService.updateUserLevel(dto)
 
     // return 200 response
@@ -369,16 +268,16 @@ export class UserController {
 
   // ANCHOR update user level
   @UseGuards(SystemAdminGuard)
-  @Put('updateAdminProfile')
+  @Put('updateUserProfile')
   @ApiOperation({
-    summary: '관리자 프로필 변경 (시스템 관리자 기능)',
-    description: '관리자의 프로필을 변경합니다.'
+    summary: '유저 프로필 변경 (시스템 관리자 기능)',
+    description: '유저의 프로필을 변경합니다.'
   })
-  async updateAdminProfile(
+  async updateUserProfile(
     @Res() res: Response,
     @Body() dto: UpdateUserProfileDto
   ) {
-    // update admin profile
+    // update user profile
     await this.userService.updateUserProfile(dto.id, dto.profile)
 
     // return 200 response
@@ -393,14 +292,14 @@ export class UserController {
   @UseGuards(SystemAdminGuard)
   @Put('updateUserIntro')
   @ApiOperation({
-    summary: '관리자 소개 변경 (시스템 관리자 기능)',
-    description: '관리자의 자기소개를 변경합니다.'
+    summary: '유저 소개 변경 (시스템 관리자 기능)',
+    description: '유저의 자기소개를 변경합니다.'
   })
   async updateUserIntro(
     @Res() res: Response,
     @Body() dto: UpdateUserIntroDto
   ) {
-    // update admin level
+    // update user intro
     await this.userService.updateUserIntro(dto)
 
     // return 200 response

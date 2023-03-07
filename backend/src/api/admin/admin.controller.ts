@@ -1,5 +1,3 @@
-import { UpdateAdminPasswordDto } from './dto/update-admin-password.dto'
-import { LoginDto } from './dto/login.dto'
 import { CreateSystemAdminDto } from './dto/create-system-admin.dto'
 import { AdminService } from './admin.service'
 import {
@@ -19,28 +17,13 @@ import {
   UploadedFiles
 } from '@nestjs/common'
 import {
-  ApiConsumes,
   ApiOperation,
   ApiResponse,
   ApiTags
 } from '@nestjs/swagger'
 import { Response } from 'express'
-import { UpdatePasswordDto } from './dto/update-password.dto'
 import SWAGGER from 'src/common/constants/swagger'
-import { GetAdminListDto } from './dto/get-admin-list.dto'
-import { SystemAdminGuard } from 'src/common/guard/system-admin.guard'
-import { AuthGuard } from 'src/common/guard/auth.guard'
-import { GetUserDetailDto } from './dto/get-user-detail.dto'
-import { CreateUserDto } from './dto/create-user.dto'
-import { UpdateUsernameDto } from './dto/update-username.dto'
-import { UpdateUserLevelDto } from './dto/update-user-level.dto'
-import { UpdateUserProfileDto } from './dto/update-user-profile.dto'
-import { GetLoginHistoryDetailDto } from './dto/get-login-history-detail.dto'
-import { GetLoginHistoryListDto } from './dto/get-login-history-list.dto'
-import { ApiFiles } from 'src/common/decorator/api-files.decorator'
-import { FilesInterceptor } from '@nestjs/platform-express'
-import { UpdateUserIntroDto } from './dto/update-user-intro.dto'
-import { DeleteUserDto } from './dto/delete-user.dto'
+
 
 // ANCHOR admin controller
 @ApiTags('admin')
