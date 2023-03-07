@@ -73,4 +73,17 @@ export class GlobalService {
       .where('key = :key', { key: dto.key })
       .execute()
   }
+
+  // ANCHOR get app info
+  async getAppInfo() {
+    const data = await this.datasource.getRepository(Global).find()
+    const appInfo = {}
+    for (let i = 0; i < data.length; i++) {
+      const g = data[i]
+      if (g.key.includes('app')) {
+        appInfo[g.key] = g.value
+      }
+    }
+    return appInfo
+  }
 }

@@ -34,3 +34,11 @@ export const deleteGlobal = (params: object) => {
 
   return response
 }
+
+// ANCHOR get app info
+export const getAppInfo = () => {
+  const url = `${rootUrl}getAppInfo`
+  const response = axios.get<CommonResponse>(url)
+
+  return response
+}
