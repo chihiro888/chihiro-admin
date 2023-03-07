@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: 'chihiro develop kit',
+      name: 'backend',
       script: './dist/main.js',
       env_local: {
         NODE_ENV: 'local'
