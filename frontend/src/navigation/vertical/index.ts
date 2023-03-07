@@ -4,7 +4,7 @@ import { VerticalNavItemsType } from 'src/@core/layouts/types'
 const navigation = (): VerticalNavItemsType => {
   return [
     {
-      sectionTitle: '빌더'
+      sectionTitle: '시스템관리'
     },
     {
       title: '메뉴 빌더',
@@ -17,7 +17,14 @@ const navigation = (): VerticalNavItemsType => {
       path: '/builder/page'
     },
     {
-      sectionTitle: '설정'
+      title: '이미지 등록',
+      icon: 'material-symbols:upload-file-outline',
+      path: '/image/register'
+    },
+    {
+      title: '이미지 관리',
+      icon: 'material-symbols:image-outline',
+      path: '/image/list'
     },
     {
       title: '설정',
@@ -33,10 +40,10 @@ const navigation = (): VerticalNavItemsType => {
       path: '/home'
     },
     {
-      sectionTitle: '관리자'
+      sectionTitle: '사용자'
     },
     {
-      title: '관리자 관리',
+      title: '사용자 관리',
       icon: 'material-symbols:person',
       path: '/admin'
     },
@@ -44,19 +51,6 @@ const navigation = (): VerticalNavItemsType => {
       title: '로그인 이력',
       icon: 'mdi:account-clock',
       path: '/admin/history'
-    },
-    {
-      sectionTitle: '이미지'
-    },
-    {
-      title: '이미지 등록',
-      icon: 'material-symbols:upload-file-outline',
-      path: '/image/register'
-    },
-    {
-      title: '이미지 관리',
-      icon: 'material-symbols:image-outline',
-      path: '/image/list'
     }
   ]
 }
