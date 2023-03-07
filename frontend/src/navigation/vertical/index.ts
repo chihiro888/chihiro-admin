@@ -4,28 +4,17 @@ import { VerticalNavItemsType } from 'src/@core/layouts/types'
 const navigation = (): VerticalNavItemsType => {
   return [
     {
-      sectionTitle: '대시보드'
+      sectionTitle: '시스템관리'
     },
     {
-      title: '대시보드',
-      icon: 'bx:home',
-      path: '/home'
+      title: '메뉴 빌더',
+      icon: 'ri:node-tree',
+      path: '/builder/menu'
     },
     {
-      sectionTitle: '관리자'
-    },
-    {
-      title: '관리자 관리',
-      icon: 'material-symbols:person',
-      path: '/admin'
-    },
-    {
-      title: '로그인 이력',
-      icon: 'mdi:account-clock',
-      path: '/admin/history'
-    },
-    {
-      sectionTitle: '이미지'
+      title: '페이지 빌더',
+      icon: 'material-symbols:insert-page-break-outline',
+      path: '/builder/page'
     },
     {
       title: '이미지 등록',
@@ -38,12 +27,30 @@ const navigation = (): VerticalNavItemsType => {
       path: '/image/list'
     },
     {
-      sectionTitle: '설정'
-    },
-    {
       title: '설정',
       icon: 'mdi:gear',
       path: '/settings'
+    },
+    {
+      sectionTitle: '대시보드'
+    },
+    {
+      title: '대시보드',
+      icon: 'bx:home',
+      path: '/home'
+    },
+    {
+      sectionTitle: '사용자'
+    },
+    {
+      title: '사용자 관리',
+      icon: 'material-symbols:person',
+      path: '/admin'
+    },
+    {
+      title: '로그인 이력',
+      icon: 'mdi:account-clock',
+      path: '/admin/history'
     }
   ]
 }
