@@ -157,8 +157,7 @@ const UserDropdown = (props: Props) => {
                 {auth.user.username}
               </Typography>
               <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                {auth.user.isAdmin && auth.user.isSystemAdmin
-                  ? '시스템관리자'
+                {auth.user.role ===  'SA' ? '시스템관리자'
                   : '관리자'}
               </Typography>
             </Box>

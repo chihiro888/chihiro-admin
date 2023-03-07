@@ -7,7 +7,7 @@ enum Level {
   Admin = 'A'
 }
 
-export class CreateAdminDto {
+export class CreateUserDto {
   @ApiProperty({
     description: 'account',
     example: ''

@@ -1,5 +1,4 @@
 import { UpdateAdminPasswordDto } from './dto/update-admin-password.dto'
-import { DeleteAdminDto } from './dto/delete-admin.dto'
 import { LoginDto } from './dto/login.dto'
 import { CreateSystemAdminDto } from './dto/create-system-admin.dto'
 import { AdminService } from './admin.service'
@@ -31,16 +30,17 @@ import SWAGGER from 'src/common/constants/swagger'
 import { GetAdminListDto } from './dto/get-admin-list.dto'
 import { SystemAdminGuard } from 'src/common/guard/system-admin.guard'
 import { AuthGuard } from 'src/common/guard/auth.guard'
-import { GetAdminDetailDto } from './dto/get-admin-detail.dto'
-import { CreateAdminDto } from './dto/create-admin.dto'
-import { UpdateAdminUsernameDto } from './dto/update-admin-username.dto'
-import { UpdateAdminLevelDto } from './dto/update-admin-level.dto'
-import { UpdateAdminProfileDto } from './dto/update-admin-profile.dto'
+import { GetUserDetailDto } from './dto/get-user-detail.dto'
+import { CreateUserDto } from './dto/create-user.dto'
+import { UpdateUsernameDto } from './dto/update-username.dto'
+import { UpdateUserLevelDto } from './dto/update-user-level.dto'
+import { UpdateUserProfileDto } from './dto/update-user-profile.dto'
 import { GetLoginHistoryDetailDto } from './dto/get-login-history-detail.dto'
 import { GetLoginHistoryListDto } from './dto/get-login-history-list.dto'
 import { ApiFiles } from 'src/common/decorator/api-files.decorator'
 import { FilesInterceptor } from '@nestjs/platform-express'
-import { UpdateAdminIntroDto } from './dto/update-admin-intro.dto'
+import { UpdateUserIntroDto } from './dto/update-user-intro.dto'
+import { DeleteUserDto } from './dto/delete-user.dto'
 
 // ANCHOR admin controller
 @ApiTags('admin')
@@ -163,8 +163,7 @@ export class AdminController {
 
     // login
     session.userId = result.data.id
-    session.isSystemAdmin = result.data.isSystemAdmin
-    session.isAdmin = result.data.isAdmin
+    session.role = result.data.role
 
     // return 200 response
     res.status(HttpStatus.OK).json({
@@ -312,16 +311,16 @@ export class AdminController {
     })
   }
 
-  // ANCHOR get admin detail
+  // ANCHOR get user detail
   @UseGuards(SystemAdminGuard)
-  @Get('getAdminDetail')
+  @Get('getUserDetail')
   @ApiOperation({
     summary: '관리자 상세정보 조회 (시스템 관리자 기능)',
     description: '관리자 상세정보를 조회합니다.'
   })
-  async getAdminDetail(@Res() res: Response, @Query() dto: GetAdminDetailDto) {
+  async getUserDetail(@Res() res: Response, @Query() dto: GetUserDetailDto) {
     // get admin detail
-    const admin = await this.adminService.getAdminDetail(dto)
+    const admin = await this.adminService.getUserDetail(dto)
 
     // return 200 response
     res.status(HttpStatus.OK).json({
@@ -333,14 +332,14 @@ export class AdminController {
 
   // ANCHOR create admin
   @UseGuards(SystemAdminGuard)
-  @Post('createAdmin')
+  @Post('createUser')
   @ApiFiles()
   @ApiOperation({
     summary: '관리자 생성 (시스템 관리자 기능)',
     description: '관리자를 생성합니다'
   })
-  async createAdmin(@Res() res: Response, @Body() dto: CreateAdminDto) {
-    // get admin by account
+  async createUser(@Res() res: Response, @Body() dto: CreateUserDto) {
+    // get user by account
     const admin = await this.adminService.getAdminByAccount(dto.account)
 
     if (admin) {
@@ -352,7 +351,7 @@ export class AdminController {
     }
 
     // create admin
-    await this.adminService.createAdmin(dto)
+    await this.adminService.createUser(dto)
 
     // return 200 response
     res.status(HttpStatus.OK).json({
@@ -364,14 +363,14 @@ export class AdminController {
 
   // ANCHOR delete admin
   @UseGuards(SystemAdminGuard)
-  @Delete('deleteAdmin')
+  @Delete('deleteUser')
   @ApiOperation({
     summary: '관리자 삭제 (시스템 관리자 기능)',
     description: '관리자를 삭제합니다.'
   })
-  async deleteAdmin(@Res() res: Response, @Query() dto: DeleteAdminDto) {
+  async deleteUser(@Res() res: Response, @Query() dto: DeleteUserDto) {
     // delete admin
-    await this.adminService.deleteAdmin(dto)
+    await this.adminService.deleteUser(dto)
 
     // return 200 response
     res.status(HttpStatus.OK).json({
@@ -383,17 +382,17 @@ export class AdminController {
 
   // ANCHOR update admin password
   @UseGuards(SystemAdminGuard)
-  @Put('updateAdminPassword')
+  @Put('updateUserPassword')
   @ApiOperation({
     summary: '관리자 비밀번호 변경 (시스템 관리자 기능)',
     description: '관리자를 비밀번호를 변경합니다.'
   })
-  async updateAdminPassword(
+  async updateUserPassword(
     @Res() res: Response,
     @Body() dto: UpdateAdminPasswordDto
   ) {
     // update admin password
-    await this.adminService.updateAdminPassword(dto)
+    await this.adminService.updateUserPassword(dto)
 
     // return 200 response
     res.status(HttpStatus.OK).json({
@@ -405,17 +404,17 @@ export class AdminController {
 
   // ANCHOR update admin username
   @UseGuards(SystemAdminGuard)
-  @Put('updateAdminUsername')
+  @Put('updateUsername')
   @ApiOperation({
     summary: '관리자 사용자명 변경 (시스템 관리자 기능)',
     description: '관리자를 사용자명을 변경합니다.'
   })
-  async updateAdminUsername(
+  async updateUsername(
     @Res() res: Response,
-    @Body() dto: UpdateAdminUsernameDto
+    @Body() dto: UpdateUsernameDto
   ) {
     // update admin username
-    await this.adminService.updateAdminUsername(dto)
+    await this.adminService.updateUsername(dto)
 
     // return 200 response
     res.status(HttpStatus.OK).json({
@@ -427,17 +426,17 @@ export class AdminController {
 
   // ANCHOR update admin level
   @UseGuards(SystemAdminGuard)
-  @Put('updateAdminLevel')
+  @Put('updateUserLevel')
   @ApiOperation({
     summary: '관리자 권한 변경 (시스템 관리자 기능)',
     description: '관리자 권한을 변경합니다.'
   })
-  async updateAdminLevel(
+  async updateUserLevel(
     @Res() res: Response,
-    @Body() dto: UpdateAdminLevelDto
+    @Body() dto: UpdateUserLevelDto
   ) {
     // update admin level
-    await this.adminService.updateAdminLevel(dto)
+    await this.adminService.updateUserLevel(dto)
 
     // return 200 response
     res.status(HttpStatus.OK).json({
@@ -456,10 +455,10 @@ export class AdminController {
   })
   async updateAdminProfile(
     @Res() res: Response,
-    @Body() dto: UpdateAdminProfileDto
+    @Body() dto: UpdateUserProfileDto
   ) {
     // update admin profile
-    await this.adminService.updateAdminProfile(dto.id, dto.profile)
+    await this.adminService.updateUserProfile(dto.id, dto.profile)
 
     // return 200 response
     res.status(HttpStatus.OK).json({
@@ -471,17 +470,17 @@ export class AdminController {
 
   // ANCHOR update admin intro
   @UseGuards(SystemAdminGuard)
-  @Put('updateAdminIntro')
+  @Put('updateUserIntro')
   @ApiOperation({
     summary: '관리자 소개 변경 (시스템 관리자 기능)',
     description: '관리자의 자기소개를 변경합니다.'
   })
-  async updateAdminIntro(
+  async updateUserIntro(
     @Res() res: Response,
-    @Body() dto: UpdateAdminIntroDto
+    @Body() dto: UpdateUserIntroDto
   ) {
     // update admin level
-    await this.adminService.updateAdminIntro(dto)
+    await this.adminService.updateUserIntro(dto)
 
     // return 200 response
     res.status(HttpStatus.OK).json({

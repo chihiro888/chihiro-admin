@@ -78,7 +78,7 @@ const LoginV1 = () => {
       if (res.statusCode === 200) {
         const { data: res } = await getAdmin()
         if (res.statusCode === 200) {
-          setUser({ role: 'admin', ...res.data })
+          setUser({ ...res.data })
           const returnUrl = router.query.returnUrl
           const redirectURL = returnUrl && returnUrl !== '/' ? returnUrl : '/'
           router.replace(redirectURL as string)

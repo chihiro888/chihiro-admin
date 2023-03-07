@@ -24,7 +24,7 @@ const AuthGuard = (props: AuthGuardProps) => {
     try {
       const { data: res } = await getAdmin()
       if (res.statusCode === 200) {
-        setUser({ role: 'admin', ...res.data })
+        setUser({ ...res.data })
       }
     } catch (err) {
       // 세션 기반으로 로그인 정보가 없을 경우 로그인 페이지 전환
@@ -46,6 +46,7 @@ const AuthGuard = (props: AuthGuardProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [router.route]
   )
+
 
   if (auth.loading || auth.user === null) {
     return fallback

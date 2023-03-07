@@ -6,7 +6,7 @@ enum Level {
   Admin = 'A'
 }
 
-export class UpdateAdminLevelDto {
+export class UpdateUserLevelDto {
   @ApiProperty({
     description: 'user id',
     example: 1

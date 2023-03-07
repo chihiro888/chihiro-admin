@@ -164,7 +164,8 @@ export const appCrudSlice = createSlice({
               action.payload.isSystemAdmin === 0
             )
               item.value = 'A'
-          } else item.value = action.payload[item.key]
+          } else 
+          item.value = action.payload[item.key]
         })
       })
       state.actionForm = nextState

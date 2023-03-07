@@ -1,5 +1,4 @@
 import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common'
-import { Admin } from 'src/entities/admin.entity'
 import { DataSource } from 'typeorm'
 
 @Injectable()
