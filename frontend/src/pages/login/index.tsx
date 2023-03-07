@@ -26,6 +26,7 @@ import Icon from 'src/@core/components/icon'
 
 // ** Layout Import
 import BlankLayout from 'src/@core/layouts/BlankLayout'
+import MovieLayout from 'src/@core/layouts/MovieLayout'
 
 // ** Demo Imports
 import AuthIllustrationWrapper from 'src/views/pages/auth/AuthIllustrationWrapper'
@@ -35,6 +36,10 @@ import { useTranslation } from 'react-i18next'
 import { useAuth } from 'src/hooks/useAuth'
 import { checkSystemAdmin, getAdmin, login } from 'src/apis/admin'
 import FormHeader from 'src/components/form-header'
+import { getAppInfo } from 'src/apis/global'
+import { AppDispatch } from 'src/store'
+import { useDispatch } from 'react-redux'
+import { setAppInfo } from 'src/store/apps/app'
 
 interface State {
   email: string
@@ -55,6 +60,7 @@ const LoginV1 = () => {
   const theme = useTheme()
   const router = useRouter()
   const { t } = useTranslation()
+  const dispatch = useDispatch<AppDispatch>()
 
   const handleChange =
     (prop: keyof State) => (event: ChangeEvent<HTMLInputElement>) => {
@@ -95,6 +101,15 @@ const LoginV1 = () => {
       if (res.data) {
         router.push('/login/init')
       }
+    }
+
+    try {
+      const { data: res } = await getAppInfo()
+      if (res.statusCode === 200) {
+        dispatch(setAppInfo(res.data))
+      }
+    } catch (err) {
+      //
     }
   }
 
@@ -164,7 +179,7 @@ const LoginV1 = () => {
   )
 }
 
-LoginV1.getLayout = (page: ReactNode) => <BlankLayout>{page}</BlankLayout>
+LoginV1.getLayout = (page: ReactNode) => <MovieLayout>{page}</MovieLayout>
 
 LoginV1.guestGuard = true
 

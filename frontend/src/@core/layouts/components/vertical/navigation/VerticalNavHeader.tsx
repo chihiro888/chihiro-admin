@@ -16,6 +16,8 @@ import Icon from 'src/@core/components/icon'
 // ** Configs
 import themeConfig from 'src/configs/themeConfig'
 import Logo from 'src/components/logo'
+import { RootState } from 'src/store'
+import { useSelector } from 'react-redux'
 
 interface Props {
   navHover: boolean
@@ -66,6 +68,7 @@ const VerticalNavHeader = (props: Props) => {
   // ** Hooks & Vars
   const theme = useTheme()
   const { mode, skin, direction, navCollapsed } = settings
+  const app = useSelector((state: RootState) => state.app)
 
   const menuCollapsedStyles =
     navCollapsed && !navHover ? { opacity: 0 } : { opacity: 1 }
@@ -124,7 +127,7 @@ const VerticalNavHeader = (props: Props) => {
       ) : (
         <Link href="/" passHref>
           <StyledLink>
-            <Logo width={30} height={30} />
+            <Logo width={30} height={30} path={app.appLogo} />
             <Typography
               variant="body1"
               sx={{

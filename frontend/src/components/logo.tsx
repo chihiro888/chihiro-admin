@@ -1,15 +1,14 @@
 interface LogoProps {
   width: number
   height: number
+  path: string
 }
 
 const Logo = (props: LogoProps) => {
-  const logoPath = '/images/logos/logo.png'
-
   return (
     <>
       <img
-        src={logoPath}
+        src={props.path}
         alt="logo"
         style={{ width: `${props.width}px`, height: `${props.height}px` }}
       />

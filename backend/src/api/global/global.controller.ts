@@ -179,4 +179,22 @@ export class GlobalController {
       data: null
     })
   }
+
+  // ANCHOR get app info
+  @Get('getAppInfo')
+  @ApiOperation({
+    summary: '앱 정보 조회',
+    description: '전역데이터로부터 앱 정보를 조회합니다.'
+  })
+  async getAppInfo(@Res() res: Response) {
+    // get app info
+    const data = await this.globalService.getAppInfo()
+
+    // return 200 response
+    res.status(HttpStatus.OK).json({
+      statusCode: HttpStatus.OK,
+      message: '',
+      data
+    })
+  }
 }

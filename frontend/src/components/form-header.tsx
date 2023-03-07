@@ -1,25 +1,47 @@
 // ** MUI Components
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
+import { useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
+import { getAppInfo } from 'src/apis/global'
 
 // ** Configs
 import themeConfig from 'src/configs/themeConfig'
+import { AppDispatch, RootState } from 'src/store'
+import { setAppInfo } from 'src/store/apps/app'
 
 // ** Custom
 import Logo from './logo'
 
 const FormHeader = () => {
+  // ** Hooks
+  const dispatch = useDispatch<AppDispatch>()
+  const app = useSelector((state: RootState) => state.app)
+
+  const initData = async () => {
+    try {
+      const { data: res } = await getAppInfo()
+      if (res.statusCode === 200) {
+        dispatch(setAppInfo(res.data))
+      }
+    } catch (err) {
+      //
+    }
+  }
+
   return (
     <>
+      <Box display="flex" justifyContent={'center'} sx={{ mb: 5 }}>
+        <Logo width={50} height={50} path={app.appLogo} />
+      </Box>
       <Box
         sx={{
-          mb: 8,
+          mb: 2,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center'
         }}
       >
-        <Logo width={40} height={40} />
         <Typography
           variant="h5"
           sx={{
@@ -31,14 +53,11 @@ const FormHeader = () => {
             fontSize: '1.75rem !important'
           }}
         >
-          {themeConfig.templateName}
+          {app.appName}
         </Typography>
       </Box>
-      <Typography variant="h6" sx={{ mb: 1.5 }}>
-        관리자 솔루션
-      </Typography>
-      <Typography sx={{ mb: 6, color: 'text.secondary' }}>
-        전체적인 시스템을 관리하는 서비스
+      <Typography sx={{ mb: 6, color: 'text.secondary' }} textAlign="center">
+        {app.appDesc}
       </Typography>
     </>
   )
