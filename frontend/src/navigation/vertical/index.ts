@@ -4,6 +4,27 @@ import { VerticalNavItemsType } from 'src/@core/layouts/types'
 const navigation = (): VerticalNavItemsType => {
   return [
     {
+      sectionTitle: '빌더'
+    },
+    {
+      title: '메뉴 빌더',
+      icon: 'ri:node-tree',
+      path: '/builder/menu'
+    },
+    {
+      title: '페이지 빌더',
+      icon: 'material-symbols:insert-page-break-outline',
+      path: '/builder/page'
+    },
+    {
+      sectionTitle: '설정'
+    },
+    {
+      title: '설정',
+      icon: 'mdi:gear',
+      path: '/settings'
+    },
+    {
       sectionTitle: '대시보드'
     },
     {
@@ -36,14 +57,6 @@ const navigation = (): VerticalNavItemsType => {
       title: '이미지 관리',
       icon: 'material-symbols:image-outline',
       path: '/image/list'
-    },
-    {
-      sectionTitle: '설정'
-    },
-    {
-      title: '설정',
-      icon: 'mdi:gear',
-      path: '/settings'
     }
   ]
 }
