@@ -12,6 +12,9 @@
       "osx": {
         "args": ["start:dev"]
       },
+      "linux": {
+        "args": ["start:dev"]
+      },
       "windows": {
         "args": ["start:dev_win"]
       },
