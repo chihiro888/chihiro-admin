@@ -2,44 +2,44 @@ import { Column, Entity } from 'typeorm'
 
 @Entity('_global', { schema: 'titan' })
 export class Global {
-  @Column('varchar', {
+  @Column("varchar", {
     primary: true,
-    name: 'key',
-    comment: 'key',
-    length: 255
+    name: "key",
+    comment: "key",
+    length: 255,
   })
-  key: string
+  key: string;
 
-  @Column('varchar', { name: 'value', comment: 'value', length: 255 })
-  value: string
+  @Column("varchar", { name: "value", comment: "value", length: 255 })
+  value: string;
 
-  @Column('varchar', {
-    name: 'memo',
+  @Column("varchar", {
+    name: "memo",
     nullable: true,
-    comment: 'memo',
-    length: 255
+    comment: "memo",
+    length: 255,
   })
-  memo: string | null
+  memo: string | null;
 
-  @Column('datetime', {
-    name: 'created_at',
+  @Column("datetime", {
+    name: "created_at",
     nullable: true,
-    comment: 'create time',
-    default: () => 'CURRENT_TIMESTAMP'
+    comment: "create time",
+    default: () => "CURRENT_TIMESTAMP",
   })
-  createdAt: String | Date | null
+  createdAt: string | Date | null;
 
-  @Column('datetime', {
-    name: 'updated_at',
+  @Column("datetime", {
+    name: "updated_at",
     nullable: true,
-    comment: 'update time'
+    comment: "update time",
   })
-  updatedAt: String | Date | null
+  updatedAt: string | Date | null;
 
-  @Column('datetime', {
-    name: 'deleted_at',
+  @Column("datetime", {
+    name: "deleted_at",
     nullable: true,
-    comment: 'delete time'
+    comment: "delete time",
   })
-  deletedAt: String | Date | null
+  deletedAt: string | Date | null;
 }
