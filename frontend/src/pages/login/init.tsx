@@ -24,7 +24,7 @@ import InputAdornment from '@mui/material/InputAdornment'
 // ** Icon Imports
 import Icon from 'src/@core/components/icon'
 
-// ** Layout Import             
+// ** Layout Import
 import BlankLayout from 'src/@core/layouts/BlankLayout'
 
 // ** Demo Imports
@@ -36,6 +36,10 @@ import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
 import { checkSystemAdmin, createSystemAdmin } from 'src/apis/admin'
 import FormHeader from 'src/components/form-header'
+import { getAppInfo } from 'src/apis/global'
+import { setAppInfo } from 'src/store/apps/app'
+import { useDispatch } from 'react-redux'
+import { AppDispatch } from 'src/store'
 
 interface State {
   email: string
@@ -61,6 +65,7 @@ const LoginV1 = () => {
   const theme = useTheme()
   const router = useRouter()
   const { t } = useTranslation()
+  const dispatch = useDispatch<AppDispatch>()
 
   const handleChange =
     (prop: keyof State) => (event: ChangeEvent<HTMLInputElement>) => {
@@ -98,6 +103,15 @@ const LoginV1 = () => {
       if (!res.data) {
         router.push('/login')
       }
+    }
+
+    try {
+      const { data: res } = await getAppInfo()
+      if (res.statusCode === 200) {
+        dispatch(setAppInfo(res.data))
+      }
+    } catch (err) {
+      //
     }
   }
 
