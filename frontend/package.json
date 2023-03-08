@@ -73,6 +73,7 @@
     "react-perfect-scrollbar": "1.5.8",
     "react-popper": "2.2.5",
     "react-redux": "8.0.1",
+    "react-syntax-highlighter": "^15.5.0",
     "recharts": "2.1.15",
     "stylis": "4.1.2",
     "stylis-plugin-rtl": "2.1.1",
@@ -105,7 +106,7 @@
     "eslint-import-resolver-typescript": "3.5.1",
     "eslint-plugin-import": "2.25.4",
     "next-transpile-modules": "9.0.0",
-    "prettier": "2.6.2",
+    "prettier": "^2.8.4",
     "typescript": "4.8.3"
   },
   "resolutions": {

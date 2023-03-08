@@ -9,7 +9,8 @@ const withTM = require('next-transpile-modules')([
   '@fullcalendar/react',
   '@fullcalendar/daygrid',
   '@fullcalendar/list',
-  '@fullcalendar/timegrid'
+  '@fullcalendar/timegrid',
+  'react-syntax-highlighter'
 ])
 
 module.exports = withTM({

@@ -14,6 +14,9 @@ import { RootState } from 'src/store'
 import { useSelector } from 'react-redux'
 import ModalEditorViewerContainer from 'src/components/core/modal-editor-viewer-container'
 import { Chip } from '@mui/material'
+import ModalCodeViewerContainer from 'src/components/core/modal-code-viewer-container'
+import prettier from 'prettier/standalone'
+import parserBabel from 'prettier/parser-babel'
 
 const Content = () => {
   // ** Hooks
@@ -63,11 +66,39 @@ const Content = () => {
               )}
             </TableCell>
             <TableCell>{row.deleteApi}</TableCell>
-            <TableCell>{row.tableHeader}</TableCell>
-            <TableCell>{row.addForm}</TableCell>
-            <TableCell>{row.detailForm}</TableCell>
-            <TableCell>{row.searchForm}</TableCell>
-            <TableCell>{row.actionList}</TableCell>
+            <TableCell>
+              <ModalCodeViewerContainer
+                title="코드"
+                content={row.tableHeader}
+              />
+            </TableCell>
+            <TableCell>
+              <ModalCodeViewerContainer
+                title="코드"
+                content={prettier.format(row.addForm, {
+                  parser: 'babel',
+                  plugins: [parserBabel]
+                })}
+              />
+            </TableCell>
+            <TableCell>
+              {/* <ModalCodeViewerContainer
+                title="코드"
+                content={prettier.format(row.detailForm)}
+              /> */}
+            </TableCell>
+            <TableCell>
+              {/* <ModalCodeViewerContainer
+                title="코드"
+                content={prettier.format(row.searchForm)}
+              /> */}
+            </TableCell>
+            <TableCell>
+              {/* <ModalCodeViewerContainer
+                title="코드"
+                content={prettier.format(row.actionList)}
+              /> */}
+            </TableCell>
             <TableCell>
               {row?.createdAt
                 ? moment(row?.createdAt).format(DATE.DATETIME)
