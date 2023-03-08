@@ -59,8 +59,8 @@ const Admin = () => {
     // NOTE 페이지 헤더 정의
     dispatch(
       setPageHeader({
-        title: '관리자 관리',
-        subTitle: '관리자를 관리할 수 있습니다.'
+        title: '사용자 관리',
+        subTitle: '사용자를 관리할 수 있습니다.'
       })
     )
 
