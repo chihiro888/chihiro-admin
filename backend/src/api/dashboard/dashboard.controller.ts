@@ -12,7 +12,7 @@ import {
 } from '@nestjs/common'
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 import { Response } from 'express'
-import { AuthGuard } from 'src/common/guard/auth.guard'
+import { SystemAdminGuard } from 'src/common/guard/system-admin.guard'
 import { DashboardService } from './dashboard.service'
 
 // ANCHOR dashboard controller
@@ -22,10 +22,10 @@ export class DashboardController {
   constructor(private dashboardService: DashboardService) {}
 
   // ANCHOR get admin count
-  @UseGuards(AuthGuard)
+  @UseGuards(SystemAdminGuard)
   @Get('getAdminCount')
   @ApiOperation({
-    summary: '관리자 카운트',
+    summary: '관리자 카운트 (시스템 관리자 기능)',
     description: '관리자 카운트를 반환합니다.'
   })
   @ApiResponse({
@@ -44,10 +44,10 @@ export class DashboardController {
   }
 
   // ANCHOR get login history count
-  @UseGuards(AuthGuard)
+  @UseGuards(SystemAdminGuard)
   @Get('getLoginHistoryCount')
   @ApiOperation({
-    summary: '로그인 이력 카운트',
+    summary: '로그인 이력 카운트 (시스템 관리자 기능)',
     description: '로그인 이력 카운트를 반환합니다.'
   })
   @ApiResponse({
@@ -66,10 +66,10 @@ export class DashboardController {
   }
 
   // ANCHOR get image count
-  @UseGuards(AuthGuard)
+  @UseGuards(SystemAdminGuard)
   @Get('getImageCount')
   @ApiOperation({
-    summary: '이미지 카운트',
+    summary: '이미지 카운트 (시스템 관리자 기능)',
     description: '이미지 카운트를 반환합니다.'
   })
   @ApiResponse({
@@ -88,10 +88,10 @@ export class DashboardController {
   }
 
   // ANCHOR get setting count
-  @UseGuards(AuthGuard)
+  @UseGuards(SystemAdminGuard)
   @Get('getSettingCount')
   @ApiOperation({
-    summary: '설정 카운트',
+    summary: '설정 카운트 (시스템 관리자 기능)',
     description: '설정 카운트를 반환합니다.'
   })
   @ApiResponse({
@@ -110,10 +110,10 @@ export class DashboardController {
   }
 
   // ANCHOR get admin line chart
-  @UseGuards(AuthGuard)
+  @UseGuards(SystemAdminGuard)
   @Get('getAdminLineChart')
   @ApiOperation({
-    summary: '관리자 라인 차트',
+    summary: '관리자 라인 차트 (시스템 관리자 기능)',
     description: '관리자 라인 차트를 반환합니다.'
   })
   @ApiResponse({
@@ -132,10 +132,10 @@ export class DashboardController {
   }
 
   // ANCHOR get login history line chart
-  @UseGuards(AuthGuard)
+  @UseGuards(SystemAdminGuard)
   @Get('getLoginHistoryLineChart')
   @ApiOperation({
-    summary: '로그인 이력 라인 차트',
+    summary: '로그인 이력 라인 차트 (시스템 관리자 기능)',
     description: '로그인 이력 라인 차트를 반환합니다.'
   })
   @ApiResponse({
@@ -154,10 +154,10 @@ export class DashboardController {
   }
 
   // ANCHOR get image line chart
-  @UseGuards(AuthGuard)
+  @UseGuards(SystemAdminGuard)
   @Get('getImageLineChart')
   @ApiOperation({
-    summary: '이미지 라인 차트',
+    summary: '이미지 라인 차트 (시스템 관리자 기능)',
     description: '이미지 라인 차트를 반환합니다.'
   })
   @ApiResponse({
@@ -176,10 +176,10 @@ export class DashboardController {
   }
 
   // ANCHOR get setting line chart
-  @UseGuards(AuthGuard)
+  @UseGuards(SystemAdminGuard)
   @Get('getSettingLineChart')
   @ApiOperation({
-    summary: '설정 라인 차트',
+    summary: '설정 라인 차트 (시스템 관리자 기능)',
     description: '설정 라인 차트를 반환합니다.'
   })
   @ApiResponse({

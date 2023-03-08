@@ -28,7 +28,6 @@ import { Response } from 'express'
 import { UpdatePasswordDto } from './dto/update-password.dto'
 import SWAGGER from 'src/common/constants/swagger'
 import { SystemAdminGuard } from 'src/common/guard/system-admin.guard'
-import { AuthGuard } from 'src/common/guard/auth.guard'
 import { GetUserDetailDto } from './dto/get-user-detail.dto'
 import { CreateUserDto } from './dto/create-user.dto'
 import { UpdateUsernameDto } from './dto/update-username.dto'
@@ -47,58 +46,6 @@ import { GetUserListDto } from './dto/get-user-list.dto'
 @Controller('api/user')
 export class UserController {
   constructor(private userService: UserService) {}
-
-
-
-
-  // ANCHOR update password
-  @UseGuards(AuthGuard)
-  @Put('updatePassword')
-  @ApiOperation({
-    summary: '비밀번호 변경 (본인)',
-    description: '파라미터를 입력받아 비밀번호를 변경합니다.'
-  })
-  @ApiResponse({
-    status: HttpStatus.OK,
-    description: '비밀번호 변경이 성공적인 경우 반환'
-  })
-  @ApiResponse({
-    status: HttpStatus.BAD_REQUEST,
-    description: SWAGGER.BAD_REQUEST
-  })
-  @ApiResponse({
-    status: HttpStatus.INTERNAL_SERVER_ERROR,
-    description: '비밀번호 변경중 오류가 발생한 경우 반환'
-  })
-  async updatePassword(
-    @Res() res: Response,
-    @Body() dto: UpdatePasswordDto,
-    @Session() session: any
-  ) {
-    // get user id from session
-    const userId = session.userId
-
-    // inject user id
-    dto.userId = userId
-
-    // update password
-    try {
-      await this.userService.updatePassword(dto)
-    } catch (err) {
-      // return 500 response
-      throw new HttpException(
-        'An error occurred while changing the password.',
-        HttpStatus.INTERNAL_SERVER_ERROR
-      )
-    }
-
-    // return 200 response
-    res.status(HttpStatus.OK).json({
-      statusCode: HttpStatus.OK,
-      message: 'Password change is complete.',
-      data: null
-    })
-  }
 
   // ANCHOR get admin list
   @UseGuards(SystemAdminGuard)
@@ -164,10 +111,7 @@ export class UserController {
 
     if (user) {
       // return 400 response
-      throw new HttpException(
-        'user already exists.',
-        HttpStatus.BAD_REQUEST
-      )
+      throw new HttpException('user already exists.', HttpStatus.BAD_REQUEST)
     }
 
     // create user
@@ -229,10 +173,7 @@ export class UserController {
     summary: '관리자 사용자명 변경 (시스템 관리자 기능)',
     description: '관리자를 사용자명을 변경합니다.'
   })
-  async updateUsername(
-    @Res() res: Response,
-    @Body() dto: UpdateUsernameDto
-  ) {
+  async updateUsername(@Res() res: Response, @Body() dto: UpdateUsernameDto) {
     // update user username
     await this.userService.updateUsername(dto)
 
@@ -251,10 +192,7 @@ export class UserController {
     summary: '유저 권한 변경 (시스템 관리자 기능)',
     description: '유저 권한을 변경합니다.'
   })
-  async updateUserLevel(
-    @Res() res: Response,
-    @Body() dto: UpdateUserLevelDto
-  ) {
+  async updateUserLevel(@Res() res: Response, @Body() dto: UpdateUserLevelDto) {
     // update user level
     await this.userService.updateUserLevel(dto)
 
@@ -295,10 +233,7 @@ export class UserController {
     summary: '유저 소개 변경 (시스템 관리자 기능)',
     description: '유저의 자기소개를 변경합니다.'
   })
-  async updateUserIntro(
-    @Res() res: Response,
-    @Body() dto: UpdateUserIntroDto
-  ) {
+  async updateUserIntro(@Res() res: Response, @Body() dto: UpdateUserIntroDto) {
     // update user intro
     await this.userService.updateUserIntro(dto)
 

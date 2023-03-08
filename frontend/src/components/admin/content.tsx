@@ -12,7 +12,8 @@ import { useSelector } from 'react-redux'
 import { RootState } from 'src/store'
 
 import CustomAvatar from 'src/@core/components/mui/avatar'
-import ModalEditorViewerContainer from '../core/modal-editor-viewer-container'
+// import ModalEditorViewerContainer from '../core/modal-editor-viewer-container'
+import ModalEditorViewerContainer from 'src/components/core/modal-editor-viewer-container'
 
 const Content = () => {
   // ** Hooks

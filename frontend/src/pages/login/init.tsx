@@ -26,6 +26,7 @@ import Icon from 'src/@core/components/icon'
 
 // ** Layout Import
 import BlankLayout from 'src/@core/layouts/BlankLayout'
+import MovieLayout from 'src/@core/layouts/MovieLayout'
 
 // ** Demo Imports
 import AuthIllustrationWrapper from 'src/views/pages/auth/AuthIllustrationWrapper'
@@ -218,7 +219,7 @@ const LoginV1 = () => {
   )
 }
 
-LoginV1.getLayout = (page: ReactNode) => <BlankLayout>{page}</BlankLayout>
+LoginV1.getLayout = (page: ReactNode) => <MovieLayout>{page}</MovieLayout>
 
 LoginV1.guestGuard = true
 

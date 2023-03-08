@@ -15,11 +15,11 @@ import {
 } from '@nestjs/common'
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 import { Response } from 'express'
-import { AuthGuard } from 'src/common/guard/auth.guard'
 import { CreateGlobalDto } from './dto/create-global.dto'
 import { GlobalService } from './global.service'
 import { SaveGlobalDto } from './dto/save-global.dto'
 import SWAGGER from 'src/common/constants/swagger'
+import { SystemAdminGuard } from 'src/common/guard/system-admin.guard'
 
 // ANCHOR global controller
 @ApiTags('global')
@@ -28,10 +28,10 @@ export class GlobalController {
   constructor(private globalService: GlobalService) {}
 
   // ANCHOR get global list
-  @UseGuards(AuthGuard)
+  @UseGuards(SystemAdminGuard)
   @Get('getGlobalList')
   @ApiOperation({
-    summary: '전역 데이터 리스트 조회',
+    summary: '전역 데이터 리스트 조회 (시스템 관리자 기능)',
     description:
       '전역 데이터 리스트를 반환합니다. (데이터가 없을 경우 빈 리스트 반환)'
   })
@@ -52,10 +52,10 @@ export class GlobalController {
   }
 
   // ANCHOR create global
-  @UseGuards(AuthGuard)
+  @UseGuards(SystemAdminGuard)
   @Post('createGlobal')
   @ApiOperation({
-    summary: '전역 데이터 생성',
+    summary: '전역 데이터 생성 (시스템 관리자 기능)',
     description: '파라미터를 입력받아 전역 데이터를 생성합니다.'
   })
   @ApiResponse({
@@ -95,10 +95,10 @@ export class GlobalController {
   }
 
   // ANCHOR save global
-  @UseGuards(AuthGuard)
+  @UseGuards(SystemAdminGuard)
   @Put('saveGlobal')
   @ApiOperation({
-    summary: '전역 데이터 저장',
+    summary: '전역 데이터 저장 (시스템 관리자 기능)',
     description: '파라미터를 입력받아 전역 데이터를 저장합니다.'
   })
   @ApiResponse({
@@ -138,10 +138,10 @@ export class GlobalController {
   }
 
   // ANCHOR delete global
-  @UseGuards(AuthGuard)
+  @UseGuards(SystemAdminGuard)
   @Delete('deleteGlobal')
   @ApiOperation({
-    summary: '전역 데이터 삭제',
+    summary: '전역 데이터 삭제 (시스템 관리자 기능)',
     description: '파라미터를 입력받아 전역 데이터를 삭제합니다.'
   })
   @ApiResponse({

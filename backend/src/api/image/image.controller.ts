@@ -22,10 +22,11 @@ import {
 import { Response } from 'express'
 import SWAGGER from 'src/common/constants/swagger'
 import { ApiFiles } from 'src/common/decorator/api-files.decorator'
-import { AuthGuard } from 'src/common/guard/auth.guard'
 import { AnyFilesInterceptor, FilesInterceptor } from '@nestjs/platform-express'
 import { GetListDto } from './dto/get-list.dto'
 import { UploadDto } from './dto/upload.dto'
+import { AdminGuard } from 'src/common/guard/admin.guard'
+import { SystemAdminGuard } from 'src/common/guard/system-admin.guard'
 
 // ANCHOR image controller
 @ApiTags('image')
@@ -34,11 +35,11 @@ export class ImageController {
   constructor(private imageService: ImageService) {}
 
   // ANCHOR image upload
-  @UseGuards(AuthGuard)
+  @UseGuards(AdminGuard)
   @Post('upload')
   @ApiFiles()
   @ApiOperation({
-    summary: '이미지 업로드',
+    summary: '이미지 업로드 (관리자 기능)',
     description: '이미지를 업로드하여 데이터베이스 및 디렉토리에 저장합니다.'
   })
   @ApiResponse({
@@ -82,10 +83,11 @@ export class ImageController {
   }
 
   // ANCHOR get list
+  @UseGuards(SystemAdminGuard)
   @Get('getList')
   @ApiTags('image')
   @ApiOperation({
-    summary: '이미지 리스트 조회',
+    summary: '이미지 리스트 조회 (시스템 관리자 기능)',
     description: '이미지 리스트를 반환합니다.'
   })
   @ApiResponse({

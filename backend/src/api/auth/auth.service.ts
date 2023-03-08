@@ -1,13 +1,15 @@
+import { createPassword } from './../../common/util/auth'
+import { UpdatePasswordDto } from './../admin/dto/update-password.dto'
 import { Inject, Injectable } from '@nestjs/common'
 import { isMatch } from 'src/common/util/auth'
 import { DataSource, IsNull } from 'typeorm'
 import { LoginDto } from './dto/login.dto'
-
 import { LoginHistory } from 'src/entities/login-history.entity'
-
 import { File } from 'src/entities/file.entity'
 import { GlobalService } from '../global/global.service'
 import { User } from 'src/entities/user.entity'
+import moment from 'moment'
+import DATE from 'src/common/constants/date'
 
 @Injectable()
 export class AuthService {
@@ -76,5 +78,19 @@ export class AuthService {
     user['profile'] = profile[0]
 
     return user
+  }
+
+  // ANCHOR update password
+  async updatePassword(dto: UpdatePasswordDto) {
+    const user = await this.datasource.getRepository(User).findOne({
+      where: {
+        id: dto.userId,
+        deletedAt: IsNull()
+      }
+    })
+
+    user.password = await createPassword(dto.newPassword)
+    user.updatedAt = moment().format(DATE.DATETIME)
+    await this.datasource.getRepository(User).save(user)
   }
 }

@@ -1,6 +1,5 @@
-import { UpdateAdminPasswordDto } from './dto/update-admin-password.dto'
+import { UpdatePasswordDto } from './../admin/dto/update-password.dto'
 import { LoginDto } from './dto/login.dto'
-import { CreateSystemAdminDto } from './dto/create-system-admin.dto'
 import { AuthService } from './auth.service'
 import {
   Body,
@@ -26,7 +25,7 @@ import {
 } from '@nestjs/swagger'
 import { Response } from 'express'
 import SWAGGER from 'src/common/constants/swagger'
-import { AuthGuard } from 'src/common/guard/auth.guard'
+import { AdminGuard } from 'src/common/guard/admin.guard'
 
 // ANCHOR admin controller
 @ApiTags('auth')
@@ -109,7 +108,7 @@ export class AuthController {
   }
 
   // ANCHOR get admin
-  @UseGuards(AuthGuard)
+  @UseGuards(AdminGuard)
   @Get('getAdmin')
   @ApiOperation({
     summary: '관리자 정보 조회 (본인)',
@@ -138,5 +137,52 @@ export class AuthController {
     })
   }
 
- 
+  // ANCHOR update password
+  @UseGuards(AdminGuard)
+  @Put('updatePassword')
+  @ApiOperation({
+    summary: '비밀번호 변경 (본인)',
+    description: '파라미터를 입력받아 비밀번호를 변경합니다.'
+  })
+  @ApiResponse({
+    status: HttpStatus.OK,
+    description: '비밀번호 변경이 성공적인 경우 반환'
+  })
+  @ApiResponse({
+    status: HttpStatus.BAD_REQUEST,
+    description: SWAGGER.BAD_REQUEST
+  })
+  @ApiResponse({
+    status: HttpStatus.INTERNAL_SERVER_ERROR,
+    description: '비밀번호 변경중 오류가 발생한 경우 반환'
+  })
+  async updatePassword(
+    @Res() res: Response,
+    @Body() dto: UpdatePasswordDto,
+    @Session() session: any
+  ) {
+    // get user id from session
+    const userId = session.userId
+
+    // inject user id
+    dto.userId = userId
+
+    // update password
+    try {
+      await this.authService.updatePassword(dto)
+    } catch (err) {
+      // return 500 response
+      throw new HttpException(
+        'An error occurred while changing the password.',
+        HttpStatus.INTERNAL_SERVER_ERROR
+      )
+    }
+
+    // return 200 response
+    res.status(HttpStatus.OK).json({
+      statusCode: HttpStatus.OK,
+      message: 'Password change is complete.',
+      data: null
+    })
+  }
 }

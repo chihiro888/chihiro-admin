@@ -4,7 +4,6 @@ import { createPassword, isMatch } from 'src/common/util/auth'
 import { DataSource, IsNull } from 'typeorm'
 import { CreateSystemAdminDto } from './dto/create-system-admin.dto'
 import { LoginDto } from './dto/login.dto'
-import { UpdatePasswordDto } from './dto/update-password.dto'
 import moment from 'moment'
 import { LoginHistory } from 'src/entities/login-history.entity'
 import { UpdateAdminPasswordDto } from './dto/update-admin-password.dto'
@@ -53,7 +52,6 @@ export class UserService {
     await this.datasource.getRepository(User).save(user)
   }
 
-
   // ANCHOR get user by account
   async getUserByAccount(account: string) {
     const user = await this.datasource.getRepository(User).findOne({
@@ -64,20 +62,6 @@ export class UserService {
     })
 
     return user
-  }
-
-  // ANCHOR update password
-  async updatePassword(dto: UpdatePasswordDto) {
-    const user = await this.datasource.getRepository(User).findOne({
-      where: {
-        id: dto.userId,
-        deletedAt: IsNull()
-      }
-    })
-
-    user.password = await createPassword(dto.newPassword)
-    user.updatedAt = moment().format(DATE.DATETIME)
-    await this.datasource.getRepository(User).save(user)
   }
 
   // ANCHOR get user list
@@ -156,7 +140,7 @@ export class UserService {
       .andWhere(dto.account === '' ? '1=1' : 'a.account like :account', {
         account: `%${dto.account}%`
       })
-      .andWhere(dto.level === '' ? '1=1' : 'role = :role', { 
+      .andWhere(dto.level === '' ? '1=1' : 'role = :role', {
         role: dto.level
       })
       .andWhere(
