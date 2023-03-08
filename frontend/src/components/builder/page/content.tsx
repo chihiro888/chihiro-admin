@@ -15,8 +15,6 @@ import { useSelector } from 'react-redux'
 import ModalEditorViewerContainer from 'src/components/core/modal-editor-viewer-container'
 import { Chip } from '@mui/material'
 import ModalCodeViewerContainer from 'src/components/core/modal-code-viewer-container'
-import prettier from 'prettier/standalone'
-import parserBabel from 'prettier/parser-babel'
 
 const Content = () => {
   // ** Hooks
@@ -70,34 +68,36 @@ const Content = () => {
               <ModalCodeViewerContainer
                 title="코드"
                 content={row.tableHeader}
+                pretty
               />
             </TableCell>
             <TableCell>
               <ModalCodeViewerContainer
                 title="코드"
-                content={prettier.format(row.addForm, {
-                  parser: 'babel',
-                  plugins: [parserBabel]
-                })}
+                content={row.addForm}
+                pretty
               />
             </TableCell>
             <TableCell>
-              {/* <ModalCodeViewerContainer
+              <ModalCodeViewerContainer
                 title="코드"
-                content={prettier.format(row.detailForm)}
-              /> */}
+                content={row.detailForm}
+                pretty
+              />
             </TableCell>
             <TableCell>
-              {/* <ModalCodeViewerContainer
+              <ModalCodeViewerContainer
                 title="코드"
-                content={prettier.format(row.searchForm)}
-              /> */}
+                content={row.searchForm}
+                pretty
+              />
             </TableCell>
             <TableCell>
-              {/* <ModalCodeViewerContainer
+              <ModalCodeViewerContainer
                 title="코드"
-                content={prettier.format(row.actionList)}
-              /> */}
+                content={row.actionList}
+                pretty
+              />
             </TableCell>
             <TableCell>
               {row?.createdAt

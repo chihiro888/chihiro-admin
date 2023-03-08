@@ -16,6 +16,9 @@ import { vs2015 } from 'react-syntax-highlighter/dist/esm/styles/hljs'
 // ** Icon Imports
 import Icon from 'src/@core/components/icon'
 
+import prettier from 'prettier/standalone'
+import parserBabel from 'prettier/parser-babel'
+
 const Transition = forwardRef(function Transition(
   props: FadeProps & { children?: ReactElement<any, any> },
   ref: Ref<unknown>
@@ -23,7 +26,7 @@ const Transition = forwardRef(function Transition(
   return <Fade ref={ref} {...props} />
 })
 
-const ModalCodeViewerContainer = ({ title, content }) => {
+const ModalCodeViewerContainer = ({ title, content, pretty = false }) => {
   // ** States
   const [show, setShow] = useState<boolean>(false)
 
@@ -59,7 +62,15 @@ const ModalCodeViewerContainer = ({ title, content }) => {
             </Typography>
           </Box>
           <SyntaxHighlighter language="json" style={vs2015}>
-            {content}
+            {pretty
+              ? prettier
+                  .format(content, {
+                    parser: 'babel',
+                    plugins: [parserBabel],
+                    semi: false
+                  })
+                  .replace(';', '')
+              : content}
           </SyntaxHighlighter>
         </DialogContent>
         <DialogActions
