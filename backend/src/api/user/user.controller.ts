@@ -51,12 +51,12 @@ export class UserController {
   @UseGuards(SystemAdminGuard)
   @Get('getUserList')
   @ApiOperation({
-    summary: '관리자 리스트 조회 (시스템 관리자 기능)',
-    description: '세션이 유효한 경우 관리자 리스트를 반환합니다.'
+    summary: '사용자 리스트 조회 (시스템 관리자 기능)',
+    description: '세션이 유효한 경우 사용자 리스트를 반환합니다.'
   })
   @ApiResponse({
     status: HttpStatus.OK,
-    description: '관리자 리스트 조회가 성공적인 경우 반환'
+    description: '사용자 리스트 조회가 성공적인 경우 반환'
   })
   @ApiResponse({
     status: HttpStatus.UNAUTHORIZED,
@@ -82,8 +82,8 @@ export class UserController {
   @UseGuards(SystemAdminGuard)
   @Get('getUserDetail')
   @ApiOperation({
-    summary: '관리자 상세정보 조회 (시스템 관리자 기능)',
-    description: '관리자 상세정보를 조회합니다.'
+    summary: '사용자 상세정보 조회 (시스템 관리자 기능)',
+    description: '사용자 상세정보를 조회합니다.'
   })
   async getUserDetail(@Res() res: Response, @Query() dto: GetUserDetailDto) {
     // get user detail
@@ -102,8 +102,8 @@ export class UserController {
   @Post('createUser')
   @ApiFiles()
   @ApiOperation({
-    summary: '관리자 생성 (시스템 관리자 기능)',
-    description: '관리자를 생성합니다'
+    summary: '사용자 생성 (시스템 관리자 기능)',
+    description: '사용자를 생성합니다'
   })
   async createUser(@Res() res: Response, @Body() dto: CreateUserDto) {
     // get user by account
@@ -129,8 +129,8 @@ export class UserController {
   @UseGuards(SystemAdminGuard)
   @Delete('deleteUser')
   @ApiOperation({
-    summary: '관리자 삭제 (시스템 관리자 기능)',
-    description: '관리자를 삭제합니다.'
+    summary: '사용자 삭제 (시스템 관리자 기능)',
+    description: '사용자를 삭제합니다.'
   })
   async deleteUser(@Res() res: Response, @Query() dto: DeleteUserDto) {
     // delete user
@@ -148,8 +148,8 @@ export class UserController {
   @UseGuards(SystemAdminGuard)
   @Put('updateUserPassword')
   @ApiOperation({
-    summary: '관리자 비밀번호 변경 (시스템 관리자 기능)',
-    description: '관리자를 비밀번호를 변경합니다.'
+    summary: '사용자 비밀번호 변경 (시스템 관리자 기능)',
+    description: '사용자를 비밀번호를 변경합니다.'
   })
   async updateUserPassword(
     @Res() res: Response,
@@ -170,8 +170,8 @@ export class UserController {
   @UseGuards(SystemAdminGuard)
   @Put('updateUsername')
   @ApiOperation({
-    summary: '관리자 사용자명 변경 (시스템 관리자 기능)',
-    description: '관리자를 사용자명을 변경합니다.'
+    summary: '사용자 사용자명 변경 (시스템 관리자 기능)',
+    description: '사용자를 사용자명을 변경합니다.'
   })
   async updateUsername(@Res() res: Response, @Body() dto: UpdateUsernameDto) {
     // update user username
@@ -189,8 +189,8 @@ export class UserController {
   @UseGuards(SystemAdminGuard)
   @Put('updateUserRole')
   @ApiOperation({
-    summary: '유저 권한 변경 (시스템 관리자 기능)',
-    description: '유저 권한을 변경합니다.'
+    summary: '사용자 권한 변경 (시스템 관리자 기능)',
+    description: '사용자 권한을 변경합니다.'
   })
   async updateUserRole(@Res() res: Response, @Body() dto: UpdateUserRoleDto) {
     // update user role
@@ -208,8 +208,8 @@ export class UserController {
   @UseGuards(SystemAdminGuard)
   @Put('updateUserProfile')
   @ApiOperation({
-    summary: '유저 프로필 변경 (시스템 관리자 기능)',
-    description: '유저의 프로필을 변경합니다.'
+    summary: '사용자 프로필 변경 (시스템 관리자 기능)',
+    description: '사용자의 프로필을 변경합니다.'
   })
   async updateUserProfile(
     @Res() res: Response,
@@ -230,8 +230,8 @@ export class UserController {
   @UseGuards(SystemAdminGuard)
   @Put('updateUserIntro')
   @ApiOperation({
-    summary: '유저 소개 변경 (시스템 관리자 기능)',
-    description: '유저의 자기소개를 변경합니다.'
+    summary: '사용자 소개 변경 (시스템 관리자 기능)',
+    description: '사용자의 자기소개를 변경합니다.'
   })
   async updateUserIntro(@Res() res: Response, @Body() dto: UpdateUserIntroDto) {
     // update user intro

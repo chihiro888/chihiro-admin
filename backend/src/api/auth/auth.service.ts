@@ -28,7 +28,7 @@ export class AuthService {
       }
     })
 
-    if (!user) {
+    if (!user || !(user.role === 'SA' || user.role === 'A')) {
       return { result: false, data: null }
     }
 
