@@ -8,4 +8,10 @@ export class GetPageListDto {
   })
   @IsNotEmpty()
   page: number
+
+  @ApiProperty({
+    description: 'url',
+    example: ''
+  })
+  url: string
 }

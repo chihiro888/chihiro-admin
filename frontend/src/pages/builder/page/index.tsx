@@ -85,7 +85,16 @@ const Page = () => {
     dispatch(setDetailForm([]))
 
     // NOTE 검색 폼 설정
-    dispatch(setSearchForm([]))
+    dispatch(
+      setSearchForm([
+        {
+          type: 'text',
+          label: '주소',
+          key: 'url',
+          value: ''
+        }
+      ])
+    )
 
     // NOTE 액션 정의
     dispatch(setActionList([]))
