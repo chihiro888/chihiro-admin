@@ -61,17 +61,19 @@ const ModalCodeViewerContainer = ({ title, content, pretty = false }) => {
               {title}
             </Typography>
           </Box>
-          <SyntaxHighlighter language="json" style={vs2015}>
-            {pretty
-              ? prettier
-                  .format(content, {
-                    parser: 'babel',
-                    plugins: [parserBabel],
-                    semi: false
-                  })
-                  .replace(';', '')
-              : content}
-          </SyntaxHighlighter>
+          {content && (
+            <SyntaxHighlighter language="json" style={vs2015}>
+              {pretty
+                ? prettier
+                    .format(content, {
+                      parser: 'babel',
+                      plugins: [parserBabel],
+                      semi: false
+                    })
+                    .replace(';', '')
+                : content}
+            </SyntaxHighlighter>
+          )}
         </DialogContent>
         <DialogActions
           sx={{ pb: { xs: 8, sm: 12.5 }, justifyContent: 'center' }}
