@@ -72,9 +72,32 @@ export class BuilderService {
     }
   }
 
+  // ANCHOR convert JSON
+  convertJson(data) {
+    try {
+      return JSON.parse(data)
+    } catch (e) {
+      return []
+    }
+  }
+
   // ANCHOR get page
   async getPage(dto: GetPageDto) {
-    //
+    const data = await this.datasource.getRepository(Page).findOne({
+      where: {
+        id: dto.id,
+        deletedAt: null
+      }
+    })
+
+    // JSON 변경
+    data.tableHeader = this.convertJson(data.tableHeader)
+    data.addForm = this.convertJson(data.addForm)
+    data.detailForm = this.convertJson(data.detailForm)
+    data.searchForm = this.convertJson(data.searchForm)
+    data.actionList = this.convertJson(data.actionList)
+
+    return data
   }
 
   // ANCHOR create page

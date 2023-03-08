@@ -87,35 +87,35 @@ export class Page {
     nullable: true,
     comment: 'table header (JSON)'
   })
-  tableHeader: string | null
+  tableHeader: any
 
   @Column('text', {
     name: 'add_form',
     nullable: true,
     comment: 'add form (JSON)'
   })
-  addForm: string | null
+  addForm: any
 
   @Column('text', {
     name: 'detail_form',
     nullable: true,
     comment: 'detail form (JSON)'
   })
-  detailForm: string | null
+  detailForm: any
 
   @Column('text', {
     name: 'search_form',
     nullable: true,
     comment: 'search form (JSON)'
   })
-  searchForm: string | null
+  searchForm: any
 
   @Column('text', {
     name: 'action_list',
     nullable: true,
     comment: 'action list (JSON)'
   })
-  actionList: string | null
+  actionList: any
 
   @Column('datetime', {
     name: 'created_at',
