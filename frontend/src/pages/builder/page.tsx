@@ -18,6 +18,8 @@ import HeaderContainer from 'src/components/core/header-container'
 import { AppDispatch } from 'src/store'
 import { setPageHeader as setPageHeaderRedux } from 'src/store/apps/crud'
 import Icon from 'src/@core/components/icon'
+import { toast } from 'react-hot-toast'
+import CustomDialogTitle from 'src/components/custom-dialog-title'
 
 const Page = () => {
   // ** Hooks
@@ -31,11 +33,16 @@ const Page = () => {
   const [openActionList, setOpenActionList] = useState<boolean>(false)
 
   // ** Core State
+  // URL
   const [url, setUrl] = useState('')
+
+  // 페이지 설정
   const [pageHeader, setPageHeader] = useState({
     title: '',
     subTitle: ''
   })
+
+  // API 설정
   const [listApi, setListApi] = useState({
     checked: true,
     functionName: ''
@@ -52,44 +59,61 @@ const Page = () => {
     checked: false,
     functionName: ''
   })
-  const [tableHeader, setTableHeader] = useState('')
-  const [addForm, setAddForm] = useState('')
-  const [detailForm, setDetailForm] = useState('')
-  const [searchForm, setSearchForm] = useState('')
-  const [actionList, setActionList] = useState('')
+
+  // 구조 설정
+  const [tableHeader, setTableHeader] = useState([''])
+  const [addForm, setAddForm] = useState([])
+  const [detailForm, setDetailForm] = useState([])
+  const [searchForm, setSearchForm] = useState([])
+  const [actionList, setActionList] = useState([])
 
   // ** Handler
+  // 테이블 헤더 편집 열기
   const handleClickOpenTableHeader = () => {
     setOpenTableHeader(true)
   }
+
+  // 테이블 헤더 편집 닫기
   const handleClickCloseTableHeader = () => {
     setOpenTableHeader(false)
   }
 
+  // 검색 폼 열기
   const handleClickOpenSearchForm = () => {
     setOpenSearchForm(true)
   }
+
+  // 검색 폼 닫기
   const handleClickCloseSearchForm = () => {
     setOpenSearchForm(false)
   }
 
+  // 추가 폼 열기
   const handleClickOpenAddForm = () => {
     setOpenAddForm(true)
   }
+
+  // 추가 폼 닫기
   const handleClickCloseAddForm = () => {
     setOpenAddForm(false)
   }
 
+  // 상세 폼 열기
   const handleClickOpenDetailForm = () => {
     setOpenDetailForm(true)
   }
+
+  // 상세 폼 닫기
   const handleClickCloseDetailForm = () => {
     setOpenDetailForm(false)
   }
 
+  // 액션 리스트 열기
   const handleClickOpenActionList = () => {
     setOpenActionList(true)
   }
+
+  // 액션 리스트 닫기
   const handleClickCloseActionList = () => {
     setOpenActionList(false)
   }
@@ -397,37 +421,91 @@ const Page = () => {
       </Box>
 
       {/* 테이블 헤더 편집 */}
-      <Dialog
-        onClose={handleClickCloseTableHeader}
-        aria-labelledby="simple-dialog-title"
-        open={openTableHeader}
-      >
-        <DialogTitle id="simple-dialog-title">테이블 헤더 편집</DialogTitle>
+      <Dialog aria-labelledby="simple-dialog-title" open={openTableHeader}>
+        <CustomDialogTitle
+          title="테이블 헤더 편집"
+          onClose={handleClickCloseTableHeader}
+        />
         <DialogContent>
-          <Grid container spacing={1} sx={{ mb: 2 }}>
-            <Grid item xs={9}>
-              <TextField id="outlined-basic" label="" size="small" fullWidth />
-            </Grid>
-            <Grid item xs={3}>
-              <Button variant="outlined" color="error">
-                <Icon icon="material-symbols:delete-forever-outline"></Icon>
-              </Button>
-            </Grid>
-          </Grid>
+          {tableHeader.map((item, idx) => {
+            return (
+              <Grid container spacing={1} sx={{ mb: 2 }} key={idx}>
+                <Grid item xs={9}>
+                  <TextField
+                    id="outlined-basic"
+                    label=""
+                    size="small"
+                    fullWidth
+                    value={item}
+                    onChange={(e) => {
+                      const copyArr = [...tableHeader]
+                      copyArr[idx] = e.target.value
+                      setTableHeader(copyArr)
+                    }}
+                  />
+                </Grid>
+                <Grid item xs={3}>
+                  <Button
+                    variant="outlined"
+                    color="error"
+                    onClick={() => {
+                      const copyArr = [...tableHeader]
 
-          <Grid container spacing={1} sx={{ mb: 2 }}>
-            <Grid item xs={9}>
-              <TextField id="outlined-basic" label="" size="small" fullWidth />
-            </Grid>
-            <Grid item xs={3}>
-              <Button variant="outlined" color="error">
-                <Icon icon="material-symbols:delete-forever-outline"></Icon>
-              </Button>
-            </Grid>
-          </Grid>
+                      // 유효성
+                      if (copyArr.length === 1) {
+                        toast.error('테이블 헤더는 최소 1개 이상이어야 합니다.')
 
-          <Button variant="outlined" fullWidth sx={{ mt: 3 }}>
+                        return false
+                      }
+
+                      // 요소 삭제
+                      copyArr.splice(idx, 1)
+                      setTableHeader(copyArr)
+                    }}
+                  >
+                    <Icon icon="material-symbols:delete-forever-outline"></Icon>
+                  </Button>
+                </Grid>
+              </Grid>
+            )
+          })}
+
+          <Button
+            variant="outlined"
+            color="secondary"
+            fullWidth
+            sx={{ mt: 3 }}
+            onClick={() => {
+              setTableHeader([...tableHeader, ''])
+            }}
+          >
             <Icon icon="material-symbols:add"></Icon>
+          </Button>
+
+          <Button
+            variant="outlined"
+            fullWidth
+            sx={{ mt: 3 }}
+            onClick={() => {
+              // 유효성
+              for (let i = 0; i < tableHeader.length; i++) {
+                const item = tableHeader[i]
+                if (item === '') {
+                  // 알림
+                  toast.error('테이블 헤더는 빈 값이 될 수 없습니다.')
+
+                  return false
+                }
+              }
+
+              // 모달 닫기
+              handleClickCloseTableHeader()
+
+              // 알림
+              toast.success('테이블 헤더가 저장되었습니다.')
+            }}
+          >
+            저장
           </Button>
         </DialogContent>
       </Dialog>
