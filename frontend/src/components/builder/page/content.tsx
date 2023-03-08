@@ -15,6 +15,7 @@ import { useSelector } from 'react-redux'
 import ModalEditorViewerContainer from 'src/components/core/modal-editor-viewer-container'
 import { Chip } from '@mui/material'
 import ModalCodeViewerContainer from 'src/components/core/modal-code-viewer-container'
+import ActionContainer from 'src/components/core/action-container'
 
 const Content = () => {
   // ** Hooks
@@ -108,6 +109,13 @@ const Content = () => {
               {row?.updatedAt
                 ? moment(row?.updatedAt).format(DATE.DATETIME)
                 : '-'}
+            </TableCell>
+            <TableCell>
+              <ActionContainer
+                id={row.id}
+                detailAction={false}
+                deleteAction={false}
+              />
             </TableCell>
           </TableRow>
         ))}
