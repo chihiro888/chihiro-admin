@@ -21,6 +21,7 @@ import Icon from 'src/@core/components/icon'
 import { toast } from 'react-hot-toast'
 import CustomDialogTitle from 'src/components/custom-dialog-title'
 import { useRouter } from 'next/router'
+import { getPage } from 'src/apis/builder'
 
 const Page = () => {
   // ** Hooks
@@ -121,6 +122,49 @@ const Page = () => {
     setOpenActionList(false)
   }
 
+  // init data
+  const initData = async (id) => {
+    try {
+      const params = {
+        id
+      }
+      const { data: res } = await getPage(params)
+      if (res.statusCode === 200) {
+        const data = res.data
+
+        // inject state
+        setUrl(data.url)
+        setPageHeader({
+          title: data.title,
+          subTitle: data.subTitle
+        })
+        setListApi({
+          checked: data.useListApi,
+          functionName: data.listApi
+        })
+        setCreateApi({
+          checked: data.useCreateApi,
+          functionName: data.createApi
+        })
+        setDetailApi({
+          checked: data.useDetailApi,
+          functionName: data.detailApi
+        })
+        setDeleteApi({
+          checked: data.useDeleteApi,
+          functionName: data.deleteApi
+        })
+        setTableHeader(data.tableHeader)
+        setAddForm(data.addForm)
+        setDetailForm(data.detailForm)
+        setSearchForm(data.searchForm)
+        setActionList(data.actionList)
+      }
+    } catch (err) {
+      //
+    }
+  }
+
   useEffect(() => {
     // NOTE 페이지 헤더 정의
     dispatch(
@@ -131,7 +175,7 @@ const Page = () => {
     )
 
     if (id) {
-      console.log('### API Call')
+      initData(id)
     }
   }, [])
 
