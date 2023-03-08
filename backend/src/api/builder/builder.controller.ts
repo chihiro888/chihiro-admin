@@ -129,7 +129,7 @@ export class BuilderController {
   async deletePage(
     @Res() res: Response,
     @Session() session: any,
-    @Body() dto: DeletePageDto
+    @Query() dto: DeletePageDto
   ) {
     // delete page
     await this.builderService.deletePage(dto)
@@ -137,7 +137,7 @@ export class BuilderController {
     // return 200 response
     res.status(HttpStatus.OK).json({
       statusCode: HttpStatus.OK,
-      message: '',
+      message: '페이지 삭제가 완료되었습니다.',
       data: null
     })
   }

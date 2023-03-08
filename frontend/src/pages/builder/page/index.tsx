@@ -25,11 +25,10 @@ import {
   setAddForm
 } from 'src/store/apps/crud'
 import { AppDispatch } from 'src/store'
-import { getPageList } from 'src/apis/builder'
+import { deletePage, getPageList } from 'src/apis/builder'
 import { Stack } from '@mui/system'
 import { Button } from '@mui/material'
 import { useRouter } from 'next/router'
-import { nin } from '@ucast/js'
 
 const Page = () => {
   // ** Hooks
@@ -47,7 +46,7 @@ const Page = () => {
     dispatch(setDetailAPI(null))
 
     // NOTE 삭제 API 정의
-    dispatch(setDeleteAPI(null))
+    dispatch(setDeleteAPI(deletePage))
 
     // NOTE 페이지 헤더 정의
     dispatch(

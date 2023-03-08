@@ -6,6 +6,8 @@ import { CreatePageDto } from './dto/create-page.dto'
 import { GetPageListDto } from './dto/get-page-list.dto'
 import { GetPageDto } from './dto/get-page.dto'
 import { UpdatePageDto } from './dto/update-page.dto'
+import moment from 'moment'
+import DATE from 'src/common/constants/date'
 
 @Injectable()
 export class BuilderService {
@@ -112,6 +114,15 @@ export class BuilderService {
 
   // ANCHOR delete page
   async deletePage(dto: DeletePageDto) {
-    //
+    const page = await this.datasource.getRepository(Page).findOne({
+      where: {
+        id: dto.id,
+        deletedAt: null
+      }
+    })
+
+    page.deletedAt = moment().format(DATE.DATETIME)
+
+    await this.datasource.getRepository(Page).save(page)
   }
 }
