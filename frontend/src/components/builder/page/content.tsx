@@ -114,7 +114,7 @@ const Content = () => {
               <ActionContainer
                 id={row.id}
                 detailAction={false}
-                deleteAction={false}
+                deleteAction={true}
               />
             </TableCell>
           </TableRow>

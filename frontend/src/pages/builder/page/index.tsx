@@ -26,10 +26,15 @@ import {
 } from 'src/store/apps/crud'
 import { AppDispatch } from 'src/store'
 import { getPageList } from 'src/apis/builder'
+import { Stack } from '@mui/system'
+import { Button } from '@mui/material'
+import { useRouter } from 'next/router'
+import { nin } from '@ucast/js'
 
 const Page = () => {
   // ** Hooks
   const dispatch = useDispatch<AppDispatch>()
+  const router = useRouter()
 
   useEffect(() => {
     // NOTE 리스트 조회 API 정의
@@ -97,7 +102,16 @@ const Page = () => {
     )
 
     // NOTE 액션 정의
-    dispatch(setActionList([]))
+    dispatch(
+      setActionList([
+        {
+          type: 'redirect',
+          icon: 'bx:pencil',
+          label: '페이지 수정',
+          url: '/builder/page/edit'
+        }
+      ])
+    )
 
     dispatch(initData())
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -107,6 +121,20 @@ const Page = () => {
     <>
       {/* 헤더 컨테이너 */}
       <HeaderContainer />
+
+      {/* 추가 컨태이너 커스텀 */}
+      <Stack sx={{ mt: 5 }}>
+        <div style={{ textAlign: 'right' }}>
+          <Button
+            variant="contained"
+            onClick={() => {
+              router.push('/builder/page/edit')
+            }}
+          >
+            추가
+          </Button>
+        </div>
+      </Stack>
 
       {/* 검색 컨테이너 */}
       <SearchContainer />
