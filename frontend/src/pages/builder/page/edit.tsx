@@ -20,10 +20,12 @@ import { setPageHeader as setPageHeaderRedux } from 'src/store/apps/crud'
 import Icon from 'src/@core/components/icon'
 import { toast } from 'react-hot-toast'
 import CustomDialogTitle from 'src/components/custom-dialog-title'
+import { useRouter } from 'next/router'
 
 const Page = () => {
   // ** Hooks
   const dispatch = useDispatch<AppDispatch>()
+  const router = useRouter()
 
   // ** States
   const [openTableHeader, setOpenTableHeader] = useState<boolean>(false)
@@ -415,6 +417,16 @@ const Page = () => {
       </Box>
 
       <Box sx={{ display: 'flex', justifyContent: 'right' }}>
+        <Button
+          variant="contained"
+          color="secondary"
+          sx={{ mt: 5, mr: 3 }}
+          onClick={() => {
+            router.push('/builder/page')
+          }}
+        >
+          목록
+        </Button>
         <Button variant="contained" color="primary" sx={{ mt: 5 }}>
           저장
         </Button>
