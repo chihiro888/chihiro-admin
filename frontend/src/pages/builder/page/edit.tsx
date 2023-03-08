@@ -26,6 +26,7 @@ const Page = () => {
   // ** Hooks
   const dispatch = useDispatch<AppDispatch>()
   const router = useRouter()
+  const id = router.query.id
 
   // ** States
   const [openTableHeader, setOpenTableHeader] = useState<boolean>(false)
@@ -128,6 +129,10 @@ const Page = () => {
         subTitle: '페이지를 간단하게 빌딩할 수 있습니다.'
       })
     )
+
+    if (id) {
+      console.log('### API Call')
+    }
   }, [])
 
   return (

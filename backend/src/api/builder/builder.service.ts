@@ -1,7 +1,11 @@
+import { DeletePageDto } from './dto/delete-page.dto'
 import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common'
 import { Page } from 'src/entities/page.entity'
 import { DataSource } from 'typeorm'
-import { GetPageListDto } from './dto/get-user-list.dto'
+import { CreatePageDto } from './dto/create-page.dto'
+import { GetPageListDto } from './dto/get-page-list.dto'
+import { GetPageDto } from './dto/get-page.dto'
+import { UpdatePageDto } from './dto/update-page.dto'
 
 @Injectable()
 export class BuilderService {
@@ -64,5 +68,25 @@ export class BuilderService {
       count: Number(count.count),
       data
     }
+  }
+
+  // ANCHOR get page
+  async getPage(dto: GetPageDto) {
+    //
+  }
+
+  // ANCHOR create page
+  async createPage(dto: CreatePageDto) {
+    //
+  }
+
+  // ANCHOR update page
+  async updatePage(dto: UpdatePageDto) {
+    //
+  }
+
+  // ANCHOR delete page
+  async deletePage(dto: DeletePageDto) {
+    //
   }
 }
