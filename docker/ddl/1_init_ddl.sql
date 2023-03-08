@@ -60,3 +60,27 @@ CREATE TABLE IF NOT EXISTS _file (
   `updated_at` DATETIME DEFAULT NULL COMMENT 'update time',
   `deleted_at` DATETIME DEFAULT NULL COMMENT 'delete time'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT="file";
+
+
+CREATE TABLE IF NOT EXISTS _page (
+  `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `url` VARCHAR(255) NOT NULL COMMENT 'url',
+  `title` VARCHAR(255) NOT NULL COMMENT 'title',
+  `sub_title` TEXT NOT NULL COMMENT 'sub title',
+  `use_list_api` boolean COMMENT 'use list api',
+  `list_api` VARCHAR(255) COMMENT 'list api',
+  `use_create_api` boolean COMMENT 'use create api',
+  `create_api` VARCHAR(255) COMMENT 'create api',
+  `use_detail_api` boolean COMMENT 'use detail api',
+  `detail_api` VARCHAR(255) COMMENT 'detail api',
+  `use_delete_api` boolean COMMENT 'use delete api',
+  `delete_api` VARCHAR(255) COMMENT 'delete api',
+  `tableHeader` TEXT COMMENT 'table header',
+  `addForm` TEXT COMMENT 'add form',
+  `detailForm` TEXT COMMENT 'detail form',
+  `searchForm` TEXT COMMENT 'search form',
+  `actionList` TEXT COMMENT 'action list',
+  `created_at` DATETIME DEFAULT now() COMMENT 'create time',
+  `updated_at` DATETIME DEFAULT NULL COMMENT 'update time',
+  `deleted_at` DATETIME DEFAULT NULL COMMENT 'delete time'
+)
