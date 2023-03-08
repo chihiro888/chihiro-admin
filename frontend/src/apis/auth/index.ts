@@ -19,11 +19,18 @@ export const logout = () => {
   return response
 }
 
-
 // ANCHOR get admin
 export const getAdmin = () => {
   const url = `${rootUrl}getAdmin`
   const response = axios.get<CommonResponse>(url)
+
+  return response
+}
+
+// ANCHOR update password
+export const updatePassword = (params: object) => {
+  const url = `${rootUrl}updatePassword`
+  const response = axios.put<CommonResponse>(url, params)
 
   return response
 }

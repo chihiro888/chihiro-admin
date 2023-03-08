@@ -41,13 +41,13 @@ import { UpdateUserIntroDto } from './dto/update-user-intro.dto'
 import { DeleteUserDto } from './dto/delete-user.dto'
 import { GetUserListDto } from './dto/get-user-list.dto'
 
-// ANCHOR admin controller
+// ANCHOR user controller
 @ApiTags('user')
 @Controller('api/user')
 export class UserController {
   constructor(private userService: UserService) {}
 
-  // ANCHOR get admin list
+  // ANCHOR get user list
   @UseGuards(SystemAdminGuard)
   @Get('getUserList')
   @ApiOperation({
@@ -97,7 +97,7 @@ export class UserController {
     })
   }
 
-  // ANCHOR create admin
+  // ANCHOR create user
   @UseGuards(SystemAdminGuard)
   @Post('createUser')
   @ApiFiles()
@@ -125,7 +125,7 @@ export class UserController {
     })
   }
 
-  // ANCHOR delete admin
+  // ANCHOR delete user
   @UseGuards(SystemAdminGuard)
   @Delete('deleteUser')
   @ApiOperation({
@@ -204,7 +204,7 @@ export class UserController {
     })
   }
 
-  // ANCHOR update user level
+  // ANCHOR update user profile
   @UseGuards(SystemAdminGuard)
   @Put('updateUserProfile')
   @ApiOperation({

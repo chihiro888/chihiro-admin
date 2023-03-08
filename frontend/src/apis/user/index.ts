@@ -1,84 +1,75 @@
 import axios from 'axios'
 import { CommonResponse } from 'src/common/interface'
 
-const rootUrl = '/api/admin/'
+const rootUrl = '/api/user/'
 
-
-// ANCHOR update password
-export const updatePassword = (params: object) => {
-  const url = `${rootUrl}updatePassword`
-  const response = axios.put<CommonResponse>(url, params)
-
-  return response
-}
-
-// ANCHOR get admin list
-export const getAdminList = (params: object) => {
-  const url = `${rootUrl}getAdminList`
+// ANCHOR get user list
+export const getUserList = (params: object) => {
+  const url = `${rootUrl}getUserList`
   const response = axios.get<CommonResponse>(url, { params })
 
   return response
 }
 
-// ANCHOR get admin detail
-export const getAdminDetail = (params: object) => {
-  const url = `${rootUrl}getAdminDetail`
+// ANCHOR get user detail
+export const getUserDetail = (params: object) => {
+  const url = `${rootUrl}getUserDetail`
   const response = axios.get<CommonResponse>(url, { params })
 
   return response
 }
 
-// ANCHOR create admin
-export const createAdmin = (params: object) => {
-  const url = `${rootUrl}createAdmin`
+// ANCHOR create user
+export const createUser = (params: object) => {
+  const url = `${rootUrl}createUser`
   const response = axios.post<CommonResponse>(url, params)
 
   return response
 }
 
-// ANCHOR delete admin
-export const deleteAdmin = (params: object) => {
-  const url = `${rootUrl}deleteAdmin`
+// ANCHOR delete user
+export const deleteUser = (params: object) => {
+  const url = `${rootUrl}deleteUser`
   const response = axios.delete<CommonResponse>(url, { params })
 
   return response
 }
 
-// ANCHOR update admin password
-export const updateAdminPassword = (params: object) => {
-  const url = `${rootUrl}updateAdminPassword`
+// ANCHOR update user password
+export const updateUserPassword = (params: object) => {
+  const url = `${rootUrl}updateUserPassword`
   const response = axios.put<CommonResponse>(url, params)
 
   return response
 }
 
-// ANCHOR update admin username
-export const updateAdminUsername = (params: object) => {
-  const url = `${rootUrl}updateAdminUsername`
+// ANCHOR update user username
+export const updateUserUsername = (params: object) => {
+  const url = `${rootUrl}updateUserUsername`
   const response = axios.put<CommonResponse>(url, params)
 
   return response
 }
 
-// ANCHOR update admin profile
-export const updateAdminProfile = (params: object) => {
-  const url = `${rootUrl}updateAdminProfile`
+// ANCHOR update user level
+export const updateUserLevel = (params: object) => {
+  const url = `${rootUrl}updateUserLevel`
   const response = axios.put<CommonResponse>(url, params)
 
   return response
 }
 
-// ANCHOR update admin intro
-export const updateAdminIntro = (params: object) => {
-  const url = `${rootUrl}updateAdminIntro`
+// ANCHOR update user profile
+export const updateUserProfile = (params: object) => {
+  const url = `${rootUrl}updateUserProfile`
   const response = axios.put<CommonResponse>(url, params)
 
   return response
 }
 
-// ANCHOR update admin level
-export const updateAdminLevel = (params: object) => {
-  const url = `${rootUrl}updateAdminLevel`
+// ANCHOR update user intro
+export const updateUserIntro = (params: object) => {
+  const url = `${rootUrl}updateUserIntro`
   const response = axios.put<CommonResponse>(url, params)
 
   return response

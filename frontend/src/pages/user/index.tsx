@@ -10,16 +10,16 @@ import Content from 'src/components/admin/content'
 
 // ** API
 import {
-  getAdminList,
-  createAdmin,
-  getAdminDetail,
-  deleteAdmin,
-  updateAdminPassword,
-  updateAdminUsername,
-  updateAdminLevel,
-  updateAdminProfile,
-  updateAdminIntro
-} from 'src/apis/admin'
+  createUser,
+  deleteUser,
+  getUserDetail,
+  getUserList,
+  updateUserIntro,
+  updateUserLevel,
+  updateUserPassword,
+  updateUserProfile,
+  updateUserUsername
+} from 'src/apis/user'
 
 // ** Redux
 import {
@@ -45,16 +45,16 @@ const Admin = () => {
 
   useEffect(() => {
     // NOTE 리스트 조회 API 정의
-    dispatch(setListAPI(getAdminList))
+    dispatch(setListAPI(getUserList))
 
     // NOTE 생성 API 정의
-    dispatch(setCreateAPI(createAdmin))
+    dispatch(setCreateAPI(createUser))
 
     // NOTE 상세 API 정의
-    dispatch(setDetailAPI(getAdminDetail))
+    dispatch(setDetailAPI(getUserDetail))
 
     // NOTE 삭제 API 정의
-    dispatch(setDeleteAPI(deleteAdmin))
+    dispatch(setDeleteAPI(deleteUser))
 
     // NOTE 페이지 헤더 정의
     dispatch(
@@ -243,8 +243,8 @@ const Admin = () => {
               maxFileSizeBytes: 1024 * 1024 * 4
             }
           ],
-          loadAPI: getAdminDetail,
-          updateAPI: updateAdminProfile
+          loadAPI: getUserDetail,
+          updateAPI: updateUserProfile
         },
         {
           icon: 'bx:user-circle',
@@ -257,8 +257,8 @@ const Admin = () => {
               value: ''
             }
           ],
-          loadAPI: getAdminDetail,
-          updateAPI: updateAdminIntro
+          loadAPI: getUserDetail,
+          updateAPI: updateUserIntro
         },
         {
           icon: 'bx:pencil',
@@ -284,7 +284,7 @@ const Admin = () => {
             }
           ],
           loadAPI: null,
-          updateAPI: updateAdminPassword
+          updateAPI: updateUserPassword
         },
         {
           icon: 'bx:pencil',
@@ -297,8 +297,8 @@ const Admin = () => {
               value: ''
             }
           ],
-          loadAPI: getAdminDetail,
-          updateAPI: updateAdminUsername
+          loadAPI: getUserDetail,
+          updateAPI: updateUserUsername
         },
         {
           icon: 'bx:pencil',
@@ -321,8 +321,8 @@ const Admin = () => {
               ]
             }
           ],
-          loadAPI: getAdminDetail,
-          updateAPI: updateAdminLevel
+          loadAPI: getUserDetail,
+          updateAPI: updateUserLevel
         }
       ])
     )

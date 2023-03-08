@@ -21,19 +21,19 @@ import { DashboardService } from './dashboard.service'
 export class DashboardController {
   constructor(private dashboardService: DashboardService) {}
 
-  // ANCHOR get admin count
+  // ANCHOR get user count
   @UseGuards(SystemAdminGuard)
-  @Get('getAdminCount')
+  @Get('getUserCount')
   @ApiOperation({
-    summary: '관리자 카운트 (시스템 관리자 기능)',
-    description: '관리자 카운트를 반환합니다.'
+    summary: '사용자 카운트 (시스템 관리자 기능)',
+    description: '사용자 카운트를 반환합니다.'
   })
   @ApiResponse({
     status: HttpStatus.OK,
     description: '데이터 조회가 성공적인 경우 반환'
   })
-  async getAdminCount(@Res() res: Response) {
-    const data = await this.dashboardService.getAdminCount()
+  async getUserCount(@Res() res: Response) {
+    const data = await this.dashboardService.getUserCount()
 
     // return 200 response
     res.status(HttpStatus.OK).json({
@@ -109,19 +109,19 @@ export class DashboardController {
     })
   }
 
-  // ANCHOR get admin line chart
+  // ANCHOR get user line chart
   @UseGuards(SystemAdminGuard)
-  @Get('getAdminLineChart')
+  @Get('getUserLineChart')
   @ApiOperation({
-    summary: '관리자 라인 차트 (시스템 관리자 기능)',
-    description: '관리자 라인 차트를 반환합니다.'
+    summary: '사용자 라인 차트 (시스템 관리자 기능)',
+    description: '사용자 라인 차트를 반환합니다.'
   })
   @ApiResponse({
     status: HttpStatus.OK,
     description: '데이터 조회가 성공적인 경우 반환'
   })
-  async getAdminLineChart(@Res() res: Response) {
-    const data = await this.dashboardService.getAdminLineChart()
+  async getUserLineChart(@Res() res: Response) {
+    const data = await this.dashboardService.getUserLineChart()
 
     // return 200 response
     res.status(HttpStatus.OK).json({

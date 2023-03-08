@@ -90,9 +90,9 @@ export class DashboardService {
     return { yAxis: yAxisList.reverse(), xAxis: xAxisList.reverse() }
   }
 
-  // ANCHOR get admin count
-  async getAdminCount() {
-    return await this.countQuery('_admin')
+  // ANCHOR get user count
+  async getUserCount() {
+    return await this.countQuery('_user')
   }
 
   // ANCHOR get login history count
@@ -110,9 +110,9 @@ export class DashboardService {
     return await this.countQuery('_global')
   }
 
-  // ANCHOR get admin line chart
-  async getAdminLineChart() {
-    return await this.lineChartQuery('_admin')
+  // ANCHOR get user line chart
+  async getUserLineChart() {
+    return await this.lineChartQuery('_user')
   }
 
   // ANCHOR get login history line chart

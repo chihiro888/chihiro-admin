@@ -3,9 +3,9 @@ import { CommonResponse } from 'src/common/interface'
 
 const rootUrl = '/api/dashboard/'
 
-// ANCHOR get admin count
-export const getAdminCount = () => {
-  const url = `${rootUrl}getAdminCount`
+// ANCHOR get user count
+export const getUserCount = () => {
+  const url = `${rootUrl}getUserCount`
   const response = axios.get<CommonResponse>(url)
 
   return response
@@ -35,9 +35,9 @@ export const getSettingCount = () => {
   return response
 }
 
-// ANCHOR get admin line chart
-export const getAdminLineChart = () => {
-  const url = `${rootUrl}getAdminLineChart`
+// ANCHOR get user line chart
+export const getUserLineChart = () => {
+  const url = `${rootUrl}getUserLineChart`
   const response = axios.get<CommonResponse>(url)
 
   return response

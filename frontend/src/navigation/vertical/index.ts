@@ -45,12 +45,12 @@ const navigation = (): VerticalNavItemsType => {
     {
       title: '사용자 관리',
       icon: 'material-symbols:person',
-      path: '/admin'
+      path: '/user'
     },
     {
       title: '로그인 이력',
       icon: 'mdi:account-clock',
-      path: '/admin/history'
+      path: '/user/history'
     }
   ]
 }

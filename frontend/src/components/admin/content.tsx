@@ -68,18 +68,14 @@ const Content = () => {
             </TableCell>
             <TableCell>{row.username}</TableCell>
             <TableCell>
-              {Number(row.level) === 1 ? (
-                <>
-                  <Chip
-                    label="시스템관리자"
-                    color="primary"
-                    variant="outlined"
-                  />
-                </>
-              ) : (
-                <>
-                  <Chip label="관리자" color="secondary" variant="outlined" />
-                </>
+              {row.role === 'SA' && (
+                <Chip label="시스템관리자" color="primary" variant="outlined" />
+              )}
+              {row.role === 'A' && (
+                <Chip label="관리자" color="info" variant="outlined" />
+              )}
+              {row.role === 'U' && (
+                <Chip label="사용자" color="secondary" variant="outlined" />
               )}
             </TableCell>
             <TableCell>

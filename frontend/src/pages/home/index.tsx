@@ -9,14 +9,14 @@ import { useEffect } from 'react'
 import Congratulations from 'src/components/congratulations'
 import CardStatsVertical from 'src/components/card-stats-vertical'
 import {
-  getAdminCount,
-  getAdminLineChart,
   getImageCount,
   getImageLineChart,
   getLoginHistoryCount,
   getLoginHistoryLineChart,
   getSettingCount,
-  getSettingLineChart
+  getSettingLineChart,
+  getUserCount,
+  getUserLineChart
 } from 'src/apis/dashboard'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -36,15 +36,15 @@ const Home = () => {
       setDashboardList([
         {
           type: 'count',
-          key: 'admin',
+          key: 'user',
           image: '/images/custom/admin.png',
-          title: '관리자',
+          title: '사용자',
           value: {
             total: 0,
             today: 0,
             diff: 0
           },
-          loadAPI: getAdminCount
+          loadAPI: getUserCount
         },
         {
           type: 'count',
@@ -84,14 +84,14 @@ const Home = () => {
         },
         {
           type: 'lineChart',
-          key: 'adminChart',
-          title: '관리자',
+          key: 'userChart',
+          title: '사용자',
           color: '#cbcdff',
           symbol: '',
           height: 200,
           xAxis: [],
           yAxis: [],
-          loadAPI: getAdminLineChart
+          loadAPI: getUserLineChart
         },
         {
           type: 'lineChart',

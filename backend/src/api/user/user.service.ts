@@ -117,7 +117,7 @@ export class UserService {
         `concat('${await this.globalService.getGlobal(
           'imageDomain'
         )}', '/', f.enc_name) as url`,
-        `role as level`,
+        `role as role`,
         'a.created_at as createdAt',
         'a.updated_at as updatedAt'
       ])
