@@ -28,7 +28,7 @@
   "Administrator successfully deleted.": "Administrator successfully deleted.",
   "User name change is complete.": "User name change is complete.",
   "Permission change completed.": "Permission change completed.",
-  "level must be a valid enum value": "Invalid permission",
+  "role must be a valid enum value": "Invalid permission",
   "oldPassword must be longer than or equal to 8 characters": "oldPassword must be longer than or equal to 8 characters",
   "newPassword must be longer than or equal to 8 characters": "newPassword must be longer than or equal to 8 characters",
   "confirmNewPassword must match newPassword": "confirmNewPassword must match newPassword"

@@ -15,7 +15,7 @@ import { User } from 'src/entities/user.entity'
 import { UpdateUsernameDto } from './dto/update-username.dto'
 import { CreateUserDto } from './dto/create-user.dto'
 import { GetUserDetailDto } from './dto/get-user-detail.dto'
-import { UpdateUserLevelDto } from './dto/update-user-level.dto'
+import { UpdateUserRoleDto } from './dto/update-user-role.dto'
 import { DeleteUserDto } from './dto/delete-user.dto'
 import { UpdateUserIntroDto } from './dto/update-user-intro.dto'
 import { GetUserListDto } from './dto/get-user-list.dto'
@@ -88,12 +88,9 @@ export class UserService {
       .andWhere(dto.account === '' ? '1=1' : 'a.account like :account', {
         account: `%${dto.account}%`
       })
-      .andWhere(
-        dto.level === 'SA' ? 'is_system_admin = 1 and is_admin = 1' : '1=1'
-      )
-      .andWhere(
-        dto.level === 'A' ? 'is_system_admin = 0 and is_admin = 1' : '1=1'
-      )
+      .andWhere(dto.role === '' ? '1=1' : 'role = :role', {
+        role: dto.role
+      })
       .andWhere(
         dto.createdAt === '' ? '1=1' : 'DATE(a.created_at) = :createdAt',
         {
@@ -140,8 +137,8 @@ export class UserService {
       .andWhere(dto.account === '' ? '1=1' : 'a.account like :account', {
         account: `%${dto.account}%`
       })
-      .andWhere(dto.level === '' ? '1=1' : 'role = :role', {
-        role: dto.level
+      .andWhere(dto.role === '' ? '1=1' : 'role = :role', {
+        role: dto.role
       })
       .andWhere(
         dto.createdAt === '' ? '1=1' : 'DATE(a.created_at) = :createdAt',
@@ -194,7 +191,7 @@ export class UserService {
     user.password = await createPassword(dto.password)
     user.username = dto.username
     user.intro = dto.intro
-    user.role = dto.level
+    user.role = dto.role
 
     const createdUser = await this.datasource.getRepository(User).save(user)
     if (dto.profile) {
@@ -252,15 +249,15 @@ export class UserService {
     await this.datasource.getRepository(User).save(user)
   }
 
-  // ANCHOR update user level
-  async updateUserLevel(dto: UpdateUserLevelDto) {
+  // ANCHOR update user role
+  async updateUserRole(dto: UpdateUserRoleDto) {
     const user = await this.datasource.getRepository(User).findOne({
       where: {
         id: dto.id,
         deletedAt: IsNull()
       }
     })
-    user.role = dto.level
+    user.role = dto.role
     user.updatedAt = moment().format(DATE.DATETIME)
     await this.datasource.getRepository(User).save(user)
   }

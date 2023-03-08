@@ -15,9 +15,9 @@ import {
   getUserDetail,
   getUserList,
   updateUserIntro,
-  updateUserLevel,
   updateUserPassword,
   updateUserProfile,
+  updateUserRole,
   updateUserUsername
 } from 'src/apis/user'
 
@@ -125,7 +125,7 @@ const Admin = () => {
         {
           type: 'select',
           label: '권한',
-          key: 'level',
+          key: 'role',
           value: '',
           list: [
             {
@@ -135,6 +135,10 @@ const Admin = () => {
             {
               label: '관리자',
               value: 'A'
+            },
+            {
+              label: '사용자',
+              value: 'U'
             }
           ]
         }
@@ -204,7 +208,7 @@ const Admin = () => {
         {
           type: 'select',
           label: '권한',
-          key: 'level',
+          key: 'role',
           value: '',
           list: [
             {
@@ -214,6 +218,10 @@ const Admin = () => {
             {
               label: '관리자',
               value: 'A'
+            },
+            {
+              label: '사용자',
+              value: 'U'
             }
           ]
         },
@@ -307,7 +315,7 @@ const Admin = () => {
             {
               type: 'select',
               label: '권한',
-              key: 'level',
+              key: 'role',
               value: '',
               list: [
                 {
@@ -317,12 +325,16 @@ const Admin = () => {
                 {
                   label: '관리자',
                   value: 'A'
+                },
+                {
+                  label: '사용자',
+                  value: 'U'
                 }
               ]
             }
           ],
           loadAPI: getUserDetail,
-          updateAPI: updateUserLevel
+          updateAPI: updateUserRole
         }
       ])
     )

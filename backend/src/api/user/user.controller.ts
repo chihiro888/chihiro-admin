@@ -31,7 +31,7 @@ import { SystemAdminGuard } from 'src/common/guard/system-admin.guard'
 import { GetUserDetailDto } from './dto/get-user-detail.dto'
 import { CreateUserDto } from './dto/create-user.dto'
 import { UpdateUsernameDto } from './dto/update-username.dto'
-import { UpdateUserLevelDto } from './dto/update-user-level.dto'
+import { UpdateUserRoleDto } from './dto/update-user-role.dto'
 import { UpdateUserProfileDto } from './dto/update-user-profile.dto'
 import { GetLoginHistoryDetailDto } from './dto/get-login-history-detail.dto'
 import { GetLoginHistoryListDto } from './dto/get-login-history-list.dto'
@@ -185,16 +185,16 @@ export class UserController {
     })
   }
 
-  // ANCHOR update user level
+  // ANCHOR update user role
   @UseGuards(SystemAdminGuard)
-  @Put('updateUserLevel')
+  @Put('updateUserRole')
   @ApiOperation({
     summary: '유저 권한 변경 (시스템 관리자 기능)',
     description: '유저 권한을 변경합니다.'
   })
-  async updateUserLevel(@Res() res: Response, @Body() dto: UpdateUserLevelDto) {
-    // update user level
-    await this.userService.updateUserLevel(dto)
+  async updateUserRole(@Res() res: Response, @Body() dto: UpdateUserRoleDto) {
+    // update user role
+    await this.userService.updateUserRole(dto)
 
     // return 200 response
     res.status(HttpStatus.OK).json({

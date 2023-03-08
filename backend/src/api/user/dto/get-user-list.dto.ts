@@ -16,10 +16,10 @@ export class GetUserListDto {
   account: string
 
   @ApiProperty({
-    description: 'level',
+    description: 'role',
     example: ''
   })
-  level: string
+  role: string
 
   @ApiProperty({
     description: 'created at',

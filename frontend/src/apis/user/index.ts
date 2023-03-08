@@ -51,9 +51,9 @@ export const updateUserUsername = (params: object) => {
   return response
 }
 
-// ANCHOR update user level
-export const updateUserLevel = (params: object) => {
-  const url = `${rootUrl}updateUserLevel`
+// ANCHOR update user role
+export const updateUserRole = (params: object) => {
+  const url = `${rootUrl}updateUserRole`
   const response = axios.put<CommonResponse>(url, params)
 
   return response

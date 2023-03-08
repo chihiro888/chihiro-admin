@@ -1,12 +1,13 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { IsEnum, IsNotEmpty } from 'class-validator'
 
-enum Level {
+enum Role {
   SystemAdmin = 'SA',
-  Admin = 'A'
+  Admin = 'A',
+  User = 'U'
 }
 
-export class UpdateUserLevelDto {
+export class UpdateUserRoleDto {
   @ApiProperty({
     description: 'user id',
     example: 1
@@ -15,9 +16,9 @@ export class UpdateUserLevelDto {
   id: number
 
   @ApiProperty({
-    description: 'level',
+    description: 'role',
     example: 'SA'
   })
-  @IsEnum(Level)
-  level: string
+  @IsEnum(Role)
+  role: string
 }

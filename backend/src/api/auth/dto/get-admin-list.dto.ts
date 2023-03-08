@@ -16,10 +16,10 @@ export class GetAdminListDto {
   account: string
 
   @ApiProperty({
-    description: 'level',
+    description: 'role',
     example: ''
   })
-  level: string
+  role: string
 
   @ApiProperty({
     description: 'created at',
