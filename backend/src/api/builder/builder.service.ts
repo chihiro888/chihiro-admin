@@ -25,6 +25,7 @@ export class BuilderService {
       .createQueryBuilder('p')
       .select(['count(1) as count'])
       .where('1=1')
+      .andWhere('p.deleted_at is null')
       .andWhere(dto.url === '' ? '1=1' : 'p.url like :url', {
         url: `%${dto.url}%`
       })
@@ -56,6 +57,7 @@ export class BuilderService {
         'p.updated_at as updatedAt'
       ])
       .where('1=1')
+      .andWhere('p.deleted_at is null')
       .andWhere(dto.url === '' ? '1=1' : 'p.url like :url', {
         url: `%${dto.url}%`
       })
