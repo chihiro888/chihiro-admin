@@ -487,7 +487,7 @@ const Page = () => {
           title="테이블 헤더 편집"
           onClose={handleClickCloseTableHeader}
         />
-        <DialogContent>
+        <DialogContent style={{ minWidth: '350px' }}>
           {tableHeader.map((item, idx) => {
             return (
               <Grid container spacing={1} sx={{ mb: 2 }} key={idx}>
@@ -572,43 +572,39 @@ const Page = () => {
       </Dialog>
 
       {/* 검색 폼 편집 */}
-      <Dialog
-        onClose={handleClickCloseSearchForm}
-        aria-labelledby="simple-dialog-title"
-        open={openSearchForm}
-      >
-        <DialogTitle id="simple-dialog-title">검색 폼 편집</DialogTitle>
-        <DialogContent></DialogContent>
+      <Dialog aria-labelledby="simple-dialog-title" open={openSearchForm}>
+        <CustomDialogTitle
+          title="검색 폼 편집"
+          onClose={handleClickCloseSearchForm}
+        />
+        <DialogContent style={{ minWidth: '350px' }}></DialogContent>
       </Dialog>
 
       {/* 추가 폼 편집 */}
-      <Dialog
-        onClose={handleClickCloseAddForm}
-        aria-labelledby="simple-dialog-title"
-        open={openAddForm}
-      >
-        <DialogTitle id="simple-dialog-title">추가 폼 편집</DialogTitle>
-        <DialogContent></DialogContent>
+      <Dialog aria-labelledby="simple-dialog-title" open={openAddForm}>
+        <CustomDialogTitle
+          title="추가 폼 편집"
+          onClose={handleClickCloseAddForm}
+        />
+        <DialogContent style={{ minWidth: '350px' }}></DialogContent>
       </Dialog>
 
       {/* 상세 폼 편집 */}
-      <Dialog
-        onClose={handleClickCloseDetailForm}
-        aria-labelledby="simple-dialog-title"
-        open={openDetailForm}
-      >
-        <DialogTitle id="simple-dialog-title">상세 폼 편집</DialogTitle>
-        <DialogContent></DialogContent>
+      <Dialog aria-labelledby="simple-dialog-title" open={openDetailForm}>
+        <CustomDialogTitle
+          title="상세 폼 편집"
+          onClose={handleClickCloseDetailForm}
+        />
+        <DialogContent style={{ minWidth: '350px' }}></DialogContent>
       </Dialog>
 
       {/* 액션 편집 */}
-      <Dialog
-        onClose={handleClickCloseActionList}
-        aria-labelledby="simple-dialog-title"
-        open={openActionList}
-      >
-        <DialogTitle id="simple-dialog-title">액션 편집</DialogTitle>
-        <DialogContent></DialogContent>
+      <Dialog aria-labelledby="simple-dialog-title" open={openActionList}>
+        <CustomDialogTitle
+          title="액션 편집"
+          onClose={handleClickCloseActionList}
+        />
+        <DialogContent style={{ minWidth: '350px' }}></DialogContent>
       </Dialog>
     </>
   )

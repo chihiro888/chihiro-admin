@@ -4,7 +4,7 @@ import Icon from 'src/@core/components/icon'
 const CustomDialogTitle = ({ title, onClose }) => {
   return (
     <DialogTitle id="simple-dialog-title">
-      테이블 헤더 편집
+      {title}
       <IconButton
         aria-label="close"
         onClick={onClose}
