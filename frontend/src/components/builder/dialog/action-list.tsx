@@ -14,12 +14,6 @@ const ActionList = () => {
   const page = useSelector((state: RootState) => state.page)
   const { openActionList, actionList } = page
 
-  console.log('actionList => ', actionList)
-
-  const setList = (value) => {
-    dispatch(updateState({ key: 'actionList', value }))
-  }
-
   return (
     <>
       <Dialog aria-labelledby="simple-dialog-title" open={openActionList}>
@@ -30,7 +24,7 @@ const ActionList = () => {
           }}
         />
         <DialogContent style={{ minWidth: '350px' }}>
-          <ActionManager list={actionList} setList={setList} />
+          <ActionManager list={actionList} />
         </DialogContent>
       </Dialog>
     </>

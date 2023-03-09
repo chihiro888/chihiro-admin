@@ -1,7 +1,11 @@
+import produce from 'immer'
 import { Box, Button } from '@mui/material'
 import ActionItem from '../item/action-item'
 import { ReactSortable } from 'react-sortablejs'
-import { useState } from 'react'
+import { updateState } from 'src/store/apps/page'
+import { useDispatch } from 'react-redux'
+import { AppDispatch } from 'src/store'
+import { useEffect } from 'react'
 
 interface Item {
   id: number
@@ -14,10 +18,21 @@ interface Item {
 }
 interface Props {
   list: Item[]
-  setList: any
 }
-const ActionManager = ({ list, setList }: Props) => {
-  const [t, setT] = useState([])
+const ActionManager = ({ list }: Props) => {
+  // ** Hooks
+  const dispatch = useDispatch<AppDispatch>()
+
+  // 순서 보장
+  useEffect(() => {
+    const nextState = produce(list, (draftState) => {
+      for (let i = 0; i < draftState.length; i++) {
+        const item = draftState[i]
+        item.order = i
+      }
+    })
+    dispatch(updateState({ key: 'actionList', value: nextState }))
+  }, [dispatch, list])
 
   return (
     <>
@@ -29,27 +44,11 @@ const ActionManager = ({ list, setList }: Props) => {
 
       <Box>
         <ReactSortable
-          list={t}
-          setList={setT}
+          list={list.map((x) => ({ ...x, chosen: true }))}
+          setList={(newState) =>
+            dispatch(updateState({ key: 'actionList', value: newState }))
+          }
           animation={200}
-          // onEnd={(item) => {
-          //   if (item.oldIndex > item.newIndex) {
-          //     // 아래에서 위로 드래그 앤 드롭
-          //     for (let i = item.newIndex; i < item.oldIndex; i++) {
-          //       // 드롭된 인덱스로부터 아래에 요소를 정렬값을 증가
-          //       list[i].order = list[i].order + 1
-          //     }
-          //   } else {
-          //     // 위에서 아래로 드래그 앤 드롭
-          //     for (let i = item.newIndex; i > item.oldIndex; i--) {
-          //       // 드롭된 인덱스로부터 위에 요소를 정렬값을 감소
-          //       list[i].order = list[i].order - 1
-          //     }
-          //   }
-
-          //   // 드롭된 요소의 정렬값을 드롭된 인덱스로 변경
-          //   list[item.oldIndex].order = item.newIndex
-          // }}
         >
           {list.map((actionItem, idx) => {
             return (
