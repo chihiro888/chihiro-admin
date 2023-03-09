@@ -12,6 +12,7 @@ import permissions from 'src/store/apps/permissions'
 // ** Custom Store
 import crud from 'src/store/apps/crud'
 import app from 'src/store/apps/app'
+import page from 'src/store/apps/page'
 
 export const store = configureStore({
   reducer: {
@@ -22,7 +23,8 @@ export const store = configureStore({
     calendar,
     permissions,
     crud,
-    app
+    app,
+    page
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
