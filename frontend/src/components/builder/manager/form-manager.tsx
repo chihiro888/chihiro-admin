@@ -61,7 +61,7 @@ const FormManager = ({ _key, list }: Props) => {
             return (
               <DefaultItem
                 key={idx}
-                id={item.id}
+                id={item.id} // 사용 안함
                 order={item.order}
                 type={item.type}
                 _key={item.key} // 예약어 회피

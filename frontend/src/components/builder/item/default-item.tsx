@@ -1,5 +1,4 @@
 import { Card, CardContent, Chip, Grid, Typography } from '@mui/material'
-import Icon from 'src/@core/components/icon'
 
 const DefaultItem = ({ id, order, type, _key, label }) => {
   return (

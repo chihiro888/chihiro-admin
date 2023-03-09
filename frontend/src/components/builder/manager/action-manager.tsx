@@ -55,7 +55,7 @@ const ActionManager = ({ list }: Props) => {
             return (
               <ActionItem
                 key={idx}
-                id={actionItem.id}
+                id={actionItem.id} // 사용 안함
                 order={actionItem.order}
                 icon={actionItem.icon}
                 label={actionItem.label}
