@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 import CustomDialogTitle from 'src/components/custom-dialog-title'
 import { AppDispatch, RootState } from 'src/store'
 import { closeSearchForm } from 'src/store/apps/page'
+import FormManager from '../manager/form-manager'
 
 const SearchForm = () => {
   // ** Hooks
@@ -23,7 +24,9 @@ const SearchForm = () => {
             dispatch(closeSearchForm())
           }}
         />
-        <DialogContent style={{ minWidth: '350px' }}></DialogContent>
+        <DialogContent style={{ minWidth: '350px' }}>
+          <FormManager />
+        </DialogContent>
       </Dialog>
     </>
   )

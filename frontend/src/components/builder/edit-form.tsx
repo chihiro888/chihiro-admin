@@ -15,6 +15,8 @@ import { useDispatch } from 'react-redux'
 import Icon from 'src/@core/components/icon'
 import { AppDispatch, RootState } from 'src/store'
 import {
+  openActionList,
+  openAddForm,
   openDetailForm,
   openSearchForm,
   openTableHeader,
@@ -273,7 +275,7 @@ const EditForm = () => {
                 <Button
                   variant="outlined"
                   onClick={() => {
-                    dispatch(openTableHeader())
+                    dispatch(openSearchForm())
                   }}
                   fullWidth
                 >
@@ -288,7 +290,7 @@ const EditForm = () => {
                 <Button
                   variant="outlined"
                   onClick={() => {
-                    dispatch(openSearchForm())
+                    dispatch(openAddForm())
                   }}
                   fullWidth
                 >
@@ -316,7 +318,7 @@ const EditForm = () => {
                 <Button
                   variant="outlined"
                   onClick={() => {
-                    dispatch(openDetailForm())
+                    dispatch(openActionList())
                   }}
                   fullWidth
                 >

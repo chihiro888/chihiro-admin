@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 import CustomDialogTitle from 'src/components/custom-dialog-title'
 import { AppDispatch, RootState } from 'src/store'
 import { closeActionList } from 'src/store/apps/page'
+import ActionManager from '../manager/action-manager'
 
 const ActionList = () => {
   // ** Hooks
@@ -22,7 +23,9 @@ const ActionList = () => {
             dispatch(closeActionList())
           }}
         />
-        <DialogContent style={{ minWidth: '350px' }}></DialogContent>
+        <DialogContent style={{ minWidth: '350px' }}>
+          <ActionManager />
+        </DialogContent>
       </Dialog>
     </>
   )

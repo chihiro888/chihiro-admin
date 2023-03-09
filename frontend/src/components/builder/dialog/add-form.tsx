@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 import CustomDialogTitle from 'src/components/custom-dialog-title'
 import { AppDispatch, RootState } from 'src/store'
 import { closeAddForm } from 'src/store/apps/page'
+import FormManager from '../manager/form-manager'
 
 const AddForm = () => {
   // ** Hooks
@@ -22,7 +23,9 @@ const AddForm = () => {
             dispatch(closeAddForm())
           }}
         />
-        <DialogContent style={{ minWidth: '350px' }}></DialogContent>
+        <DialogContent style={{ minWidth: '350px' }}>
+          <FormManager />
+        </DialogContent>
       </Dialog>
     </>
   )
