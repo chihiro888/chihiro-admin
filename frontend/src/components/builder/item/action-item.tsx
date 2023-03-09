@@ -3,13 +3,16 @@ import Icon from 'src/@core/components/icon'
 import { useDrag, useDrop } from 'react-dnd'
 import { useRef } from 'react'
 
-const ActionItem = ({ id, icon, label, loadAPI, updateAPI }) => {
+const ActionItem = ({ id, order, icon, label, loadAPI, updateAPI }) => {
   return (
     <>
       <Card sx={{ mb: 3 }}>
         <CardContent>
           <Typography>
             {'id => '} {id}
+          </Typography>
+          <Typography>
+            {'order => '} {order}
           </Typography>
 
           <Grid container spacing={3}>
