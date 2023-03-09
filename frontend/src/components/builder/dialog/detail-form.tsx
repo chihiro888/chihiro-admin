@@ -1,10 +1,15 @@
 import { Dialog, DialogContent } from '@mui/material'
+import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import CustomDialogTitle from 'src/components/custom-dialog-title'
-import { RootState } from 'src/store'
+import { AppDispatch, RootState } from 'src/store'
+import { closeDetailForm } from 'src/store/apps/page'
 
 const DetailForm = () => {
-  // Redux
+  // ** Hooks
+  const dispatch = useDispatch<AppDispatch>()
+
+  // ** Redux
   const page = useSelector((state: RootState) => state.page)
   const openDetailForm = page.openDetailForm
 
@@ -13,9 +18,8 @@ const DetailForm = () => {
       <Dialog aria-labelledby="simple-dialog-title" open={openDetailForm}>
         <CustomDialogTitle
           title="상세 폼 편집"
-          // onClose={handleClickCloseDetailForm}
           onClose={() => {
-            //
+            dispatch(closeDetailForm())
           }}
         />
         <DialogContent style={{ minWidth: '350px' }}></DialogContent>

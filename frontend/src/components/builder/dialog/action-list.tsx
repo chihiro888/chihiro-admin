@@ -1,10 +1,15 @@
 import { Dialog, DialogContent } from '@mui/material'
+import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import CustomDialogTitle from 'src/components/custom-dialog-title'
-import { RootState } from 'src/store'
+import { AppDispatch, RootState } from 'src/store'
+import { closeActionList } from 'src/store/apps/page'
 
 const ActionList = () => {
-  // Redux
+  // ** Hooks
+  const dispatch = useDispatch<AppDispatch>()
+
+  // ** Redux
   const page = useSelector((state: RootState) => state.page)
   const openActionList = page.openActionList
 
@@ -13,9 +18,8 @@ const ActionList = () => {
       <Dialog aria-labelledby="simple-dialog-title" open={openActionList}>
         <CustomDialogTitle
           title="액션 편집"
-          // onClose={handleClickCloseActionList}
           onClose={() => {
-            //
+            dispatch(closeActionList())
           }}
         />
         <DialogContent style={{ minWidth: '350px' }}></DialogContent>

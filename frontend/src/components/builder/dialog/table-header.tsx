@@ -1,13 +1,69 @@
-import { Button, Dialog, DialogContent } from '@mui/material'
+import { Button, Dialog, DialogContent, Grid, TextField } from '@mui/material'
 import CustomDialogTitle from 'src/components/custom-dialog-title'
 import Icon from 'src/@core/components/icon'
 import { useSelector } from 'react-redux'
-import { RootState } from 'src/store'
+import { AppDispatch, RootState } from 'src/store'
+import { useDispatch } from 'react-redux'
+import { closeTableHeader, updateState } from 'src/store/apps/page'
+import { toast } from 'react-hot-toast'
 
 const TableHeader = () => {
-  // Redux
+  // ** Hooks
+  const dispatch = useDispatch<AppDispatch>()
+
+  // ** Redux
   const page = useSelector((state: RootState) => state.page)
-  const openTableHeader = page.openTableHeader
+  const { openTableHeader, tableHeader } = page
+
+  // ** Handler
+  // 요소 수정
+  const handleChangeInput = (e, idx) => {
+    const copyArr = [...tableHeader]
+    copyArr[idx] = e.target.value
+    dispatch(updateState({ key: 'tableHeader', value: copyArr }))
+  }
+
+  // 요소 삭제
+  const handleClickRemove = (idx) => {
+    const copyArr = [...tableHeader]
+
+    // 유효성
+    if (copyArr.length === 1) {
+      toast.error('테이블 헤더는 최소 1개 이상이어야 합니다.')
+
+      return false
+    }
+
+    // 요소 삭제
+    copyArr.splice(idx, 1)
+
+    dispatch(updateState({ key: 'tableHeader', value: copyArr }))
+  }
+
+  // 요소 추가
+  const handleClickAdd = () => {
+    dispatch(updateState({ key: 'tableHeader', value: [...tableHeader, ''] }))
+  }
+
+  // 요소 저정
+  const handleClickSave = () => {
+    // 유효성
+    for (let i = 0; i < tableHeader.length; i++) {
+      const item = tableHeader[i]
+      if (item === '') {
+        // 알림
+        toast.error('테이블 헤더는 빈 값이 될 수 없습니다.')
+
+        return false
+      }
+    }
+
+    // 모달 닫기
+    dispatch(closeTableHeader())
+
+    // 알림
+    toast.success('테이블 헤더가 수정되었습니다.')
+  }
 
   return (
     <>
@@ -15,13 +71,12 @@ const TableHeader = () => {
       <Dialog aria-labelledby="simple-dialog-title" open={openTableHeader}>
         <CustomDialogTitle
           title="테이블 헤더 편집"
-          // onClose={handleClickCloseTableHeader}
           onClose={() => {
-            //
+            dispatch(closeTableHeader())
           }}
         />
         <DialogContent style={{ minWidth: '350px' }}>
-          {/* {tableHeader.map((item, idx) => {
+          {tableHeader.map((item, idx) => {
             return (
               <Grid container spacing={1} sx={{ mb: 2 }} key={idx}>
                 <Grid item xs={9}>
@@ -32,9 +87,7 @@ const TableHeader = () => {
                     fullWidth
                     value={item}
                     onChange={(e) => {
-                      const copyArr = [...tableHeader]
-                      copyArr[idx] = e.target.value
-                      setTableHeader(copyArr)
+                      handleChangeInput(e, idx)
                     }}
                   />
                 </Grid>
@@ -42,36 +95,21 @@ const TableHeader = () => {
                   <Button
                     variant="outlined"
                     color="error"
-                    onClick={() => {
-                      const copyArr = [...tableHeader]
-
-                      // 유효성
-                      if (copyArr.length === 1) {
-                        toast.error('테이블 헤더는 최소 1개 이상이어야 합니다.')
-
-                        return false
-                      }
-
-                      // 요소 삭제
-                      copyArr.splice(idx, 1)
-                      setTableHeader(copyArr)
-                    }}
+                    onClick={() => handleClickRemove(idx)}
                   >
                     <Icon icon="material-symbols:delete-forever-outline"></Icon>
                   </Button>
                 </Grid>
               </Grid>
             )
-          })} */}
+          })}
 
           <Button
             variant="outlined"
             color="secondary"
             fullWidth
             sx={{ mt: 3 }}
-            // onClick={() => {
-            //   setTableHeader([...tableHeader, ''])
-            // }}
+            onClick={handleClickAdd}
           >
             <Icon icon="material-symbols:add"></Icon>
           </Button>
@@ -80,26 +118,9 @@ const TableHeader = () => {
             variant="outlined"
             fullWidth
             sx={{ mt: 3 }}
-            // onClick={() => {
-            //   // 유효성
-            //   for (let i = 0; i < tableHeader.length; i++) {
-            //     const item = tableHeader[i]
-            //     if (item === '') {
-            //       // 알림
-            //       toast.error('테이블 헤더는 빈 값이 될 수 없습니다.')
-
-            //       return false
-            //     }
-            //   }
-
-            //   // 모달 닫기
-            //   handleClickCloseTableHeader()
-
-            //   // 알림
-            //   toast.success('테이블 헤더가 저장되었습니다.')
-            // }}
+            onClick={handleClickSave}
           >
-            저장
+            수정
           </Button>
         </DialogContent>
       </Dialog>
