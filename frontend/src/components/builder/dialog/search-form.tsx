@@ -25,7 +25,7 @@ const SearchForm = () => {
           }}
         />
         <DialogContent style={{ minWidth: '350px' }}>
-          <FormManager />
+          <FormManager _key="searchForm" list={searchForm} />
         </DialogContent>
       </Dialog>
     </>

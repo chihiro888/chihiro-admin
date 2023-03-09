@@ -24,7 +24,7 @@ const AddForm = () => {
           }}
         />
         <DialogContent style={{ minWidth: '350px' }}>
-          <FormManager />
+          <FormManager _key="addForm" list={addForm} />
         </DialogContent>
       </Dialog>
     </>

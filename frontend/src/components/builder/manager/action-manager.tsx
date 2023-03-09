@@ -19,6 +19,7 @@ interface Item {
 interface Props {
   list: Item[]
 }
+
 const ActionManager = ({ list }: Props) => {
   // ** Hooks
   const dispatch = useDispatch<AppDispatch>()
