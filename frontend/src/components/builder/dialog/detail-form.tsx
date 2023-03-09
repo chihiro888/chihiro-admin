@@ -12,7 +12,7 @@ const DetailForm = () => {
 
   // ** Redux
   const page = useSelector((state: RootState) => state.page)
-  const openDetailForm = page.openDetailForm
+  const { openDetailForm, detailForm } = page
 
   return (
     <>

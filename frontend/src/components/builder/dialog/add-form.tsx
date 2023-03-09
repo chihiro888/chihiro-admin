@@ -12,7 +12,7 @@ const AddForm = () => {
 
   // ** Redux
   const page = useSelector((state: RootState) => state.page)
-  const openAddForm = page.openAddForm
+  const { openAddForm, addForm } = page
 
   return (
     <>

@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import CustomDialogTitle from 'src/components/custom-dialog-title'
 import { AppDispatch, RootState } from 'src/store'
-import { closeActionList } from 'src/store/apps/page'
+import { closeActionList, updateState } from 'src/store/apps/page'
 import ActionManager from '../manager/action-manager'
 
 const ActionList = () => {
@@ -12,7 +12,13 @@ const ActionList = () => {
 
   // ** Redux
   const page = useSelector((state: RootState) => state.page)
-  const openActionList = page.openActionList
+  const { openActionList, actionList } = page
+
+  console.log('actionList => ', actionList)
+
+  const setList = (value) => {
+    dispatch(updateState({ key: 'actionList', value }))
+  }
 
   return (
     <>
@@ -24,7 +30,7 @@ const ActionList = () => {
           }}
         />
         <DialogContent style={{ minWidth: '350px' }}>
-          <ActionManager />
+          <ActionManager list={actionList} setList={setList} />
         </DialogContent>
       </Dialog>
     </>

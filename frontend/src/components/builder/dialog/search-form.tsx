@@ -12,7 +12,7 @@ const SearchForm = () => {
 
   // ** Redux
   const page = useSelector((state: RootState) => state.page)
-  const openSearchForm = page.openSearchForm
+  const { openSearchForm, searchForm } = page
 
   return (
     <>
