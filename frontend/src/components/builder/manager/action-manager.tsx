@@ -1,14 +1,21 @@
 import { Box, Button } from '@mui/material'
 import ActionItem from '../item/action-item'
-import { HTML5Backend } from 'react-dnd-html5-backend'
-import { DndProvider } from 'react-dnd'
-import { useCallback, useState } from 'react'
-import update from 'immutability-helper'
+import { useState } from 'react'
+import { ReactSortable } from 'react-sortablejs'
+
+interface ItemType {
+  id: number
+  icon: string
+  label: string
+  content: any
+  loadAPI: any
+  updateAPI: any
+}
 
 const ActionManager = () => {
-  const [actionItemList, setActionItemList] = useState([
+  const [actionItemList, setActionItemList] = useState<ItemType[]>([
     {
-      index: 1,
+      id: 0,
       icon: 'bx:user-circle',
       label: '프로필 변경',
       content: [
@@ -26,7 +33,7 @@ const ActionManager = () => {
       updateAPI: null
     },
     {
-      index: 2,
+      id: 1,
       icon: 'bx:user-circle',
       label: '자기소개 변경',
       content: [
@@ -41,7 +48,7 @@ const ActionManager = () => {
       updateAPI: null
     },
     {
-      index: 3,
+      id: 2,
       icon: 'bx:pencil',
       label: '비밀번호 변경',
       content: [
@@ -68,7 +75,7 @@ const ActionManager = () => {
       updateAPI: null
     },
     {
-      index: 4,
+      id: 3,
       icon: 'bx:pencil',
       label: '사용자명 변경',
       content: [
@@ -83,7 +90,7 @@ const ActionManager = () => {
       updateAPI: null
     },
     {
-      index: 5,
+      id: 4,
       icon: 'bx:pencil',
       label: '권한 변경',
       content: [
@@ -113,17 +120,6 @@ const ActionManager = () => {
     }
   ])
 
-  const moveCard = useCallback((dragIndex, hoverIndex) => {
-    setActionItemList((prevCards) =>
-      update(prevCards, {
-        $splice: [
-          [dragIndex, 1],
-          [hoverIndex, 0, prevCards[dragIndex]]
-        ]
-      })
-    )
-  }, [])
-
   return (
     <>
       <Box sx={{ display: 'flex', justifyContent: 'right', mb: 10 }}>
@@ -132,24 +128,30 @@ const ActionManager = () => {
         </Button>
       </Box>
 
-      <DndProvider backend={HTML5Backend}>
-        <Box>
+      <Box>
+        <ReactSortable
+          list={actionItemList}
+          setList={setActionItemList}
+          animation={200}
+          onChange={(order) => {
+            console.log('oldIndex => ', order.oldIndex)
+            console.log('newIndex => ', order.newIndex)
+          }}
+        >
           {actionItemList.map((actionItem, idx) => {
             return (
               <ActionItem
-                key={actionItem.index}
-                index={idx}
-                itemIndex={actionItem.index}
+                key={idx}
+                id={actionItem.id}
                 icon={actionItem.icon}
                 label={actionItem.label}
                 loadAPI={actionItem.loadAPI}
                 updateAPI={actionItem.updateAPI}
-                moveCard={moveCard}
               />
             )
           })}
-        </Box>
-      </DndProvider>
+        </ReactSortable>
+      </Box>
     </>
   )
 }
