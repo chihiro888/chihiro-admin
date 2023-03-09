@@ -16,18 +16,18 @@ const ActionItem = ({ icon, label, loadAPI, updateAPI }) => {
           </Grid>
           <Grid container spacing={3} sx={{ mt: 1 }}>
             <Grid item xs={5}>
-              <Chip label={loadAPI} color="primary" variant="outlined" />
+              <Chip label="loadAPI" color="primary" variant="outlined" />
             </Grid>
             <Grid item xs={7}>
-              getUserDetail
+              {loadAPI}
             </Grid>
           </Grid>
           <Grid container spacing={3} sx={{ mt: 1 }}>
             <Grid item xs={5}>
-              <Chip label={updateAPI} color="primary" variant="outlined" />
+              <Chip label="updateAPI" color="primary" variant="outlined" />
             </Grid>
             <Grid item xs={7}>
-              updateUserProfile
+              {updateAPI}
             </Grid>
           </Grid>
         </CardContent>
