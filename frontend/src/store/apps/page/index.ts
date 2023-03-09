@@ -9,6 +9,9 @@ const init = {
   openDetailForm: false,
   openActionList: false,
 
+  // selector
+  openPartSelector: false,
+
   // core
   url: '',
   pageHeader: {
@@ -82,6 +85,14 @@ export const appPageSlice = createSlice({
       state.openActionList = false
     },
 
+    // 파츠 셀렉터 모달
+    openPartSelector(state) {
+      state.openPartSelector = true
+    },
+    closePartSelector(state) {
+      state.openPartSelector = false
+    },
+
     // 공통 수정
     updateState(state, action) {
       state[action.payload.key] = action.payload.value
@@ -130,6 +141,8 @@ export const {
   closeDetailForm,
   openActionList,
   closeActionList,
+  openPartSelector,
+  closePartSelector,
   updateState,
   setInitData
 } = appPageSlice.actions

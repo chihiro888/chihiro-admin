@@ -12,6 +12,7 @@ import AddForm from 'src/components/builder/dialog/add-form'
 import DetailForm from 'src/components/builder/dialog/detail-form'
 import ActionList from 'src/components/builder/dialog/action-list'
 import { setInitData } from 'src/store/apps/page'
+import PartSelector from 'src/components/builder/selector/part-selector'
 
 const Page = () => {
   // ** Hooks
@@ -71,6 +72,9 @@ const Page = () => {
 
       {/* 액션 편집 */}
       <ActionList />
+
+      {/* 파츠 셀릭터 */}
+      <PartSelector />
     </>
   )
 }

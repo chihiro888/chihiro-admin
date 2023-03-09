@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { ReactSortable } from 'react-sortablejs'
 import { AppDispatch } from 'src/store'
-import { updateState } from 'src/store/apps/page'
+import { openPartSelector, updateState } from 'src/store/apps/page'
 import DefaultItem from '../item/default-item'
 
 interface Item {
@@ -44,7 +44,13 @@ const FormManager = ({ _key, list }: Props) => {
   return (
     <>
       <Box sx={{ display: 'flex', justifyContent: 'right', mb: 10 }}>
-        <Button variant="contained" color="primary">
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() => {
+            dispatch(openPartSelector())
+          }}
+        >
           추가
         </Button>
       </Box>
