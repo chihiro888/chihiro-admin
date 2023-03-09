@@ -39,7 +39,7 @@ const FormManager = ({ _key, list }: Props) => {
       }
     })
     dispatch(updateState({ key: _key, value: nextState }))
-  }, [dispatch, list])
+  }, [_key, dispatch, list])
 
   return (
     <>
