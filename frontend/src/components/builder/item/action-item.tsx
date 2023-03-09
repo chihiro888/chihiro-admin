@@ -4,7 +4,7 @@ import Icon from 'src/@core/components/icon'
 const ActionItem = ({ icon, label, loadAPI, updateAPI }) => {
   return (
     <>
-      <Card>
+      <Card sx={{ mb: 3 }}>
         <CardContent>
           <Grid container spacing={3}>
             <Grid item>
