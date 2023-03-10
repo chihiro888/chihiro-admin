@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { ReactSortable } from 'react-sortablejs'
 import { AppDispatch } from 'src/store'
-import { openPartSelector, updateState } from 'src/store/apps/page'
+import { hOpenPartSelector, updateState } from 'src/store/apps/page'
 import DefaultItem from '../item/default-item'
 
 interface Item {
@@ -39,7 +39,8 @@ const FormManager = ({ _key, list }: Props) => {
       }
     })
     dispatch(updateState({ key: _key, value: nextState }))
-  }, [_key, dispatch, list])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <>
@@ -48,7 +49,7 @@ const FormManager = ({ _key, list }: Props) => {
           variant="contained"
           color="primary"
           onClick={() => {
-            dispatch(openPartSelector())
+            dispatch(hOpenPartSelector())
           }}
         >
           추가

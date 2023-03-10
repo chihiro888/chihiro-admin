@@ -1,9 +1,10 @@
 import { Dialog, DialogContent } from '@mui/material'
+import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import CustomDialogTitle from 'src/components/custom-dialog-title'
 import { AppDispatch, RootState } from 'src/store'
-import { closeAddForm } from 'src/store/apps/page'
+import { hCloseAddForm } from 'src/store/apps/page'
 import FormManager from '../manager/form-manager'
 
 const AddForm = () => {
@@ -20,7 +21,7 @@ const AddForm = () => {
         <CustomDialogTitle
           title="추가 폼 편집"
           onClose={() => {
-            dispatch(closeAddForm())
+            dispatch(hCloseAddForm())
           }}
         />
         <DialogContent style={{ minWidth: '350px' }}>

@@ -11,6 +11,13 @@ const init = {
 
   // selector
   openPartSelector: false,
+  partType: 'add', // add, search, detail
+
+  // part dialog
+  openDefaultPart: false,
+  openLinePart: false,
+  openSelectPart: false,
+  openUploadPart: false,
 
   // core
   url: '',
@@ -46,56 +53,121 @@ export const appPageSlice = createSlice({
   initialState: { ...init },
   reducers: {
     // 테이블 헤더 모달
-    openTableHeader(state) {
+    hOpenTableHeader(state) {
       state.openTableHeader = true
     },
-    closeTableHeader(state) {
+    hCloseTableHeader(state) {
       state.openTableHeader = false
     },
 
     // 검색 폼 모달
-    openSearchForm(state) {
+    hOpenSearchForm(state) {
       state.openSearchForm = true
+      state.partType = 'search'
     },
-    closeSearchForm(state) {
+    hCloseSearchForm(state) {
       state.openSearchForm = false
     },
 
     // 추가 폼 모달
-    openAddForm(state) {
+    hOpenAddForm(state) {
       state.openAddForm = true
+      state.partType = 'add'
     },
-    closeAddForm(state) {
+    hCloseAddForm(state) {
       state.openAddForm = false
     },
 
     // 상세 폼 모달
-    openDetailForm(state) {
+    hOpenDetailForm(state) {
       state.openDetailForm = true
+      state.partType = 'detail'
     },
-    closeDetailForm(state) {
+    hCloseDetailForm(state) {
       state.openDetailForm = false
     },
 
     // 액션 리스트 모달
-    openActionList(state) {
+    hOpenActionList(state) {
       state.openActionList = true
     },
-    closeActionList(state) {
+    hCloseActionList(state) {
       state.openActionList = false
     },
 
     // 파츠 셀렉터 모달
-    openPartSelector(state) {
+    hOpenPartSelector(state) {
       state.openPartSelector = true
     },
-    closePartSelector(state) {
+    hClosePartSelector(state) {
       state.openPartSelector = false
+    },
+
+    // 기본 파츠 모달
+    hOpenDefaultPart(state) {
+      state.openDefaultPart = true
+    },
+    hCloseDefaultPart(state) {
+      state.openDefaultPart = false
+    },
+
+    // 라인 파츠 모달
+    hOpenLinePart(state) {
+      state.openLinePart = true
+    },
+    hCloseLinePart(state) {
+      state.openLinePart = false
+    },
+
+    // 선택 파츠 모달
+    hOpenSelectPart(state) {
+      state.openSelectPart = true
+    },
+    hCloseSelectPart(state) {
+      state.openSelectPart = false
+    },
+
+    // 업로드 파츠 모달
+    hOpenUploadPart(state) {
+      state.openUploadPart = true
+    },
+    hCloseUploadPart(state) {
+      state.openUploadPart = false
     },
 
     // 공통 수정
     updateState(state, action) {
       state[action.payload.key] = action.payload.value
+    },
+
+    // 데이터 초기화
+    setClearData(state) {
+      state.url = ''
+      state.pageHeader = {
+        title: '',
+        subTitle: ''
+      }
+      state.listApi = {
+        checked: true,
+        functionName: ''
+      }
+      state.createApi = {
+        checked: false,
+        functionName: ''
+      }
+      state.detailApi = {
+        checked: false,
+        functionName: ''
+      }
+      state.deleteApi = {
+        checked: false,
+        functionName: ''
+      }
+      state.tableHeader = []
+      state.addForm = []
+      state.detailForm = []
+      state.searchForm = []
+      state.actionList = []
     },
 
     // 초기 데이터 주입
@@ -131,19 +203,28 @@ export const appPageSlice = createSlice({
 })
 
 export const {
-  openTableHeader,
-  closeTableHeader,
-  openSearchForm,
-  closeSearchForm,
-  openAddForm,
-  closeAddForm,
-  openDetailForm,
-  closeDetailForm,
-  openActionList,
-  closeActionList,
-  openPartSelector,
-  closePartSelector,
+  hOpenTableHeader,
+  hCloseTableHeader,
+  hOpenSearchForm,
+  hCloseSearchForm,
+  hOpenAddForm,
+  hCloseAddForm,
+  hOpenDetailForm,
+  hCloseDetailForm,
+  hOpenActionList,
+  hCloseActionList,
+  hOpenPartSelector,
+  hClosePartSelector,
+  hOpenDefaultPart,
+  hCloseDefaultPart,
+  hOpenLinePart,
+  hCloseLinePart,
+  hOpenSelectPart,
+  hCloseSelectPart,
+  hOpenUploadPart,
+  hCloseUploadPart,
   updateState,
+  setClearData,
   setInitData
 } = appPageSlice.actions
 

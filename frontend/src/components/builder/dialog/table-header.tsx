@@ -4,7 +4,7 @@ import Icon from 'src/@core/components/icon'
 import { useSelector } from 'react-redux'
 import { AppDispatch, RootState } from 'src/store'
 import { useDispatch } from 'react-redux'
-import { closeTableHeader, updateState } from 'src/store/apps/page'
+import { hCloseTableHeader, updateState } from 'src/store/apps/page'
 import { toast } from 'react-hot-toast'
 
 const TableHeader = () => {
@@ -59,7 +59,7 @@ const TableHeader = () => {
     }
 
     // 모달 닫기
-    dispatch(closeTableHeader())
+    dispatch(hCloseTableHeader())
 
     // 알림
     toast.success('테이블 헤더가 수정되었습니다.')
@@ -72,7 +72,7 @@ const TableHeader = () => {
         <CustomDialogTitle
           title="테이블 헤더 편집"
           onClose={() => {
-            dispatch(closeTableHeader())
+            dispatch(hCloseTableHeader())
           }}
         />
         <DialogContent style={{ minWidth: '350px' }}>

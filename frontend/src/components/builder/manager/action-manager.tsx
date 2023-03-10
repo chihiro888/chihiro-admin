@@ -33,7 +33,8 @@ const ActionManager = ({ list }: Props) => {
       }
     })
     dispatch(updateState({ key: 'actionList', value: nextState }))
-  }, [dispatch, list])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <>

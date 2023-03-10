@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import CustomDialogTitle from 'src/components/custom-dialog-title'
 import { AppDispatch, RootState } from 'src/store'
-import { closeDetailForm } from 'src/store/apps/page'
+import { hCloseDetailForm } from 'src/store/apps/page'
 import FormManager from '../manager/form-manager'
 
 const DetailForm = () => {
@@ -20,7 +20,7 @@ const DetailForm = () => {
         <CustomDialogTitle
           title="상세 폼 편집"
           onClose={() => {
-            dispatch(closeDetailForm())
+            dispatch(hCloseDetailForm())
           }}
         />
         <DialogContent style={{ minWidth: '350px' }}>

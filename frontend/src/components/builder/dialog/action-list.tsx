@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import CustomDialogTitle from 'src/components/custom-dialog-title'
 import { AppDispatch, RootState } from 'src/store'
-import { closeActionList, updateState } from 'src/store/apps/page'
+import { hCloseActionList } from 'src/store/apps/page'
 import ActionManager from '../manager/action-manager'
 
 const ActionList = () => {
@@ -20,7 +20,7 @@ const ActionList = () => {
         <CustomDialogTitle
           title="액션 편집"
           onClose={() => {
-            dispatch(closeActionList())
+            dispatch(hCloseActionList())
           }}
         />
         <DialogContent style={{ minWidth: '350px' }}>

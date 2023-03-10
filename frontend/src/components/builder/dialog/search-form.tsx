@@ -1,9 +1,10 @@
 import { Dialog, DialogContent } from '@mui/material'
+import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import CustomDialogTitle from 'src/components/custom-dialog-title'
 import { AppDispatch, RootState } from 'src/store'
-import { closeSearchForm } from 'src/store/apps/page'
+import { hCloseSearchForm } from 'src/store/apps/page'
 import FormManager from '../manager/form-manager'
 
 const SearchForm = () => {
@@ -21,7 +22,7 @@ const SearchForm = () => {
         <CustomDialogTitle
           title="검색 폼 편집"
           onClose={() => {
-            dispatch(closeSearchForm())
+            dispatch(hCloseSearchForm())
           }}
         />
         <DialogContent style={{ minWidth: '350px' }}>

@@ -11,7 +11,7 @@ import SearchForm from 'src/components/builder/dialog/search-form'
 import AddForm from 'src/components/builder/dialog/add-form'
 import DetailForm from 'src/components/builder/dialog/detail-form'
 import ActionList from 'src/components/builder/dialog/action-list'
-import { setInitData } from 'src/store/apps/page'
+import { setClearData, setInitData } from 'src/store/apps/page'
 import PartSelector from 'src/components/builder/selector/part-selector'
 
 const Page = () => {
@@ -44,6 +44,8 @@ const Page = () => {
         subTitle: '페이지를 간단하게 빌딩할 수 있습니다.'
       })
     )
+
+    dispatch(setClearData())
 
     if (id) {
       initData(id)
