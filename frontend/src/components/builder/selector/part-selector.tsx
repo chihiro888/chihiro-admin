@@ -15,7 +15,8 @@ import {
   hOpenLinePart,
   hOpenSelectPart,
   hOpenTextareaPart,
-  hOpenUploadPart
+  hOpenUploadPart,
+  updateState
 } from 'src/store/apps/page'
 
 // ** Icon Imports
@@ -126,6 +127,10 @@ const PartSelector = () => {
                 <Card
                   key={index}
                   onClick={() => {
+                    dispatch(
+                      updateState({ key: 'partSubType', value: part.type })
+                    )
+
                     const defaultCondition =
                       part.type === 'text' ||
                       part.type === 'number' ||

@@ -11,7 +11,7 @@ import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import CustomDialogTitle from 'src/components/custom-dialog-title'
 import { AppDispatch, RootState } from 'src/store'
-import { hCloseSelectPart } from 'src/store/apps/page'
+import { hCloseSelectPart, updateState } from 'src/store/apps/page'
 import Icon from 'src/@core/components/icon'
 
 const SelectPart = () => {
@@ -20,7 +20,8 @@ const SelectPart = () => {
 
   // ** Redux
   const page = useSelector((state: RootState) => state.page)
-  const { openSelectPart } = page
+  const { openSelectPart, partSubType } = page
+  const { inputKey, inputLabel } = page
 
   return (
     <>
@@ -33,13 +34,31 @@ const SelectPart = () => {
         />
         <DialogContent style={{ minWidth: '350px' }}>
           <Box sx={{ mb: 3 }}>
-            <TextField label="타입" fullWidth />
+            <TextField label="타입" fullWidth value={partSubType} disabled />
           </Box>
           <Box sx={{ mb: 3 }}>
-            <TextField label="키" fullWidth />
+            <TextField
+              label="키"
+              fullWidth
+              value={inputKey}
+              onChange={(e) => {
+                dispatch(
+                  updateState({ key: 'inputKey', value: e.target.value })
+                )
+              }}
+            />
           </Box>
           <Box sx={{ mb: 3 }}>
-            <TextField label="라벨" fullWidth />
+            <TextField
+              label="라벨"
+              fullWidth
+              value={inputLabel}
+              onChange={(e) => {
+                dispatch(
+                  updateState({ key: 'inputLabel', value: e.target.value })
+                )
+              }}
+            />
           </Box>
           <Typography sx={{ mb: 2 }}>리스트</Typography>
           <Grid container spacing={2} sx={{ mb: 3 }}>

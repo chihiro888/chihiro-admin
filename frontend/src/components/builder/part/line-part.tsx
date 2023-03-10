@@ -12,7 +12,7 @@ import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import CustomDialogTitle from 'src/components/custom-dialog-title'
 import { AppDispatch, RootState } from 'src/store'
-import { hCloseLinePart } from 'src/store/apps/page'
+import { hCloseLinePart, updateState } from 'src/store/apps/page'
 
 const LinePart = () => {
   // ** Hooks
@@ -20,7 +20,8 @@ const LinePart = () => {
 
   // ** Redux
   const page = useSelector((state: RootState) => state.page)
-  const { openLinePart } = page
+  const { openLinePart, partSubType } = page
+  const { inputLabel, inputUseChip, inputSx } = page
 
   return (
     <>
@@ -33,18 +34,29 @@ const LinePart = () => {
         />
         <DialogContent style={{ minWidth: '350px' }}>
           <Box sx={{ mb: 3 }}>
-            <TextField label="타입" fullWidth />
+            <TextField label="타입" fullWidth value={partSubType} disabled />
           </Box>
           <Box sx={{ mb: 3 }}>
-            <TextField label="키" fullWidth />
+            <TextField
+              label="라벨"
+              fullWidth
+              value={inputLabel}
+              onChange={(e) => {
+                dispatch(
+                  updateState({ key: 'inputLabel', value: e.target.value })
+                )
+              }}
+            />
           </Box>
           <Box sx={{ mb: 3 }}>
             <RadioGroup
               row
-              value={null}
+              value={inputUseChip}
               name="simple-radio"
-              onChange={() => {
-                //
+              onChange={(e) => {
+                dispatch(
+                  updateState({ key: 'inputUseChip', value: e.target.value })
+                )
               }}
             >
               <FormControlLabel
@@ -60,7 +72,14 @@ const LinePart = () => {
             </RadioGroup>
           </Box>
           <Box sx={{ mb: 3 }}>
-            <TextField label="추가디자인 (sx)" fullWidth />
+            <TextField
+              label="추가디자인 (sx)"
+              fullWidth
+              value={inputSx}
+              onChange={(e) => {
+                dispatch(updateState({ key: 'inputSx', value: e.target.value }))
+              }}
+            />
           </Box>
           <Box sx={{ mb: 3 }}>
             <Button variant="contained" fullWidth>

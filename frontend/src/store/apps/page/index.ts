@@ -12,6 +12,7 @@ const init = {
   // selector
   openPartSelector: false,
   partType: 'add', // add, search, detail
+  partSubType: '', // text, select, date, number, textarea, password, upload, editor, line
 
   // part dialog
   openDefaultPart: false,
@@ -19,6 +20,17 @@ const init = {
   openSelectPart: false,
   openUploadPart: false,
   openTextareaPart: false,
+
+  // part input
+  inputLabel: '',
+  inputKey: '',
+  inputUseChip: '',
+  inputSx: '',
+  inputRows: 1,
+  inputAllowFileExt: [],
+  inputMaxFileCount: 1,
+  inputMaxFileSizeBytes: 4,
+  inputSelectList: [],
 
   // core
   url: '',
