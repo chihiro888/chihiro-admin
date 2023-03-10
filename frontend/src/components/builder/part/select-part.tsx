@@ -14,6 +14,7 @@ import { AppDispatch, RootState } from 'src/store'
 import { hCloseSelectPart, updateState } from 'src/store/apps/page'
 import Icon from 'src/@core/components/icon'
 import produce from 'immer'
+import updateForm from 'src/utils/page'
 
 const SelectPart = () => {
   // ** Hooks
@@ -25,6 +26,7 @@ const SelectPart = () => {
   const { inputKey, inputLabel, inputSelectList } = page
 
   // ** Handler
+  // select box 아이템 추가
   const handleAddItem = () => {
     dispatch(
       updateState({
@@ -34,6 +36,7 @@ const SelectPart = () => {
     )
   }
 
+  // select box 아이템 삭제
   const handleRemoveItem = (idx: number) => {
     const nextState = produce(inputSelectList, (draftState) => {
       draftState.splice(idx, 1)
@@ -42,12 +45,18 @@ const SelectPart = () => {
     dispatch(updateState({ key: 'inputSelectList', value: nextState }))
   }
 
+  // select box 아이템 값 수정
   const handleChangeItem = (idx: number, key: string, value: string) => {
     const nextState = produce(inputSelectList, (draftState) => {
       draftState[idx][key] = value
     })
 
     dispatch(updateState({ key: 'inputSelectList', value: nextState }))
+  }
+
+  // 파츠 추가
+  const handleAddPart = () => {
+    updateForm(dispatch, page)
   }
 
   return (
@@ -140,7 +149,7 @@ const SelectPart = () => {
             </Button>
           </Box>
           <Box sx={{ mb: 3 }}>
-            <Button variant="contained" fullWidth>
+            <Button variant="contained" fullWidth onClick={handleAddPart}>
               추가
             </Button>
           </Box>

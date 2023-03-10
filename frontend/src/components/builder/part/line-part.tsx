@@ -13,6 +13,7 @@ import { useDispatch } from 'react-redux'
 import CustomDialogTitle from 'src/components/custom-dialog-title'
 import { AppDispatch, RootState } from 'src/store'
 import { hCloseLinePart, updateState } from 'src/store/apps/page'
+import updateForm from 'src/utils/page'
 
 const LinePart = () => {
   // ** Hooks
@@ -22,6 +23,12 @@ const LinePart = () => {
   const page = useSelector((state: RootState) => state.page)
   const { openLinePart, partSubType } = page
   const { inputLabel, inputUseChip, inputSx } = page
+
+  // ** Handler
+  // 파츠 추가
+  const handleAddPart = () => {
+    updateForm(dispatch, page)
+  }
 
   return (
     <>
@@ -82,7 +89,7 @@ const LinePart = () => {
             />
           </Box>
           <Box sx={{ mb: 3 }}>
-            <Button variant="contained" fullWidth>
+            <Button variant="contained" fullWidth onClick={handleAddPart}>
               추가
             </Button>
           </Box>

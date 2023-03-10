@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux'
 import CustomDialogTitle from 'src/components/custom-dialog-title'
 import { AppDispatch, RootState } from 'src/store'
 import { hCloseDefaultPart, updateState } from 'src/store/apps/page'
+import updateForm from 'src/utils/page'
 
 const DefaultPart = () => {
   // ** Hooks
@@ -13,6 +14,12 @@ const DefaultPart = () => {
   const page = useSelector((state: RootState) => state.page)
   const { openDefaultPart, partSubType } = page
   const { inputKey, inputLabel } = page
+
+  // ** Handler
+  // 파츠 추가
+  const handleAddPart = () => {
+    updateForm(dispatch, page)
+  }
 
   return (
     <>
@@ -52,7 +59,7 @@ const DefaultPart = () => {
             />
           </Box>
           <Box sx={{ mb: 3 }}>
-            <Button variant="contained" fullWidth>
+            <Button variant="contained" fullWidth onClick={handleAddPart}>
               추가
             </Button>
           </Box>
