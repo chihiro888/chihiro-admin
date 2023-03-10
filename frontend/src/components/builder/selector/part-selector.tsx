@@ -14,6 +14,7 @@ import {
   hOpenDefaultPart,
   hOpenLinePart,
   hOpenSelectPart,
+  hOpenTextareaPart,
   hOpenUploadPart
 } from 'src/store/apps/page'
 
@@ -124,10 +125,16 @@ const PartSelector = () => {
                 <Card
                   key={index}
                   onClick={() => {
-                    const defaultCondition = true
-                    const lineCondition = true
-                    const selectCondition = true
-                    const uploadCondition = true
+                    const defaultCondition =
+                      part.type === 'text' ||
+                      part.type === 'number' ||
+                      part.type === 'password' ||
+                      part.type === 'editor' ||
+                      part.type === 'text'
+                    const lineCondition = part.type === 'line'
+                    const selectCondition = part.type === 'select'
+                    const uploadCondition = part.type === 'upload'
+                    const textareaCondition = part.type === 'textarea'
 
                     if (defaultCondition) {
                       dispatch(hOpenDefaultPart())
@@ -137,6 +144,8 @@ const PartSelector = () => {
                       dispatch(hOpenSelectPart())
                     } else if (uploadCondition) {
                       dispatch(hOpenUploadPart())
+                    } else if (textareaCondition) {
+                      dispatch(hOpenTextareaPart())
                     }
                   }}
                   sx={{

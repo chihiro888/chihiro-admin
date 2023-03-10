@@ -18,6 +18,7 @@ const init = {
   openLinePart: false,
   openSelectPart: false,
   openUploadPart: false,
+  openTextareaPart: false,
 
   // core
   url: '',
@@ -135,6 +136,14 @@ export const appPageSlice = createSlice({
       state.openUploadPart = false
     },
 
+    // 텍스트 에리어 파츠 모달
+    hOpenTextareaPart(state) {
+      state.openTextareaPart = true
+    },
+    hCloseTextareaPart(state) {
+      state.openTextareaPart = false
+    },
+
     // 공통 수정
     updateState(state, action) {
       state[action.payload.key] = action.payload.value
@@ -223,6 +232,8 @@ export const {
   hCloseSelectPart,
   hOpenUploadPart,
   hCloseUploadPart,
+  hOpenTextareaPart,
+  hCloseTextareaPart,
   updateState,
   setClearData,
   setInitData
