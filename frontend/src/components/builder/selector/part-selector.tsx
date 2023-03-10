@@ -16,6 +16,7 @@ import {
   hOpenSelectPart,
   hOpenTextareaPart,
   hOpenUploadPart,
+  setClearInput,
   updateState
 } from 'src/store/apps/page'
 
@@ -127,6 +128,7 @@ const PartSelector = () => {
                 <Card
                   key={index}
                   onClick={() => {
+                    dispatch(setClearInput())
                     dispatch(
                       updateState({ key: 'partSubType', value: part.type })
                     )

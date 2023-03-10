@@ -161,6 +161,19 @@ export const appPageSlice = createSlice({
       state[action.payload.key] = action.payload.value
     },
 
+    // 입력 초기화
+    setClearInput(state) {
+      state.inputLabel = ''
+      state.inputKey = ''
+      state.inputUseChip = false
+      state.inputSx = '{}'
+      state.inputRows = 1
+      state.inputAllowFileExt = ['png', 'jpg', 'jpeg', 'gif']
+      state.inputMaxFileCount = 1
+      state.inputMaxFileSizeBytes = 10 * 1024 * 1024
+      state.inputSelectList = []
+    },
+
     // 데이터 초기화
     setClearData(state) {
       state.url = ''
@@ -247,6 +260,7 @@ export const {
   hOpenTextareaPart,
   hCloseTextareaPart,
   updateState,
+  setClearInput,
   setClearData,
   setInitData
 } = appPageSlice.actions
