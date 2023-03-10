@@ -13,6 +13,11 @@ import DetailForm from 'src/components/builder/dialog/detail-form'
 import ActionList from 'src/components/builder/dialog/action-list'
 import { setClearData, setInitData } from 'src/store/apps/page'
 import PartSelector from 'src/components/builder/selector/part-selector'
+import DefaultPart from 'src/components/builder/part/default-part'
+import LinePart from 'src/components/builder/part/line-part'
+import SelectPart from 'src/components/builder/part/select-part'
+import TextareaPart from 'src/components/builder/part/textarea-part'
+import UploadPart from 'src/components/builder/part/upload-part'
 
 const Page = () => {
   // ** Hooks
@@ -77,6 +82,21 @@ const Page = () => {
 
       {/* 파츠 셀릭터 */}
       <PartSelector />
+
+      {/* 기본 파츠 */}
+      <DefaultPart />
+
+      {/* 라인 파츠 */}
+      <LinePart />
+
+      {/* 선택 파츠 */}
+      <SelectPart />
+
+      {/* 텍스트 에리어 파츠 */}
+      <TextareaPart />
+
+      {/* 업로드 파츠 */}
+      <UploadPart />
     </>
   )
 }

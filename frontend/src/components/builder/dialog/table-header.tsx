@@ -68,7 +68,7 @@ const TableHeader = () => {
   return (
     <>
       {/* 테이블 헤더 편집 */}
-      <Dialog aria-labelledby="simple-dialog-title" open={openTableHeader}>
+      <Dialog open={openTableHeader}>
         <CustomDialogTitle
           title="테이블 헤더 편집"
           onClose={() => {

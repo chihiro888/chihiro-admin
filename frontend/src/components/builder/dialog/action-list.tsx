@@ -16,7 +16,7 @@ const ActionList = () => {
 
   return (
     <>
-      <Dialog aria-labelledby="simple-dialog-title" open={openActionList}>
+      <Dialog open={openActionList}>
         <CustomDialogTitle
           title="액션 편집"
           onClose={() => {

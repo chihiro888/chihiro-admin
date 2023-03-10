@@ -94,6 +94,7 @@ const PartSelector = () => {
 
   const detailPartList = [
     {
+      type: 'text',
       icon: 'mdi:alpha-t-box-outline',
       title: 'Text Field'
     }
@@ -111,7 +112,7 @@ const PartSelector = () => {
 
   return (
     <>
-      <Dialog aria-labelledby="simple-dialog-title" open={openPartSelector}>
+      <Dialog open={openPartSelector}>
         <CustomDialogTitle
           title="부품 선택"
           onClose={() => {
@@ -130,7 +131,8 @@ const PartSelector = () => {
                       part.type === 'number' ||
                       part.type === 'password' ||
                       part.type === 'editor' ||
-                      part.type === 'text'
+                      part.type === 'text' ||
+                      part.type === 'date'
                     const lineCondition = part.type === 'line'
                     const selectCondition = part.type === 'select'
                     const uploadCondition = part.type === 'upload'

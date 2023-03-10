@@ -16,7 +16,7 @@ const DetailForm = () => {
 
   return (
     <>
-      <Dialog aria-labelledby="simple-dialog-title" open={openDetailForm}>
+      <Dialog open={openDetailForm}>
         <CustomDialogTitle
           title="상세 폼 편집"
           onClose={() => {

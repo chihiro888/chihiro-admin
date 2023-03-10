@@ -18,7 +18,7 @@ const SearchForm = () => {
   return (
     <>
       {/* 검색 폼 편집 */}
-      <Dialog aria-labelledby="simple-dialog-title" open={openSearchForm}>
+      <Dialog open={openSearchForm}>
         <CustomDialogTitle
           title="검색 폼 편집"
           onClose={() => {

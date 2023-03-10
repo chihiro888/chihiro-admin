@@ -17,7 +17,7 @@ const AddForm = () => {
 
   return (
     <>
-      <Dialog aria-labelledby="simple-dialog-title" open={openAddForm}>
+      <Dialog open={openAddForm}>
         <CustomDialogTitle
           title="추가 폼 편집"
           onClose={() => {
