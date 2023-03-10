@@ -24,12 +24,12 @@ const init = {
   // part input
   inputLabel: '',
   inputKey: '',
-  inputUseChip: '',
-  inputSx: '',
+  inputUseChip: false,
+  inputSx: '{}',
   inputRows: 1,
-  inputAllowFileExt: [],
+  inputAllowFileExt: ['png', 'jpg', 'jpeg', 'gif'],
   inputMaxFileCount: 1,
-  inputMaxFileSizeBytes: 4,
+  inputMaxFileSizeBytes: 10 * 1024 * 1024,
   inputSelectList: [],
 
   // core

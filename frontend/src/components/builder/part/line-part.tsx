@@ -60,12 +60,12 @@ const LinePart = () => {
               }}
             >
               <FormControlLabel
-                value={1}
+                value={true}
                 control={<Radio />}
                 label="칩 디자인 적용"
               />
               <FormControlLabel
-                value={0}
+                value={false}
                 control={<Radio />}
                 label="칩 디자인 적용 안함"
               />

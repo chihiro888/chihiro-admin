@@ -21,8 +21,32 @@ const UploadPart = () => {
   // ** Redux
   const page = useSelector((state: RootState) => state.page)
   const { openUploadPart, partSubType } = page
-  const { inputKey, inputLabel, inputMaxFileCount, inputMaxFileSizeBytes } =
-    page
+  const {
+    inputKey,
+    inputLabel,
+    inputMaxFileCount,
+    inputMaxFileSizeBytes,
+    inputAllowFileExt
+  } = page
+
+  // ** Handler
+  const handleChangeCheck = (e, extType) => {
+    if (e.target.checked && !inputAllowFileExt.includes(extType)) {
+      dispatch(
+        updateState({
+          key: 'inputAllowFileExt',
+          value: [...inputAllowFileExt, extType]
+        })
+      )
+    } else {
+      dispatch(
+        updateState({
+          key: 'inputAllowFileExt',
+          value: inputAllowFileExt.filter((ext) => ext !== extType)
+        })
+      )
+    }
+  }
 
   return (
     <>
@@ -65,19 +89,47 @@ const UploadPart = () => {
             <FormGroup row>
               <FormControlLabel
                 label="png"
-                control={<Checkbox defaultChecked />}
+                control={
+                  <Checkbox
+                    checked={inputAllowFileExt.includes('png')}
+                    onChange={(e) => {
+                      handleChangeCheck(e, 'png')
+                    }}
+                  />
+                }
               />
               <FormControlLabel
                 label="jpg"
-                control={<Checkbox defaultChecked />}
+                control={
+                  <Checkbox
+                    checked={inputAllowFileExt.includes('jpg')}
+                    onChange={(e) => {
+                      handleChangeCheck(e, 'jpg')
+                    }}
+                  />
+                }
               />
               <FormControlLabel
                 label="jpeg"
-                control={<Checkbox defaultChecked />}
+                control={
+                  <Checkbox
+                    checked={inputAllowFileExt.includes('jpeg')}
+                    onChange={(e) => {
+                      handleChangeCheck(e, 'jpeg')
+                    }}
+                  />
+                }
               />
               <FormControlLabel
                 label="gif"
-                control={<Checkbox defaultChecked />}
+                control={
+                  <Checkbox
+                    checked={inputAllowFileExt.includes('gif')}
+                    onChange={(e) => {
+                      handleChangeCheck(e, 'gif')
+                    }}
+                  />
+                }
               />
             </FormGroup>
           </Box>
@@ -102,7 +154,7 @@ const UploadPart = () => {
               type="number"
               label="업로드 파일 최대 용량 (MB)"
               fullWidth
-              value={inputMaxFileSizeBytes}
+              value={inputMaxFileSizeBytes / 1024 / 1024}
               onChange={(e) => {
                 const size = Number(e.target.value) * 1024 * 1024
 
