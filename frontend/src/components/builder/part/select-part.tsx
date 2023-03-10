@@ -11,8 +11,9 @@ import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import CustomDialogTitle from 'src/components/custom-dialog-title'
 import { AppDispatch, RootState } from 'src/store'
-import { hCloseSelectPart } from 'src/store/apps/page'
+import { hCloseSelectPart, updateState } from 'src/store/apps/page'
 import Icon from 'src/@core/components/icon'
+import produce from 'immer'
 
 const SelectPart = () => {
   // ** Hooks
@@ -20,7 +21,34 @@ const SelectPart = () => {
 
   // ** Redux
   const page = useSelector((state: RootState) => state.page)
-  const { openSelectPart } = page
+  const { openSelectPart, partSubType } = page
+  const { inputKey, inputLabel, inputSelectList } = page
+
+  // ** Handler
+  const handleAddItem = () => {
+    dispatch(
+      updateState({
+        key: 'inputSelectList',
+        value: [...inputSelectList, { key: '', label: '' }]
+      })
+    )
+  }
+
+  const handleRemoveItem = (idx: number) => {
+    const nextState = produce(inputSelectList, (draftState) => {
+      draftState.splice(idx, 1)
+    })
+
+    dispatch(updateState({ key: 'inputSelectList', value: nextState }))
+  }
+
+  const handleChangeItem = (idx: number, key: string, value: string) => {
+    const nextState = produce(inputSelectList, (draftState) => {
+      draftState[idx][key] = value
+    })
+
+    dispatch(updateState({ key: 'inputSelectList', value: nextState }))
+  }
 
   return (
     <>
@@ -33,30 +61,81 @@ const SelectPart = () => {
         />
         <DialogContent style={{ minWidth: '350px' }}>
           <Box sx={{ mb: 3 }}>
-            <TextField label="타입" fullWidth />
+            <TextField label="타입" fullWidth value={partSubType} disabled />
           </Box>
           <Box sx={{ mb: 3 }}>
-            <TextField label="키" fullWidth />
+            <TextField
+              label="키"
+              fullWidth
+              value={inputKey}
+              onChange={(e) => {
+                dispatch(
+                  updateState({ key: 'inputKey', value: e.target.value })
+                )
+              }}
+            />
           </Box>
           <Box sx={{ mb: 3 }}>
-            <TextField label="라벨" fullWidth />
+            <TextField
+              label="라벨"
+              fullWidth
+              value={inputLabel}
+              onChange={(e) => {
+                dispatch(
+                  updateState({ key: 'inputLabel', value: e.target.value })
+                )
+              }}
+            />
           </Box>
           <Typography sx={{ mb: 2 }}>리스트</Typography>
-          <Grid container spacing={2} sx={{ mb: 3 }}>
-            <Grid item>
-              <TextField label="라벨" fullWidth size="small" />
-            </Grid>
-            <Grid item>
-              <TextField label="값" fullWidth size="small" />
-            </Grid>
-            <Grid item>
-              <Button variant="outlined" color="error" fullWidth>
-                삭제
-              </Button>
-            </Grid>
-          </Grid>
+
+          {inputSelectList.map((item, idx) => {
+            return (
+              <Grid container spacing={2} sx={{ mb: 3 }} key={idx}>
+                <Grid item>
+                  <TextField
+                    label="라벨"
+                    fullWidth
+                    size="small"
+                    value={item.label}
+                    onChange={(e) => {
+                      handleChangeItem(idx, 'label', e.target.value)
+                    }}
+                  />
+                </Grid>
+                <Grid item>
+                  <TextField
+                    label="값"
+                    fullWidth
+                    size="small"
+                    value={item.value}
+                    onChange={(e) => {
+                      handleChangeItem(idx, 'value', e.target.value)
+                    }}
+                  />
+                </Grid>
+                <Grid item>
+                  <Button
+                    variant="outlined"
+                    color="error"
+                    fullWidth
+                    onClick={() => {
+                      handleRemoveItem(idx)
+                    }}
+                  >
+                    삭제 {idx}
+                  </Button>
+                </Grid>
+              </Grid>
+            )
+          })}
           <Box sx={{ mb: 3 }}>
-            <Button variant="outlined" color="secondary" fullWidth>
+            <Button
+              variant="outlined"
+              color="secondary"
+              fullWidth
+              onClick={handleAddItem}
+            >
               <Icon icon="material-symbols:add"></Icon>
             </Button>
           </Box>

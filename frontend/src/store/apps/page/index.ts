@@ -12,6 +12,7 @@ const init = {
   // selector
   openPartSelector: false,
   partType: 'add', // add, search, detail
+  partSubType: '', // text, select, date, number, textarea, password, upload, editor, line
 
   // part dialog
   openDefaultPart: false,
@@ -19,6 +20,17 @@ const init = {
   openSelectPart: false,
   openUploadPart: false,
   openTextareaPart: false,
+
+  // part input
+  inputLabel: '',
+  inputKey: '',
+  inputUseChip: false,
+  inputSx: '{}',
+  inputRows: 1,
+  inputAllowFileExt: ['png', 'jpg', 'jpeg', 'gif'],
+  inputMaxFileCount: 1,
+  inputMaxFileSizeBytes: 10 * 1024 * 1024,
+  inputSelectList: [],
 
   // core
   url: '',
@@ -149,6 +161,19 @@ export const appPageSlice = createSlice({
       state[action.payload.key] = action.payload.value
     },
 
+    // 입력 초기화
+    setClearInput(state) {
+      state.inputLabel = ''
+      state.inputKey = ''
+      state.inputUseChip = false
+      state.inputSx = '{}'
+      state.inputRows = 1
+      state.inputAllowFileExt = ['png', 'jpg', 'jpeg', 'gif']
+      state.inputMaxFileCount = 1
+      state.inputMaxFileSizeBytes = 10 * 1024 * 1024
+      state.inputSelectList = []
+    },
+
     // 데이터 초기화
     setClearData(state) {
       state.url = ''
@@ -235,6 +260,7 @@ export const {
   hOpenTextareaPart,
   hCloseTextareaPart,
   updateState,
+  setClearInput,
   setClearData,
   setInitData
 } = appPageSlice.actions
