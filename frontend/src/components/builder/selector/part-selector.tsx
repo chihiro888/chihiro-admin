@@ -106,7 +106,7 @@ const PartSelector = () => {
 
   // 파츠 목록 초기화
   useEffect(() => {
-    if (partType === 'add') setPartList(addPartList)
+    if (partType === 'add' || partType === 'action') setPartList(addPartList)
     else if (partType === 'search') setPartList(searchPartList)
     else if (partType === 'detail') setPartList(detailPartList)
     // eslint-disable-next-line react-hooks/exhaustive-deps

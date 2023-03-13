@@ -27,13 +27,6 @@ const TableHeader = () => {
   const handleClickRemove = (idx) => {
     const copyArr = [...tableHeader]
 
-    // 유효성
-    if (copyArr.length === 1) {
-      toast.error('테이블 헤더는 최소 1개 이상이어야 합니다.')
-
-      return false
-    }
-
     // 요소 삭제
     copyArr.splice(idx, 1)
 
