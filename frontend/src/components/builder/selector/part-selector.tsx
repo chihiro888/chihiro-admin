@@ -116,7 +116,7 @@ const PartSelector = () => {
     <>
       <Dialog open={openPartSelector}>
         <CustomDialogTitle
-          title="부품 선택"
+          title="파츠 선택"
           onClose={() => {
             dispatch(hClosePartSelector())
           }}

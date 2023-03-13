@@ -149,7 +149,7 @@ const ActionController = () => {
                 dispatch(hOpenActionForm())
               }}
             >
-              컨텐츠 편집기
+              액션 폼 편집
             </Button>
           </Box>
           <Box sx={{ mt: 10 }}>
