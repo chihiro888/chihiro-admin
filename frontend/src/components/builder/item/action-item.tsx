@@ -10,7 +10,11 @@ import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import Icon from 'src/@core/components/icon'
 import { AppDispatch, RootState } from 'src/store'
-import { updateState } from 'src/store/apps/page'
+import {
+  hOpenActionController,
+  setClearActionInput,
+  updateState
+} from 'src/store/apps/page'
 
 const ActionItem = ({ order, action }) => {
   // ** Hooks
@@ -22,7 +26,29 @@ const ActionItem = ({ order, action }) => {
 
   // 액션 수정
   const handleUpdateAction = () => {
-    //
+    // 입력 데이터 초기화
+    dispatch(setClearActionInput())
+
+    // 파츠 모드 수정
+    dispatch(
+      updateState({
+        key: 'partModeAction',
+        value: 'edit'
+      })
+    )
+
+    // 수정 데이터 설정
+    dispatch(updateState({ key: 'inputActionOrder', value: action.order }))
+    dispatch(updateState({ key: 'inputActionIcon', value: action.icon }))
+    dispatch(updateState({ key: 'inputActionLabel', value: action.label }))
+    dispatch(updateState({ key: 'inputActionLoadApi', value: action.loadAPI }))
+    dispatch(
+      updateState({ key: 'inputActionUpdateApi', value: action.updateAPI })
+    )
+    dispatch(updateState({ key: 'actionForm', value: action.content }))
+
+    // 수정 모달 열기
+    dispatch(hOpenActionController())
   }
 
   // 액션 삭제

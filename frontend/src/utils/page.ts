@@ -6,6 +6,10 @@ const updateAddForm = (dispatch, value) => {
   dispatch(updateState({ key: 'addForm', value }))
 }
 
+const updateActionForm = (dispatch, value) => {
+  dispatch(updateState({ key: 'actionForm', value }))
+}
+
 const updateDetailForm = (dispatch, value) => {
   dispatch(updateState({ key: 'detailForm', value }))
 }
@@ -54,11 +58,13 @@ export const deletePart = (dispatch, page, order) => {
   const { partType } = page
 
   // 입력값
-  const { addForm, detailForm, searchForm } = page
+  const { addForm, detailForm, searchForm, actionForm } = page
 
   // 삭제 처리
-  if (partType === 'add') {
-    updateAddForm(dispatch, deleteAndReorder(addForm, order))
+  if (partType === 'add' || partType === 'action') {
+    const form = partType === 'add' ? addForm : actionForm
+    const pushForm = partType === 'add' ? updateAddForm : updateActionForm
+    pushForm(dispatch, deleteAndReorder(form, order))
   } else if (partType === 'detail') {
     updateDetailForm(dispatch, deleteAndReorder(detailForm, order))
   } else if (partType === 'search') {
@@ -207,7 +213,7 @@ export const updatePart = (dispatch, page) => {
   } = page
 
   // 입력값
-  const { addForm, detailForm, searchForm } = page
+  const { addForm, detailForm, searchForm, actionForm } = page
 
   const defaultCondition =
     partSubType === 'text' ||
@@ -221,9 +227,12 @@ export const updatePart = (dispatch, page) => {
   const uploadCondition = partSubType === 'upload'
   const textareaCondition = partSubType === 'textarea'
 
-  if (partType === 'add') {
+  if (partType === 'add' || partType === 'action') {
+    const form = partType === 'add' ? addForm : actionForm
+    const pushForm = partType === 'add' ? updateAddForm : updateActionForm
+
     if (defaultCondition) {
-      const nextState = produce(addForm, (draftState) => {
+      const nextState = produce(form, (draftState) => {
         draftState.map((item) => {
           if (item.order === inputOrder) {
             item.label = inputLabel
@@ -231,9 +240,9 @@ export const updatePart = (dispatch, page) => {
           }
         })
       })
-      updateAddForm(dispatch, nextState)
+      pushForm(dispatch, nextState)
     } else if (lineCondition) {
-      const nextState = produce(addForm, (draftState) => {
+      const nextState = produce(form, (draftState) => {
         draftState.map((item) => {
           if (item.order === inputOrder) {
             item.label = inputLabel
@@ -243,9 +252,9 @@ export const updatePart = (dispatch, page) => {
           }
         })
       })
-      updateAddForm(dispatch, nextState)
+      pushForm(dispatch, nextState)
     } else if (selectCondition) {
-      const nextState = produce(addForm, (draftState) => {
+      const nextState = produce(form, (draftState) => {
         draftState.map((item) => {
           if (item.order === inputOrder) {
             item.label = inputLabel
@@ -254,9 +263,9 @@ export const updatePart = (dispatch, page) => {
           }
         })
       })
-      updateAddForm(dispatch, nextState)
+      pushForm(dispatch, nextState)
     } else if (uploadCondition) {
-      const nextState = produce(addForm, (draftState) => {
+      const nextState = produce(form, (draftState) => {
         draftState.map((item) => {
           if (item.order === inputOrder) {
             item.label = inputLabel
@@ -267,9 +276,9 @@ export const updatePart = (dispatch, page) => {
           }
         })
       })
-      updateAddForm(dispatch, nextState)
+      pushForm(dispatch, nextState)
     } else if (textareaCondition) {
-      const nextState = produce(addForm, (draftState) => {
+      const nextState = produce(form, (draftState) => {
         draftState.map((item) => {
           if (item.order === inputOrder) {
             item.label = inputLabel
@@ -278,7 +287,7 @@ export const updatePart = (dispatch, page) => {
           }
         })
       })
-      updateAddForm(dispatch, nextState)
+      pushForm(dispatch, nextState)
     }
   } else if (partType === 'search') {
     if (defaultCondition) {

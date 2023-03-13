@@ -43,6 +43,7 @@ const init = {
   inputSelectList: [],
 
   // action input
+  inputActionOrder: 0,
   inputActionIcon: '',
   inputActionLabel: '',
   inputActionLoadApi: '',
@@ -58,6 +59,7 @@ const init = {
 
   // part mode
   partMode: 'add', // add, edit
+  partModeAction: 'add', // add, edit
 
   // core
   url: '',

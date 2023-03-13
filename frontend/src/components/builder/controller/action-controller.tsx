@@ -1,3 +1,4 @@
+import produce from 'immer'
 import {
   Box,
   Button,
@@ -22,8 +23,9 @@ const ActionController = () => {
 
   // ** Redux
   const page = useSelector((state: RootState) => state.page)
-  const { openActionController } = page
+  const { openActionController, partModeAction } = page
   const {
+    inputActionOrder,
     inputActionIcon,
     inputActionLabel,
     inputActionLoadApi,
@@ -49,6 +51,23 @@ const ActionController = () => {
         ]
       })
     )
+    dispatch(hCloseActionController())
+  }
+
+  // 액션 수정
+  const handleUpdateAction = () => {
+    const nextState = produce(actionList, (draftState) => {
+      draftState.map((action) => {
+        if (action.order === inputActionOrder) {
+          action.icon = inputActionIcon
+          action.label = inputActionLabel
+          action.content = actionForm
+          action.loadAPI = inputActionLoadApi
+          action.updateAPI = inputActionUpdateApi
+        }
+      })
+    })
+    dispatch(updateState({ key: 'actionList', value: nextState }))
     dispatch(hCloseActionController())
   }
 
@@ -134,9 +153,24 @@ const ActionController = () => {
             </Button>
           </Box>
           <Box sx={{ mt: 10 }}>
-            <Button variant="contained" fullWidth onClick={handleAddAction}>
-              추가
-            </Button>
+            {partModeAction === 'add' && (
+              <Box sx={{ mb: 3 }}>
+                <Button variant="contained" fullWidth onClick={handleAddAction}>
+                  추가
+                </Button>
+              </Box>
+            )}
+            {partModeAction === 'edit' && (
+              <Box sx={{ mb: 3 }}>
+                <Button
+                  variant="contained"
+                  fullWidth
+                  onClick={handleUpdateAction}
+                >
+                  수정
+                </Button>
+              </Box>
+            )}
           </Box>
         </DialogContent>
       </Dialog>
