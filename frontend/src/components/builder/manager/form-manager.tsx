@@ -91,17 +91,8 @@ const FormManager = ({ _key, list }: Props) => {
           }
           animation={200}
         >
-          {list.map((item, idx) => {
-            return (
-              <DefaultItem
-                key={idx}
-                id={item.id} // 사용 안함
-                order={item.order}
-                type={item.type}
-                _key={item.key} // 예약어 회피
-                label={item.label}
-              />
-            )
+          {list.map((part, idx) => {
+            return <DefaultItem key={idx} order={part.order} part={part} />
           })}
         </ReactSortable>
       </Box>

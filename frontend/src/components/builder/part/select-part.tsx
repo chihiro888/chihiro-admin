@@ -124,7 +124,7 @@ const SelectPart = () => {
                     label="값"
                     fullWidth
                     size="small"
-                    value={item.value}
+                    value={item.key}
                     onChange={(e) => {
                       handleChangeItem(idx, 'key', e.target.value)
                     }}
