@@ -33,6 +33,10 @@ const init = {
   inputMaxFileSizeBytes: 10 * 1024 * 1024,
   inputSelectList: [],
 
+  // mode
+  editMode: false,
+  deleteMode: false,
+
   // core
   url: '',
   pageHeader: {
@@ -78,6 +82,8 @@ export const appPageSlice = createSlice({
     hOpenSearchForm(state) {
       state.openSearchForm = true
       state.partType = 'search'
+      state.editMode = false
+      state.deleteMode = false
     },
     hCloseSearchForm(state) {
       state.openSearchForm = false
@@ -87,6 +93,8 @@ export const appPageSlice = createSlice({
     hOpenAddForm(state) {
       state.openAddForm = true
       state.partType = 'add'
+      state.editMode = false
+      state.deleteMode = false
     },
     hCloseAddForm(state) {
       state.openAddForm = false
@@ -96,6 +104,8 @@ export const appPageSlice = createSlice({
     hOpenDetailForm(state) {
       state.openDetailForm = true
       state.partType = 'detail'
+      state.editMode = false
+      state.deleteMode = false
     },
     hCloseDetailForm(state) {
       state.openDetailForm = false
@@ -204,6 +214,8 @@ export const appPageSlice = createSlice({
       state.detailForm = []
       state.searchForm = []
       state.actionList = []
+      state.editMode = false
+      state.deleteMode = false
     },
 
     // 초기 데이터 주입

@@ -1,6 +1,19 @@
-import { Card, CardContent, Chip, Grid, Typography } from '@mui/material'
+import {
+  Button,
+  Card,
+  CardContent,
+  Chip,
+  Grid,
+  Typography
+} from '@mui/material'
+import { useSelector } from 'react-redux'
+import { RootState } from 'src/store'
 
 const DefaultItem = ({ id, order, type, _key, label }) => {
+  // ** Redux
+  const page = useSelector((state: RootState) => state.page)
+  const { editMode, deleteMode } = page
+
   return (
     <>
       <Card sx={{ mb: 3 }}>
@@ -55,6 +68,22 @@ const DefaultItem = ({ id, order, type, _key, label }) => {
                 </Grid>
               </Grid>
             </Grid>
+          </Grid>
+          <Grid container sx={{ mt: 3 }} spacing={2}>
+            {editMode && (
+              <Grid item xs={12}>
+                <Button variant="outlined" fullWidth>
+                  수정
+                </Button>
+              </Grid>
+            )}
+            {deleteMode && (
+              <Grid item xs={12}>
+                <Button variant="outlined" fullWidth color="error">
+                  삭제
+                </Button>
+              </Grid>
+            )}
           </Grid>
         </CardContent>
       </Card>

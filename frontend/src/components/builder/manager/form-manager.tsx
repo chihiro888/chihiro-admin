@@ -1,9 +1,10 @@
-import { Box, Button } from '@mui/material'
+import { Box, Button, FormControlLabel, Switch } from '@mui/material'
 import produce from 'immer'
 import { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { ReactSortable } from 'react-sortablejs'
-import { AppDispatch } from 'src/store'
+import { AppDispatch, RootState } from 'src/store'
 import { hOpenPartSelector, updateState } from 'src/store/apps/page'
 import DefaultItem from '../item/default-item'
 
@@ -30,6 +31,10 @@ const FormManager = ({ _key, list }: Props) => {
   // ** Hooks
   const dispatch = useDispatch<AppDispatch>()
 
+  // ** Redux
+  const page = useSelector((state: RootState) => state.page)
+  const { editMode, deleteMode } = page
+
   // 순서 보장
   useEffect(() => {
     const nextState = produce(list, (draftState) => {
@@ -45,6 +50,28 @@ const FormManager = ({ _key, list }: Props) => {
   return (
     <>
       <Box sx={{ display: 'flex', justifyContent: 'right', mb: 10 }}>
+        <FormControlLabel
+          control={
+            <Switch
+              color="error"
+              value={deleteMode}
+              onClick={(e: any) => {
+                dispatch(
+                  updateState({ key: 'deleteMode', value: e.target.checked })
+                )
+              }}
+            />
+          }
+          label="삭제모드"
+        />
+        <FormControlLabel
+          control={<Switch />}
+          label="수정모드"
+          value={editMode}
+          onClick={(e: any) => {
+            dispatch(updateState({ key: 'editMode', value: e.target.checked }))
+          }}
+        />
         <Button
           variant="contained"
           color="primary"
