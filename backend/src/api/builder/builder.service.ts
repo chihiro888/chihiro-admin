@@ -125,13 +125,13 @@ export class BuilderService {
     page.title = dto.title
     page.subTitle = dto.subTitle
     page.useListApi = dto.useListApi
-    page.listApi = dto.listApi
+    page.listApi = dto.listApi === '' ? null : dto.listApi
     page.useCreateApi = dto.useCreateApi
-    page.createApi = dto.createApi
+    page.createApi = dto.createApi === '' ? null : dto.createApi
     page.useDetailApi = dto.useDetailApi
-    page.detailApi = dto.detailApi
+    page.detailApi = dto.detailApi === '' ? null : dto.detailApi
     page.useDeleteApi = dto.useDeleteApi
-    page.deleteApi = dto.deleteApi
+    page.deleteApi = dto.detailApi === '' ? null : dto.detailApi
     page.tableHeader = JSON.stringify(dto.tableHeader)
     page.addForm = JSON.stringify(dto.addForm)
     page.detailForm = JSON.stringify(dto.detailForm)
@@ -159,13 +159,13 @@ export class BuilderService {
     page.title = dto.title
     page.subTitle = dto.subTitle
     page.useListApi = dto.useListApi
-    page.listApi = dto.listApi
+    page.listApi = dto.listApi === '' ? null : dto.listApi
     page.useCreateApi = dto.useCreateApi
-    page.createApi = dto.createApi
+    page.createApi = dto.createApi === '' ? null : dto.createApi
     page.useDetailApi = dto.useDetailApi
-    page.detailApi = dto.detailApi
+    page.detailApi = dto.detailApi === '' ? null : dto.detailApi
     page.useDeleteApi = dto.useDeleteApi
-    page.deleteApi = dto.deleteApi
+    page.deleteApi = dto.deleteApi === '' ? null : dto.deleteApi
     page.tableHeader = JSON.stringify(dto.tableHeader)
     page.addForm = JSON.stringify(dto.addForm)
     page.detailForm = JSON.stringify(dto.detailForm)
