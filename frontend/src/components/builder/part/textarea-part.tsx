@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import CustomDialogTitle from 'src/components/custom-dialog-title'
 import { AppDispatch, RootState } from 'src/store'
 import { hCloseTextareaPart, updateState } from 'src/store/apps/page'
-import updateForm from 'src/utils/page'
+import { addPart } from 'src/utils/page'
 
 const TextareaPart = () => {
   // ** Hooks
@@ -18,7 +18,7 @@ const TextareaPart = () => {
   // ** Handler
   // 파츠 추가
   const handleAddPart = () => {
-    updateForm(dispatch, page)
+    addPart(dispatch, page)
   }
 
   return (

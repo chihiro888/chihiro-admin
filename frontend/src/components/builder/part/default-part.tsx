@@ -3,8 +3,12 @@ import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import CustomDialogTitle from 'src/components/custom-dialog-title'
 import { AppDispatch, RootState } from 'src/store'
-import { hCloseDefaultPart, updateState } from 'src/store/apps/page'
-import updateForm from 'src/utils/page'
+import {
+  hCloseDefaultPart,
+  hClosePartSelector,
+  updateState
+} from 'src/store/apps/page'
+import { addPart } from 'src/utils/page'
 
 const DefaultPart = () => {
   // ** Hooks
@@ -18,7 +22,9 @@ const DefaultPart = () => {
   // ** Handler
   // 파츠 추가
   const handleAddPart = () => {
-    updateForm(dispatch, page)
+    addPart(dispatch, page)
+    dispatch(hCloseDefaultPart())
+    dispatch(hClosePartSelector())
   }
 
   return (

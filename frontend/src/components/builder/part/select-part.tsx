@@ -11,10 +11,15 @@ import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import CustomDialogTitle from 'src/components/custom-dialog-title'
 import { AppDispatch, RootState } from 'src/store'
-import { hCloseSelectPart, updateState } from 'src/store/apps/page'
+import {
+  hCloseDefaultPart,
+  hClosePartSelector,
+  hCloseSelectPart,
+  updateState
+} from 'src/store/apps/page'
 import Icon from 'src/@core/components/icon'
 import produce from 'immer'
-import updateForm from 'src/utils/page'
+import { addPart } from 'src/utils/page'
 
 const SelectPart = () => {
   // ** Hooks
@@ -56,7 +61,9 @@ const SelectPart = () => {
 
   // 파츠 추가
   const handleAddPart = () => {
-    updateForm(dispatch, page)
+    addPart(dispatch, page)
+    dispatch(hCloseDefaultPart())
+    dispatch(hClosePartSelector())
   }
 
   return (
@@ -119,7 +126,7 @@ const SelectPart = () => {
                     size="small"
                     value={item.value}
                     onChange={(e) => {
-                      handleChangeItem(idx, 'value', e.target.value)
+                      handleChangeItem(idx, 'key', e.target.value)
                     }}
                   />
                 </Grid>

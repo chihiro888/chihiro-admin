@@ -12,7 +12,7 @@ const pushSearchForm = (dispatch, searchForm, value) => {
   dispatch(updateState({ key: 'searchForm', value: [...searchForm, value] }))
 }
 
-const updateForm = (dispatch, page) => {
+export const addPart = (dispatch, page) => {
   // 구분
   const { partType, partSubType } = page
 
@@ -58,17 +58,22 @@ const updateForm = (dispatch, page) => {
     }
   } else if (partType === 'search') {
     if (defaultCondition) {
-      const d = {
+      pushSearchForm(dispatch, searchForm, {
         type: partSubType,
         label: inputLabel,
         key: inputKey,
         value: ''
-      }
-      pushSearchForm(dispatch, searchForm, d)
+      })
     } else if (lineCondition) {
       // 미사용
     } else if (selectCondition) {
-      //
+      pushSearchForm(dispatch, searchForm, {
+        type: partSubType,
+        label: inputLabel,
+        key: inputKey,
+        value: '',
+        list: inputSelectList
+      })
     } else if (uploadCondition) {
       // 미사용
     } else if (textareaCondition) {
@@ -88,5 +93,3 @@ const updateForm = (dispatch, page) => {
     }
   }
 }
-
-export default updateForm
