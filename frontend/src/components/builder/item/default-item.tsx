@@ -6,13 +6,23 @@ import {
   Grid,
   Typography
 } from '@mui/material'
+import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
-import { RootState } from 'src/store'
+import { AppDispatch, RootState } from 'src/store'
+import { deletePart } from 'src/utils/page'
 
 const DefaultItem = ({ id, order, type, _key, label }) => {
+  // ** Hooks
+  const dispatch = useDispatch<AppDispatch>()
+
   // ** Redux
   const page = useSelector((state: RootState) => state.page)
   const { editMode, deleteMode } = page
+
+  // 파츠 삭제
+  const handleDeletePart = () => {
+    deletePart(dispatch, page, order)
+  }
 
   return (
     <>
@@ -79,7 +89,12 @@ const DefaultItem = ({ id, order, type, _key, label }) => {
             )}
             {deleteMode && (
               <Grid item xs={12}>
-                <Button variant="outlined" fullWidth color="error">
+                <Button
+                  variant="outlined"
+                  fullWidth
+                  color="error"
+                  onClick={handleDeletePart}
+                >
                   삭제
                 </Button>
               </Grid>
