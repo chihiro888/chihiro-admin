@@ -18,6 +18,8 @@ import LinePart from 'src/components/builder/part/line-part'
 import SelectPart from 'src/components/builder/part/select-part'
 import TextareaPart from 'src/components/builder/part/textarea-part'
 import UploadPart from 'src/components/builder/part/upload-part'
+import ActionController from 'src/components/builder/controller/action-controller'
+import ActionForm from 'src/components/builder/dialog/action-form'
 
 const Page = () => {
   // ** Hooks
@@ -79,6 +81,12 @@ const Page = () => {
 
       {/* 액션 편집 */}
       <ActionList />
+
+      {/* 액션 폼 편집 */}
+      <ActionForm />
+
+      {/* 액션 편집 */}
+      <ActionController />
 
       {/* 파츠 셀릭터 */}
       <PartSelector />

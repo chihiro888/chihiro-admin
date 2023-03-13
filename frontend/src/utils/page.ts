@@ -19,6 +19,10 @@ const pushAddForm = (dispatch, addForm, value) => {
   dispatch(updateState({ key: 'addForm', value: [...addForm, value] }))
 }
 
+const pushActionForm = (dispatch, actionForm, value) => {
+  dispatch(updateState({ key: 'actionForm', value: [...actionForm, value] }))
+}
+
 const pushDetailForm = (dispatch, detailForm, value) => {
   dispatch(updateState({ key: 'detailForm', value: [...detailForm, value] }))
 }
@@ -81,7 +85,7 @@ export const addPart = (dispatch, page) => {
   } = page
 
   // 입력값
-  const { addForm, detailForm, searchForm } = page
+  const { addForm, detailForm, searchForm, actionForm } = page
 
   const defaultCondition =
     partSubType === 'text' ||
@@ -95,23 +99,26 @@ export const addPart = (dispatch, page) => {
   const uploadCondition = partSubType === 'upload'
   const textareaCondition = partSubType === 'textarea'
 
-  if (partType === 'add') {
+  if (partType === 'add' || partType === 'action') {
+    const form = partType === 'add' ? addForm : actionForm
+    const pushForm = partType === 'add' ? pushAddForm : pushActionForm
+
     if (defaultCondition) {
-      pushAddForm(dispatch, addForm, {
+      pushForm(dispatch, form, {
         type: partSubType,
         label: inputLabel,
         key: inputKey,
         value: ''
       })
     } else if (lineCondition) {
-      pushAddForm(dispatch, addForm, {
+      pushForm(dispatch, form, {
         type: partSubType,
         label: inputLabel,
         chip: inputUseChip,
         sx: inputSx
       })
     } else if (selectCondition) {
-      pushAddForm(dispatch, addForm, {
+      pushForm(dispatch, form, {
         type: partSubType,
         label: inputLabel,
         key: inputKey,
@@ -119,7 +126,7 @@ export const addPart = (dispatch, page) => {
         list: inputSelectList
       })
     } else if (uploadCondition) {
-      pushAddForm(dispatch, addForm, {
+      pushForm(dispatch, form, {
         type: partSubType,
         label: inputLabel,
         key: inputKey,
@@ -129,7 +136,7 @@ export const addPart = (dispatch, page) => {
         maxFileSizeBytes: inputMaxFileSizeBytes
       })
     } else if (textareaCondition) {
-      pushAddForm(dispatch, addForm, {
+      pushForm(dispatch, form, {
         type: partSubType,
         label: inputLabel,
         key: inputKey,

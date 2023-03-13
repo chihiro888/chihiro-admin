@@ -8,11 +8,13 @@ const init = {
   openAddForm: false,
   openDetailForm: false,
   openActionList: false,
+  openActionForm: false,
 
   // selector
   openPartSelector: false,
-  partType: 'add', // add, search, detail
-  partSubType: '', // text, select, date, number, textarea, password, upload, editor, line
+
+  // controller
+  openActionController: false,
 
   // part dialog
   openDefaultPart: false,
@@ -20,6 +22,10 @@ const init = {
   openSelectPart: false,
   openUploadPart: false,
   openTextareaPart: false,
+
+  // part type
+  partType: 'add', // add, search, detail
+  partSubType: '', // text, select, date, number, textarea, password, upload, editor, line
 
   // 페이지 아이디
   pageId: 0,
@@ -36,9 +42,19 @@ const init = {
   inputMaxFileSizeBytes: 10 * 1024 * 1024,
   inputSelectList: [],
 
+  // action input
+  inputActionIcon: '',
+  inputActionLabel: '',
+  inputActionLoadApi: '',
+  inputActionUpdateApi: '',
+
   // mode
   editMode: false,
   deleteMode: false,
+
+  // mode (action)
+  editModeAction: false,
+  deleteModeAction: false,
 
   // part mode
   partMode: 'add', // add, edit
@@ -69,7 +85,8 @@ const init = {
   addForm: [],
   detailForm: [],
   searchForm: [],
-  actionList: []
+  actionList: [],
+  actionForm: []
 }
 
 export const appPageSlice = createSlice({
@@ -117,12 +134,33 @@ export const appPageSlice = createSlice({
       state.openDetailForm = false
     },
 
+    // 액션 폼 모달
+    hOpenActionForm(state) {
+      state.openActionForm = true
+      state.partType = 'action'
+      state.editMode = false
+      state.deleteMode = false
+    },
+    hCloseActionForm(state) {
+      state.openActionForm = false
+    },
+
     // 액션 리스트 모달
     hOpenActionList(state) {
       state.openActionList = true
+      state.editModeAction = false
+      state.deleteModeAction = false
     },
     hCloseActionList(state) {
       state.openActionList = false
+    },
+
+    // 액션 컨트롤러 모달
+    hOpenActionController(state) {
+      state.openActionController = true
+    },
+    hCloseActionController(state) {
+      state.openActionController = false
     },
 
     // 파츠 셀렉터 모달
@@ -189,6 +227,15 @@ export const appPageSlice = createSlice({
       state.inputMaxFileCount = 1
       state.inputMaxFileSizeBytes = 10 * 1024 * 1024
       state.inputSelectList = []
+    },
+
+    // 액션 입력 초기화
+    setClearActionInput(state) {
+      state.inputActionIcon = ''
+      state.inputActionLabel = ''
+      state.inputActionLoadApi = ''
+      state.inputActionUpdateApi = ''
+      state.actionForm = []
     },
 
     // 데이터 초기화
@@ -268,6 +315,10 @@ export const {
   hCloseDetailForm,
   hOpenActionList,
   hCloseActionList,
+  hOpenActionForm,
+  hCloseActionForm,
+  hOpenActionController,
+  hCloseActionController,
   hOpenPartSelector,
   hClosePartSelector,
   hOpenDefaultPart,
@@ -282,6 +333,7 @@ export const {
   hCloseTextareaPart,
   updateState,
   setClearInput,
+  setClearActionInput,
   setClearData,
   setInitData
 } = appPageSlice.actions

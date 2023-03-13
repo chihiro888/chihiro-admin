@@ -23,7 +23,8 @@ interface Item {
   sx?: any
 }
 interface Props {
-  _key: string // 예약어 회피
+  _key: 'addForm' | 'detailForm' | 'searchForm' | 'actionForm' // 예약어 회피
+
   list: Item[]
 }
 
@@ -45,7 +46,7 @@ const FormManager = ({ _key, list }: Props) => {
     })
     dispatch(updateState({ key: _key, value: nextState }))
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [list])
 
   return (
     <>
