@@ -46,15 +46,45 @@ export const addPart = (dispatch, page) => {
 
   if (partType === 'add') {
     if (defaultCondition) {
-      //
+      pushAddForm(dispatch, addForm, {
+        type: partSubType,
+        label: inputLabel,
+        key: inputKey,
+        value: ''
+      })
     } else if (lineCondition) {
-      //
+      pushAddForm(dispatch, addForm, {
+        type: partSubType,
+        label: inputLabel,
+        chip: inputUseChip,
+        sx: inputSx
+      })
     } else if (selectCondition) {
-      //
+      pushAddForm(dispatch, addForm, {
+        type: partSubType,
+        label: inputLabel,
+        key: inputKey,
+        value: '',
+        list: inputSelectList
+      })
     } else if (uploadCondition) {
-      //
+      pushAddForm(dispatch, addForm, {
+        type: partSubType,
+        label: inputLabel,
+        key: inputKey,
+        value: '',
+        allowFileExt: inputAllowFileExt,
+        maxFileCount: inputMaxFileCount,
+        maxFileSizeBytes: inputMaxFileSizeBytes
+      })
     } else if (textareaCondition) {
-      //
+      pushAddForm(dispatch, addForm, {
+        type: partSubType,
+        label: inputLabel,
+        key: inputKey,
+        value: '',
+        rows: inputRows
+      })
     }
   } else if (partType === 'search') {
     if (defaultCondition) {
@@ -81,15 +111,20 @@ export const addPart = (dispatch, page) => {
     }
   } else if (partType === 'detail') {
     if (defaultCondition) {
-      //
+      pushDetailForm(dispatch, detailForm, {
+        type: partSubType,
+        label: inputLabel,
+        key: inputKey,
+        value: ''
+      })
     } else if (lineCondition) {
-      //
+      // 미사용
     } else if (selectCondition) {
-      //
+      // 미사용
     } else if (uploadCondition) {
-      //
+      // 미사용
     } else if (textareaCondition) {
-      //
+      // 미사용
     }
   }
 }

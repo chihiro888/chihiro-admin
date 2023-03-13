@@ -22,6 +22,7 @@ const init = {
   openTextareaPart: false,
 
   // part input
+  inputId: 0,
   inputLabel: '',
   inputKey: '',
   inputUseChip: false,
@@ -176,6 +177,7 @@ export const appPageSlice = createSlice({
 
     // 데이터 초기화
     setClearData(state) {
+      state.inputId = 0
       state.url = ''
       state.pageHeader = {
         title: '',
@@ -206,6 +208,7 @@ export const appPageSlice = createSlice({
 
     // 초기 데이터 주입
     setInitData(state, action) {
+      state.inputId = action.payload.id
       state.url = action.payload.url
       state.pageHeader = {
         title: action.payload.title,

@@ -62,7 +62,7 @@ const SelectPart = () => {
   // 파츠 추가
   const handleAddPart = () => {
     addPart(dispatch, page)
-    dispatch(hCloseDefaultPart())
+    dispatch(hCloseSelectPart())
     dispatch(hClosePartSelector())
   }
 

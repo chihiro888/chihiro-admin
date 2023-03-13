@@ -12,7 +12,12 @@ import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import CustomDialogTitle from 'src/components/custom-dialog-title'
 import { AppDispatch, RootState } from 'src/store'
-import { hCloseUploadPart, updateState } from 'src/store/apps/page'
+import {
+  hCloseDefaultPart,
+  hClosePartSelector,
+  hCloseUploadPart,
+  updateState
+} from 'src/store/apps/page'
 import { addPart } from 'src/utils/page'
 
 const UploadPart = () => {
@@ -52,6 +57,8 @@ const UploadPart = () => {
   // 파츠 추가
   const handleAddPart = () => {
     addPart(dispatch, page)
+    dispatch(hCloseUploadPart())
+    dispatch(hClosePartSelector())
   }
 
   return (

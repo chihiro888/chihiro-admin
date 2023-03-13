@@ -10,9 +10,11 @@ import {
   Typography
 } from '@mui/material'
 import { useRouter } from 'next/router'
+import { toast } from 'react-hot-toast'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import Icon from 'src/@core/components/icon'
+import { createPage, updatePage } from 'src/apis/builder'
 import { AppDispatch, RootState } from 'src/store'
 import {
   hOpenActionList,
@@ -30,7 +32,20 @@ const EditForm = () => {
 
   // ** Redux
   const page = useSelector((state: RootState) => state.page)
-  const { url, pageHeader, listApi, createApi, detailApi, deleteApi } = page
+  const {
+    inputId,
+    url,
+    pageHeader,
+    listApi,
+    createApi,
+    detailApi,
+    deleteApi,
+    tableHeader,
+    addForm,
+    detailForm,
+    searchForm,
+    actionList
+  } = page
 
   // ** Handler
   // URL 변경
@@ -85,6 +100,47 @@ const EditForm = () => {
         value: { ...state, functionName: e.target.value }
       })
     )
+  }
+
+  // 저장
+  const handleClickSave = async () => {
+    try {
+      const params = {
+        url: url,
+        title: pageHeader.title,
+        subTitle: pageHeader.subTitle,
+        useListApi: listApi.checked,
+        listApi: listApi.functionName,
+        useCreateApi: createApi.checked,
+        createApi: createApi.functionName,
+        useDetailApi: detailApi.checked,
+        detailApi: detailApi.functionName,
+        useDeleteApi: deleteApi.checked,
+        deleteApi: deleteApi.functionName,
+        tableHeader: tableHeader,
+        addForm: addForm,
+        detailForm: detailForm,
+        searchForm: searchForm,
+        actionList: actionList
+      }
+
+      if (inputId === 0) {
+        const { data: res } = await createPage(params)
+        if (res.statusCode === 200) {
+          toast.success(res.message)
+          router.push('/builder/page')
+        }
+      } else {
+        params['id'] = inputId
+        const { data: res } = await updatePage(params)
+        if (res.statusCode === 200) {
+          toast.success(res.message)
+          router.push('/builder/page')
+        }
+      }
+    } catch (e) {
+      //
+    }
   }
 
   // 목록
@@ -343,7 +399,12 @@ const EditForm = () => {
         >
           목록
         </Button>
-        <Button variant="contained" color="primary" sx={{ mt: 5 }}>
+        <Button
+          variant="contained"
+          color="primary"
+          sx={{ mt: 5 }}
+          onClick={handleClickSave}
+        >
           저장
         </Button>
       </Box>

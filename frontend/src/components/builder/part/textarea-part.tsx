@@ -3,7 +3,12 @@ import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import CustomDialogTitle from 'src/components/custom-dialog-title'
 import { AppDispatch, RootState } from 'src/store'
-import { hCloseTextareaPart, updateState } from 'src/store/apps/page'
+import {
+  hCloseDefaultPart,
+  hClosePartSelector,
+  hCloseTextareaPart,
+  updateState
+} from 'src/store/apps/page'
 import { addPart } from 'src/utils/page'
 
 const TextareaPart = () => {
@@ -19,6 +24,8 @@ const TextareaPart = () => {
   // 파츠 추가
   const handleAddPart = () => {
     addPart(dispatch, page)
+    dispatch(hCloseTextareaPart())
+    dispatch(hClosePartSelector())
   }
 
   return (

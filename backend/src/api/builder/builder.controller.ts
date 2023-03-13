@@ -86,14 +86,23 @@ export class BuilderController {
     @Body() dto: CreatePageDto
   ) {
     // create page
-    await this.builderService.createPage(dto)
+    const result = await this.builderService.createPage(dto)
 
-    // return 200 response
-    res.status(HttpStatus.OK).json({
-      statusCode: HttpStatus.OK,
-      message: '',
-      data: null
-    })
+    if (result.result) {
+      // return 200 response
+      res.status(HttpStatus.OK).json({
+        statusCode: HttpStatus.OK,
+        message: result.message,
+        data: null
+      })
+    } else {
+      // return 400 response
+      res.status(HttpStatus.BAD_REQUEST).json({
+        statusCode: HttpStatus.BAD_REQUEST,
+        message: result.message,
+        data: null
+      })
+    }
   }
 
   // ANCHOR update page
@@ -108,15 +117,24 @@ export class BuilderController {
     @Session() session: any,
     @Body() dto: UpdatePageDto
   ) {
-    // update page
-    await this.builderService.updatePage(dto)
+    // create page
+    const result = await this.builderService.updatePage(dto)
 
-    // return 200 response
-    res.status(HttpStatus.OK).json({
-      statusCode: HttpStatus.OK,
-      message: '',
-      data: null
-    })
+    if (result.result) {
+      // return 200 response
+      res.status(HttpStatus.OK).json({
+        statusCode: HttpStatus.OK,
+        message: result.message,
+        data: null
+      })
+    } else {
+      // return 400 response
+      res.status(HttpStatus.BAD_REQUEST).json({
+        statusCode: HttpStatus.BAD_REQUEST,
+        message: result.message,
+        data: null
+      })
+    }
   }
 
   // ANCHOR delete page

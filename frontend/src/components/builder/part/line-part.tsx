@@ -12,7 +12,12 @@ import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import CustomDialogTitle from 'src/components/custom-dialog-title'
 import { AppDispatch, RootState } from 'src/store'
-import { hCloseLinePart, updateState } from 'src/store/apps/page'
+import {
+  hCloseDefaultPart,
+  hCloseLinePart,
+  hClosePartSelector,
+  updateState
+} from 'src/store/apps/page'
 import { addPart } from 'src/utils/page'
 
 const LinePart = () => {
@@ -28,6 +33,8 @@ const LinePart = () => {
   // 파츠 추가
   const handleAddPart = () => {
     addPart(dispatch, page)
+    dispatch(hCloseLinePart())
+    dispatch(hClosePartSelector())
   }
 
   return (
