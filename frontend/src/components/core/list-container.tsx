@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import { getPaginationCount, getParamsFromForm } from 'src/utils'
 import CustomLottie from 'src/components/custom-lottie'
 import Stack from '@mui/material/Stack'
@@ -14,6 +13,7 @@ import Pagination from '@mui/material/Pagination'
 import { useDispatch, useSelector } from 'react-redux'
 import { setPagination } from 'src/store/apps/crud'
 import { RootState } from 'src/store'
+import * as cat from 'src/lottie/cat.json'
 
 const ListContainer = ({ children }) => {
   // ** Hooks
@@ -45,7 +45,7 @@ const ListContainer = ({ children }) => {
     <>
       {pagination?.data.length === 0 ? (
         <>
-          <CustomLottie text={'데이터가 존재하지 않습니다.'} />
+          <CustomLottie text={'데이터가 존재하지 않습니다.'} data={cat} />
         </>
       ) : (
         <>

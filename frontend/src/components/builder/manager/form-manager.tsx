@@ -4,9 +4,11 @@ import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { ReactSortable } from 'react-sortablejs'
+import CustomLottie from 'src/components/custom-lottie'
 import { AppDispatch, RootState } from 'src/store'
 import { hOpenPartSelector, updateState } from 'src/store/apps/page'
 import DefaultItem from '../item/default-item'
+import * as block from 'src/lottie/block.json'
 
 interface Item {
   id: number
@@ -91,6 +93,9 @@ const FormManager = ({ _key, list }: Props) => {
       </Box>
 
       <Box>
+        {list.length === 0 && (
+          <CustomLottie text={'데이터기 존재하지 않습니다'} data={block} />
+        )}
         <ReactSortable
           list={list.map((x) => ({ ...x, chosen: true }))}
           setList={(newState) =>

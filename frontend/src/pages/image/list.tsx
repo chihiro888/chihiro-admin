@@ -27,6 +27,7 @@ import Icon from 'src/@core/components/icon'
 import DATE from 'src/common/constants/date'
 import { getPaginationCount } from 'src/utils'
 import CustomLottie from 'src/components/custom-lottie'
+import * as cat from 'src/lottie/cat.json'
 
 const List = () => {
   // ** State
@@ -114,7 +115,7 @@ const List = () => {
 
       {pagination.data.length === 0 ? (
         <>
-          <CustomLottie text={'이미지가 존재하지 않습니다.'} />
+          <CustomLottie text={'데이터가 존재하지 않습니다.'} data={cat} />
         </>
       ) : (
         <>

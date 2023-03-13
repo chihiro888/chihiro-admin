@@ -3,8 +3,6 @@ import Lottie from 'react-lottie'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 
-import * as cat from 'src/pages/components/lottie/cat.json'
-
 const CustomLottie = (props: any) => {
   return (
     <>
@@ -12,7 +10,7 @@ const CustomLottie = (props: any) => {
         options={{
           loop: true,
           autoplay: true,
-          animationData: cat,
+          animationData: props.data,
           rendererSettings: {
             preserveAspectRatio: 'xMidYMid slice'
           }

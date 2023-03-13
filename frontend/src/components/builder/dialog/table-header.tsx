@@ -6,6 +6,8 @@ import { AppDispatch, RootState } from 'src/store'
 import { useDispatch } from 'react-redux'
 import { hCloseTableHeader, updateState } from 'src/store/apps/page'
 import { toast } from 'react-hot-toast'
+import CustomLottie from 'src/components/custom-lottie'
+import * as block from 'src/lottie/block.json'
 
 const TableHeader = () => {
   // ** Hooks
@@ -69,6 +71,12 @@ const TableHeader = () => {
           }}
         />
         <DialogContent style={{ minWidth: '350px' }}>
+          {tableHeader.length === 0 && (
+            <CustomLottie
+              text={'테이블 헤더가 존재하지 않습니다'}
+              data={block}
+            />
+          )}
           {tableHeader.map((item, idx) => {
             return (
               <Grid container spacing={1} sx={{ mb: 2 }} key={idx}>
