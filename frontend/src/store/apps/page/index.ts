@@ -21,8 +21,11 @@ const init = {
   openUploadPart: false,
   openTextareaPart: false,
 
+  // 페이지 아이디
+  pageId: 0,
+
   // part input
-  inputId: 0,
+  inputOrder: 0,
   inputLabel: '',
   inputKey: '',
   inputUseChip: false,
@@ -36,6 +39,9 @@ const init = {
   // mode
   editMode: false,
   deleteMode: false,
+
+  // part mode
+  partMode: 'add', // add, edit
 
   // core
   url: '',
@@ -187,7 +193,7 @@ export const appPageSlice = createSlice({
 
     // 데이터 초기화
     setClearData(state) {
-      state.inputId = 0
+      state.pageId = 0
       state.url = ''
       state.pageHeader = {
         title: '',
@@ -220,7 +226,7 @@ export const appPageSlice = createSlice({
 
     // 초기 데이터 주입
     setInitData(state, action) {
-      state.inputId = action.payload.id
+      state.pageId = action.payload.id
       state.url = action.payload.url
       state.pageHeader = {
         title: action.payload.title,

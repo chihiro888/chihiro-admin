@@ -35,7 +35,18 @@ const DefaultItem = ({ order, part }) => {
       updateState({ key: 'partSubType', value: part.type ? part.type : '' })
     )
 
+    // 파츠 모드 수정
+    dispatch(
+      updateState({
+        key: 'partMode',
+        value: 'edit'
+      })
+    )
+
     // 수정 대상 데이터 로드
+    dispatch(
+      updateState({ key: 'inputOrder', value: part.order ? part.order : 0 })
+    )
     dispatch(
       updateState({ key: 'inputLabel', value: part.label ? part.label : '' })
     )

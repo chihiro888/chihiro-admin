@@ -8,7 +8,7 @@ import {
   hClosePartSelector,
   updateState
 } from 'src/store/apps/page'
-import { addPart } from 'src/utils/page'
+import { addPart, updatePart } from 'src/utils/page'
 
 const DefaultPart = () => {
   // ** Hooks
@@ -16,13 +16,20 @@ const DefaultPart = () => {
 
   // ** Redux
   const page = useSelector((state: RootState) => state.page)
-  const { openDefaultPart, partSubType } = page
+  const { openDefaultPart, partSubType, partMode } = page
   const { inputKey, inputLabel } = page
 
   // ** Handler
   // 파츠 추가
   const handleAddPart = () => {
     addPart(dispatch, page)
+    dispatch(hCloseDefaultPart())
+    dispatch(hClosePartSelector())
+  }
+
+  // 파츠 수정
+  const handleUpdatePart = () => {
+    updatePart(dispatch, page)
     dispatch(hCloseDefaultPart())
     dispatch(hClosePartSelector())
   }
@@ -64,11 +71,20 @@ const DefaultPart = () => {
               }}
             />
           </Box>
-          <Box sx={{ mb: 3 }}>
-            <Button variant="contained" fullWidth onClick={handleAddPart}>
-              추가
-            </Button>
-          </Box>
+          {partMode === 'add' && (
+            <Box sx={{ mb: 3 }}>
+              <Button variant="contained" fullWidth onClick={handleAddPart}>
+                추가
+              </Button>
+            </Box>
+          )}
+          {partMode === 'edit' && (
+            <Box sx={{ mb: 3 }}>
+              <Button variant="contained" fullWidth onClick={handleUpdatePart}>
+                수정
+              </Button>
+            </Box>
+          )}
         </DialogContent>
       </Dialog>
     </>

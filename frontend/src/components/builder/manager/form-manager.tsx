@@ -77,6 +77,12 @@ const FormManager = ({ _key, list }: Props) => {
           color="primary"
           onClick={() => {
             dispatch(hOpenPartSelector())
+            dispatch(
+              updateState({
+                key: 'partMode',
+                value: 'add'
+              })
+            )
           }}
         >
           추가

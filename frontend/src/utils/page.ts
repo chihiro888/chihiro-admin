@@ -1,3 +1,4 @@
+import produce from 'immer'
 import { updateState } from 'src/store/apps/page'
 
 // 갱신
@@ -43,6 +44,7 @@ const deleteAndReorder = (form, order) => {
   return newState
 }
 
+// ANCHOR 파츠 삭제
 export const deletePart = (dispatch, page, order) => {
   // 구분
   const { partType } = page
@@ -60,6 +62,7 @@ export const deletePart = (dispatch, page, order) => {
   }
 }
 
+// ANCHOR 파츠 추가
 export const addPart = (dispatch, page) => {
   // 구분
   const { partType, partSubType } = page
@@ -165,6 +168,151 @@ export const addPart = (dispatch, page) => {
         key: inputKey,
         value: ''
       })
+    } else if (lineCondition) {
+      // 미사용
+    } else if (selectCondition) {
+      // 미사용
+    } else if (uploadCondition) {
+      // 미사용
+    } else if (textareaCondition) {
+      // 미사용
+    }
+  }
+}
+
+// ANCHOR 파츠 수정
+export const updatePart = (dispatch, page) => {
+  // 구분
+  const { partType, partSubType } = page
+
+  // 입력값
+  const {
+    inputOrder,
+    inputLabel,
+    inputKey,
+    inputUseChip,
+    inputSx,
+    inputRows,
+    inputAllowFileExt,
+    inputMaxFileCount,
+    inputMaxFileSizeBytes,
+    inputSelectList
+  } = page
+
+  // 입력값
+  const { addForm, detailForm, searchForm } = page
+
+  const defaultCondition =
+    partSubType === 'text' ||
+    partSubType === 'number' ||
+    partSubType === 'password' ||
+    partSubType === 'editor' ||
+    partSubType === 'text' ||
+    partSubType === 'date'
+  const lineCondition = partSubType === 'line'
+  const selectCondition = partSubType === 'select'
+  const uploadCondition = partSubType === 'upload'
+  const textareaCondition = partSubType === 'textarea'
+
+  if (partType === 'add') {
+    if (defaultCondition) {
+      const nextState = produce(addForm, (draftState) => {
+        draftState.map((item) => {
+          if (item.order === inputOrder) {
+            item.label = inputLabel
+            item.key = inputKey
+          }
+        })
+      })
+      updateAddForm(dispatch, nextState)
+    } else if (lineCondition) {
+      const nextState = produce(addForm, (draftState) => {
+        draftState.map((item) => {
+          if (item.order === inputOrder) {
+            item.label = inputLabel
+            item.key = inputKey
+            item.chip = inputUseChip
+            item.sx = inputSx
+          }
+        })
+      })
+      updateAddForm(dispatch, nextState)
+    } else if (selectCondition) {
+      const nextState = produce(addForm, (draftState) => {
+        draftState.map((item) => {
+          if (item.order === inputOrder) {
+            item.label = inputLabel
+            item.key = inputKey
+            item.list = inputSelectList
+          }
+        })
+      })
+      updateAddForm(dispatch, nextState)
+    } else if (uploadCondition) {
+      const nextState = produce(addForm, (draftState) => {
+        draftState.map((item) => {
+          if (item.order === inputOrder) {
+            item.label = inputLabel
+            item.key = inputKey
+            item.allowFileExt = inputAllowFileExt
+            item.maxFileCount = inputMaxFileCount
+            item.maxFileSizeBytes = inputMaxFileSizeBytes
+          }
+        })
+      })
+      updateAddForm(dispatch, nextState)
+    } else if (textareaCondition) {
+      const nextState = produce(addForm, (draftState) => {
+        draftState.map((item) => {
+          if (item.order === inputOrder) {
+            item.label = inputLabel
+            item.key = inputKey
+            item.rows = inputRows
+          }
+        })
+      })
+      updateAddForm(dispatch, nextState)
+    }
+  } else if (partType === 'search') {
+    if (defaultCondition) {
+      const nextState = produce(searchForm, (draftState) => {
+        draftState.map((item) => {
+          if (item.order === inputOrder) {
+            item.label = inputLabel
+            item.key = inputKey
+          }
+        })
+      })
+      updateSearchForm(dispatch, nextState)
+    } else if (lineCondition) {
+      // 미사용
+    } else if (selectCondition) {
+      const nextState = produce(searchForm, (draftState) => {
+        draftState.map((item) => {
+          if (item.order === inputOrder) {
+            item.label = inputLabel
+            item.key = inputKey
+            item.list = inputSelectList
+          }
+        })
+      })
+      updateSearchForm(dispatch, nextState)
+    } else if (uploadCondition) {
+      // 미사용
+    } else if (textareaCondition) {
+      // 미사용
+    }
+  } else if (partType === 'detail') {
+    if (defaultCondition) {
+      const nextState = produce(detailForm, (draftState) => {
+        draftState.map((item) => {
+          if (item.order === inputOrder) {
+            item.label = inputLabel
+            item.key = inputKey
+          }
+        })
+      })
+      updateDetailForm(dispatch, nextState)
     } else if (lineCondition) {
       // 미사용
     } else if (selectCondition) {
