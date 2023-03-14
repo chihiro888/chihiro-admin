@@ -1,5 +1,53 @@
 // ** Redux Imports
-import { createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice, Dispatch } from '@reduxjs/toolkit'
+import produce from 'immer'
+import { getMenu } from 'src/apis/menu'
+
+interface ReduxType {
+  getState: any
+  dispatch: Dispatch<any>
+}
+
+export const reloadMenu = createAsyncThunk(
+  'appCrud/reloadMenu',
+  async (_, { getState, dispatch }: ReduxType) => {
+    try {
+      const { data: res } = await getMenu()
+      if (res.statusCode === 200) {
+        const menuList = res.data.data
+        console.log('menuList', menuList)
+        const data = menuList.map((item: any) => {
+          if (item.type === 'line') {
+            return {
+              sectionTitle: item.title
+            }
+          }
+          if (item.type === 'menu' && item.route === 'common') {
+            return {
+              title: item.title,
+              icon: item.icon,
+              path: `core/?url=${item.path}`
+            }
+          }
+
+          if (item.type === 'menu' && item.route === 'routing') {
+            return {
+              title: item.title,
+              icon: item.icon,
+              path: item.path
+            }
+          }
+        })
+
+        console.log('data', data)
+
+        dispatch(hSetMenuList(data))
+      }
+    } catch (err) {
+      ///
+    }
+  }
+)
 
 const init = {
   // dialog
@@ -8,13 +56,10 @@ const init = {
   openAddForm: false,
   openDetailForm: false,
   openActionList: false,
-  openActionForm: false,
 
   // selector
   openPartSelector: false,
-
-  // controller
-  openActionController: false,
+  partType: 'add', // add, search, detail
 
   // part dialog
   openDefaultPart: false,
@@ -22,44 +67,10 @@ const init = {
   openSelectPart: false,
   openUploadPart: false,
   openTextareaPart: false,
-
-  // part type
-  partType: 'add', // add, search, detail
-  partSubType: '', // text, select, date, number, textarea, password, upload, editor, line
-
-  // 페이지 아이디
-  pageId: 0,
-
-  // part input
-  inputOrder: 0,
-  inputLabel: '',
-  inputKey: '',
-  inputUseChip: false,
-  inputSx: '{}',
-  inputRows: 1,
-  inputAllowFileExt: ['png', 'jpg', 'jpeg', 'gif'],
-  inputMaxFileCount: 1,
-  inputMaxFileSizeBytes: 10 * 1024 * 1024,
-  inputSelectList: [],
-
-  // action input
-  inputActionOrder: 0,
-  inputActionIcon: '',
-  inputActionLabel: '',
-  inputActionLoadApi: '',
-  inputActionUpdateApi: '',
-
-  // mode
-  editMode: false,
-  deleteMode: false,
-
-  // mode (action)
-  editModeAction: false,
-  deleteModeAction: false,
-
-  // part mode
-  partMode: 'add', // add, edit
-  partModeAction: 'add', // add, edit
+  openMenuPart: false,
+  openSectionTitlePart: false,
+  openPagePart: false,
+  activeTab: '',
 
   // core
   url: '',
@@ -83,12 +94,28 @@ const init = {
     checked: false,
     functionName: ''
   },
+  menuPartForm: {
+    icon: '',
+    type: '',
+    title: '',
+    route: '',
+    page: '',
+    pageId: '',
+    path: ''
+  },
+  sectionTitlePartForm: {
+    title: '',
+    type: ''
+  },
   tableHeader: [],
   addForm: [],
   detailForm: [],
   searchForm: [],
   actionList: [],
-  actionForm: []
+
+  menuList: [],
+
+  updateMenuIdList: []
 }
 
 export const appPageSlice = createSlice({
@@ -103,66 +130,80 @@ export const appPageSlice = createSlice({
       state.openTableHeader = false
     },
 
-    // 검색 폼 모달
-    hOpenSearchForm(state) {
-      state.openSearchForm = true
-      state.partType = 'search'
-      state.editMode = false
-      state.deleteMode = false
+    updateMenuPartForm(state, action) {
+      const nextState = produce(state.menuPartForm, (draftState) => {
+        draftState[action.payload.key] = action.payload.value
+      })
+      state.menuPartForm = nextState
     },
-    hCloseSearchForm(state) {
-      state.openSearchForm = false
+
+    updateSectionTitlePartForm(state, action) {
+      const nextState = produce(state.sectionTitlePartForm, (draftState) => {
+        draftState[action.payload.key] = action.payload.value
+      })
+      state.sectionTitlePartForm = nextState
     },
 
     // 추가 폼 모달
     hOpenAddForm(state) {
       state.openAddForm = true
       state.partType = 'add'
-      state.editMode = false
-      state.deleteMode = false
     },
     hCloseAddForm(state) {
       state.openAddForm = false
+    },
+
+    // 메뉴 파츠 모달
+    hOpenMenuPart(state) {
+      state.openMenuPart = true
+    },
+    hCloseMenuPart(state) {
+      state.openMenuPart = false
+    },
+
+    hSetActiveTab(state, action) {
+      state.activeTab = action.payload
+    },
+
+    hSetMenuList(state, action) {
+      state.menuList = action.payload
+    },
+
+    hUpdateEditMenuContainer(state, action) {
+      state.updateMenuIdList = action.payload
+    },
+
+    // 섹션 타이틀 파츠 모달
+    hOpenSectionTitlePart(state) {
+      state.openSectionTitlePart = true
+    },
+    hCloseSectionTitlePart(state) {
+      state.openSectionTitlePart = false
+    },
+
+    // 페이지 파츠 모달
+    hOpenPagePart(state) {
+      state.openPagePart = true
+    },
+    hClosePagePart(state) {
+      state.openPagePart = false
     },
 
     // 상세 폼 모달
     hOpenDetailForm(state) {
       state.openDetailForm = true
       state.partType = 'detail'
-      state.editMode = false
-      state.deleteMode = false
     },
     hCloseDetailForm(state) {
       state.openDetailForm = false
     },
 
-    // 액션 폼 모달
-    hOpenActionForm(state) {
-      state.openActionForm = true
-      state.partType = 'action'
-      state.editMode = false
-      state.deleteMode = false
-    },
-    hCloseActionForm(state) {
-      state.openActionForm = false
-    },
-
     // 액션 리스트 모달
     hOpenActionList(state) {
       state.openActionList = true
-      state.editModeAction = false
-      state.deleteModeAction = false
     },
     hCloseActionList(state) {
       state.openActionList = false
-    },
-
-    // 액션 컨트롤러 모달
-    hOpenActionController(state) {
-      state.openActionController = true
-    },
-    hCloseActionController(state) {
-      state.openActionController = false
     },
 
     // 파츠 셀렉터 모달
@@ -218,31 +259,8 @@ export const appPageSlice = createSlice({
       state[action.payload.key] = action.payload.value
     },
 
-    // 입력 초기화
-    setClearInput(state) {
-      state.inputLabel = ''
-      state.inputKey = ''
-      state.inputUseChip = false
-      state.inputSx = '{}'
-      state.inputRows = 1
-      state.inputAllowFileExt = ['png', 'jpg', 'jpeg', 'gif']
-      state.inputMaxFileCount = 1
-      state.inputMaxFileSizeBytes = 10 * 1024 * 1024
-      state.inputSelectList = []
-    },
-
-    // 액션 입력 초기화
-    setClearActionInput(state) {
-      state.inputActionIcon = ''
-      state.inputActionLabel = ''
-      state.inputActionLoadApi = ''
-      state.inputActionUpdateApi = ''
-      state.actionForm = []
-    },
-
     // 데이터 초기화
     setClearData(state) {
-      state.pageId = 0
       state.url = ''
       state.pageHeader = {
         title: '',
@@ -269,13 +287,10 @@ export const appPageSlice = createSlice({
       state.detailForm = []
       state.searchForm = []
       state.actionList = []
-      state.editMode = false
-      state.deleteMode = false
     },
 
     // 초기 데이터 주입
     setInitData(state, action) {
-      state.pageId = action.payload.id
       state.url = action.payload.url
       state.pageHeader = {
         title: action.payload.title,
@@ -309,18 +324,21 @@ export const appPageSlice = createSlice({
 export const {
   hOpenTableHeader,
   hCloseTableHeader,
-  hOpenSearchForm,
-  hCloseSearchForm,
+  hOpenMenuPart,
+  hCloseMenuPart,
   hOpenAddForm,
   hCloseAddForm,
+  hSetActiveTab,
+  hSetMenuList,
+  updateSectionTitlePartForm,
+  hOpenSectionTitlePart,
+  hCloseSectionTitlePart,
+  hOpenPagePart,
+  hClosePagePart,
   hOpenDetailForm,
   hCloseDetailForm,
   hOpenActionList,
   hCloseActionList,
-  hOpenActionForm,
-  hCloseActionForm,
-  hOpenActionController,
-  hCloseActionController,
   hOpenPartSelector,
   hClosePartSelector,
   hOpenDefaultPart,
@@ -333,10 +351,10 @@ export const {
   hCloseUploadPart,
   hOpenTextareaPart,
   hCloseTextareaPart,
+  updateMenuPartForm,
   updateState,
-  setClearInput,
-  setClearActionInput,
   setClearData,
+  hUpdateEditMenuContainer,
   setInitData
 } = appPageSlice.actions
 

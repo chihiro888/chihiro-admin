@@ -2,26 +2,33 @@
 import { useState } from 'react'
 
 // ** MUI Imports
-import Box from '@mui/material/Box'
-import { styled /*, useTheme*/ } from '@mui/material/styles'
-import Typography, { TypographyProps } from '@mui/material/Typography'
 import {
   Button,
   Card,
   CardContent,
   Grid,
-  Stack,
-  TextField
+  Typography,
+  TextField,
+  Box
 } from '@mui/material'
 
 // ** Third Party Imports
 import { useDropzone } from 'react-dropzone'
+import toast from 'react-hot-toast'
+import { useTranslation } from 'react-i18next'
 
 // ** Local components Imports
 import PageHeader from 'src/@core/components/page-header'
+
+// ** Apis
 import { upload } from 'src/apis/image'
-import toast from 'react-hot-toast'
-import { useTranslation } from 'react-i18next'
+
+// ** Lottie
+import CustomLottie from 'src/components/custom-lottie'
+import * as uploadLottie from 'src/lottie/upload.json'
+
+// ** Utils
+import { formatBytes } from 'src/utils'
 
 interface FileProp {
   name: string
@@ -29,35 +36,12 @@ interface FileProp {
   size: number
 }
 
-// Styled component for the upload image inside the dropzone area
-const Img = styled('img')(({ theme }) => ({
-  width: 300,
-  [theme.breakpoints.up('md')]: {
-    marginRight: theme.spacing(15.75)
-  },
-  [theme.breakpoints.down('md')]: {
-    width: 250,
-    marginBottom: theme.spacing(4)
-  },
-  [theme.breakpoints.down('sm')]: {
-    width: 200
-  }
-}))
-
-// Styled component for the heading inside the dropzone area
-const HeadingTypography = styled(Typography)<TypographyProps>(({ theme }) => ({
-  marginBottom: theme.spacing(5),
-  [theme.breakpoints.down('sm')]: {
-    marginBottom: theme.spacing(4)
-  }
-}))
-
 const List = () => {
   // ** State
   const [files, setFiles] = useState<File[]>([])
   const [memo, setMemo] = useState('')
 
-  // ** Hook
+  // ** Hooks
   const { t } = useTranslation()
   const { getRootProps, getInputProps } = useDropzone({
     multiple: false,
@@ -86,16 +70,6 @@ const List = () => {
     }
   }
 
-  const img = files.map((file: FileProp) => (
-    <img
-      key={file.name}
-      alt={file.name}
-      className="single-file-image"
-      src={URL.createObjectURL(file as any)}
-      style={{ maxWidth: '100%', maxHeight: '100%' }}
-    />
-  ))
-
   return (
     <>
       <PageHeader
@@ -107,65 +81,50 @@ const List = () => {
 
       <Card sx={{ mt: 5 }}>
         <CardContent>
-          <Grid
-            container
-            spacing={0}
-            direction="column"
-            justifyContent="center"
-            alignItems="center"
-          >
-            <CardContent
-              sx={{ border: '2px dashed grey', borderRadius: 3, width: '100%' }}
-            >
-              <Box
-                {...getRootProps({ className: 'dropzone' })}
-                sx={files.length ? { minHeight: 241 } : {}}
-              >
+          <Grid>
+            <CardContent>
+              <Box {...getRootProps({ className: 'dropzone' })}>
                 <input {...getInputProps()} />
                 {files.length ? (
-                  <Box
-                    sx={{
-                      height: 241,
-                      display: 'flex',
-                      flexDirection: ['column', 'column', 'row'],
-                      alignItems: 'center',
-                      justifyContent: 'center'
-                    }}
-                  >
-                    {img}
+                  <Box sx={{}}>
+                    {files.map((file: FileProp, idx: number) => {
+                      return (
+                        <Box key={idx}>
+                          <Grid container spacing={5}>
+                            <Grid item xs={12} md={6} textAlign="center">
+                              <img
+                                key={file.name}
+                                alt={file.name}
+                                className="single-file-image"
+                                src={URL.createObjectURL(file as any)}
+                                style={{ height: '150px' }}
+                              />
+                            </Grid>
+                            <Grid item xs={12} md={6} textAlign="center">
+                              <Typography variant="body2">파일명</Typography>
+                              <Typography>{file.name}</Typography>
+                              <Typography variant="body2" sx={{ mt: 2 }}>
+                                파일타입
+                              </Typography>
+                              <Typography>{file.type}</Typography>
+                              <Typography variant="body2" sx={{ mt: 2 }}>
+                                파일크기
+                              </Typography>
+                              <Typography>{formatBytes(file.size)}</Typography>
+                            </Grid>
+                          </Grid>
+                        </Box>
+                      )
+                    })}
                   </Box>
                 ) : (
-                  <Box
-                    sx={{
-                      display: 'flex',
-                      flexDirection: ['column', 'column', 'row'],
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      pt: 5,
-                      pb: 5
-                    }}
-                  >
-                    <Img alt="Upload img" src="/images/misc/upload-light.png" />
-                    <Box
-                      sx={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        textAlign: ['center', 'center', 'inherit']
-                      }}
-                    >
-                      <HeadingTypography variant="h5">
-                        파일을 드래그 또는 클릭하여 업로드 하세요.
-                      </HeadingTypography>
-                      <Typography
-                        color="textSecondary"
-                        sx={{
-                          '& a': {
-                            color: 'primary.main',
-                            textDecoration: 'none'
-                          }
-                        }}
-                      >
-                        드래그 또는 클릭하여 파일 탐색기를 열어 파일 찾기
+                  <Box>
+                    <CustomLottie data={uploadLottie} text="" />
+                    <Box textAlign={'center'} sx={{ mt: 3 }}>
+                      <Typography variant="subtitle1">파일 업로드</Typography>
+                      <Typography variant="subtitle2">
+                        파일을 드래그 하거나 컴포넌트를 클릭한 후 파일 탐색기를
+                        열어 파일 업로드
                       </Typography>
                     </Box>
                   </Box>
@@ -173,7 +132,12 @@ const List = () => {
               </Box>
             </CardContent>
           </Grid>
-          <Stack sx={{ mt: 5 }}>
+        </CardContent>
+      </Card>
+
+      <Card sx={{ mt: 5 }}>
+        <CardContent>
+          <Box>
             <TextField
               id="outlined-basic"
               label="메모"
@@ -183,16 +147,16 @@ const List = () => {
               }}
               fullWidth
             />
-          </Stack>
+          </Box>
         </CardContent>
       </Card>
-      <div>
+
+      <Box sx={{ mt: 5 }}>
         <Grid
           container
           direction="row"
           justifyContent="flex-end"
           alignItems="flex-start"
-          sx={{ pt: 3 }}
         >
           <Grid item>
             <Button variant="contained" onClick={handleClickSend}>
@@ -200,7 +164,7 @@ const List = () => {
             </Button>
           </Grid>
         </Grid>
-      </div>
+      </Box>
     </>
   )
 }

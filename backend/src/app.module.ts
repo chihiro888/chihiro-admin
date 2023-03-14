@@ -13,6 +13,7 @@ import { GlobalDatabaseModule } from './common/global/database.module'
 import { GlobalHttpModule } from './common/global/http.module'
 import configuration from './configuration/configuration'
 import { CoreModule } from './api/core/core.module'
+import { MenuModule } from './api/menu/menu.module'
 @Module({
   imports: [
     // setting configuration
@@ -34,7 +35,8 @@ import { CoreModule } from './api/core/core.module'
     ImageModule,
     DashboardModule,
     BuilderModule,
-    CoreModule
+    CoreModule,
+    MenuModule
   ]
 })
 export class AppModule {}

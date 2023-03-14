@@ -13,6 +13,7 @@ import permissions from 'src/store/apps/permissions'
 import crud from 'src/store/apps/crud'
 import app from 'src/store/apps/app'
 import page from 'src/store/apps/page'
+import menu from 'src/store/apps/menu'
 
 export const store = configureStore({
   reducer: {
@@ -24,7 +25,8 @@ export const store = configureStore({
     permissions,
     crud,
     app,
-    page
+    page,
+    menu
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

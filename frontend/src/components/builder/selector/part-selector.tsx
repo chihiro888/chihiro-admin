@@ -106,7 +106,7 @@ const PartSelector = () => {
 
   // 파츠 목록 초기화
   useEffect(() => {
-    if (partType === 'add') setPartList(addPartList)
+    if (partType === 'add' || partType === 'action') setPartList(addPartList)
     else if (partType === 'search') setPartList(searchPartList)
     else if (partType === 'detail') setPartList(detailPartList)
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -116,7 +116,7 @@ const PartSelector = () => {
     <>
       <Dialog open={openPartSelector}>
         <CustomDialogTitle
-          title="부품 선택"
+          title="파츠 선택"
           onClose={() => {
             dispatch(hClosePartSelector())
           }}

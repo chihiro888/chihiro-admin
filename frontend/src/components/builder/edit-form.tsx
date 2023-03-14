@@ -33,7 +33,7 @@ const EditForm = () => {
   // ** Redux
   const page = useSelector((state: RootState) => state.page)
   const {
-    inputId,
+    pageId,
     url,
     pageHeader,
     listApi,
@@ -124,14 +124,14 @@ const EditForm = () => {
         actionList: actionList
       }
 
-      if (inputId === 0) {
+      if (pageId === 0) {
         const { data: res } = await createPage(params)
         if (res.statusCode === 200) {
           toast.success(res.message)
           router.push('/builder/page')
         }
       } else {
-        params['id'] = inputId
+        params['id'] = pageId
         const { data: res } = await updatePage(params)
         if (res.statusCode === 200) {
           toast.success(res.message)

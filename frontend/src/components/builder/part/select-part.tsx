@@ -19,7 +19,7 @@ import {
 } from 'src/store/apps/page'
 import Icon from 'src/@core/components/icon'
 import produce from 'immer'
-import { addPart } from 'src/utils/page'
+import { addPart, updatePart } from 'src/utils/page'
 
 const SelectPart = () => {
   // ** Hooks
@@ -27,7 +27,7 @@ const SelectPart = () => {
 
   // ** Redux
   const page = useSelector((state: RootState) => state.page)
-  const { openSelectPart, partSubType } = page
+  const { openSelectPart, partSubType, partMode } = page
   const { inputKey, inputLabel, inputSelectList } = page
 
   // ** Handler
@@ -62,6 +62,13 @@ const SelectPart = () => {
   // 파츠 추가
   const handleAddPart = () => {
     addPart(dispatch, page)
+    dispatch(hCloseSelectPart())
+    dispatch(hClosePartSelector())
+  }
+
+  // 파츠 수정
+  const handleUpdatePart = () => {
+    updatePart(dispatch, page)
     dispatch(hCloseSelectPart())
     dispatch(hClosePartSelector())
   }
@@ -124,7 +131,7 @@ const SelectPart = () => {
                     label="값"
                     fullWidth
                     size="small"
-                    value={item.value}
+                    value={item.key}
                     onChange={(e) => {
                       handleChangeItem(idx, 'key', e.target.value)
                     }}
@@ -139,7 +146,7 @@ const SelectPart = () => {
                       handleRemoveItem(idx)
                     }}
                   >
-                    삭제 {idx}
+                    삭제
                   </Button>
                 </Grid>
               </Grid>
@@ -155,11 +162,20 @@ const SelectPart = () => {
               <Icon icon="material-symbols:add"></Icon>
             </Button>
           </Box>
-          <Box sx={{ mb: 3 }}>
-            <Button variant="contained" fullWidth onClick={handleAddPart}>
-              추가
-            </Button>
-          </Box>
+          {partMode === 'add' && (
+            <Box sx={{ mb: 3 }}>
+              <Button variant="contained" fullWidth onClick={handleAddPart}>
+                추가
+              </Button>
+            </Box>
+          )}
+          {partMode === 'edit' && (
+            <Box sx={{ mb: 3 }}>
+              <Button variant="contained" fullWidth onClick={handleUpdatePart}>
+                수정
+              </Button>
+            </Box>
+          )}
         </DialogContent>
       </Dialog>
     </>
