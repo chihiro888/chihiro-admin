@@ -22,6 +22,8 @@ import PageHeader from 'src/@core/components/page-header'
 import { upload } from 'src/apis/image'
 import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
+import CustomLottie from 'src/components/custom-lottie'
+import * as uploadLottie from 'src/lottie/upload.json'
 
 interface FileProp {
   name: string
@@ -135,37 +137,13 @@ const List = () => {
                     {img}
                   </Box>
                 ) : (
-                  <Box
-                    sx={{
-                      display: 'flex',
-                      flexDirection: ['column', 'column', 'row'],
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      pt: 5,
-                      pb: 5
-                    }}
-                  >
-                    <Img alt="Upload img" src="/images/misc/upload-light.png" />
-                    <Box
-                      sx={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        textAlign: ['center', 'center', 'inherit']
-                      }}
-                    >
-                      <HeadingTypography variant="h5">
-                        파일을 드래그 또는 클릭하여 업로드 하세요.
-                      </HeadingTypography>
-                      <Typography
-                        color="textSecondary"
-                        sx={{
-                          '& a': {
-                            color: 'primary.main',
-                            textDecoration: 'none'
-                          }
-                        }}
-                      >
-                        드래그 또는 클릭하여 파일 탐색기를 열어 파일 찾기
+                  <Box>
+                    <CustomLottie data={uploadLottie} text="" />
+                    <Box textAlign={'center'} sx={{ mt: 3 }}>
+                      <Typography variant="subtitle1">파일 업로드</Typography>
+                      <Typography variant="subtitle2">
+                        파일을 드래그 하거나 컴포넌트를 클릭한 후 파일 탐색기를
+                        열어 파일 업로드
                       </Typography>
                     </Box>
                   </Box>
@@ -173,7 +151,12 @@ const List = () => {
               </Box>
             </CardContent>
           </Grid>
-          <Stack sx={{ mt: 5 }}>
+        </CardContent>
+      </Card>
+
+      <Card sx={{ mt: 5 }}>
+        <CardContent>
+          <Box>
             <TextField
               id="outlined-basic"
               label="메모"
@@ -183,16 +166,16 @@ const List = () => {
               }}
               fullWidth
             />
-          </Stack>
+          </Box>
         </CardContent>
       </Card>
-      <div>
+
+      <Box sx={{ mt: 5 }}>
         <Grid
           container
           direction="row"
           justifyContent="flex-end"
           alignItems="flex-start"
-          sx={{ pt: 3 }}
         >
           <Grid item>
             <Button variant="contained" onClick={handleClickSend}>
@@ -200,7 +183,7 @@ const List = () => {
             </Button>
           </Grid>
         </Grid>
-      </div>
+      </Box>
     </>
   )
 }

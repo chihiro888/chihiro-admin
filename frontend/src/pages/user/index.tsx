@@ -6,6 +6,7 @@ import HeaderContainer from 'src/components/core/header-container'
 import AddContainer from 'src/components/core/add-container'
 import SearchContainer from 'src/components/core/search-container'
 import ListContainer from 'src/components/core/list-container'
+import Content from 'src/components/user/content'
 
 // ** API
 import {
@@ -32,12 +33,10 @@ import {
   setDetailAPI,
   setDeleteAPI,
   setActionList,
-  setLoadAPI,
   initData
 } from 'src/store/apps/crud'
 import { useEffect } from 'react'
 import { AppDispatch } from 'src/store'
-import Content from 'src/components/user/content'
 
 const Admin = () => {
   // ** Hooks
