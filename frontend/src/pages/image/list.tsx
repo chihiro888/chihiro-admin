@@ -17,17 +17,15 @@ import moment from 'moment'
 import Button from '@mui/material/Button'
 import Dialog from '@mui/material/Dialog'
 import Typography from '@mui/material/Typography'
-import DialogTitle from '@mui/material/DialogTitle'
 import DialogContent from '@mui/material/DialogContent'
-import CustomCloseButton from 'src/components/custom-close-button'
-import CustomChip from 'src/@core/components/mui/chip'
 
 // ** Icon Imports
-import Icon from 'src/@core/components/icon'
 import DATE from 'src/common/constants/date'
 import { getPaginationCount } from 'src/utils'
 import CustomLottie from 'src/components/custom-lottie'
 import * as cat from 'src/lottie/cat.json'
+import CustomDialogTitle from 'src/components/custom-dialog-title'
+import CustomChip from 'src/components/custom-chip'
 
 const List = () => {
   // ** State
@@ -132,46 +130,20 @@ const List = () => {
                   />
                   <CardContent>
                     <Box sx={{ mb: 5 }}>
-                      <Stack>
-                        <CustomChip
-                          rounded
-                          label={
-                            value?.tableName
-                              ? `table : ${value?.tableName}`
-                              : 'table : -'
-                          }
-                          skin="light"
-                          color="primary"
-                        />
-                      </Stack>
-                      <Stack>
-                        <CustomChip
-                          rounded
-                          label={
-                            value?.tablePk ? `PK : ${value?.tablePk}` : 'PK : -'
-                          }
-                          skin="light"
-                          color="success"
-                        />
-                      </Stack>
-                      <Stack>
-                        <CustomChip
-                          rounded
-                          label={
-                            value?.type ? `type : ${value?.type}` : 'type : -'
-                          }
-                          skin="light"
-                          color="secondary"
-                        />
-                      </Stack>
+                      <Typography variant="body2">파일명</Typography>
+                      <Typography>{value.rawName}</Typography>
+                      <Typography variant="body2" sx={{ mt: 2 }}>
+                        파일크기
+                      </Typography>
+                      <Typography>{value.hSize}</Typography>
                     </Box>
                     <Button
                       size="small"
                       onClick={() => handleClickCopy(index)}
                       fullWidth
-                      variant="contained"
+                      variant="outlined"
                     >
-                      링크 복사
+                      이미지 주소 복사
                     </Button>
                   </CardContent>
                 </Card>
@@ -192,42 +164,36 @@ const List = () => {
       )}
 
       <Fragment>
-        <Dialog
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="customized-dialog-title"
-          sx={{ '& .MuiPaper-root': { overflow: 'visible' } }}
-        >
-          <DialogTitle
-            id="customized-dialog-title"
-            sx={{ position: 'relative' }}
-          >
-            <Typography variant="h6" component="span">
-              이미지 상세 정보
-            </Typography>
-            <CustomCloseButton
-              size="small"
-              aria-label="close"
-              onClick={handleClose}
-            >
-              <Icon icon="bx:x" />
-            </CustomCloseButton>
-          </DialogTitle>
+        <Dialog open={open} onClose={handleClose}>
+          <CustomDialogTitle title="이미지 상세 정보" onClose={handleClose} />
           <DialogContent>
-            <Typography variant="body2">아이디</Typography>
+            <Typography variant="body2" sx={{ mt: 3, mb: 3 }}>
+              주소
+            </Typography>
+            <CustomChip label={detail?.url} color="purple" />
+
+            <Typography variant="body2" sx={{ mt: 5 }}>
+              아이디
+            </Typography>
             <Typography variant="body1">{detail?.id}</Typography>
 
-            <Typography variant="body2">매핑된 테이블 이름</Typography>
+            <Typography variant="body2" sx={{ mt: 3 }}>
+              매핑된 테이블 이름
+            </Typography>
             <Typography variant="body1">
               {detail?.tableName ? detail?.tableName : '-'}
             </Typography>
 
-            <Typography variant="body2">매핑된 테이블 ID</Typography>
+            <Typography variant="body2" sx={{ mt: 3 }}>
+              매핑된 테이블 ID
+            </Typography>
             <Typography variant="body1">
               {detail?.tablePk ? detail?.tablePk : '-'}
             </Typography>
 
-            <Typography variant="body2">타입</Typography>
+            <Typography variant="body2" sx={{ mt: 3 }}>
+              타입
+            </Typography>
             <Typography variant="body1">
               {detail?.type ? detail?.type : '-'}
             </Typography>
@@ -277,25 +243,6 @@ const List = () => {
                 ? moment(detail?.createdAt).format(DATE.DATETIME)
                 : '-'}
             </Typography>
-
-            <Typography variant="body2" sx={{ mt: 3 }}>
-              주소
-            </Typography>
-            <Typography variant="body1">{detail?.url}</Typography>
-
-            {/* <Typography variant='body2' sx={{ mt: 3 }}>
-              수정일자
-            </Typography>
-            <Typography variant='body1'>
-              {detail?.updatedAt ? moment(detail?.updatedAt).format(DATE.DATETIME) : '-'}
-            </Typography> */}
-
-            {/* <Typography variant='body2' sx={{ mt: 3 }}>
-              삭제일자
-            </Typography>
-            <Typography variant='body1'>
-              {detail?.deletedAt ? moment(detail?.deletedAt).format(DATE.DATETIME) : '-'}
-            </Typography> */}
           </DialogContent>
         </Dialog>
       </Fragment>
