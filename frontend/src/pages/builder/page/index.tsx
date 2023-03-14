@@ -5,8 +5,6 @@ import { useDispatch } from 'react-redux'
 // ** Core
 import HeaderContainer from 'src/components/core/header-container'
 import SearchContainer from 'src/components/core/search-container'
-import ListContainer from 'src/components/core/list-container'
-import Content from 'src/components/builder/page/content'
 
 // ** API
 
@@ -33,7 +31,6 @@ import {
   Button,
   Card,
   CardContent,
-  Chip,
   Grid,
   Pagination,
   Typography
@@ -43,9 +40,9 @@ import { useSelector } from 'react-redux'
 import { getPaginationCount, getParamsFromForm } from 'src/utils'
 import CustomChip from 'src/components/custom-chip'
 import ModalCodeViewerContainer from 'src/components/core/modal-code-viewer-container'
-import { rows } from 'src/@fake-db/table/static-data'
 import moment from 'moment'
 import DATE from 'src/common/constants/date'
+import ActionContainer from 'src/components/core/action-container'
 
 const Page = () => {
   // ** Hooks
@@ -192,11 +189,11 @@ const Page = () => {
                         <CustomChip label={row.url} color="purple" />
                       </Grid>
                       <Grid item>
-                        <Typography variant="body2">
-                          {row?.createdAt
-                            ? moment(row?.createdAt).format(DATE.DATETIME)
-                            : '-'}
-                        </Typography>
+                        <ActionContainer
+                          id={row.id}
+                          detailAction={false}
+                          deleteAction={true}
+                        />
                       </Grid>
                     </Grid>
                     <Typography variant="subtitle1" sx={{ mt: 4 }}>
