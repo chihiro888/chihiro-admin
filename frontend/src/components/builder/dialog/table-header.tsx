@@ -6,6 +6,8 @@ import { AppDispatch, RootState } from 'src/store'
 import { useDispatch } from 'react-redux'
 import { hCloseTableHeader, updateState } from 'src/store/apps/page'
 import { toast } from 'react-hot-toast'
+import CustomLottie from 'src/components/custom-lottie'
+import * as block from 'src/lottie/block.json'
 
 const TableHeader = () => {
   // ** Hooks
@@ -26,13 +28,6 @@ const TableHeader = () => {
   // 요소 삭제
   const handleClickRemove = (idx) => {
     const copyArr = [...tableHeader]
-
-    // 유효성
-    if (copyArr.length === 1) {
-      toast.error('테이블 헤더는 최소 1개 이상이어야 합니다.')
-
-      return false
-    }
 
     // 요소 삭제
     copyArr.splice(idx, 1)
@@ -76,6 +71,12 @@ const TableHeader = () => {
           }}
         />
         <DialogContent style={{ minWidth: '350px' }}>
+          {tableHeader.length === 0 && (
+            <CustomLottie
+              text={'테이블 헤더가 존재하지 않습니다'}
+              data={block}
+            />
+          )}
           {tableHeader.map((item, idx) => {
             return (
               <Grid container spacing={1} sx={{ mb: 2 }} key={idx}>

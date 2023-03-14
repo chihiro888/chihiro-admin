@@ -8,6 +8,7 @@ import { GetPageDto } from './dto/get-page.dto'
 import { UpdatePageDto } from './dto/update-page.dto'
 import moment from 'moment'
 import DATE from 'src/common/constants/date'
+import { Result } from 'src/common/interface'
 
 @Injectable()
 export class BuilderService {
@@ -103,13 +104,80 @@ export class BuilderService {
   }
 
   // ANCHOR create page
-  async createPage(dto: CreatePageDto) {
-    //
+  async createPage(dto: CreatePageDto): Promise<Result> {
+    // 유효성
+    const exist = await this.datasource.getRepository(Page).findOne({
+      where: {
+        url: dto.url
+      }
+    })
+
+    if (exist) {
+      return {
+        result: false,
+        message: '이미 존재하는 URL 입니다.'
+      }
+    }
+
+    // 페이지 생성
+    const page = new Page()
+    page.url = dto.url
+    page.title = dto.title
+    page.subTitle = dto.subTitle
+    page.useListApi = dto.useListApi
+    page.listApi = dto.listApi === '' ? null : dto.listApi
+    page.useCreateApi = dto.useCreateApi
+    page.createApi = dto.createApi === '' ? null : dto.createApi
+    page.useDetailApi = dto.useDetailApi
+    page.detailApi = dto.detailApi === '' ? null : dto.detailApi
+    page.useDeleteApi = dto.useDeleteApi
+    page.deleteApi = dto.detailApi === '' ? null : dto.detailApi
+    page.tableHeader = JSON.stringify(dto.tableHeader)
+    page.addForm = JSON.stringify(dto.addForm)
+    page.detailForm = JSON.stringify(dto.detailForm)
+    page.searchForm = JSON.stringify(dto.searchForm)
+    page.actionList = JSON.stringify(dto.actionList)
+
+    await this.datasource.getRepository(Page).save(page)
+
+    return {
+      result: true,
+      message: '페이지 생성이 완료되었습니다.'
+    }
   }
 
   // ANCHOR update page
-  async updatePage(dto: UpdatePageDto) {
-    //
+  async updatePage(dto: UpdatePageDto): Promise<Result> {
+    const page = await this.datasource.getRepository(Page).findOne({
+      where: {
+        id: dto.id
+      }
+    })
+
+    // 페이지 수정
+    page.url = dto.url
+    page.title = dto.title
+    page.subTitle = dto.subTitle
+    page.useListApi = dto.useListApi
+    page.listApi = dto.listApi === '' ? null : dto.listApi
+    page.useCreateApi = dto.useCreateApi
+    page.createApi = dto.createApi === '' ? null : dto.createApi
+    page.useDetailApi = dto.useDetailApi
+    page.detailApi = dto.detailApi === '' ? null : dto.detailApi
+    page.useDeleteApi = dto.useDeleteApi
+    page.deleteApi = dto.deleteApi === '' ? null : dto.deleteApi
+    page.tableHeader = JSON.stringify(dto.tableHeader)
+    page.addForm = JSON.stringify(dto.addForm)
+    page.detailForm = JSON.stringify(dto.detailForm)
+    page.searchForm = JSON.stringify(dto.searchForm)
+    page.actionList = JSON.stringify(dto.actionList)
+
+    await this.datasource.getRepository(Page).save(page)
+
+    return {
+      result: true,
+      message: '페이지 수정이 완료되었습니다.'
+    }
   }
 
   // ANCHOR delete page

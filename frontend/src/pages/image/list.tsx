@@ -17,16 +17,15 @@ import moment from 'moment'
 import Button from '@mui/material/Button'
 import Dialog from '@mui/material/Dialog'
 import Typography from '@mui/material/Typography'
-import DialogTitle from '@mui/material/DialogTitle'
 import DialogContent from '@mui/material/DialogContent'
-import CustomCloseButton from 'src/components/custom-close-button'
-import CustomChip from 'src/@core/components/mui/chip'
 
 // ** Icon Imports
-import Icon from 'src/@core/components/icon'
 import DATE from 'src/common/constants/date'
 import { getPaginationCount } from 'src/utils'
 import CustomLottie from 'src/components/custom-lottie'
+import * as cat from 'src/lottie/cat.json'
+import CustomDialogTitle from 'src/components/custom-dialog-title'
+import CustomChip from 'src/components/custom-chip'
 
 const List = () => {
   // ** State
@@ -114,7 +113,7 @@ const List = () => {
 
       {pagination.data.length === 0 ? (
         <>
-          <CustomLottie text={'이미지가 존재하지 않습니다.'} />
+          <CustomLottie text={'데이터가 존재하지 않습니다.'} data={cat} />
         </>
       ) : (
         <>
@@ -131,46 +130,20 @@ const List = () => {
                   />
                   <CardContent>
                     <Box sx={{ mb: 5 }}>
-                      <Stack>
-                        <CustomChip
-                          rounded
-                          label={
-                            value?.tableName
-                              ? `table : ${value?.tableName}`
-                              : 'table : -'
-                          }
-                          skin="light"
-                          color="primary"
-                        />
-                      </Stack>
-                      <Stack>
-                        <CustomChip
-                          rounded
-                          label={
-                            value?.tablePk ? `PK : ${value?.tablePk}` : 'PK : -'
-                          }
-                          skin="light"
-                          color="success"
-                        />
-                      </Stack>
-                      <Stack>
-                        <CustomChip
-                          rounded
-                          label={
-                            value?.type ? `type : ${value?.type}` : 'type : -'
-                          }
-                          skin="light"
-                          color="secondary"
-                        />
-                      </Stack>
+                      <Typography variant="body2">파일명</Typography>
+                      <Typography>{value.rawName}</Typography>
+                      <Typography variant="body2" sx={{ mt: 2 }}>
+                        파일크기
+                      </Typography>
+                      <Typography>{value.hSize}</Typography>
                     </Box>
                     <Button
                       size="small"
                       onClick={() => handleClickCopy(index)}
                       fullWidth
-                      variant="contained"
+                      variant="outlined"
                     >
-                      링크 복사
+                      이미지 주소 복사
                     </Button>
                   </CardContent>
                 </Card>
@@ -191,110 +164,105 @@ const List = () => {
       )}
 
       <Fragment>
-        <Dialog
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="customized-dialog-title"
-          sx={{ '& .MuiPaper-root': { overflow: 'visible' } }}
-        >
-          <DialogTitle
-            id="customized-dialog-title"
-            sx={{ position: 'relative' }}
-          >
-            <Typography variant="h6" component="span">
-              이미지 상세 정보
-            </Typography>
-            <CustomCloseButton
-              size="small"
-              aria-label="close"
-              onClick={handleClose}
-            >
-              <Icon icon="bx:x" />
-            </CustomCloseButton>
-          </DialogTitle>
+        <Dialog open={open} onClose={handleClose}>
+          <CustomDialogTitle title="이미지 상세 정보" onClose={handleClose} />
           <DialogContent>
             <Typography variant="body2">아이디</Typography>
             <Typography variant="body1">{detail?.id}</Typography>
 
-            <Typography variant="body2">매핑된 테이블 이름</Typography>
-            <Typography variant="body1">
-              {detail?.tableName ? detail?.tableName : '-'}
+            <Typography variant="body2" sx={{ mt: 5, mb: 3 }}>
+              주소
             </Typography>
+            <CustomChip label={detail?.url} color="purple" />
 
-            <Typography variant="body2">매핑된 테이블 ID</Typography>
-            <Typography variant="body1">
-              {detail?.tablePk ? detail?.tablePk : '-'}
-            </Typography>
+            <Grid container spacing={2}>
+              <Grid item xs={12} md={4}>
+                <Typography variant="body2" sx={{ mt: 5, mb: 3 }}>
+                  매핑된 테이블 이름
+                </Typography>
+                <CustomChip
+                  label={detail?.tableName ? detail?.tableName : '-'}
+                  color="orange"
+                />
+              </Grid>
+              <Grid item xs={12} md={4}>
+                <Typography variant="body2" sx={{ mt: 5, mb: 3 }}>
+                  매핑된 테이블 ID
+                </Typography>
+                <CustomChip
+                  label={detail?.tablePk ? detail?.tablePk : '-'}
+                  color="orange"
+                />
+              </Grid>
+              <Grid item xs={12} md={4}>
+                <Typography variant="body2" sx={{ mt: 5, mb: 3 }}>
+                  타입
+                </Typography>
+                <CustomChip
+                  label={detail?.type ? detail?.type : '-'}
+                  color="orange"
+                />
+              </Grid>
+            </Grid>
 
-            <Typography variant="body2">타입</Typography>
-            <Typography variant="body1">
-              {detail?.type ? detail?.type : '-'}
-            </Typography>
-
-            <Typography variant="body2" sx={{ mt: 3 }}>
+            <Typography variant="body2" sx={{ mt: 5, mb: 3 }}>
               메모
             </Typography>
-            <Typography variant="body1">
-              {detail?.note ? detail?.note : '-'}
-            </Typography>
+            <CustomChip label={detail?.note ? detail?.note : '-'} color="red" />
 
-            <Typography variant="body2" sx={{ mt: 3 }}>
+            <Typography variant="body2" sx={{ mt: 5, mb: 3 }}>
               파일명
             </Typography>
-            <Typography variant="body1">{detail?.rawName}</Typography>
+            <CustomChip label={detail?.rawName} color="blue" />
 
-            <Typography variant="body2" sx={{ mt: 3 }}>
+            <Typography variant="body2" sx={{ mt: 5, mb: 3 }}>
               변환된 파일명
             </Typography>
-            <Typography variant="body1">{detail?.encName}</Typography>
+            <CustomChip label={detail?.encName} color="blue" />
 
-            <Typography variant="body2" sx={{ mt: 3 }}>
+            <Typography variant="body2" sx={{ mt: 5, mb: 3 }}>
               확장자
             </Typography>
-            <Typography variant="body1">{detail?.extension}</Typography>
+            <CustomChip label={detail?.extension} color="blue" />
 
-            <Typography variant="body2" sx={{ mt: 3 }}>
-              사이즈
-            </Typography>
-            <Typography variant="body1">{detail?.size}</Typography>
+            <Grid container>
+              <Grid item xs={6}>
+                <Typography variant="body2" sx={{ mt: 5, mb: 3 }}>
+                  사이즈
+                </Typography>
+                <CustomChip label={detail?.size} color="green" />
+              </Grid>
+              <Grid item xs={6}>
+                <Typography variant="body2" sx={{ mt: 5, mb: 3 }}>
+                  사이즈 (단위)
+                </Typography>
+                <CustomChip label={detail?.hSize} color="green" />
+              </Grid>
+            </Grid>
 
-            <Typography variant="body2" sx={{ mt: 3 }}>
-              사이즈 (단위)
-            </Typography>
-            <Typography variant="body1">{detail?.hSize}</Typography>
-
-            <Typography variant="body2" sx={{ mt: 3 }}>
+            <Typography variant="body2" sx={{ mt: 5 }}>
               절대경로
             </Typography>
             <Typography variant="body1">{detail?.absPath}</Typography>
 
-            <Typography variant="body2" sx={{ mt: 3 }}>
-              생성일자
-            </Typography>
-            <Typography variant="body1">
-              {detail?.createdAt
-                ? moment(detail?.createdAt).format(DATE.DATETIME)
-                : '-'}
-            </Typography>
-
-            <Typography variant="body2" sx={{ mt: 3 }}>
-              주소
-            </Typography>
-            <Typography variant="body1">{detail?.url}</Typography>
-
-            {/* <Typography variant='body2' sx={{ mt: 3 }}>
-              수정일자
-            </Typography>
-            <Typography variant='body1'>
-              {detail?.updatedAt ? moment(detail?.updatedAt).format(DATE.DATETIME) : '-'}
-            </Typography> */}
-
-            {/* <Typography variant='body2' sx={{ mt: 3 }}>
-              삭제일자
-            </Typography>
-            <Typography variant='body1'>
-              {detail?.deletedAt ? moment(detail?.deletedAt).format(DATE.DATETIME) : '-'}
-            </Typography> */}
+            <Grid container spacing={2} sx={{ mt: 3 }}>
+              <Grid item xs={12} md={6}>
+                <Typography variant="body2">생성일자</Typography>
+                <Typography variant="body1">
+                  {detail?.createdAt
+                    ? moment(detail?.createdAt).format(DATE.DATETIME)
+                    : '-'}
+                </Typography>
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <Typography variant="body2">수정일자</Typography>
+                <Typography variant="body1">
+                  {detail?.updatedAt
+                    ? moment(detail?.updatedAt).format(DATE.DATETIME)
+                    : '-'}
+                </Typography>
+              </Grid>
+            </Grid>
           </DialogContent>
         </Dialog>
       </Fragment>

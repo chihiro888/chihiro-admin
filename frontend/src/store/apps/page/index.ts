@@ -8,11 +8,13 @@ const init = {
   openAddForm: false,
   openDetailForm: false,
   openActionList: false,
+  openActionForm: false,
 
   // selector
   openPartSelector: false,
-  partType: 'add', // add, search, detail
-  partSubType: '', // text, select, date, number, textarea, password, upload, editor, line
+
+  // controller
+  openActionController: false,
 
   // part dialog
   openDefaultPart: false,
@@ -21,7 +23,15 @@ const init = {
   openUploadPart: false,
   openTextareaPart: false,
 
+  // part type
+  partType: 'add', // add, search, detail
+  partSubType: '', // text, select, date, number, textarea, password, upload, editor, line
+
+  // 페이지 아이디
+  pageId: 0,
+
   // part input
+  inputOrder: 0,
   inputLabel: '',
   inputKey: '',
   inputUseChip: false,
@@ -31,6 +41,25 @@ const init = {
   inputMaxFileCount: 1,
   inputMaxFileSizeBytes: 10 * 1024 * 1024,
   inputSelectList: [],
+
+  // action input
+  inputActionOrder: 0,
+  inputActionIcon: '',
+  inputActionLabel: '',
+  inputActionLoadApi: '',
+  inputActionUpdateApi: '',
+
+  // mode
+  editMode: false,
+  deleteMode: false,
+
+  // mode (action)
+  editModeAction: false,
+  deleteModeAction: false,
+
+  // part mode
+  partMode: 'add', // add, edit
+  partModeAction: 'add', // add, edit
 
   // core
   url: '',
@@ -58,7 +87,8 @@ const init = {
   addForm: [],
   detailForm: [],
   searchForm: [],
-  actionList: []
+  actionList: [],
+  actionForm: []
 }
 
 export const appPageSlice = createSlice({
@@ -77,6 +107,8 @@ export const appPageSlice = createSlice({
     hOpenSearchForm(state) {
       state.openSearchForm = true
       state.partType = 'search'
+      state.editMode = false
+      state.deleteMode = false
     },
     hCloseSearchForm(state) {
       state.openSearchForm = false
@@ -86,6 +118,8 @@ export const appPageSlice = createSlice({
     hOpenAddForm(state) {
       state.openAddForm = true
       state.partType = 'add'
+      state.editMode = false
+      state.deleteMode = false
     },
     hCloseAddForm(state) {
       state.openAddForm = false
@@ -95,17 +129,40 @@ export const appPageSlice = createSlice({
     hOpenDetailForm(state) {
       state.openDetailForm = true
       state.partType = 'detail'
+      state.editMode = false
+      state.deleteMode = false
     },
     hCloseDetailForm(state) {
       state.openDetailForm = false
     },
 
+    // 액션 폼 모달
+    hOpenActionForm(state) {
+      state.openActionForm = true
+      state.partType = 'action'
+      state.editMode = false
+      state.deleteMode = false
+    },
+    hCloseActionForm(state) {
+      state.openActionForm = false
+    },
+
     // 액션 리스트 모달
     hOpenActionList(state) {
       state.openActionList = true
+      state.editModeAction = false
+      state.deleteModeAction = false
     },
     hCloseActionList(state) {
       state.openActionList = false
+    },
+
+    // 액션 컨트롤러 모달
+    hOpenActionController(state) {
+      state.openActionController = true
+    },
+    hCloseActionController(state) {
+      state.openActionController = false
     },
 
     // 파츠 셀렉터 모달
@@ -174,8 +231,18 @@ export const appPageSlice = createSlice({
       state.inputSelectList = []
     },
 
+    // 액션 입력 초기화
+    setClearActionInput(state) {
+      state.inputActionIcon = ''
+      state.inputActionLabel = ''
+      state.inputActionLoadApi = ''
+      state.inputActionUpdateApi = ''
+      state.actionForm = []
+    },
+
     // 데이터 초기화
     setClearData(state) {
+      state.pageId = 0
       state.url = ''
       state.pageHeader = {
         title: '',
@@ -202,10 +269,13 @@ export const appPageSlice = createSlice({
       state.detailForm = []
       state.searchForm = []
       state.actionList = []
+      state.editMode = false
+      state.deleteMode = false
     },
 
     // 초기 데이터 주입
     setInitData(state, action) {
+      state.pageId = action.payload.id
       state.url = action.payload.url
       state.pageHeader = {
         title: action.payload.title,
@@ -247,6 +317,10 @@ export const {
   hCloseDetailForm,
   hOpenActionList,
   hCloseActionList,
+  hOpenActionForm,
+  hCloseActionForm,
+  hOpenActionController,
+  hCloseActionController,
   hOpenPartSelector,
   hClosePartSelector,
   hOpenDefaultPart,
@@ -261,6 +335,7 @@ export const {
   hCloseTextareaPart,
   updateState,
   setClearInput,
+  setClearActionInput,
   setClearData,
   setInitData
 } = appPageSlice.actions

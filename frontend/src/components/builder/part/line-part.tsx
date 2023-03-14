@@ -12,7 +12,13 @@ import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import CustomDialogTitle from 'src/components/custom-dialog-title'
 import { AppDispatch, RootState } from 'src/store'
-import { hCloseLinePart, updateState } from 'src/store/apps/page'
+import {
+  hCloseDefaultPart,
+  hCloseLinePart,
+  hClosePartSelector,
+  updateState
+} from 'src/store/apps/page'
+import { addPart, updatePart } from 'src/utils/page'
 
 const LinePart = () => {
   // ** Hooks
@@ -20,8 +26,23 @@ const LinePart = () => {
 
   // ** Redux
   const page = useSelector((state: RootState) => state.page)
-  const { openLinePart, partSubType } = page
+  const { openLinePart, partSubType, partMode } = page
   const { inputLabel, inputUseChip, inputSx } = page
+
+  // ** Handler
+  // 파츠 추가
+  const handleAddPart = () => {
+    addPart(dispatch, page)
+    dispatch(hCloseLinePart())
+    dispatch(hClosePartSelector())
+  }
+
+  // 파츠 수정
+  const handleUpdatePart = () => {
+    updatePart(dispatch, page)
+    dispatch(hCloseLinePart())
+    dispatch(hClosePartSelector())
+  }
 
   return (
     <>
@@ -81,11 +102,20 @@ const LinePart = () => {
               }}
             />
           </Box>
-          <Box sx={{ mb: 3 }}>
-            <Button variant="contained" fullWidth>
-              추가
-            </Button>
-          </Box>
+          {partMode === 'add' && (
+            <Box sx={{ mb: 3 }}>
+              <Button variant="contained" fullWidth onClick={handleAddPart}>
+                추가
+              </Button>
+            </Box>
+          )}
+          {partMode === 'edit' && (
+            <Box sx={{ mb: 3 }}>
+              <Button variant="contained" fullWidth onClick={handleUpdatePart}>
+                수정
+              </Button>
+            </Box>
+          )}
         </DialogContent>
       </Dialog>
     </>

@@ -12,7 +12,13 @@ import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import CustomDialogTitle from 'src/components/custom-dialog-title'
 import { AppDispatch, RootState } from 'src/store'
-import { hCloseUploadPart, updateState } from 'src/store/apps/page'
+import {
+  hCloseDefaultPart,
+  hClosePartSelector,
+  hCloseUploadPart,
+  updateState
+} from 'src/store/apps/page'
+import { addPart, updatePart } from 'src/utils/page'
 
 const UploadPart = () => {
   // ** Hooks
@@ -20,7 +26,7 @@ const UploadPart = () => {
 
   // ** Redux
   const page = useSelector((state: RootState) => state.page)
-  const { openUploadPart, partSubType } = page
+  const { openUploadPart, partSubType, partMode } = page
   const {
     inputKey,
     inputLabel,
@@ -46,6 +52,20 @@ const UploadPart = () => {
         })
       )
     }
+  }
+
+  // 파츠 추가
+  const handleAddPart = () => {
+    addPart(dispatch, page)
+    dispatch(hCloseUploadPart())
+    dispatch(hClosePartSelector())
+  }
+
+  // 파츠 수정
+  const handleUpdatePart = () => {
+    updatePart(dispatch, page)
+    dispatch(hCloseUploadPart())
+    dispatch(hClosePartSelector())
   }
 
   return (
@@ -167,11 +187,20 @@ const UploadPart = () => {
               }}
             />
           </Box>
-          <Box sx={{ mb: 3 }}>
-            <Button variant="contained" fullWidth>
-              추가
-            </Button>
-          </Box>
+          {partMode === 'add' && (
+            <Box sx={{ mb: 3 }}>
+              <Button variant="contained" fullWidth onClick={handleAddPart}>
+                추가
+              </Button>
+            </Box>
+          )}
+          {partMode === 'edit' && (
+            <Box sx={{ mb: 3 }}>
+              <Button variant="contained" fullWidth onClick={handleUpdatePart}>
+                수정
+              </Button>
+            </Box>
+          )}
         </DialogContent>
       </Dialog>
     </>
