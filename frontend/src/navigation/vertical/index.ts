@@ -76,11 +76,6 @@ const navigation = (): VerticalNavItemsType => {
       sectionTitle: 'core'
     },
     {
-      title: 'Core null',
-      icon: 'material-symbols:person',
-      path: '/core/?url=abab'
-    },
-    {
       title: 'Core userList',
       icon: 'material-symbols:person',
       path: '/core/?url=userList'
