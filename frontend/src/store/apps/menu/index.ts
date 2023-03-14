@@ -1,5 +1,53 @@
 // ** Redux Imports
-import { createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice, Dispatch } from '@reduxjs/toolkit'
+import produce from 'immer'
+import { getMenu } from 'src/apis/menu'
+
+interface ReduxType {
+  getState: any
+  dispatch: Dispatch<any>
+}
+
+export const reloadMenu = createAsyncThunk(
+  'appCrud/reloadMenu',
+  async (_, { getState, dispatch }: ReduxType) => {
+    try {
+      const { data: res } = await getMenu()
+      if (res.statusCode === 200) {
+        const menuList = res.data.data
+        console.log('menuList', menuList)
+        const data = menuList.map((item: any) => {
+          if (item.type === 'line') {
+            return {
+              sectionTitle: item.title
+            }
+          }
+          if (item.type === 'menu' && item.route === 'common') {
+            return {
+              title: item.title,
+              icon: item.icon,
+              path: `core/?url=${item.path}`
+            }
+          }
+
+          if (item.type === 'menu' && item.route === 'routing') {
+            return {
+              title: item.title,
+              icon: item.icon,
+              path: item.path
+            }
+          }
+        })
+
+        console.log('data', data)
+
+        dispatch(hSetMenuList(data))
+      }
+    } catch (err) {
+      ///
+    }
+  }
+)
 
 const init = {
   // dialog
@@ -21,6 +69,8 @@ const init = {
   openTextareaPart: false,
   openMenuPart: false,
   openSectionTitlePart: false,
+  openPagePart: false,
+  activeTab: '',
 
   // core
   url: '',
@@ -44,11 +94,28 @@ const init = {
     checked: false,
     functionName: ''
   },
+  menuPartForm: {
+    icon: '',
+    type: '',
+    title: '',
+    route: '',
+    page: '',
+    pageId: '',
+    path: ''
+  },
+  sectionTitlePartForm: {
+    title: '',
+    type: ''
+  },
   tableHeader: [],
   addForm: [],
   detailForm: [],
   searchForm: [],
-  actionList: []
+  actionList: [],
+
+  menuList: [],
+
+  updateMenuIdList: []
 }
 
 export const appPageSlice = createSlice({
@@ -61,6 +128,20 @@ export const appPageSlice = createSlice({
     },
     hCloseTableHeader(state) {
       state.openTableHeader = false
+    },
+
+    updateMenuPartForm(state, action) {
+      const nextState = produce(state.menuPartForm, (draftState) => {
+        draftState[action.payload.key] = action.payload.value
+      })
+      state.menuPartForm = nextState
+    },
+
+    updateSectionTitlePartForm(state, action) {
+      const nextState = produce(state.sectionTitlePartForm, (draftState) => {
+        draftState[action.payload.key] = action.payload.value
+      })
+      state.sectionTitlePartForm = nextState
     },
 
     // 추가 폼 모달
@@ -80,12 +161,32 @@ export const appPageSlice = createSlice({
       state.openMenuPart = false
     },
 
+    hSetActiveTab(state, action) {
+      state.activeTab = action.payload
+    },
+
+    hSetMenuList(state, action) {
+      state.menuList = action.payload
+    },
+
+    hUpdateEditMenuContainer(state, action) {
+      state.updateMenuIdList = action.payload
+    },
+
     // 섹션 타이틀 파츠 모달
     hOpenSectionTitlePart(state) {
       state.openSectionTitlePart = true
     },
     hCloseSectionTitlePart(state) {
       state.openSectionTitlePart = false
+    },
+
+    // 페이지 파츠 모달
+    hOpenPagePart(state) {
+      state.openPagePart = true
+    },
+    hClosePagePart(state) {
+      state.openPagePart = false
     },
 
     // 상세 폼 모달
@@ -227,8 +328,13 @@ export const {
   hCloseMenuPart,
   hOpenAddForm,
   hCloseAddForm,
+  hSetActiveTab,
+  hSetMenuList,
+  updateSectionTitlePartForm,
   hOpenSectionTitlePart,
   hCloseSectionTitlePart,
+  hOpenPagePart,
+  hClosePagePart,
   hOpenDetailForm,
   hCloseDetailForm,
   hOpenActionList,
@@ -245,8 +351,10 @@ export const {
   hCloseUploadPart,
   hOpenTextareaPart,
   hCloseTextareaPart,
+  updateMenuPartForm,
   updateState,
   setClearData,
+  hUpdateEditMenuContainer,
   setInitData
 } = appPageSlice.actions
 

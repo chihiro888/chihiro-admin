@@ -12,18 +12,22 @@ import Icon from 'src/@core/components/icon'
 import TabMenuBuilder from 'src/components/builder/menu'
 import { getGlobalList } from 'src/apis/global'
 import { Button } from '@mui/material'
-import { hOpenAddForm, setClearData } from 'src/store/apps/menu'
-import { useDispatch } from 'react-redux'
-import { AppDispatch } from 'src/store'
+import { hOpenAddForm, hSetActiveTab, reloadMenu } from 'src/store/apps/menu'
+import { useDispatch, useSelector } from 'react-redux'
+import { AppDispatch, RootState } from 'src/store'
+import { updateMenu } from 'src/apis/menu'
+import toast from 'react-hot-toast'
 
 const MenuContainer = () => {
   // ** Hooks
   const dispatch = useDispatch<AppDispatch>()
 
+  // ** Redux
+  const menu = useSelector((state: RootState) => state.menu)
+  const { activeTab, updateMenuIdList } = menu
+
   // ** State
   const [tabs, setTabs] = useState<any>([])
-  const [activeTab, setActiveTab] = useState<string>('U')
-  const [isLoading, setIsLoading] = useState<boolean>(false)
 
   const initData = async () => {
     try {
@@ -32,6 +36,7 @@ const MenuContainer = () => {
         const role = JSON.parse(
           res.data.filter((global) => global.key === 'role')[0].value
         )
+        dispatch(hSetActiveTab('U'))
         setTabs(role)
       }
     } catch (err) {
@@ -43,19 +48,32 @@ const MenuContainer = () => {
   }, [])
 
   // ** handler
-
   const handleTabChange = (e) => {
-    setActiveTab(e.target.value)
-    console.log(e.target.value)
+    dispatch(hSetActiveTab(e.target.value))
+  }
+
+  const handleClickSave = async () => {
+    try {
+      const params = {
+        permission: activeTab,
+        menuIdList: updateMenuIdList
+      }
+
+      const { data: res } = await updateMenu(params)
+      if (res.statusCode === 200) {
+        toast.success(res.message)
+        dispatch(reloadMenu())
+      }
+    } catch (err) {
+      //
+    }
   }
 
   return (
     <>
       {/* 헤더 컨테이너 */}
 
-      {/*  */}
-
-      <Grid container spacing={6}>
+      <Grid container spacing={6} sx={{ mt: 1 }}>
         <Grid item xs={12}>
           <TabContext value={activeTab}>
             <Grid container spacing={6}>
@@ -97,10 +115,18 @@ const MenuContainer = () => {
                 >
                   메뉴 생성
                 </Button>
+
+                <Button
+                  variant="contained"
+                  sx={{ mr: 5 }}
+                  onClick={handleClickSave}
+                >
+                  저장
+                </Button>
               </Grid>
 
               <Grid item xs={12}>
-                <TabMenuBuilder />
+                <TabMenuBuilder tabs={tabs} />
               </Grid>
             </Grid>
           </TabContext>

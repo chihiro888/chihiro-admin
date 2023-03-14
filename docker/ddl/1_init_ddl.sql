@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS _login_history (
 /*
     global table
 */
-DROP TABLE IF EXISTS _global;
+DROP TABLE IF EXISTS _global;    
 CREATE TABLE IF NOT EXISTS _global (
   `key` VARCHAR(255) PRIMARY KEY NOT NULL COMMENT 'key',
   `value` TEXT NOT NULL COMMENT 'value',
@@ -87,3 +87,32 @@ CREATE TABLE IF NOT EXISTS _page (
   `updated_at` DATETIME DEFAULT NULL COMMENT 'update time',
   `deleted_at` DATETIME DEFAULT NULL COMMENT 'delete time'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT="page";
+
+
+/*
+    menu table
+*/
+DROP TABLE IF EXISTS _menu;
+CREATE TABLE IF NOT EXISTS _menu (
+  `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `type`  VARCHAR(255) COMMENT 'type ex) menu, line',
+  `title` VARCHAR(255) NOT NULL COMMENT 'title',
+  `icon` VARCHAR(255) COMMENT 'icon',
+  `route` VARCHAR(255) COMMENT 'route',
+  `path` VARCHAR(255) COMMENT 'path',
+  `page_id` INT COMMENT 'page id',
+  `created_at` DATETIME DEFAULT now() COMMENT 'create time',
+  `updated_at` DATETIME DEFAULT NULL COMMENT 'update time',
+  `deleted_at` DATETIME DEFAULT NULL COMMENT 'delete time'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT="_menu";
+
+/*
+    menu order table
+*/
+DROP TABLE IF EXISTS _menu_order;
+CREATE TABLE IF NOT EXISTS _menu_order (
+  `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `menu_id`  INT COMMENT 'menu id',
+  `menu_order` INT COMMENT 'order',
+  `permission` VARCHAR(255) NOT NULL COMMENT 'permission'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT="_menu_order";
