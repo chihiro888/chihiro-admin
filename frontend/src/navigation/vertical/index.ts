@@ -24,6 +24,9 @@ const navigation = (): VerticalNavItemsType => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const defaultSystemAdminMenu = [
     {
+      sectionTitle: '시스템 관리'
+    },
+    {
       title: '메뉴 빌더',
       icon: 'ri:node-tree',
       path: '/builder/menu'
