@@ -167,82 +167,102 @@ const List = () => {
         <Dialog open={open} onClose={handleClose}>
           <CustomDialogTitle title="이미지 상세 정보" onClose={handleClose} />
           <DialogContent>
-            <Typography variant="body2" sx={{ mt: 3, mb: 3 }}>
+            <Typography variant="body2">아이디</Typography>
+            <Typography variant="body1">{detail?.id}</Typography>
+
+            <Typography variant="body2" sx={{ mt: 5, mb: 3 }}>
               주소
             </Typography>
             <CustomChip label={detail?.url} color="purple" />
 
-            <Typography variant="body2" sx={{ mt: 5 }}>
-              아이디
-            </Typography>
-            <Typography variant="body1">{detail?.id}</Typography>
+            <Grid container spacing={2}>
+              <Grid item xs={12} md={4}>
+                <Typography variant="body2" sx={{ mt: 5, mb: 3 }}>
+                  매핑된 테이블 이름
+                </Typography>
+                <CustomChip
+                  label={detail?.tableName ? detail?.tableName : '-'}
+                  color="orange"
+                />
+              </Grid>
+              <Grid item xs={12} md={4}>
+                <Typography variant="body2" sx={{ mt: 5, mb: 3 }}>
+                  매핑된 테이블 ID
+                </Typography>
+                <CustomChip
+                  label={detail?.tablePk ? detail?.tablePk : '-'}
+                  color="orange"
+                />
+              </Grid>
+              <Grid item xs={12} md={4}>
+                <Typography variant="body2" sx={{ mt: 5, mb: 3 }}>
+                  타입
+                </Typography>
+                <CustomChip
+                  label={detail?.type ? detail?.type : '-'}
+                  color="orange"
+                />
+              </Grid>
+            </Grid>
 
-            <Typography variant="body2" sx={{ mt: 3 }}>
-              매핑된 테이블 이름
-            </Typography>
-            <Typography variant="body1">
-              {detail?.tableName ? detail?.tableName : '-'}
-            </Typography>
-
-            <Typography variant="body2" sx={{ mt: 3 }}>
-              매핑된 테이블 ID
-            </Typography>
-            <Typography variant="body1">
-              {detail?.tablePk ? detail?.tablePk : '-'}
-            </Typography>
-
-            <Typography variant="body2" sx={{ mt: 3 }}>
-              타입
-            </Typography>
-            <Typography variant="body1">
-              {detail?.type ? detail?.type : '-'}
-            </Typography>
-
-            <Typography variant="body2" sx={{ mt: 3 }}>
+            <Typography variant="body2" sx={{ mt: 5, mb: 3 }}>
               메모
             </Typography>
-            <Typography variant="body1">
-              {detail?.note ? detail?.note : '-'}
-            </Typography>
+            <CustomChip label={detail?.note ? detail?.note : '-'} color="red" />
 
-            <Typography variant="body2" sx={{ mt: 3 }}>
+            <Typography variant="body2" sx={{ mt: 5, mb: 3 }}>
               파일명
             </Typography>
-            <Typography variant="body1">{detail?.rawName}</Typography>
+            <CustomChip label={detail?.rawName} color="blue" />
 
-            <Typography variant="body2" sx={{ mt: 3 }}>
+            <Typography variant="body2" sx={{ mt: 5, mb: 3 }}>
               변환된 파일명
             </Typography>
-            <Typography variant="body1">{detail?.encName}</Typography>
+            <CustomChip label={detail?.encName} color="blue" />
 
-            <Typography variant="body2" sx={{ mt: 3 }}>
+            <Typography variant="body2" sx={{ mt: 5, mb: 3 }}>
               확장자
             </Typography>
-            <Typography variant="body1">{detail?.extension}</Typography>
+            <CustomChip label={detail?.extension} color="blue" />
 
-            <Typography variant="body2" sx={{ mt: 3 }}>
-              사이즈
-            </Typography>
-            <Typography variant="body1">{detail?.size}</Typography>
+            <Grid container>
+              <Grid item xs={6}>
+                <Typography variant="body2" sx={{ mt: 5, mb: 3 }}>
+                  사이즈
+                </Typography>
+                <CustomChip label={detail?.size} color="green" />
+              </Grid>
+              <Grid item xs={6}>
+                <Typography variant="body2" sx={{ mt: 5, mb: 3 }}>
+                  사이즈 (단위)
+                </Typography>
+                <CustomChip label={detail?.hSize} color="green" />
+              </Grid>
+            </Grid>
 
-            <Typography variant="body2" sx={{ mt: 3 }}>
-              사이즈 (단위)
-            </Typography>
-            <Typography variant="body1">{detail?.hSize}</Typography>
-
-            <Typography variant="body2" sx={{ mt: 3 }}>
+            <Typography variant="body2" sx={{ mt: 5 }}>
               절대경로
             </Typography>
             <Typography variant="body1">{detail?.absPath}</Typography>
 
-            <Typography variant="body2" sx={{ mt: 3 }}>
-              생성일자
-            </Typography>
-            <Typography variant="body1">
-              {detail?.createdAt
-                ? moment(detail?.createdAt).format(DATE.DATETIME)
-                : '-'}
-            </Typography>
+            <Grid container spacing={2} sx={{ mt: 3 }}>
+              <Grid item xs={12} md={6}>
+                <Typography variant="body2">생성일자</Typography>
+                <Typography variant="body1">
+                  {detail?.createdAt
+                    ? moment(detail?.createdAt).format(DATE.DATETIME)
+                    : '-'}
+                </Typography>
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <Typography variant="body2">수정일자</Typography>
+                <Typography variant="body1">
+                  {detail?.updatedAt
+                    ? moment(detail?.updatedAt).format(DATE.DATETIME)
+                    : '-'}
+                </Typography>
+              </Grid>
+            </Grid>
           </DialogContent>
         </Dialog>
       </Fragment>
