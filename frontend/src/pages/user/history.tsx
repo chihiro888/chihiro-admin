@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux'
 import HeaderContainer from 'src/components/core/header-container'
 import SearchContainer from 'src/components/core/search-container'
 import ListContainer from 'src/components/core/list-container'
-import Content from 'src/components/admin/history/content'
+import Content from 'src/components/user/history/content'
 
 // ** API
 import { getLoginHistoryList, getLoginHistoryDetail } from 'src/apis/user'

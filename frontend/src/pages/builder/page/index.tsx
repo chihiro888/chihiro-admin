@@ -181,7 +181,7 @@ const Page = () => {
         <Grid container spacing={5}>
           {pagination.data.map((row: any, idx: number) => {
             return (
-              <Grid item xs={4} key={idx}>
+              <Grid item xs={12} md={6} lg={6} xl={4} key={idx}>
                 <Card>
                   <CardContent>
                     <Grid container justifyContent="space-between">
@@ -264,6 +264,11 @@ const Page = () => {
                       </Grid>
                     </Grid>
                     <Box sx={{ mt: 3 }}>
+                      <ModalCodeViewerContainer
+                        title="#테이블헤더"
+                        content={row.tableHeader}
+                        pretty
+                      />
                       <ModalCodeViewerContainer
                         title="#추가폼"
                         content={row.addForm}
