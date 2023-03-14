@@ -51,6 +51,24 @@ const navigation = (): VerticalNavItemsType => {
       title: '로그인 이력',
       icon: 'mdi:account-clock',
       path: '/user/history'
+    },
+    {
+      sectionTitle: 'core'
+    },
+    {
+      title: 'Core null',
+      icon: 'material-symbols:person',
+      path: '/core/?url=abab'
+    },
+    {
+      title: 'Core userList',
+      icon: 'material-symbols:person',
+      path: '/core/?url=userList'
+    },
+    {
+      title: 'Core userHistory',
+      icon: 'material-symbols:person',
+      path: '/core/?url=userHistory'
     }
   ]
 }
