@@ -22,18 +22,59 @@ import {
   setCreateAPI,
   setDetailAPI,
   setDeleteAPI,
-  setAddForm
+  setAddForm,
+  setPagination
 } from 'src/store/apps/crud'
-import { AppDispatch } from 'src/store'
+import { AppDispatch, RootState } from 'src/store'
 import { deletePage, getPageList } from 'src/apis/builder'
 import { Stack } from '@mui/system'
-import { Button } from '@mui/material'
+import {
+  Box,
+  Button,
+  Card,
+  CardContent,
+  Chip,
+  Grid,
+  Pagination,
+  Typography
+} from '@mui/material'
 import { useRouter } from 'next/router'
+import { useSelector } from 'react-redux'
+import { getPaginationCount, getParamsFromForm } from 'src/utils'
+import CustomChip from 'src/components/custom-chip'
+import ModalCodeViewerContainer from 'src/components/core/modal-code-viewer-container'
+import { rows } from 'src/@fake-db/table/static-data'
+import moment from 'moment'
+import DATE from 'src/common/constants/date'
 
 const Page = () => {
   // ** Hooks
   const dispatch = useDispatch<AppDispatch>()
   const router = useRouter()
+
+  // ** Hooks
+  const crud = useSelector((state: RootState) => state.crud)
+  const pagination = crud.pagination
+  const tableHeader = crud.tableHeader
+  const searchForm = crud.searchForm
+  const listAPI = crud.listAPI
+
+  // ** Handler
+  const handleChangePage = async (e: any, value: number) => {
+    const params = getParamsFromForm(searchForm)
+    params['page'] = value
+    const { data: res } = await listAPI(params)
+    if (res.statusCode === 200) {
+      const data = res.data
+      dispatch(
+        setPagination({
+          activePage: value,
+          count: getPaginationCount(data.count),
+          data: data.data
+        })
+      )
+    }
+  }
 
   useEffect(() => {
     // NOTE 리스트 조회 API 정의
@@ -138,10 +179,133 @@ const Page = () => {
       {/* 검색 컨테이너 */}
       <SearchContainer />
 
-      {/* 리스트 컨테이너 */}
-      <ListContainer>
-        <Content />
-      </ListContainer>
+      {/* 리스트 */}
+      <Box sx={{ mt: 5 }}>
+        <Grid container spacing={5}>
+          {pagination.data.map((row: any, idx: number) => {
+            return (
+              <Grid item xs={4} key={idx}>
+                <Card>
+                  <CardContent>
+                    <Grid container justifyContent="space-between">
+                      <Grid item>
+                        <CustomChip label={row.url} color="purple" />
+                      </Grid>
+                      <Grid item>
+                        <Typography variant="body2">
+                          {row?.createdAt
+                            ? moment(row?.createdAt).format(DATE.DATETIME)
+                            : '-'}
+                        </Typography>
+                      </Grid>
+                    </Grid>
+                    <Typography variant="subtitle1" sx={{ mt: 4 }}>
+                      {row.title}
+                    </Typography>
+                    <Typography variant="subtitle2">{row.subTitle}</Typography>
+                    <Typography variant="body1" sx={{ mt: 4, mb: 2 }}>
+                      API
+                    </Typography>
+                    <Grid container spacing={2}>
+                      <Grid item xs={6}>
+                        <Box
+                          style={{
+                            backgroundColor: '#f5f5f7b3',
+                            borderRadius: '12px',
+                            padding: '12px'
+                          }}
+                        >
+                          <Typography variant="body2">listAPI</Typography>
+                          <Typography>
+                            {row.listApi ? row.listApi : '-'}
+                          </Typography>
+                        </Box>
+                      </Grid>
+                      <Grid item xs={6}>
+                        <Box
+                          style={{
+                            backgroundColor: '#f5f5f7b3',
+                            borderRadius: '12px',
+                            padding: '12px'
+                          }}
+                        >
+                          <Typography variant="body2">createAPI</Typography>
+                          <Typography>
+                            {row.createApi ? row.createApi : '-'}
+                          </Typography>
+                        </Box>
+                      </Grid>
+                    </Grid>
+                    <Grid container spacing={2} sx={{ mt: 2 }}>
+                      <Grid item xs={6}>
+                        <Box
+                          style={{
+                            backgroundColor: '#f5f5f7b3',
+                            borderRadius: '12px',
+                            padding: '12px'
+                          }}
+                        >
+                          <Typography variant="body2">detailAPI</Typography>
+                          <Typography>
+                            {row.detailApi ? row.detailApi : '-'}
+                          </Typography>
+                        </Box>
+                      </Grid>
+                      <Grid item xs={6}>
+                        <Box
+                          style={{
+                            backgroundColor: '#f5f5f7b3',
+                            borderRadius: '12px',
+                            padding: '12px'
+                          }}
+                        >
+                          <Typography variant="body2">deleteAPI</Typography>
+                          <Typography>
+                            {row.deleteApi ? row.deleteApi : '-'}
+                          </Typography>
+                        </Box>
+                      </Grid>
+                    </Grid>
+                    <Box sx={{ mt: 3 }}>
+                      <ModalCodeViewerContainer
+                        title="#추가폼"
+                        content={row.addForm}
+                        pretty
+                      />
+                      <ModalCodeViewerContainer
+                        title="#상세폼"
+                        content={row.detailForm}
+                        pretty
+                      />
+                      <ModalCodeViewerContainer
+                        title="#검색폼"
+                        content={row.searchForm}
+                        pretty
+                      />
+                      <ModalCodeViewerContainer
+                        title="#액션리스트"
+                        content={row.actionList}
+                        pretty
+                      />
+                    </Box>
+                  </CardContent>
+                </Card>
+              </Grid>
+            )
+          })}
+        </Grid>
+      </Box>
+
+      {/* 페이지네이션 */}
+      <Stack alignItems="center" sx={{ mt: 5 }}>
+        <Pagination
+          count={pagination?.count}
+          shape="rounded"
+          color="primary"
+          page={pagination?.activePage}
+          onChange={handleChangePage}
+        />
+      </Stack>
     </>
   )
 }
