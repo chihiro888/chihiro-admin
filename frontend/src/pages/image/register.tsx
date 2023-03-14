@@ -109,16 +109,8 @@ const List = () => {
 
       <Card sx={{ mt: 5 }}>
         <CardContent>
-          <Grid
-            container
-            spacing={0}
-            direction="column"
-            justifyContent="center"
-            alignItems="center"
-          >
-            <CardContent
-              sx={{ border: '2px dashed grey', borderRadius: 3, width: '100%' }}
-            >
+          <Grid>
+            <CardContent>
               <Box
                 {...getRootProps({ className: 'dropzone' })}
                 sx={files.length ? { minHeight: 241 } : {}}
