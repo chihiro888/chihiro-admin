@@ -53,6 +53,7 @@ export class BuilderService {
         'p.use_delete_api as useDeleteApi',
         'p.delete_api as deleteApi',
         'p.table_header as tableHeader',
+        'p.table_content as tableContent',
         'p.add_form as addForm',
         'p.detail_form as detailForm',
         'p.search_form as searchForm',
@@ -96,6 +97,7 @@ export class BuilderService {
 
     // JSON 변경
     data.tableHeader = this.convertJson(data.tableHeader)
+    data.tableContent = this.convertJson(data.tableContent)
     data.addForm = this.convertJson(data.addForm)
     data.detailForm = this.convertJson(data.detailForm)
     data.searchForm = this.convertJson(data.searchForm)
@@ -134,6 +136,7 @@ export class BuilderService {
     page.useDeleteApi = dto.useDeleteApi
     page.deleteApi = dto.detailApi === '' ? null : dto.detailApi
     page.tableHeader = JSON.stringify(dto.tableHeader)
+    page.tableContent = JSON.stringify(dto.tableContent)
     page.addForm = JSON.stringify(dto.addForm)
     page.detailForm = JSON.stringify(dto.detailForm)
     page.searchForm = JSON.stringify(dto.searchForm)
@@ -168,6 +171,7 @@ export class BuilderService {
     page.useDeleteApi = dto.useDeleteApi
     page.deleteApi = dto.deleteApi === '' ? null : dto.deleteApi
     page.tableHeader = JSON.stringify(dto.tableHeader)
+    page.tableContent = JSON.stringify(dto.tableContent)
     page.addForm = JSON.stringify(dto.addForm)
     page.detailForm = JSON.stringify(dto.detailForm)
     page.searchForm = JSON.stringify(dto.searchForm)
@@ -208,6 +212,7 @@ export class BuilderService {
       // JSON 변경
       if (data) {
         data.tableHeader = this.convertJson(data.tableHeader)
+        data.tableContent = this.convertJson(data.tableContent)
         data.addForm = this.convertJson(data.addForm)
         data.detailForm = this.convertJson(data.detailForm)
         data.searchForm = this.convertJson(data.searchForm)

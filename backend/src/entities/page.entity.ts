@@ -90,6 +90,13 @@ export class Page {
   tableHeader: string | null
 
   @Column('text', {
+    name: 'table_content',
+    nullable: true,
+    comment: 'table content (JSON)'
+  })
+  tableContent: string | null
+
+  @Column('text', {
     name: 'add_form',
     nullable: true,
     comment: 'add form (JSON)'
@@ -123,19 +130,19 @@ export class Page {
     comment: 'create time',
     default: () => 'CURRENT_TIMESTAMP'
   })
-  createdAt: Date | null
+  createdAt: string | Date | null
 
   @Column('datetime', {
     name: 'updated_at',
     nullable: true,
     comment: 'update time'
   })
-  updatedAt: Date | null
+  updatedAt: string | Date | null
 
   @Column('datetime', {
     name: 'deleted_at',
     nullable: true,
     comment: 'delete time'
   })
-  deletedAt: Date | null
+  deletedAt: string | Date | null
 }
