@@ -3,7 +3,7 @@ import { CommonResponse } from 'src/common/interface'
 
 // ANCHOR get page by url
 export const getPageByUrl = (params: object) => {
-  const url = `/api/core/getPageByUrl`
+  const url = `/api/builder/getPageByUrl`
   const response = axios.get<CommonResponse>(url, { params })
 
   return response
