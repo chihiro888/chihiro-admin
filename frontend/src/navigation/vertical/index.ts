@@ -50,40 +50,6 @@ const navigation = (): VerticalNavItemsType => {
       title: '설정',
       icon: 'mdi:gear',
       path: '/settings'
-    },
-    {
-      sectionTitle: '대시보드'
-    },
-    {
-      title: '대시보드',
-      icon: 'bx:home',
-      path: '/home'
-    },
-    {
-      sectionTitle: '사용자'
-    },
-    {
-      title: '사용자 관리',
-      icon: 'material-symbols:person',
-      path: '/user'
-    },
-    {
-      title: '로그인 이력',
-      icon: 'mdi:account-clock',
-      path: '/user/history'
-    },
-    {
-      sectionTitle: 'core'
-    },
-    {
-      title: 'Core userList',
-      icon: 'material-symbols:person',
-      path: '/core/?url=userList'
-    },
-    {
-      title: 'Core userHistory',
-      icon: 'material-symbols:person',
-      path: '/core/?url=userHistory'
     }
   ]
 
