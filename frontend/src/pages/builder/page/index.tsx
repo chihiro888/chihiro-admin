@@ -270,6 +270,11 @@ const Page = () => {
                         pretty
                       />
                       <ModalCodeViewerContainer
+                        title="#테이블내용"
+                        content={row.tableContent}
+                        pretty
+                      />
+                      <ModalCodeViewerContainer
                         title="#추가폼"
                         content={row.addForm}
                         pretty
