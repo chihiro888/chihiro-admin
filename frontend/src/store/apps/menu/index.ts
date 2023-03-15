@@ -25,7 +25,7 @@ export const reloadMenu = createAsyncThunk(
             return {
               title: item.title,
               icon: item.icon,
-              path: `core/?url=${item.path}`
+              path: `/core/?url=${item.path}`
             }
           }
 
@@ -33,7 +33,7 @@ export const reloadMenu = createAsyncThunk(
             return {
               title: item.title,
               icon: item.icon,
-              path: item.path
+              path: `/${item.path}`
             }
           }
         })
