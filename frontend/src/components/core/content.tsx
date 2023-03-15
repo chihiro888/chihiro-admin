@@ -129,21 +129,20 @@ const Content = () => {
                     {cell.title}
                   </Button>
                 </TableCell>
-              ) : cell.type === 'action' ? (
-                (actionList.length > 0 ||
-                  detailAPI !== null ||
-                  deleteAPI !== null) && (
-                  <TableCell>
-                    <ActionContainer
-                      id={row.id}
-                      detailAction={detailAPI !== null}
-                      deleteAction={deleteAPI !== null}
-                    />
-                  </TableCell>
-                )
               ) : (
                 <></>
               )
+            )}
+            {(actionList.length > 0 ||
+              detailAPI !== null ||
+              deleteAPI !== null) && (
+              <TableCell>
+                <ActionContainer
+                  id={row.id}
+                  detailAction={detailAPI !== null}
+                  deleteAction={deleteAPI !== null}
+                />
+              </TableCell>
             )}
           </TableRow>
         ))}

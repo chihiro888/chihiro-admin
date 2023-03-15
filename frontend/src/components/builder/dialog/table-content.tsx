@@ -43,12 +43,12 @@ const TableContent = () => {
           }}
         />
         <DialogContent style={{ minWidth: '350px' }}>
-          {tableContent.length === 0 && (
+          {/* {tableContent && (
             <CustomLottie
               text={'테이블 내용이 존재하지 않습니다'}
               data={block}
             />
-          )}
+          )} */}
           <TextField
             multiline
             rows={15}
