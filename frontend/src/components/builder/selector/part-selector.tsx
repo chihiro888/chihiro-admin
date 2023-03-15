@@ -3,6 +3,7 @@ import {
   CardContent,
   Dialog,
   DialogContent,
+  Grid,
   Typography
 } from '@mui/material'
 import { useDispatch } from 'react-redux'
@@ -160,25 +161,21 @@ const PartSelector = () => {
                   sx={{
                     border: 0,
                     boxShadow: 0,
-                    color: 'common.white',
-                    backgroundColor: 'primary.main',
-                    mb: 5,
+                    color: '#707070',
+                    backgroundColor: '#f6f6f8',
+                    mb: 3,
                     cursor: 'pointer'
                   }}
                 >
-                  <CardContent>
-                    <Typography
-                      variant="h6"
-                      sx={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        color: 'common.white',
-                        '& svg': { mr: 2.5 }
-                      }}
-                    >
-                      <Icon icon={part.icon} />
-                      {part.title}
-                    </Typography>
+                  <CardContent style={{ padding: '10px' }}>
+                    <Grid container spacing={3}>
+                      <Grid item>
+                        <Icon icon={part.icon} />
+                      </Grid>
+                      <Grid item>
+                        <Typography>{part.title}</Typography>
+                      </Grid>
+                    </Grid>
                   </CardContent>
                 </Card>
               </>
