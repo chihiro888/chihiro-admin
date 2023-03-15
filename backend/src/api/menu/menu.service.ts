@@ -27,13 +27,10 @@ export class MenuService {
         'm.type as type',
         'm.title as title',
         'm.icon as icon',
-        // 'mo.permission as permission',
-        // 'mo.menu_order as menuOrder',
         'm.path as path',
         'm.created_at as createdAt',
         'm.updated_at as updatedAt'
       ])
-      // .leftJoin(MenuOrder, 'mo', 'm.id = mo.menu_id')
       .where('1=1')
       .andWhere('m.deleted_at is null')
       .orderBy('m.created_at', 'DESC')
@@ -103,20 +100,36 @@ export class MenuService {
 
   // ANCHOR update menu
   async updateMenu(dto: UpdateMenuDto) {
-    await this.datasource
-      .getRepository(MenuOrder)
-      .createQueryBuilder('mo')
-      .delete()
-      .where('permission = :permission', { permission: dto.permission })
-      .execute()
+    // start transaction
+    const queryRunner = this.datasource.createQueryRunner()
 
-    for (let i = 0; i < dto.menuIdList.length; i++) {
-      const menuOrder = new MenuOrder()
-      menuOrder.menuId = dto.menuIdList[i]
-      menuOrder.permission = dto.permission
-      menuOrder.menuOrder = i + 1
+    // start transaction
+    await queryRunner.startTransaction()
 
-      await this.datasource.getRepository(MenuOrder).save(menuOrder)
+    try {
+      await this.datasource
+        .getRepository(MenuOrder)
+        .createQueryBuilder('mo')
+        .delete()
+        .where('permission = :permission', { permission: dto.permission })
+        .execute()
+
+      for (let i = 0; i < dto.menuIdList.length; i++) {
+        const menuOrder = new MenuOrder()
+        menuOrder.menuId = dto.menuIdList[i]
+        menuOrder.permission = dto.permission
+        menuOrder.menuOrder = i + 1
+
+        await this.datasource.getRepository(MenuOrder).save(menuOrder)
+      }
+
+      await queryRunner.commitTransaction()
+    } catch (error) {
+      // rollback transaction
+      await queryRunner.rollbackTransaction()
+    } finally {
+      // release transaction
+      await queryRunner.release()
     }
   }
 

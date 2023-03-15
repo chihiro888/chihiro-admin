@@ -7,7 +7,6 @@ import {
 } from '@mui/material'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
-import FormManager from 'src/components/builder/menu/manager/form-manager'
 import CustomDialogTitle from 'src/components/custom-dialog-title'
 import { AppDispatch, RootState } from 'src/store'
 import { hClosePagePart, updateMenuPartForm } from 'src/store/apps/menu'
@@ -25,7 +24,7 @@ const PagePart = () => {
 
   // ** Redux
   const menu = useSelector((state: RootState) => state.menu)
-  const { openPagePart, menuPartForm } = menu
+  const { openPagePart } = menu
 
   const handleClickPage = (key: string, value: string, id: number) => {
     dispatch(updateMenuPartForm({ key, value }))
@@ -60,43 +59,42 @@ const PagePart = () => {
         />
         <DialogContent style={{ minWidth: '350px' }}>
           {pages.map((page: any, idx: number) => (
-            <>
-              <Card
-                sx={{
-                  border: 0,
-                  boxShadow: 0,
-                  color: 'common.white',
-                  backgroundColor: 'primary.main',
-                  mb: 5,
-                  cursor: 'pointer'
-                }}
-                onClick={() => handleClickPage('page', page.title, page.id)}
-              >
-                <CardContent>
-                  <Typography
-                    sx={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      color: 'common.white',
-                      '& svg': { mr: 2.5 }
-                    }}
-                  >
-                    {page.url}
-                  </Typography>
-                  <Typography
-                    variant="h6"
-                    sx={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      color: 'common.white',
-                      '& svg': { mr: 2.5 }
-                    }}
-                  >
-                    {page.title}
-                  </Typography>
-                </CardContent>
-              </Card>
-            </>
+            <Card
+              key={idx}
+              sx={{
+                border: 0,
+                boxShadow: 0,
+                color: 'common.white',
+                backgroundColor: 'primary.main',
+                mb: 5,
+                cursor: 'pointer'
+              }}
+              onClick={() => handleClickPage('page', page.title, page.id)}
+            >
+              <CardContent>
+                <Typography
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    color: 'common.white',
+                    '& svg': { mr: 2.5 }
+                  }}
+                >
+                  {page.url}
+                </Typography>
+                <Typography
+                  variant="h6"
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    color: 'common.white',
+                    '& svg': { mr: 2.5 }
+                  }}
+                >
+                  {page.title}
+                </Typography>
+              </CardContent>
+            </Card>
           ))}
         </DialogContent>
       </Dialog>
