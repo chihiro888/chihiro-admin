@@ -4,11 +4,7 @@ import Icon from 'src/@core/components/icon'
 import { useSelector } from 'react-redux'
 import { AppDispatch, RootState } from 'src/store'
 import { useDispatch } from 'react-redux'
-import {
-  hCloseTableContent,
-  hCloseTableHeader,
-  updateState
-} from 'src/store/apps/page'
+import { hCloseTableContent, updateState } from 'src/store/apps/page'
 import { toast } from 'react-hot-toast'
 import CustomLottie from 'src/components/custom-lottie'
 import * as block from 'src/lottie/block.json'
@@ -22,41 +18,18 @@ const TableContent = () => {
   const { openTableContent, tableContent } = page
 
   // ** Handler
-  // 요소 수정
-  const handleChangeInput = (e, idx) => {
-    // const copyArr = [...tableHeader]
-    // copyArr[idx] = e.target.value
-    // dispatch(updateState({ key: 'tableHeader', value: copyArr }))
+  // 입력 수정
+  const handleChangeInput = (value: string) => {
+    dispatch(updateState({ key: 'tableContent', value: value }))
   }
 
-  // 요소 삭제
-  const handleClickRemove = (idx) => {
-    // const copyArr = [...tableHeader]
-    // // 요소 삭제
-    // copyArr.splice(idx, 1)
-    // dispatch(updateState({ key: 'tableHeader', value: copyArr }))
-  }
-
-  // 요소 추가
-  const handleClickAdd = () => {
-    // dispatch(updateState({ key: 'tableHeader', value: [...tableHeader, ''] }))
-  }
-
-  // 요소 저정
+  // 저정
   const handleClickSave = () => {
-    // // 유효성
-    // for (let i = 0; i < tableHeader.length; i++) {
-    //   const item = tableHeader[i]
-    //   if (item === '') {
-    //     // 알림
-    //     toast.error('테이블 헤더는 빈 값이 될 수 없습니다.')
-    //     return false
-    //   }
-    // }
-    // // 모달 닫기
-    // dispatch(hCloseTableHeader())
-    // // 알림
-    // toast.success('테이블 헤더가 수정되었습니다.')
+    // 모달 닫기
+    dispatch(hCloseTableContent())
+
+    // 알림
+    toast.success('테이블 내용이 수정되었습니다.')
   }
 
   return (
@@ -76,44 +49,14 @@ const TableContent = () => {
               data={block}
             />
           )}
-          {/*
-          {tableHeader.map((item, idx) => {
-            return (
-              <Grid container spacing={1} sx={{ mb: 2 }} key={idx}>
-                <Grid item xs={9}>
-                  <TextField
-                    id="outlined-basic"
-                    label=""
-                    size="small"
-                    fullWidth
-                    value={item}
-                    onChange={(e) => {
-                      handleChangeInput(e, idx)
-                    }}
-                  />
-                </Grid>
-                <Grid item xs={3}>
-                  <Button
-                    variant="outlined"
-                    color="error"
-                    onClick={() => handleClickRemove(idx)}
-                  >
-                    <Icon icon="material-symbols:delete-forever-outline"></Icon>
-                  </Button>
-                </Grid>
-              </Grid>
-            )
-          })}
-
-          <Button
-            variant="outlined"
-            color="secondary"
+          <TextField
+            multiline
+            rows={15}
             fullWidth
-            sx={{ mt: 3 }}
-            onClick={handleClickAdd}
-          >
-            <Icon icon="material-symbols:add"></Icon>
-          </Button>
+            label="태이블 내용"
+            value={tableContent}
+            onChange={(e: any) => handleChangeInput(e.target.value)}
+          />
 
           <Button
             variant="outlined"
@@ -122,7 +65,7 @@ const TableContent = () => {
             onClick={handleClickSave}
           >
             수정
-          </Button> */}
+          </Button>
         </DialogContent>
       </Dialog>
     </>

@@ -85,7 +85,7 @@ const init = {
     functionName: ''
   },
   tableHeader: [],
-  tableContent: [],
+  tableContent: '',
   addForm: [],
   detailForm: [],
   searchForm: [],
@@ -308,6 +308,7 @@ export const appPageSlice = createSlice({
         functionName: action.payload.deleteApi
       }
       state.tableHeader = action.payload.tableHeader
+      state.tableContent = action.payload.tableContent
       state.addForm = action.payload.addForm
       state.detailForm = action.payload.detailForm
       state.searchForm = action.payload.searchForm
