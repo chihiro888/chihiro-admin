@@ -79,6 +79,7 @@ CREATE TABLE IF NOT EXISTS _page (
   `use_delete_api` BOOLEAN DEFAULT 0 COMMENT 'use delete api',
   `delete_api` VARCHAR(255) COMMENT 'delete api',
   `table_header` TEXT COMMENT 'table header (JSON)',
+  `table_content` TEXT COMMENT 'table content (JSON)',
   `add_form` TEXT COMMENT 'add form (JSON)',
   `detail_form` TEXT COMMENT 'detail form (JSON)',
   `search_form` TEXT COMMENT 'search form (JSON)',

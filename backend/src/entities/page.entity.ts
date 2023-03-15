@@ -87,35 +87,35 @@ export class Page {
     nullable: true,
     comment: 'table header (JSON)'
   })
-  tableHeader: any
+  tableHeader: string | null
 
   @Column('text', {
     name: 'add_form',
     nullable: true,
     comment: 'add form (JSON)'
   })
-  addForm: any
+  addForm: string | null
 
   @Column('text', {
     name: 'detail_form',
     nullable: true,
     comment: 'detail form (JSON)'
   })
-  detailForm: any
+  detailForm: string | null
 
   @Column('text', {
     name: 'search_form',
     nullable: true,
     comment: 'search form (JSON)'
   })
-  searchForm: any
+  searchForm: string | null
 
   @Column('text', {
     name: 'action_list',
     nullable: true,
     comment: 'action list (JSON)'
   })
-  actionList: any
+  actionList: string | null
 
   @Column('datetime', {
     name: 'created_at',
@@ -123,19 +123,19 @@ export class Page {
     comment: 'create time',
     default: () => 'CURRENT_TIMESTAMP'
   })
-  createdAt: string | Date | null
+  createdAt: Date | null
 
   @Column('datetime', {
     name: 'updated_at',
     nullable: true,
     comment: 'update time'
   })
-  updatedAt: string | Date | null
+  updatedAt: Date | null
 
   @Column('datetime', {
     name: 'deleted_at',
     nullable: true,
     comment: 'delete time'
   })
-  deletedAt: string | Date | null
+  deletedAt: Date | null
 }
