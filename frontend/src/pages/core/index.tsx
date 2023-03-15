@@ -102,7 +102,7 @@ const Core = () => {
   useEffect(() => {
     initPage()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [router.query.url])
 
   return (
     <>
