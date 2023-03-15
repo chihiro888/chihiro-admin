@@ -43,7 +43,7 @@ const TabMenuBuilder = (props: any) => {
   // ** Handler
   const handleDeleteMenu = async (id: number) => {
     try {
-      const params = { menuId: id }
+      const params = { id: id }
       const { data: res } = await deleteMenu(params)
       if (res.statusCode === 200) {
         toast.success('정상적으로 삭제되었습니다.')
@@ -118,7 +118,7 @@ const TabMenuBuilder = (props: any) => {
         <MenuPart handleLoadData={handleLoadData} />
 
         <Card>
-          <CardHeader title="공통 메뉴" />
+          <CardHeader title={<CustomChip label={'공통 메뉴'} color="red" />} />
           <CardContent>
             <ReactSortable
               list={leftList}
@@ -183,8 +183,8 @@ const TabMenuBuilder = (props: any) => {
                       </div>
                     </Box>
                     <Button onClick={() => handleDeleteMenu(data.id)}>
-                      {/* <Icon icon={'bx:trash-alt'} /> */}
-                      <CustomChip label={'삭제'} color="purple" />
+                      {data.id}
+                      <CustomChip fontSize={14} label={'삭제'} color="purple" />
                     </Button>
                   </Box>
                 )
@@ -196,7 +196,15 @@ const TabMenuBuilder = (props: any) => {
       {/* Social Accounts Cards */}
       <Grid item xs={6}>
         <Card>
-          <CardHeader title={`${tabs[activeTab]}`} />
+          <CardHeader
+            title={
+              <CustomChip
+                fontSize={15}
+                label={`${tabs[activeTab]}`}
+                color="blue"
+              />
+            }
+          />
           <CardContent>
             <ReactSortable
               group={{

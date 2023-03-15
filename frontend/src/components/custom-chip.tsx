@@ -1,9 +1,10 @@
 interface Props {
   label: string
   color: 'green' | 'blue' | 'purple' | 'orange' | 'red'
+  fontSize?: number
 }
 
-const CustomChip = ({ label, color }: Props) => {
+const CustomChip = ({ label, color, fontSize }: Props) => {
   let colorStyle = ''
   let backgroundColorStyle = ''
   if (color === 'green') {
@@ -30,7 +31,8 @@ const CustomChip = ({ label, color }: Props) => {
         color: colorStyle,
         backgroundColor: backgroundColorStyle,
         border: '1px solid rgb(241, 238, 252)',
-        padding: '8px'
+        padding: '8px',
+        fontSize: fontSize
       }}
     >
       {label}
