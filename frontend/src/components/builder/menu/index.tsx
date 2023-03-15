@@ -17,14 +17,17 @@ import { ReactSortable } from 'react-sortablejs'
 import { deleteMenu, getMenuList, getMenuOrderList } from 'src/apis/menu'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from 'src/store'
-import { hUpdateEditMenuContainer } from 'src/store/apps/menu'
+import { hSetIsLoading, hUpdateEditMenuContainer } from 'src/store/apps/menu'
 import toast from 'react-hot-toast'
 import AddForm from 'src/components/menu/dialog/add-form'
 import PagePart from 'src/components/menu/part/page-part'
 import SectionTitlePart from 'src/components/menu/part/section-title-part'
 import MenuPart from 'src/components/menu/part/menu-part'
+import CustomChip from 'src/components/custom-chip'
+import { CircularProgress } from '@mui/material'
 
-const TabMenuBuilder = (tabs: any) => {
+const TabMenuBuilder = (props: any) => {
+  const { tabs } = props
   // ** Hooks
   const dispatch = useDispatch<AppDispatch>()
 
@@ -79,6 +82,7 @@ const TabMenuBuilder = (tabs: any) => {
         }
       }
     } catch (err) {
+      console.log('err', err)
       //
     }
   }
@@ -87,6 +91,7 @@ const TabMenuBuilder = (tabs: any) => {
     if (activeTab) {
       handleLoadData()
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeTab])
 
@@ -113,7 +118,7 @@ const TabMenuBuilder = (tabs: any) => {
         <MenuPart handleLoadData={handleLoadData} />
 
         <Card>
-          <CardHeader title="공통 메뉴 컨테이너" />
+          <CardHeader title="공통 메뉴" />
           <CardContent>
             <ReactSortable
               list={leftList}
@@ -177,13 +182,9 @@ const TabMenuBuilder = (tabs: any) => {
                         </Typography>
                       </div>
                     </Box>
-                    <Button
-                      variant="outlined"
-                      sx={{ p: 1.5, minWidth: 38 }}
-                      color={'error'}
-                      onClick={() => handleDeleteMenu(data.id)}
-                    >
-                      <Icon icon={'bx:trash-alt'} />
+                    <Button onClick={() => handleDeleteMenu(data.id)}>
+                      {/* <Icon icon={'bx:trash-alt'} /> */}
+                      <CustomChip label={'삭제'} color="purple" />
                     </Button>
                   </Box>
                 )
@@ -195,7 +196,7 @@ const TabMenuBuilder = (tabs: any) => {
       {/* Social Accounts Cards */}
       <Grid item xs={6}>
         <Card>
-          <CardHeader title={`${tabs['tabs'][activeTab]} 컨테이너`} />
+          <CardHeader title={`${tabs[activeTab]}`} />
           <CardContent>
             <ReactSortable
               group={{

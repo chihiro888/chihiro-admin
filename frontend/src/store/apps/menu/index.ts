@@ -71,6 +71,7 @@ const init = {
   openSectionTitlePart: false,
   openPagePart: false,
   activeTab: '',
+  isLoading: false,
 
   // core
   url: '',
@@ -179,6 +180,11 @@ export const appPageSlice = createSlice({
     },
     hCloseSectionTitlePart(state) {
       state.openSectionTitlePart = false
+    },
+
+    // 로딩 데이터 변경
+    hSetIsLoading(state, action) {
+      state.isLoading = action.payload
     },
 
     // 페이지 파츠 모달
@@ -355,7 +361,8 @@ export const {
   updateState,
   setClearData,
   hUpdateEditMenuContainer,
-  setInitData
+  setInitData,
+  hSetIsLoading
 } = appPageSlice.actions
 
 export default appPageSlice.reducer
