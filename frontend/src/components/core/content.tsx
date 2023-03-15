@@ -25,6 +25,9 @@ const Content = () => {
   const tableContent = crud.tableContent
   const actionList = crud.actionList
 
+  // ** Redux
+  const { detailAPI, deleteAPI } = crud
+
   // ** States
   const [state, setState] = useState({
     openSnack: false,
@@ -32,40 +35,40 @@ const Content = () => {
   })
   const { openSnack, snackContent } = state
 
+  // typelist : text | date | editor | image | chip | snackbar | action
+
   // const [tableContent, setContentForm] = useState([
   //   {
   //     key: 'key',
-  //     type: 'text' // text | date | editor | code | image | chip | snackbar
+  //     type: 'text'
   //   },
   //   {
   //     key: 'profile',
-  //     type: 'image', // text | date | editor | code | image | chip | snackbar
+  //     type: 'image',
   //     width: 30,
   //     height: 30
   //   },
   //   {
   //     key: 'createdAt',
-  //     type: 'date' // text | date | editor | code | image | chip | snackbar
+  //     type: 'date'
   //   },
   //   {
   //     key: 'chip',
-  //     type: 'chip' // text | date | editor | code | image | chip | snackbar
+  //     type: 'chip'
   //   },
   //   {
   //     key: 'intro',
-  //     type: 'editor', // text | date | editor | code | image | chip | snackbar
+  //     type: 'editor',
   //     title: '자기소개'
   //   },
   //   {
   //     key: 'password',
-  //     type: 'snackbar', // text | date | editor | code | image | chip | snackbar
+  //     type: 'snackbar',
   //     title: '비밀번호'
   //   },
   //   {
   //     key: 'action',
-  //     type: 'action',
-  //     detail: false,
-  //     delete: false
+  //     type: 'action'
   //   }
   // ])
 
@@ -90,7 +93,9 @@ const Content = () => {
                 <TableCell key={index}>{row[`${cell.key}`] || '-'}</TableCell>
               ) : cell.type === 'date' ? (
                 <TableCell key={index}>
-                  {cell.key ? moment(cell.key).format(DATE.DATETIME) : '-'}
+                  {cell.key
+                    ? moment(row[`${cell.key}`]).format(DATE.DATETIME)
+                    : '-'}
                 </TableCell>
               ) : cell.type === 'editor' ? (
                 <TableCell key={index}>
@@ -125,12 +130,14 @@ const Content = () => {
                   </Button>
                 </TableCell>
               ) : cell.type === 'action' ? (
-                (actionList.length > 0 || cell.detail || cell.delete) && (
+                (actionList.length > 0 ||
+                  detailAPI !== null ||
+                  deleteAPI !== null) && (
                   <TableCell>
                     <ActionContainer
                       id={row.id}
-                      detailAction={cell.detail}
-                      deleteAction={cell.delete}
+                      detailAction={detailAPI !== null}
+                      deleteAction={deleteAPI !== null}
                     />
                   </TableCell>
                 )
