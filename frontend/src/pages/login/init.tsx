@@ -1,4 +1,4 @@
-// ** React Imports
+// ** React Import
 import {
   ChangeEvent,
   FormEvent,
@@ -7,8 +7,9 @@ import {
   useEffect,
   useState
 } from 'react'
+import { useRouter } from 'next/router'
 
-// ** MUI Components
+// ** MUI Component
 import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
 import Button from '@mui/material/Button'
@@ -21,23 +22,27 @@ import OutlinedInput from '@mui/material/OutlinedInput'
 import { useTheme } from '@mui/material/styles'
 import InputAdornment from '@mui/material/InputAdornment'
 
-// ** Icon Imports
+// ** Icon Import
 import Icon from 'src/@core/components/icon'
 
 // ** Layout Import
 import BlankLayout from 'src/@core/layouts/BlankLayout'
-import MovieLayout from 'src/@core/layouts/MovieLayout'
 
 // ** Demo Imports
 import AuthIllustrationWrapper from 'src/views/pages/auth/AuthIllustrationWrapper'
-import { useRouter } from 'next/router'
 
 // ** Third Party Components
 import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
+
+// ** API
 import { checkSystemAdmin, createSystemAdmin } from 'src/apis/admin'
-import FormHeader from 'src/components/form-header'
 import { getAppInfo } from 'src/apis/global'
+
+// ** Custom component
+import FormHeader from 'src/components/form-header'
+
+// ** Redux
 import { setAppInfo } from 'src/store/apps/app'
 import { useDispatch } from 'react-redux'
 import { AppDispatch } from 'src/store'
@@ -54,12 +59,19 @@ interface State {
 const LoginV1 = () => {
   // ** State
   const [values, setValues] = useState<State>({
+    // 이메일
     email: '',
+
+    // 사용자명
+    username: '',
+
+    // 비밀번호
     password: '',
     showPassword: false,
+
+    // 비밀번호 확인
     confirmPassword: '',
-    showConfirmPassword: false,
-    username: ''
+    showConfirmPassword: false
   })
 
   // ** Hook
@@ -68,26 +80,35 @@ const LoginV1 = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch<AppDispatch>()
 
+  // ** Handler
+  // 입력 값 수정
   const handleChange =
     (prop: keyof State) => (event: ChangeEvent<HTMLInputElement>) => {
       setValues({ ...values, [prop]: event.target.value })
     }
+
+  // 비밀번호 보이기/숨기기
   const handleClickShowPassword = () => {
     setValues({ ...values, showPassword: !values.showPassword })
   }
-  const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault()
+
+  // 비밀번호 확인 보이기/숨기기
+  const handleClickShowConfirmPassword = () => {
+    setValues({ ...values, showConfirmPassword: !values.showConfirmPassword })
   }
 
+  // 관리자 계정 생성 버튼 클릭
   const handleClickAction = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const params = {
-      account: values.email,
-      password: values.password,
-      confirmPassword: values.confirmPassword,
-      username: values.username
-    }
+
+    // 관리자 계정 생성
     try {
+      const params = {
+        account: values.email,
+        password: values.password,
+        confirmPassword: values.confirmPassword,
+        username: values.username
+      }
       const { data: res } = await createSystemAdmin(params)
       if (res.statusCode === 200) {
         toast.success(t(res.message))
@@ -98,21 +119,26 @@ const LoginV1 = () => {
     }
   }
 
+  // 초기 데이터
   const initData = async () => {
+    // 시스템 관리자 존재유무 확인
     const { data: res } = await checkSystemAdmin()
     if (res.statusCode === 200) {
       if (!res.data) {
+        // 시스템 관리자가 존해자는 경우 로그인 페이지로 이동
         router.push('/login')
       }
     }
 
     try {
+      // 앱 정보 조회
       const { data: res } = await getAppInfo()
       if (res.statusCode === 200) {
+        // 앱 정보 설정
         dispatch(setAppInfo(res.data))
       }
     } catch (err) {
-      //
+      // pass
     }
   }
 
@@ -161,7 +187,6 @@ const LoginV1 = () => {
                       <IconButton
                         edge="end"
                         onClick={handleClickShowPassword}
-                        onMouseDown={handleMouseDownPassword}
                         aria-label="toggle password visibility"
                       >
                         <Icon
@@ -187,8 +212,7 @@ const LoginV1 = () => {
                     <InputAdornment position="end">
                       <IconButton
                         edge="end"
-                        onClick={handleClickShowPassword}
-                        onMouseDown={handleMouseDownPassword}
+                        onClick={handleClickShowConfirmPassword}
                         aria-label="toggle password visibility"
                       >
                         <Icon
@@ -219,7 +243,7 @@ const LoginV1 = () => {
   )
 }
 
-LoginV1.getLayout = (page: ReactNode) => <MovieLayout>{page}</MovieLayout>
+LoginV1.getLayout = (page: ReactNode) => <BlankLayout>{page}</BlankLayout>
 
 LoginV1.guestGuard = true
 
