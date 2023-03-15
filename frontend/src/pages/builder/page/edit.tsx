@@ -20,6 +20,7 @@ import TextareaPart from 'src/components/builder/part/textarea-part'
 import UploadPart from 'src/components/builder/part/upload-part'
 import ActionController from 'src/components/builder/controller/action-controller'
 import ActionForm from 'src/components/builder/dialog/action-form'
+import TableContent from 'src/components/builder/dialog/table-content'
 
 const Page = () => {
   // ** Hooks
@@ -69,6 +70,9 @@ const Page = () => {
 
       {/* 테이블 헤더 편집 */}
       <TableHeader />
+
+      {/* 테이블 내용 편집 */}
+      <TableContent />
 
       {/* 검색 폼 편집 */}
       <SearchForm />

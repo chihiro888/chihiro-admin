@@ -21,6 +21,7 @@ import {
   hOpenAddForm,
   hOpenDetailForm,
   hOpenSearchForm,
+  hOpenTableContent,
   hOpenTableHeader,
   updateState
 } from 'src/store/apps/page'
@@ -41,6 +42,7 @@ const EditForm = () => {
     detailApi,
     deleteApi,
     tableHeader,
+    tableContent,
     addForm,
     detailForm,
     searchForm,
@@ -118,6 +120,7 @@ const EditForm = () => {
         useDeleteApi: deleteApi.checked,
         deleteApi: deleteApi.functionName,
         tableHeader: tableHeader,
+        tableContent: tableContent,
         addForm: addForm,
         detailForm: detailForm,
         searchForm: searchForm,
@@ -331,7 +334,7 @@ const EditForm = () => {
                 <Button
                   variant="outlined"
                   onClick={() => {
-                    dispatch(hOpenTableHeader())
+                    dispatch(hOpenTableContent())
                   }}
                   fullWidth
                 >
