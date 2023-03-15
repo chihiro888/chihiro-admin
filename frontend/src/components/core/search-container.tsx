@@ -115,6 +115,11 @@ const SearchContainer = () => {
                                 onChange={(e) =>
                                   handleChangeForm(item.key, e.target.value)
                                 }
+                                onKeyPress={(e) => {
+                                  if (e.key === 'Enter') {
+                                    handleClickSearch()
+                                  }
+                                }}
                               />
                             </FormControl>
                           </Grid>
