@@ -14,7 +14,7 @@ import DATE from 'src/common/constants/date'
 import { RootState } from 'src/store'
 import { useSelector } from 'react-redux'
 import ActionContainer from './action-container'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Button, Chip, Snackbar } from '@mui/material'
 import ModalEditorViewerContainer from './modal-editor-viewer-container'
 
@@ -22,7 +22,7 @@ const Content = () => {
   // ** Hooks
   const crud = useSelector((state: RootState) => state.crud)
   const pagination = crud.pagination
-  //const contentForm = crud.contentForm
+  //const tableContent = crud.tableContent
   const actionList = crud.actionList
 
   // ** States
@@ -34,7 +34,11 @@ const Content = () => {
 
   // getPageByUrl
 
-  const [contentForm, setContentForm] = useState([
+  useEffect(() => {
+    console.log(actionList)
+  }, [])
+
+  const [tableContent, setContentForm] = useState([
     {
       key: 'key',
       type: 'text' // text | date | editor | code | image | chip | snackbar
@@ -61,7 +65,13 @@ const Content = () => {
     {
       key: 'password',
       type: 'snackbar', // text | date | editor | code | image | chip | snackbar
-      title: '자기소개'
+      title: '비밀번호'
+    },
+    {
+      key: 'action',
+      type: 'action',
+      detail: false,
+      delete: false
     }
   ])
 
@@ -81,9 +91,9 @@ const Content = () => {
       <TableBody>
         {pagination.data.map((row: any, idx: number) => (
           <TableRow key={idx}>
-            {contentForm.map((cell, index) =>
+            {tableContent.map((cell, index) =>
               cell.type === 'text' ? (
-                <TableCell key={index}>{row[`${cell.key}`]}</TableCell>
+                <TableCell key={index}>{row[`${cell.key}`] || '-'}</TableCell>
               ) : cell.type === 'date' ? (
                 <TableCell key={index}>
                   {cell.key ? moment(cell.key).format(DATE.DATETIME) : '-'}
@@ -103,7 +113,7 @@ const Content = () => {
                     sx={{ width: cell.width || 30, height: cell.height || 30 }}
                   />
                 </TableCell>
-              ) : cell.type === 'chip' ? (
+              ) : cell.type === 'chip' ? ( //TODO - 추후 커스텀기능 필요
                 <TableCell key={index}>
                   <Chip
                     label={row[`${cell.key}`] || cell.key}
@@ -117,21 +127,22 @@ const Content = () => {
                     variant="text"
                     onClick={() => handleClickSnack(row[`${cell.key}`] || '-')}
                   >
-                    비밀번호
+                    {cell.title}
                   </Button>
                 </TableCell>
+              ) : cell.type === 'action' ? (
+                (actionList.length > 0 || cell.detail || cell.delete) && (
+                  <TableCell>
+                    <ActionContainer
+                      id={row.id}
+                      detailAction={cell.detail}
+                      deleteAction={cell.delete}
+                    />
+                  </TableCell>
+                )
               ) : (
                 <></>
               )
-            )}
-            {actionList.length > 0 && (
-              <TableCell>
-                <ActionContainer
-                  id={row.id}
-                  detailAction={true}
-                  deleteAction={true}
-                />
-              </TableCell>
             )}
           </TableRow>
         ))}
