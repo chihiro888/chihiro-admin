@@ -1,4 +1,3 @@
-import { getPageByUrl } from './../../../../frontend/src/apis/core/index'
 import { GetPageDto } from './dto/get-page.dto'
 import { GetPageListDto } from './dto/get-page-list.dto'
 import { SystemAdminGuard } from 'src/common/guard/system-admin.guard'
