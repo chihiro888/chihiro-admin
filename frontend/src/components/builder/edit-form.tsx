@@ -21,6 +21,7 @@ import {
   hOpenAddForm,
   hOpenDetailForm,
   hOpenSearchForm,
+  hOpenTableContent,
   hOpenTableHeader,
   updateState
 } from 'src/store/apps/page'
@@ -331,7 +332,7 @@ const EditForm = () => {
                 <Button
                   variant="outlined"
                   onClick={() => {
-                    dispatch(hOpenTableHeader())
+                    dispatch(hOpenTableContent())
                   }}
                   fullWidth
                 >

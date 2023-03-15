@@ -4,6 +4,7 @@ import { createSlice } from '@reduxjs/toolkit'
 const init = {
   // dialog
   openTableHeader: false,
+  openTableContent: false,
   openSearchForm: false,
   openAddForm: false,
   openDetailForm: false,
@@ -84,6 +85,7 @@ const init = {
     functionName: ''
   },
   tableHeader: [],
+  tableContent: [],
   addForm: [],
   detailForm: [],
   searchForm: [],
@@ -101,6 +103,14 @@ export const appPageSlice = createSlice({
     },
     hCloseTableHeader(state) {
       state.openTableHeader = false
+    },
+
+    // 테이블 내용 모달
+    hOpenTableContent(state) {
+      state.openTableContent = true
+    },
+    hCloseTableContent(state) {
+      state.openTableContent = false
     },
 
     // 검색 폼 모달
@@ -309,6 +319,8 @@ export const appPageSlice = createSlice({
 export const {
   hOpenTableHeader,
   hCloseTableHeader,
+  hOpenTableContent,
+  hCloseTableContent,
   hOpenSearchForm,
   hCloseSearchForm,
   hOpenAddForm,
