@@ -93,7 +93,7 @@ const Content = () => {
                 <TableCell key={index}>{row[`${cell.key}`] || '-'}</TableCell>
               ) : cell.type === 'date' ? (
                 <TableCell key={index}>
-                  {cell.key
+                  {row[`${cell.key}`] !== null
                     ? moment(row[`${cell.key}`]).format(DATE.DATETIME)
                     : '-'}
                 </TableCell>
