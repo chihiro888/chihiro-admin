@@ -33,6 +33,14 @@ const PartSelector = () => {
   const page = useSelector((state: RootState) => state.page)
   const { openPartSelector, partType } = page
 
+  const hoverStyle = {
+    '&:hover': {
+      border: '1px solid #00FF00',
+      color: 'gray',
+      backgroundColor: 'lightblue'
+    }
+  }
+
   // ** State
   const searchPartList = [
     {
@@ -159,8 +167,11 @@ const PartSelector = () => {
                     }
                   }}
                   sx={{
-                    border: 0,
                     boxShadow: 0,
+                    '&:hover': {
+                      boxShadow: '0px 0px 0px 2px rgba(50, 71, 92, 0.1)'
+                    },
+                    border: 0,
                     color: '#707070',
                     backgroundColor: '#f6f6f8',
                     mb: 3,
