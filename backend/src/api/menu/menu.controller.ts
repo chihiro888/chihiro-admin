@@ -119,7 +119,7 @@ export class MenuController {
 
   // ANCHOR update Menu
   @UseGuards(SystemAdminGuard)
-  @Post('updateMenu')
+  @Put('updateMenu')
   @ApiOperation({
     summary: '메뉴 갱신 (시스템 관리자 기능)',
     description: '메뉴를 갱신합니다.'
@@ -142,7 +142,7 @@ export class MenuController {
 
   // ANCHOR delete Menu
   @UseGuards(SystemAdminGuard)
-  @Post('deleteMenu')
+  @Delete('deleteMenu')
   @ApiOperation({
     summary: '메뉴 삭제 (시스템 관리자 기능)',
     description: '메뉴를 삭제합니다.'
@@ -152,7 +152,6 @@ export class MenuController {
     @Session() session: any,
     @Body() dto: DeleteMenuDto
   ) {
-    console.log('dto =>', dto)
     // delete Menu
     const data = await this.menuService.deleteMenu(dto)
 

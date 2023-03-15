@@ -118,7 +118,7 @@ const TabMenuBuilder = (props: any) => {
         <MenuPart handleLoadData={handleLoadData} />
 
         <Card>
-          <CardHeader title={<CustomChip label={'공통 메뉴'} color="red" />} />
+          <CardHeader title={<CustomChip label={'공통 메뉴'} fontSize={15} color="red" />} />
           <CardContent>
             <ReactSortable
               list={leftList}
@@ -183,7 +183,6 @@ const TabMenuBuilder = (props: any) => {
                       </div>
                     </Box>
                     <Button onClick={() => handleDeleteMenu(data.id)}>
-                      {data.id}
                       <CustomChip fontSize={14} label={'삭제'} color="purple" />
                     </Button>
                   </Box>

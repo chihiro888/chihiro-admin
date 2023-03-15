@@ -38,7 +38,7 @@ export const createMenu = (params: object) => {
 // ANCHOR update menu
 export const updateMenu = (params: object) => {
   const url = `${rootUrl}UpdateMenu`
-  const response = axios.post<CommonResponse>(url, params)
+  const response = axios.put<CommonResponse>(url, params)
 
   return response
 }
@@ -46,7 +46,7 @@ export const updateMenu = (params: object) => {
 // ANCHOR delete menu
 export const deleteMenu = (params: object) => {
   const url = `${rootUrl}deleteMenu`
-  const response = axios.post<CommonResponse>(url, params)
+  const response = axios.delete<CommonResponse>(url, params)
 
   return response
 }
