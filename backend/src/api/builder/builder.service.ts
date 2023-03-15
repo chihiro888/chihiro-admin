@@ -9,6 +9,7 @@ import { UpdatePageDto } from './dto/update-page.dto'
 import moment from 'moment'
 import DATE from 'src/common/constants/date'
 import { Result } from 'src/common/interface'
+import { GetPageByUrlDto } from './dto/get-page-by-url.dto'
 
 @Injectable()
 export class BuilderService {
@@ -192,5 +193,32 @@ export class BuilderService {
     page.deletedAt = moment().format(DATE.DATETIME)
 
     await this.datasource.getRepository(Page).save(page)
+  }
+
+  // ANCHOR get page
+  async getPageByUrl(dto: GetPageByUrlDto) {
+    try {
+      const data = await this.datasource.getRepository(Page).findOne({
+        where: {
+          url: dto.url,
+          deletedAt: null
+        }
+      })
+
+      // JSON 변경
+      if (data) {
+        data.tableHeader = this.convertJson(data.tableHeader)
+        data.addForm = this.convertJson(data.addForm)
+        data.detailForm = this.convertJson(data.detailForm)
+        data.searchForm = this.convertJson(data.searchForm)
+        data.actionList = this.convertJson(data.actionList)
+
+        return { result: true, data: data }
+      } else {
+        return { result: false, data: 'Cannot found page' }
+      }
+    } catch (err) {
+      return { result: false, data: 'Unknown error' }
+    }
   }
 }
