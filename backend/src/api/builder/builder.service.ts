@@ -199,7 +199,7 @@ export class BuilderService {
     await this.datasource.getRepository(Page).save(page)
   }
 
-  // ANCHOR get page
+  // ANCHOR get page by url
   async getPageByUrl(dto: GetPageByUrlDto) {
     try {
       const data = await this.datasource.getRepository(Page).findOne({

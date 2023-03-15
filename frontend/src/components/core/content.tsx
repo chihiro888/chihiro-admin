@@ -14,7 +14,7 @@ import DATE from 'src/common/constants/date'
 import { RootState } from 'src/store'
 import { useSelector } from 'react-redux'
 import ActionContainer from './action-container'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Button, Chip, Snackbar } from '@mui/material'
 import ModalEditorViewerContainer from './modal-editor-viewer-container'
 
@@ -22,7 +22,7 @@ const Content = () => {
   // ** Hooks
   const crud = useSelector((state: RootState) => state.crud)
   const pagination = crud.pagination
-  //const tableContent = crud.tableContent
+  const tableContent = crud.tableContent
   const actionList = crud.actionList
 
   // ** States
@@ -32,48 +32,42 @@ const Content = () => {
   })
   const { openSnack, snackContent } = state
 
-  // getPageByUrl
-
-  useEffect(() => {
-    console.log(actionList)
-  }, [])
-
-  const [tableContent, setContentForm] = useState([
-    {
-      key: 'key',
-      type: 'text' // text | date | editor | code | image | chip | snackbar
-    },
-    {
-      key: 'profile',
-      type: 'image', // text | date | editor | code | image | chip | snackbar
-      width: 30,
-      height: 30
-    },
-    {
-      key: 'createdAt',
-      type: 'date' // text | date | editor | code | image | chip | snackbar
-    },
-    {
-      key: 'chip',
-      type: 'chip' // text | date | editor | code | image | chip | snackbar
-    },
-    {
-      key: 'intro',
-      type: 'editor', // text | date | editor | code | image | chip | snackbar
-      title: '자기소개'
-    },
-    {
-      key: 'password',
-      type: 'snackbar', // text | date | editor | code | image | chip | snackbar
-      title: '비밀번호'
-    },
-    {
-      key: 'action',
-      type: 'action',
-      detail: false,
-      delete: false
-    }
-  ])
+  // const [tableContent, setContentForm] = useState([
+  //   {
+  //     key: 'key',
+  //     type: 'text' // text | date | editor | code | image | chip | snackbar
+  //   },
+  //   {
+  //     key: 'profile',
+  //     type: 'image', // text | date | editor | code | image | chip | snackbar
+  //     width: 30,
+  //     height: 30
+  //   },
+  //   {
+  //     key: 'createdAt',
+  //     type: 'date' // text | date | editor | code | image | chip | snackbar
+  //   },
+  //   {
+  //     key: 'chip',
+  //     type: 'chip' // text | date | editor | code | image | chip | snackbar
+  //   },
+  //   {
+  //     key: 'intro',
+  //     type: 'editor', // text | date | editor | code | image | chip | snackbar
+  //     title: '자기소개'
+  //   },
+  //   {
+  //     key: 'password',
+  //     type: 'snackbar', // text | date | editor | code | image | chip | snackbar
+  //     title: '비밀번호'
+  //   },
+  //   {
+  //     key: 'action',
+  //     type: 'action',
+  //     detail: false,
+  //     delete: false
+  //   }
+  // ])
 
   const handleClickSnack = (password: string) => {
     setState({
