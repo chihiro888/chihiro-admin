@@ -16,6 +16,7 @@ import {
   hOpenActionForm,
   updateState
 } from 'src/store/apps/page'
+import { hOpenIconSelector } from 'src/store/apps/icon'
 
 const ActionController = () => {
   // ** Hooks
@@ -33,6 +34,8 @@ const ActionController = () => {
     actionForm,
     actionList
   } = page
+  const icon = useSelector((state: RootState) => state.icon)
+  const { selectedIcon } = icon
 
   // 액션 추가
   const handleAddAction = () => {
@@ -85,12 +88,10 @@ const ActionController = () => {
             <TextField
               label="아이콘"
               fullWidth
-              value={inputActionIcon}
-              onChange={(e) => {
-                dispatch(
-                  updateState({ key: 'inputActionIcon', value: e.target.value })
-                )
+              onClick={() => {
+                dispatch(hOpenIconSelector())
               }}
+              value={selectedIcon}
             />
           </Box>
           <Box sx={{ mb: 3 }}>

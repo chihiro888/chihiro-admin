@@ -14,6 +14,7 @@ import crud from 'src/store/apps/crud'
 import app from 'src/store/apps/app'
 import page from 'src/store/apps/page'
 import menu from 'src/store/apps/menu'
+import icon from 'src/store/apps/icon'
 
 export const store = configureStore({
   reducer: {
@@ -26,7 +27,8 @@ export const store = configureStore({
     crud,
     app,
     page,
-    menu
+    menu,
+    icon
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

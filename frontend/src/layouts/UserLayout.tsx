@@ -23,6 +23,7 @@ import HorizontalAppBarContent from './components/horizontal/AppBarContent'
 
 // ** Hook Import
 import { useSettings } from 'src/@core/hooks/useSettings'
+import IconSelector from 'src/components/common/icon-selector'
 
 interface Props {
   children: ReactNode
@@ -52,46 +53,56 @@ const UserLayout = ({ children, contentHeightFixed }: Props) => {
   }
 
   return (
-    <Layout
-      hidden={hidden}
-      settings={settings}
-      saveSettings={saveSettings}
-      contentHeightFixed={contentHeightFixed}
-      verticalLayoutProps={{
-        navMenu: {
-          navItems: VerticalNavItems()
-
-          // Uncomment the below line when using server-side menu in vertical layout and comment the above line
-          // navItems: verticalMenuItems
-        },
-        appBar: {
-          content: props => (
-            <VerticalAppBarContent
-              hidden={hidden}
-              settings={settings}
-              saveSettings={saveSettings}
-              toggleNavVisibility={props.toggleNavVisibility}
-            />
-          )
-        }
-      }}
-      {...(settings.layout === 'horizontal' && {
-        horizontalLayoutProps: {
+    <>
+      <Layout
+        hidden={hidden}
+        settings={settings}
+        saveSettings={saveSettings}
+        contentHeightFixed={contentHeightFixed}
+        verticalLayoutProps={{
           navMenu: {
-            navItems: HorizontalNavItems()
+            navItems: VerticalNavItems()
 
-            // Uncomment the below line when using server-side menu in horizontal layout and comment the above line
-            // navItems: horizontalMenuItems
+            // Uncomment the below line when using server-side menu in vertical layout and comment the above line
+            // navItems: verticalMenuItems
           },
           appBar: {
-            content: () => <HorizontalAppBarContent hidden={hidden} settings={settings} saveSettings={saveSettings} />
+            content: (props) => (
+              <VerticalAppBarContent
+                hidden={hidden}
+                settings={settings}
+                saveSettings={saveSettings}
+                toggleNavVisibility={props.toggleNavVisibility}
+              />
+            )
           }
-        }
-      })}
-    >
-      {children}
-      
-    </Layout>
+        }}
+        {...(settings.layout === 'horizontal' && {
+          horizontalLayoutProps: {
+            navMenu: {
+              navItems: HorizontalNavItems()
+
+              // Uncomment the below line when using server-side menu in horizontal layout and comment the above line
+              // navItems: horizontalMenuItems
+            },
+            appBar: {
+              content: () => (
+                <HorizontalAppBarContent
+                  hidden={hidden}
+                  settings={settings}
+                  saveSettings={saveSettings}
+                />
+              )
+            }
+          }
+        })}
+      >
+        {children}
+      </Layout>
+
+      {/* 공통 컴포넌트 */}
+      <IconSelector />
+    </>
   )
 }
 
