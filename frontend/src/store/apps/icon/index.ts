@@ -18,6 +18,7 @@ export const appIconSlice = createSlice({
   },
   reducers: {
     hOpenIconSelector(state) {
+      state.selectedIcon = ''
       state.iconText = ''
       state.iconList = []
       state.openIconSelector = true

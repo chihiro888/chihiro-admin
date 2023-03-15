@@ -70,6 +70,11 @@ const IconSelector = () => {
                 onChange={(e) => {
                   dispatch(setIconText(e.target.value))
                 }}
+                onKeyPress={(e) => {
+                  if (e.key === 'Enter') {
+                    handleClickSearch()
+                  }
+                }}
               />
             </Grid>
             <Grid item xs={3}>

@@ -17,6 +17,7 @@ import {
   updateState
 } from 'src/store/apps/page'
 import { hOpenIconSelector } from 'src/store/apps/icon'
+import { useEffect } from 'react'
 
 const ActionController = () => {
   // ** Hooks
@@ -74,6 +75,15 @@ const ActionController = () => {
     dispatch(hCloseActionController())
   }
 
+  useEffect(() => {
+    dispatch(
+      updateState({
+        key: 'inputActionIcon',
+        value: selectedIcon
+      })
+    )
+  }, [selectedIcon])
+
   return (
     <>
       <Dialog open={openActionController}>
@@ -91,7 +101,7 @@ const ActionController = () => {
               onClick={() => {
                 dispatch(hOpenIconSelector())
               }}
-              value={selectedIcon}
+              value={inputActionIcon}
             />
           </Box>
           <Box sx={{ mb: 3 }}>
