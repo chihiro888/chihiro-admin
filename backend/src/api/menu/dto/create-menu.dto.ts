@@ -27,12 +27,6 @@ export class CreateMenuDto {
   route: string
 
   @ApiProperty({
-    description: 'page',
-    example: 1
-  })
-  pageId: number
-
-  @ApiProperty({
     description: 'title',
     example: 1
   })
