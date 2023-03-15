@@ -28,7 +28,8 @@ import {
   setCreateAPI,
   setDetailAPI,
   setDeleteAPI,
-  setAddForm
+  setAddForm,
+  setTableContent
 } from 'src/store/apps/crud'
 import { AppDispatch, RootState } from 'src/store'
 import AddContainer from 'src/components/core/add-container'
@@ -91,6 +92,8 @@ const Core = () => {
           item.updateAPI = api[item.updateAPI] ?? null
         })
         dispatch(setActionList(res.data.actionList ?? []))
+
+        dispatch(setTableContent(res.data.tableContent ?? []))
 
         dispatch(initData())
       }

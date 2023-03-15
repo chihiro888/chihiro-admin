@@ -74,6 +74,12 @@ export class CreatePageDto {
   tableHeader: string
 
   @ApiProperty({
+    description: 'table content',
+    example: ''
+  })
+  tableContent: string
+
+  @ApiProperty({
     description: 'add form',
     example: ''
   })

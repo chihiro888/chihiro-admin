@@ -22,8 +22,11 @@ const Content = () => {
   // ** Hooks
   const crud = useSelector((state: RootState) => state.crud)
   const pagination = crud.pagination
-  //const contentForm = crud.contentForm
+  const tableContent = crud.tableContent
   const actionList = crud.actionList
+
+  // ** Redux
+  const { detailAPI, deleteAPI } = crud
 
   // ** States
   const [state, setState] = useState({
@@ -32,38 +35,42 @@ const Content = () => {
   })
   const { openSnack, snackContent } = state
 
-  // getPageByUrl
+  // typelist : text | date | editor | image | chip | snackbar | action
 
-  const [contentForm, setContentForm] = useState([
-    {
-      key: 'key',
-      type: 'text' // text | date | editor | code | image | chip | snackbar
-    },
-    {
-      key: 'profile',
-      type: 'image', // text | date | editor | code | image | chip | snackbar
-      width: 30,
-      height: 30
-    },
-    {
-      key: 'createdAt',
-      type: 'date' // text | date | editor | code | image | chip | snackbar
-    },
-    {
-      key: 'chip',
-      type: 'chip' // text | date | editor | code | image | chip | snackbar
-    },
-    {
-      key: 'intro',
-      type: 'editor', // text | date | editor | code | image | chip | snackbar
-      title: '자기소개'
-    },
-    {
-      key: 'password',
-      type: 'snackbar', // text | date | editor | code | image | chip | snackbar
-      title: '자기소개'
-    }
-  ])
+  // const [tableContent, setContentForm] = useState([
+  //   {
+  //     key: 'key',
+  //     type: 'text'
+  //   },
+  //   {
+  //     key: 'profile',
+  //     type: 'image',
+  //     width: 30,
+  //     height: 30
+  //   },
+  //   {
+  //     key: 'createdAt',
+  //     type: 'date'
+  //   },
+  //   {
+  //     key: 'chip',
+  //     type: 'chip'
+  //   },
+  //   {
+  //     key: 'intro',
+  //     type: 'editor',
+  //     title: '자기소개'
+  //   },
+  //   {
+  //     key: 'password',
+  //     type: 'snackbar',
+  //     title: '비밀번호'
+  //   },
+  //   {
+  //     key: 'action',
+  //     type: 'action'
+  //   }
+  // ])
 
   const handleClickSnack = (password: string) => {
     setState({
@@ -81,12 +88,14 @@ const Content = () => {
       <TableBody>
         {pagination.data.map((row: any, idx: number) => (
           <TableRow key={idx}>
-            {contentForm.map((cell, index) =>
+            {tableContent.map((cell, index) =>
               cell.type === 'text' ? (
-                <TableCell key={index}>{row[`${cell.key}`]}</TableCell>
+                <TableCell key={index}>{row[`${cell.key}`] || '-'}</TableCell>
               ) : cell.type === 'date' ? (
                 <TableCell key={index}>
-                  {cell.key ? moment(cell.key).format(DATE.DATETIME) : '-'}
+                  {cell.key
+                    ? moment(row[`${cell.key}`]).format(DATE.DATETIME)
+                    : '-'}
                 </TableCell>
               ) : cell.type === 'editor' ? (
                 <TableCell key={index}>
@@ -103,7 +112,7 @@ const Content = () => {
                     sx={{ width: cell.width || 30, height: cell.height || 30 }}
                   />
                 </TableCell>
-              ) : cell.type === 'chip' ? (
+              ) : cell.type === 'chip' ? ( //TODO - 추후 커스텀기능 필요
                 <TableCell key={index}>
                   <Chip
                     label={row[`${cell.key}`] || cell.key}
@@ -117,21 +126,24 @@ const Content = () => {
                     variant="text"
                     onClick={() => handleClickSnack(row[`${cell.key}`] || '-')}
                   >
-                    비밀번호
+                    {cell.title}
                   </Button>
                 </TableCell>
+              ) : cell.type === 'action' ? (
+                (actionList.length > 0 ||
+                  detailAPI !== null ||
+                  deleteAPI !== null) && (
+                  <TableCell>
+                    <ActionContainer
+                      id={row.id}
+                      detailAction={detailAPI !== null}
+                      deleteAction={deleteAPI !== null}
+                    />
+                  </TableCell>
+                )
               ) : (
                 <></>
               )
-            )}
-            {actionList.length > 0 && (
-              <TableCell>
-                <ActionContainer
-                  id={row.id}
-                  detailAction={true}
-                  deleteAction={true}
-                />
-              </TableCell>
             )}
           </TableRow>
         ))}

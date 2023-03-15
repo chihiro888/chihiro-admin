@@ -21,6 +21,7 @@ import {
   hOpenAddForm,
   hOpenDetailForm,
   hOpenSearchForm,
+  hOpenTableContent,
   hOpenTableHeader,
   updateState
 } from 'src/store/apps/page'
@@ -41,6 +42,7 @@ const EditForm = () => {
     detailApi,
     deleteApi,
     tableHeader,
+    tableContent,
     addForm,
     detailForm,
     searchForm,
@@ -118,6 +120,7 @@ const EditForm = () => {
         useDeleteApi: deleteApi.checked,
         deleteApi: deleteApi.functionName,
         tableHeader: tableHeader,
+        tableContent: tableContent,
         addForm: addForm,
         detailForm: detailForm,
         searchForm: searchForm,
@@ -308,7 +311,7 @@ const EditForm = () => {
       </Box>
 
       <Box sx={{ mt: 8 }}>
-        <Typography variant="subtitle1">구조 설정</Typography>
+        <Typography variant="subtitle1">테이블 설정</Typography>
         <Card sx={{ mt: 3 }}>
           <CardContent>
             <Grid container spacing={5}>
@@ -327,6 +330,31 @@ const EditForm = () => {
                   테이블 헤더 편집
                 </Button>
               </Grid>
+              <Grid item xs={12} md={2}>
+                <Button
+                  variant="outlined"
+                  onClick={() => {
+                    dispatch(hOpenTableContent())
+                  }}
+                  fullWidth
+                >
+                  <Icon
+                    icon="material-symbols:table-chart-outline"
+                    style={{ marginRight: '5px' }}
+                  ></Icon>
+                  테이블 내용 편집
+                </Button>
+              </Grid>
+            </Grid>
+          </CardContent>
+        </Card>
+      </Box>
+
+      <Box sx={{ mt: 8 }}>
+        <Typography variant="subtitle1">폼 설정</Typography>
+        <Card sx={{ mt: 3 }}>
+          <CardContent>
+            <Grid container spacing={5}>
               <Grid item xs={12} md={2}>
                 <Button
                   variant="outlined"
