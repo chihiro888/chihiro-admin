@@ -105,19 +105,18 @@ const MenuContainer = () => {
                 <Button
                   variant="contained"
                   sx={{ mr: 5 }}
+                  onClick={handleClickSave}
+                >
+                  저장
+                </Button>
+                <Button
+                  variant="contained"
+                  sx={{ mr: 5 }}
                   onClick={() => {
                     dispatch(hOpenAddForm())
                   }}
                 >
                   메뉴 생성
-                </Button>
-
-                <Button
-                  variant="contained"
-                  sx={{ mr: 5 }}
-                  onClick={handleClickSave}
-                >
-                  저장
                 </Button>
               </Grid>
 
