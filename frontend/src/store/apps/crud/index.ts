@@ -54,6 +54,9 @@ export const appCrudSlice = createSlice({
     // table header
     tableHeader: [],
 
+    // content form
+    contentForm: [],
+
     // add form
     addForm: [],
 
@@ -214,6 +217,9 @@ export const appCrudSlice = createSlice({
     },
     setLoadAPI(state, action) {
       state.loadAPI = action.payload
+    },
+    setContentForm(state, action) {
+      state.contentForm = action.payload
     }
   }
 })
@@ -241,7 +247,8 @@ export const {
   setDetailAPI,
   setDeleteAPI,
   setUpdateAPI,
-  setLoadAPI
+  setLoadAPI,
+  setContentForm
 } = appCrudSlice.actions
 
 export default appCrudSlice.reducer
