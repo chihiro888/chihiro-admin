@@ -5,23 +5,14 @@ import { useState, useEffect } from 'react'
 import Grid from '@mui/material/Grid'
 import TabContext from '@mui/lab/TabContext'
 
-// ** Icon Imports
-import Icon from 'src/@core/components/icon'
-
 // ** Demo Tabs Imports
 import TabMenuBuilder from 'src/components/builder/menu'
 import { getGlobalList } from 'src/apis/global'
-import { Box, Button, CircularProgress, Typography } from '@mui/material'
-import {
-  hOpenAddForm,
-  hSetActiveTab,
-  hSetIsLoading,
-  reloadMenu
-} from 'src/store/apps/menu'
+import { Box, Tab } from '@mui/material'
+import { hSetActiveTab } from 'src/store/apps/menu'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from 'src/store'
-import { updateMenu } from 'src/apis/menu'
-import toast from 'react-hot-toast'
+import { TabList } from '@mui/lab'
 
 const MenuContainer = () => {
   // ** Hooks
@@ -29,7 +20,7 @@ const MenuContainer = () => {
 
   // ** Redux
   const menu = useSelector((state: RootState) => state.menu)
-  const { activeTab, updateMenuIdList } = menu
+  const { activeTab } = menu
 
   // ** State
   const [tabs, setTabs] = useState<any>([])
@@ -41,9 +32,6 @@ const MenuContainer = () => {
         const role = JSON.parse(
           res.data.filter((global) => global.key === 'role')[0].value
         )
-
-        console.log('role', role)
-
         setTabs(role)
       }
     } catch (err) {
@@ -60,71 +48,42 @@ const MenuContainer = () => {
     dispatch(hSetActiveTab(tab))
   }
 
-  const handleClickSave = async () => {
-    try {
-      const params = {
-        permission: activeTab,
-        menuIdList: updateMenuIdList
-      }
-
-      const { data: res } = await updateMenu(params)
-      if (res.statusCode === 200) {
-        toast.success(res.message)
-        dispatch(reloadMenu())
-      }
-    } catch (err) {
-      //
-    }
-  }
-
   return (
     <>
       {/* 헤더 컨테이너 */}
 
       <Grid container spacing={6} sx={{ mt: 1 }}>
         <Grid item xs={12}>
-          <TabContext value={activeTab}>
-            <Grid container spacing={6}>
-              <Grid item xs={12}>
-                {Object.keys(tabs).map((tab) => (
-                  <>
-                    <Button
-                      variant={activeTab === tab ? 'contained' : 'text'}
-                      color={activeTab === tab ? 'primary' : 'secondary'}
-                      value={tab}
-                      startIcon={<Icon icon="bx:user" />}
-                      onClick={() => handleTabChange(tab)}
-                      sx={{ mr: 5 }}
-                    >
-                      {tabs[tab]}
-                    </Button>
-                  </>
-                ))}
-              </Grid>
-              <Grid item xs={12} sx={{ textAlign: 'right' }}>
-                <Button
-                  variant="contained"
-                  sx={{ mr: 5 }}
-                  onClick={handleClickSave}
-                >
-                  저장
-                </Button>
-                <Button
-                  variant="contained"
-                  sx={{ mr: 5 }}
-                  onClick={() => {
-                    dispatch(hOpenAddForm())
-                  }}
-                >
-                  메뉴 생성
-                </Button>
-              </Grid>
-
-              <Grid item xs={12}>
-                <TabMenuBuilder tabs={tabs} />
-              </Grid>
+          <Grid container spacing={6}>
+            <Grid item xs={12}>
+              <TabContext value={activeTab}>
+                <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                  <TabList aria-label="lab API tabs example">
+                    <Tab
+                      label="사용자"
+                      value="U"
+                      onClick={() => handleTabChange('U')}
+                    />
+                    <Tab
+                      label="관리자"
+                      value="A"
+                      onClick={() => handleTabChange('A')}
+                    />
+                    <Tab
+                      label="시스템 관리자"
+                      value="SA"
+                      onClick={() => handleTabChange('SA')}
+                    />
+                  </TabList>
+                </Box>
+              </TabContext>
             </Grid>
-          </TabContext>
+
+            <Grid item xs={12}>
+              <TabMenuBuilder tabs={tabs} />
+            </Grid>
+          </Grid>
+          {/* </TabContext> */}
         </Grid>
       </Grid>
     </>

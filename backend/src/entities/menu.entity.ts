@@ -40,9 +40,6 @@ export class Menu {
   })
   path: string | null
 
-  @Column('int', { name: 'page_id', nullable: true, comment: 'page id' })
-  pageId: number | null
-
   @Column('datetime', {
     name: 'created_at',
     nullable: true,

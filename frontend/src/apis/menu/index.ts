@@ -46,7 +46,7 @@ export const updateMenu = (params: object) => {
 // ANCHOR delete menu
 export const deleteMenu = (params: object) => {
   const url = `${rootUrl}deleteMenu`
-  const response = axios.delete<CommonResponse>(url, params)
+  const response = axios.delete<CommonResponse>(url, { params })
 
   return response
 }

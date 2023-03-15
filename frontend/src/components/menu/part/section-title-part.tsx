@@ -11,6 +11,7 @@ import { initData } from 'src/store/apps/crud'
 import {
   hCloseAddForm,
   hCloseSectionTitlePart,
+  setClearForm,
   updateSectionTitlePartForm
 } from 'src/store/apps/menu'
 
@@ -40,6 +41,7 @@ const SectionTitlePart = (props: any) => {
         dispatch(hCloseSectionTitlePart())
         dispatch(hCloseAddForm())
         props.handleLoadData()
+        dispatch(setClearForm())
       }
     } catch (err) {
       console.log('err', err)

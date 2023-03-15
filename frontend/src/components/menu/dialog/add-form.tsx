@@ -3,11 +3,11 @@ import {
   CardContent,
   Dialog,
   DialogContent,
+  Grid,
   Typography
 } from '@mui/material'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
-import FormManager from 'src/components/builder/menu/manager/form-manager'
 import CustomDialogTitle from 'src/components/custom-dialog-title'
 import { AppDispatch, RootState } from 'src/store'
 import {
@@ -18,7 +18,6 @@ import {
 
 // ** Icon Imports
 import Icon from 'src/@core/components/icon'
-// import FormManager from '../manager/form-manager'
 
 const AddForm = () => {
   // ** Hooks
@@ -40,54 +39,53 @@ const AddForm = () => {
         <DialogContent style={{ minWidth: '350px' }}>
           <Card
             sx={{
-              border: 0,
               boxShadow: 0,
-              color: 'common.white',
-              backgroundColor: 'primary.main',
-              mb: 5,
+              '&:hover': {
+                boxShadow: '0px 0px 0px 2px rgba(50, 71, 92, 0.1)'
+              },
+              border: 0,
+              color: '#707070',
+              backgroundColor: '#f6f6f8',
+              mb: 3,
               cursor: 'pointer'
             }}
             onClick={() => dispatch(hOpenMenuPart())}
           >
-            <CardContent>
-              <Typography
-                variant="h6"
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  color: 'common.white',
-                  '& svg': { mr: 2.5 }
-                }}
-              >
-                <Icon icon="bx:add-to-queue" />
-                메뉴
-              </Typography>
+            <CardContent style={{ padding: '10px' }}>
+              <Grid container spacing={3}>
+                <Grid item>
+                  <Icon icon="bx:add-to-queue" />
+                </Grid>
+                <Grid item>
+                  <Typography>메뉴</Typography>
+                </Grid>
+              </Grid>
             </CardContent>
           </Card>
+
           <Card
             sx={{
-              border: 0,
               boxShadow: 0,
-              color: 'common.white',
-              backgroundColor: 'primary.main',
-              mb: 5,
+              '&:hover': {
+                boxShadow: '0px 0px 0px 2px rgba(50, 71, 92, 0.1)'
+              },
+              border: 0,
+              color: '#707070',
+              backgroundColor: '#f6f6f8',
+              mb: 3,
               cursor: 'pointer'
             }}
             onClick={() => dispatch(hOpenSectionTitlePart())}
           >
-            <CardContent>
-              <Typography
-                variant="h6"
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  color: 'common.white',
-                  '& svg': { mr: 2.5 }
-                }}
-              >
-                <Icon icon="material-symbols:bookmark-add-outline" />
-                섹션 제목
-              </Typography>
+            <CardContent style={{ padding: '10px' }}>
+              <Grid container spacing={3}>
+                <Grid item>
+                  <Icon icon="material-symbols:bookmark-add-outline" />
+                </Grid>
+                <Grid item>
+                  <Typography>섹션 제목</Typography>
+                </Grid>
+              </Grid>
             </CardContent>
           </Card>
           {/* <FormManager _key="addForm" list={addForm} /> */}
