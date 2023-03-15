@@ -5,6 +5,7 @@ import moment from 'moment'
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
 import TableRow from '@mui/material/TableRow'
+import CustomAvatar from 'src/@core/components/mui/avatar'
 
 // ** Const
 import DATE from 'src/common/constants/date'
@@ -14,7 +15,7 @@ import { RootState } from 'src/store'
 import { useSelector } from 'react-redux'
 import ActionContainer from './action-container'
 import { useState } from 'react'
-import { Chip } from '@mui/material'
+import { Button, Chip, Snackbar } from '@mui/material'
 import ModalEditorViewerContainer from './modal-editor-viewer-container'
 
 const Content = () => {
@@ -23,6 +24,13 @@ const Content = () => {
   const pagination = crud.pagination
   //const contentForm = crud.contentForm
   const actionList = crud.actionList
+
+  // ** States
+  const [state, setState] = useState({
+    openSnack: false,
+    snackContent: ''
+  })
+  const { openSnack, snackContent } = state
 
   // getPageByUrl
 
@@ -47,10 +55,26 @@ const Content = () => {
     },
     {
       key: 'intro',
-      type: 'modal', // text | date | editor | code | image | chip | snackbar
+      type: 'editor', // text | date | editor | code | image | chip | snackbar
+      title: '자기소개'
+    },
+    {
+      key: 'password',
+      type: 'snackbar', // text | date | editor | code | image | chip | snackbar
       title: '자기소개'
     }
   ])
+
+  const handleClickSnack = (password: string) => {
+    setState({
+      openSnack: true,
+      snackContent: password
+    })
+  }
+
+  const handleCloseSnack = () => {
+    setState({ ...state, openSnack: false })
+  }
 
   return (
     <>
@@ -64,7 +88,7 @@ const Content = () => {
                 <TableCell key={index}>
                   {cell.key ? moment(cell.key).format(DATE.DATETIME) : '-'}
                 </TableCell>
-              ) : cell.type === 'modal' ? (
+              ) : cell.type === 'editor' ? (
                 <TableCell key={index}>
                   <ModalEditorViewerContainer
                     title={cell.title}
@@ -73,10 +97,10 @@ const Content = () => {
                 </TableCell>
               ) : cell.type === 'image' ? (
                 <TableCell key={index}>
-                  <img
+                  <CustomAvatar
                     src={row[`${cell.key}`] || '/images/custom/image.png'}
-                    width={cell.width || 30}
-                    height={cell.height || 30}
+                    variant="square"
+                    sx={{ width: cell.width || 30, height: cell.height || 30 }}
                   />
                 </TableCell>
               ) : cell.type === 'chip' ? (
@@ -86,6 +110,15 @@ const Content = () => {
                     color="primary"
                     variant="outlined"
                   />
+                </TableCell>
+              ) : cell.type === 'snackbar' ? (
+                <TableCell>
+                  <Button
+                    variant="text"
+                    onClick={() => handleClickSnack(row[`${cell.key}`] || '-')}
+                  >
+                    비밀번호
+                  </Button>
                 </TableCell>
               ) : (
                 <></>
@@ -103,6 +136,14 @@ const Content = () => {
           </TableRow>
         ))}
       </TableBody>
+
+      <Snackbar
+        open={openSnack}
+        onClose={handleCloseSnack}
+        message={snackContent}
+        autoHideDuration={3000}
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+      />
     </>
   )
 }
