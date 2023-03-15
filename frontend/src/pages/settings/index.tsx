@@ -212,91 +212,87 @@ const Settings = () => {
 
       {globalList.map((item: any, idx: number) => {
         return (
-          <>
-            <Stack sx={{ mt: 5 }} key={idx}>
-              <Card>
-                <CardContent>
-                  <Grid container justifyContent="center" spacing={3}>
-                    <Grid item xs={12} md={4}>
-                      <TextField
-                        label="키"
-                        size="small"
-                        fullWidth
-                        value={item?.key}
-                        disabled
-                        onChange={(e) =>
-                          handleChangeGlobalList(item?.key, 'key', e)
-                        }
-                      />
+          <Stack sx={{ mt: 5 }} key={idx}>
+            <Card>
+              <CardContent>
+                <Grid container justifyContent="center" spacing={3}>
+                  <Grid item xs={12} md={4}>
+                    <TextField
+                      label="키"
+                      size="small"
+                      fullWidth
+                      value={item?.key}
+                      disabled
+                      onChange={(e) =>
+                        handleChangeGlobalList(item?.key, 'key', e)
+                      }
+                    />
+                  </Grid>
+                  <Grid item xs={12} md={4}>
+                    <TextField
+                      label="값"
+                      size="small"
+                      fullWidth
+                      value={item?.value}
+                      onChange={(e) =>
+                        handleChangeGlobalList(item?.key, 'value', e)
+                      }
+                    />
+                  </Grid>
+                  <Grid item xs={12} md={4}>
+                    <TextField
+                      label="메모"
+                      size="small"
+                      fullWidth
+                      value={item?.memo}
+                      onChange={(e) =>
+                        handleChangeGlobalList(item?.key, 'memo', e)
+                      }
+                    />
+                  </Grid>
+                </Grid>
+                <Stack sx={{ mt: 3 }} textAlign="left">
+                  <Grid container>
+                    <Grid item xs={6}>
+                      <Typography variant="body2">
+                        생성일자 :{' '}
+                        {item?.createdAt
+                          ? moment(item?.createdAt).format(DATE.DATETIME)
+                          : '생성 이력이 존재하지 않습니다.'}
+                      </Typography>
+                      <Typography variant="body2">
+                        수정일자 :{' '}
+                        {item?.updatedAt
+                          ? moment(item?.updatedAt).format(DATE.DATETIME)
+                          : '수정 이력이 존재하지 않습니다.'}
+                      </Typography>
                     </Grid>
-                    <Grid item xs={12} md={4}>
-                      <TextField
-                        label="값"
-                        size="small"
-                        fullWidth
-                        value={item?.value}
-                        onChange={(e) =>
-                          handleChangeGlobalList(item?.key, 'value', e)
-                        }
-                      />
-                    </Grid>
-                    <Grid item xs={12} md={4}>
-                      <TextField
-                        label="메모"
-                        size="small"
-                        fullWidth
-                        value={item?.memo}
-                        onChange={(e) =>
-                          handleChangeGlobalList(item?.key, 'memo', e)
-                        }
-                      />
+                    <Grid item xs={6}>
+                      {deleteMode ? (
+                        <>
+                          <Stack textAlign={'right'} sx={{ mt: 2 }}>
+                            <div>
+                              <Button
+                                variant="contained"
+                                sx={{ ml: 3, mr: 3 }}
+                                size="small"
+                                color="error"
+                                onClick={() => handleClickOpenDelete(item?.key)}
+                              >
+                                삭제
+                              </Button>
+                            </div>
+                          </Stack>
+                        </>
+                      ) : (
+                        <></>
+                      )}
                     </Grid>
                   </Grid>
-                  <Stack sx={{ mt: 3 }} textAlign="left">
-                    <Grid container>
-                      <Grid item xs={6}>
-                        <Typography variant="body2">
-                          생성일자 :{' '}
-                          {item?.createdAt
-                            ? moment(item?.createdAt).format(DATE.DATETIME)
-                            : '생성 이력이 존재하지 않습니다.'}
-                        </Typography>
-                        <Typography variant="body2">
-                          수정일자 :{' '}
-                          {item?.updatedAt
-                            ? moment(item?.updatedAt).format(DATE.DATETIME)
-                            : '수정 이력이 존재하지 않습니다.'}
-                        </Typography>
-                      </Grid>
-                      <Grid item xs={6}>
-                        {deleteMode ? (
-                          <>
-                            <Stack textAlign={'right'} sx={{ mt: 2 }}>
-                              <div>
-                                <Button
-                                  variant="contained"
-                                  sx={{ ml: 3, mr: 3 }}
-                                  size="small"
-                                  color="error"
-                                  onClick={() =>
-                                    handleClickOpenDelete(item?.key)
-                                  }
-                                >
-                                  삭제
-                                </Button>
-                              </div>
-                            </Stack>
-                          </>
-                        ) : (
-                          <></>
-                        )}
-                      </Grid>
-                    </Grid>
-                  </Stack>
-                </CardContent>
-              </Card>
-            </Stack>
-          </>
+                </Stack>
+              </CardContent>
+            </Card>
+          </Stack>
         )
       })}
 
