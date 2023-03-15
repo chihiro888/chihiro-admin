@@ -15,7 +15,6 @@ export const reloadMenu = createAsyncThunk(
       const { data: res } = await getMenu()
       if (res.statusCode === 200) {
         const menuList = res.data.data
-        console.log('menuList', menuList)
         const data = menuList.map((item: any) => {
           if (item.type === 'line') {
             return {
@@ -39,8 +38,6 @@ export const reloadMenu = createAsyncThunk(
           }
         })
 
-        console.log('data', data)
-
         dispatch(hSetMenuList(data))
       }
     } catch (err) {
@@ -51,22 +48,13 @@ export const reloadMenu = createAsyncThunk(
 
 const init = {
   // dialog
-  openTableHeader: false,
-  openSearchForm: false,
   openAddForm: false,
-  openDetailForm: false,
-  openActionList: false,
 
   // selector
   openPartSelector: false,
   partType: 'add', // add, search, detail
 
   // part dialog
-  openDefaultPart: false,
-  openLinePart: false,
-  openSelectPart: false,
-  openUploadPart: false,
-  openTextareaPart: false,
   openMenuPart: false,
   openSectionTitlePart: false,
   openPagePart: false,
@@ -79,29 +67,12 @@ const init = {
     title: '',
     subTitle: ''
   },
-  listApi: {
-    checked: true,
-    functionName: ''
-  },
-  createApi: {
-    checked: false,
-    functionName: ''
-  },
-  detailApi: {
-    checked: false,
-    functionName: ''
-  },
-  deleteApi: {
-    checked: false,
-    functionName: ''
-  },
+
   menuPartForm: {
     icon: '',
     type: '',
     title: '',
     route: '',
-    page: '',
-    pageId: '',
     path: ''
   },
   sectionTitlePartForm: {
@@ -123,14 +94,6 @@ export const appPageSlice = createSlice({
   name: 'appPage',
   initialState: { ...init },
   reducers: {
-    // 테이블 헤더 모달
-    hOpenTableHeader(state) {
-      state.openTableHeader = true
-    },
-    hCloseTableHeader(state) {
-      state.openTableHeader = false
-    },
-
     updateMenuPartForm(state, action) {
       const nextState = produce(state.menuPartForm, (draftState) => {
         draftState[action.payload.key] = action.payload.value
@@ -195,23 +158,6 @@ export const appPageSlice = createSlice({
       state.openPagePart = false
     },
 
-    // 상세 폼 모달
-    hOpenDetailForm(state) {
-      state.openDetailForm = true
-      state.partType = 'detail'
-    },
-    hCloseDetailForm(state) {
-      state.openDetailForm = false
-    },
-
-    // 액션 리스트 모달
-    hOpenActionList(state) {
-      state.openActionList = true
-    },
-    hCloseActionList(state) {
-      state.openActionList = false
-    },
-
     // 파츠 셀렉터 모달
     hOpenPartSelector(state) {
       state.openPartSelector = true
@@ -220,49 +166,24 @@ export const appPageSlice = createSlice({
       state.openPartSelector = false
     },
 
-    // 기본 파츠 모달
-    hOpenDefaultPart(state) {
-      state.openDefaultPart = true
-    },
-    hCloseDefaultPart(state) {
-      state.openDefaultPart = false
-    },
-
-    // 라인 파츠 모달
-    hOpenLinePart(state) {
-      state.openLinePart = true
-    },
-    hCloseLinePart(state) {
-      state.openLinePart = false
-    },
-
-    // 선택 파츠 모달
-    hOpenSelectPart(state) {
-      state.openSelectPart = true
-    },
-    hCloseSelectPart(state) {
-      state.openSelectPart = false
-    },
-
-    // 업로드 파츠 모달
-    hOpenUploadPart(state) {
-      state.openUploadPart = true
-    },
-    hCloseUploadPart(state) {
-      state.openUploadPart = false
-    },
-
-    // 텍스트 에리어 파츠 모달
-    hOpenTextareaPart(state) {
-      state.openTextareaPart = true
-    },
-    hCloseTextareaPart(state) {
-      state.openTextareaPart = false
-    },
-
     // 공통 수정
     updateState(state, action) {
       state[action.payload.key] = action.payload.value
+    },
+
+    // 폼 초기화
+    setClearForm(state) {
+      state.menuPartForm = {
+        icon: '',
+        type: '',
+        title: '',
+        route: '',
+        path: ''
+      }
+      state.sectionTitlePartForm = {
+        title: '',
+        type: ''
+      }
     },
 
     // 데이터 초기화
@@ -272,22 +193,7 @@ export const appPageSlice = createSlice({
         title: '',
         subTitle: ''
       }
-      state.listApi = {
-        checked: true,
-        functionName: ''
-      }
-      state.createApi = {
-        checked: false,
-        functionName: ''
-      }
-      state.detailApi = {
-        checked: false,
-        functionName: ''
-      }
-      state.deleteApi = {
-        checked: false,
-        functionName: ''
-      }
+
       state.tableHeader = []
       state.addForm = []
       state.detailForm = []
@@ -302,22 +208,6 @@ export const appPageSlice = createSlice({
         title: action.payload.title,
         subTitle: action.payload.subTitle
       }
-      state.listApi = {
-        checked: action.payload.useListApi,
-        functionName: action.payload.listApi
-      }
-      state.createApi = {
-        checked: action.payload.useCreateApi,
-        functionName: action.payload.createApi
-      }
-      state.detailApi = {
-        checked: action.payload.useDetailApi,
-        functionName: action.payload.detailApi
-      }
-      state.deleteApi = {
-        checked: action.payload.useDeleteApi,
-        functionName: action.payload.deleteApi
-      }
       state.tableHeader = action.payload.tableHeader
       state.addForm = action.payload.addForm
       state.detailForm = action.payload.detailForm
@@ -328,8 +218,6 @@ export const appPageSlice = createSlice({
 })
 
 export const {
-  hOpenTableHeader,
-  hCloseTableHeader,
   hOpenMenuPart,
   hCloseMenuPart,
   hOpenAddForm,
@@ -341,27 +229,14 @@ export const {
   hCloseSectionTitlePart,
   hOpenPagePart,
   hClosePagePart,
-  hOpenDetailForm,
-  hCloseDetailForm,
-  hOpenActionList,
-  hCloseActionList,
   hOpenPartSelector,
   hClosePartSelector,
-  hOpenDefaultPart,
-  hCloseDefaultPart,
-  hOpenLinePart,
-  hCloseLinePart,
-  hOpenSelectPart,
-  hCloseSelectPart,
-  hOpenUploadPart,
-  hCloseUploadPart,
-  hOpenTextareaPart,
-  hCloseTextareaPart,
   updateMenuPartForm,
   updateState,
   setClearData,
   hUpdateEditMenuContainer,
   setInitData,
+  setClearForm,
   hSetIsLoading
 } = appPageSlice.actions
 

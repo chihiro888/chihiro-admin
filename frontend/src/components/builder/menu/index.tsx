@@ -14,17 +14,25 @@ import CardContent from '@mui/material/CardContent'
 import Icon from 'src/@core/components/icon'
 import { ReactSortable } from 'react-sortablejs'
 
-import { deleteMenu, getMenuList, getMenuOrderList } from 'src/apis/menu'
+import {
+  deleteMenu,
+  getMenuList,
+  getMenuOrderList,
+  updateMenu
+} from 'src/apis/menu'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from 'src/store'
-import { hSetIsLoading, hUpdateEditMenuContainer } from 'src/store/apps/menu'
+import {
+  hOpenAddForm,
+  hUpdateEditMenuContainer,
+  reloadMenu
+} from 'src/store/apps/menu'
 import toast from 'react-hot-toast'
 import AddForm from 'src/components/menu/dialog/add-form'
 import PagePart from 'src/components/menu/part/page-part'
 import SectionTitlePart from 'src/components/menu/part/section-title-part'
 import MenuPart from 'src/components/menu/part/menu-part'
-import CustomChip from 'src/components/custom-chip'
-import { CircularProgress } from '@mui/material'
+import { CircularProgress, FormControlLabel, Switch } from '@mui/material'
 
 const TabMenuBuilder = (props: any) => {
   const { tabs } = props
@@ -34,11 +42,12 @@ const TabMenuBuilder = (props: any) => {
   // ** Redux
   const menu = useSelector((state: RootState) => state.menu)
 
-  const { activeTab } = menu
+  const { activeTab, updateMenuIdList } = menu
 
   // ** State
   const [leftList, setLeftList] = useState([])
   const [rightList, setRightList] = useState([])
+  const [isDeleteMode, setIsDeleteMode] = useState(false)
 
   // ** Handler
   const handleDeleteMenu = async (id: number) => {
@@ -50,6 +59,23 @@ const TabMenuBuilder = (props: any) => {
         handleLoadData()
       }
     } catch (err) {}
+  }
+
+  const handleClickSave = async () => {
+    try {
+      const params = {
+        permission: activeTab,
+        menuIdList: updateMenuIdList
+      }
+
+      const { data: res } = await updateMenu(params)
+      if (res.statusCode === 200) {
+        toast.success(res.message)
+        dispatch(reloadMenu())
+      }
+    } catch (err) {
+      //
+    }
   }
 
   const handleLoadData = async () => {
@@ -118,8 +144,35 @@ const TabMenuBuilder = (props: any) => {
         <MenuPart handleLoadData={handleLoadData} />
 
         <Card>
-          <CardHeader title={<CustomChip label={'공통 메뉴'} fontSize={15} color="red" />} />
+          {/* <CardHeader title={<CustomChip label={'공통 메뉴'} fontSize={15} color="red" />} /> */}
           <CardContent>
+            <Grid container sx={{ mb: 3 }} justifyContent="space-between">
+              <Grid item>
+                <Typography variant="body1">공통 메뉴</Typography>
+              </Grid>
+              <Grid item>
+                <FormControlLabel
+                  control={
+                    <Switch
+                      color="error"
+                      value={isDeleteMode}
+                      onClick={() => setIsDeleteMode(!isDeleteMode)}
+                    />
+                  }
+                  label="삭제 모드"
+                />
+                <Button
+                  variant="outlined"
+                  onClick={() => {
+                    dispatch(hOpenAddForm())
+                  }}
+                  size="small"
+                >
+                  메뉴 생성
+                </Button>
+              </Grid>
+            </Grid>
+
             <ReactSortable
               list={leftList}
               setList={setLeftList}
@@ -137,7 +190,10 @@ const TabMenuBuilder = (props: any) => {
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'space-between',
-                      '&:not(:last-of-type)': { mb: 4 }
+                      padding: '10px 20px',
+                      mb: 2,
+                      borderRadius: 2,
+                      backgroundColor: 'rgba(245, 245, 247, 0.7)'
                     }}
                   >
                     <Box
@@ -182,9 +238,16 @@ const TabMenuBuilder = (props: any) => {
                         </Typography>
                       </div>
                     </Box>
-                    <Button onClick={() => handleDeleteMenu(data.id)}>
-                      <CustomChip fontSize={14} label={'삭제'} color="purple" />
-                    </Button>
+                    {isDeleteMode ? (
+                      <Button
+                        onClick={() => handleDeleteMenu(data.id)}
+                        color={'error'}
+                      >
+                        삭제
+                      </Button>
+                    ) : (
+                      <></>
+                    )}
                   </Box>
                 )
               })}
@@ -195,16 +258,24 @@ const TabMenuBuilder = (props: any) => {
       {/* Social Accounts Cards */}
       <Grid item xs={6}>
         <Card>
-          <CardHeader
-            title={
-              <CustomChip
-                fontSize={15}
-                label={`${tabs[activeTab]}`}
-                color="blue"
-              />
-            }
-          />
           <CardContent>
+            <Grid container sx={{ mb: 3 }}>
+              <Grid item xs={9}>
+                <Typography variant="body1"> {tabs[activeTab]}</Typography>
+              </Grid>
+              <Grid item xs={3}>
+                <Button
+                  variant="outlined"
+                  sx={{ mr: 5 }}
+                  onClick={handleClickSave}
+                  size="small"
+                  fullWidth
+                >
+                  저장
+                </Button>
+              </Grid>
+            </Grid>
+
             <ReactSortable
               group={{
                 name: 'U'
@@ -222,7 +293,10 @@ const TabMenuBuilder = (props: any) => {
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'space-between',
-                      '&:not(:last-of-type)': { mb: 4 }
+                      padding: '10px 20px',
+                      mb: 2,
+                      borderRadius: 2,
+                      backgroundColor: 'rgba(245, 245, 247, 0.7)'
                     }}
                   >
                     <Box

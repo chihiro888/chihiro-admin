@@ -11,6 +11,7 @@ import {
   Typography
 } from '@mui/material'
 import { t } from 'i18next'
+import { useEffect } from 'react'
 import toast from 'react-hot-toast'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
@@ -18,10 +19,11 @@ import { createMenu } from 'src/apis/menu'
 import CustomDialogTitle from 'src/components/custom-dialog-title'
 import { AppDispatch, RootState } from 'src/store'
 import { initData } from 'src/store/apps/crud'
+import { hOpenIconSelector } from 'src/store/apps/icon'
 import {
   hCloseAddForm,
   hCloseMenuPart,
-  hOpenPagePart,
+  setClearForm,
   updateMenuPartForm
 } from 'src/store/apps/menu'
 
@@ -31,6 +33,9 @@ const MenuPart = (props: any) => {
 
   // ** Redux
   const menu = useSelector((state: RootState) => state.menu)
+  const icon = useSelector((state: RootState) => state.icon)
+
+  const { selectedIcon } = icon
   const { openMenuPart, menuPartForm } = menu
 
   dispatch(updateMenuPartForm({ key: 'type', value: 'menu' }))
@@ -43,13 +48,14 @@ const MenuPart = (props: any) => {
   // 메뉴 파트 추가
   const handleAddMenuPart = async () => {
     try {
-      const { page, ...params } = menuPartForm
+      const { ...params } = menuPartForm
 
       const { data: res } = await createMenu(params)
       if (res.statusCode === 200) {
         dispatch(initData())
         dispatch(hCloseMenuPart())
         dispatch(hCloseAddForm())
+        dispatch(setClearForm())
         props.handleLoadData()
         toast.success(res.message)
       }
@@ -57,6 +63,10 @@ const MenuPart = (props: any) => {
       toast.error(t(err.response.data.message))
     }
   }
+
+  useEffect(() => {
+    handleChangeForm('icon', selectedIcon)
+  }, [selectedIcon])
 
   return (
     <>
@@ -72,8 +82,9 @@ const MenuPart = (props: any) => {
             <TextField
               label="아이콘"
               fullWidth
-              onChange={(e) => {
-                handleChangeForm('icon', e.target.value)
+              value={selectedIcon}
+              onClick={() => {
+                dispatch(hOpenIconSelector())
               }}
             />
           </Box>
@@ -84,20 +95,6 @@ const MenuPart = (props: any) => {
               onChange={(e) => {
                 handleChangeForm('title', e.target.value)
               }}
-            />
-          </Box>
-
-          <Box sx={{ mb: 3 }}>
-            <TextField
-              label="페이지 선택"
-              value={menuPartForm.page}
-              onClick={() => {
-                dispatch(hOpenPagePart())
-              }}
-              onChange={(e) => {
-                handleChangeForm('page', e.target.value)
-              }}
-              fullWidth
             />
           </Box>
 

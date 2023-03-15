@@ -38,7 +38,6 @@ const PagePart = () => {
       const params = { page: 1, url: '' }
       const { data: res } = await getPageList(params)
       if (res.statusCode === 200) {
-        console.log('res.data', res.data)
         setPages(res.data.data)
       }
     } catch (err) {

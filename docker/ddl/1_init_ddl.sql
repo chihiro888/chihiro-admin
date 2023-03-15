@@ -101,7 +101,6 @@ CREATE TABLE IF NOT EXISTS _menu (
   `icon` VARCHAR(255) COMMENT 'icon',
   `route` VARCHAR(255) COMMENT 'route',
   `path` VARCHAR(255) COMMENT 'path',
-  `page_id` INT COMMENT 'page id',
   `created_at` DATETIME DEFAULT now() COMMENT 'create time',
   `updated_at` DATETIME DEFAULT NULL COMMENT 'update time',
   `deleted_at` DATETIME DEFAULT NULL COMMENT 'delete time'

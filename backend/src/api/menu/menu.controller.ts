@@ -150,8 +150,9 @@ export class MenuController {
   async deleteMenu(
     @Res() res: Response,
     @Session() session: any,
-    @Body() dto: DeleteMenuDto
+    @Query() dto: DeleteMenuDto
   ) {
+    console.log('dto =>', dto)
     // delete Menu
     const data = await this.menuService.deleteMenu(dto)
 

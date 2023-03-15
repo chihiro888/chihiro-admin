@@ -30,7 +30,6 @@ export class MenuService {
         // 'mo.permission as permission',
         // 'mo.menu_order as menuOrder',
         'm.path as path',
-        'm.page_id as pageId',
         'm.created_at as createdAt',
         'm.updated_at as updatedAt'
       ])
@@ -60,7 +59,6 @@ export class MenuService {
         'mo.permission as permission',
         'mo.menu_order as menuOrder',
         'm.path as path',
-        'm.page_id as pageId',
         'm.created_at as createdAt',
         'm.updated_at as updatedAt'
       ])
@@ -99,7 +97,6 @@ export class MenuService {
     menu.icon = dto.icon
     menu.path = dto.path
     menu.route = dto.route
-    menu.pageId = dto.pageId
 
     await this.datasource.getRepository(Menu).save(menu)
   }
