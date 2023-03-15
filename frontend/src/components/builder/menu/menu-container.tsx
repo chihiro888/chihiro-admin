@@ -11,8 +11,13 @@ import Icon from 'src/@core/components/icon'
 // ** Demo Tabs Imports
 import TabMenuBuilder from 'src/components/builder/menu'
 import { getGlobalList } from 'src/apis/global'
-import { Button } from '@mui/material'
-import { hOpenAddForm, hSetActiveTab, reloadMenu } from 'src/store/apps/menu'
+import { Box, Button, CircularProgress, Typography } from '@mui/material'
+import {
+  hOpenAddForm,
+  hSetActiveTab,
+  hSetIsLoading,
+  reloadMenu
+} from 'src/store/apps/menu'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from 'src/store'
 import { updateMenu } from 'src/apis/menu'
@@ -36,7 +41,9 @@ const MenuContainer = () => {
         const role = JSON.parse(
           res.data.filter((global) => global.key === 'role')[0].value
         )
-        dispatch(hSetActiveTab('U'))
+
+        console.log('role', role)
+
         setTabs(role)
       }
     } catch (err) {
@@ -44,12 +51,13 @@ const MenuContainer = () => {
     }
   }
   useEffect(() => {
+    dispatch(hSetActiveTab('U'))
     initData()
   }, [])
 
   // ** handler
-  const handleTabChange = (e) => {
-    dispatch(hSetActiveTab(e.target.value))
+  const handleTabChange = (tab) => {
+    dispatch(hSetActiveTab(tab))
   }
 
   const handleClickSave = async () => {
@@ -80,28 +88,16 @@ const MenuContainer = () => {
               <Grid item xs={12}>
                 {Object.keys(tabs).map((tab) => (
                   <>
-                    {tab === activeTab ? (
-                      <Button
-                        variant="contained"
-                        value={tab}
-                        startIcon={<Icon icon="bx:user" />}
-                        sx={{ mr: 5 }}
-                        onClick={handleTabChange}
-                      >
-                        {tabs[tab]}
-                      </Button>
-                    ) : (
-                      <Button
-                        variant="text"
-                        color="secondary"
-                        value={tab}
-                        startIcon={<Icon icon="bx:user" />}
-                        sx={{ mr: 5 }}
-                        onClick={handleTabChange}
-                      >
-                        {tabs[tab]}
-                      </Button>
-                    )}
+                    <Button
+                      variant={activeTab === tab ? 'contained' : 'text'}
+                      color={activeTab === tab ? 'primary' : 'secondary'}
+                      value={tab}
+                      startIcon={<Icon icon="bx:user" />}
+                      onClick={() => handleTabChange(tab)}
+                      sx={{ mr: 5 }}
+                    >
+                      {tabs[tab]}
+                    </Button>
                   </>
                 ))}
               </Grid>
