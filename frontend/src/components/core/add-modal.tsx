@@ -35,7 +35,6 @@ const AddModal = ({ openModal, handleClickCloseModal }) => {
 
   // 폼 데이터 변경
   const handleChangeForm = (key: string, value: string) => {
-    
     dispatch(updateAddForm({ key, value }))
   }
 
@@ -49,7 +48,10 @@ const AddModal = ({ openModal, handleClickCloseModal }) => {
       >
         <DialogTitle id="alert-dialog-title">추가</DialogTitle>
         <DialogContent>
-          <ModalFormContent formContent={addForm} handleChangeForm={handleChangeForm} />
+          <ModalFormContent
+            formContent={addForm}
+            handleChangeForm={handleChangeForm}
+          />
         </DialogContent>
         <DialogActions>
           <Button

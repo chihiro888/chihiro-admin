@@ -27,9 +27,10 @@ const TextFieldInputAdornment = () => {
     showPassword: false
   })
 
-  const handleChange = (prop: keyof State) => (event: ChangeEvent<HTMLInputElement>) => {
-    setValues({ ...values, [prop]: event.target.value })
-  }
+  const handleChange =
+    (prop: keyof State) => (event: ChangeEvent<HTMLInputElement>) => {
+      setValues({ ...values, [prop]: event.target.value })
+    }
 
   const handleClickShowPassword = () => {
     setValues({ ...values, showPassword: !values.showPassword })
@@ -40,44 +41,47 @@ const TextFieldInputAdornment = () => {
   }
 
   return (
-    <form className='demo-space-x' noValidate autoComplete='off'>
+    <form className="demo-space-x" noValidate autoComplete="off">
       <TextField
-        id='icons-start-adornment'
-        label='With normal TextField'
+        id="icons-start-adornment"
+        label="With normal TextField"
         InputProps={{
-          startAdornment: <InputAdornment position='start'>Kg</InputAdornment>
+          startAdornment: <InputAdornment position="start">Kg</InputAdornment>
         }}
       />
       <FormControl>
         <OutlinedInput
           value={values.weight}
-          id='icons-adornment-weight'
+          id="icons-adornment-weight"
           onChange={handleChange('weight')}
-          aria-describedby='icons-weight-helper-text'
-          endAdornment={<InputAdornment position='end'>Kg</InputAdornment>}
+          aria-describedby="icons-weight-helper-text"
+          endAdornment={<InputAdornment position="end">Kg</InputAdornment>}
           inputProps={{
             'aria-label': 'weight'
           }}
         />
-        <FormHelperText id='icons-weight-helper-text'>Weight</FormHelperText>
+        <FormHelperText id="icons-weight-helper-text">Weight</FormHelperText>
       </FormControl>
       <FormControl>
-        <InputLabel htmlFor='icons-adornment-password'>Password</InputLabel>
+        <InputLabel htmlFor="icons-adornment-password">Password</InputLabel>
         <OutlinedInput
-          label='Password'
+          label="Password"
           value={values.password}
-          id='icons-adornment-password'
+          id="icons-adornment-password"
           onChange={handleChange('password')}
           type={values.showPassword ? 'text' : 'password'}
           endAdornment={
-            <InputAdornment position='end'>
+            <InputAdornment position="end">
               <IconButton
-                edge='end'
+                edge="end"
                 onClick={handleClickShowPassword}
                 onMouseDown={handleMouseDownPassword}
-                aria-label='toggle password visibility'
+                aria-label="toggle password visibility"
               >
-                <Icon fontSize={20} icon={values.showPassword ? 'bx:show' : 'bx:hide'} />
+                <Icon
+                  fontSize={20}
+                  icon={values.showPassword ? 'bx:show' : 'bx:hide'}
+                />
               </IconButton>
             </InputAdornment>
           }

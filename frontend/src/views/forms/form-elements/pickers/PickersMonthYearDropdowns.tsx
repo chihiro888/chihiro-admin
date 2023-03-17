@@ -24,27 +24,27 @@ const PickersMonthYearDropdowns = ({
   const [monthYear, setMonthYear] = useState<DateType>(new Date())
 
   return (
-    <Box sx={{ display: 'flex', flexWrap: 'wrap' }} className='demo-space-x'>
+    <Box sx={{ display: 'flex', flexWrap: 'wrap' }} className="demo-space-x">
       <div>
         <DatePicker
           selected={month}
           showMonthDropdown
-          id='month-dropdown'
-          placeholderText='MM-DD-YYYY'
+          id="month-dropdown"
+          placeholderText="MM-DD-YYYY"
           popperPlacement={popperPlacement}
           onChange={(date: Date) => setMonth(date)}
-          customInput={<CustomInput label='Month Dropdown' />}
+          customInput={<CustomInput label="Month Dropdown" />}
         />
       </div>
       <div>
         <DatePicker
           selected={year}
           showYearDropdown
-          id='year-dropdown'
-          placeholderText='MM-DD-YYYY'
+          id="year-dropdown"
+          placeholderText="MM-DD-YYYY"
           popperPlacement={popperPlacement}
           onChange={(date: Date) => setYear(date)}
-          customInput={<CustomInput label='Year Dropdown' />}
+          customInput={<CustomInput label="Year Dropdown" />}
         />
       </div>
       <div>
@@ -52,11 +52,11 @@ const PickersMonthYearDropdowns = ({
           showYearDropdown
           showMonthDropdown
           selected={monthYear}
-          id='month-year-dropdown'
-          placeholderText='MM-DD-YYYY'
+          id="month-year-dropdown"
+          placeholderText="MM-DD-YYYY"
           popperPlacement={popperPlacement}
           onChange={(date: Date) => setMonthYear(date)}
-          customInput={<CustomInput label='Month & Year Dropdown' />}
+          customInput={<CustomInput label="Month & Year Dropdown" />}
         />
       </div>
     </Box>

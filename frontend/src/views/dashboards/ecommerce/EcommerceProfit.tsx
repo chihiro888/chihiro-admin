@@ -38,7 +38,10 @@ const EcommerceProfit = () => {
     legend: { show: false },
     tooltip: { enabled: false },
     dataLabels: { enabled: false },
-    colors: [hexToRGBA(theme.palette.success.main, 1), hexToRGBA(theme.palette.success.main, 0.2)],
+    colors: [
+      hexToRGBA(theme.palette.success.main, 1),
+      hexToRGBA(theme.palette.success.main, 0.2)
+    ],
     plotOptions: {
       bar: {
         borderRadius: 5,
@@ -112,11 +115,20 @@ const EcommerceProfit = () => {
 
   return (
     <Card>
-      <CardContent sx={{ p: theme => `${theme.spacing(3.5, 5, 0)} !important` }}>
-        <Typography sx={{ fontWeight: 600, color: 'text.secondary' }}>Profit</Typography>
-        <Typography variant='h5'>624k</Typography>
+      <CardContent
+        sx={{ p: (theme) => `${theme.spacing(3.5, 5, 0)} !important` }}
+      >
+        <Typography sx={{ fontWeight: 600, color: 'text.secondary' }}>
+          Profit
+        </Typography>
+        <Typography variant="h5">624k</Typography>
       </CardContent>
-      <ReactApexcharts type='bar' height={110} options={options} series={series} />
+      <ReactApexcharts
+        type="bar"
+        height={110}
+        options={options}
+        series={series}
+      />
     </Card>
   )
 }

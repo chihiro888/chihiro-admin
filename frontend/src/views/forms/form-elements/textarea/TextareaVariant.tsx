@@ -14,69 +14,80 @@ const TextareaVariant = () => {
   }
 
   return (
-    <form noValidate autoComplete='off'>
-      <Box className='demo-space-x' sx={{ mb: 4 }}>
+    <form noValidate autoComplete="off">
+      <Box className="demo-space-x" sx={{ mb: 4 }}>
         <TextField
           multiline
           maxRows={4}
           value={value}
-          label='Multiline'
+          label="Multiline"
           onChange={handleChange}
-          id='textarea-outlined-controlled'
-        />
-        <TextField multiline id='textarea-outlined' placeholder='Placeholder' label='Multiline Placeholder' />
-        <TextField rows={4} multiline label='Multiline' defaultValue='Default Value' id='textarea-outlined-static' />
-      </Box>
-      <Box className='demo-space-x' sx={{ mb: 4 }}>
-        <TextField
-          multiline
-          maxRows={4}
-          value={value}
-          variant='filled'
-          label='Multiline'
-          onChange={handleChange}
-          id='textarea-filled-controlled'
+          id="textarea-outlined-controlled"
         />
         <TextField
           multiline
-          variant='filled'
-          id='textarea-filled'
-          placeholder='Placeholder'
-          label='Multiline Placeholder'
+          id="textarea-outlined"
+          placeholder="Placeholder"
+          label="Multiline Placeholder"
         />
         <TextField
           rows={4}
           multiline
-          variant='filled'
-          label='Multiline'
-          id='textarea-filled-static'
-          defaultValue='Default Value'
+          label="Multiline"
+          defaultValue="Default Value"
+          id="textarea-outlined-static"
         />
       </Box>
-      <div className='demo-space-x'>
+      <Box className="demo-space-x" sx={{ mb: 4 }}>
         <TextField
           multiline
           maxRows={4}
           value={value}
-          label='Multiline'
-          variant='standard'
+          variant="filled"
+          label="Multiline"
           onChange={handleChange}
-          id='textarea-standard-controlled'
+          id="textarea-filled-controlled"
         />
         <TextField
           multiline
-          variant='standard'
-          id='textarea-standard'
-          placeholder='Placeholder'
-          label='Multiline Placeholder'
+          variant="filled"
+          id="textarea-filled"
+          placeholder="Placeholder"
+          label="Multiline Placeholder"
         />
         <TextField
           rows={4}
           multiline
-          label='Multiline'
-          variant='standard'
-          defaultValue='Default Value'
-          id='textarea-standard-static'
+          variant="filled"
+          label="Multiline"
+          id="textarea-filled-static"
+          defaultValue="Default Value"
+        />
+      </Box>
+      <div className="demo-space-x">
+        <TextField
+          multiline
+          maxRows={4}
+          value={value}
+          label="Multiline"
+          variant="standard"
+          onChange={handleChange}
+          id="textarea-standard-controlled"
+        />
+        <TextField
+          multiline
+          variant="standard"
+          id="textarea-standard"
+          placeholder="Placeholder"
+          label="Multiline Placeholder"
+        />
+        <TextField
+          rows={4}
+          multiline
+          label="Multiline"
+          variant="standard"
+          defaultValue="Default Value"
+          id="textarea-standard-static"
         />
       </div>
     </form>

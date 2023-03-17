@@ -4,29 +4,39 @@ import TextField from '@mui/material/TextField'
 
 const TextFieldLayout = () => {
   return (
-    <Box noValidate component='form' autoComplete='off' sx={{ display: 'flex', flexWrap: 'wrap' }}>
-      <TextField fullWidth label='Full width' id='outlined-full-width' sx={{ mb: 4 }} />
+    <Box
+      noValidate
+      component="form"
+      autoComplete="off"
+      sx={{ display: 'flex', flexWrap: 'wrap' }}
+    >
       <TextField
-        label='None'
-        sx={{ mr: 4 }}
-        id='outlined-margin-none'
-        defaultValue='Margin None'
-        helperText='Some important text'
+        fullWidth
+        label="Full width"
+        id="outlined-full-width"
+        sx={{ mb: 4 }}
       />
       <TextField
-        label='Dense'
-        margin='dense'
+        label="None"
         sx={{ mr: 4 }}
-        id='outlined-margin-dense'
-        defaultValue='Margin Dense'
-        helperText='Some important text'
+        id="outlined-margin-none"
+        defaultValue="Margin None"
+        helperText="Some important text"
       />
       <TextField
-        label='Normal'
-        margin='normal'
-        id='outlined-margin-normal'
-        defaultValue='Margin Normal'
-        helperText='Some important text'
+        label="Dense"
+        margin="dense"
+        sx={{ mr: 4 }}
+        id="outlined-margin-dense"
+        defaultValue="Margin Dense"
+        helperText="Some important text"
+      />
+      <TextField
+        label="Normal"
+        margin="normal"
+        id="outlined-margin-normal"
+        defaultValue="Margin Normal"
+        helperText="Some important text"
       />
     </Box>
   )

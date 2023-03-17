@@ -95,11 +95,20 @@ const AnalyticsOrder = () => {
 
   return (
     <Card>
-      <CardContent sx={{ p: theme => `${theme.spacing(3.5, 5, 0)} !important` }}>
-        <Typography sx={{ fontWeight: 600, color: 'text.secondary' }}>Order</Typography>
-        <Typography variant='h5'>276k</Typography>
+      <CardContent
+        sx={{ p: (theme) => `${theme.spacing(3.5, 5, 0)} !important` }}
+      >
+        <Typography sx={{ fontWeight: 600, color: 'text.secondary' }}>
+          Order
+        </Typography>
+        <Typography variant="h5">276k</Typography>
       </CardContent>
-      <ReactApexcharts type='area' height={110} options={options} series={series} />
+      <ReactApexcharts
+        type="area"
+        height={110}
+        options={options}
+        series={series}
+      />
     </Card>
   )
 }

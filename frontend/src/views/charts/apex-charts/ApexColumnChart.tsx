@@ -85,7 +85,13 @@ const ApexColumnChart = () => {
         columnWidth: '15%',
         colors: {
           backgroundBarRadius: 10,
-          backgroundBarColors: [columnColors.bg, columnColors.bg, columnColors.bg, columnColors.bg, columnColors.bg]
+          backgroundBarColors: [
+            columnColors.bg,
+            columnColors.bg,
+            columnColors.bg,
+            columnColors.bg,
+            columnColors.bg
+          ]
         }
       }
     },
@@ -103,7 +109,17 @@ const ApexColumnChart = () => {
     xaxis: {
       axisBorder: { show: false },
       axisTicks: { color: theme.palette.divider },
-      categories: ['7/12', '8/12', '9/12', '10/12', '11/12', '12/12', '13/12', '14/12', '15/12'],
+      categories: [
+        '7/12',
+        '8/12',
+        '9/12',
+        '10/12',
+        '11/12',
+        '12/12',
+        '13/12',
+        '14/12',
+        '15/12'
+      ],
       crosshairs: {
         stroke: { color: theme.palette.divider }
       },
@@ -127,25 +143,26 @@ const ApexColumnChart = () => {
 
   const CustomInput = forwardRef((props: PickerProps, ref) => {
     const startDate = format(props.start, 'MM/dd/yyyy')
-    const endDate = props.end !== null ? ` - ${format(props.end, 'MM/dd/yyyy')}` : null
+    const endDate =
+      props.end !== null ? ` - ${format(props.end, 'MM/dd/yyyy')}` : null
 
     const value = `${startDate}${endDate !== null ? endDate : ''}`
 
     return (
       <TextField
         {...props}
-        size='small'
+        size="small"
         value={value}
         inputRef={ref}
         InputProps={{
           startAdornment: (
-            <InputAdornment position='start'>
-              <Icon icon='bx:calendar-alt' />
+            <InputAdornment position="start">
+              <Icon icon="bx:calendar-alt" />
             </InputAdornment>
           ),
           endAdornment: (
-            <InputAdornment position='end'>
-              <Icon icon='bx:chevron-down' />
+            <InputAdornment position="end">
+              <Icon icon="bx:chevron-down" />
             </InputAdornment>
           )
         }}
@@ -162,7 +179,7 @@ const ApexColumnChart = () => {
   return (
     <Card>
       <CardHeader
-        title='Data Science'
+        title="Data Science"
         sx={{
           flexDirection: ['column', 'row'],
           alignItems: ['flex-start', 'center'],
@@ -174,16 +191,26 @@ const ApexColumnChart = () => {
             selectsRange
             endDate={endDate}
             selected={startDate}
-            id='apexchart-column'
+            id="apexchart-column"
             startDate={startDate}
             onChange={handleOnChange}
-            placeholderText='Click to select a date'
-            customInput={<CustomInput start={startDate as Date | number} end={endDate as Date | number} />}
+            placeholderText="Click to select a date"
+            customInput={
+              <CustomInput
+                start={startDate as Date | number}
+                end={endDate as Date | number}
+              />
+            }
           />
         }
       />
       <CardContent>
-        <ReactApexcharts type='bar' height={400} options={options} series={series} />
+        <ReactApexcharts
+          type="bar"
+          height={400}
+          options={options}
+          series={series}
+        />
       </CardContent>
     </Card>
   )

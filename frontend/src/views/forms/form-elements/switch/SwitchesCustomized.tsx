@@ -59,8 +59,10 @@ const MaterialUISwitch = styled(Switch)<SwitchProps>(({ theme }) => ({
 
 const SwitchesCustomized = () => (
   <FormControlLabel
-    label='MUI switch'
-    control={<MaterialUISwitch sx={{ m: 1 }} defaultChecked disableRipple={false} />}
+    label="MUI switch"
+    control={
+      <MaterialUISwitch sx={{ m: 1 }} defaultChecked disableRipple={false} />
+    }
   />
 )
 

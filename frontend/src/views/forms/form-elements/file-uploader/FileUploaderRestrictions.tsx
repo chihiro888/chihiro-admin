@@ -70,9 +70,16 @@ const FileUploaderRestrictions = () => {
 
   const renderFilePreview = (file: FileProp) => {
     if (file.type.startsWith('image')) {
-      return <img width={38} height={38} alt={file.name} src={URL.createObjectURL(file as any)} />
+      return (
+        <img
+          width={38}
+          height={38}
+          alt={file.name}
+          src={URL.createObjectURL(file as any)}
+        />
+      )
     } else {
-      return <Icon icon='bx:file' />
+      return <Icon icon="bx:file" />
     }
   }
 
@@ -84,11 +91,11 @@ const FileUploaderRestrictions = () => {
 
   const fileList = files.map((file: FileProp) => (
     <ListItem key={file.name}>
-      <div className='file-details'>
-        <div className='file-preview'>{renderFilePreview(file)}</div>
+      <div className="file-details">
+        <div className="file-preview">{renderFilePreview(file)}</div>
         <div>
-          <Typography className='file-name'>{file.name}</Typography>
-          <Typography className='file-size' variant='body2'>
+          <Typography className="file-name">{file.name}</Typography>
+          <Typography className="file-size" variant="body2">
             {Math.round(file.size / 100) / 10 > 1000
               ? `${(Math.round(file.size / 100) / 10000).toFixed(1)} mb`
               : `${(Math.round(file.size / 100) / 10).toFixed(1)} kb`}
@@ -96,7 +103,7 @@ const FileUploaderRestrictions = () => {
         </div>
       </div>
       <IconButton onClick={() => handleRemoveFile(file)}>
-        <Icon icon='close' fontSize={20} />
+        <Icon icon="close" fontSize={20} />
       </IconButton>
     </ListItem>
   ))
@@ -109,23 +116,48 @@ const FileUploaderRestrictions = () => {
     <Fragment>
       <div {...getRootProps({ className: 'dropzone' })}>
         <input {...getInputProps()} />
-        <Box sx={{ display: 'flex', flexDirection: ['column', 'column', 'row'], alignItems: 'center' }}>
-          <Img alt='Upload img' src={`/images/misc/upload-${theme.palette.mode}.png`} />
-          <Box sx={{ display: 'flex', flexDirection: 'column', textAlign: ['center', 'center', 'inherit'] }}>
-            <HeadingTypography variant='h5'>Drop files here or click to upload.</HeadingTypography>
-            <Typography color='textSecondary'>Allowed *.jpeg, *.jpg, *.png, *.gif</Typography>
-            <Typography color='textSecondary'>Max 2 files and max size of 2 MB</Typography>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: ['column', 'column', 'row'],
+            alignItems: 'center'
+          }}
+        >
+          <Img
+            alt="Upload img"
+            src={`/images/misc/upload-${theme.palette.mode}.png`}
+          />
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              textAlign: ['center', 'center', 'inherit']
+            }}
+          >
+            <HeadingTypography variant="h5">
+              Drop files here or click to upload.
+            </HeadingTypography>
+            <Typography color="textSecondary">
+              Allowed *.jpeg, *.jpg, *.png, *.gif
+            </Typography>
+            <Typography color="textSecondary">
+              Max 2 files and max size of 2 MB
+            </Typography>
           </Box>
         </Box>
       </div>
       {files.length ? (
         <Fragment>
           <List>{fileList}</List>
-          <div className='buttons'>
-            <Button color='error' variant='outlined' onClick={handleRemoveAllFiles}>
+          <div className="buttons">
+            <Button
+              color="error"
+              variant="outlined"
+              onClick={handleRemoveAllFiles}
+            >
               Remove All
             </Button>
-            <Button variant='contained'>Upload Files</Button>
+            <Button variant="contained">Upload Files</Button>
           </div>
         </Fragment>
       ) : null}

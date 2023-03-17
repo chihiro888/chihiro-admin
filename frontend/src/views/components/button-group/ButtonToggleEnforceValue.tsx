@@ -15,13 +15,19 @@ const ButtonToggleEnforceValue = () => {
   const [formats, setFormats] = useState<string[]>(() => ['phone'])
   const [alignment, setAlignment] = useState<string | null>('left')
 
-  const handleAlignment = (event: MouseEvent<HTMLElement>, newAlignment: string | null) => {
+  const handleAlignment = (
+    event: MouseEvent<HTMLElement>,
+    newAlignment: string | null
+  ) => {
     if (newAlignment !== null) {
       setAlignment(newAlignment)
     }
   }
 
-  const handleFormat = (event: MouseEvent<HTMLElement>, newFormats: string[]) => {
+  const handleFormat = (
+    event: MouseEvent<HTMLElement>,
+    newFormats: string[]
+  ) => {
     if (newFormats.length) {
       setFormats(newFormats)
     }
@@ -30,33 +36,46 @@ const ButtonToggleEnforceValue = () => {
   return (
     <Grid container spacing={6}>
       <Grid item xs={12} sm={6}>
-        <Typography sx={{ fontWeight: 500, mb: 2 }}>Exclusive Selection</Typography>
-        <ToggleButtonGroup exclusive value={alignment} onChange={handleAlignment} aria-label='text alignment'>
-          <ToggleButton value='left' aria-label='left aligned'>
-            <Icon icon='bx:align-left' />
+        <Typography sx={{ fontWeight: 500, mb: 2 }}>
+          Exclusive Selection
+        </Typography>
+        <ToggleButtonGroup
+          exclusive
+          value={alignment}
+          onChange={handleAlignment}
+          aria-label="text alignment"
+        >
+          <ToggleButton value="left" aria-label="left aligned">
+            <Icon icon="bx:align-left" />
           </ToggleButton>
-          <ToggleButton value='center' aria-label='center aligned'>
-            <Icon icon='bx:align-middle' />
+          <ToggleButton value="center" aria-label="center aligned">
+            <Icon icon="bx:align-middle" />
           </ToggleButton>
-          <ToggleButton value='right' aria-label='right aligned'>
-            <Icon icon='bx:align-right' />
+          <ToggleButton value="right" aria-label="right aligned">
+            <Icon icon="bx:align-right" />
           </ToggleButton>
-          <ToggleButton value='justify' aria-label='justified' disabled>
-            <Icon icon='bx:align-justify' />
+          <ToggleButton value="justify" aria-label="justified" disabled>
+            <Icon icon="bx:align-justify" />
           </ToggleButton>
         </ToggleButtonGroup>
       </Grid>
       <Grid item xs={12} sm={6}>
-        <Typography sx={{ fontWeight: 500, mb: 2 }}>Multiple Selection</Typography>
-        <ToggleButtonGroup value={formats} onChange={handleFormat} aria-label='device'>
-          <ToggleButton value='laptop' aria-label='laptop'>
-            <Icon icon='bx:laptop' />
+        <Typography sx={{ fontWeight: 500, mb: 2 }}>
+          Multiple Selection
+        </Typography>
+        <ToggleButtonGroup
+          value={formats}
+          onChange={handleFormat}
+          aria-label="device"
+        >
+          <ToggleButton value="laptop" aria-label="laptop">
+            <Icon icon="bx:laptop" />
           </ToggleButton>
-          <ToggleButton value='desktop' aria-label='desktop'>
-            <Icon icon='bx:tv' />
+          <ToggleButton value="desktop" aria-label="desktop">
+            <Icon icon="bx:tv" />
           </ToggleButton>
-          <ToggleButton value='phone' aria-label='phone'>
-            <Icon icon='bx:mobile-alt' />
+          <ToggleButton value="phone" aria-label="phone">
+            <Icon icon="bx:mobile-alt" />
           </ToggleButton>
         </ToggleButtonGroup>
       </Grid>

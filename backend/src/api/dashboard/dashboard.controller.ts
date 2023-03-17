@@ -1,19 +1,13 @@
-import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  HttpStatus,
-  Post,
-  Put,
-  Query,
-  Res,
-  UseGuards
-} from '@nestjs/common'
+// ** Module
+import { Controller, Get, HttpStatus, Res, UseGuards } from '@nestjs/common'
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 import { Response } from 'express'
-import { SystemAdminGuard } from 'src/common/guard/system-admin.guard'
+
+// ** Service
 import { DashboardService } from './dashboard.service'
+
+// ** Guard
+import { SystemAdminGuard } from 'src/common/guard/system-admin.guard'
 
 // ANCHOR dashboard controller
 @ApiTags('dashboard')

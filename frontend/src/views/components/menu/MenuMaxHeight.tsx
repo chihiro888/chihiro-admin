@@ -42,12 +42,17 @@ const MenuMaxHeight = () => {
 
   return (
     <div>
-      <IconButton aria-label='more' aria-controls='long-menu' aria-haspopup='true' onClick={handleClick}>
-        <Icon icon='bx:dots-vertical-rounded' />
+      <IconButton
+        aria-label="more"
+        aria-controls="long-menu"
+        aria-haspopup="true"
+        onClick={handleClick}
+      >
+        <Icon icon="bx:dots-vertical-rounded" />
       </IconButton>
       <Menu
         keepMounted
-        id='long-menu'
+        id="long-menu"
         anchorEl={anchorEl}
         onClose={handleClose}
         open={Boolean(anchorEl)}
@@ -57,8 +62,12 @@ const MenuMaxHeight = () => {
           }
         }}
       >
-        {options.map(option => (
-          <MenuItem key={option} selected={option === 'Pyxis'} onClick={handleClose}>
+        {options.map((option) => (
+          <MenuItem
+            key={option}
+            selected={option === 'Pyxis'}
+            onClick={handleClose}
+          >
             {option}
           </MenuItem>
         ))}

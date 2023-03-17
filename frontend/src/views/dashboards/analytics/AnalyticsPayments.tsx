@@ -4,11 +4,11 @@ import CardStatisticsVertical from 'src/@core/components/card-statistics/card-st
 const AnalyticsPayments = () => {
   return (
     <CardStatisticsVertical
-      stats='$2,468'
-      trend='negative'
-      title='Payments'
+      stats="$2,468"
+      trend="negative"
+      title="Payments"
       trendNumber={14.82}
-      avatarSrc='/images/cards/stats-vertical-paypal.png'
+      avatarSrc="/images/cards/stats-vertical-paypal.png"
     />
   )
 }

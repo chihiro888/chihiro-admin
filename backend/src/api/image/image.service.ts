@@ -1,14 +1,24 @@
+// ** Module
 import { Inject, Injectable } from '@nestjs/common'
 import { DataSource } from 'typeorm'
 import { v4 as uuidv4 } from 'uuid'
 import * as fs from 'fs'
+
+// ** Dto
+import { GetImageListDto } from './dto/get-image-list.dto'
+
+// ** Entity
+import { File } from 'src/entities/file.entity'
+
+// ** Util
 import { formatBytes } from 'src/common/util/auth'
 import { getUploadPath } from 'src/common/util'
-import { File } from 'src/entities/file.entity'
-import { Result } from 'src/common/interface'
-// import { GetListDto } from './dto/get-list.dto'
+
+// ** Service
 import { GlobalService } from '../global/global.service'
-import { GetListDto } from './dto/get-list.dto'
+
+// ** Interface
+import { Pagination, Result } from 'src/common/interface'
 
 @Injectable()
 export class ImageService {
@@ -55,8 +65,10 @@ export class ImageService {
       f.absPath = absPath
       f.note = note
       const fileData = await this.datasource.getRepository(File).save(f)
-      fileData['url'] =
-        (await this.globalService.getGlobal('imageDomain')) + '/' + encName
+
+      // url 추가
+      const imageDomain = await this.globalService.getGlobal('imageDomain')
+      fileData['url'] = `${imageDomain}/${encName}`
       fileList.push(fileData)
 
       // 파일 저장
@@ -66,8 +78,8 @@ export class ImageService {
     return { result: true, message: '', data: fileList }
   }
 
-  // ANCHOR get list
-  async getList(dto: GetListDto) {
+  // ANCHOR get image list
+  async getImageList(dto: GetImageListDto): Promise<Pagination> {
     const limit = 12
     const offset = (dto.page - 1) * limit
 
@@ -112,18 +124,5 @@ export class ImageService {
       count: Number(count.count),
       data
     }
-  }
-
-  // ANCHOR image mapping
-  async mapping(tableName: string, tablePK: number, imagePK: number) {
-    const image = await this.datasource.getRepository(File).findOne({
-      where: {
-        id: imagePK
-      }
-    })
-
-    image.tableName = tableName
-    image.tablePk = tablePK
-    await this.datasource.getRepository(File).save(image)
   }
 }

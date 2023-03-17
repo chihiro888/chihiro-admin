@@ -33,27 +33,36 @@ const BadgesVisibility = () => {
 
   return (
     <Fragment>
-      <Wrapper className='demo-space-x'>
-        <Badge badgeContent={count} color='primary'>
-          <Avatar src='/images/avatars/16.png' alt='User Avatar' />
+      <Wrapper className="demo-space-x">
+        <Badge badgeContent={count} color="primary">
+          <Avatar src="/images/avatars/16.png" alt="User Avatar" />
         </Badge>
-        <ButtonGroup size='small'>
-          <Button aria-label='reduce' onClick={() => setCount(Math.max(count - 1, 0))}>
-            <Icon icon='bx:minus' fontSize={20} />
+        <ButtonGroup size="small">
+          <Button
+            aria-label="reduce"
+            onClick={() => setCount(Math.max(count - 1, 0))}
+          >
+            <Icon icon="bx:minus" fontSize={20} />
           </Button>
-          <Button aria-label='increase' onClick={() => setCount(count + 1)}>
-            <Icon icon='bx:plus' fontSize={20} />
+          <Button aria-label="increase" onClick={() => setCount(count + 1)}>
+            <Icon icon="bx:plus" fontSize={20} />
           </Button>
         </ButtonGroup>
       </Wrapper>
 
-      <Wrapper className='demo-space-x'>
-        <Badge variant='dot' color='primary' invisible={invisible}>
-          <Avatar src='/images/avatars/16.png' alt='User Avatar' />
+      <Wrapper className="demo-space-x">
+        <Badge variant="dot" color="primary" invisible={invisible}>
+          <Avatar src="/images/avatars/16.png" alt="User Avatar" />
         </Badge>
         <FormControlLabel
-          label='Show Badge'
-          control={<Switch color='primary' checked={!invisible} onChange={handleBadgeVisibility} />}
+          label="Show Badge"
+          control={
+            <Switch
+              color="primary"
+              checked={!invisible}
+              onChange={handleBadgeVisibility}
+            />
+          }
         />
       </Wrapper>
     </Fragment>

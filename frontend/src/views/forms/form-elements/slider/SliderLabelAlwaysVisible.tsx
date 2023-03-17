@@ -30,9 +30,9 @@ const SliderLabelAlwaysVisible = () => {
       step={10}
       marks={marks}
       defaultValue={80}
-      valueLabelDisplay='on'
+      valueLabelDisplay="on"
       getAriaValueText={valuetext}
-      aria-labelledby='label-always-visible-slider'
+      aria-labelledby="label-always-visible-slider"
     />
   )
 }

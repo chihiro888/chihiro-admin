@@ -69,16 +69,25 @@ const CustomTooltip = (data: TooltipProps<any, any>) => {
 
   if (active && payload) {
     return (
-      <div className='recharts-custom-tooltip'>
+      <div className="recharts-custom-tooltip">
         <Typography>{data.label}</Typography>
         <Divider />
         {data &&
           data.payload &&
           data.payload.map((i: any) => {
             return (
-              <Box sx={{ display: 'flex', alignItems: 'center', '& svg': { color: i.fill, mr: 2.5 } }} key={i.dataKey}>
-                <Icon icon='bxs:circle' fontSize='0.6rem' />
-                <Typography variant='body2'>{`${i.dataKey} : ${i.payload[i.dataKey]}`}</Typography>
+              <Box
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  '& svg': { color: i.fill, mr: 2.5 }
+                }}
+                key={i.dataKey}
+              >
+                <Icon icon="bxs:circle" fontSize="0.6rem" />
+                <Typography variant="body2">{`${i.dataKey} : ${
+                  i.payload[i.dataKey]
+                }`}</Typography>
               </Box>
             )
           })}
@@ -92,28 +101,57 @@ const CustomTooltip = (data: TooltipProps<any, any>) => {
 const RechartsRadarChart = () => {
   return (
     <Card>
-      <CardHeader title='Mobile Comparison' />
+      <CardHeader title="Mobile Comparison" />
       <CardContent>
         <Box sx={{ height: 350 }}>
           <ResponsiveContainer>
-            <RadarChart cx='50%' cy='50%' height={350} data={data} style={{ direction: 'ltr' }}>
+            <RadarChart
+              cx="50%"
+              cy="50%"
+              height={350}
+              data={data}
+              style={{ direction: 'ltr' }}
+            >
               <PolarGrid />
-              <PolarAngleAxis dataKey='subject' />
+              <PolarAngleAxis dataKey="subject" />
               <PolarRadiusAxis />
               <Tooltip content={CustomTooltip} />
-              <Radar dataKey='iPhone 11' stroke='#fde802' fill='#fde802' fillOpacity={1} />
-              <Radar dataKey='Samsung s20' stroke='#9b88fa' fill='#9b88fa' fillOpacity={0.8} />
+              <Radar
+                dataKey="iPhone 11"
+                stroke="#fde802"
+                fill="#fde802"
+                fillOpacity={1}
+              />
+              <Radar
+                dataKey="Samsung s20"
+                stroke="#9b88fa"
+                fill="#9b88fa"
+                fillOpacity={0.8}
+              />
             </RadarChart>
           </ResponsiveContainer>
         </Box>
         <Box sx={{ display: 'flex', mb: 4, justifyContent: 'center' }}>
-          <Box sx={{ mr: 6, display: 'flex', alignItems: 'center', '& svg': { mr: 1.5, color: '#fde802' } }}>
-            <Icon icon='bxs:circle' fontSize='0.75rem' />
-            <Typography variant='body2'>iPhone 11</Typography>
+          <Box
+            sx={{
+              mr: 6,
+              display: 'flex',
+              alignItems: 'center',
+              '& svg': { mr: 1.5, color: '#fde802' }
+            }}
+          >
+            <Icon icon="bxs:circle" fontSize="0.75rem" />
+            <Typography variant="body2">iPhone 11</Typography>
           </Box>
-          <Box sx={{ display: 'flex', alignItems: 'center', '& svg': { mr: 1.5, color: '#9b88fa' } }}>
-            <Icon icon='bxs:circle' fontSize='0.75rem' />
-            <Typography variant='body2'>Samsung s20</Typography>
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              '& svg': { mr: 1.5, color: '#9b88fa' }
+            }}
+          >
+            <Icon icon="bxs:circle" fontSize="0.75rem" />
+            <Typography variant="body2">Samsung s20</Typography>
           </Box>
         </Box>
       </CardContent>

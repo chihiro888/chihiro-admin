@@ -34,57 +34,77 @@ const ListWithSwitch = () => {
     <List subheader={<ListSubheader>Settings</ListSubheader>}>
       <ListItem>
         <ListItemIcon>
-          <Icon icon='bx:wifi' fontSize={20} />
+          <Icon icon="bx:wifi" fontSize={20} />
         </ListItemIcon>
-        <ListItemText primary='Wi-Fi' />
-        <ListItemSecondaryAction>
-          <Switch edge='end' checked={checked.indexOf('wifi') !== -1} onChange={handleToggle('wifi')} />
-        </ListItemSecondaryAction>
-      </ListItem>
-      <ListItem>
-        <ListItemIcon>
-          <Icon icon='bx:bluetooth' fontSize={20} />
-        </ListItemIcon>
-        <ListItemText primary='Bluetooth' />
-        <ListItemSecondaryAction>
-          <Switch edge='end' checked={checked.indexOf('bluetooth') !== -1} onChange={handleToggle('bluetooth')} />
-        </ListItemSecondaryAction>
-      </ListItem>
-      <ListItem>
-        <ListItemIcon>
-          <Icon icon='bx:map' fontSize={20} />
-        </ListItemIcon>
-        <ListItemText primary='Location' />
-        <ListItemSecondaryAction>
-          <Switch edge='end' checked={checked.indexOf('location') !== -1} onChange={handleToggle('location')} />
-        </ListItemSecondaryAction>
-      </ListItem>
-      <ListItem>
-        <ListItemIcon>
-          <Icon icon='bx:paper-plane' fontSize={20} />
-        </ListItemIcon>
-        <ListItemText primary='Airplane Mode' />
-        <ListItemSecondaryAction>
-          <Switch edge='end' checked={checked.indexOf('airplane') !== -1} onChange={handleToggle('airplane')} />
-        </ListItemSecondaryAction>
-      </ListItem>
-      <ListItem>
-        <ListItemIcon>
-          <Icon icon='bx:broadcast' fontSize={20} />
-        </ListItemIcon>
-        <ListItemText primary='Hotspot' />
-        <ListItemSecondaryAction>
-          <Switch edge='end' checked={checked.indexOf('hotspot') !== -1} onChange={handleToggle('hotspot')} />
-        </ListItemSecondaryAction>
-      </ListItem>
-      <ListItem>
-        <ListItemIcon>
-          <Icon icon='bx:minus-circle' fontSize={20} />
-        </ListItemIcon>
-        <ListItemText primary='Do not disturb' />
+        <ListItemText primary="Wi-Fi" />
         <ListItemSecondaryAction>
           <Switch
-            edge='end'
+            edge="end"
+            checked={checked.indexOf('wifi') !== -1}
+            onChange={handleToggle('wifi')}
+          />
+        </ListItemSecondaryAction>
+      </ListItem>
+      <ListItem>
+        <ListItemIcon>
+          <Icon icon="bx:bluetooth" fontSize={20} />
+        </ListItemIcon>
+        <ListItemText primary="Bluetooth" />
+        <ListItemSecondaryAction>
+          <Switch
+            edge="end"
+            checked={checked.indexOf('bluetooth') !== -1}
+            onChange={handleToggle('bluetooth')}
+          />
+        </ListItemSecondaryAction>
+      </ListItem>
+      <ListItem>
+        <ListItemIcon>
+          <Icon icon="bx:map" fontSize={20} />
+        </ListItemIcon>
+        <ListItemText primary="Location" />
+        <ListItemSecondaryAction>
+          <Switch
+            edge="end"
+            checked={checked.indexOf('location') !== -1}
+            onChange={handleToggle('location')}
+          />
+        </ListItemSecondaryAction>
+      </ListItem>
+      <ListItem>
+        <ListItemIcon>
+          <Icon icon="bx:paper-plane" fontSize={20} />
+        </ListItemIcon>
+        <ListItemText primary="Airplane Mode" />
+        <ListItemSecondaryAction>
+          <Switch
+            edge="end"
+            checked={checked.indexOf('airplane') !== -1}
+            onChange={handleToggle('airplane')}
+          />
+        </ListItemSecondaryAction>
+      </ListItem>
+      <ListItem>
+        <ListItemIcon>
+          <Icon icon="bx:broadcast" fontSize={20} />
+        </ListItemIcon>
+        <ListItemText primary="Hotspot" />
+        <ListItemSecondaryAction>
+          <Switch
+            edge="end"
+            checked={checked.indexOf('hotspot') !== -1}
+            onChange={handleToggle('hotspot')}
+          />
+        </ListItemSecondaryAction>
+      </ListItem>
+      <ListItem>
+        <ListItemIcon>
+          <Icon icon="bx:minus-circle" fontSize={20} />
+        </ListItemIcon>
+        <ListItemText primary="Do not disturb" />
+        <ListItemSecondaryAction>
+          <Switch
+            edge="end"
             checked={checked.indexOf('do-not-disturb') !== -1}
             onChange={handleToggle('do-not-disturb')}
           />

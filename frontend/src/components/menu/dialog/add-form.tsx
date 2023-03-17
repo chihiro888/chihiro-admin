@@ -8,7 +8,7 @@ import {
 } from '@mui/material'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
-import CustomDialogTitle from 'src/components/custom-dialog-title'
+import CustomDialogTitle from 'src/components/custom/custom-dialog-title'
 import { AppDispatch, RootState } from 'src/store'
 import {
   hCloseAddForm,

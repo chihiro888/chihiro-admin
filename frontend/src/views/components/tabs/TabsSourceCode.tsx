@@ -1,6 +1,6 @@
 export const TabsCenteredJSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { useState } from 'react'
 
 // ** MUI Imports
@@ -58,8 +58,8 @@ export default TabsCentered
 )
 
 export const TabsCustomizedVerticalJSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { useState } from 'react'
 
 // ** MUI Imports
@@ -144,8 +144,8 @@ export default TabsCustomizedVertical
 )
 
 export const TabsCustomizedJSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { useState } from 'react'
 
 // ** MUI Imports
@@ -223,8 +223,8 @@ export default TabsCustomized
 )
 
 export const TabsForcedScrollJSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { useState } from 'react'
 
 // ** MUI Imports
@@ -299,8 +299,8 @@ export default TabsForcedScroll
 )
 
 export const TabsFullWidthJSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { useState } from 'react'
 
 // ** MUI Imports
@@ -358,8 +358,8 @@ export default TabsFullWidth
 )
 
 export const TabsNavJSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { useState } from 'react'
 
 // ** MUI Imports
@@ -417,8 +417,8 @@ export default TabsNav
 )
 
 export const TabsColorJSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { useState } from 'react'
 
 // ** MUI Imports
@@ -481,8 +481,8 @@ export default TabsColor
 )
 
 export const TabsIconJSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { useState } from 'react'
 
 // ** MUI Imports
@@ -543,8 +543,8 @@ export default TabsIcon
 )
 
 export const TabsVerticalJSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { useState } from 'react'
 
 // ** MUI Imports
@@ -609,8 +609,8 @@ export default TabsVertical
 )
 
 export const TabsSimpleJSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { useState } from 'react'
 
 // ** MUI Imports
@@ -668,8 +668,8 @@ export default TabsSimple
 )
 
 export const TabsCenteredTSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { SyntheticEvent, useState } from 'react'
 
 // ** MUI Imports
@@ -727,8 +727,8 @@ export default TabsCentered
 )
 
 export const TabsColorTSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { SyntheticEvent, useState } from 'react'
 
 // ** MUI Imports
@@ -791,8 +791,8 @@ export default TabsColor
 )
 
 export const TabsCustomizedTSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { SyntheticEvent, useState } from 'react'
 
 // ** MUI Imports
@@ -870,8 +870,8 @@ export default TabsCustomized
 )
 
 export const TabsCustomizedVerticalTSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { SyntheticEvent, useState } from 'react'
 
 // ** MUI Imports
@@ -956,8 +956,8 @@ export default TabsCustomizedVertical
 )
 
 export const TabsForcedScrollTSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { SyntheticEvent, useState } from 'react'
 
 // ** MUI Imports
@@ -1032,8 +1032,8 @@ export default TabsForcedScroll
 )
 
 export const TabsIconTSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { SyntheticEvent, useState } from 'react'
 
 // ** MUI Imports
@@ -1094,8 +1094,8 @@ export default TabsIcon
 )
 
 export const TabsNavTSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { MouseEvent, SyntheticEvent, useState } from 'react'
 
 // ** MUI Imports
@@ -1171,8 +1171,8 @@ export default TabsNav
 )
 
 export const TabsFullWidthTSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { SyntheticEvent, useState } from 'react'
 
 // ** MUI Imports
@@ -1230,8 +1230,8 @@ export default TabsFullWidth
 )
 
 export const TabsSimpleTSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { SyntheticEvent, useState } from 'react'
 
 // ** MUI Imports
@@ -1289,8 +1289,8 @@ export default TabsSimple
 )
 
 export const TabsVerticalTSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { SyntheticEvent, useState } from 'react'
 
 // ** MUI Imports

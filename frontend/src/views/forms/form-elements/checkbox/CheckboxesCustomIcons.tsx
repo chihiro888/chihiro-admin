@@ -10,24 +10,24 @@ const CheckboxesCustomIcons = () => {
   return (
     <FormGroup row>
       <FormControlLabel
-        label='Heart'
+        label="Heart"
         control={
           <Checkbox
             defaultChecked
-            name='size-small'
-            icon={<Icon icon='bx:heart' fontSize={24} />}
-            checkedIcon={<Icon icon='bxs:heart' fontSize={24} />}
+            name="size-small"
+            icon={<Icon icon="bx:heart" fontSize={24} />}
+            checkedIcon={<Icon icon="bxs:heart" fontSize={24} />}
           />
         }
       />
       <FormControlLabel
-        label='Star'
+        label="Star"
         control={
           <Checkbox
             defaultChecked
-            name='size-small'
-            icon={<Icon icon='bx:star' fontSize={24} />}
-            checkedIcon={<Icon icon='bxs:star' fontSize={24} />}
+            name="size-small"
+            icon={<Icon icon="bx:star" fontSize={24} />}
+            checkedIcon={<Icon icon="bxs:star" fontSize={24} />}
           />
         }
       />

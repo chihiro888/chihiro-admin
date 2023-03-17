@@ -11,7 +11,10 @@ import FormControl from '@mui/material/FormControl'
 import InputAdornment from '@mui/material/InputAdornment'
 
 // ** Type Imports
-import { CustomRadioIconsData, CustomRadioIconsProps } from 'src/@core/components/custom-radio/types'
+import {
+  CustomRadioIconsData,
+  CustomRadioIconsProps
+} from 'src/@core/components/custom-radio/types'
 
 // ** Icon Imports
 import Icon from 'src/@core/components/icon'
@@ -30,7 +33,7 @@ const data: CustomRadioIconsData[] = [
     isSelected: true,
     title: 'I am the Builder',
     content: (
-      <Typography variant='body2' sx={{ textAlign: 'center' }}>
+      <Typography variant="body2" sx={{ textAlign: 'center' }}>
         List property as Builder, list your project and get highest reach.
       </Typography>
     )
@@ -39,7 +42,7 @@ const data: CustomRadioIconsData[] = [
     value: 'owner',
     title: 'I am the Owner',
     content: (
-      <Typography variant='body2' sx={{ textAlign: 'center' }}>
+      <Typography variant="body2" sx={{ textAlign: 'center' }}>
         Submit property as an Individual. Lease, Rent or Sell at the best price.
       </Typography>
     )
@@ -48,21 +51,23 @@ const data: CustomRadioIconsData[] = [
     value: 'broker',
     title: 'I am the Broker',
     content: (
-      <Typography variant='body2' sx={{ textAlign: 'center' }}>
-        Earn highest commission by listing your clients properties at the best price.
+      <Typography variant="body2" sx={{ textAlign: 'center' }}>
+        Earn highest commission by listing your clients properties at the best
+        price.
       </Typography>
     )
   }
 ]
 
 const StepPersonalDetails = () => {
-  const initialIconSelected: string = data.filter(item => item.isSelected)[
-    data.filter(item => item.isSelected).length - 1
+  const initialIconSelected: string = data.filter((item) => item.isSelected)[
+    data.filter((item) => item.isSelected).length - 1
   ].value
 
   // ** States
   const [showValues, setShowValues] = useState<boolean>(false)
-  const [selectedRadio, setSelectedRadio] = useState<string>(initialIconSelected)
+  const [selectedRadio, setSelectedRadio] =
+    useState<string>(initialIconSelected)
 
   // ** Hook
   const theme = useTheme()
@@ -70,15 +75,27 @@ const StepPersonalDetails = () => {
   const icons: IconType[] = [
     {
       icon: 'bx:building-house',
-      iconProps: { fontSize: '2rem', style: { marginBottom: 4 }, color: theme.palette.text.secondary }
+      iconProps: {
+        fontSize: '2rem',
+        style: { marginBottom: 4 },
+        color: theme.palette.text.secondary
+      }
     },
     {
       icon: 'bx:crown',
-      iconProps: { fontSize: '2rem', style: { marginBottom: 4 }, color: theme.palette.text.secondary }
+      iconProps: {
+        fontSize: '2rem',
+        style: { marginBottom: 4 },
+        color: theme.palette.text.secondary
+      }
     },
     {
       icon: 'bx:briefcase-alt',
-      iconProps: { fontSize: '2rem', style: { marginBottom: 4 }, color: theme.palette.text.secondary }
+      iconProps: {
+        fontSize: '2rem',
+        style: { marginBottom: 4 },
+        color: theme.palette.text.secondary
+      }
     }
   ]
 
@@ -103,7 +120,7 @@ const StepPersonalDetails = () => {
         <CustomRadioIcons
           key={index}
           data={data[index]}
-          name='custom-radios'
+          name="custom-radios"
           icon={icons[index].icon}
           selected={selectedRadio}
           gridProps={{ sm: 4, xs: 12 }}
@@ -115,29 +132,29 @@ const StepPersonalDetails = () => {
         <Grid container spacing={5}>
           <Grid item xs={12} md={6}>
             <FormControl fullWidth>
-              <TextField label='First Name' placeholder='John' />
+              <TextField label="First Name" placeholder="John" />
             </FormControl>
           </Grid>
           <Grid item xs={12} md={6}>
             <FormControl fullWidth>
-              <TextField label='Last Name' placeholder='Doe' />
+              <TextField label="Last Name" placeholder="Doe" />
             </FormControl>
           </Grid>
           <Grid item xs={12} md={6}>
-            <TextField fullWidth label='Username' placeholder='john.doe' />
+            <TextField fullWidth label="Username" placeholder="john.doe" />
           </Grid>
           <Grid item xs={12} md={6}>
             <TextField
               fullWidth
-              label='Password'
+              label="Password"
               type={showValues ? 'text' : 'password'}
               InputProps={{
                 endAdornment: (
-                  <InputAdornment position='end'>
+                  <InputAdornment position="end">
                     <IconButton
-                      edge='end'
+                      edge="end"
                       onClick={handleTogglePasswordView}
-                      aria-label='toggle password visibility'
+                      aria-label="toggle password visibility"
                       onMouseDown={handleMousePasswordView}
                     >
                       <Icon icon={showValues ? 'bx:show' : 'bx:hide'} />
@@ -148,15 +165,22 @@ const StepPersonalDetails = () => {
             />
           </Grid>
           <Grid item xs={12} md={6}>
-            <TextField fullWidth type='email' label='Email' placeholder='john.doe@email.com' />
+            <TextField
+              fullWidth
+              type="email"
+              label="Email"
+              placeholder="john.doe@email.com"
+            />
           </Grid>
           <Grid item xs={12} md={6}>
             <TextField
               fullWidth
-              label='Contact'
-              placeholder='202 555 0111'
+              label="Contact"
+              placeholder="202 555 0111"
               InputProps={{
-                startAdornment: <InputAdornment position='start'>US (+1)</InputAdornment>
+                startAdornment: (
+                  <InputAdornment position="start">US (+1)</InputAdornment>
+                )
               }}
             />
           </Grid>

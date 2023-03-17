@@ -28,10 +28,10 @@ const SliderInvertedTrack = () => {
   return (
     <Slider
       marks={marks}
-      track='inverted'
+      track="inverted"
       defaultValue={30}
       getAriaValueText={valuetext}
-      aria-labelledby='inverted-track-slider'
+      aria-labelledby="inverted-track-slider"
     />
   )
 }

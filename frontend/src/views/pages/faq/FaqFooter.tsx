@@ -40,50 +40,77 @@ const StyledBox2 = styled(Box)<BoxProps>(({ theme }) => ({
 const FaqFooter = () => {
   return (
     <Box sx={{ mt: 13, textAlign: 'center' }}>
-      <CustomChip rounded size='small' skin='light' color='primary' label='Question' />
-      <Typography variant='h5' sx={{ mt: 1.5, mb: 2 }}>
+      <CustomChip
+        rounded
+        size="small"
+        skin="light"
+        color="primary"
+        label="Question"
+      />
+      <Typography variant="h5" sx={{ mt: 1.5, mb: 2 }}>
         You still have a question?
       </Typography>
       <Typography sx={{ mb: 10, color: 'text.secondary' }}>
-        If you cannot find a question in our FAQ, you can always contact us. We will answer to you shortly!
+        If you cannot find a question in our FAQ, you can always contact us. We
+        will answer to you shortly!
       </Typography>
 
       <Grid container spacing={6}>
         <Grid item xs={12} md={6}>
           <StyledBox1>
-            <CustomAvatar skin='light' variant='rounded' sx={{ mt: 1.5, height: 38, width: 38 }}>
-              <Icon icon='bx:phone' />
+            <CustomAvatar
+              skin="light"
+              variant="rounded"
+              sx={{ mt: 1.5, height: 38, width: 38 }}
+            >
+              <Icon icon="bx:phone" />
             </CustomAvatar>
-            <Link href='/' passHref>
+            <Link href="/" passHref>
               <Typography
-                variant='h6'
-                component='a'
+                variant="h6"
+                component="a"
                 onClick={(e: SyntheticEvent) => e.preventDefault()}
-                sx={{ mt: 4, textDecoration: 'none', '&:hover': { color: 'primary.main' } }}
+                sx={{
+                  mt: 4,
+                  textDecoration: 'none',
+                  '&:hover': { color: 'primary.main' }
+                }}
               >
                 + (810) 2548 2568
               </Typography>
             </Link>
-            <Typography sx={{ mt: 2, color: 'text.secondary' }}>We are always happy to help!</Typography>
+            <Typography sx={{ mt: 2, color: 'text.secondary' }}>
+              We are always happy to help!
+            </Typography>
           </StyledBox1>
         </Grid>
 
         <Grid item xs={12} md={6}>
           <StyledBox2>
-            <CustomAvatar skin='light' variant='rounded' sx={{ mt: 1.5, height: 38, width: 38 }}>
-              <Icon icon='bx:envelope' />
+            <CustomAvatar
+              skin="light"
+              variant="rounded"
+              sx={{ mt: 1.5, height: 38, width: 38 }}
+            >
+              <Icon icon="bx:envelope" />
             </CustomAvatar>
-            <Link href='/' passHref>
+            <Link href="/" passHref>
               <Typography
-                variant='h6'
-                component='a'
+                variant="h6"
+                component="a"
                 onClick={(e: SyntheticEvent) => e.preventDefault()}
-                sx={{ mt: 4, textDecoration: 'none', '&:hover': { color: 'primary.main' } }}
+                sx={{
+                  mt: 4,
+                  textDecoration: 'none',
+                  '&:hover': { color: 'primary.main' }
+                }}
               >
                 hello@help.com
               </Typography>
             </Link>
-            <Typography sx={{ mt: 2, color: 'text.secondary' }}>Best way to get answer faster!</Typography>
+            <Typography sx={{ mt: 2, color: 'text.secondary' }}>
+              Best way to get answer faster!
+            </Typography>
           </StyledBox2>
         </Grid>
       </Grid>

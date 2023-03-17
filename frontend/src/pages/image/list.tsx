@@ -9,7 +9,7 @@ import {
 } from '@mui/material'
 import { useEffect, useState, Fragment } from 'react'
 import PageHeader from 'src/@core/components/page-header'
-import { getList } from 'src/apis/image'
+import { getImageList } from 'src/apis/image'
 import toast from 'react-hot-toast'
 import moment from 'moment'
 
@@ -22,10 +22,10 @@ import DialogContent from '@mui/material/DialogContent'
 // ** Icon Imports
 import DATE from 'src/common/constants/date'
 import { getPaginationCount } from 'src/utils'
-import CustomLottie from 'src/components/custom-lottie'
+import CustomLottie from 'src/components/custom/custom-lottie'
 import * as cat from 'src/lottie/cat.json'
-import CustomDialogTitle from 'src/components/custom-dialog-title'
-import CustomChip from 'src/components/custom-chip'
+import CustomDialogTitle from 'src/components/custom/custom-dialog-title'
+import CustomChip from 'src/components/custom/custom-chip'
 
 const List = () => {
   // ** State
@@ -70,7 +70,7 @@ const List = () => {
     const params = {
       page: value
     }
-    const { data: res } = await getList(params)
+    const { data: res } = await getImageList(params)
     if (res.statusCode === 200) {
       const data = res.data
       setPagination({
@@ -85,7 +85,7 @@ const List = () => {
     const params = {
       page: 1
     }
-    const { data: res } = await getList(params)
+    const { data: res } = await getImageList(params)
     if (res.statusCode === 200) {
       const data = res.data
       setPagination({

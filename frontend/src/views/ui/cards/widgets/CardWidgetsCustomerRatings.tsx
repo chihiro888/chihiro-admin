@@ -60,7 +60,10 @@ const CardWidgetsCustomerRatings = () => {
       }
     },
     legend: { show: false },
-    colors: [theme.palette.action.selected, hexToRGBA(theme.palette.primary.main, 1)],
+    colors: [
+      theme.palette.action.selected,
+      hexToRGBA(theme.palette.primary.main, 1)
+    ],
     markers: {
       size: 6,
       strokeWidth: 5,
@@ -114,22 +117,41 @@ const CardWidgetsCustomerRatings = () => {
   return (
     <Card>
       <CardHeader
-        title='Customer Ratings'
-        action={<OptionsMenu iconButtonProps={{ size: 'small' }} options={['Share', 'Refresh', 'Delete']} />}
+        title="Customer Ratings"
+        action={
+          <OptionsMenu
+            iconButtonProps={{ size: 'small' }}
+            options={['Share', 'Refresh', 'Delete']}
+          />
+        }
       />
       <CardContent>
         <Box sx={{ mb: 4, display: 'flex', alignItems: 'center' }}>
-          <Typography variant='h3' sx={{ mr: 4.5 }}>
+          <Typography variant="h3" sx={{ mr: 4.5 }}>
             {value.toFixed(1)}
           </Typography>
-          <Rating readOnly value={value} emptyIcon={<Icon icon='bxs:star' />} />
+          <Rating readOnly value={value} emptyIcon={<Icon icon="bxs:star" />} />
         </Box>
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          <CustomChip rounded size='small' skin='light' label='+5.0' color='primary' sx={{ mr: 2.5 }} />
-          <Typography sx={{ color: 'text.secondary' }}>Points from last month</Typography>
+          <CustomChip
+            rounded
+            size="small"
+            skin="light"
+            label="+5.0"
+            color="primary"
+            sx={{ mr: 2.5 }}
+          />
+          <Typography sx={{ color: 'text.secondary' }}>
+            Points from last month
+          </Typography>
         </Box>
       </CardContent>
-      <ReactApexcharts type='line' height={217} options={options} series={series} />
+      <ReactApexcharts
+        type="line"
+        height={217}
+        options={options}
+        series={series}
+      />
     </Card>
   )
 }

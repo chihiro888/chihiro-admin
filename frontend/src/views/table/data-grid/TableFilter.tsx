@@ -38,11 +38,16 @@ const renderClient = (params: GridRenderCellParams) => {
   const color = states[stateNum]
 
   if (row.avatar.length) {
-    return <CustomAvatar src={`/images/avatars/${row.avatar}`} sx={{ mr: 3, width: '1.875rem', height: '1.875rem' }} />
+    return (
+      <CustomAvatar
+        src={`/images/avatars/${row.avatar}`}
+        sx={{ mr: 3, width: '1.875rem', height: '1.875rem' }}
+      />
+    )
   } else {
     return (
       <CustomAvatar
-        skin='light'
+        skin="light"
         color={color as ThemeColor}
         sx={{ mr: 3, fontSize: '.8rem', width: '1.875rem', height: '1.875rem' }}
       >
@@ -77,10 +82,14 @@ const columns: GridColumns = [
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           {renderClient(params)}
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-            <Typography noWrap variant='body2' sx={{ color: 'text.primary', fontWeight: 600 }}>
+            <Typography
+              noWrap
+              variant="body2"
+              sx={{ color: 'text.primary', fontWeight: 600 }}
+            >
               {row.full_name}
             </Typography>
-            <Typography noWrap variant='caption'>
+            <Typography noWrap variant="caption">
               {row.email}
             </Typography>
           </Box>
@@ -94,7 +103,7 @@ const columns: GridColumns = [
     headerName: 'Date',
     field: 'start_date',
     renderCell: (params: GridRenderCellParams) => (
-      <Typography variant='body2' sx={{ color: 'text.primary' }}>
+      <Typography variant="body2" sx={{ color: 'text.primary' }}>
         {params.row.start_date}
       </Typography>
     )
@@ -105,7 +114,7 @@ const columns: GridColumns = [
     field: 'salary',
     headerName: 'Salary',
     renderCell: (params: GridRenderCellParams) => (
-      <Typography variant='body2' sx={{ color: 'text.primary' }}>
+      <Typography variant="body2" sx={{ color: 'text.primary' }}>
         {params.row.salary}
       </Typography>
     )
@@ -116,7 +125,7 @@ const columns: GridColumns = [
     minWidth: 80,
     headerName: 'Age',
     renderCell: (params: GridRenderCellParams) => (
-      <Typography variant='body2' sx={{ color: 'text.primary' }}>
+      <Typography variant="body2" sx={{ color: 'text.primary' }}>
         {params.row.age}
       </Typography>
     )
@@ -129,7 +138,15 @@ const columns: GridColumns = [
     renderCell: (params: GridRenderCellParams) => {
       const status = statusObj[params.row.status]
 
-      return <CustomChip rounded size='small' skin='light' color={status.color} label={status.title} />
+      return (
+        <CustomChip
+          rounded
+          size="small"
+          skin="light"
+          color={status.color}
+          label={status.title}
+        />
+      )
     }
   }
 ]
@@ -144,8 +161,8 @@ const TableColumns = () => {
   const handleSearch = (searchValue: string) => {
     setSearchText(searchValue)
     const searchRegex = new RegExp(escapeRegExp(searchValue), 'i')
-    const filteredRows = data.filter(row => {
-      return Object.keys(row).some(field => {
+    const filteredRows = data.filter((row) => {
+      return Object.keys(row).some((field) => {
         // @ts-ignore
         return searchRegex.test(row[field].toString())
       })
@@ -159,7 +176,7 @@ const TableColumns = () => {
 
   return (
     <Card>
-      <CardHeader title='Quick Filter' />
+      <CardHeader title="Quick Filter" />
       <DataGrid
         autoHeight
         columns={columns}
@@ -167,7 +184,7 @@ const TableColumns = () => {
         rowsPerPageOptions={[7, 10, 25, 50]}
         components={{ Toolbar: QuickSearchToolbar }}
         rows={filteredData.length ? filteredData : data}
-        onPageSizeChange={newPageSize => setPageSize(newPageSize)}
+        onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
         componentsProps={{
           baseButton: {
             variant: 'outlined'
@@ -175,7 +192,8 @@ const TableColumns = () => {
           toolbar: {
             value: searchText,
             clearSearch: () => handleSearch(''),
-            onChange: (event: ChangeEvent<HTMLInputElement>) => handleSearch(event.target.value)
+            onChange: (event: ChangeEvent<HTMLInputElement>) =>
+              handleSearch(event.target.value)
           }
         }}
       />

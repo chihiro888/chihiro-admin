@@ -36,7 +36,15 @@ interface State {
 }
 
 const CustomInput = forwardRef((props, ref) => {
-  return <TextField fullWidth {...props} inputRef={ref} label='Birth Date' autoComplete='off' />
+  return (
+    <TextField
+      fullWidth
+      {...props}
+      inputRef={ref}
+      label="Birth Date"
+      autoComplete="off"
+    />
+  )
 })
 
 const FormLayoutsSeparator = () => {
@@ -51,9 +59,10 @@ const FormLayoutsSeparator = () => {
   })
 
   // Handle Password
-  const handlePasswordChange = (prop: keyof State) => (event: ChangeEvent<HTMLInputElement>) => {
-    setValues({ ...values, [prop]: event.target.value })
-  }
+  const handlePasswordChange =
+    (prop: keyof State) => (event: ChangeEvent<HTMLInputElement>) => {
+      setValues({ ...values, [prop]: event.target.value })
+    }
   const handleClickShowPassword = () => {
     setValues({ ...values, showPassword: !values.showPassword })
   }
@@ -62,13 +71,16 @@ const FormLayoutsSeparator = () => {
   }
 
   // Handle Confirm Password
-  const handleConfirmChange = (prop: keyof State) => (event: ChangeEvent<HTMLInputElement>) => {
-    setValues({ ...values, [prop]: event.target.value })
-  }
+  const handleConfirmChange =
+    (prop: keyof State) => (event: ChangeEvent<HTMLInputElement>) => {
+      setValues({ ...values, [prop]: event.target.value })
+    }
   const handleClickShowConfirmPassword = () => {
     setValues({ ...values, showPassword2: !values.showPassword2 })
   }
-  const handleMouseDownConfirmPassword = (event: MouseEvent<HTMLButtonElement>) => {
+  const handleMouseDownConfirmPassword = (
+    event: MouseEvent<HTMLButtonElement>
+  ) => {
     event.preventDefault()
   }
 
@@ -79,40 +91,53 @@ const FormLayoutsSeparator = () => {
 
   return (
     <Card>
-      <CardHeader title='Multi Column with Form Separator' />
+      <CardHeader title="Multi Column with Form Separator" />
       <Divider sx={{ m: '0 !important' }} />
-      <form onSubmit={e => e.preventDefault()}>
+      <form onSubmit={(e) => e.preventDefault()}>
         <CardContent>
           <Grid container spacing={5}>
             <Grid item xs={12}>
-              <Typography variant='body2' sx={{ fontWeight: 600 }}>
+              <Typography variant="body2" sx={{ fontWeight: 600 }}>
                 1. Account Details
               </Typography>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <TextField fullWidth label='Username' placeholder='carterLeonard' />
+              <TextField
+                fullWidth
+                label="Username"
+                placeholder="carterLeonard"
+              />
             </Grid>
             <Grid item xs={12} sm={6}>
-              <TextField fullWidth type='email' label='Email' placeholder='carterleonard@gmail.com' />
+              <TextField
+                fullWidth
+                type="email"
+                label="Email"
+                placeholder="carterleonard@gmail.com"
+              />
             </Grid>
             <Grid item xs={12} sm={6}>
               <FormControl fullWidth>
-                <InputLabel htmlFor='form-layouts-separator-password'>Password</InputLabel>
+                <InputLabel htmlFor="form-layouts-separator-password">
+                  Password
+                </InputLabel>
                 <OutlinedInput
-                  label='Password'
+                  label="Password"
                   value={values.password}
-                  id='form-layouts-separator-password'
+                  id="form-layouts-separator-password"
                   onChange={handlePasswordChange('password')}
                   type={values.showPassword ? 'text' : 'password'}
                   endAdornment={
-                    <InputAdornment position='end'>
+                    <InputAdornment position="end">
                       <IconButton
-                        edge='end'
+                        edge="end"
                         onClick={handleClickShowPassword}
                         onMouseDown={handleMouseDownPassword}
-                        aria-label='toggle password visibility'
+                        aria-label="toggle password visibility"
                       >
-                        <Icon icon={values.showPassword ? 'bx:show' : 'bx:hide'} />
+                        <Icon
+                          icon={values.showPassword ? 'bx:show' : 'bx:hide'}
+                        />
                       </IconButton>
                     </InputAdornment>
                   }
@@ -121,22 +146,26 @@ const FormLayoutsSeparator = () => {
             </Grid>
             <Grid item xs={12} sm={6}>
               <FormControl fullWidth>
-                <InputLabel htmlFor='form-layouts-separator-password-2'>Confirm Password</InputLabel>
+                <InputLabel htmlFor="form-layouts-separator-password-2">
+                  Confirm Password
+                </InputLabel>
                 <OutlinedInput
                   value={values.password2}
-                  label='Confirm Password'
-                  id='form-layouts-separator-password-2'
+                  label="Confirm Password"
+                  id="form-layouts-separator-password-2"
                   onChange={handleConfirmChange('password2')}
                   type={values.showPassword2 ? 'text' : 'password'}
                   endAdornment={
-                    <InputAdornment position='end'>
+                    <InputAdornment position="end">
                       <IconButton
-                        edge='end'
-                        aria-label='toggle password visibility'
+                        edge="end"
+                        aria-label="toggle password visibility"
                         onClick={handleClickShowConfirmPassword}
                         onMouseDown={handleMouseDownConfirmPassword}
                       >
-                        <Icon icon={values.showPassword2 ? 'bx:show' : 'bx:hide'} />
+                        <Icon
+                          icon={values.showPassword2 ? 'bx:show' : 'bx:hide'}
+                        />
                       </IconButton>
                     </InputAdornment>
                   }
@@ -147,50 +176,59 @@ const FormLayoutsSeparator = () => {
               <Divider sx={{ mb: '0 !important' }} />
             </Grid>
             <Grid item xs={12}>
-              <Typography variant='body2' sx={{ fontWeight: 600 }}>
+              <Typography variant="body2" sx={{ fontWeight: 600 }}>
                 2. Personal Info
               </Typography>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <TextField fullWidth label='First Name' placeholder='Leonard' />
+              <TextField fullWidth label="First Name" placeholder="Leonard" />
             </Grid>
             <Grid item xs={12} sm={6}>
-              <TextField fullWidth label='Last Name' placeholder='Carter' />
+              <TextField fullWidth label="Last Name" placeholder="Carter" />
             </Grid>
             <Grid item xs={12} sm={6}>
               <FormControl fullWidth>
-                <InputLabel id='form-layouts-separator-select-label'>Country</InputLabel>
+                <InputLabel id="form-layouts-separator-select-label">
+                  Country
+                </InputLabel>
                 <Select
-                  label='Country'
-                  defaultValue=''
-                  id='form-layouts-separator-select'
-                  labelId='form-layouts-separator-select-label'
+                  label="Country"
+                  defaultValue=""
+                  id="form-layouts-separator-select"
+                  labelId="form-layouts-separator-select-label"
                 >
-                  <MenuItem value='UK'>UK</MenuItem>
-                  <MenuItem value='USA'>USA</MenuItem>
-                  <MenuItem value='Australia'>Australia</MenuItem>
-                  <MenuItem value='Germany'>Germany</MenuItem>
+                  <MenuItem value="UK">UK</MenuItem>
+                  <MenuItem value="USA">USA</MenuItem>
+                  <MenuItem value="Australia">Australia</MenuItem>
+                  <MenuItem value="Germany">Germany</MenuItem>
                 </Select>
               </FormControl>
             </Grid>
             <Grid item xs={12} sm={6}>
               <FormControl fullWidth>
-                <InputLabel id='form-layouts-separator-multiple-select-label'>Language</InputLabel>
+                <InputLabel id="form-layouts-separator-multiple-select-label">
+                  Language
+                </InputLabel>
                 <Select
                   multiple
                   value={language}
                   onChange={handleSelectChange}
-                  id='form-layouts-separator-multiple-select'
-                  labelId='form-layouts-separator-multiple-select-label'
-                  input={<OutlinedInput label='Language' id='select-multiple-language' />}
+                  id="form-layouts-separator-multiple-select"
+                  labelId="form-layouts-separator-multiple-select-label"
+                  input={
+                    <OutlinedInput
+                      label="Language"
+                      id="select-multiple-language"
+                    />
+                  }
                 >
-                  <MenuItem value='English'>English</MenuItem>
-                  <MenuItem value='French'>French</MenuItem>
-                  <MenuItem value='Spanish'>Spanish</MenuItem>
-                  <MenuItem value='Portuguese'>Portuguese</MenuItem>
-                  <MenuItem value='Italian'>Italian</MenuItem>
-                  <MenuItem value='German'>German</MenuItem>
-                  <MenuItem value='Arabic'>Arabic</MenuItem>
+                  <MenuItem value="English">English</MenuItem>
+                  <MenuItem value="French">French</MenuItem>
+                  <MenuItem value="Spanish">Spanish</MenuItem>
+                  <MenuItem value="Portuguese">Portuguese</MenuItem>
+                  <MenuItem value="Italian">Italian</MenuItem>
+                  <MenuItem value="German">German</MenuItem>
+                  <MenuItem value="Arabic">Arabic</MenuItem>
                 </Select>
               </FormControl>
             </Grid>
@@ -199,23 +237,32 @@ const FormLayoutsSeparator = () => {
                 selected={date}
                 showYearDropdown
                 showMonthDropdown
-                placeholderText='MM-DD-YYYY'
+                placeholderText="MM-DD-YYYY"
                 customInput={<CustomInput />}
-                id='form-layouts-separator-date'
+                id="form-layouts-separator-date"
                 onChange={(date: Date) => setDate(date)}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
-              <TextField fullWidth label='Phone No.' placeholder='+1-123-456-8790' />
+              <TextField
+                fullWidth
+                label="Phone No."
+                placeholder="+1-123-456-8790"
+              />
             </Grid>
           </Grid>
         </CardContent>
         <Divider sx={{ m: '0 !important' }} />
         <CardActions>
-          <Button size='large' type='submit' sx={{ mr: 2 }} variant='contained'>
+          <Button size="large" type="submit" sx={{ mr: 2 }} variant="contained">
             Submit
           </Button>
-          <Button type='reset' size='large' color='secondary' variant='outlined'>
+          <Button
+            type="reset"
+            size="large"
+            color="secondary"
+            variant="outlined"
+          >
             Reset
           </Button>
         </CardActions>

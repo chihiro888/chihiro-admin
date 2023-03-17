@@ -1,16 +1,21 @@
-import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common'
-import { createPassword } from 'src/common/util/auth'
+// ** Module
+import { Inject, Injectable } from '@nestjs/common'
 import { DataSource, IsNull } from 'typeorm'
+
+// ** Dto
 import { CreateSystemAdminDto } from './dto/create-system-admin.dto'
-import { GlobalService } from '../global/global.service'
+
+// ** Entity
 import { User } from 'src/entities/user.entity'
+
+// ** Util
+import { createPassword } from 'src/common/util/auth'
 
 @Injectable()
 export class AdminService {
   constructor(
     @Inject('DATA_SOURCE')
-    private datasource: DataSource,
-    private globalService: GlobalService
+    private datasource: DataSource
   ) {}
 
   // ANCHOR check system admin
@@ -29,7 +34,7 @@ export class AdminService {
   }
 
   // ANCHOR create system admin
-  async createSystemAdmin(dto: CreateSystemAdminDto) {
+  async createSystemAdmin(dto: CreateSystemAdminDto): Promise<void> {
     const user = new User()
     user.account = dto.account
     user.password = await createPassword(dto.password)
@@ -37,5 +42,4 @@ export class AdminService {
     user.role = 'SA'
     await this.datasource.getRepository(User).save(user)
   }
-
 }

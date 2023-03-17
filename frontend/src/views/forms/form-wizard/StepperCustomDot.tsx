@@ -27,15 +27,33 @@ const StepperCustomDot = (props: StepIconProps) => {
   const bgColors: UseBgColorType = useBgColor()
 
   if (error) {
-    return <Icon icon='bx:error-circle' fontSize={20} color={theme.palette.error.main} transform='scale(1.2)' />
+    return (
+      <Icon
+        icon="bx:error-circle"
+        fontSize={20}
+        color={theme.palette.error.main}
+        transform="scale(1.2)"
+      />
+    )
   } else if (completed) {
-    return <Icon icon='bxs:check-circle' fontSize={20} color={theme.palette.primary.main} transform='scale(1.2)' />
+    return (
+      <Icon
+        icon="bxs:check-circle"
+        fontSize={20}
+        color={theme.palette.primary.main}
+        transform="scale(1.2)"
+      />
+    )
   } else {
     return (
       <Box
         sx={{
           borderColor: bgColors.primaryLight.backgroundColor,
-          ...(active && { borderWidth: 5, borderColor: 'primary.main', backgroundColor: 'common.white' })
+          ...(active && {
+            borderWidth: 5,
+            borderColor: 'primary.main',
+            backgroundColor: 'common.white'
+          })
         }}
       />
     )

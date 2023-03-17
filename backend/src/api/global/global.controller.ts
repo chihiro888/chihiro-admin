@@ -1,4 +1,4 @@
-import { DeleteGlobalDto } from './dto/delete-global.dto'
+// ** Module
 import {
   Body,
   Query,
@@ -8,17 +8,23 @@ import {
   Put,
   Delete,
   HttpStatus,
-  Session,
   Res,
   UseGuards,
   HttpException
 } from '@nestjs/common'
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 import { Response } from 'express'
-import { CreateGlobalDto } from './dto/create-global.dto'
-import { GlobalService } from './global.service'
-import { SaveGlobalDto } from './dto/save-global.dto'
 import SWAGGER from 'src/common/constants/swagger'
+
+// ** Dto
+import { DeleteGlobalDto } from './dto/delete-global.dto'
+import { CreateGlobalDto } from './dto/create-global.dto'
+import { SaveGlobalDto } from './dto/save-global.dto'
+
+// ** Service
+import { GlobalService } from './global.service'
+
+// ** Guard
 import { SystemAdminGuard } from 'src/common/guard/system-admin.guard'
 
 // ANCHOR global controller
@@ -34,6 +40,10 @@ export class GlobalController {
     summary: '전역 데이터 리스트 조회 (시스템 관리자 기능)',
     description:
       '전역 데이터 리스트를 반환합니다. (데이터가 없을 경우 빈 리스트 반환)'
+  })
+  @ApiResponse({
+    status: HttpStatus.UNAUTHORIZED,
+    description: SWAGGER.UNAUTHORIZED
   })
   @ApiResponse({
     status: HttpStatus.OK,
@@ -68,7 +78,7 @@ export class GlobalController {
   })
   @ApiResponse({
     status: HttpStatus.UNAUTHORIZED,
-    description: '세션이 유효하지 않은 경우 반환'
+    description: SWAGGER.UNAUTHORIZED
   })
   @ApiResponse({
     status: HttpStatus.INTERNAL_SERVER_ERROR,
@@ -185,6 +195,10 @@ export class GlobalController {
   @ApiOperation({
     summary: '앱 정보 조회',
     description: '전역데이터로부터 앱 정보를 조회합니다.'
+  })
+  @ApiResponse({
+    status: HttpStatus.OK,
+    description: '앱 정보 조회가 성공적인 경우 반환'
   })
   async getAppInfo(@Res() res: Response) {
     // get app info

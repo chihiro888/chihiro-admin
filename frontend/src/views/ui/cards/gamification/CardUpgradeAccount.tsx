@@ -23,22 +23,31 @@ const CardUpgradeAccount = () => {
       <CardContent>
         <Grid container>
           <Grid item xs={5}>
-            <AvatarImg alt='Upgrade Account' src={`/images/cards/upgrade-account-launch-${theme.palette.mode}.png`} />
+            <AvatarImg
+              alt="Upgrade Account"
+              src={`/images/cards/upgrade-account-launch-${theme.palette.mode}.png`}
+            />
           </Grid>
           <Grid item xs={7} sx={{ textAlign: 'center' }}>
-            <Typography variant='h6' sx={{ mb: 1 }}>
+            <Typography variant="h6" sx={{ mb: 1 }}>
               Upgrade Account
             </Typography>
-            <Typography variant='body2' sx={{ mb: 4.25 }}>
+            <Typography variant="body2" sx={{ mb: 4.25 }}>
               Add 15 team members
             </Typography>
-            <Typography variant='h5' sx={{ color: 'info.main', fontSize: '1.625rem !important' }}>
+            <Typography
+              variant="h5"
+              sx={{ color: 'info.main', fontSize: '1.625rem !important' }}
+            >
               $129
             </Typography>
-            <Typography variant='body2' sx={{ mb: 3.75, color: 'text.disabled' }}>
+            <Typography
+              variant="body2"
+              sx={{ mb: 3.75, color: 'text.disabled' }}
+            >
               20% OFF
             </Typography>
-            <Button size='small' color='info' variant='contained'>
+            <Button size="small" color="info" variant="contained">
               Upgrade
             </Button>
           </Grid>

@@ -14,24 +14,24 @@ const Wrapper = styled('div')(({ theme }) => ({
 
 const BadgesLight = () => {
   return (
-    <Wrapper className='demo-space-x'>
-      <CustomBadge skin='light' color='primary' badgeContent={4}>
-        <Avatar src='/images/avatars/16.png' alt='User Avatar' />
+    <Wrapper className="demo-space-x">
+      <CustomBadge skin="light" color="primary" badgeContent={4}>
+        <Avatar src="/images/avatars/16.png" alt="User Avatar" />
       </CustomBadge>
-      <CustomBadge skin='light' color='secondary' badgeContent={4}>
-        <Avatar src='/images/avatars/16.png' alt='User Avatar' />
+      <CustomBadge skin="light" color="secondary" badgeContent={4}>
+        <Avatar src="/images/avatars/16.png" alt="User Avatar" />
       </CustomBadge>
-      <CustomBadge skin='light' color='success' badgeContent={4}>
-        <Avatar src='/images/avatars/16.png' alt='User Avatar' />
+      <CustomBadge skin="light" color="success" badgeContent={4}>
+        <Avatar src="/images/avatars/16.png" alt="User Avatar" />
       </CustomBadge>
-      <CustomBadge skin='light' color='error' badgeContent={4}>
-        <Avatar src='/images/avatars/16.png' alt='User Avatar' />
+      <CustomBadge skin="light" color="error" badgeContent={4}>
+        <Avatar src="/images/avatars/16.png" alt="User Avatar" />
       </CustomBadge>
-      <CustomBadge skin='light' color='warning' badgeContent={4}>
-        <Avatar src='/images/avatars/16.png' alt='User Avatar' />
+      <CustomBadge skin="light" color="warning" badgeContent={4}>
+        <Avatar src="/images/avatars/16.png" alt="User Avatar" />
       </CustomBadge>
-      <CustomBadge skin='light' color='info' badgeContent={4}>
-        <Avatar src='/images/avatars/16.png' alt='User Avatar' />
+      <CustomBadge skin="light" color="info" badgeContent={4}>
+        <Avatar src="/images/avatars/16.png" alt="User Avatar" />
       </CustomBadge>
     </Wrapper>
   )

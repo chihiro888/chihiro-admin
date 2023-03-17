@@ -28,30 +28,48 @@ const SnackbarPositioned = () => {
 
   return (
     <Fragment>
-      <div className='demo-space-x'>
-        <Button variant='outlined' onClick={handleClick({ vertical: 'top', horizontal: 'center' })}>
+      <div className="demo-space-x">
+        <Button
+          variant="outlined"
+          onClick={handleClick({ vertical: 'top', horizontal: 'center' })}
+        >
           Top Center
         </Button>
-        <Button variant='outlined' onClick={handleClick({ vertical: 'top', horizontal: 'right' })}>
+        <Button
+          variant="outlined"
+          onClick={handleClick({ vertical: 'top', horizontal: 'right' })}
+        >
           Top Right
         </Button>
-        <Button variant='outlined' onClick={handleClick({ vertical: 'bottom', horizontal: 'right' })}>
+        <Button
+          variant="outlined"
+          onClick={handleClick({ vertical: 'bottom', horizontal: 'right' })}
+        >
           Bottom Right
         </Button>
-        <Button variant='outlined' onClick={handleClick({ vertical: 'bottom', horizontal: 'center' })}>
+        <Button
+          variant="outlined"
+          onClick={handleClick({ vertical: 'bottom', horizontal: 'center' })}
+        >
           Bottom Center
         </Button>
-        <Button variant='outlined' onClick={handleClick({ vertical: 'bottom', horizontal: 'left' })}>
+        <Button
+          variant="outlined"
+          onClick={handleClick({ vertical: 'bottom', horizontal: 'left' })}
+        >
           Bottom Left
         </Button>
-        <Button variant='outlined' onClick={handleClick({ vertical: 'top', horizontal: 'left' })}>
+        <Button
+          variant="outlined"
+          onClick={handleClick({ vertical: 'top', horizontal: 'left' })}
+        >
           Top Left
         </Button>
       </div>
       <Snackbar
         open={open}
         onClose={handleClose}
-        message='I love snacks'
+        message="I love snacks"
         autoHideDuration={3000}
         key={vertical + horizontal}
         anchorOrigin={{ vertical, horizontal }}

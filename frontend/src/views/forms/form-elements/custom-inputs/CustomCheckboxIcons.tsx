@@ -5,7 +5,10 @@ import { useState } from 'react'
 import Grid from '@mui/material/Grid'
 
 // ** Type Import
-import { CustomCheckboxIconsData, CustomCheckboxIconsProps } from 'src/@core/components/custom-checkbox/types'
+import {
+  CustomCheckboxIconsData,
+  CustomCheckboxIconsProps
+} from 'src/@core/components/custom-checkbox/types'
 
 // ** Demo Components Imports
 import CustomCheckboxIcons from 'src/@core/components/custom-checkbox/icons'
@@ -35,20 +38,31 @@ const data: CustomCheckboxIconsData[] = [
 ]
 
 const icons: IconType[] = [
-  { icon: 'bx:server', iconProps: { fontSize: '2rem', style: { marginBottom: 8 } } },
-  { icon: 'bx:shield', iconProps: { fontSize: '2rem', style: { marginBottom: 8 } } },
-  { icon: 'bx:lock-alt', iconProps: { fontSize: '2rem', style: { marginBottom: 8 } } }
+  {
+    icon: 'bx:server',
+    iconProps: { fontSize: '2rem', style: { marginBottom: 8 } }
+  },
+  {
+    icon: 'bx:shield',
+    iconProps: { fontSize: '2rem', style: { marginBottom: 8 } }
+  },
+  {
+    icon: 'bx:lock-alt',
+    iconProps: { fontSize: '2rem', style: { marginBottom: 8 } }
+  }
 ]
 
 const CustomCheckboxWithIcons = () => {
-  const initialSelected: string[] = data.filter(item => item.isSelected).map(item => item.value)
+  const initialSelected: string[] = data
+    .filter((item) => item.isSelected)
+    .map((item) => item.value)
 
   // ** State
   const [selected, setSelected] = useState<string[]>(initialSelected)
 
   const handleChange = (value: string) => {
     if (selected.includes(value)) {
-      const updatedArr = selected.filter(item => item !== value)
+      const updatedArr = selected.filter((item) => item !== value)
       setSelected(updatedArr)
     } else {
       setSelected([...selected, value])
@@ -64,7 +78,7 @@ const CustomCheckboxWithIcons = () => {
           selected={selected}
           icon={icons[index].icon}
           handleChange={handleChange}
-          name='custom-checkbox-icons'
+          name="custom-checkbox-icons"
           gridProps={{ sm: 4, xs: 12 }}
           iconProps={icons[index].iconProps}
         />

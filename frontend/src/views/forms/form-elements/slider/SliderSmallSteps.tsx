@@ -11,9 +11,9 @@ const SliderSmallSteps = () => {
       marks
       step={5}
       defaultValue={20}
-      valueLabelDisplay='auto'
+      valueLabelDisplay="auto"
       getAriaValueText={valuetext}
-      aria-labelledby='small-steps-slider'
+      aria-labelledby="small-steps-slider"
     />
   )
 }

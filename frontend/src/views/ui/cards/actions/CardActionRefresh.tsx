@@ -29,23 +29,24 @@ const CardActionRefresh = () => {
   return (
     <Card sx={{ position: 'relative' }}>
       <CardHeader
-        title='Refresh Content'
+        title="Refresh Content"
         action={
           <IconButton
-            size='small'
-            aria-label='collapse'
+            size="small"
+            aria-label="collapse"
             sx={{ color: 'text.secondary' }}
             onClick={() => handleBackDrop()}
           >
-            <Icon icon='bx:rotate-left' fontSize={20} />
+            <Icon icon="bx:rotate-left" fontSize={20} />
           </IconButton>
         }
       />
       <CardContent>
-        <Typography variant='body2'>
-          You can specifically add refresh action using <code>actionRefresh</code> prop Click on{' '}
-          <Box component='span' sx={{ verticalAlign: 'top' }}>
-            <Icon icon='bx:rotate-left' fontSize={20} />
+        <Typography variant="body2">
+          You can specifically add refresh action using{' '}
+          <code>actionRefresh</code> prop Click on{' '}
+          <Box component="span" sx={{ verticalAlign: 'top' }}>
+            <Icon icon="bx:rotate-left" fontSize={20} />
           </Box>{' '}
           icon to see it in action
         </Typography>
@@ -55,11 +56,11 @@ const CardActionRefresh = () => {
         open={reload}
         sx={{
           position: 'absolute',
-          color: theme => theme.palette.common.white,
-          zIndex: theme => theme.zIndex.mobileStepper - 1
+          color: (theme) => theme.palette.common.white,
+          zIndex: (theme) => theme.zIndex.mobileStepper - 1
         }}
       >
-        <CircularProgress color='inherit' />
+        <CircularProgress color="inherit" />
       </Backdrop>
     </Card>
   )

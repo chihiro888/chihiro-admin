@@ -1,5 +1,11 @@
 // ** React Imports
-import { ChangeEvent, forwardRef, MouseEvent, SyntheticEvent, useState } from 'react'
+import {
+  ChangeEvent,
+  forwardRef,
+  MouseEvent,
+  SyntheticEvent,
+  useState
+} from 'react'
 
 // ** MUI Imports
 import Tab from '@mui/material/Tab'
@@ -38,7 +44,15 @@ interface State {
 }
 
 const CustomInput = forwardRef((props, ref) => {
-  return <TextField fullWidth {...props} inputRef={ref} label='Birth Date' autoComplete='off' />
+  return (
+    <TextField
+      fullWidth
+      {...props}
+      inputRef={ref}
+      label="Birth Date"
+      autoComplete="off"
+    />
+  )
 })
 
 const FormLayoutsTabs = () => {
@@ -58,9 +72,10 @@ const FormLayoutsTabs = () => {
   }
 
   // Handle Password
-  const handlePasswordChange = (prop: keyof State) => (event: ChangeEvent<HTMLInputElement>) => {
-    setValues({ ...values, [prop]: event.target.value })
-  }
+  const handlePasswordChange =
+    (prop: keyof State) => (event: ChangeEvent<HTMLInputElement>) => {
+      setValues({ ...values, [prop]: event.target.value })
+    }
   const handleClickShowPassword = () => {
     setValues({ ...values, showPassword: !values.showPassword })
   }
@@ -69,13 +84,16 @@ const FormLayoutsTabs = () => {
   }
 
   // Handle Confirm Password
-  const handleConfirmChange = (prop: keyof State) => (event: ChangeEvent<HTMLInputElement>) => {
-    setValues({ ...values, [prop]: event.target.value })
-  }
+  const handleConfirmChange =
+    (prop: keyof State) => (event: ChangeEvent<HTMLInputElement>) => {
+      setValues({ ...values, [prop]: event.target.value })
+    }
   const handleClickShowConfirmPassword = () => {
     setValues({ ...values, showPassword2: !values.showPassword2 })
   }
-  const handleMouseDownConfirmPassword = (event: MouseEvent<HTMLButtonElement>) => {
+  const handleMouseDownConfirmPassword = (
+    event: MouseEvent<HTMLButtonElement>
+  ) => {
     event.preventDefault()
   }
 
@@ -88,59 +106,80 @@ const FormLayoutsTabs = () => {
     <Card>
       <TabContext value={value}>
         <TabList
-          variant='scrollable'
+          variant="scrollable"
           scrollButtons={false}
           onChange={handleTabsChange}
-          sx={{ borderBottom: theme => `1px solid ${theme.palette.divider}` }}
+          sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}
         >
-          <Tab value='personal-info' label='Personal Info' />
-          <Tab value='account-details' label='Account Details' />
-          <Tab value='social-links' label='Social Links' />
+          <Tab value="personal-info" label="Personal Info" />
+          <Tab value="account-details" label="Account Details" />
+          <Tab value="social-links" label="Social Links" />
         </TabList>
-        <form onSubmit={e => e.preventDefault()}>
+        <form onSubmit={(e) => e.preventDefault()}>
           <CardContent>
-            <TabPanel value='personal-info' sx={{ p: 0, border: 0, boxShadow: 0, backgroundColor: 'transparent' }}>
+            <TabPanel
+              value="personal-info"
+              sx={{
+                p: 0,
+                border: 0,
+                boxShadow: 0,
+                backgroundColor: 'transparent'
+              }}
+            >
               <Grid container spacing={5}>
                 <Grid item xs={12} sm={6}>
-                  <TextField fullWidth label='First Name' placeholder='Leonard' />
+                  <TextField
+                    fullWidth
+                    label="First Name"
+                    placeholder="Leonard"
+                  />
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                  <TextField fullWidth label='Last Name' placeholder='Carter' />
+                  <TextField fullWidth label="Last Name" placeholder="Carter" />
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <FormControl fullWidth>
-                    <InputLabel id='form-layouts-tabs-select-label'>Country</InputLabel>
+                    <InputLabel id="form-layouts-tabs-select-label">
+                      Country
+                    </InputLabel>
                     <Select
-                      label='Country'
-                      defaultValue=''
-                      id='form-layouts-tabs-select'
-                      labelId='form-layouts-tabs-select-label'
+                      label="Country"
+                      defaultValue=""
+                      id="form-layouts-tabs-select"
+                      labelId="form-layouts-tabs-select-label"
                     >
-                      <MenuItem value='UK'>UK</MenuItem>
-                      <MenuItem value='USA'>USA</MenuItem>
-                      <MenuItem value='Australia'>Australia</MenuItem>
-                      <MenuItem value='Germany'>Germany</MenuItem>
+                      <MenuItem value="UK">UK</MenuItem>
+                      <MenuItem value="USA">USA</MenuItem>
+                      <MenuItem value="Australia">Australia</MenuItem>
+                      <MenuItem value="Germany">Germany</MenuItem>
                     </Select>
                   </FormControl>
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <FormControl fullWidth>
-                    <InputLabel id='form-layouts-tabs-multiple-select-label'>Language</InputLabel>
+                    <InputLabel id="form-layouts-tabs-multiple-select-label">
+                      Language
+                    </InputLabel>
                     <Select
                       multiple
                       value={language}
                       onChange={handleSelectChange}
-                      id='form-layouts-tabs-multiple-select'
-                      labelId='form-layouts-tabs-multiple-select-label'
-                      input={<OutlinedInput label='Language' id='tabs-select-multiple-language' />}
+                      id="form-layouts-tabs-multiple-select"
+                      labelId="form-layouts-tabs-multiple-select-label"
+                      input={
+                        <OutlinedInput
+                          label="Language"
+                          id="tabs-select-multiple-language"
+                        />
+                      }
                     >
-                      <MenuItem value='English'>English</MenuItem>
-                      <MenuItem value='French'>French</MenuItem>
-                      <MenuItem value='Spanish'>Spanish</MenuItem>
-                      <MenuItem value='Portuguese'>Portuguese</MenuItem>
-                      <MenuItem value='Italian'>Italian</MenuItem>
-                      <MenuItem value='German'>German</MenuItem>
-                      <MenuItem value='Arabic'>Arabic</MenuItem>
+                      <MenuItem value="English">English</MenuItem>
+                      <MenuItem value="French">French</MenuItem>
+                      <MenuItem value="Spanish">Spanish</MenuItem>
+                      <MenuItem value="Portuguese">Portuguese</MenuItem>
+                      <MenuItem value="Italian">Italian</MenuItem>
+                      <MenuItem value="German">German</MenuItem>
+                      <MenuItem value="Arabic">Arabic</MenuItem>
                     </Select>
                   </FormControl>
                 </Grid>
@@ -149,44 +188,69 @@ const FormLayoutsTabs = () => {
                     selected={date}
                     showYearDropdown
                     showMonthDropdown
-                    id='form-layouts-tabs-date'
-                    placeholderText='MM-DD-YYYY'
+                    id="form-layouts-tabs-date"
+                    placeholderText="MM-DD-YYYY"
                     customInput={<CustomInput />}
                     onChange={(date: Date) => setDate(date)}
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                  <TextField fullWidth label='Phone No.' placeholder='+1-123-456-8790' />
+                  <TextField
+                    fullWidth
+                    label="Phone No."
+                    placeholder="+1-123-456-8790"
+                  />
                 </Grid>
               </Grid>
             </TabPanel>
 
-            <TabPanel value='account-details' sx={{ p: 0, border: 0, boxShadow: 0, backgroundColor: 'transparent' }}>
+            <TabPanel
+              value="account-details"
+              sx={{
+                p: 0,
+                border: 0,
+                boxShadow: 0,
+                backgroundColor: 'transparent'
+              }}
+            >
               <Grid container spacing={5}>
                 <Grid item xs={12} sm={6}>
-                  <TextField fullWidth label='Username' placeholder='carterLeonard' />
+                  <TextField
+                    fullWidth
+                    label="Username"
+                    placeholder="carterLeonard"
+                  />
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                  <TextField fullWidth type='email' label='Email' placeholder='carterleonard@gmail.com' />
+                  <TextField
+                    fullWidth
+                    type="email"
+                    label="Email"
+                    placeholder="carterleonard@gmail.com"
+                  />
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <FormControl fullWidth>
-                    <InputLabel htmlFor='form-layouts-tabs-password'>Password</InputLabel>
+                    <InputLabel htmlFor="form-layouts-tabs-password">
+                      Password
+                    </InputLabel>
                     <OutlinedInput
-                      label='Password'
+                      label="Password"
                       value={values.password}
-                      id='form-layouts-tabs-password'
+                      id="form-layouts-tabs-password"
                       onChange={handlePasswordChange('password')}
                       type={values.showPassword ? 'text' : 'password'}
                       endAdornment={
-                        <InputAdornment position='end'>
+                        <InputAdornment position="end">
                           <IconButton
-                            edge='end'
+                            edge="end"
                             onClick={handleClickShowPassword}
                             onMouseDown={handleMouseDownPassword}
-                            aria-label='toggle password visibility'
+                            aria-label="toggle password visibility"
                           >
-                            <Icon icon={values.showPassword ? 'bx:show' : 'bx:hide'} />
+                            <Icon
+                              icon={values.showPassword ? 'bx:show' : 'bx:hide'}
+                            />
                           </IconButton>
                         </InputAdornment>
                       }
@@ -195,22 +259,28 @@ const FormLayoutsTabs = () => {
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <FormControl fullWidth>
-                    <InputLabel htmlFor='form-layouts-tabs-password-2'>Confirm Password</InputLabel>
+                    <InputLabel htmlFor="form-layouts-tabs-password-2">
+                      Confirm Password
+                    </InputLabel>
                     <OutlinedInput
                       value={values.password2}
-                      label='Confirm Password'
-                      id='form-layouts-tabs-password-2'
+                      label="Confirm Password"
+                      id="form-layouts-tabs-password-2"
                       onChange={handleConfirmChange('password2')}
                       type={values.showPassword2 ? 'text' : 'password'}
                       endAdornment={
-                        <InputAdornment position='end'>
+                        <InputAdornment position="end">
                           <IconButton
-                            edge='end'
-                            aria-label='toggle password visibility'
+                            edge="end"
+                            aria-label="toggle password visibility"
                             onClick={handleClickShowConfirmPassword}
                             onMouseDown={handleMouseDownConfirmPassword}
                           >
-                            <Icon icon={values.showPassword2 ? 'bx:show' : 'bx:hide'} />
+                            <Icon
+                              icon={
+                                values.showPassword2 ? 'bx:show' : 'bx:hide'
+                              }
+                            />
                           </IconButton>
                         </InputAdornment>
                       }
@@ -220,35 +290,77 @@ const FormLayoutsTabs = () => {
               </Grid>
             </TabPanel>
 
-            <TabPanel value='social-links' sx={{ p: 0, border: 0, boxShadow: 0, backgroundColor: 'transparent' }}>
+            <TabPanel
+              value="social-links"
+              sx={{
+                p: 0,
+                border: 0,
+                boxShadow: 0,
+                backgroundColor: 'transparent'
+              }}
+            >
               <Grid container spacing={5}>
                 <Grid item xs={12} sm={6}>
-                  <TextField fullWidth label='Twitter' placeholder='https://twitter.com/carterLeonard' />
+                  <TextField
+                    fullWidth
+                    label="Twitter"
+                    placeholder="https://twitter.com/carterLeonard"
+                  />
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                  <TextField fullWidth label='Facebook' placeholder='https://facebook.com/carterLeonard' />
+                  <TextField
+                    fullWidth
+                    label="Facebook"
+                    placeholder="https://facebook.com/carterLeonard"
+                  />
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                  <TextField fullWidth label='Google+' placeholder='https://plus.google.com/carterLeonard' />
+                  <TextField
+                    fullWidth
+                    label="Google+"
+                    placeholder="https://plus.google.com/carterLeonard"
+                  />
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                  <TextField fullWidth label='LinkedIn' placeholder='https://linkedin.com/carterLeonard' />
+                  <TextField
+                    fullWidth
+                    label="LinkedIn"
+                    placeholder="https://linkedin.com/carterLeonard"
+                  />
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                  <TextField fullWidth label='Instagram' placeholder='https://instagram.com/carterLeonard' />
+                  <TextField
+                    fullWidth
+                    label="Instagram"
+                    placeholder="https://instagram.com/carterLeonard"
+                  />
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                  <TextField fullWidth label='Quora' placeholder='https://quora.com/carterLeonard' />
+                  <TextField
+                    fullWidth
+                    label="Quora"
+                    placeholder="https://quora.com/carterLeonard"
+                  />
                 </Grid>
               </Grid>
             </TabPanel>
           </CardContent>
           <Divider sx={{ m: '0 !important' }} />
           <CardActions>
-            <Button size='large' type='submit' sx={{ mr: 2 }} variant='contained'>
+            <Button
+              size="large"
+              type="submit"
+              sx={{ mr: 2 }}
+              variant="contained"
+            >
               Submit
             </Button>
-            <Button type='reset' size='large' variant='outlined' color='secondary'>
+            <Button
+              type="reset"
+              size="large"
+              variant="outlined"
+              color="secondary"
+            >
               Reset
             </Button>
           </CardActions>

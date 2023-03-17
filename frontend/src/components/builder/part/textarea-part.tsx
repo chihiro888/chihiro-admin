@@ -1,7 +1,7 @@
 import { Box, Button, Dialog, DialogContent, TextField } from '@mui/material'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
-import CustomDialogTitle from 'src/components/custom-dialog-title'
+import CustomDialogTitle from 'src/components/custom/custom-dialog-title'
 import { AppDispatch, RootState } from 'src/store'
 import {
   hCloseDefaultPart,

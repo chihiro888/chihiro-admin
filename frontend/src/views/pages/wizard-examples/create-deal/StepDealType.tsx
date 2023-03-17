@@ -14,7 +14,10 @@ import FormHelperText from '@mui/material/FormHelperText'
 import Select, { SelectChangeEvent } from '@mui/material/Select'
 
 // ** Type Imports
-import { CustomRadioIconsData, CustomRadioIconsProps } from 'src/@core/components/custom-radio/types'
+import {
+  CustomRadioIconsData,
+  CustomRadioIconsProps
+} from 'src/@core/components/custom-radio/types'
 
 // ** Custom Components Imports
 import CustomChip from 'src/@core/components/mui/chip'
@@ -35,7 +38,8 @@ const data: CustomRadioIconsData[] = [
   {
     value: 'flat-amount',
     title: 'Flat Amount',
-    content: 'Create a deal which offer uses flat $ off (i.e $5 OFF) on the total.'
+    content:
+      'Create a deal which offer uses flat $ off (i.e $5 OFF) on the total.'
   },
   {
     value: 'prime-member',
@@ -44,7 +48,14 @@ const data: CustomRadioIconsData[] = [
   }
 ]
 
-const regionArray = ['Asia', 'Europe', 'Africa', 'Australia', 'North America', 'South America']
+const regionArray = [
+  'Asia',
+  'Europe',
+  'Africa',
+  'Australia',
+  'North America',
+  'South America'
+]
 
 const Img = styled('img')({
   width: '100%',
@@ -53,13 +64,14 @@ const Img = styled('img')({
 })
 
 const StepDealType = () => {
-  const initialIconSelected: string = data.filter(item => item.isSelected)[
-    data.filter(item => item.isSelected).length - 1
+  const initialIconSelected: string = data.filter((item) => item.isSelected)[
+    data.filter((item) => item.isSelected).length - 1
   ].value
 
   // ** States
   const [region, setRegion] = useState<string[]>([])
-  const [selectedRadio, setSelectedRadio] = useState<string>(initialIconSelected)
+  const [selectedRadio, setSelectedRadio] =
+    useState<string>(initialIconSelected)
 
   // ** Hook
   const theme = useTheme()
@@ -67,15 +79,27 @@ const StepDealType = () => {
   const icons: IconType[] = [
     {
       icon: 'bx:purchase-tag',
-      iconProps: { fontSize: '2rem', style: { marginBottom: 4 }, color: theme.palette.text.secondary }
+      iconProps: {
+        fontSize: '2rem',
+        style: { marginBottom: 4 },
+        color: theme.palette.text.secondary
+      }
     },
     {
       icon: 'bx:dollar',
-      iconProps: { fontSize: '2rem', style: { marginBottom: 4 }, color: theme.palette.text.secondary }
+      iconProps: {
+        fontSize: '2rem',
+        style: { marginBottom: 4 },
+        color: theme.palette.text.secondary
+      }
     },
     {
       icon: 'bx:user',
-      iconProps: { fontSize: '2rem', style: { marginBottom: 4 }, color: theme.palette.text.secondary }
+      iconProps: {
+        fontSize: '2rem',
+        style: { marginBottom: 4 },
+        color: theme.palette.text.secondary
+      }
     }
   ]
 
@@ -97,8 +121,17 @@ const StepDealType = () => {
   return (
     <Grid container spacing={5}>
       <Grid item xs={12}>
-        <Box sx={{ borderRadius: 1, display: 'flex', border: theme => `1px solid ${theme.palette.divider}` }}>
-          <Img alt='illustration' src={`/images/pages/shopping-girl-${theme.palette.mode}.png`} />
+        <Box
+          sx={{
+            borderRadius: 1,
+            display: 'flex',
+            border: (theme) => `1px solid ${theme.palette.divider}`
+          }}
+        >
+          <Img
+            alt="illustration"
+            src={`/images/pages/shopping-girl-${theme.palette.mode}.png`}
+          />
         </Box>
       </Grid>
       {data.map((item, index) => (
@@ -107,7 +140,7 @@ const StepDealType = () => {
           data={data[index]}
           icon={icons[index].icon}
           selected={selectedRadio}
-          name='custom-radios-deal'
+          name="custom-radios-deal"
           gridProps={{ sm: 4, xs: 12 }}
           handleChange={handleRadioChange}
           iconProps={icons[index].iconProps}
@@ -115,34 +148,38 @@ const StepDealType = () => {
       ))}
       <Grid item xs={12} sm={6}>
         <FormControl fullWidth>
-          <TextField type='number' label='Discount' placeholder='25' />
-          <FormHelperText>Enter the discount percentage. 10 = 10%</FormHelperText>
+          <TextField type="number" label="Discount" placeholder="25" />
+          <FormHelperText>
+            Enter the discount percentage. 10 = 10%
+          </FormHelperText>
         </FormControl>
       </Grid>
       <Grid item xs={12} sm={6}>
         <FormControl fullWidth>
-          <InputLabel id='select-region'>Region</InputLabel>
+          <InputLabel id="select-region">Region</InputLabel>
           <Select
             multiple
             value={region}
-            labelId='select-region'
+            labelId="select-region"
             onChange={handleChange}
-            input={<OutlinedInput label='Region' />}
-            renderValue={selected => (
+            input={<OutlinedInput label="Region" />}
+            renderValue={(selected) => (
               <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                {selected.map(value => (
-                  <CustomChip key={value} label={value} skin='light' />
+                {selected.map((value) => (
+                  <CustomChip key={value} label={value} skin="light" />
                 ))}
               </Box>
             )}
           >
-            {regionArray.map(reg => (
+            {regionArray.map((reg) => (
               <MenuItem key={reg} value={reg}>
                 {reg}
               </MenuItem>
             ))}
           </Select>
-          <FormHelperText>Select applicable regions for the deal.</FormHelperText>
+          <FormHelperText>
+            Select applicable regions for the deal.
+          </FormHelperText>
         </FormControl>
       </Grid>
     </Grid>

@@ -99,13 +99,13 @@ const UserViewConnection = () => {
       {/* Connected Accounts Cards */}
       <Grid item xs={12}>
         <Card>
-          <CardHeader title='Connected Accounts' />
+          <CardHeader title="Connected Accounts" />
           <CardContent>
             <Typography sx={{ mb: 4, color: 'text.secondary' }}>
               Display content from your connected accounts on your site
             </Typography>
 
-            {connectedAccountsArr.map(account => {
+            {connectedAccountsArr.map((account) => {
               return (
                 <Box
                   key={account.title}
@@ -118,12 +118,24 @@ const UserViewConnection = () => {
                   }}
                 >
                   <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                    <Box sx={{ mr: 4, display: 'flex', justifyContent: 'center' }}>
-                      <img src={account.logo} alt={account.title} height='30' width='30' />
+                    <Box
+                      sx={{ mr: 4, display: 'flex', justifyContent: 'center' }}
+                    >
+                      <img
+                        src={account.logo}
+                        alt={account.title}
+                        height="30"
+                        width="30"
+                      />
                     </Box>
                     <div>
-                      <Typography sx={{ fontWeight: 500 }}>{account.title}</Typography>
-                      <Typography variant='body2' sx={{ color: 'text.disabled' }}>
+                      <Typography sx={{ fontWeight: 500 }}>
+                        {account.title}
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        sx={{ color: 'text.disabled' }}
+                      >
                         {account.subtitle}
                       </Typography>
                     </div>
@@ -138,13 +150,13 @@ const UserViewConnection = () => {
       {/* Social Accounts Cards */}
       <Grid item xs={12}>
         <Card>
-          <CardHeader title='Social Accounts' />
+          <CardHeader title="Social Accounts" />
           <CardContent>
             <Typography sx={{ mb: 4, color: 'text.secondary' }}>
               Display content from social accounts on your site
             </Typography>
 
-            {socialAccountsArr.map(account => {
+            {socialAccountsArr.map((account) => {
               return (
                 <Box
                   key={account.title}
@@ -157,14 +169,23 @@ const UserViewConnection = () => {
                   }}
                 >
                   <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                    <Box sx={{ mr: 4, minWidth: 45, display: 'flex', justifyContent: 'center' }}>
-                      <img src={account.logo} alt={account.title} height='30' />
+                    <Box
+                      sx={{
+                        mr: 4,
+                        minWidth: 45,
+                        display: 'flex',
+                        justifyContent: 'center'
+                      }}
+                    >
+                      <img src={account.logo} alt={account.title} height="30" />
                     </Box>
                     <div>
-                      <Typography sx={{ fontWeight: 500 }}>{account.title}</Typography>
+                      <Typography sx={{ fontWeight: 500 }}>
+                        {account.title}
+                      </Typography>
                       {account.isConnected ? (
                         <Typography
-                          href='/'
+                          href="/"
                           component={Link}
                           sx={{ color: 'primary.main' }}
                           onClick={(e: SyntheticEvent) => e.preventDefault()}
@@ -172,18 +193,23 @@ const UserViewConnection = () => {
                           {account.username}
                         </Typography>
                       ) : (
-                        <Typography variant='body2' sx={{ color: 'text.disabled' }}>
+                        <Typography
+                          variant="body2"
+                          sx={{ color: 'text.disabled' }}
+                        >
                           Not Connected
                         </Typography>
                       )}
                     </div>
                   </Box>
                   <Button
-                    variant='outlined'
+                    variant="outlined"
                     sx={{ p: 1.5, minWidth: 38 }}
                     color={account.isConnected ? 'error' : 'secondary'}
                   >
-                    <Icon icon={account.isConnected ? 'bx:trash-alt' : 'bx:link'} />
+                    <Icon
+                      icon={account.isConnected ? 'bx:trash-alt' : 'bx:link'}
+                    />
                   </Button>
                 </Box>
               )

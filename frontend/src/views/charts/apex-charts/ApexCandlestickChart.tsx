@@ -149,25 +149,26 @@ const ApexCandlestickChart = () => {
 
   const CustomInput = forwardRef((props: PickerProps, ref) => {
     const startDate = format(props.start, 'MM/dd/yyyy')
-    const endDate = props.end !== null ? ` - ${format(props.end, 'MM/dd/yyyy')}` : null
+    const endDate =
+      props.end !== null ? ` - ${format(props.end, 'MM/dd/yyyy')}` : null
 
     const value = `${startDate}${endDate !== null ? endDate : ''}`
 
     return (
       <TextField
         {...props}
-        size='small'
+        size="small"
         value={value}
         inputRef={ref}
         InputProps={{
           startAdornment: (
-            <InputAdornment position='start'>
-              <Icon icon='bx:calendar-alt' />
+            <InputAdornment position="start">
+              <Icon icon="bx:calendar-alt" />
             </InputAdornment>
           ),
           endAdornment: (
-            <InputAdornment position='end'>
-              <Icon icon='bx:chevron-down' />
+            <InputAdornment position="end">
+              <Icon icon="bx:chevron-down" />
             </InputAdornment>
           )
         }}
@@ -184,8 +185,8 @@ const ApexCandlestickChart = () => {
   return (
     <Card>
       <CardHeader
-        title='Stocks Prices'
-        subheader='$50,863.98'
+        title="Stocks Prices"
+        subheader="$50,863.98"
         sx={{
           flexDirection: ['column', 'row'],
           alignItems: ['flex-start', 'center'],
@@ -199,14 +200,24 @@ const ApexCandlestickChart = () => {
             selected={startDate}
             startDate={startDate}
             onChange={handleOnChange}
-            id='apexchart-candlestick'
-            placeholderText='Click to select a date'
-            customInput={<CustomInput start={startDate as Date | number} end={endDate as Date | number} />}
+            id="apexchart-candlestick"
+            placeholderText="Click to select a date"
+            customInput={
+              <CustomInput
+                start={startDate as Date | number}
+                end={endDate as Date | number}
+              />
+            }
           />
         }
       />
       <CardContent>
-        <ReactApexcharts type='candlestick' height={400} options={options} series={series} />
+        <ReactApexcharts
+          type="candlestick"
+          height={400}
+          options={options}
+          series={series}
+        />
       </CardContent>
     </Card>
   )

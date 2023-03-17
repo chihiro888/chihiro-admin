@@ -27,7 +27,10 @@ import Icon from 'src/@core/components/icon'
 import DatePickerWrapper from 'src/@core/styles/libs/react-datepicker'
 
 // ** Types
-import { EventDateType, AddEventSidebarType } from 'src/types/apps/calendarTypes'
+import {
+  EventDateType,
+  AddEventSidebarType
+} from 'src/types/apps/calendarTypes'
 
 interface PickerProps {
   label?: string
@@ -46,7 +49,8 @@ interface DefaultStateType {
   guests: string[] | string | undefined
 }
 
-const capitalize = (string: string) => string && string[0].toUpperCase() + string.slice(1)
+const capitalize = (string: string) =>
+  string && string[0].toUpperCase() + string.slice(1)
 
 const defaultState: DefaultStateType = {
   url: '',
@@ -102,11 +106,15 @@ const AddEventSidebar = (props: AddEventSidebarType) => {
       start: values.startDate,
       extendedProps: {
         calendar: capitalize(values.calendar),
-        guests: values.guests && values.guests.length ? values.guests : undefined,
+        guests:
+          values.guests && values.guests.length ? values.guests : undefined,
         description: values.description.length ? values.description : undefined
       }
     }
-    if (store.selectedEvent === null || (store.selectedEvent !== null && !store.selectedEvent.title.length)) {
+    if (
+      store.selectedEvent === null ||
+      (store.selectedEvent !== null && !store.selectedEvent.title.length)
+    ) {
       dispatch(addEvent(modifiedEvent))
     } else {
       dispatch(updateEvent({ id: store.selectedEvent.id, ...modifiedEvent }))
@@ -126,7 +134,11 @@ const AddEventSidebar = (props: AddEventSidebarType) => {
 
   const handleStartDate = (date: Date) => {
     if (date > values.endDate) {
-      setValues({ ...values, startDate: new Date(date), endDate: new Date(date) })
+      setValues({
+        ...values,
+        startDate: new Date(date),
+        endDate: new Date(date)
+      })
     }
   }
 
@@ -158,7 +170,12 @@ const AddEventSidebar = (props: AddEventSidebarType) => {
     } else {
       resetToEmptyValues()
     }
-  }, [addEventSidebarOpen, resetToStoredValues, resetToEmptyValues, store.selectedEvent])
+  }, [
+    addEventSidebarOpen,
+    resetToStoredValues,
+    resetToEmptyValues,
+    store.selectedEvent
+  ])
 
   const PickersComponent = forwardRef(({ ...props }: PickerProps, ref) => {
     return (
@@ -174,13 +191,21 @@ const AddEventSidebar = (props: AddEventSidebarType) => {
   })
 
   const RenderSidebarFooter = () => {
-    if (store.selectedEvent === null || (store.selectedEvent !== null && !store.selectedEvent.title.length)) {
+    if (
+      store.selectedEvent === null ||
+      (store.selectedEvent !== null && !store.selectedEvent.title.length)
+    ) {
       return (
         <Fragment>
-          <Button size='large' type='submit' variant='contained' sx={{ mr: 4 }}>
+          <Button size="large" type="submit" variant="contained" sx={{ mr: 4 }}>
             Add
           </Button>
-          <Button size='large' variant='outlined' color='secondary' onClick={resetToEmptyValues}>
+          <Button
+            size="large"
+            variant="outlined"
+            color="secondary"
+            onClick={resetToEmptyValues}
+          >
             Reset
           </Button>
         </Fragment>
@@ -188,10 +213,15 @@ const AddEventSidebar = (props: AddEventSidebarType) => {
     } else {
       return (
         <Fragment>
-          <Button size='large' type='submit' variant='contained' sx={{ mr: 4 }}>
+          <Button size="large" type="submit" variant="contained" sx={{ mr: 4 }}>
             Update
           </Button>
-          <Button size='large' variant='outlined' color='secondary' onClick={resetToStoredValues}>
+          <Button
+            size="large"
+            variant="outlined"
+            color="secondary"
+            onClick={resetToStoredValues}
+          >
             Reset
           </Button>
         </Fragment>
@@ -201,133 +231,170 @@ const AddEventSidebar = (props: AddEventSidebarType) => {
 
   return (
     <Drawer
-      anchor='right'
+      anchor="right"
       open={addEventSidebarOpen}
       onClose={handleSidebarClose}
       ModalProps={{ keepMounted: true }}
       sx={{ '& .MuiDrawer-paper': { width: ['100%', drawerWidth] } }}
     >
       <Box
-        className='sidebar-header'
+        className="sidebar-header"
         sx={{
           p: 6,
           pb: 3,
           display: 'flex',
           justifyContent: 'space-between',
-          borderBottom: theme => `1px solid ${theme.palette.divider}`
+          borderBottom: (theme) => `1px solid ${theme.palette.divider}`
         }}
       >
         <Typography sx={{ mb: 2, fontSize: '1.125rem', fontWeight: 500 }}>
-          {store.selectedEvent !== null && store.selectedEvent.title.length ? 'Update Event' : 'Add Event'}
+          {store.selectedEvent !== null && store.selectedEvent.title.length
+            ? 'Update Event'
+            : 'Add Event'}
         </Typography>
         <Box sx={{ mb: 2, display: 'flex', alignItems: 'center' }}>
           {store.selectedEvent !== null && store.selectedEvent.title.length ? (
             <IconButton
-              size='small'
+              size="small"
               onClick={handleDeleteEvent}
-              sx={{ color: 'text.primary', mr: store.selectedEvent !== null ? 1 : 0 }}
+              sx={{
+                color: 'text.primary',
+                mr: store.selectedEvent !== null ? 1 : 0
+              }}
             >
-              <Icon icon='bx:trash-alt' fontSize={20} />
+              <Icon icon="bx:trash-alt" fontSize={20} />
             </IconButton>
           ) : null}
-          <IconButton size='small' onClick={handleSidebarClose} sx={{ color: 'text.primary' }}>
-            <Icon icon='bx:x' fontSize={20} />
+          <IconButton
+            size="small"
+            onClick={handleSidebarClose}
+            sx={{ color: 'text.primary' }}
+          >
+            <Icon icon="bx:x" fontSize={20} />
           </IconButton>
         </Box>
       </Box>
-      <Box className='sidebar-body' sx={{ px: 6, pt: 4, pb: 5 }}>
+      <Box className="sidebar-body" sx={{ px: 6, pt: 4, pb: 5 }}>
         <DatePickerWrapper>
-          <form onSubmit={handleSubmit(onSubmit)} autoComplete='off'>
+          <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
             <FormControl fullWidth sx={{ mb: 6 }}>
               <Controller
-                name='title'
+                name="title"
                 control={control}
                 rules={{ required: true }}
                 render={({ field: { value, onChange } }) => (
-                  <TextField label='Title' value={value} onChange={onChange} error={Boolean(errors.title)} />
+                  <TextField
+                    label="Title"
+                    value={value}
+                    onChange={onChange}
+                    error={Boolean(errors.title)}
+                  />
                 )}
               />
               {errors.title && (
-                <FormHelperText sx={{ color: 'error.main' }} id='event-title-error'>
+                <FormHelperText
+                  sx={{ color: 'error.main' }}
+                  id="event-title-error"
+                >
                   This field is required
                 </FormHelperText>
               )}
             </FormControl>
             <FormControl fullWidth sx={{ mb: 6 }}>
-              <InputLabel id='event-calendar'>Calendar</InputLabel>
+              <InputLabel id="event-calendar">Calendar</InputLabel>
               <Select
-                label='Calendar'
+                label="Calendar"
                 value={values.calendar}
-                labelId='event-calendar'
-                onChange={e => setValues({ ...values, calendar: e.target.value })}
+                labelId="event-calendar"
+                onChange={(e) =>
+                  setValues({ ...values, calendar: e.target.value })
+                }
               >
-                <MenuItem value='Personal'>Personal</MenuItem>
-                <MenuItem value='Business'>Business</MenuItem>
-                <MenuItem value='Family'>Family</MenuItem>
-                <MenuItem value='Holiday'>Holiday</MenuItem>
-                <MenuItem value='ETC'>ETC</MenuItem>
+                <MenuItem value="Personal">Personal</MenuItem>
+                <MenuItem value="Business">Business</MenuItem>
+                <MenuItem value="Family">Family</MenuItem>
+                <MenuItem value="Holiday">Holiday</MenuItem>
+                <MenuItem value="ETC">ETC</MenuItem>
               </Select>
             </FormControl>
             <Box sx={{ mb: 6 }}>
               <DatePicker
                 selectsStart
-                id='event-start-date'
+                id="event-start-date"
                 endDate={values.endDate as EventDateType}
                 selected={values.startDate as EventDateType}
                 startDate={values.startDate as EventDateType}
                 showTimeSelect={!values.allDay}
                 dateFormat={!values.allDay ? 'yyyy-MM-dd hh:mm' : 'yyyy-MM-dd'}
-                customInput={<PickersComponent label='Start Date' registername='startDate' />}
-                onChange={(date: Date) => setValues({ ...values, startDate: new Date(date) })}
+                customInput={
+                  <PickersComponent
+                    label="Start Date"
+                    registername="startDate"
+                  />
+                }
+                onChange={(date: Date) =>
+                  setValues({ ...values, startDate: new Date(date) })
+                }
                 onSelect={handleStartDate}
               />
             </Box>
             <Box sx={{ mb: 6 }}>
               <DatePicker
                 selectsEnd
-                id='event-end-date'
+                id="event-end-date"
                 endDate={values.endDate as EventDateType}
                 selected={values.endDate as EventDateType}
                 minDate={values.startDate as EventDateType}
                 startDate={values.startDate as EventDateType}
                 showTimeSelect={!values.allDay}
                 dateFormat={!values.allDay ? 'yyyy-MM-dd hh:mm' : 'yyyy-MM-dd'}
-                customInput={<PickersComponent label='End Date' registername='endDate' />}
-                onChange={(date: Date) => setValues({ ...values, endDate: new Date(date) })}
+                customInput={
+                  <PickersComponent label="End Date" registername="endDate" />
+                }
+                onChange={(date: Date) =>
+                  setValues({ ...values, endDate: new Date(date) })
+                }
               />
             </Box>
             <FormControl sx={{ mb: 6 }}>
               <FormControlLabel
-                label='All Day'
+                label="All Day"
                 control={
-                  <Switch checked={values.allDay} onChange={e => setValues({ ...values, allDay: e.target.checked })} />
+                  <Switch
+                    checked={values.allDay}
+                    onChange={(e) =>
+                      setValues({ ...values, allDay: e.target.checked })
+                    }
+                  />
                 }
               />
             </FormControl>
             <TextField
               fullWidth
-              type='url'
-              id='event-url'
+              type="url"
+              id="event-url"
               sx={{ mb: 6 }}
-              label='Event URL'
+              label="Event URL"
               value={values.url}
-              onChange={e => setValues({ ...values, url: e.target.value })}
+              onChange={(e) => setValues({ ...values, url: e.target.value })}
             />
             <FormControl fullWidth sx={{ mb: 6 }}>
-              <InputLabel id='event-guests'>Guests</InputLabel>
+              <InputLabel id="event-guests">Guests</InputLabel>
               <Select
                 multiple
-                label='Guests'
+                label="Guests"
                 value={values.guests}
-                labelId='event-guests'
-                id='event-guests-select'
-                onChange={e => setValues({ ...values, guests: e.target.value })}
+                labelId="event-guests"
+                id="event-guests-select"
+                onChange={(e) =>
+                  setValues({ ...values, guests: e.target.value })
+                }
               >
-                <MenuItem value='bruce'>Bruce</MenuItem>
-                <MenuItem value='clark'>Clark</MenuItem>
-                <MenuItem value='diana'>Diana</MenuItem>
-                <MenuItem value='john'>John</MenuItem>
-                <MenuItem value='barry'>Barry</MenuItem>
+                <MenuItem value="bruce">Bruce</MenuItem>
+                <MenuItem value="clark">Clark</MenuItem>
+                <MenuItem value="diana">Diana</MenuItem>
+                <MenuItem value="john">John</MenuItem>
+                <MenuItem value="barry">Barry</MenuItem>
               </Select>
             </FormControl>
             <TextField
@@ -335,10 +402,12 @@ const AddEventSidebar = (props: AddEventSidebarType) => {
               multiline
               fullWidth
               sx={{ mb: 4 }}
-              label='Description'
-              id='event-description'
+              label="Description"
+              id="event-description"
               value={values.description}
-              onChange={e => setValues({ ...values, description: e.target.value })}
+              onChange={(e) =>
+                setValues({ ...values, description: e.target.value })
+              }
             />
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
               <RenderSidebarFooter />

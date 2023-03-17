@@ -30,9 +30,9 @@ const SliderCustomMarks = () => {
       step={10}
       marks={marks}
       defaultValue={20}
-      valueLabelDisplay='auto'
+      valueLabelDisplay="auto"
       getAriaValueText={valuetext}
-      aria-labelledby='custom-marks-slider'
+      aria-labelledby="custom-marks-slider"
     />
   )
 }

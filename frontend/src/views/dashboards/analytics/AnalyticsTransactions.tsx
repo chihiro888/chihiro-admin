@@ -59,8 +59,13 @@ const AnalyticsTransactions = () => {
   return (
     <Card>
       <CardHeader
-        title='Transactions'
-        action={<OptionsMenu iconButtonProps={{ size: 'small' }} options={['Share', 'Refresh', 'Edit']} />}
+        title="Transactions"
+        action={
+          <OptionsMenu
+            iconButtonProps={{ size: 'small' }}
+            options={['Share', 'Refresh', 'Edit']}
+          />
+        }
       />
       <CardContent>
         {data.map((item: DataType, index: number) => {
@@ -73,7 +78,11 @@ const AnalyticsTransactions = () => {
                 mb: index !== data.length - 1 ? 6 : undefined
               }}
             >
-              <Avatar src={item.imgSrc} variant='rounded' sx={{ mr: 3.5, width: 38, height: 38 }} />
+              <Avatar
+                src={item.imgSrc}
+                variant="rounded"
+                sx={{ mr: 3.5, width: 38, height: 38 }}
+              />
               <Box
                 sx={{
                   width: '100%',
@@ -84,13 +93,20 @@ const AnalyticsTransactions = () => {
                 }}
               >
                 <Box sx={{ mr: 2, display: 'flex', flexDirection: 'column' }}>
-                  <Typography variant='body2' sx={{ mb: 0.5, color: 'text.disabled' }}>
+                  <Typography
+                    variant="body2"
+                    sx={{ mb: 0.5, color: 'text.disabled' }}
+                  >
                     {item.title}
                   </Typography>
-                  <Typography sx={{ fontWeight: 500 }}>{item.subtitle}</Typography>
+                  <Typography sx={{ fontWeight: 500 }}>
+                    {item.subtitle}
+                  </Typography>
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                  <Typography sx={{ mr: 3, fontWeight: 500 }}>{item.amount}</Typography>
+                  <Typography sx={{ mr: 3, fontWeight: 500 }}>
+                    {item.amount}
+                  </Typography>
                   <Typography sx={{ color: 'text.disabled' }}>USD</Typography>
                 </Box>
               </Box>

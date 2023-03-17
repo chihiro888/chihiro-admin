@@ -1,5 +1,12 @@
 // ** React Imports
-import { KeyboardEvent, useEffect, useRef, useState, MouseEvent, TouchEvent } from 'react'
+import {
+  KeyboardEvent,
+  useEffect,
+  useRef,
+  useState,
+  MouseEvent,
+  TouchEvent
+} from 'react'
 
 // ** MUI Imports
 import Grow from '@mui/material/Grow'
@@ -25,11 +32,14 @@ const MenuComposition = () => {
   const anchorRef = useRef<HTMLButtonElement | null>(null)
 
   const handleToggle = () => {
-    setOpen(prevOpen => !prevOpen)
+    setOpen((prevOpen) => !prevOpen)
   }
 
   const handleClose = (event: MouseEvent | TouchEvent): void => {
-    if (anchorRef.current && anchorRef.current.contains(event.target as HTMLElement)) {
+    if (
+      anchorRef.current &&
+      anchorRef.current.contains(event.target as HTMLElement)
+    ) {
       return
     }
     setOpen(false)
@@ -59,13 +69,13 @@ const MenuComposition = () => {
     <div>
       <Button
         ref={anchorRef}
-        variant='contained'
-        aria-haspopup='true'
+        variant="contained"
+        aria-haspopup="true"
         onClick={handleToggle}
-        id='composition-button'
+        id="composition-button"
         aria-expanded={open ? 'true' : undefined}
         aria-controls={open ? 'composition-menu' : undefined}
-        sx={{ '& + div': { zIndex: theme => theme.zIndex.modal } }}
+        sx={{ '& + div': { zIndex: (theme) => theme.zIndex.modal } }}
       >
         Open Menu
       </Button>
@@ -74,7 +84,7 @@ const MenuComposition = () => {
         open={open}
         disablePortal
         role={undefined}
-        placement='bottom-start'
+        placement="bottom-start"
         anchorEl={anchorRef.current}
         popperOptions={{
           modifiers: [
@@ -91,18 +101,25 @@ const MenuComposition = () => {
         {({ TransitionProps, placement }) => (
           <Grow
             {...TransitionProps}
-            style={{ transformOrigin: placement === 'bottom-start' ? 'left top' : 'left bottom' }}
+            style={{
+              transformOrigin:
+                placement === 'bottom-start' ? 'left top' : 'left bottom'
+            }}
           >
             <Paper
               elevation={skin === 'bordered' ? 0 : 6}
-              sx={skin === 'bordered' ? { border: theme => `1px solid ${theme.palette.divider}` } : {}}
+              sx={
+                skin === 'bordered'
+                  ? { border: (theme) => `1px solid ${theme.palette.divider}` }
+                  : {}
+              }
             >
               <ClickAwayListener onClickAway={() => setOpen(false)}>
                 <MenuList
                   autoFocusItem={open}
-                  id='composition-menu'
+                  id="composition-menu"
                   onKeyDown={handleListKeyDown}
-                  sx={{ p: theme => theme.spacing(1.25, 0) }}
+                  sx={{ p: (theme) => theme.spacing(1.25, 0) }}
                 >
                   <MenuItem onClick={handleClose}>Profile</MenuItem>
                   <MenuItem onClick={handleClose}>My account</MenuItem>

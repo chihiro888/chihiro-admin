@@ -35,44 +35,6 @@ const Content = () => {
   })
   const { openSnack, snackContent } = state
 
-  // typelist : text | date | editor | image | chip | snackbar
-
-  // const [tableContent, setContentForm] = useState([
-  //   {
-  //     key: 'key',
-  //     type: 'text'
-  //   },
-  //   {
-  //     key: 'profile',
-  //     type: 'image',
-  //     width: 30,
-  //     height: 30
-  //   },
-  //   {
-  //     key: 'createdAt',
-  //     type: 'date'
-  //   },
-  //   {
-  //     key:'role',
-  //     type:'chip',
-  //     condition: {
-  //       SA: 'primary',
-  //       A: 'secondary',
-  //       U: 'warning'
-  //     }
-  //   },
-  //   {
-  //     key: 'intro',
-  //     type: 'editor',
-  //     title: '자기소개'
-  //   },
-  //   {
-  //     key: 'password',
-  //     type: 'snackbar',
-  //     title: '비밀번호'
-  //   }
-  // ])
-
   const handleClickSnack = (password: string) => {
     setState({
       openSnack: true,

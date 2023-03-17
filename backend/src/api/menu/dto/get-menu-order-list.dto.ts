@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger'
 
-export class GetMenuListDto {
+export class GetMenuOrderListDto {
   @ApiProperty({
     description: 'permission',
     example: 'U'

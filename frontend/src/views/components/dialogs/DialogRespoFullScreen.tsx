@@ -25,22 +25,29 @@ const DialogRespoFullScreen = () => {
 
   return (
     <Fragment>
-      <Button variant='outlined' onClick={handleClickOpen}>
+      <Button variant="outlined" onClick={handleClickOpen}>
         Open responsive dialog
       </Button>
-      <Dialog fullScreen={fullScreen} open={open} onClose={handleClose} aria-labelledby='responsive-dialog-title'>
-        <DialogTitle id='responsive-dialog-title'>Use Google's location service?</DialogTitle>
+      <Dialog
+        fullScreen={fullScreen}
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="responsive-dialog-title"
+      >
+        <DialogTitle id="responsive-dialog-title">
+          Use Google's location service?
+        </DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Let Google help apps determine location. This means sending anonymous location data to Google, even when no
-            apps are running.
+            Let Google help apps determine location. This means sending
+            anonymous location data to Google, even when no apps are running.
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button variant='outlined' color='secondary' onClick={handleClose}>
+          <Button variant="outlined" color="secondary" onClick={handleClose}>
             Disagree
           </Button>
-          <Button variant='contained' onClick={handleClose}>
+          <Button variant="contained" onClick={handleClose}>
             Agree
           </Button>
         </DialogActions>

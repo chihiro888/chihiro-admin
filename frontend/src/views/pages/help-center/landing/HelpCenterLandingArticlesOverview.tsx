@@ -17,7 +17,7 @@ const HelpCenterLandingArticlesOverview = (props: Props) => {
 
   const renderArticles = () => {
     if (articles && articles.length) {
-      return articles.map(article => {
+      return articles.map((article) => {
         return (
           <Grid item xs={12} sm={6} md={4} key={article.slug}>
             <Box
@@ -29,14 +29,14 @@ const HelpCenterLandingArticlesOverview = (props: Props) => {
                 textAlign: 'center',
                 alignItems: 'center',
                 flexDirection: 'column',
-                border: theme => `1px solid ${theme.palette.divider}`
+                border: (theme) => `1px solid ${theme.palette.divider}`
               }}
             >
               <Box sx={{ minHeight: 58, display: 'flex' }}>
-                <img height='58' src={article.img} alt={article.title} />
+                <img height="58" src={article.img} alt={article.title} />
               </Box>
 
-              <Typography variant='h6' sx={{ mb: 1.5, fontWeight: 600 }}>
+              <Typography variant="h6" sx={{ mb: 1.5, fontWeight: 600 }}>
                 {article.title}
               </Typography>
               <Typography
@@ -52,8 +52,11 @@ const HelpCenterLandingArticlesOverview = (props: Props) => {
               >
                 {article.subtitle}
               </Typography>
-              <Link href='/pages/help-center/getting-started/account/changing-your-username' passHref>
-                <Button sx={{ mt: 4 }} variant='outlined'>
+              <Link
+                href="/pages/help-center/getting-started/account/changing-your-username"
+                passHref
+              >
+                <Button sx={{ mt: 4 }} variant="outlined">
                   Read More
                 </Button>
               </Link>

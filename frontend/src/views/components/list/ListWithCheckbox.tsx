@@ -33,12 +33,16 @@ const ListWithCheckbox = () => {
       <ListItem disablePadding>
         <ListItemButton onClick={handleToggle(0)}>
           <ListItemAvatar>
-            <Avatar src='/images/avatars/2.png' alt='Caroline Black' sx={{ height: 32, width: 32 }} />
+            <Avatar
+              src="/images/avatars/2.png"
+              alt="Caroline Black"
+              sx={{ height: 32, width: 32 }}
+            />
           </ListItemAvatar>
-          <ListItemText id='checkbox-list-label-0' primary='Caroline Black' />
+          <ListItemText id="checkbox-list-label-0" primary="Caroline Black" />
           <ListItemSecondaryAction>
             <Checkbox
-              edge='end'
+              edge="end"
               tabIndex={-1}
               disableRipple
               onChange={handleToggle(0)}
@@ -51,12 +55,16 @@ const ListWithCheckbox = () => {
       <ListItem disablePadding>
         <ListItemButton onClick={handleToggle(1)}>
           <ListItemAvatar>
-            <Avatar src='/images/avatars/1.png' alt='Alfred Copeland' sx={{ height: 32, width: 32 }} />
+            <Avatar
+              src="/images/avatars/1.png"
+              alt="Alfred Copeland"
+              sx={{ height: 32, width: 32 }}
+            />
           </ListItemAvatar>
-          <ListItemText id='checkbox-list-label-1' primary='Alfred Copeland' />
+          <ListItemText id="checkbox-list-label-1" primary="Alfred Copeland" />
           <ListItemSecondaryAction>
             <Checkbox
-              edge='end'
+              edge="end"
               tabIndex={-1}
               disableRipple
               onChange={handleToggle(1)}
@@ -69,12 +77,16 @@ const ListWithCheckbox = () => {
       <ListItem disablePadding>
         <ListItemButton onClick={handleToggle(2)}>
           <ListItemAvatar>
-            <Avatar src='/images/avatars/8.png' alt='Celia Schneider' sx={{ height: 32, width: 32 }} />
+            <Avatar
+              src="/images/avatars/8.png"
+              alt="Celia Schneider"
+              sx={{ height: 32, width: 32 }}
+            />
           </ListItemAvatar>
-          <ListItemText id='checkbox-list-label-2' primary='Celia Schneider' />
+          <ListItemText id="checkbox-list-label-2" primary="Celia Schneider" />
           <ListItemSecondaryAction>
             <Checkbox
-              edge='end'
+              edge="end"
               tabIndex={-1}
               disableRipple
               onChange={handleToggle(2)}

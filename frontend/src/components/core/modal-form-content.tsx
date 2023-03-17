@@ -99,7 +99,7 @@ const ModalFormContent = ({ formContent, handleChangeForm }) => {
                         id="outlined-number"
                         type="number"
                         InputLabelProps={{
-                          shrink: true,
+                          shrink: true
                         }}
                         label={item.label}
                         value={item.value}

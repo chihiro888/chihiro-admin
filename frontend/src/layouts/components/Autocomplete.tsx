@@ -18,7 +18,9 @@ import useMediaQuery from '@mui/material/useMediaQuery'
 import { styled, useTheme } from '@mui/material/styles'
 import ListItemButton from '@mui/material/ListItemButton'
 import InputAdornment from '@mui/material/InputAdornment'
-import MuiAutocomplete, { AutocompleteRenderInputParams } from '@mui/material/Autocomplete'
+import MuiAutocomplete, {
+  AutocompleteRenderInputParams
+} from '@mui/material/Autocomplete'
 
 // ** Third Party Imports
 import axios from 'axios'
@@ -214,9 +216,10 @@ const Autocomplete = styled(MuiAutocomplete)(({ theme }) => ({
           }
         },
         [theme.breakpoints.down('sm')]: {
-          '&.Mui-focused:not(.Mui-focusVisible) .MuiListItemSecondaryAction-root': {
-            display: 'none'
-          }
+          '&.Mui-focused:not(.Mui-focusVisible) .MuiListItemSecondaryAction-root':
+            {
+              display: 'none'
+            }
         }
       }
     },
@@ -247,25 +250,40 @@ const Dialog = styled(MuiDialog)({
 
 const NoResult = ({ value, setOpenDialog }: NoResultProps) => {
   return (
-    <Box sx={{ display: 'flex', alignItems: 'center', flexDirection: 'column', justifyContent: 'center' }}>
+    <Box
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        flexDirection: 'column',
+        justifyContent: 'center'
+      }}
+    >
       <Box sx={{ mb: 2.5, color: 'text.primary' }}>
-        <Icon icon='mdi:file-remove-outline' fontSize='5rem' />
+        <Icon icon="mdi:file-remove-outline" fontSize="5rem" />
       </Box>
-      <Typography variant='h6' sx={{ mb: 11.5, wordWrap: 'break-word' }}>
+      <Typography variant="h6" sx={{ mb: 11.5, wordWrap: 'break-word' }}>
         No results for{' '}
-        <Typography variant='h6' component='span' sx={{ wordWrap: 'break-word' }}>
+        <Typography
+          variant="h6"
+          component="span"
+          sx={{ wordWrap: 'break-word' }}
+        >
           {`"${value}"`}
         </Typography>
       </Typography>
 
-      <Typography variant='body2' sx={{ mb: 2.5, color: 'text.disabled' }}>
+      <Typography variant="body2" sx={{ mb: 2.5, color: 'text.disabled' }}>
         Try searching for
       </Typography>
       <List sx={{ py: 0 }}>
-        <ListItem sx={{ py: 2 }} disablePadding onClick={() => setOpenDialog(false)}>
-          <Link passHref href='/dashboards/ecommerce'>
+        <ListItem
+          sx={{ py: 2 }}
+          disablePadding
+          onClick={() => setOpenDialog(false)}
+        >
+          <Link passHref href="/dashboards/ecommerce">
             <Box
-              component='a'
+              component="a"
               sx={{
                 display: 'flex',
                 alignItems: 'center',
@@ -274,18 +292,22 @@ const NoResult = ({ value, setOpenDialog }: NoResultProps) => {
               }}
             >
               <Box sx={{ mr: 2.5, display: 'flex', color: 'text.primary' }}>
-                <Icon icon='bx:cart' fontSize={20} />
+                <Icon icon="bx:cart" fontSize={20} />
               </Box>
-              <Typography variant='body2' sx={{ color: 'text.primary' }}>
+              <Typography variant="body2" sx={{ color: 'text.primary' }}>
                 eCommerce Dashboard
               </Typography>
             </Box>
           </Link>
         </ListItem>
-        <ListItem sx={{ py: 2 }} disablePadding onClick={() => setOpenDialog(false)}>
-          <Link passHref href='/pages/user-profile/profile'>
+        <ListItem
+          sx={{ py: 2 }}
+          disablePadding
+          onClick={() => setOpenDialog(false)}
+        >
+          <Link passHref href="/pages/user-profile/profile">
             <Box
-              component='a'
+              component="a"
               sx={{
                 display: 'flex',
                 alignItems: 'center',
@@ -294,18 +316,22 @@ const NoResult = ({ value, setOpenDialog }: NoResultProps) => {
               }}
             >
               <Box sx={{ mr: 2.5, display: 'flex', color: 'text.primary' }}>
-                <Icon icon='bx:user' fontSize={20} />
+                <Icon icon="bx:user" fontSize={20} />
               </Box>
-              <Typography variant='body2' sx={{ color: 'text.primary' }}>
+              <Typography variant="body2" sx={{ color: 'text.primary' }}>
                 User Profile
               </Typography>
             </Box>
           </Link>
         </ListItem>
-        <ListItem sx={{ py: 2 }} disablePadding onClick={() => setOpenDialog(false)}>
-          <Link passHref href='/pages/account-settings/account'>
+        <ListItem
+          sx={{ py: 2 }}
+          disablePadding
+          onClick={() => setOpenDialog(false)}
+        >
+          <Link passHref href="/pages/account-settings/account">
             <Box
-              component='a'
+              component="a"
               sx={{
                 display: 'flex',
                 alignItems: 'center',
@@ -314,9 +340,9 @@ const NoResult = ({ value, setOpenDialog }: NoResultProps) => {
               }}
             >
               <Box sx={{ mr: 2.5, display: 'flex', color: 'text.primary' }}>
-                <Icon icon='mdi:account-cog-outline' fontSize={20} />
+                <Icon icon="mdi:account-cog-outline" fontSize={20} />
               </Box>
-              <Typography variant='body2' sx={{ color: 'text.primary' }}>
+              <Typography variant="body2" sx={{ color: 'text.primary' }}>
                 Account Settings
               </Typography>
             </Box>
@@ -332,7 +358,11 @@ const DefaultSuggestions = ({ setOpenDialog }: DefaultSuggestionsProps) => {
     <Grid container spacing={6} sx={{ ml: 0 }}>
       {defaultSuggestionsData.map((item, index) => (
         <Grid item xs={12} sm={6} key={index}>
-          <Typography component='p' variant='overline' sx={{ lineHeight: 1.25, color: 'text.disabled' }}>
+          <Typography
+            component="p"
+            variant="overline"
+            sx={{ lineHeight: 1.25, color: 'text.disabled' }}
+          >
             {item.category}
           </Typography>
           <List sx={{ py: 2.5 }}>
@@ -340,7 +370,7 @@ const DefaultSuggestions = ({ setOpenDialog }: DefaultSuggestionsProps) => {
               <ListItem key={index2} sx={{ py: 2 }} disablePadding>
                 <Link passHref href={suggestionItem.link}>
                   <Box
-                    component='a'
+                    component="a"
                     onClick={() => setOpenDialog(false)}
                     sx={{
                       display: 'flex',
@@ -352,7 +382,7 @@ const DefaultSuggestions = ({ setOpenDialog }: DefaultSuggestionsProps) => {
                     }}
                   >
                     <Icon icon={suggestionItem.icon} fontSize={20} />
-                    <Typography variant='body2' sx={{ color: 'text.primary' }}>
+                    <Typography variant="body2" sx={{ color: 'text.primary' }}>
                       {suggestionItem.suggestion}
                     </Typography>
                   </Box>
@@ -386,7 +416,7 @@ const AutocompleteComponent = ({ hidden, settings }: Props) => {
       .get('/app-bar/search', {
         params: { q: searchValue }
       })
-      .then(response => {
+      .then((response) => {
         if (response.data && response.data.length) {
           setOptions(response.data)
         } else {
@@ -457,27 +487,45 @@ const AutocompleteComponent = ({ hidden, settings }: Props) => {
         onClick={() => !openDialog && setOpenDialog(true)}
         sx={{ display: 'flex', cursor: 'pointer', alignItems: 'center' }}
       >
-        <IconButton color='inherit' sx={!hidden && layout === 'vertical' ? { mr: 1, ml: -2.75 } : {}}>
-          <Icon icon='bx:search' />
+        <IconButton
+          color="inherit"
+          sx={!hidden && layout === 'vertical' ? { mr: 1, ml: -2.75 } : {}}
+        >
+          <Icon icon="bx:search" />
         </IconButton>
         {!hidden && layout === 'vertical' ? (
-          <Typography sx={{ userSelect: 'none', color: 'text.disabled' }}>Search (Ctrl+/)</Typography>
+          <Typography sx={{ userSelect: 'none', color: 'text.disabled' }}>
+            Search (Ctrl+/)
+          </Typography>
         ) : null}
         {openDialog && (
-          <Dialog fullWidth open={openDialog} fullScreen={fullScreenDialog} onClose={() => setOpenDialog(false)}>
+          <Dialog
+            fullWidth
+            open={openDialog}
+            fullScreen={fullScreenDialog}
+            onClose={() => setOpenDialog(false)}
+          >
             <Box sx={{ top: 0, width: '100%', position: 'sticky' }}>
               <Autocomplete
                 autoHighlight
                 disablePortal
                 options={options}
-                id='appBar-search'
+                id="appBar-search"
                 isOptionEqualToValue={() => true}
                 onInputChange={(event, value: string) => setSearchValue(value)}
-                onChange={(event, obj) => handleOptionClick(obj as AppBarSearchType)}
-                noOptionsText={<NoResult value={searchValue} setOpenDialog={setOpenDialog} />}
-                getOptionLabel={(option: AppBarSearchType | unknown) => (option as AppBarSearchType).title}
+                onChange={(event, obj) =>
+                  handleOptionClick(obj as AppBarSearchType)
+                }
+                noOptionsText={
+                  <NoResult value={searchValue} setOpenDialog={setOpenDialog} />
+                }
+                getOptionLabel={(option: AppBarSearchType | unknown) =>
+                  (option as AppBarSearchType).title
+                }
                 groupBy={(option: AppBarSearchType | unknown) =>
-                  searchValue.length ? categoryTitle[(option as AppBarSearchType).category] : ''
+                  searchValue.length
+                    ? categoryTitle[(option as AppBarSearchType).category]
+                    : ''
                 }
                 sx={{
                   '& + .MuiAutocomplete-popper': {
@@ -487,7 +535,9 @@ const AutocompleteComponent = ({ hidden, settings }: Props) => {
                           maxHeight: 'calc(100vh - 69px)',
                           borderTop: `1px solid ${theme.palette.divider}`,
                           height: fullScreenDialog ? 'calc(100vh - 69px)' : 481,
-                          '& .MuiListSubheader-root': { p: theme.spacing(3.75, 6, 0.75) }
+                          '& .MuiListSubheader-root': {
+                            p: theme.spacing(3.75, 6, 0.75)
+                          }
                         }
                       : {
                           '& .MuiAutocomplete-listbox': { pb: 0 }
@@ -499,8 +549,10 @@ const AutocompleteComponent = ({ hidden, settings }: Props) => {
                     <TextField
                       {...params}
                       value={searchValue}
-                      onChange={(event: ChangeEvent<HTMLInputElement>) => setSearchValue(event.target.value)}
-                      inputRef={input => {
+                      onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                        setSearchValue(event.target.value)
+                      }
+                      inputRef={(input) => {
                         if (input) {
                           if (openDialog) {
                             input.focus()
@@ -516,19 +568,32 @@ const AutocompleteComponent = ({ hidden, settings }: Props) => {
                           '&.Mui-focused': { boxShadow: 'none !important' }
                         },
                         startAdornment: (
-                          <InputAdornment position='start' sx={{ color: 'text.primary' }}>
-                            <Icon icon='bx:search' />
+                          <InputAdornment
+                            position="start"
+                            sx={{ color: 'text.primary' }}
+                          >
+                            <Icon icon="bx:search" />
                           </InputAdornment>
                         ),
                         endAdornment: (
                           <InputAdornment
-                            position='end'
+                            position="end"
                             onClick={() => setOpenDialog(false)}
-                            sx={{ display: 'flex', cursor: 'pointer', alignItems: 'center' }}
+                            sx={{
+                              display: 'flex',
+                              cursor: 'pointer',
+                              alignItems: 'center'
+                            }}
                           >
-                            {!hidden ? <Typography sx={{ mr: 2.5, color: 'text.disabled' }}>[esc]</Typography> : null}
-                            <IconButton size='small' sx={{ p: 1 }}>
-                              <Icon icon='bx:x' fontSize={20} />
+                            {!hidden ? (
+                              <Typography
+                                sx={{ mr: 2.5, color: 'text.disabled' }}
+                              >
+                                [esc]
+                              </Typography>
+                            ) : null}
+                            <IconButton size="small" sx={{ p: 1 }}>
+                              <Icon icon="bx:x" fontSize={20} />
                             </IconButton>
                           </InputAdornment>
                         )
@@ -542,8 +607,12 @@ const AutocompleteComponent = ({ hidden, settings }: Props) => {
                       {...props}
                       key={(option as AppBarSearchType).title}
                       className={`suggestion ${props.className}`}
-                      onClick={() => handleOptionClick(option as AppBarSearchType)}
-                      secondaryAction={<Icon icon='bx:subdirectory-left' fontSize={20} />}
+                      onClick={() =>
+                        handleOptionClick(option as AppBarSearchType)
+                      }
+                      secondaryAction={
+                        <Icon icon="bx:subdirectory-left" fontSize={20} />
+                      }
                       sx={{
                         '& .MuiListItemSecondaryAction-root': {
                           '& svg': {
@@ -560,8 +629,17 @@ const AutocompleteComponent = ({ hidden, settings }: Props) => {
                           '& svg': { mr: 2.5, color: 'text.primary' }
                         }}
                       >
-                        <Icon fontSize={20} icon={(option as AppBarSearchType).icon || themeConfig.navSubItemIcon} />
-                        <Typography variant='body2' sx={{ color: 'text.primary' }}>
+                        <Icon
+                          fontSize={20}
+                          icon={
+                            (option as AppBarSearchType).icon ||
+                            themeConfig.navSubItemIcon
+                          }
+                        />
+                        <Typography
+                          variant="body2"
+                          sx={{ color: 'text.primary' }}
+                        >
                           {(option as AppBarSearchType).title}
                         </Typography>
                       </ListItemButton>

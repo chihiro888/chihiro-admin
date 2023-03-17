@@ -23,7 +23,8 @@ const generateDataHeat = (count: number, yrange: YRange) => {
   const series = []
   while (i < count) {
     const x = `w${(i + 1).toString()}`
-    const y = Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min
+    const y =
+      Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min
     series.push({
       x,
       y
@@ -76,7 +77,11 @@ const ApexHeatmapChart = () => {
     },
     dataLabels: { enabled: false },
     stroke: {
-      colors: [theme.palette.mode === 'light' ? theme.palette.background.paper : theme.palette.customColors.bodyBg]
+      colors: [
+        theme.palette.mode === 'light'
+          ? theme.palette.background.paper
+          : theme.palette.customColors.bodyBg
+      ]
     },
     legend: {
       position: 'bottom',
@@ -127,17 +132,26 @@ const ApexHeatmapChart = () => {
   return (
     <Card>
       <CardHeader
-        title='Daily Sales States'
+        title="Daily Sales States"
         action={
           <OptionsMenu
             iconProps={{ fontSize: 20 }}
             options={['Last 28 Days', 'Last Month', 'Last Year']}
-            iconButtonProps={{ size: 'small', className: 'card-more-options', sx: { color: 'text.secondary' } }}
+            iconButtonProps={{
+              size: 'small',
+              className: 'card-more-options',
+              sx: { color: 'text.secondary' }
+            }}
           />
         }
       />
       <CardContent>
-        <ReactApexcharts type='heatmap' height={400} options={options} series={series} />
+        <ReactApexcharts
+          type="heatmap"
+          height={400}
+          options={options}
+          series={series}
+        />
       </CardContent>
     </Card>
   )

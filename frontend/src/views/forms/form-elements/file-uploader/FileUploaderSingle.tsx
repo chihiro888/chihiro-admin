@@ -60,19 +60,44 @@ const FileUploaderSingle = () => {
   }
 
   const img = files.map((file: FileProp) => (
-    <img key={file.name} alt={file.name} className='single-file-image' src={URL.createObjectURL(file as any)} />
+    <img
+      key={file.name}
+      alt={file.name}
+      className="single-file-image"
+      src={URL.createObjectURL(file as any)}
+    />
   ))
 
   return (
-    <Box {...getRootProps({ className: 'dropzone' })} sx={acceptedFiles.length ? { height: 450 } : {}}>
+    <Box
+      {...getRootProps({ className: 'dropzone' })}
+      sx={acceptedFiles.length ? { height: 450 } : {}}
+    >
       <input {...getInputProps()} />
-      <Box sx={{ display: 'flex', flexDirection: ['column', 'column', 'row'], alignItems: 'center' }}>
-        <Img alt='Upload img' src={`/images/misc/upload-${theme.palette.mode}.png`} />
-        <Box sx={{ display: 'flex', flexDirection: 'column', textAlign: ['center', 'center', 'inherit'] }}>
-          <HeadingTypography variant='h5'>Drop files here or click to upload.</HeadingTypography>
-          <Typography color='textSecondary'>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: ['column', 'column', 'row'],
+          alignItems: 'center'
+        }}
+      >
+        <Img
+          alt="Upload img"
+          src={`/images/misc/upload-${theme.palette.mode}.png`}
+        />
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            textAlign: ['center', 'center', 'inherit']
+          }}
+        >
+          <HeadingTypography variant="h5">
+            Drop files here or click to upload.
+          </HeadingTypography>
+          <Typography color="textSecondary">
             Drop files here or click{' '}
-            <Link href='/' onClick={handleLinkClick}>
+            <Link href="/" onClick={handleLinkClick}>
               browse
             </Link>{' '}
             thorough your machine

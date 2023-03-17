@@ -13,18 +13,18 @@ const SwiperLoop = ({ direction }: { direction: Direction }) => {
   })
 
   return (
-    <Box ref={ref} className='keen-slider'>
-      <Box className='keen-slider__slide'>
-        <img src='/images/banners/banner-7.jpg' alt='swiper 7' />
+    <Box ref={ref} className="keen-slider">
+      <Box className="keen-slider__slide">
+        <img src="/images/banners/banner-7.jpg" alt="swiper 7" />
       </Box>
-      <Box className='keen-slider__slide'>
-        <img src='/images/banners/banner-8.jpg' alt='swiper 8' />
+      <Box className="keen-slider__slide">
+        <img src="/images/banners/banner-8.jpg" alt="swiper 8" />
       </Box>
-      <Box className='keen-slider__slide'>
-        <img src='/images/banners/banner-9.jpg' alt='swiper 9' />
+      <Box className="keen-slider__slide">
+        <img src="/images/banners/banner-9.jpg" alt="swiper 9" />
       </Box>
-      <Box className='keen-slider__slide'>
-        <img src='/images/banners/banner-10.jpg' alt='swiper 10' />
+      <Box className="keen-slider__slide">
+        <img src="/images/banners/banner-10.jpg" alt="swiper 10" />
       </Box>
     </Box>
   )

@@ -34,7 +34,7 @@ const UserProfileHeader = () => {
   const [data, setData] = useState<ProfileHeaderType | null>(null)
 
   useEffect(() => {
-    axios.get('/pages/profile-header').then(response => {
+    axios.get('/pages/profile-header').then((response) => {
       setData(response.data)
     })
   }, [])
@@ -44,8 +44,8 @@ const UserProfileHeader = () => {
   return data !== null ? (
     <Card>
       <CardMedia
-        component='img'
-        alt='profile-header'
+        component="img"
+        alt="profile-header"
         image={data.coverImg}
         sx={{
           height: { xs: 150, md: 250 }
@@ -61,7 +61,7 @@ const UserProfileHeader = () => {
           justifyContent: { xs: 'center', md: 'flex-start' }
         }}
       >
-        <ProfilePicture src={data.profileImg} alt='profile-picture' />
+        <ProfilePicture src={data.profileImg} alt="profile-picture" />
         <Box
           sx={{
             width: '100%',
@@ -72,8 +72,15 @@ const UserProfileHeader = () => {
             justifyContent: ['center', 'space-between']
           }}
         >
-          <Box sx={{ mb: [6, 0], display: 'flex', flexDirection: 'column', alignItems: ['center', 'flex-start'] }}>
-            <Typography variant='h5' sx={{ mb: 4, fontSize: '1.375rem' }}>
+          <Box
+            sx={{
+              mb: [6, 0],
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: ['center', 'flex-start']
+            }}
+          >
+            <Typography variant="h5" sx={{ mb: 4, fontSize: '1.375rem' }}>
               {data.fullName}
             </Typography>
             <Box
@@ -83,21 +90,50 @@ const UserProfileHeader = () => {
                 justifyContent: ['center', 'flex-start']
               }}
             >
-              <Box sx={{ mr: 4, display: 'flex', alignItems: 'center', '& svg': { mr: 1, color: 'text.secondary' } }}>
+              <Box
+                sx={{
+                  mr: 4,
+                  display: 'flex',
+                  alignItems: 'center',
+                  '& svg': { mr: 1, color: 'text.secondary' }
+                }}
+              >
                 <Icon icon={designationIcon} />
-                <Typography sx={{ color: 'text.secondary', fontWeight: 600 }}>{data.designation}</Typography>
+                <Typography sx={{ color: 'text.secondary', fontWeight: 600 }}>
+                  {data.designation}
+                </Typography>
               </Box>
-              <Box sx={{ mr: 4, display: 'flex', alignItems: 'center', '& svg': { mr: 1, color: 'text.secondary' } }}>
-                <Icon icon='bx:map' />
-                <Typography sx={{ color: 'text.secondary', fontWeight: 600 }}>{data.location}</Typography>
+              <Box
+                sx={{
+                  mr: 4,
+                  display: 'flex',
+                  alignItems: 'center',
+                  '& svg': { mr: 1, color: 'text.secondary' }
+                }}
+              >
+                <Icon icon="bx:map" />
+                <Typography sx={{ color: 'text.secondary', fontWeight: 600 }}>
+                  {data.location}
+                </Typography>
               </Box>
-              <Box sx={{ display: 'flex', alignItems: 'center', '& svg': { mr: 1, color: 'text.secondary' } }}>
-                <Icon icon='bx:calendar-alt' />
-                <Typography sx={{ color: 'text.secondary', fontWeight: 600 }}>Joined {data.joiningDate}</Typography>
+              <Box
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  '& svg': { mr: 1, color: 'text.secondary' }
+                }}
+              >
+                <Icon icon="bx:calendar-alt" />
+                <Typography sx={{ color: 'text.secondary', fontWeight: 600 }}>
+                  Joined {data.joiningDate}
+                </Typography>
               </Box>
             </Box>
           </Box>
-          <Button variant='contained' startIcon={<Icon icon='bx:user-check' fontSize={20} />}>
+          <Button
+            variant="contained"
+            startIcon={<Icon icon="bx:user-check" fontSize={20} />}
+          >
             Connected
           </Button>
         </Box>

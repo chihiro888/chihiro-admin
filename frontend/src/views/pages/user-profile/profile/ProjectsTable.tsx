@@ -32,11 +32,13 @@ interface CellType {
 // ** renders name column
 const renderName = (row: ProjectTableRowType) => {
   if (row.avatar) {
-    return <CustomAvatar src={row.avatar} sx={{ mr: 2, width: 35, height: 35 }} />
+    return (
+      <CustomAvatar src={row.avatar} sx={{ mr: 2, width: 35, height: 35 }} />
+    )
   } else {
     return (
       <CustomAvatar
-        skin='light'
+        skin="light"
         sx={{ mr: 2, width: 35, height: 35, fontSize: '0.875rem' }}
         color={(row.avatarColor as ThemeColor) || ('primary' as ThemeColor)}
       >
@@ -59,10 +61,17 @@ const columns = [
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           {renderName(row)}
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-            <Typography noWrap sx={{ color: 'text.secondary', fontWeight: 700 }}>
+            <Typography
+              noWrap
+              sx={{ color: 'text.secondary', fontWeight: 700 }}
+            >
               {name}
             </Typography>
-            <Typography noWrap variant='body2' sx={{ color: 'text.disabled', textTransform: 'capitalize' }}>
+            <Typography
+              noWrap
+              variant="body2"
+              sx={{ color: 'text.disabled', textTransform: 'capitalize' }}
+            >
               {date}
             </Typography>
           </Box>
@@ -75,7 +84,9 @@ const columns = [
     minWidth: 105,
     field: 'leader',
     headerName: 'Leader',
-    renderCell: ({ row }: CellType) => <Typography sx={{ color: 'text.secondary' }}>{row.leader}</Typography>
+    renderCell: ({ row }: CellType) => (
+      <Typography sx={{ color: 'text.secondary' }}>{row.leader}</Typography>
+    )
   },
   {
     flex: 0.1,
@@ -83,7 +94,7 @@ const columns = [
     minWidth: 120,
     headerName: 'Team',
     renderCell: ({ row }: CellType) => (
-      <AvatarGroup className='pull-up'>
+      <AvatarGroup className="pull-up">
         {row.avatarGroup.map((src, index) => (
           <CustomAvatar key={index} src={src} sx={{ height: 26, width: 26 }} />
         ))}
@@ -98,9 +109,9 @@ const columns = [
     renderCell: ({ row }: CellType) => (
       <>
         <LinearProgress
-          color='primary'
+          color="primary"
           value={row.status}
-          variant='determinate'
+          variant="determinate"
           sx={{
             mr: 4,
             height: 6,
@@ -109,7 +120,9 @@ const columns = [
             '& .MuiLinearProgress-bar': { borderRadius: 8 }
           }}
         />
-        <Typography sx={{ color: 'text.secondary' }}>{`${row.status}%`}</Typography>
+        <Typography
+          sx={{ color: 'text.secondary' }}
+        >{`${row.status}%`}</Typography>
       </>
     )
   },
@@ -140,9 +153,11 @@ const ProfileTable = () => {
   const [pageSize, setPageSize] = useState<number>(7)
 
   useEffect(() => {
-    axios.get('/pages/profile-table', { params: { q: value } }).then(response => {
-      setData(response.data)
-    })
+    axios
+      .get('/pages/profile-table', { params: { q: value } })
+      .then((response) => {
+        setData(response.data)
+      })
   }, [value])
 
   const handleFilter = (val: string) => {
@@ -152,13 +167,17 @@ const ProfileTable = () => {
   return data ? (
     <Card>
       <CardHeader
-        title='Projects'
+        title="Projects"
         action={
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <Typography variant='body2' sx={{ mr: 2 }}>
+            <Typography variant="body2" sx={{ mr: 2 }}>
               Search:
             </Typography>
-            <TextField size='small' value={value} onChange={e => handleFilter(e.target.value)} />
+            <TextField
+              size="small"
+              value={value}
+              onChange={(e) => handleFilter(e.target.value)}
+            />
           </Box>
         }
       />
@@ -171,7 +190,7 @@ const ProfileTable = () => {
         pageSize={pageSize}
         disableSelectionOnClick
         rowsPerPageOptions={[5, 7, 10]}
-        onPageSizeChange={size => setPageSize(size)}
+        onPageSizeChange={(size) => setPageSize(size)}
       />
     </Card>
   ) : null

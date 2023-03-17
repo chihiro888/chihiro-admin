@@ -31,7 +31,7 @@ const SliderRemovedTrack = () => {
       marks={marks}
       defaultValue={30}
       getAriaValueText={valuetext}
-      aria-labelledby='removed-track-slider'
+      aria-labelledby="removed-track-slider"
     />
   )
 }

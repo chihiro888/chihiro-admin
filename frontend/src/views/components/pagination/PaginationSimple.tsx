@@ -3,10 +3,10 @@ import Pagination from '@mui/material/Pagination'
 
 const PaginationSimple = () => {
   return (
-    <div className='demo-space-y'>
+    <div className="demo-space-y">
       <Pagination count={10} />
-      <Pagination count={10} color='primary' />
-      <Pagination count={10} color='secondary' />
+      <Pagination count={10} color="primary" />
+      <Pagination count={10} color="secondary" />
     </div>
   )
 }

@@ -63,7 +63,11 @@ const ModalEditorViewerContainer = ({ title, content, nullContent = '' }) => {
               {title}
             </Typography>
           </Box>
-          <Viewer initialValue={content ? content :  (nullContent ? nullContent : '내용이 없습니다.') } />
+          <Viewer
+            initialValue={
+              content ? content : nullContent ? nullContent : '내용이 없습니다.'
+            }
+          />
         </DialogContent>
         <DialogActions
           sx={{ pb: { xs: 8, sm: 12.5 }, justifyContent: 'center' }}

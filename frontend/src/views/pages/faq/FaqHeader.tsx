@@ -41,25 +41,33 @@ const FaqHeader = (props: Props) => {
   // ** Props
   const { searchTerm, setSearchTerm } = props
 
-  const handleFaqFilter = (e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+  const handleFaqFilter = (
+    e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+  ) => {
     setSearchTerm(e.target.value)
   }
 
   return (
     <Card>
-      <CardContent sx={{ pt: 17.5, textAlign: 'center', pb: theme => `${theme.spacing(17.5)} !important` }}>
-        <Typography variant='h5' sx={{ mb: 8 }}>
+      <CardContent
+        sx={{
+          pt: 17.5,
+          textAlign: 'center',
+          pb: (theme) => `${theme.spacing(17.5)} !important`
+        }}
+      >
+        <Typography variant="h5" sx={{ mb: 8 }}>
           Hello, how can we help?
         </Typography>
 
         <TextField
           value={searchTerm}
-          placeholder='Search a question....'
-          onChange={e => handleFaqFilter(e)}
+          placeholder="Search a question...."
+          onChange={(e) => handleFaqFilter(e)}
           InputProps={{
             startAdornment: (
-              <InputAdornment position='start'>
-                <Icon icon='bx:search' />
+              <InputAdornment position="start">
+                <Icon icon="bx:search" />
               </InputAdornment>
             )
           }}

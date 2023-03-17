@@ -6,7 +6,16 @@ import Typography from '@mui/material/Typography'
 import CardContent from '@mui/material/CardContent'
 
 // ** Third Party Imports
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, TooltipProps } from 'recharts'
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+  TooltipProps
+} from 'recharts'
 
 // ** Icon Imports
 import Icon from 'src/@core/components/icon'
@@ -42,8 +51,10 @@ const CustomTooltip = (props: TooltipProps<any, any>) => {
 
   if (active && payload) {
     return (
-      <div className='recharts-custom-tooltip'>
-        <Typography sx={{ fontSize: '0.875rem' }}>{`${payload[0].value}%`}</Typography>
+      <div className="recharts-custom-tooltip">
+        <Typography
+          sx={{ fontSize: '0.875rem' }}
+        >{`${payload[0].value}%`}</Typography>
       </div>
     )
   }
@@ -55,9 +66,11 @@ const RechartsLineChart = ({ direction }: Props) => {
   return (
     <Card>
       <CardHeader
-        title='Balance'
-        subheader='Commercial networks & enterprises'
-        subheaderTypographyProps={{ sx: { color: theme => `${theme.palette.text.disabled} !important` } }}
+        title="Balance"
+        subheader="Commercial networks & enterprises"
+        subheaderTypographyProps={{
+          sx: { color: (theme) => `${theme.palette.text.disabled} !important` }
+        }}
         sx={{
           flexDirection: ['column', 'row'],
           alignItems: ['flex-start', 'center'],
@@ -66,17 +79,23 @@ const RechartsLineChart = ({ direction }: Props) => {
         }}
         action={
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <Typography variant='h6' sx={{ mr: 5 }}>
+            <Typography variant="h6" sx={{ mr: 5 }}>
               $221,267
             </Typography>
             <CustomChip
               rounded
-              skin='light'
-              color='success'
+              skin="light"
+              color="success"
               sx={{ fontWeight: 500, fontSize: '0.875rem' }}
               label={
-                <Box sx={{ display: 'flex', alignItems: 'center', '& svg': { mr: 1 } }}>
-                  <Icon icon='bx:up-arrow-alt' fontSize='1rem' />
+                <Box
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    '& svg': { mr: 1 }
+                  }}
+                >
+                  <Icon icon="bx:up-arrow-alt" fontSize="1rem" />
                   <span>22%</span>
                 </Box>
               }
@@ -87,12 +106,17 @@ const RechartsLineChart = ({ direction }: Props) => {
       <CardContent>
         <Box sx={{ height: 350 }}>
           <ResponsiveContainer>
-            <LineChart height={350} data={data} style={{ direction }} margin={{ left: -20 }}>
+            <LineChart
+              height={350}
+              data={data}
+              style={{ direction }}
+              margin={{ left: -20 }}
+            >
               <CartesianGrid />
-              <XAxis dataKey='name' reversed={direction === 'rtl'} />
+              <XAxis dataKey="name" reversed={direction === 'rtl'} />
               <YAxis orientation={direction === 'rtl' ? 'right' : 'left'} />
               <Tooltip content={CustomTooltip} />
-              <Line dataKey='pv' stroke='#ff9f43' strokeWidth={3} />
+              <Line dataKey="pv" stroke="#ff9f43" strokeWidth={3} />
             </LineChart>
           </ResponsiveContainer>
         </Box>

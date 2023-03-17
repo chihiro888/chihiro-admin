@@ -13,9 +13,18 @@ const TextFieldControlledUncontrolled = () => {
   }
 
   return (
-    <form className='demo-space-x' noValidate autoComplete='off'>
-      <TextField value={name} label='Controlled' onChange={handleChange} id='controlled-text-field' />
-      <TextField id='uncontrolled-text-field' label='Uncontrolled' defaultValue='foo' />
+    <form className="demo-space-x" noValidate autoComplete="off">
+      <TextField
+        value={name}
+        label="Controlled"
+        onChange={handleChange}
+        id="controlled-text-field"
+      />
+      <TextField
+        id="uncontrolled-text-field"
+        label="Uncontrolled"
+        defaultValue="foo"
+      />
     </form>
   )
 }

@@ -1,11 +1,11 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { IsNotEmpty } from 'class-validator'
 
-export class GetLoginHistoryDetailDto {
+export class GetImageListDto {
   @ApiProperty({
-    description: 'id',
+    description: 'page',
     example: 1
   })
   @IsNotEmpty()
-  id: number
+  page: number
 }

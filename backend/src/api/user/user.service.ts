@@ -1,24 +1,34 @@
+// ** Module
 import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common'
-import DATE from 'src/common/constants/date'
-import { createPassword, isMatch } from 'src/common/util/auth'
 import { DataSource, IsNull } from 'typeorm'
-import { CreateSystemAdminDto } from './dto/create-system-admin.dto'
-import { LoginDto } from './dto/login.dto'
 import moment from 'moment'
-import { LoginHistory } from 'src/entities/login-history.entity'
-import { UpdateAdminPasswordDto } from './dto/update-admin-password.dto'
-import { GetLoginHistoryDetailDto } from './dto/get-login-history-detail.dto'
+
+// ** Dto
+import { GetLoginHistoryDto } from './dto/get-login-history.dto'
 import { GetLoginHistoryListDto } from './dto/get-login-history-list.dto'
-import { File } from 'src/entities/file.entity'
-import { GlobalService } from '../global/global.service'
-import { User } from 'src/entities/user.entity'
 import { UpdateUsernameDto } from './dto/update-username.dto'
 import { CreateUserDto } from './dto/create-user.dto'
-import { GetUserDetailDto } from './dto/get-user-detail.dto'
+import { GetUserDto } from './dto/get-user.dto'
 import { UpdateUserRoleDto } from './dto/update-user-role.dto'
 import { DeleteUserDto } from './dto/delete-user.dto'
 import { UpdateUserIntroDto } from './dto/update-user-intro.dto'
 import { GetUserListDto } from './dto/get-user-list.dto'
+import { UpdatePasswordDto } from './dto/update-password.dto'
+
+// ** Entity
+import { File } from 'src/entities/file.entity'
+import { LoginHistory } from 'src/entities/login-history.entity'
+import { User } from 'src/entities/user.entity'
+
+// ** Constant
+import DATE from 'src/common/constants/date'
+
+// ** Util
+import { createPassword } from 'src/common/util/auth'
+
+// ** Service
+import { GlobalService } from '../global/global.service'
+
 @Injectable()
 export class UserService {
   constructor(
@@ -26,31 +36,6 @@ export class UserService {
     private datasource: DataSource,
     private globalService: GlobalService
   ) {}
-
-  // ANCHOR check system admin
-  async checkSystemAdmin(): Promise<boolean> {
-    const adminList = await this.datasource.getRepository(User).find({
-      where: {
-        role: 'SA',
-        deletedAt: IsNull()
-      }
-    })
-    if (adminList.length === 0) {
-      return true
-    } else {
-      return false
-    }
-  }
-
-  // ANCHOR create system admin
-  async createSystemAdmin(dto: CreateSystemAdminDto) {
-    const user = new User()
-    user.account = dto.account
-    user.password = await createPassword(dto.password)
-    user.username = dto.username
-    user.role = 'SA'
-    await this.datasource.getRepository(User).save(user)
-  }
 
   // ANCHOR get user by account
   async getUserByAccount(account: string) {
@@ -157,8 +142,8 @@ export class UserService {
     }
   }
 
-  // ANCHOR get user detail
-  async getUserDetail(dto: GetUserDetailDto) {
+  // ANCHOR get user
+  async getUser(dto: GetUserDto) {
     const admin = await this.datasource.getRepository(User).findOne({
       where: {
         id: dto.id,
@@ -224,7 +209,7 @@ export class UserService {
   }
 
   // ANCHOR update user password
-  async updateUserPassword(dto: UpdateAdminPasswordDto) {
+  async updateUserPassword(dto: UpdatePasswordDto) {
     const user = await this.datasource.getRepository(User).findOne({
       where: {
         id: dto.id,
@@ -368,8 +353,8 @@ export class UserService {
     }
   }
 
-  // ANCHOR get login history detail
-  async getLoginHistoryDetail(dto: GetLoginHistoryDetailDto) {
+  // ANCHOR get login history
+  async getLoginHistory(dto: GetLoginHistoryDto) {
     const data = await this.datasource
       .getRepository(LoginHistory)
       .findOne({ where: { id: dto.id } })

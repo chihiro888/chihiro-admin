@@ -19,7 +19,15 @@ interface LineProps {
 
 const ChartjsLineChart = (props: LineProps) => {
   // ** Props
-  const { white, primary, success, warning, labelColor, borderColor, legendColor } = props
+  const {
+    white,
+    primary,
+    success,
+    warning,
+    labelColor,
+    borderColor,
+    legendColor
+  } = props
 
   const options: ChartOptions<'line'> = {
     responsive: true,
@@ -77,7 +85,10 @@ const ChartjsLineChart = (props: LineProps) => {
         pointHoverBorderColor: white,
         pointBorderColor: 'transparent',
         pointHoverBackgroundColor: primary,
-        data: [80, 150, 180, 270, 210, 160, 160, 202, 265, 210, 270, 255, 290, 360, 375]
+        data: [
+          80, 150, 180, 270, 210, 160, 160, 202, 265, 210, 270, 255, 290, 360,
+          375
+        ]
       },
       {
         fill: false,
@@ -92,7 +103,10 @@ const ChartjsLineChart = (props: LineProps) => {
         pointHoverBorderColor: white,
         pointBorderColor: 'transparent',
         pointHoverBackgroundColor: warning,
-        data: [80, 125, 105, 130, 215, 195, 140, 160, 230, 300, 220, 170, 210, 200, 280]
+        data: [
+          80, 125, 105, 130, 215, 195, 140, 160, 230, 300, 220, 170, 210, 200,
+          280
+        ]
       },
       {
         fill: false,
@@ -107,14 +121,19 @@ const ChartjsLineChart = (props: LineProps) => {
         pointHoverBorderColor: white,
         pointBorderColor: 'transparent',
         pointHoverBackgroundColor: success,
-        data: [80, 99, 82, 90, 115, 115, 74, 75, 130, 155, 125, 90, 140, 130, 180]
+        data: [
+          80, 99, 82, 90, 115, 115, 74, 75, 130, 155, 125, 90, 140, 130, 180
+        ]
       }
     ]
   }
 
   return (
     <Card>
-      <CardHeader title='New Technologies Data' subheader='Commercial networks & enterprises' />
+      <CardHeader
+        title="New Technologies Data"
+        subheader="Commercial networks & enterprises"
+      />
       <CardContent>
         <Line data={data} height={400} options={options} />
       </CardContent>

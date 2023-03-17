@@ -21,12 +21,17 @@ const MenuTransition = () => {
 
   return (
     <div>
-      <Button variant='contained' aria-controls='fade-menu' aria-haspopup='true' onClick={handleClick}>
+      <Button
+        variant="contained"
+        aria-controls="fade-menu"
+        aria-haspopup="true"
+        onClick={handleClick}
+      >
         Open with fade transition
       </Button>
       <Menu
         keepMounted
-        id='fade-menu'
+        id="fade-menu"
         anchorEl={anchorEl}
         onClose={handleClose}
         open={Boolean(anchorEl)}

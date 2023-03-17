@@ -51,9 +51,9 @@ const SendMsgForm = (props: SendMsgComponentType) => {
           <TextField
             fullWidth
             value={msg}
-            size='small'
-            placeholder='Type your message here…'
-            onChange={e => setMsg(e.target.value)}
+            size="small"
+            placeholder="Type your message here…"
+            onChange={(e) => setMsg(e.target.value)}
             sx={{
               '& .Mui-focused': { boxShadow: 0 },
               '& .MuiOutlinedInput-input': { pl: 0 },
@@ -62,14 +62,19 @@ const SendMsgForm = (props: SendMsgComponentType) => {
           />
         </Box>
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          <IconButton size='small' sx={{ color: 'text.primary' }}>
-            <Icon icon='bx:microphone' />
+          <IconButton size="small" sx={{ color: 'text.primary' }}>
+            <Icon icon="bx:microphone" />
           </IconButton>
-          <IconButton size='small' component='label' htmlFor='upload-img' sx={{ mr: 4, color: 'text.primary' }}>
-            <Icon icon='bx:paperclip' />
-            <input hidden type='file' id='upload-img' />
+          <IconButton
+            size="small"
+            component="label"
+            htmlFor="upload-img"
+            sx={{ mr: 4, color: 'text.primary' }}
+          >
+            <Icon icon="bx:paperclip" />
+            <input hidden type="file" id="upload-img" />
           </IconButton>
-          <Button type='submit' variant='contained'>
+          <Button type="submit" variant="contained">
             Send
           </Button>
         </Box>

@@ -38,8 +38,10 @@ const columns = [
       <Box sx={{ display: 'flex', alignItems: 'center' }}>
         <Img src={row.img} alt={`project-${row.projectTitle}`} />
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-          <Typography sx={{ fontWeight: 500, color: 'text.secondary' }}>{row.projectTitle}</Typography>
-          <Typography variant='body2' sx={{ color: 'text.disabled' }}>
+          <Typography sx={{ fontWeight: 500, color: 'text.secondary' }}>
+            {row.projectTitle}
+          </Typography>
+          <Typography variant="body2" sx={{ color: 'text.disabled' }}>
             {row.projectType}
           </Typography>
         </Box>
@@ -51,7 +53,9 @@ const columns = [
     minWidth: 100,
     field: 'totalTask',
     headerName: 'Total Tasks',
-    renderCell: ({ row }: CellType) => <Typography variant='body2'>{row.totalTask}</Typography>
+    renderCell: ({ row }: CellType) => (
+      <Typography variant="body2">{row.totalTask}</Typography>
+    )
   },
   {
     flex: 0.15,
@@ -60,9 +64,9 @@ const columns = [
     field: 'progressValue',
     renderCell: ({ row }: CellType) => (
       <Box sx={{ width: '100%' }}>
-        <Typography variant='body2'>{row.progressValue}%</Typography>
+        <Typography variant="body2">{row.progressValue}%</Typography>
         <LinearProgress
-          variant='determinate'
+          variant="determinate"
           value={row.progressValue}
           color={row.progressColor}
           sx={{ height: 6, mt: 1 }}
@@ -75,7 +79,9 @@ const columns = [
     minWidth: 100,
     field: 'hours',
     headerName: 'Hours',
-    renderCell: ({ row }: CellType) => <Typography variant='body2'>{row.hours}</Typography>
+    renderCell: ({ row }: CellType) => (
+      <Typography variant="body2">{row.hours}</Typography>
+    )
   }
 ]
 
@@ -92,18 +98,29 @@ const InvoiceListTable = () => {
           q: value
         }
       })
-      .then(res => setData(res.data))
+      .then((res) => setData(res.data))
   }, [value])
 
   return (
     <Card>
       <CardHeader title="User's Projects List" />
       <CardContent>
-        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
-          <Typography variant='body2' sx={{ mr: 2 }}>
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'flex-end'
+          }}
+        >
+          <Typography variant="body2" sx={{ mr: 2 }}>
             Search:
           </Typography>
-          <TextField size='small' placeholder='Search Project' value={value} onChange={e => setValue(e.target.value)} />
+          <TextField
+            size="small"
+            placeholder="Search Project"
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
+          />
         </Box>
       </CardContent>
       <DataGrid
@@ -113,7 +130,7 @@ const InvoiceListTable = () => {
         pageSize={pageSize}
         disableSelectionOnClick
         rowsPerPageOptions={[7, 10, 25, 50]}
-        onPageSizeChange={newPageSize => setPageSize(newPageSize)}
+        onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
       />
     </Card>
   )

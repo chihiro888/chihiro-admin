@@ -27,8 +27,9 @@ const data: CustomRadioBasicData[] = [
 ]
 
 const BasicCustomRadio = () => {
-  const initialSelected: string = data.filter(item => item.isSelected)[data.filter(item => item.isSelected).length - 1]
-    .value
+  const initialSelected: string = data.filter((item) => item.isSelected)[
+    data.filter((item) => item.isSelected).length - 1
+  ].value
 
   // ** State
   const [selected, setSelected] = useState<string>(initialSelected)
@@ -48,7 +49,7 @@ const BasicCustomRadio = () => {
           key={index}
           data={data[index]}
           selected={selected}
-          name='custom-radios-basic'
+          name="custom-radios-basic"
           handleChange={handleChange}
           gridProps={{ sm: 6, xs: 12 }}
         />

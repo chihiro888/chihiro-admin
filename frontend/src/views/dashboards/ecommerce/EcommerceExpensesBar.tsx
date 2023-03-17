@@ -19,8 +19,14 @@ import ReactApexcharts from 'src/@core/components/react-apexcharts'
 import { hexToRGBA } from 'src/@core/utils/hex-to-rgba'
 
 const series = [
-  { name: `${new Date().getFullYear() - 1}`, data: [12, 32, 12, 27, 39, 27, 17, 9, 12, 20] },
-  { name: `${new Date().getFullYear() - 2}`, data: [-28, -20, -27, -15, -21, -17, -19, -12, -30, -18] }
+  {
+    name: `${new Date().getFullYear() - 1}`,
+    data: [12, 32, 12, 27, 39, 27, 17, 9, 12, 20]
+  },
+  {
+    name: `${new Date().getFullYear() - 2}`,
+    data: [-28, -20, -27, -15, -21, -17, -19, -12, -30, -18]
+  }
 ]
 
 const EcommerceExpensesBar = () => {
@@ -41,7 +47,10 @@ const EcommerceExpensesBar = () => {
       lineCap: 'round',
       colors: [theme.palette.background.paper]
     },
-    colors: [hexToRGBA(theme.palette.primary.main, 1), hexToRGBA(theme.palette.warning.main, 1)],
+    colors: [
+      hexToRGBA(theme.palette.primary.main, 1),
+      hexToRGBA(theme.palette.warning.main, 1)
+    ],
     states: {
       hover: {
         filter: { type: 'none' }
@@ -126,27 +135,48 @@ const EcommerceExpensesBar = () => {
           p: `${theme.spacing(3.5, 5, 5)} !important`
         }}
       >
-        <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-          <Typography variant='h6'>Expenses</Typography>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between'
+          }}
+        >
+          <Typography variant="h6">Expenses</Typography>
           <div>
-            <Typography variant='h5' sx={{ mb: 1 }}>
+            <Typography variant="h5" sx={{ mb: 1 }}>
               $84.7k
             </Typography>
-            <Box sx={{ display: 'flex', alignItems: 'center', '& svg': { color: 'error.main' } }}>
-              <Icon icon='bx:down-arrow-alt' />
-              <Typography variant='body2' sx={{ fontWeight: 500, color: 'error.main' }}>
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                '& svg': { color: 'error.main' }
+              }}
+            >
+              <Icon icon="bx:down-arrow-alt" />
+              <Typography
+                variant="body2"
+                sx={{ fontWeight: 500, color: 'error.main' }}
+              >
                 8.2%
               </Typography>
             </Box>
           </div>
           <CustomChip
-            skin='light'
-            color='secondary'
+            skin="light"
+            color="secondary"
             sx={{ fontWeight: 500 }}
             label={`July ${new Date().getFullYear()}`}
           />
         </Box>
-        <ReactApexcharts type='bar' width='90%' height={191} options={options} series={series} />
+        <ReactApexcharts
+          type="bar"
+          width="90%"
+          height={191}
+          options={options}
+          series={series}
+        />
       </CardContent>
     </Card>
   )

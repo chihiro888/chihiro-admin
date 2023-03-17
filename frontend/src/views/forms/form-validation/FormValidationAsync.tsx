@@ -67,7 +67,8 @@ const FormValidationAsync = () => {
 
   const onSubmit = async () => {
     setLoading(true)
-    const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
+    const sleep = (ms: number) =>
+      new Promise((resolve) => setTimeout(resolve, ms))
     await sleep(2000)
     setLoading(false)
     toast.success('Form Submitted')
@@ -75,29 +76,32 @@ const FormValidationAsync = () => {
 
   return (
     <Card>
-      <CardHeader title='Async Submit' />
+      <CardHeader title="Async Submit" />
       <CardContent>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Grid container spacing={5}>
             <Grid item xs={12}>
               <FormControl fullWidth>
                 <Controller
-                  name='firstName'
+                  name="firstName"
                   control={control}
                   rules={{ required: true }}
                   render={({ field: { value, onChange } }) => (
                     <TextField
                       value={value}
-                      label='First Name'
+                      label="First Name"
                       onChange={onChange}
-                      placeholder='Leonard'
+                      placeholder="Leonard"
                       error={Boolean(errors.firstName)}
-                      aria-describedby='validation-async-first-name'
+                      aria-describedby="validation-async-first-name"
                     />
                   )}
                 />
                 {errors.firstName && (
-                  <FormHelperText sx={{ color: 'error.main' }} id='validation-async-first-name'>
+                  <FormHelperText
+                    sx={{ color: 'error.main' }}
+                    id="validation-async-first-name"
+                  >
                     This field is required
                   </FormHelperText>
                 )}
@@ -107,22 +111,25 @@ const FormValidationAsync = () => {
             <Grid item xs={12}>
               <FormControl fullWidth>
                 <Controller
-                  name='lastName'
+                  name="lastName"
                   control={control}
                   rules={{ required: true }}
                   render={({ field: { value, onChange } }) => (
                     <TextField
                       value={value}
-                      label='Last Name'
+                      label="Last Name"
                       onChange={onChange}
-                      placeholder='Carter'
+                      placeholder="Carter"
                       error={Boolean(errors.lastName)}
-                      aria-describedby='validation-async-last-name'
+                      aria-describedby="validation-async-last-name"
                     />
                   )}
                 />
                 {errors.lastName && (
-                  <FormHelperText sx={{ color: 'error.main' }} id='validation-async-last-name'>
+                  <FormHelperText
+                    sx={{ color: 'error.main' }}
+                    id="validation-async-last-name"
+                  >
                     This field is required
                   </FormHelperText>
                 )}
@@ -132,23 +139,26 @@ const FormValidationAsync = () => {
             <Grid item xs={12}>
               <FormControl fullWidth>
                 <Controller
-                  name='email'
+                  name="email"
                   control={control}
                   rules={{ required: true }}
                   render={({ field: { value, onChange } }) => (
                     <TextField
-                      type='email'
+                      type="email"
                       value={value}
-                      label='Email'
+                      label="Email"
                       onChange={onChange}
                       error={Boolean(errors.email)}
-                      placeholder='carterleonard@gmail.com'
-                      aria-describedby='validation-async-email'
+                      placeholder="carterleonard@gmail.com"
+                      aria-describedby="validation-async-email"
                     />
                   )}
                 />
                 {errors.email && (
-                  <FormHelperText sx={{ color: 'error.main' }} id='validation-async-email'>
+                  <FormHelperText
+                    sx={{ color: 'error.main' }}
+                    id="validation-async-email"
+                  >
                     This field is required
                   </FormHelperText>
                 )}
@@ -157,30 +167,35 @@ const FormValidationAsync = () => {
 
             <Grid item xs={12}>
               <FormControl fullWidth>
-                <InputLabel htmlFor='validation-async-password' error={Boolean(errors.password)}>
+                <InputLabel
+                  htmlFor="validation-async-password"
+                  error={Boolean(errors.password)}
+                >
                   Password
                 </InputLabel>
                 <Controller
-                  name='password'
+                  name="password"
                   control={control}
                   rules={{ required: true }}
                   render={({ field: { value, onChange } }) => (
                     <OutlinedInput
                       value={value}
-                      label='Password'
+                      label="Password"
                       onChange={onChange}
-                      id='validation-async-password'
+                      id="validation-async-password"
                       error={Boolean(errors.password)}
                       type={state.showPassword ? 'text' : 'password'}
                       endAdornment={
-                        <InputAdornment position='end'>
+                        <InputAdornment position="end">
                           <IconButton
-                            edge='end'
+                            edge="end"
                             onClick={handleClickShowPassword}
                             onMouseDown={handleMouseDownPassword}
-                            aria-label='toggle password visibility'
+                            aria-label="toggle password visibility"
                           >
-                            <Icon icon={state.showPassword ? 'bx:show' : 'bx:hide'} />
+                            <Icon
+                              icon={state.showPassword ? 'bx:show' : 'bx:hide'}
+                            />
                           </IconButton>
                         </InputAdornment>
                       }
@@ -188,7 +203,10 @@ const FormValidationAsync = () => {
                   )}
                 />
                 {errors.password && (
-                  <FormHelperText sx={{ color: 'error.main' }} id='validation-async-password'>
+                  <FormHelperText
+                    sx={{ color: 'error.main' }}
+                    id="validation-async-password"
+                  >
                     This field is required
                   </FormHelperText>
                 )}
@@ -196,14 +214,14 @@ const FormValidationAsync = () => {
             </Grid>
 
             <Grid item xs={12}>
-              <Button size='large' type='submit' variant='contained'>
+              <Button size="large" type="submit" variant="contained">
                 {loading ? (
                   <CircularProgress
                     sx={{
                       color: 'common.white',
                       width: '20px !important',
                       height: '20px !important',
-                      mr: theme => theme.spacing(2)
+                      mr: (theme) => theme.spacing(2)
                     }}
                   />
                 ) : null}

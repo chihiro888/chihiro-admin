@@ -1,12 +1,6 @@
 // ** React Imports
-import {
-  ChangeEvent,
-  FormEvent,
-  MouseEvent,
-  ReactNode,
-  useEffect,
-  useState
-} from 'react'
+import { ChangeEvent, FormEvent, ReactNode, useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
 
 // ** MUI Components
 import Box from '@mui/material/Box'
@@ -26,21 +20,27 @@ import Icon from 'src/@core/components/icon'
 
 // ** Layout Import
 import BlankLayout from 'src/@core/layouts/BlankLayout'
-import MovieLayout from 'src/@core/layouts/MovieLayout'
 
 // ** Demo Imports
 import AuthIllustrationWrapper from 'src/views/pages/auth/AuthIllustrationWrapper'
-import { useRouter } from 'next/router'
+
+// ** Third Party Components
 import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
-import { useAuth } from 'src/hooks/useAuth'
+
+// ** API
 import { getAdmin, login } from 'src/apis/auth'
-import FormHeader from 'src/components/form-header'
 import { getAppInfo } from 'src/apis/global'
-import { AppDispatch } from 'src/store'
-import { useDispatch } from 'react-redux'
-import { setAppInfo } from 'src/store/apps/app'
 import { checkSystemAdmin } from 'src/apis/admin'
+
+// ** Custom component
+import FormHeader from 'src/components/custom/form-header'
+
+// ** Redux
+import { useAuth } from 'src/hooks/useAuth'
+import { useDispatch } from 'react-redux'
+import { AppDispatch } from 'src/store'
+import { setAppInfo } from 'src/store/apps/app'
 
 interface State {
   email: string
@@ -51,7 +51,10 @@ interface State {
 const LoginV1 = () => {
   // ** State
   const [values, setValues] = useState<State>({
+    // 이메일
     email: '',
+
+    // 비밀번호
     password: '',
     showPassword: false
   })
@@ -63,29 +66,39 @@ const LoginV1 = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch<AppDispatch>()
 
+  // ** Handler
+  // 입력 값 수정
   const handleChange =
     (prop: keyof State) => (event: ChangeEvent<HTMLInputElement>) => {
       setValues({ ...values, [prop]: event.target.value })
     }
+
+  // 비밀번호 보이기/숨기기
   const handleClickShowPassword = () => {
     setValues({ ...values, showPassword: !values.showPassword })
   }
-  const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault()
-  }
 
+  // 로그인 버튼 클릭
   const handleClickAction = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+
+    // 로그인
     try {
       const params = {
         account: values.email,
         password: values.password
       }
       const { data: res } = await login(params)
+
+      // 로그인 성공한 경우
       if (res.statusCode === 200) {
+        // 관리자 정보 조회
         const { data: res } = await getAdmin()
         if (res.statusCode === 200) {
+          // 관리자 정보 Context에 저장
           setUser({ ...res.data })
+
+          // 로그인 이후 리다이렉트
           const returnUrl = router.query.returnUrl
           const redirectURL = returnUrl && returnUrl !== '/' ? returnUrl : '/'
           router.replace(redirectURL as string)
@@ -96,21 +109,26 @@ const LoginV1 = () => {
     }
   }
 
+  // 초기 데이터
   const initData = async () => {
+    // 시스템 관리자 존재유무 확인
     const { data: res } = await checkSystemAdmin()
     if (res.statusCode === 200) {
       if (res.data) {
+        // 시스템 관리자가 존재하지 않는 경우 관리자 계정 생성 페이지로 이동
         router.push('/login/init')
       }
     }
 
     try {
+      // 앱 정보 조회
       const { data: res } = await getAppInfo()
       if (res.statusCode === 200) {
+        // 앱 정보 설정
         dispatch(setAppInfo(res.data))
       }
     } catch (err) {
-      //
+      // pass
     }
   }
 
@@ -151,7 +169,6 @@ const LoginV1 = () => {
                       <IconButton
                         edge="end"
                         onClick={handleClickShowPassword}
-                        onMouseDown={handleMouseDownPassword}
                         aria-label="toggle password visibility"
                       >
                         <Icon
@@ -180,7 +197,7 @@ const LoginV1 = () => {
   )
 }
 
-LoginV1.getLayout = (page: ReactNode) => <MovieLayout>{page}</MovieLayout>
+LoginV1.getLayout = (page: ReactNode) => <BlankLayout>{page}</BlankLayout>
 
 LoginV1.guestGuard = true
 

@@ -37,28 +37,28 @@ const data: DataType[] = [
     title: 'Electronic',
     avatarColor: 'primary',
     subtitle: 'Mobile, Earbuds, TV',
-    avatarIcon: <Icon icon='bx:mobile-alt' />
+    avatarIcon: <Icon icon="bx:mobile-alt" />
   },
   {
     amount: '23.8k',
     title: 'Fashion',
     avatarColor: 'success',
     subtitle: 'Tshirt, Jeans, Shoes',
-    avatarIcon: <Icon icon='bx:closet' />
+    avatarIcon: <Icon icon="bx:closet" />
   },
   {
     amount: 849,
     title: 'Decor',
     avatarColor: 'info',
     subtitle: 'Fine Art, Dining',
-    avatarIcon: <Icon icon='bx:home' />
+    avatarIcon: <Icon icon="bx:home" />
   },
   {
     amount: 99,
     title: 'Sports',
     avatarColor: 'secondary',
     subtitle: 'Football, Cricket Kit',
-    avatarIcon: <Icon icon='bx:football' />
+    avatarIcon: <Icon icon="bx:football" />
   }
 ]
 
@@ -136,20 +136,40 @@ const AnalyticsOrderStatistics = () => {
     <Card>
       <CardHeader
         sx={{ pb: 2.5 }}
-        title='Order Statistics'
-        subheader='42.82k Total Sales'
+        title="Order Statistics"
+        subheader="42.82k Total Sales"
         subheaderTypographyProps={{ sx: { color: 'text.disabled' } }}
-        action={<OptionsMenu iconButtonProps={{ size: 'small' }} options={['Share', 'Refresh', 'Edit']} />}
+        action={
+          <OptionsMenu
+            iconButtonProps={{ size: 'small' }}
+            options={['Share', 'Refresh', 'Edit']}
+          />
+        }
       />
       <CardContent>
-        <Box sx={{ mb: 7.5, display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>
+        <Box
+          sx={{
+            mb: 7.5,
+            display: 'flex',
+            flexWrap: 'wrap',
+            justifyContent: 'space-between'
+          }}
+        >
           <Box sx={{ mt: 7, display: 'flex', flexDirection: 'column' }}>
-            <Typography variant='h4' sx={{ mb: 0.5 }}>
+            <Typography variant="h4" sx={{ mb: 0.5 }}>
               8,258
             </Typography>
-            <Typography sx={{ color: 'text.secondary' }}>Total Orders</Typography>
+            <Typography sx={{ color: 'text.secondary' }}>
+              Total Orders
+            </Typography>
           </Box>
-          <ReactApexcharts type='donut' width={110} height={125} options={options} series={[45, 80, 20, 40]} />
+          <ReactApexcharts
+            type="donut"
+            width={110}
+            height={125}
+            options={options}
+            series={[45, 80, 20, 40]}
+          />
         </Box>
         {data.map((item: DataType, index: number) => {
           return (
@@ -162,8 +182,8 @@ const AnalyticsOrderStatistics = () => {
               }}
             >
               <CustomAvatar
-                skin='light'
-                variant='rounded'
+                skin="light"
+                variant="rounded"
                 color={item.avatarColor}
                 sx={{ mr: 3, width: 38, height: 38 }}
               >
@@ -180,11 +200,11 @@ const AnalyticsOrderStatistics = () => {
               >
                 <Box sx={{ mr: 2, display: 'flex', flexDirection: 'column' }}>
                   <Typography sx={{ fontWeight: 500 }}>{item.title}</Typography>
-                  <Typography variant='body2' sx={{ color: 'text.disabled' }}>
+                  <Typography variant="body2" sx={{ color: 'text.disabled' }}>
                     {item.subtitle}
                   </Typography>
                 </Box>
-                <Typography variant='body2' sx={{ fontWeight: 500 }}>
+                <Typography variant="body2" sx={{ fontWeight: 500 }}>
                   {item.amount}
                 </Typography>
               </Box>

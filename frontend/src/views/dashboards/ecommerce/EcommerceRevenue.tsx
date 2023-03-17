@@ -4,10 +4,10 @@ import CardStatisticsVertical from 'src/@core/components/card-statistics/card-st
 const EcommerceRevenue = () => {
   return (
     <CardStatisticsVertical
-      stats='$42,389'
-      title='Revenue'
+      stats="$42,389"
+      title="Revenue"
       trendNumber={52.76}
-      avatarSrc='/images/cards/stats-vertical-desktop.png'
+      avatarSrc="/images/cards/stats-vertical-desktop.png"
     />
   )
 }

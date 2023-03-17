@@ -25,7 +25,7 @@ const valuetext = (value: number) => {
 }
 
 const valueLabelFormat = (value: number) => {
-  return marks.findIndex(mark => mark.value === value) + 1
+  return marks.findIndex((mark) => mark.value === value) + 1
 }
 
 const SliderRestrictedValues = () => {
@@ -34,10 +34,10 @@ const SliderRestrictedValues = () => {
       step={null}
       marks={marks}
       defaultValue={20}
-      valueLabelDisplay='auto'
+      valueLabelDisplay="auto"
       getAriaValueText={valuetext}
       valueLabelFormat={valueLabelFormat}
-      aria-labelledby='restricted-values-slider'
+      aria-labelledby="restricted-values-slider"
     />
   )
 }

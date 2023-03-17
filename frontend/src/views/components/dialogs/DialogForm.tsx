@@ -20,22 +20,33 @@ const DialogForm = () => {
 
   return (
     <Fragment>
-      <Button variant='outlined' onClick={handleClickOpen}>
+      <Button variant="outlined" onClick={handleClickOpen}>
         Open form dialog
       </Button>
-      <Dialog open={open} onClose={handleClose} aria-labelledby='form-dialog-title'>
-        <DialogTitle id='form-dialog-title'>Subscribe</DialogTitle>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="form-dialog-title"
+      >
+        <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
         <DialogContent>
           <DialogContentText sx={{ mb: 3 }}>
-            To subscribe to this website, please enter your email address here. We will send updates occasionally.
+            To subscribe to this website, please enter your email address here.
+            We will send updates occasionally.
           </DialogContentText>
-          <TextField id='name' autoFocus fullWidth type='email' label='Email Address' />
+          <TextField
+            id="name"
+            autoFocus
+            fullWidth
+            type="email"
+            label="Email Address"
+          />
         </DialogContent>
         <DialogActions>
-          <Button variant='outlined' color='secondary' onClick={handleClose}>
+          <Button variant="outlined" color="secondary" onClick={handleClose}>
             Disagree
           </Button>
-          <Button variant='contained' onClick={handleClose}>
+          <Button variant="contained" onClick={handleClose}>
             Agree
           </Button>
         </DialogActions>

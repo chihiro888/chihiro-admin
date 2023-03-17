@@ -18,12 +18,20 @@ const ToastCustomPosition = () => {
 
   return (
     <Box
-      sx={{ display: 'flex', textAlign: 'center', alignItems: 'center', flexDirection: 'column', '& svg': { mb: 2 } }}
+      sx={{
+        display: 'flex',
+        textAlign: 'center',
+        alignItems: 'center',
+        flexDirection: 'column',
+        '& svg': { mb: 2 }
+      }}
     >
-      <Icon icon='bx:customize' fontSize='2rem' />
+      <Icon icon="bx:customize" fontSize="2rem" />
       <Typography sx={{ mb: 4, fontWeight: 600 }}>Custom Position</Typography>
-      <Typography sx={{ mb: 3 }}>You can change the toast's position as you like.</Typography>
-      <Button sx={{ mb: 8 }} variant='contained' onClick={handleClick}>
+      <Typography sx={{ mb: 3 }}>
+        You can change the toast's position as you like.
+      </Typography>
+      <Button sx={{ mb: 8 }} variant="contained" onClick={handleClick}>
         Position
       </Button>
     </Box>

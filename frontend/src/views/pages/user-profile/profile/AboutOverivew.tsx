@@ -34,7 +34,9 @@ const renderList = (arr: ProfileTabCommonType[]) => {
           <Icon icon={item.icon} />
 
           <Typography sx={{ mx: 2, fontWeight: 600, color: 'text.secondary' }}>
-            {`${item.property.charAt(0).toUpperCase() + item.property.slice(1)}:`}
+            {`${
+              item.property.charAt(0).toUpperCase() + item.property.slice(1)
+            }:`}
           </Typography>
           <Typography sx={{ color: 'text.secondary' }}>
             {item.value.charAt(0).toUpperCase() + item.value.slice(1)}
@@ -85,19 +87,40 @@ const AboutOverivew = (props: Props) => {
         <Card>
           <CardContent>
             <Box sx={{ mb: 7 }}>
-              <Typography variant='body2' sx={{ mb: 4, color: 'text.disabled', textTransform: 'uppercase' }}>
+              <Typography
+                variant="body2"
+                sx={{
+                  mb: 4,
+                  color: 'text.disabled',
+                  textTransform: 'uppercase'
+                }}
+              >
                 About
               </Typography>
               {renderList(about)}
             </Box>
             <Box sx={{ mb: 7 }}>
-              <Typography variant='body2' sx={{ mb: 4, color: 'text.disabled', textTransform: 'uppercase' }}>
+              <Typography
+                variant="body2"
+                sx={{
+                  mb: 4,
+                  color: 'text.disabled',
+                  textTransform: 'uppercase'
+                }}
+              >
                 Contacts
               </Typography>
               {renderList(contacts)}
             </Box>
             <div>
-              <Typography variant='body2' sx={{ mb: 4, color: 'text.disabled', textTransform: 'uppercase' }}>
+              <Typography
+                variant="body2"
+                sx={{
+                  mb: 4,
+                  color: 'text.disabled',
+                  textTransform: 'uppercase'
+                }}
+              >
                 Teams
               </Typography>
               {renderTeams(teams)}
@@ -109,7 +132,14 @@ const AboutOverivew = (props: Props) => {
         <Card>
           <CardContent>
             <div>
-              <Typography variant='body2' sx={{ mb: 4, color: 'text.disabled', textTransform: 'uppercase' }}>
+              <Typography
+                variant="body2"
+                sx={{
+                  mb: 4,
+                  color: 'text.disabled',
+                  textTransform: 'uppercase'
+                }}
+              >
                 Overview
               </Typography>
               {renderList(overview)}

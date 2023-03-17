@@ -63,7 +63,7 @@ const CrmGeneratedLeads = () => {
               offsetY: -17,
               fontWeight: 500,
               fontSize: '26px',
-              formatter: val => `${val}%`,
+              formatter: (val) => `${val}%`,
               color: theme.palette.text.primary,
               fontFamily: theme.typography.fontFamily
             },
@@ -73,7 +73,8 @@ const CrmGeneratedLeads = () => {
               fontSize: '16px',
               color: theme.palette.text.secondary,
               fontFamily: theme.typography.fontFamily,
-              formatter: () => `${series.reduce((a, b) => a + b, 0) / series.length}%`
+              formatter: () =>
+                `${series.reduce((a, b) => a + b, 0) / series.length}%`
             }
           }
         }
@@ -98,25 +99,52 @@ const CrmGeneratedLeads = () => {
   return (
     <Card>
       <CardContent sx={{ p: `${theme.spacing(4, 5)} !important` }}>
-        <Box sx={{ display: 'flex', alignItems: 'stretch', justifyContent: 'space-between' }}>
-          <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'stretch',
+            justifyContent: 'space-between'
+          }}
+        >
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between'
+            }}
+          >
             <div>
-              <Typography variant='h6'>Generated Leads</Typography>
-              <Typography variant='body2'>Monthly Report</Typography>
+              <Typography variant="h6">Generated Leads</Typography>
+              <Typography variant="body2">Monthly Report</Typography>
             </div>
             <div>
-              <Typography variant='h5' sx={{ mb: 2 }}>
+              <Typography variant="h5" sx={{ mb: 2 }}>
                 4,234
               </Typography>
-              <Box sx={{ display: 'flex', alignItems: 'center', '& svg': { mr: 1, color: 'success.main' } }}>
-                <Icon icon='bx:up-arrow-alt' fontSize={18} />
-                <Typography variant='body2' sx={{ fontWeight: 500, color: 'success.main' }}>
+              <Box
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  '& svg': { mr: 1, color: 'success.main' }
+                }}
+              >
+                <Icon icon="bx:up-arrow-alt" fontSize={18} />
+                <Typography
+                  variant="body2"
+                  sx={{ fontWeight: 500, color: 'success.main' }}
+                >
                   12.8%
                 </Typography>
               </Box>
             </div>
           </Box>
-          <ReactApexcharts type='donut' width={150} height={171} series={series} options={options} />
+          <ReactApexcharts
+            type="donut"
+            width={150}
+            height={171}
+            series={series}
+            options={options}
+          />
         </Box>
       </CardContent>
     </Card>

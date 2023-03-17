@@ -60,62 +60,92 @@ const TableHeader = (props: TableHeaderProps) => {
         }}
       >
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          <Typography sx={{ mr: 2, color: 'text.secondary' }}>Search</Typography>
+          <Typography sx={{ mr: 2, color: 'text.secondary' }}>
+            Search
+          </Typography>
           <TextField
-            size='small'
+            size="small"
             value={value}
             sx={{ mr: 4, mb: 2 }}
-            placeholder='Search Permission'
-            onChange={e => handleFilter(e.target.value)}
+            placeholder="Search Permission"
+            onChange={(e) => handleFilter(e.target.value)}
           />
         </Box>
-        <Button sx={{ mb: 2 }} variant='contained' onClick={handleDialogToggle}>
+        <Button sx={{ mb: 2 }} variant="contained" onClick={handleDialogToggle}>
           Add Permission
         </Button>
       </Box>
       <Dialog
         fullWidth
-        maxWidth='sm'
+        maxWidth="sm"
         onClose={handleDialogToggle}
         open={open}
         sx={{
           '& .MuiDialogTitle-root + .MuiDialogContent-root': {
-            pt: theme => `${theme.spacing(4)} !important`
+            pt: (theme) => `${theme.spacing(4)} !important`
           }
         }}
       >
-        <DialogTitle sx={{ pt: 16, mx: 'auto', textAlign: 'center', fontSize: '1.625rem !important' }}>
+        <DialogTitle
+          sx={{
+            pt: 16,
+            mx: 'auto',
+            textAlign: 'center',
+            fontSize: '1.625rem !important'
+          }}
+        >
           Add New Permission
         </DialogTitle>
         <DialogContent sx={{ pb: 18, px: 18 }}>
-          <Typography sx={{ color: 'text.secondary' }}>Permissions you may use and assign to your users.</Typography>
-          <Box component='form' sx={{ mt: 7 }} onSubmit={handleSubmit(onSubmit)}>
+          <Typography sx={{ color: 'text.secondary' }}>
+            Permissions you may use and assign to your users.
+          </Typography>
+          <Box
+            component="form"
+            sx={{ mt: 7 }}
+            onSubmit={handleSubmit(onSubmit)}
+          >
             <FormGroup sx={{ mb: 4 }}>
               <Controller
-                name='name'
+                name="name"
                 control={control}
                 rules={{ required: true }}
                 render={({ field: { value, onChange } }) => (
                   <TextField
                     fullWidth
                     value={value}
-                    label='Permission Name'
+                    label="Permission Name"
                     onChange={onChange}
                     error={Boolean(errors.name)}
-                    placeholder='Enter Permission Name'
+                    placeholder="Enter Permission Name"
                   />
                 )}
               />
               {errors.name && (
-                <FormHelperText sx={{ color: 'error.main' }}>Please enter a valid permission name</FormHelperText>
+                <FormHelperText sx={{ color: 'error.main' }}>
+                  Please enter a valid permission name
+                </FormHelperText>
               )}
             </FormGroup>
-            <FormControlLabel control={<Checkbox />} label='Set as core permission' />
-            <Box className='demo-space-x' sx={{ textAlign: 'center' }}>
-              <Button size='large' type='submit' variant='contained' sx={{ mr: 5 }}>
+            <FormControlLabel
+              control={<Checkbox />}
+              label="Set as core permission"
+            />
+            <Box className="demo-space-x" sx={{ textAlign: 'center' }}>
+              <Button
+                size="large"
+                type="submit"
+                variant="contained"
+                sx={{ mr: 5 }}
+              >
                 Create Permission
               </Button>
-              <Button size='large' variant='outlined' color='secondary' onClick={handleDialogToggle}>
+              <Button
+                size="large"
+                variant="outlined"
+                color="secondary"
+                onClick={handleDialogToggle}
+              >
                 Discard
               </Button>
             </Box>

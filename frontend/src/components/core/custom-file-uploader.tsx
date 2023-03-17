@@ -18,6 +18,8 @@ import Icon from 'src/@core/components/icon'
 import toast from 'react-hot-toast'
 import { useDropzone } from 'react-dropzone'
 import { upload } from 'src/apis/image'
+import CustomLottie from '../custom/custom-lottie'
+import * as uploadLottie from 'src/lottie/upload.json'
 
 interface FileProp {
   name: string
@@ -68,8 +70,6 @@ const CustomFileUploader = ({ handleChangeForm, item }) => {
         item.value.map((file) => file.id)
       )
     }
-    
-
   }, [item.value])
 
   const { getRootProps, getInputProps } = useDropzone({
@@ -147,41 +147,22 @@ const CustomFileUploader = ({ handleChangeForm, item }) => {
     </ListItem>
   ))
 
-  //   const handleRemoveAllFiles = () => {
-  //     setFiles([])
-  //   }
-
   return (
     <Fragment>
       <div {...getRootProps({ className: 'dropzone' })}>
         <input {...getInputProps()} />
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: ['column', 'column', 'row'],
-            alignItems: 'center'
-          }}
-        >
-          <Img
-            alt="Upload img"
-            src={`/images/misc/upload-${theme.palette.mode}.png`}
-          />
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              textAlign: ['center', 'center', 'inherit']
-            }}
-          >
-            <HeadingTypography variant="h6">
-              파일을 드롭다운 하거나 클릭하여 파일을 업로드 하십시오.
-            </HeadingTypography>
-            <Typography color="textSecondary">
-              허용되는 확장자 : <br />
-              {item.allowFileExt.join(' ')}
+        <Box>
+          <CustomLottie data={uploadLottie} text="" />
+          <Box textAlign={'center'} sx={{ mt: 3 }}>
+            <Typography variant="subtitle1">파일 업로드</Typography>
+            <Typography variant="subtitle2">
+              파일을 드래그 하거나 컴포넌트를 클릭한 후 파일 탐색기를 열어 파일
+              업로드
             </Typography>
-            <Typography color="textSecondary">
-              <br />
+            <Typography variant="subtitle2" sx={{ mt: 1 }}>
+              허용되는 확장자 : {item.allowFileExt.join(' ')}
+            </Typography>
+            <Typography variant="subtitle2">
               최대 {item.maxFileCount}개의 파일과{' '}
               {formatBytes(item.maxFileSizeBytes)}까지 업로드하실 수 있습니다.
             </Typography>

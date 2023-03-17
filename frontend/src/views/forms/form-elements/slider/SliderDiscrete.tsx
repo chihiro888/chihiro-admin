@@ -13,9 +13,9 @@ const SliderDiscrete = () => {
       max={110}
       step={10}
       defaultValue={30}
-      valueLabelDisplay='auto'
+      valueLabelDisplay="auto"
       getAriaValueText={valuetext}
-      aria-labelledby='discrete-slider'
+      aria-labelledby="discrete-slider"
     />
   )
 }

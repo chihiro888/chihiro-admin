@@ -61,9 +61,9 @@ const BootstrapButton = styled(Button)({
 
 const ButtonsCustomized = () => {
   return (
-    <div className='demo-space-x'>
-      <CustomButton variant='contained'>Custom Color</CustomButton>
-      <BootstrapButton variant='contained' disableRipple>
+    <div className="demo-space-x">
+      <CustomButton variant="contained">Custom Color</CustomButton>
+      <BootstrapButton variant="contained" disableRipple>
         Bootstrap
       </BootstrapButton>
     </div>

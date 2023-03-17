@@ -34,23 +34,27 @@ const DialogsScroll = () => {
   }, [open])
 
   return (
-    <div className='demo-space-x'>
-      <Button variant='outlined' onClick={handleClickOpen('paper')}>
+    <div className="demo-space-x">
+      <Button variant="outlined" onClick={handleClickOpen('paper')}>
         scroll=paper
       </Button>
-      <Button variant='outlined' onClick={handleClickOpen('body')}>
+      <Button variant="outlined" onClick={handleClickOpen('body')}>
         scroll=body
       </Button>
       <Dialog
         open={open}
         scroll={scroll}
         onClose={handleClose}
-        aria-labelledby='scroll-dialog-title'
-        aria-describedby='scroll-dialog-description'
+        aria-labelledby="scroll-dialog-title"
+        aria-describedby="scroll-dialog-description"
       >
-        <DialogTitle id='scroll-dialog-title'>Subscribe</DialogTitle>
+        <DialogTitle id="scroll-dialog-title">Subscribe</DialogTitle>
         <DialogContent>
-          <DialogContentText id='scroll-dialog-description' ref={descriptionElementRef} tabIndex={-1}>
+          <DialogContentText
+            id="scroll-dialog-description"
+            ref={descriptionElementRef}
+            tabIndex={-1}
+          >
             {[...new Array(50)].map(
               () =>
                 `Cotton candy sesame snaps toffee chupa chups caramels. Candy icing gummi bears pastry cake icing brownie
@@ -59,11 +63,13 @@ const DialogsScroll = () => {
             )}
           </DialogContentText>
         </DialogContent>
-        <DialogActions sx={{ p: theme => `${theme.spacing(2.5)} !important` }}>
-          <Button variant='outlined' color='secondary' onClick={handleClose}>
+        <DialogActions
+          sx={{ p: (theme) => `${theme.spacing(2.5)} !important` }}
+        >
+          <Button variant="outlined" color="secondary" onClick={handleClose}>
             Cancel
           </Button>
-          <Button variant='contained' onClick={handleClose}>
+          <Button variant="contained" onClick={handleClose}>
             Subscribe
           </Button>
         </DialogActions>

@@ -44,26 +44,36 @@ const RatingsCustomized = () => {
     <div>
       <Box sx={{ mb: 3 }}>
         <Typography sx={{ fontWeight: 500 }}>Custom empty icon</Typography>
-        <Rating name='customized-empty' defaultValue={2} precision={0.5} emptyIcon={<Icon icon='bx:star' />} />
+        <Rating
+          name="customized-empty"
+          defaultValue={2}
+          precision={0.5}
+          emptyIcon={<Icon icon="bx:star" />}
+        />
       </Box>
       <Box sx={{ mb: 3 }}>
         <Typography sx={{ fontWeight: 500 }}>Custom icon and color</Typography>
         <Rating
           precision={0.5}
           defaultValue={3}
-          name='customized-color'
+          name="customized-color"
           sx={{ color: 'error.main' }}
-          icon={<Icon icon='bxs:heart' />}
-          emptyIcon={<Icon icon='bxs:heart' />}
+          icon={<Icon icon="bxs:heart" />}
+          emptyIcon={<Icon icon="bxs:heart" />}
         />
       </Box>
       <Box sx={{ mb: 3 }}>
         <Typography sx={{ fontWeight: 500 }}>10 stars</Typography>
-        <Rating name='customized-10' defaultValue={7} max={10} />
+        <Rating name="customized-10" defaultValue={7} max={10} />
       </Box>
       <div>
         <Typography sx={{ fontWeight: 500 }}>Custom icon set</Typography>
-        <Rating name='customized-icons' defaultValue={2} max={4} IconContainerComponent={IconContainer} />
+        <Rating
+          name="customized-icons"
+          defaultValue={2}
+          max={4}
+          IconContainerComponent={IconContainer}
+        />
       </div>
     </div>
   )

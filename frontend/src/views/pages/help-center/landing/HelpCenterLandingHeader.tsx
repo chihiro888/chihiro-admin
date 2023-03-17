@@ -12,7 +12,9 @@ import Typography from '@mui/material/Typography'
 import CardContent from '@mui/material/CardContent'
 import ListItemButton from '@mui/material/ListItemButton'
 import InputAdornment from '@mui/material/InputAdornment'
-import MuiAutocomplete, { AutocompleteRenderInputParams } from '@mui/material/Autocomplete'
+import MuiAutocomplete, {
+  AutocompleteRenderInputParams
+} from '@mui/material/Autocomplete'
 
 // ** Type Import
 import {
@@ -53,9 +55,9 @@ const HelpCenterLandingHeader = ({ data, allArticles }: Props) => {
     setOpen(false)
     setValue(option.title)
     let currentSubcategory: HelpCenterSubcategoriesType | null = null
-    const currentCategory = data.find(category =>
-      category.subCategories.find(subcategory =>
-        subcategory.articles.find(article => {
+    const currentCategory = data.find((category) =>
+      category.subCategories.find((subcategory) =>
+        subcategory.articles.find((article) => {
           if (option.slug === article.slug) {
             currentSubcategory = subcategory
           }
@@ -67,9 +69,9 @@ const HelpCenterLandingHeader = ({ data, allArticles }: Props) => {
 
     if (currentSubcategory !== null) {
       router.push(
-        `/pages/help-center/${currentCategory?.slug}/${(currentSubcategory as HelpCenterSubcategoriesType).slug}/${
-          option.slug
-        }`
+        `/pages/help-center/${currentCategory?.slug}/${
+          (currentSubcategory as HelpCenterSubcategoriesType).slug
+        }/${option.slug}`
       )
     }
   }
@@ -82,11 +84,11 @@ const HelpCenterLandingHeader = ({ data, allArticles }: Props) => {
         alignItems: 'center',
         flexDirection: 'column',
         backgroundSize: 'cover',
-        py: theme => `${theme.spacing(17.5)} !important`,
+        py: (theme) => `${theme.spacing(17.5)} !important`,
         backgroundImage: 'url(/images/pages/header.png)'
       }}
     >
-      <Typography variant='h5' sx={{ mb: 8 }}>
+      <Typography variant="h5" sx={{ mb: 8 }}>
         Hello, how can we help?
       </Typography>
 
@@ -96,16 +98,22 @@ const HelpCenterLandingHeader = ({ data, allArticles }: Props) => {
         inputValue={value}
         options={allArticles}
         onClose={() => setOpen(false)}
-        sx={{ '& + .MuiAutocomplete-popper .MuiAutocomplete-listbox': { maxHeight: 250 } }}
+        sx={{
+          '& + .MuiAutocomplete-popper .MuiAutocomplete-listbox': {
+            maxHeight: 250
+          }
+        }}
         getOptionLabel={(option: HelpCenterSubcategoryArticlesType | unknown) =>
           (option as HelpCenterSubcategoryArticlesType).title
         }
-        isOptionEqualToValue={(option: HelpCenterSubcategoryArticlesType | unknown, value) =>
-          value === (option as HelpCenterSubcategoryArticlesType).title
-        }
-        onChange={(event, option: HelpCenterSubcategoryArticlesType | unknown) =>
-          handleRedirection(option as HelpCenterSubcategoryArticlesType)
-        }
+        isOptionEqualToValue={(
+          option: HelpCenterSubcategoryArticlesType | unknown,
+          value
+        ) => value === (option as HelpCenterSubcategoryArticlesType).title}
+        onChange={(
+          event,
+          option: HelpCenterSubcategoryArticlesType | unknown
+        ) => handleRedirection(option as HelpCenterSubcategoryArticlesType)}
         onInputChange={(event, value: string) => {
           setValue(value)
           setOpen(!!(event.target as HTMLInputElement).value)
@@ -114,27 +122,39 @@ const HelpCenterLandingHeader = ({ data, allArticles }: Props) => {
           <TextField
             {...params}
             value={value}
-            placeholder='Search a question...'
-            onChange={(event: ChangeEvent<HTMLInputElement>) => setValue(event.target.value)}
+            placeholder="Search a question..."
+            onChange={(event: ChangeEvent<HTMLInputElement>) =>
+              setValue(event.target.value)
+            }
             InputProps={{
               ...params.InputProps,
               startAdornment: (
-                <InputAdornment position='start' sx={{ color: 'text.secondary' }}>
-                  <Icon icon='bx:search' />
+                <InputAdornment
+                  position="start"
+                  sx={{ color: 'text.secondary' }}
+                >
+                  <Icon icon="bx:search" />
                 </InputAdornment>
               )
             }}
           />
         )}
-        renderOption={(props, option: HelpCenterSubcategoryArticlesType | unknown) => {
+        renderOption={(
+          props,
+          option: HelpCenterSubcategoryArticlesType | unknown
+        ) => {
           return value.length ? (
             <ListItem
               {...props}
               sx={{ p: '0 !important' }}
               key={(option as HelpCenterSubcategoryArticlesType).slug}
-              onClick={() => handleRedirection(option as HelpCenterSubcategoryArticlesType)}
+              onClick={() =>
+                handleRedirection(option as HelpCenterSubcategoryArticlesType)
+              }
             >
-              <ListItemButton sx={{ py: 1.5 }}>{(option as HelpCenterSubcategoryArticlesType).title}</ListItemButton>
+              <ListItemButton sx={{ py: 1.5 }}>
+                {(option as HelpCenterSubcategoryArticlesType).title}
+              </ListItemButton>
             </ListItem>
           ) : null
         }}

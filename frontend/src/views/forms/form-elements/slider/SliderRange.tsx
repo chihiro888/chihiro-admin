@@ -9,9 +9,9 @@ const SliderRange = () => {
   return (
     <Slider
       defaultValue={[20, 37]}
-      valueLabelDisplay='auto'
+      valueLabelDisplay="auto"
       getAriaValueText={valuetext}
-      aria-labelledby='range-slider'
+      aria-labelledby="range-slider"
     />
   )
 }

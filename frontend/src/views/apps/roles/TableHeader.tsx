@@ -20,34 +20,42 @@ const TableHeader = (props: TableHeaderProps) => {
 
   return (
     <Box
-      sx={{ px: 5, pb: 2, pt: 4, display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'flex-end' }}
+      sx={{
+        px: 5,
+        pb: 2,
+        pt: 4,
+        display: 'flex',
+        flexWrap: 'wrap',
+        alignItems: 'center',
+        justifyContent: 'flex-end'
+      }}
     >
       <Box sx={{ display: 'flex', alignItems: 'center' }}>
         <Typography sx={{ mr: 2, color: 'text.secondary' }}>Search</Typography>
         <TextField
-          size='small'
+          size="small"
           value={value}
-          placeholder='Search User'
+          placeholder="Search User"
           sx={{ mr: 4, mb: 2 }}
-          onChange={e => handleFilter(e.target.value)}
+          onChange={(e) => handleFilter(e.target.value)}
         />
       </Box>
-      <FormControl size='small' sx={{ mb: 2 }}>
-        <InputLabel id='plan-select'>Select Plan</InputLabel>
+      <FormControl size="small" sx={{ mb: 2 }}>
+        <InputLabel id="plan-select">Select Plan</InputLabel>
         <Select
-          size='small'
+          size="small"
           value={plan}
-          id='select-plan'
-          label='Select Plan'
-          labelId='plan-select'
+          id="select-plan"
+          label="Select Plan"
+          labelId="plan-select"
           onChange={handlePlanChange}
           inputProps={{ placeholder: 'Select Plan' }}
         >
-          <MenuItem value=''>Select Plan</MenuItem>
-          <MenuItem value='basic'>Basic</MenuItem>
-          <MenuItem value='company'>Company</MenuItem>
-          <MenuItem value='enterprise'>Enterprise</MenuItem>
-          <MenuItem value='team'>Team</MenuItem>
+          <MenuItem value="">Select Plan</MenuItem>
+          <MenuItem value="basic">Basic</MenuItem>
+          <MenuItem value="company">Company</MenuItem>
+          <MenuItem value="enterprise">Enterprise</MenuItem>
+          <MenuItem value="team">Team</MenuItem>
         </Select>
       </FormControl>
     </Box>

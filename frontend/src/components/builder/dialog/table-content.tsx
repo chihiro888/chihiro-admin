@@ -1,12 +1,12 @@
 import { Button, Dialog, DialogContent, Grid, TextField } from '@mui/material'
-import CustomDialogTitle from 'src/components/custom-dialog-title'
+import CustomDialogTitle from 'src/components/custom/custom-dialog-title'
 import Icon from 'src/@core/components/icon'
 import { useSelector } from 'react-redux'
 import { AppDispatch, RootState } from 'src/store'
 import { useDispatch } from 'react-redux'
 import { hCloseTableContent, updateState } from 'src/store/apps/page'
 import { toast } from 'react-hot-toast'
-import CustomLottie from 'src/components/custom-lottie'
+import CustomLottie from 'src/components/custom/custom-lottie'
 import * as block from 'src/lottie/block.json'
 
 const TableContent = () => {

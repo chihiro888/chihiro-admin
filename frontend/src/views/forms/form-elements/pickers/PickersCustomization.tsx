@@ -15,30 +15,34 @@ import { DateType } from 'src/types/forms/reactDatepickerTypes'
 // ** Custom Component Imports
 import CustomInput from './PickersCustomInput'
 
-const PickersCustomization = ({ popperPlacement }: { popperPlacement: ReactDatePickerProps['popperPlacement'] }) => {
+const PickersCustomization = ({
+  popperPlacement
+}: {
+  popperPlacement: ReactDatePickerProps['popperPlacement']
+}) => {
   // ** States
   const [dateFormat, setDateFormat] = useState<DateType>(new Date())
   const [dateHighlight, setDateHighlight] = useState<DateType>(new Date())
 
   return (
-    <Box sx={{ display: 'flex', flexWrap: 'wrap' }} className='demo-space-x'>
+    <Box sx={{ display: 'flex', flexWrap: 'wrap' }} className="demo-space-x">
       <div>
         <DatePicker
-          id='custom-format'
+          id="custom-format"
           selected={dateFormat}
-          dateFormat='MMMM d, yyyy h:mm aa'
+          dateFormat="MMMM d, yyyy h:mm aa"
           popperPlacement={popperPlacement}
           onChange={(date: Date) => setDateFormat(date)}
-          customInput={<CustomInput label='Custom Date Format' />}
+          customInput={<CustomInput label="Custom Date Format" />}
         />
       </div>
       <div>
         <DatePicker
-          id='highlight-dates'
+          id="highlight-dates"
           selected={dateHighlight}
           popperPlacement={popperPlacement}
           onChange={(date: Date) => setDateHighlight(date)}
-          customInput={<CustomInput label='Highlight Dates' />}
+          customInput={<CustomInput label="Highlight Dates" />}
           highlightDates={[subDays(new Date(), 7), addDays(new Date(), 7)]}
         />
       </div>

@@ -69,8 +69,8 @@ const recentDeviceData: RecentDeviceDataType[] = [
     date: '10, July 2021 20:07',
     browserName: 'Chrome on Windows',
     browserIcon: (
-      <Box component='span' sx={{ mr: 4, '& svg': { color: 'info.main' } }}>
-        <Icon icon='bxl:windows' fontSize={20} />
+      <Box component="span" sx={{ mr: 4, '& svg': { color: 'info.main' } }}>
+        <Icon icon="bxl:windows" fontSize={20} />
       </Box>
     )
   },
@@ -80,8 +80,8 @@ const recentDeviceData: RecentDeviceDataType[] = [
     date: '13, July 2021 10:10',
     browserName: 'Chrome on iPhone',
     browserIcon: (
-      <Box component='span' sx={{ mr: 4, '& svg': { color: 'error.main' } }}>
-        <Icon icon='bx:mobile-alt' fontSize={20} />
+      <Box component="span" sx={{ mr: 4, '& svg': { color: 'error.main' } }}>
+        <Icon icon="bx:mobile-alt" fontSize={20} />
       </Box>
     )
   },
@@ -91,8 +91,8 @@ const recentDeviceData: RecentDeviceDataType[] = [
     date: '14, July 2021 15:15',
     browserName: 'Chrome on Android',
     browserIcon: (
-      <Box component='span' sx={{ mr: 4, '& svg': { color: 'success.main' } }}>
-        <Icon icon='bxl:android' fontSize={20} />
+      <Box component="span" sx={{ mr: 4, '& svg': { color: 'success.main' } }}>
+        <Icon icon="bxl:android" fontSize={20} />
       </Box>
     )
   },
@@ -102,8 +102,11 @@ const recentDeviceData: RecentDeviceDataType[] = [
     date: '16, July 2021 16:17',
     browserName: 'Chrome on MacOS',
     browserIcon: (
-      <Box component='span' sx={{ mr: 4, '& svg': { color: 'secondary.main' } }}>
-        <Icon icon='bxl:apple' fontSize={20} />
+      <Box
+        component="span"
+        sx={{ mr: 4, '& svg': { color: 'secondary.main' } }}
+      >
+        <Icon icon="bxl:apple" fontSize={20} />
       </Box>
     )
   },
@@ -113,8 +116,8 @@ const recentDeviceData: RecentDeviceDataType[] = [
     date: '20, July 2021 21:01',
     browserName: 'Chrome on Windows',
     browserIcon: (
-      <Box component='span' sx={{ mr: 4, '& svg': { color: 'info.main' } }}>
-        <Icon icon='bxl:windows' fontSize={20} />
+      <Box component="span" sx={{ mr: 4, '& svg': { color: 'info.main' } }}>
+        <Icon icon="bxl:windows" fontSize={20} />
       </Box>
     )
   },
@@ -124,8 +127,8 @@ const recentDeviceData: RecentDeviceDataType[] = [
     date: '21, July 2021 12:22',
     browserName: 'Chrome on Android',
     browserIcon: (
-      <Box component='span' sx={{ mr: 4, '& svg': { color: 'success.main' } }}>
-        <Icon icon='bxl:android' fontSize={20} />
+      <Box component="span" sx={{ mr: 4, '& svg': { color: 'success.main' } }}>
+        <Icon icon="bxl:android" fontSize={20} />
       </Box>
     )
   }
@@ -147,32 +150,57 @@ const TabSecurity = () => {
       {/* API Key List & Access Card*/}
       <Grid item xs={12}>
         <Card>
-          <CardHeader title='API Key List & Access' />
+          <CardHeader title="API Key List & Access" />
           <CardContent>
             <Typography sx={{ mb: 4, color: 'text.secondary' }}>
-              An API key is a simple encrypted string that identifies an application without any principal. They are
-              useful for accessing public data anonymously, and are used to associate API requests with your project for
-              quota and billing.
+              An API key is a simple encrypted string that identifies an
+              application without any principal. They are useful for accessing
+              public data anonymously, and are used to associate API requests
+              with your project for quota and billing.
             </Typography>
-            {apiKeyList.map(item => {
+            {apiKeyList.map((item) => {
               return (
                 <Box
                   key={item.key}
-                  sx={{ p: 4, borderRadius: 1, backgroundColor: 'action.hover', '&:not(:last-child)': { mb: 4 } }}
+                  sx={{
+                    p: 4,
+                    borderRadius: 1,
+                    backgroundColor: 'action.hover',
+                    '&:not(:last-child)': { mb: 4 }
+                  }}
                 >
                   <Box sx={{ mb: 3, display: 'flex', alignItems: 'center' }}>
-                    <Typography variant='h6' sx={{ mr: 4 }}>
+                    <Typography variant="h6" sx={{ mr: 4 }}>
                       {item.title}
                     </Typography>
-                    <CustomChip rounded size='small' skin='light' color='primary' label={item.access} />
+                    <CustomChip
+                      rounded
+                      size="small"
+                      skin="light"
+                      color="primary"
+                      label={item.access}
+                    />
                   </Box>
                   <Box sx={{ mb: 2, display: 'flex', alignItems: 'center' }}>
-                    <Typography sx={{ mr: 3, color: 'text.secondary', fontWeight: 600 }}>{item.key}</Typography>
-                    <Box component='span' sx={{ display: 'flex', cursor: 'pointer', color: 'text.secondary' }}>
-                      <Icon icon='bx:copy' fontSize='1rem' />
+                    <Typography
+                      sx={{ mr: 3, color: 'text.secondary', fontWeight: 600 }}
+                    >
+                      {item.key}
+                    </Typography>
+                    <Box
+                      component="span"
+                      sx={{
+                        display: 'flex',
+                        cursor: 'pointer',
+                        color: 'text.secondary'
+                      }}
+                    >
+                      <Icon icon="bx:copy" fontSize="1rem" />
                     </Box>
                   </Box>
-                  <Typography sx={{ color: 'text.secondary' }}>Created on {item.date}</Typography>
+                  <Typography sx={{ color: 'text.secondary' }}>
+                    Created on {item.date}
+                  </Typography>
                 </Box>
               )
             })}
@@ -183,7 +211,7 @@ const TabSecurity = () => {
       {/* Recent Devices Card*/}
       <Grid item xs={12}>
         <Card>
-          <CardHeader title='Recent Devices' />
+          <CardHeader title="Recent Devices" />
           <TableContainer>
             <Table>
               <TableHead>
@@ -191,7 +219,9 @@ const TabSecurity = () => {
                   <TableCell sx={{ whiteSpace: 'nowrap' }}>Browser</TableCell>
                   <TableCell sx={{ whiteSpace: 'nowrap' }}>Device</TableCell>
                   <TableCell sx={{ whiteSpace: 'nowrap' }}>Location</TableCell>
-                  <TableCell sx={{ whiteSpace: 'nowrap' }}>Recent Activities</TableCell>
+                  <TableCell sx={{ whiteSpace: 'nowrap' }}>
+                    Recent Activities
+                  </TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -200,19 +230,37 @@ const TabSecurity = () => {
                     <TableCell>
                       <Box sx={{ display: 'flex', alignItems: 'center' }}>
                         {row.browserIcon}
-                        <Typography sx={{ fontWeight: 600, whiteSpace: 'nowrap', color: 'text.secondary' }}>
+                        <Typography
+                          sx={{
+                            fontWeight: 600,
+                            whiteSpace: 'nowrap',
+                            color: 'text.secondary'
+                          }}
+                        >
                           {row.browserName}
                         </Typography>
                       </Box>
                     </TableCell>
                     <TableCell>
-                      <Typography sx={{ whiteSpace: 'nowrap', color: 'text.secondary' }}>{row.device}</Typography>
+                      <Typography
+                        sx={{ whiteSpace: 'nowrap', color: 'text.secondary' }}
+                      >
+                        {row.device}
+                      </Typography>
                     </TableCell>
                     <TableCell>
-                      <Typography sx={{ whiteSpace: 'nowrap', color: 'text.secondary' }}>{row.location}</Typography>
+                      <Typography
+                        sx={{ whiteSpace: 'nowrap', color: 'text.secondary' }}
+                      >
+                        {row.location}
+                      </Typography>
                     </TableCell>
                     <TableCell>
-                      <Typography sx={{ whiteSpace: 'nowrap', color: 'text.secondary' }}>{row.date}</Typography>
+                      <Typography
+                        sx={{ whiteSpace: 'nowrap', color: 'text.secondary' }}
+                      >
+                        {row.date}
+                      </Typography>
                     </TableCell>
                   </TableRow>
                 ))}

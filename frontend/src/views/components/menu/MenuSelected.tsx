@@ -27,7 +27,10 @@ const MenuSelected = () => {
     setAnchorEl(event.currentTarget)
   }
 
-  const handleMenuItemClick = (event: MouseEvent<HTMLElement>, index: number) => {
+  const handleMenuItemClick = (
+    event: MouseEvent<HTMLElement>,
+    index: number
+  ) => {
     setAnchorEl(null)
     setSelectedIndex(index)
   }
@@ -38,26 +41,35 @@ const MenuSelected = () => {
 
   return (
     <div>
-      <List component='nav' sx={{ p: 0 }} aria-label='Device settings'>
+      <List component="nav" sx={{ p: 0 }} aria-label="Device settings">
         <ListItem
           disablePadding
-          aria-haspopup='true'
-          aria-controls='lock-menu'
+          aria-haspopup="true"
+          aria-controls="lock-menu"
           onClick={handleClickListItem}
-          aria-label='when device is locked'
+          aria-label="when device is locked"
         >
           <ListItemButton>
-            <ListItemText primary='When device is locked' secondary={options[selectedIndex]} />
+            <ListItemText
+              primary="When device is locked"
+              secondary={options[selectedIndex]}
+            />
           </ListItemButton>
         </ListItem>
       </List>
-      <Menu id='lock-menu' anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose}>
+      <Menu
+        id="lock-menu"
+        anchorEl={anchorEl}
+        keepMounted
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+      >
         {options.map((option, index) => (
           <MenuItem
             key={option}
             disabled={index === 0}
             selected={index === selectedIndex}
-            onClick={event => handleMenuItemClick(event, index)}
+            onClick={(event) => handleMenuItemClick(event, index)}
           >
             {option}
           </MenuItem>

@@ -119,25 +119,51 @@ const EcommerceConversionRate = () => {
     <Card>
       <CardHeader
         sx={{ pb: 2 }}
-        title='Conversion Rate'
-        subheader='Compared To Last Month'
+        title="Conversion Rate"
+        subheader="Compared To Last Month"
         subheaderTypographyProps={{ sx: { color: 'text.disabled' } }}
-        action={<OptionsMenu iconButtonProps={{ size: 'small' }} options={['Share', 'Refresh', 'Update']} />}
+        action={
+          <OptionsMenu
+            iconButtonProps={{ size: 'small' }}
+            options={['Share', 'Refresh', 'Update']}
+          />
+        }
       />
       <CardContent sx={{ pt: `${theme.spacing(2.5)} !important` }}>
         <Box
-          sx={{ mb: 3.25, display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between' }}
+          sx={{
+            mb: 3.25,
+            display: 'flex',
+            flexWrap: 'wrap',
+            alignItems: 'center',
+            justifyContent: 'space-between'
+          }}
         >
-          <Box sx={{ display: 'flex', alignItems: 'center', '& svg': { color: 'success.main' } }}>
-            <Typography variant='h4' sx={{ mr: 1.5 }}>
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              '& svg': { color: 'success.main' }
+            }}
+          >
+            <Typography variant="h4" sx={{ mr: 1.5 }}>
               8.72%
             </Typography>
-            <Icon icon='bx:chevron-up' />
-            <Typography variant='body2' sx={{ fontWeight: 500, color: 'success.main' }}>
+            <Icon icon="bx:chevron-up" />
+            <Typography
+              variant="body2"
+              sx={{ fontWeight: 500, color: 'success.main' }}
+            >
               4.8%
             </Typography>
           </Box>
-          <ReactApexcharts type='line' width={125} height={70} options={options} series={series} />
+          <ReactApexcharts
+            type="line"
+            width={125}
+            height={70}
+            options={options}
+            series={series}
+          />
         </Box>
         {data.map((row: DataType, index: number) => (
           <Box
@@ -150,8 +176,10 @@ const EcommerceConversionRate = () => {
             }}
           >
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-              <Typography sx={{ mb: 0.75, fontWeight: 500 }}>{row.title}</Typography>
-              <Typography variant='body2' sx={{ color: 'text.disabled' }}>
+              <Typography sx={{ mb: 0.75, fontWeight: 500 }}>
+                {row.title}
+              </Typography>
+              <Typography variant="body2" sx={{ color: 'text.disabled' }}>
                 {row.subtitle}
               </Typography>
             </Box>
@@ -159,15 +187,19 @@ const EcommerceConversionRate = () => {
               sx={{
                 display: 'flex',
                 alignItems: 'center',
-                '& svg': { mr: 3, color: row.change === 'positive' ? 'success.main' : 'error.main' }
+                '& svg': {
+                  mr: 3,
+                  color:
+                    row.change === 'positive' ? 'success.main' : 'error.main'
+                }
               }}
             >
               {row.change === 'positive' ? (
-                <Icon icon='bx:up-arrow-alt' fontSize={18} />
+                <Icon icon="bx:up-arrow-alt" fontSize={18} />
               ) : (
-                <Icon icon='bx:down-arrow-alt' fontSize={18} />
+                <Icon icon="bx:down-arrow-alt" fontSize={18} />
               )}
-              <Typography variant='body2' sx={{ fontWeight: 500 }}>
+              <Typography variant="body2" sx={{ fontWeight: 500 }}>
                 {`${row.change === 'negative' ? '-' : ''}${row.changePercent}%`}
               </Typography>
             </Box>

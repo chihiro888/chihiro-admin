@@ -12,15 +12,15 @@ const Wrapper = styled('div')(({ theme }) => ({
 
 const BadgesMaxValue = () => {
   return (
-    <Wrapper className='demo-space-x'>
-      <Badge badgeContent={99} color='primary'>
-        <Avatar src='/images/avatars/16.png' alt='User Avatar' />
+    <Wrapper className="demo-space-x">
+      <Badge badgeContent={99} color="primary">
+        <Avatar src="/images/avatars/16.png" alt="User Avatar" />
       </Badge>
-      <Badge badgeContent={100} color='primary'>
-        <Avatar src='/images/avatars/16.png' alt='User Avatar' />
+      <Badge badgeContent={100} color="primary">
+        <Avatar src="/images/avatars/16.png" alt="User Avatar" />
       </Badge>
-      <Badge badgeContent={1000} max={999} color='primary'>
-        <Avatar src='/images/avatars/16.png' alt='User Avatar' />
+      <Badge badgeContent={1000} max={999} color="primary">
+        <Avatar src="/images/avatars/16.png" alt="User Avatar" />
       </Badge>
     </Wrapper>
   )

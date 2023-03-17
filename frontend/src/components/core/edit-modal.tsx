@@ -10,7 +10,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'src/store'
 import { updateActionForm } from 'src/store/apps/crud'
 import ModalFormContent from './modal-form-content'
-import { getAdminDetail } from 'src/apis/admin'
 
 const EditModal = ({ openEditModal, setOpenEditModal, title }) => {
   // ** Hooks

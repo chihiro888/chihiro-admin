@@ -31,7 +31,10 @@ const FormControl = styled(MuiFormControl)<FormControlProps>(({ theme }) => ({
     padding: '10px 26px 10px 12px',
     backgroundColor: theme.palette.background.paper,
     transition: theme.transitions.create(['border-color', 'box-shadow']),
-    border: theme.palette.mode === 'light' ? '1px solid #ced4da' : `1px solid ${theme.palette.divider}`,
+    border:
+      theme.palette.mode === 'light'
+        ? '1px solid #ced4da'
+        : `1px solid ${theme.palette.divider}`,
     fontFamily: [
       '-apple-system',
       'BlinkMacSystemFont',
@@ -61,17 +64,17 @@ const SelectCustomized = () => {
   }
 
   return (
-    <div className='demo-space-x'>
+    <div className="demo-space-x">
       <FormControl>
-        <InputLabel id='demo-customized-select-label'>Age</InputLabel>
+        <InputLabel id="demo-customized-select-label">Age</InputLabel>
         <Select
           value={value}
           input={<InputBase />}
           onChange={handleChange}
-          id='demo-customized-select'
-          labelId='demo-customized-select-label'
+          id="demo-customized-select"
+          labelId="demo-customized-select-label"
         >
-          <MenuItem value=''>
+          <MenuItem value="">
             <em>None</em>
           </MenuItem>
           <MenuItem value={10}>Ten</MenuItem>
@@ -80,9 +83,15 @@ const SelectCustomized = () => {
         </Select>
       </FormControl>
       <FormControl>
-        <InputLabel htmlFor='demo-customized-select-native'>Age</InputLabel>
-        <Select native input={<InputBase />} id='demo-customized-select-native' value={value} onChange={handleChange}>
-          <option aria-label='None' value='' />
+        <InputLabel htmlFor="demo-customized-select-native">Age</InputLabel>
+        <Select
+          native
+          input={<InputBase />}
+          id="demo-customized-select-native"
+          value={value}
+          onChange={handleChange}
+        >
+          <option aria-label="None" value="" />
           <option value={10}>Ten</option>
           <option value={20}>Twenty</option>
           <option value={30}>Thirty</option>

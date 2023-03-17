@@ -13,7 +13,7 @@ const GrowTransition = (props: GrowProps) => {
 }
 
 const SlideTransition = (props: SlideProps) => {
-  return <Slide {...props} direction='up' />
+  return <Slide {...props} direction="up" />
 }
 
 const SnackbarTransition = () => {
@@ -54,21 +54,21 @@ const SnackbarTransition = () => {
 
   return (
     <Fragment>
-      <div className='demo-space-x'>
-        <Button variant='outlined' onClick={handleClick(GrowTransition)}>
+      <div className="demo-space-x">
+        <Button variant="outlined" onClick={handleClick(GrowTransition)}>
           Grow Transition
         </Button>
-        <Button variant='outlined' onClick={handleClick(Fade)}>
+        <Button variant="outlined" onClick={handleClick(Fade)}>
           Fade Transition
         </Button>
-        <Button variant='outlined' onClick={handleClick(SlideTransition)}>
+        <Button variant="outlined" onClick={handleClick(SlideTransition)}>
           Slide Transition
         </Button>
       </div>
       <Snackbar
         open={state.open}
         onClose={handleClose}
-        message='I love snacks'
+        message="I love snacks"
         autoHideDuration={3000}
         key={state.Transition.name}
         TransitionComponent={state.Transition}

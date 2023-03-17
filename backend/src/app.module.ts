@@ -25,16 +25,19 @@ import { MenuModule } from './api/menu/menu.module'
     GlobalDatabaseModule,
     GlobalHttpModule,
 
-    // import app module
-    // DevelopModule,
+    // syatem module
     AdminModule,
-    UserModule,
     AuthModule,
     GlobalModule,
     ImageModule,
-    DashboardModule,
+
+    // menu and builder module
+    MenuModule,
     BuilderModule,
-    MenuModule
+
+    // custom module
+    DashboardModule,
+    UserModule
   ]
 })
 export class AppModule {}

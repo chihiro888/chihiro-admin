@@ -50,10 +50,10 @@ const StepperVerticalWithoutNumbers = () => {
 
   // Handle Stepper
   const handleBack = () => {
-    setActiveStep(prevActiveStep => prevActiveStep - 1)
+    setActiveStep((prevActiveStep) => prevActiveStep - 1)
   }
   const handleNext = () => {
-    setActiveStep(prevActiveStep => prevActiveStep + 1)
+    setActiveStep((prevActiveStep) => prevActiveStep + 1)
     if (activeStep === steps.length - 1) {
       toast.success('Completed All Steps!!')
     }
@@ -64,34 +64,46 @@ const StepperVerticalWithoutNumbers = () => {
 
   return (
     <Card>
-      <CardHeader title='Vertical Stepper without Numbers' />
+      <CardHeader title="Vertical Stepper without Numbers" />
       <CardContent>
         <StepperWrapper>
-          <Stepper activeStep={activeStep} orientation='vertical'>
+          <Stepper activeStep={activeStep} orientation="vertical">
             {steps.map((step, index) => {
               return (
-                <Step key={index} className={clsx({ active: activeStep === index })}>
+                <Step
+                  key={index}
+                  className={clsx({ active: activeStep === index })}
+                >
                   <StepLabel StepIconComponent={StepperCustomDot}>
-                    <div className='step-label'>
+                    <div className="step-label">
                       <div>
-                        <Typography className='step-title'>{step.title}</Typography>
-                        <Typography className='step-subtitle'>{step.subtitle}</Typography>
+                        <Typography className="step-title">
+                          {step.title}
+                        </Typography>
+                        <Typography className="step-subtitle">
+                          {step.subtitle}
+                        </Typography>
                       </div>
                     </div>
                   </StepLabel>
                   <StepContent>
                     <Typography>{step.description}</Typography>
-                    <div className='button-wrapper'>
+                    <div className="button-wrapper">
                       <Button
-                        size='small'
-                        color='secondary'
-                        variant='outlined'
+                        size="small"
+                        color="secondary"
+                        variant="outlined"
                         onClick={handleBack}
                         disabled={activeStep === 0}
                       >
                         Back
                       </Button>
-                      <Button size='small' variant='contained' onClick={handleNext} sx={{ ml: 4 }}>
+                      <Button
+                        size="small"
+                        variant="contained"
+                        onClick={handleNext}
+                        sx={{ ml: 4 }}
+                      >
                         {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
                       </Button>
                     </div>
@@ -104,7 +116,12 @@ const StepperVerticalWithoutNumbers = () => {
         {activeStep === steps.length && (
           <Box sx={{ mt: 4 }}>
             <Typography>All steps are completed!</Typography>
-            <Button size='small' sx={{ mt: 2 }} variant='contained' onClick={handleReset}>
+            <Button
+              size="small"
+              sx={{ mt: 2 }}
+              variant="contained"
+              onClick={handleReset}
+            >
               Reset
             </Button>
           </Box>

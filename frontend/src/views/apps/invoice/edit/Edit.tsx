@@ -9,7 +9,10 @@ import Grid from '@mui/material/Grid'
 import Alert from '@mui/material/Alert'
 
 // ** Types
-import { SingleInvoiceType, InvoiceLayoutProps } from 'src/types/apps/invoiceTypes'
+import {
+  SingleInvoiceType,
+  InvoiceLayoutProps
+} from 'src/types/apps/invoiceTypes'
 
 // ** Third Party Components
 import axios from 'axios'
@@ -33,7 +36,7 @@ const InvoiceEdit = ({ id }: InvoiceLayoutProps) => {
   useEffect(() => {
     axios
       .get('/apps/invoice/single-invoice', { params: { id } })
-      .then(res => {
+      .then((res) => {
         setData(res.data)
         setError(false)
       })
@@ -58,17 +61,23 @@ const InvoiceEdit = ({ id }: InvoiceLayoutProps) => {
             />
           </Grid>
         </Grid>
-        <SendInvoiceDrawer open={sendInvoiceOpen} toggle={toggleSendInvoiceDrawer} />
-        <AddPaymentDrawer open={addPaymentOpen} toggle={toggleAddPaymentDrawer} />
+        <SendInvoiceDrawer
+          open={sendInvoiceOpen}
+          toggle={toggleSendInvoiceDrawer}
+        />
+        <AddPaymentDrawer
+          open={addPaymentOpen}
+          toggle={toggleAddPaymentDrawer}
+        />
       </>
     )
   } else if (error) {
     return (
       <Grid container spacing={6}>
         <Grid item xs={12}>
-          <Alert severity='error'>
-            Invoice with the id: {id} does not exist. Please check the list of invoices:{' '}
-            <Link href='/apps/invoice/list'>Invoice List</Link>
+          <Alert severity="error">
+            Invoice with the id: {id} does not exist. Please check the list of
+            invoices: <Link href="/apps/invoice/list">Invoice List</Link>
           </Alert>
         </Grid>
       </Grid>

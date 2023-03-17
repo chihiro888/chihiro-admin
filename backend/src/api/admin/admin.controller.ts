@@ -1,29 +1,22 @@
-import { CreateSystemAdminDto } from './dto/create-system-admin.dto'
-import { AdminService } from './admin.service'
+// ** Module
 import {
   Body,
-  Query,
   Controller,
   Get,
   Post,
-  Put,
-  Delete,
   HttpStatus,
-  Session,
   Res,
-  HttpException,
-  UseGuards,
-  UseInterceptors,
-  UploadedFiles
+  HttpException
 } from '@nestjs/common'
-import {
-  ApiOperation,
-  ApiResponse,
-  ApiTags
-} from '@nestjs/swagger'
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 import { Response } from 'express'
 import SWAGGER from 'src/common/constants/swagger'
 
+// ** Dto
+import { CreateSystemAdminDto } from './dto/create-system-admin.dto'
+
+// ** Service
+import { AdminService } from './admin.service'
 
 // ANCHOR admin controller
 @ApiTags('admin')

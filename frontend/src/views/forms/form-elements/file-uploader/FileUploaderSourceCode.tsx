@@ -1,6 +1,6 @@
 export const FileUploaderMultipleJSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { Fragment, useState } from 'react'
 
 // ** MUI Imports
@@ -135,8 +135,8 @@ export default FileUploaderMultiple
 )
 
 export const FileUploaderRestrictionsJSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { Fragment, useState } from 'react'
 
 // ** MUI Imports
@@ -272,8 +272,8 @@ export default FileUploaderRestrictions
 )
 
 export const FileUploaderSingleJSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { useState } from 'react'
 
 // ** MUI Imports
@@ -360,8 +360,8 @@ export default FileUploaderSingle
 )
 
 export const FileUploaderMultipleTSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { Fragment, useState, SyntheticEvent } from 'react'
 
 // ** MUI Imports
@@ -501,8 +501,8 @@ export default FileUploaderMultiple
 )
 
 export const FileUploaderRestrictionsTSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { Fragment, useState } from 'react'
 
 // ** MUI Imports
@@ -643,8 +643,8 @@ export default FileUploaderRestrictions
 )
 
 export const FileUploaderSingleTSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { useState, SyntheticEvent } from 'react'
 
 // ** MUI Imports

@@ -25,24 +25,29 @@ const QuickSearchToolbar = (props: Props) => {
         flexWrap: 'wrap',
         alignItems: 'center',
         justifyContent: 'space-between',
-        p: theme => theme.spacing(2, 6, 4, 6)
+        p: (theme) => theme.spacing(2, 6, 4, 6)
       }}
     >
       <GridToolbarFilterButton />
       <TextField
-        size='small'
+        size="small"
         value={props.value}
         onChange={props.onChange}
-        placeholder='Search…'
+        placeholder="Search…"
         InputProps={{
           startAdornment: (
             <Box sx={{ mr: 2, display: 'flex' }}>
-              <Icon icon='bx:search' fontSize={20} />
+              <Icon icon="bx:search" fontSize={20} />
             </Box>
           ),
           endAdornment: (
-            <IconButton size='small' title='Clear' aria-label='Clear' onClick={props.clearSearch}>
-              <Icon icon='bx:x' fontSize={20} />
+            <IconButton
+              size="small"
+              title="Clear"
+              aria-label="Clear"
+              onClick={props.clearSearch}
+            >
+              <Icon icon="bx:x" fontSize={20} />
             </IconButton>
           )
         }}

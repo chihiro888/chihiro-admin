@@ -1,6 +1,6 @@
 export const SnackbarAlertJSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { Fragment, useState } from 'react'
 
 // ** MUI Imports
@@ -43,8 +43,8 @@ export default SnackbarAlert
 )
 
 export const SnackbarConsecutiveJSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { Fragment, useEffect, useState } from 'react'
 
 // ** MUI Imports
@@ -119,8 +119,8 @@ export default SnackbarConsecutive
 )
 
 export const SnackbarControlSlideDirectionJSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { Fragment, useState } from 'react'
 
 // ** MUI Imports
@@ -192,8 +192,8 @@ export default SnackbarControlSlideDirection
 )
 
 export const SnackbarPositionedJSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { Fragment, useState } from 'react'
 
 // ** MUI Imports
@@ -257,8 +257,8 @@ export default SnackbarPositioned
 )
 
 export const SnackbarSimpleJSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { Fragment, useState } from 'react'
 
 // ** MUI Imports
@@ -315,8 +315,8 @@ export default SnackbarSimple
 )
 
 export const SnackbarTransitionJSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { Fragment, useState } from 'react'
 
 // ** MUI Imports
@@ -386,8 +386,8 @@ export default SnackbarTransition
 )
 
 export const SnackbarAlertTSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { Fragment, SyntheticEvent, useState } from 'react'
 
 // ** MUI Imports
@@ -430,8 +430,8 @@ export default SnackbarAlert
 )
 
 export const SnackbarConsecutiveTSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { Fragment, SyntheticEvent, useEffect, useState } from 'react'
 
 // ** MUI Imports
@@ -512,8 +512,8 @@ export default SnackbarConsecutive
 )
 
 export const SnackbarControlSlideDirectionTSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { ComponentType, Fragment, useState } from 'react'
 
 // ** MUI Imports
@@ -587,8 +587,8 @@ export default SnackbarControlSlideDirection
 )
 
 export const SnackbarSimpleTSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { Fragment, SyntheticEvent, useState } from 'react'
 
 // ** MUI Imports
@@ -645,8 +645,8 @@ export default SnackbarSimple
 )
 
 export const SnackbarPositionedTSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { Fragment, useState } from 'react'
 
 // ** MUI Imports
@@ -714,8 +714,8 @@ export default SnackbarPositioned
 )
 
 export const SnackbarTransitionTSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { ComponentType, Fragment, ReactElement, useState } from 'react'
 
 // ** MUI Imports

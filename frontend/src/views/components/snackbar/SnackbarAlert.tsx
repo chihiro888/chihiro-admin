@@ -23,11 +23,16 @@ const SnackbarAlert = () => {
 
   return (
     <Fragment>
-      <Button variant='outlined' onClick={handleClick}>
+      <Button variant="outlined" onClick={handleClick}>
         Open alert snackbar
       </Button>
       <Snackbar open={open} onClose={handleClose} autoHideDuration={3000}>
-        <Alert variant='filled' elevation={3} onClose={handleClose} severity='success'>
+        <Alert
+          variant="filled"
+          elevation={3}
+          onClose={handleClose}
+          severity="success"
+        >
           This is a success message!
         </Alert>
       </Snackbar>

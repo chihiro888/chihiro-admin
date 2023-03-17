@@ -37,7 +37,13 @@ const renderCustomizedLabel = (props: LabelProp) => {
   const y = cy + radius * Math.sin(-midAngle * RADIAN)
 
   return (
-    <text x={x} y={y} fill='#fff' textAnchor='middle' dominantBaseline='central'>
+    <text
+      x={x}
+      y={y}
+      fill="#fff"
+      textAnchor="middle"
+      dominantBaseline="central"
+    >
       {`${(percent * 100).toFixed(0)}%`}
     </text>
   )
@@ -47,15 +53,23 @@ const RechartsPieChart = () => {
   return (
     <Card>
       <CardHeader
-        title='Expense Ratio'
-        subheader='Spending on various categories'
-        subheaderTypographyProps={{ sx: { color: theme => `${theme.palette.text.disabled} !important` } }}
+        title="Expense Ratio"
+        subheader="Spending on various categories"
+        subheaderTypographyProps={{
+          sx: { color: (theme) => `${theme.palette.text.disabled} !important` }
+        }}
       />
       <CardContent>
         <Box sx={{ height: 350 }}>
           <ResponsiveContainer>
             <PieChart height={350} style={{ direction: 'ltr' }}>
-              <Pie data={data} innerRadius={80} dataKey='value' label={renderCustomizedLabel} labelLine={false}>
+              <Pie
+                data={data}
+                innerRadius={80}
+                dataKey="value"
+                label={renderCustomizedLabel}
+                labelLine={false}
+              >
                 {data.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={entry.color} />
                 ))}
@@ -64,7 +78,14 @@ const RechartsPieChart = () => {
             </PieChart>
           </ResponsiveContainer>
         </Box>
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', mb: 4, justifyContent: 'center' }}>
+        <Box
+          sx={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            mb: 4,
+            justifyContent: 'center'
+          }}
+        >
           <Box
             sx={{
               mr: 6,
@@ -73,8 +94,8 @@ const RechartsPieChart = () => {
               '& svg': { mr: 1.5, color: '#00d4bd' }
             }}
           >
-            <Icon icon='bxs:circle' fontSize='0.75rem' />
-            <Typography variant='body2'>R&D</Typography>
+            <Icon icon="bxs:circle" fontSize="0.75rem" />
+            <Typography variant="body2">R&D</Typography>
           </Box>
           <Box
             sx={{
@@ -84,8 +105,8 @@ const RechartsPieChart = () => {
               '& svg': { mr: 1.5, color: '#ffe700' }
             }}
           >
-            <Icon icon='bxs:circle' fontSize='0.75rem' />
-            <Typography variant='body2'>Operational</Typography>
+            <Icon icon="bxs:circle" fontSize="0.75rem" />
+            <Typography variant="body2">Operational</Typography>
           </Box>
           <Box
             sx={{
@@ -95,12 +116,18 @@ const RechartsPieChart = () => {
               '& svg': { mr: 1.5, color: '#FFA1A1' }
             }}
           >
-            <Icon icon='bxs:circle' fontSize='0.75rem' />
-            <Typography variant='body2'>Networking</Typography>
+            <Icon icon="bxs:circle" fontSize="0.75rem" />
+            <Typography variant="body2">Networking</Typography>
           </Box>
-          <Box sx={{ display: 'flex', alignItems: 'center', '& svg': { mr: 1.5, color: '#826bf8' } }}>
-            <Icon icon='bxs:circle' fontSize='0.75rem' />
-            <Typography variant='body2'>Hiring</Typography>
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              '& svg': { mr: 1.5, color: '#826bf8' }
+            }}
+          >
+            <Icon icon="bxs:circle" fontSize="0.75rem" />
+            <Typography variant="body2">Hiring</Typography>
           </Box>
         </Box>
       </CardContent>

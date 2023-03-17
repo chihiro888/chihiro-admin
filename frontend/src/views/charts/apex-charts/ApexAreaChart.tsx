@@ -127,25 +127,26 @@ const ApexAreaChart = () => {
 
   const CustomInput = forwardRef((props: PickerProps, ref) => {
     const startDate = format(props.start, 'MM/dd/yyyy')
-    const endDate = props.end !== null ? ` - ${format(props.end, 'MM/dd/yyyy')}` : null
+    const endDate =
+      props.end !== null ? ` - ${format(props.end, 'MM/dd/yyyy')}` : null
 
     const value = `${startDate}${endDate !== null ? endDate : ''}`
 
     return (
       <TextField
         {...props}
-        size='small'
+        size="small"
         value={value}
         inputRef={ref}
         InputProps={{
           startAdornment: (
-            <InputAdornment position='start'>
-              <Icon icon='bx:calendar-alt' />
+            <InputAdornment position="start">
+              <Icon icon="bx:calendar-alt" />
             </InputAdornment>
           ),
           endAdornment: (
-            <InputAdornment position='end'>
-              <Icon icon='bx:chevron-down' />
+            <InputAdornment position="end">
+              <Icon icon="bx:chevron-down" />
             </InputAdornment>
           )
         }}
@@ -162,9 +163,11 @@ const ApexAreaChart = () => {
   return (
     <Card>
       <CardHeader
-        title='Line Chart'
-        subheader='Commercial networks'
-        subheaderTypographyProps={{ sx: { color: theme => `${theme.palette.text.disabled} !important` } }}
+        title="Line Chart"
+        subheader="Commercial networks"
+        subheaderTypographyProps={{
+          sx: { color: (theme) => `${theme.palette.text.disabled} !important` }
+        }}
         sx={{
           flexDirection: ['column', 'row'],
           alignItems: ['flex-start', 'center'],
@@ -175,17 +178,27 @@ const ApexAreaChart = () => {
           <DatePicker
             selectsRange
             endDate={endDate}
-            id='apexchart-area'
+            id="apexchart-area"
             selected={startDate}
             startDate={startDate}
             onChange={handleOnChange}
-            placeholderText='Click to select a date'
-            customInput={<CustomInput start={startDate as Date | number} end={endDate as Date | number} />}
+            placeholderText="Click to select a date"
+            customInput={
+              <CustomInput
+                start={startDate as Date | number}
+                end={endDate as Date | number}
+              />
+            }
           />
         }
       />
       <CardContent>
-        <ReactApexcharts type='area' height={400} options={options} series={series} />
+        <ReactApexcharts
+          type="area"
+          height={400}
+          options={options}
+          series={series}
+        />
       </CardContent>
     </Card>
   )

@@ -24,7 +24,7 @@ const CheckboxesShowError = () => {
 
   // ** Vars
   const { gilad, jason, antoine } = state
-  const error = [gilad, jason, antoine].filter(v => v).length !== 2
+  const error = [gilad, jason, antoine].filter((v) => v).length !== 2
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setState({ ...state, [event.target.name]: event.target.checked })
@@ -36,16 +36,26 @@ const CheckboxesShowError = () => {
         <FormLabel>Assign responsibility</FormLabel>
         <FormGroup>
           <FormControlLabel
-            label='Gilad Gray'
-            control={<Checkbox checked={gilad} onChange={handleChange} name='gilad' />}
+            label="Gilad Gray"
+            control={
+              <Checkbox checked={gilad} onChange={handleChange} name="gilad" />
+            }
           />
           <FormControlLabel
-            label='Jason Killian'
-            control={<Checkbox checked={jason} onChange={handleChange} name='jason' />}
+            label="Jason Killian"
+            control={
+              <Checkbox checked={jason} onChange={handleChange} name="jason" />
+            }
           />
           <FormControlLabel
-            label='Antoine Llorca'
-            control={<Checkbox checked={antoine} onChange={handleChange} name='antoine' />}
+            label="Antoine Llorca"
+            control={
+              <Checkbox
+                checked={antoine}
+                onChange={handleChange}
+                name="antoine"
+              />
+            }
           />
         </FormGroup>
         <FormHelperText>Be careful</FormHelperText>
@@ -54,16 +64,26 @@ const CheckboxesShowError = () => {
         <FormLabel>Pick two</FormLabel>
         <FormGroup>
           <FormControlLabel
-            label='Gilad Gray'
-            control={<Checkbox checked={gilad} onChange={handleChange} name='gilad' />}
+            label="Gilad Gray"
+            control={
+              <Checkbox checked={gilad} onChange={handleChange} name="gilad" />
+            }
           />
           <FormControlLabel
-            label='Jason Killian'
-            control={<Checkbox checked={jason} onChange={handleChange} name='jason' />}
+            label="Jason Killian"
+            control={
+              <Checkbox checked={jason} onChange={handleChange} name="jason" />
+            }
           />
           <FormControlLabel
-            label='Antoine Llorca'
-            control={<Checkbox checked={antoine} onChange={handleChange} name='antoine' />}
+            label="Antoine Llorca"
+            control={
+              <Checkbox
+                checked={antoine}
+                onChange={handleChange}
+                name="antoine"
+              />
+            }
           />
         </FormGroup>
         <FormHelperText>You can display an error</FormHelperText>

@@ -14,7 +14,11 @@ import { DateType } from 'src/types/forms/reactDatepickerTypes'
 // ** Custom Component Imports
 import CustomInput from './PickersCustomInput'
 
-const PickersCallbacks = ({ popperPlacement }: { popperPlacement: ReactDatePickerProps['popperPlacement'] }) => {
+const PickersCallbacks = ({
+  popperPlacement
+}: {
+  popperPlacement: ReactDatePickerProps['popperPlacement']
+}) => {
   // ** States
   const [date, setDate] = useState<DateType>(new Date())
 
@@ -23,38 +27,48 @@ const PickersCallbacks = ({ popperPlacement }: { popperPlacement: ReactDatePicke
   }
 
   return (
-    <Box sx={{ display: 'flex', flexWrap: 'wrap' }} className='demo-space-x'>
+    <Box sx={{ display: 'flex', flexWrap: 'wrap' }} className="demo-space-x">
       <div>
         <DatePicker
           selected={date}
-          id='callback-open'
-          dateFormat='MM/dd/yyyy'
+          id="callback-open"
+          dateFormat="MM/dd/yyyy"
           popperPlacement={popperPlacement}
           onChange={(date: Date) => setDate(date)}
-          customInput={<CustomInput label='Open & Closed' />}
-          onCalendarOpen={() => handlePickerCallback(`Selected Date: ${new Date(date || '').toLocaleDateString()}`)}
-          onCalendarClose={() => handlePickerCallback(`Selected Date: ${new Date(date || '').toLocaleDateString()}`)}
+          customInput={<CustomInput label="Open & Closed" />}
+          onCalendarOpen={() =>
+            handlePickerCallback(
+              `Selected Date: ${new Date(date || '').toLocaleDateString()}`
+            )
+          }
+          onCalendarClose={() =>
+            handlePickerCallback(
+              `Selected Date: ${new Date(date || '').toLocaleDateString()}`
+            )
+          }
         />
       </div>
       <div>
         <DatePicker
           selected={date}
-          id='callback-blur'
+          id="callback-blur"
           popperPlacement={popperPlacement}
           onChange={(date: Date) => setDate(date)}
-          customInput={<CustomInput label='Blur' />}
+          customInput={<CustomInput label="Blur" />}
           onBlur={() => handlePickerCallback('Picker Closed')}
         />
       </div>
       <div>
         <DatePicker
           selected={date}
-          id='callback-change'
+          id="callback-change"
           popperPlacement={popperPlacement}
-          customInput={<CustomInput label='onChange' />}
+          customInput={<CustomInput label="onChange" />}
           onChange={(date: Date) => {
             setDate(date)
-            handlePickerCallback(`Selected Date: ${new Date(date || '').toLocaleDateString()}`)
+            handlePickerCallback(
+              `Selected Date: ${new Date(date || '').toLocaleDateString()}`
+            )
           }}
         />
       </div>

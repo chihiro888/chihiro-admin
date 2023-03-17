@@ -27,14 +27,16 @@ const data: CustomCheckboxBasicData[] = [
 ]
 
 const BasicCustomCheckbox = () => {
-  const initialSelected: string[] = data.filter(item => item.isSelected).map(item => item.value)
+  const initialSelected: string[] = data
+    .filter((item) => item.isSelected)
+    .map((item) => item.value)
 
   // ** State
   const [selected, setSelected] = useState<string[]>(initialSelected)
 
   const handleChange = (value: string) => {
     if (selected.includes(value)) {
-      const updatedArr = selected.filter(item => item !== value)
+      const updatedArr = selected.filter((item) => item !== value)
       setSelected(updatedArr)
     } else {
       setSelected([...selected, value])
@@ -49,7 +51,7 @@ const BasicCustomCheckbox = () => {
           data={data[index]}
           selected={selected}
           handleChange={handleChange}
-          name='custom-checkbox-basic'
+          name="custom-checkbox-basic"
           gridProps={{ sm: 6, xs: 12 }}
         />
       ))}

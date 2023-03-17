@@ -1,12 +1,10 @@
-import { ImageService } from './image.service'
+// ** Module
 import {
   Body,
   Controller,
   Post,
   HttpStatus,
   Res,
-  HttpException,
-  UploadedFile,
   UseGuards,
   UseInterceptors,
   UploadedFiles,
@@ -20,13 +18,22 @@ import {
   ApiTags
 } from '@nestjs/swagger'
 import { Response } from 'express'
+import { FilesInterceptor } from '@nestjs/platform-express'
 import SWAGGER from 'src/common/constants/swagger'
-import { ApiFiles } from 'src/common/decorator/api-files.decorator'
-import { AnyFilesInterceptor, FilesInterceptor } from '@nestjs/platform-express'
-import { GetListDto } from './dto/get-list.dto'
+
+// ** Dto
 import { UploadDto } from './dto/upload.dto'
+import { GetImageListDto } from './dto/get-image-list.dto'
+
+// ** Service
+import { ImageService } from './image.service'
+
+// ** Guard
 import { AdminGuard } from 'src/common/guard/admin.guard'
 import { SystemAdminGuard } from 'src/common/guard/system-admin.guard'
+
+// ** Decorator
+import { ApiFiles } from 'src/common/decorator/api-files.decorator'
 
 // ANCHOR image controller
 @ApiTags('image')
@@ -34,7 +41,7 @@ import { SystemAdminGuard } from 'src/common/guard/system-admin.guard'
 export class ImageController {
   constructor(private imageService: ImageService) {}
 
-  // ANCHOR image upload
+  // ANCHOR upload
   @UseGuards(AdminGuard)
   @Post('upload')
   @ApiFiles()
@@ -72,7 +79,7 @@ export class ImageController {
       })
     } catch (err) {
       // logging
-      console.log('err = ', err)
+      console.log(`[ERROR] ${err}`)
 
       res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
         statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
@@ -82,9 +89,9 @@ export class ImageController {
     }
   }
 
-  // ANCHOR get list
+  // ANCHOR get image list
   @UseGuards(SystemAdminGuard)
-  @Get('getList')
+  @Get('getImageList')
   @ApiTags('image')
   @ApiOperation({
     summary: '이미지 리스트 조회 (시스템 관리자 기능)',
@@ -102,9 +109,9 @@ export class ImageController {
     status: HttpStatus.UNAUTHORIZED,
     description: SWAGGER.UNAUTHORIZED
   })
-  async getList(@Res() res: Response, @Query() dto: GetListDto) {
-    // get list
-    const pagination = await this.imageService.getList(dto)
+  async getImageList(@Res() res: Response, @Query() dto: GetImageListDto) {
+    // get image list
+    const pagination = await this.imageService.getImageList(dto)
 
     // return 200 response
     res.status(HttpStatus.OK).json({

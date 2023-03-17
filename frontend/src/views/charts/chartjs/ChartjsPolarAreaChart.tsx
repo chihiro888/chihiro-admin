@@ -68,12 +68,16 @@ const ChartjsPolarAreaChart = (props: PolarAreaProps) => {
   return (
     <Card>
       <CardHeader
-        title='Average Skills'
+        title="Average Skills"
         action={
           <OptionsMenu
             iconProps={{ fontSize: 20 }}
             options={['Refresh', 'Edit', 'Share']}
-            iconButtonProps={{ size: 'small', className: 'card-more-options', sx: { color: 'text.secondary' } }}
+            iconButtonProps={{
+              size: 'small',
+              className: 'card-more-options',
+              sx: { color: 'text.secondary' }
+            }}
           />
         }
       />

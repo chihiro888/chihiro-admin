@@ -42,7 +42,11 @@ const ApexRadialBarChart = () => {
         horizontal: 10
       }
     },
-    colors: [radialBarColors.series1, radialBarColors.series2, radialBarColors.series4],
+    colors: [
+      radialBarColors.series1,
+      radialBarColors.series2,
+      radialBarColors.series4
+    ],
     plotOptions: {
       radialBar: {
         hollow: { size: '30%' },
@@ -90,9 +94,14 @@ const ApexRadialBarChart = () => {
 
   return (
     <Card>
-      <CardHeader title='Statistics' />
+      <CardHeader title="Statistics" />
       <CardContent>
-        <ReactApexcharts type='radialBar' height={400} options={options} series={[80, 50, 35]} />
+        <ReactApexcharts
+          type="radialBar"
+          height={400}
+          options={options}
+          series={[80, 50, 35]}
+        />
       </CardContent>
     </Card>
   )

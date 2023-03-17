@@ -15,34 +15,55 @@ const ListSecondary = () => {
     <List>
       <ListItem>
         <ListItemAvatar>
-          <Avatar src='/images/avatars/2.png' alt='Caroline Black' sx={{ height: 36, width: 36 }} />
+          <Avatar
+            src="/images/avatars/2.png"
+            alt="Caroline Black"
+            sx={{ height: 36, width: 36 }}
+          />
         </ListItemAvatar>
-        <ListItemText primary='Caroline Black' secondary='Sweet dessert brownie.' />
+        <ListItemText
+          primary="Caroline Black"
+          secondary="Sweet dessert brownie."
+        />
         <ListItemSecondaryAction>
-          <IconButton edge='end'>
-            <Icon icon='bx:plus' />
+          <IconButton edge="end">
+            <Icon icon="bx:plus" />
           </IconButton>
         </ListItemSecondaryAction>
       </ListItem>
       <ListItem>
         <ListItemAvatar>
-          <Avatar src='/images/avatars/1.png' alt='Alfred Copeland' sx={{ height: 36, width: 36 }} />
+          <Avatar
+            src="/images/avatars/1.png"
+            alt="Alfred Copeland"
+            sx={{ height: 36, width: 36 }}
+          />
         </ListItemAvatar>
-        <ListItemText primary='Alfred Copeland' secondary='Pudding pie tiramisu.' />
+        <ListItemText
+          primary="Alfred Copeland"
+          secondary="Pudding pie tiramisu."
+        />
         <ListItemSecondaryAction>
-          <IconButton edge='end'>
-            <Icon icon='bx:plus' />
+          <IconButton edge="end">
+            <Icon icon="bx:plus" />
           </IconButton>
         </ListItemSecondaryAction>
       </ListItem>
       <ListItem>
         <ListItemAvatar>
-          <Avatar src='/images/avatars/8.png' alt='Celia Schneider' sx={{ height: 36, width: 36 }} />
+          <Avatar
+            src="/images/avatars/8.png"
+            alt="Celia Schneider"
+            sx={{ height: 36, width: 36 }}
+          />
         </ListItemAvatar>
-        <ListItemText primary='Celia Schneider' secondary='Muffin pie chupa chups.' />
+        <ListItemText
+          primary="Celia Schneider"
+          secondary="Muffin pie chupa chups."
+        />
         <ListItemSecondaryAction>
-          <IconButton edge='end'>
-            <Icon icon='bx:plus' />
+          <IconButton edge="end">
+            <Icon icon="bx:plus" />
           </IconButton>
         </ListItemSecondaryAction>
       </ListItem>

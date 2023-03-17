@@ -15,16 +15,16 @@ const RadioStandalone = () => {
   return (
     <div>
       <Radio
-        value='a'
+        value="a"
         onChange={handleChange}
-        name='radio-button-demo'
+        name="radio-button-demo"
         checked={selectedValue === 'a'}
         inputProps={{ 'aria-label': 'A' }}
       />
       <Radio
-        value='b'
+        value="b"
         onChange={handleChange}
-        name='radio-button-demo'
+        name="radio-button-demo"
         checked={selectedValue === 'b'}
         inputProps={{ 'aria-label': 'B' }}
       />

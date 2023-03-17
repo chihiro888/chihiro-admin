@@ -1,13 +1,20 @@
+// ** Module
+import { Inject, Injectable } from '@nestjs/common'
+import { DataSource } from 'typeorm'
+import moment from 'moment'
+
+// ** Dto
 import { DeleteMenuDto } from './dto/delete-menu.dto'
 import { UpdateMenuDto } from './dto/update-menu.dto copy'
-import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common'
-import { DataSource } from 'typeorm'
-import { GetMenuListDto } from './dto/get-menu-list.dto'
-import moment from 'moment'
-import DATE from 'src/common/constants/date'
 import { CreateMenuDto } from './dto/create-menu.dto'
+import { GetMenuOrderListDto } from './dto/get-menu-order-list.dto'
+
+// ** Entity
 import { Menu } from 'src/entities/menu.entity'
 import { MenuOrder } from 'src/entities/menu-order.entity'
+
+// ** Constant
+import DATE from 'src/common/constants/date'
 
 @Injectable()
 export class MenuService {
@@ -17,7 +24,7 @@ export class MenuService {
   ) {}
 
   // ANCHOR get menu list
-  async getMenuList(dto: GetMenuListDto) {
+  async getMenuList() {
     // data
     const data = await this.datasource
       .getRepository(Menu)
@@ -72,7 +79,7 @@ export class MenuService {
   }
 
   // ANCHOR get menu list
-  async getMenuOrderList(dto: GetMenuListDto) {
+  async getMenuOrderList(dto: GetMenuOrderListDto) {
     // data
     const menuOrderList = await this.datasource.getRepository(MenuOrder).find({
       where: {

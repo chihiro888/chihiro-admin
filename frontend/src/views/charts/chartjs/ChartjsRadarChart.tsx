@@ -62,11 +62,21 @@ const ChartjsRadarChart = (props: RadarProps) => {
     if (!chartRef.current) {
       return
     } else {
-      const gradientBlue = chartRef.current.ctx.createLinearGradient(0, 0, 0, 150)
+      const gradientBlue = chartRef.current.ctx.createLinearGradient(
+        0,
+        0,
+        0,
+        150
+      )
       gradientBlue.addColorStop(0, 'rgba(155,136,250, 0.9)')
       gradientBlue.addColorStop(1, 'rgba(155,136,250, 0.8)')
 
-      const gradientRed = chartRef.current.ctx.createLinearGradient(0, 0, 0, 150)
+      const gradientRed = chartRef.current.ctx.createLinearGradient(
+        0,
+        0,
+        0,
+        150
+      )
       gradientRed.addColorStop(0, 'rgba(255,161,161, 0.9)')
       gradientRed.addColorStop(1, 'rgba(255,161,161, 0.8)')
 
@@ -100,7 +110,7 @@ const ChartjsRadarChart = (props: RadarProps) => {
 
   return (
     <Card>
-      <CardHeader title='Radar Chart' />
+      <CardHeader title="Radar Chart" />
       <CardContent>
         <Radar height={350} ref={chartRef} data={chartData} options={options} />
       </CardContent>

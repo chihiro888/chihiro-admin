@@ -200,16 +200,18 @@ const AnalyticsTabsWithTable = () => {
   return (
     <Card>
       <TabContext value={value}>
-        <CardContent sx={{ borderBottom: theme => `1px solid ${theme.palette.divider}` }}>
+        <CardContent
+          sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}
+        >
           <TabList
-            variant='scrollable'
-            scrollButtons='auto'
+            variant="scrollable"
+            scrollButtons="auto"
             onChange={handleChange}
-            aria-label='customized tabs example'
+            aria-label="customized tabs example"
           >
-            <Tab value='browser' label='Browser' />
-            <Tab value='os' label='Operating System' />
-            <Tab value='country' label='Country' />
+            <Tab value="browser" label="Browser" />
+            <Tab value="os" label="Operating System" />
+            <Tab value="country" label="Country" />
           </TabList>
         </CardContent>
         <TabPanel
@@ -218,7 +220,7 @@ const AnalyticsTabsWithTable = () => {
             border: 0,
             boxShadow: 0,
             backgroundColor: 'transparent',
-            p: theme => `${theme.spacing(0, 0, 3)} !important`
+            p: (theme) => `${theme.spacing(0, 0, 3)} !important`
           }}
         >
           <TableContainer>
@@ -226,22 +228,26 @@ const AnalyticsTabsWithTable = () => {
               <TableHead sx={{ '& .MuiTableCell-root': { pt: 6.5, pb: 5.5 } }}>
                 <TableRow>
                   <TableCell>
-                    <Typography variant='body2' sx={{ fontWeight: 500 }}>
+                    <Typography variant="body2" sx={{ fontWeight: 500 }}>
                       No.
                     </Typography>
                   </TableCell>
                   <TableCell>
-                    <Typography variant='body2' sx={{ fontWeight: 500 }}>
-                      {value === 'browser' ? 'Browser' : value === 'os' ? 'System' : 'Country'}
+                    <Typography variant="body2" sx={{ fontWeight: 500 }}>
+                      {value === 'browser'
+                        ? 'Browser'
+                        : value === 'os'
+                        ? 'System'
+                        : 'Country'}
                     </Typography>
                   </TableCell>
                   <TableCell>
-                    <Typography variant='body2' sx={{ fontWeight: 500 }}>
+                    <Typography variant="body2" sx={{ fontWeight: 500 }}>
                       Visits
                     </Typography>
                   </TableCell>
                   <TableCell>
-                    <Typography noWrap variant='body2' sx={{ fontWeight: 500 }}>
+                    <Typography noWrap variant="body2" sx={{ fontWeight: 500 }}>
                       Data in Percentage
                     </Typography>
                   </TableCell>
@@ -253,7 +259,7 @@ const AnalyticsTabsWithTable = () => {
                     key={index}
                     sx={{
                       '& .MuiTableCell-root': {
-                        py: theme => [
+                        py: (theme) => [
                           `${theme.spacing(3.75)} !important`,
                           `${theme.spacing(3.75)} !important`,
                           `${theme.spacing(3.25)} !important`
@@ -268,25 +274,39 @@ const AnalyticsTabsWithTable = () => {
                           width={24}
                           height={24}
                           src={row.src}
-                          alt={value === 'browser' ? row.browser : value === 'os' ? row.system : row.country}
+                          alt={
+                            value === 'browser'
+                              ? row.browser
+                              : value === 'os'
+                              ? row.system
+                              : row.country
+                          }
                         />
                         <Typography sx={{ ml: 3, color: 'text.secondary' }}>
-                          {value === 'browser' ? row.browser : value === 'os' ? row.system : row.country}
+                          {value === 'browser'
+                            ? row.browser
+                            : value === 'os'
+                            ? row.system
+                            : row.country}
                         </Typography>
                       </Box>
                     </TableCell>
                     <TableCell>
-                      <Typography sx={{ fontWeight: 600, color: 'text.secondary' }}>{row.visits}</Typography>
+                      <Typography
+                        sx={{ fontWeight: 600, color: 'text.secondary' }}
+                      >
+                        {row.visits}
+                      </Typography>
                     </TableCell>
                     <TableCell>
                       <Box sx={{ display: 'flex', alignItems: 'center' }}>
                         <LinearProgress
                           color={row.color}
-                          variant='determinate'
+                          variant="determinate"
                           value={row.percentage + 20}
                           sx={{ mr: 4, height: 9, width: '100%' }}
                         />
-                        <Typography variant='body2' sx={{ fontWeight: 500 }}>
+                        <Typography variant="body2" sx={{ fontWeight: 500 }}>
                           {`${row.percentage}%`}
                         </Typography>
                       </Box>

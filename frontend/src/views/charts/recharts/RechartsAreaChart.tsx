@@ -14,7 +14,16 @@ import InputAdornment from '@mui/material/InputAdornment'
 // ** Third Party Imports
 import format from 'date-fns/format'
 import DatePicker from 'react-datepicker'
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, TooltipProps } from 'recharts'
+import {
+  AreaChart,
+  Area,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+  TooltipProps
+} from 'recharts'
 
 // ** Icon Imports
 import Icon from 'src/@core/components/icon'
@@ -117,16 +126,25 @@ const CustomTooltip = (data: TooltipProps<any, any>) => {
 
   if (active && payload) {
     return (
-      <div className='recharts-custom-tooltip'>
+      <div className="recharts-custom-tooltip">
         <Typography>{data.label}</Typography>
         <Divider />
         {data &&
           data.payload &&
           data.payload.map((i: any) => {
             return (
-              <Box sx={{ display: 'flex', alignItems: 'center', '& svg': { color: i.fill, mr: 2.5 } }} key={i.dataKey}>
-                <Icon icon='bxs:circle' fontSize='0.6rem' />
-                <Typography variant='body2'>{`${i.dataKey} : ${i.payload[i.dataKey]}`}</Typography>
+              <Box
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  '& svg': { color: i.fill, mr: 2.5 }
+                }}
+                key={i.dataKey}
+              >
+                <Icon icon="bxs:circle" fontSize="0.6rem" />
+                <Typography variant="body2">{`${i.dataKey} : ${
+                  i.payload[i.dataKey]
+                }`}</Typography>
               </Box>
             )
           })}
@@ -144,25 +162,26 @@ const RechartsAreaChart = ({ direction }: Props) => {
 
   const CustomInput = forwardRef((props: PickerProps, ref) => {
     const startDate = format(props.start, 'MM/dd/yyyy')
-    const endDate = props.end !== null ? ` - ${format(props.end, 'MM/dd/yyyy')}` : null
+    const endDate =
+      props.end !== null ? ` - ${format(props.end, 'MM/dd/yyyy')}` : null
 
     const value = `${startDate}${endDate !== null ? endDate : ''}`
 
     return (
       <TextField
         {...props}
-        size='small'
+        size="small"
         value={value}
         inputRef={ref}
         InputProps={{
           startAdornment: (
-            <InputAdornment position='start'>
-              <Icon icon='bx:calendar-alt' />
+            <InputAdornment position="start">
+              <Icon icon="bx:calendar-alt" />
             </InputAdornment>
           ),
           endAdornment: (
-            <InputAdornment position='end'>
-              <Icon icon='bx:chevron-down' />
+            <InputAdornment position="end">
+              <Icon icon="bx:chevron-down" />
             </InputAdornment>
           )
         }}
@@ -179,7 +198,7 @@ const RechartsAreaChart = ({ direction }: Props) => {
   return (
     <Card>
       <CardHeader
-        title='Website Data'
+        title="Website Data"
         sx={{
           flexDirection: ['column', 'row'],
           alignItems: ['flex-start', 'center'],
@@ -190,20 +209,32 @@ const RechartsAreaChart = ({ direction }: Props) => {
           <DatePicker
             selectsRange
             endDate={endDate}
-            id='recharts-area'
+            id="recharts-area"
             selected={startDate}
             startDate={startDate}
             onChange={handleOnChange}
-            placeholderText='Click to select a date'
-            customInput={<CustomInput start={startDate as Date | number} end={endDate as Date | number} />}
+            placeholderText="Click to select a date"
+            customInput={
+              <CustomInput
+                start={startDate as Date | number}
+                end={endDate as Date | number}
+              />
+            }
           />
         }
       />
       <CardContent>
         <Box sx={{ display: 'flex', mb: 4 }}>
-          <Box sx={{ mr: 6, display: 'flex', alignItems: 'center', '& svg': { mr: 1.5, color: 'rgb(115, 103, 240)' } }}>
-            <Icon icon='bxs:circle' fontSize='0.75rem' />
-            <Typography variant='body2'>Click</Typography>
+          <Box
+            sx={{
+              mr: 6,
+              display: 'flex',
+              alignItems: 'center',
+              '& svg': { mr: 1.5, color: 'rgb(115, 103, 240)' }
+            }}
+          >
+            <Icon icon="bxs:circle" fontSize="0.75rem" />
+            <Typography variant="body2">Click</Typography>
           </Box>
           <Box
             sx={{
@@ -213,24 +244,50 @@ const RechartsAreaChart = ({ direction }: Props) => {
               '& svg': { mr: 1.5, color: 'rgba(115, 103, 240, .5)' }
             }}
           >
-            <Icon icon='bxs:circle' fontSize='0.75rem' />
-            <Typography variant='body2'>Sales</Typography>
+            <Icon icon="bxs:circle" fontSize="0.75rem" />
+            <Typography variant="body2">Sales</Typography>
           </Box>
-          <Box sx={{ display: 'flex', alignItems: 'center', '& svg': { mr: 1.5, color: 'rgba(115, 103, 240, .2)' } }}>
-            <Icon icon='bxs:circle' fontSize='0.75rem' />
-            <Typography variant='body2'>Visits</Typography>
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              '& svg': { mr: 1.5, color: 'rgba(115, 103, 240, .2)' }
+            }}
+          >
+            <Icon icon="bxs:circle" fontSize="0.75rem" />
+            <Typography variant="body2">Visits</Typography>
           </Box>
         </Box>
         <Box sx={{ height: 350 }}>
           <ResponsiveContainer>
-            <AreaChart height={350} data={data} style={{ direction }} margin={{ left: -20 }}>
+            <AreaChart
+              height={350}
+              data={data}
+              style={{ direction }}
+              margin={{ left: -20 }}
+            >
               <CartesianGrid />
-              <XAxis dataKey='name' reversed={direction === 'rtl'} />
+              <XAxis dataKey="name" reversed={direction === 'rtl'} />
               <YAxis orientation={direction === 'rtl' ? 'right' : 'left'} />
               <Tooltip content={CustomTooltip} />
-              <Area dataKey='Clicks' stackId='Clicks' stroke='0' fill='rgb(115, 103, 240)' />
-              <Area dataKey='Sales' stackId='Sales' stroke='0' fill='rgba(115, 103, 240, .5)' />
-              <Area dataKey='Visits' stackId='Visits' stroke='0' fill='rgba(115, 103, 240, .2)' />
+              <Area
+                dataKey="Clicks"
+                stackId="Clicks"
+                stroke="0"
+                fill="rgb(115, 103, 240)"
+              />
+              <Area
+                dataKey="Sales"
+                stackId="Sales"
+                stroke="0"
+                fill="rgba(115, 103, 240, .5)"
+              />
+              <Area
+                dataKey="Visits"
+                stackId="Visits"
+                stroke="0"
+                fill="rgba(115, 103, 240, .2)"
+              />
             </AreaChart>
           </ResponsiveContainer>
         </Box>

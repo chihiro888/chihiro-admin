@@ -27,8 +27,9 @@ const data: CustomRadioImgData[] = [
 ]
 
 const CustomRadioWithImages = () => {
-  const initialSelected: string = data.filter(item => item.isSelected)[data.filter(item => item.isSelected).length - 1]
-    .value
+  const initialSelected: string = data.filter((item) => item.isSelected)[
+    data.filter((item) => item.isSelected).length - 1
+  ].value
 
   // ** State
   const [selected, setSelected] = useState<string>(initialSelected)
@@ -48,7 +49,7 @@ const CustomRadioWithImages = () => {
           key={index}
           data={data[index]}
           selected={selected}
-          name='custom-radios-img'
+          name="custom-radios-img"
           handleChange={handleChange}
           gridProps={{ sm: 4, xs: 12 }}
         />

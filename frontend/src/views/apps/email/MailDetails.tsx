@@ -96,22 +96,28 @@ const MailDetails = (props: MailDetailsType) => {
   const { settings } = useSettings()
 
   const handleMoveToTrash = () => {
-    dispatch(updateMail({ emailIds: [mail.id], dataToUpdate: { folder: 'trash' } }))
+    dispatch(
+      updateMail({ emailIds: [mail.id], dataToUpdate: { folder: 'trash' } })
+    )
     setMailDetailsOpen(false)
   }
 
   const handleReadMail = () => {
-    dispatch(updateMail({ emailIds: [mail.id], dataToUpdate: { isRead: false } }))
+    dispatch(
+      updateMail({ emailIds: [mail.id], dataToUpdate: { isRead: false } })
+    )
     setMailDetailsOpen(false)
   }
   const handleLabelsMenu = () => {
     const array: OptionType[] = []
     Object.entries(labelColors).map(([key, value]: string[]) => {
       array.push({
-        text: <Typography sx={{ textTransform: 'capitalize' }}>{key}</Typography>,
+        text: (
+          <Typography sx={{ textTransform: 'capitalize' }}>{key}</Typography>
+        ),
         icon: (
-          <Box component='span' sx={{ mr: 2, color: `${value}.main` }}>
-            <Icon icon='bxs:circle' fontSize='0.75rem' />
+          <Box component="span" sx={{ mr: 2, color: `${value}.main` }}>
+            <Icon icon="bxs:circle" fontSize="0.75rem" />
           </Box>
         ),
         menuItemProps: {
@@ -129,12 +135,21 @@ const MailDetails = (props: MailDetailsType) => {
   const handleFoldersMenu = () => {
     const array: OptionType[] = []
 
-    if (routeParams && routeParams.folder && !routeParams.label && foldersObj[routeParams.folder]) {
+    if (
+      routeParams &&
+      routeParams.folder &&
+      !routeParams.label &&
+      foldersObj[routeParams.folder]
+    ) {
       foldersObj[routeParams.folder].map((folder: MailFoldersArrType) => {
         array.length = 0
         array.push({
           icon: folder.icon,
-          text: <Typography sx={{ textTransform: 'capitalize' }}>{folder.name}</Typography>,
+          text: (
+            <Typography sx={{ textTransform: 'capitalize' }}>
+              {folder.name}
+            </Typography>
+          ),
           menuItemProps: {
             onClick: () => {
               handleFolderUpdate(mail.id, folder.name)
@@ -148,7 +163,11 @@ const MailDetails = (props: MailDetailsType) => {
         array.length = 0
         array.push({
           icon: folder.icon,
-          text: <Typography sx={{ textTransform: 'capitalize' }}>{folder.name}</Typography>,
+          text: (
+            <Typography sx={{ textTransform: 'capitalize' }}>
+              {folder.name}
+            </Typography>
+          ),
           menuItemProps: {
             onClick: () => {
               handleFolderUpdate(mail.id, folder.name)
@@ -162,7 +181,11 @@ const MailDetails = (props: MailDetailsType) => {
         array.length = 0
         array.push({
           icon: folder.icon,
-          text: <Typography sx={{ textTransform: 'capitalize' }}>{folder.name}</Typography>,
+          text: (
+            <Typography sx={{ textTransform: 'capitalize' }}>
+              {folder.name}
+            </Typography>
+          ),
           menuItemProps: {
             onClick: () => {
               handleFolderUpdate(mail.id, folder.name)
@@ -176,21 +199,31 @@ const MailDetails = (props: MailDetailsType) => {
     return array
   }
 
-  const prevMailIcon = direction === 'rtl' ? 'bx:chevron-right' : 'bx:chevron-left'
-  const nextMailIcon = direction === 'rtl' ? 'bx:chevron-left' : 'bx:chevron-right'
+  const prevMailIcon =
+    direction === 'rtl' ? 'bx:chevron-right' : 'bx:chevron-left'
+  const nextMailIcon =
+    direction === 'rtl' ? 'bx:chevron-left' : 'bx:chevron-right'
   const goBackIcon = prevMailIcon
   const ScrollWrapper = ({ children }: { children: ReactNode }) => {
     if (hidden) {
-      return <Box sx={{ height: '100%', overflowY: 'auto', overflowX: 'hidden' }}>{children}</Box>
+      return (
+        <Box sx={{ height: '100%', overflowY: 'auto', overflowX: 'hidden' }}>
+          {children}
+        </Box>
+      )
     } else {
-      return <PerfectScrollbar options={{ wheelPropagation: false }}>{children}</PerfectScrollbar>
+      return (
+        <PerfectScrollbar options={{ wheelPropagation: false }}>
+          {children}
+        </PerfectScrollbar>
+      )
     }
   }
 
   return (
     <Sidebar
       hideBackdrop
-      direction='right'
+      direction="right"
       show={mailDetailsOpen}
       sx={{ zIndex: 3, width: '100%', overflow: 'hidden' }}
       onClose={() => {
@@ -205,10 +238,16 @@ const MailDetails = (props: MailDetailsType) => {
               px: 2.6,
               py: [2.25, 3],
               backgroundColor: 'background.paper',
-              borderBottom: theme => `1px solid ${theme.palette.divider}`
+              borderBottom: (theme) => `1px solid ${theme.palette.divider}`
             }}
           >
-            <Box sx={{ display: 'flex', alignItems: ['flex-start', 'center'], justifyContent: 'space-between' }}>
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: ['flex-start', 'center'],
+                justifyContent: 'space-between'
+              }}
+            >
               <Box
                 sx={{
                   display: 'flex',
@@ -219,14 +258,14 @@ const MailDetails = (props: MailDetailsType) => {
                 }}
               >
                 <IconButton
-                  size='small'
+                  size="small"
                   sx={{ mr: 3.5 }}
                   onClick={() => {
                     setMailDetailsOpen(false)
                     setShowReplies(false)
                   }}
                 >
-                  <Icon icon={goBackIcon} fontSize='2rem' />
+                  <Icon icon={goBackIcon} fontSize="2rem" />
                 </IconButton>
                 <Box
                   sx={{
@@ -247,8 +286,8 @@ const MailDetails = (props: MailDetailsType) => {
                             <CustomChip
                               rounded
                               key={label}
-                              size='small'
-                              skin='light'
+                              size="small"
+                              skin="light"
                               label={label}
                               color={labelColors[label] as ThemeColor}
                               sx={{ '&:not(:last-of-type)': { mr: 2 } }}
@@ -261,18 +300,30 @@ const MailDetails = (props: MailDetailsType) => {
               </Box>
               <Box sx={{ display: 'flex' }}>
                 <IconButton
-                  size='small'
+                  size="small"
                   disabled={!mail.hasPreviousMail}
-                  sx={{ color: mail.hasPreviousMail ? 'text.primary' : 'text.secondary' }}
-                  onClick={() => dispatch(paginateMail({ dir: 'previous', emailId: mail.id }))}
+                  sx={{
+                    color: mail.hasPreviousMail
+                      ? 'text.primary'
+                      : 'text.secondary'
+                  }}
+                  onClick={() =>
+                    dispatch(
+                      paginateMail({ dir: 'previous', emailId: mail.id })
+                    )
+                  }
                 >
                   <Icon icon={prevMailIcon} />
                 </IconButton>
                 <IconButton
-                  size='small'
+                  size="small"
                   disabled={!mail.hasNextMail}
-                  sx={{ color: mail.hasNextMail ? 'text.primary' : 'text.secondary' }}
-                  onClick={() => dispatch(paginateMail({ dir: 'next', emailId: mail.id }))}
+                  sx={{
+                    color: mail.hasNextMail ? 'text.primary' : 'text.secondary'
+                  }}
+                  onClick={() =>
+                    dispatch(paginateMail({ dir: 'next', emailId: mail.id }))
+                  }
                 >
                   <Icon icon={nextMailIcon} />
                 </IconButton>
@@ -282,58 +333,74 @@ const MailDetails = (props: MailDetailsType) => {
           <Box
             sx={{
               backgroundColor: 'background.paper',
-              p: theme => theme.spacing(3, 2, 3, 3),
-              borderBottom: theme => `1px solid ${theme.palette.divider}`
+              p: (theme) => theme.spacing(3, 2, 3, 3),
+              borderBottom: (theme) => `1px solid ${theme.palette.divider}`
             }}
           >
-            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between'
+              }}
+            >
               <Box sx={{ display: 'flex', alignItems: 'center' }}>
                 {routeParams && routeParams.folder !== 'trash' ? (
-                  <IconButton size='small' onClick={handleMoveToTrash}>
-                    <Icon icon='bx:trash-alt' />
+                  <IconButton size="small" onClick={handleMoveToTrash}>
+                    <Icon icon="bx:trash-alt" />
                   </IconButton>
                 ) : null}
 
-                <IconButton size='small' onClick={handleReadMail}>
-                  <Icon icon='bx:envelope' />
+                <IconButton size="small" onClick={handleReadMail}>
+                  <Icon icon="bx:envelope" />
                 </IconButton>
                 <OptionsMenu
                   leftAlignMenu
                   options={handleFoldersMenu()}
                   iconButtonProps={{ size: 'small' }}
-                  icon={<Icon icon='bx:folder' />}
+                  icon={<Icon icon="bx:folder" />}
                 />
                 <OptionsMenu
                   leftAlignMenu
                   options={handleLabelsMenu()}
                   iconButtonProps={{ size: 'small' }}
-                  icon={<Icon icon='bx:label' />}
+                  icon={<Icon icon="bx:label" />}
                 />
               </Box>
               <div>
                 <IconButton
-                  size='small'
-                  onClick={e => handleStarMail(e, mail.id, !mail.isStarred)}
+                  size="small"
+                  onClick={(e) => handleStarMail(e, mail.id, !mail.isStarred)}
                   sx={{ ...(mail.isStarred ? { color: 'warning.main' } : {}) }}
                 >
-                  <Icon icon='bx:star' />
+                  <Icon icon="bx:star" />
                 </IconButton>
                 {mail.replies.length ? (
-                  <IconButton size='small' onClick={() => (showReplies ? setShowReplies(false) : setShowReplies(true))}>
+                  <IconButton
+                    size="small"
+                    onClick={() =>
+                      showReplies ? setShowReplies(false) : setShowReplies(true)
+                    }
+                  >
                     {showReplies ? (
-                      <Icon icon='mdi:arrow-collapse-vertical' />
+                      <Icon icon="mdi:arrow-collapse-vertical" />
                     ) : (
-                      <Icon icon='mdi:arrow-expand-vertical' />
+                      <Icon icon="mdi:arrow-expand-vertical" />
                     )}
                   </IconButton>
                 ) : null}
-                <IconButton size='small'>
-                  <Icon icon='bx:dots-vertical-rounded' />
+                <IconButton size="small">
+                  <Icon icon="bx:dots-vertical-rounded" />
                 </IconButton>
               </div>
             </Box>
           </Box>
-          <Box sx={{ height: 'calc(100% - 7.75rem)', backgroundColor: theme => theme.palette.action.hover }}>
+          <Box
+            sx={{
+              height: 'calc(100% - 7.75rem)',
+              backgroundColor: (theme) => theme.palette.action.hover
+            }}
+          >
             <ScrollWrapper>
               <Box
                 sx={{
@@ -347,7 +414,10 @@ const MailDetails = (props: MailDetailsType) => {
                 }}
               >
                 {mail.replies.length && !showReplies ? (
-                  <Typography onClick={() => setShowReplies(true)} sx={{ mt: 1.5, mb: 5, cursor: 'pointer' }}>
+                  <Typography
+                    onClick={() => setShowReplies(true)}
+                    sx={{ mt: 1.5, mb: 5, cursor: 'pointer' }}
+                  >
                     {mail.replies.length} Earlier Messages
                   </Typography>
                 ) : null}
@@ -363,7 +433,8 @@ const MailDetails = (props: MailDetailsType) => {
                             width: '100%',
                             borderRadius: 1,
                             backgroundColor: 'background.paper',
-                            border: theme => `1px solid ${theme.palette.divider}`
+                            border: (theme) =>
+                              `1px solid ${theme.palette.divider}`
                           }}
                         >
                           <Box sx={{ p: 5 }}>
@@ -375,57 +446,95 @@ const MailDetails = (props: MailDetailsType) => {
                                 justifyContent: 'space-between'
                               }}
                             >
-                              <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                              <Box
+                                sx={{ display: 'flex', alignItems: 'center' }}
+                              >
                                 <Avatar
                                   alt={reply.from.name}
                                   src={reply.from.avatar}
-                                  sx={{ width: '2.375rem', height: '2.375rem', mr: 3 }}
+                                  sx={{
+                                    width: '2.375rem',
+                                    height: '2.375rem',
+                                    mr: 3
+                                  }}
                                 />
-                                <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                                  <Typography sx={{ fontWeight: 500 }}>{reply.from.name}</Typography>
-                                  <Typography variant='body2'>{reply.from.email}</Typography>
+                                <Box
+                                  sx={{
+                                    display: 'flex',
+                                    flexDirection: 'column'
+                                  }}
+                                >
+                                  <Typography sx={{ fontWeight: 500 }}>
+                                    {reply.from.name}
+                                  </Typography>
+                                  <Typography variant="body2">
+                                    {reply.from.email}
+                                  </Typography>
                                 </Box>
                               </Box>
-                              <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                                <Typography variant='caption' sx={{ mr: 3 }}>
+                              <Box
+                                sx={{ display: 'flex', alignItems: 'center' }}
+                              >
+                                <Typography variant="caption" sx={{ mr: 3 }}>
                                   {new Date(reply.time).toDateString()}{' '}
-                                  {new Date(reply.time).toLocaleTimeString('en-US', {
-                                    hour: '2-digit',
-                                    minute: '2-digit',
-                                    hour12: true
-                                  })}
+                                  {new Date(reply.time).toLocaleTimeString(
+                                    'en-US',
+                                    {
+                                      hour: '2-digit',
+                                      minute: '2-digit',
+                                      hour12: true
+                                    }
+                                  )}
                                 </Typography>
                                 {mail.attachments.length ? (
-                                  <IconButton size='small'>
-                                    <Icon icon='bx:paperclip' />
+                                  <IconButton size="small">
+                                    <Icon icon="bx:paperclip" />
                                   </IconButton>
                                 ) : null}
-                                <IconButton size='small'>
-                                  <Icon icon='bx:dots-vertical-rounded' />
+                                <IconButton size="small">
+                                  <Icon icon="bx:dots-vertical-rounded" />
                                 </IconButton>
                               </Box>
                             </Box>
                           </Box>
                           <Divider sx={{ m: '0 !important' }} />
                           <Box sx={{ p: 5, pt: 0 }}>
-                            <Box dangerouslySetInnerHTML={{ __html: reply.message }} />
+                            <Box
+                              dangerouslySetInnerHTML={{
+                                __html: reply.message
+                              }}
+                            />
                           </Box>
                           {reply.attachments.length ? (
                             <Fragment>
                               <Divider sx={{ m: '0 !important' }} />
                               <Box sx={{ p: 5 }}>
-                                <Typography variant='body2'>Attachments</Typography>
+                                <Typography variant="body2">
+                                  Attachments
+                                </Typography>
                                 <List>
-                                  {reply.attachments.map((item: MailAttachmentType) => {
-                                    return (
-                                      <ListItem disableGutters key={item.fileName}>
-                                        <ListItemIcon>
-                                          <img src={item.thumbnail} alt={item.fileName} width='24' height='24' />
-                                        </ListItemIcon>
-                                        <Typography variant='caption'>{item.fileName}</Typography>
-                                      </ListItem>
-                                    )
-                                  })}
+                                  {reply.attachments.map(
+                                    (item: MailAttachmentType) => {
+                                      return (
+                                        <ListItem
+                                          disableGutters
+                                          key={item.fileName}
+                                        >
+                                          <ListItemIcon>
+                                            <img
+                                              src={item.thumbnail}
+                                              alt={item.fileName}
+                                              width="24"
+                                              height="24"
+                                            />
+                                          </ListItemIcon>
+                                          <Typography variant="caption">
+                                            {item.fileName}
+                                          </Typography>
+                                        </ListItem>
+                                      )
+                                    }
+                                  )}
                                 </List>
                               </Box>
                             </Fragment>
@@ -437,8 +546,14 @@ const MailDetails = (props: MailDetailsType) => {
 
                 {mail.replies.length && !showReplies ? (
                   <Fragment>
-                    <HiddenReplyBack sx={{ cursor: 'pointer' }} onClick={() => setShowReplies(true)} />
-                    <HiddenReplyFront sx={{ cursor: 'pointer' }} onClick={() => setShowReplies(true)} />
+                    <HiddenReplyBack
+                      sx={{ cursor: 'pointer' }}
+                      onClick={() => setShowReplies(true)}
+                    />
+                    <HiddenReplyFront
+                      sx={{ cursor: 'pointer' }}
+                      onClick={() => setShowReplies(true)}
+                    />
                   </Fragment>
                 ) : null}
 
@@ -451,12 +566,17 @@ const MailDetails = (props: MailDetailsType) => {
                     position: 'relative',
                     backgroundColor: 'background.paper',
                     boxShadow: settings.skin === 'bordered' ? 0 : 6,
-                    border: theme => `1px solid ${theme.palette.divider}`
+                    border: (theme) => `1px solid ${theme.palette.divider}`
                   }}
                 >
                   <Box sx={{ p: 5 }}>
                     <Box
-                      sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap' }}
+                      sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        flexWrap: 'wrap'
+                      }}
                     >
                       <Box sx={{ display: 'flex', alignItems: 'center' }}>
                         <Avatar
@@ -465,12 +585,16 @@ const MailDetails = (props: MailDetailsType) => {
                           sx={{ width: '2.375rem', height: '2.375rem', mr: 3 }}
                         />
                         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                          <Typography sx={{ fontWeight: 500 }}>{mail.from.name}</Typography>
-                          <Typography variant='body2'>{mail.from.email}</Typography>
+                          <Typography sx={{ fontWeight: 500 }}>
+                            {mail.from.name}
+                          </Typography>
+                          <Typography variant="body2">
+                            {mail.from.email}
+                          </Typography>
                         </Box>
                       </Box>
                       <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                        <Typography variant='caption' sx={{ mr: 3 }}>
+                        <Typography variant="caption" sx={{ mr: 3 }}>
                           {new Date(mail.time).toDateString()}{' '}
                           {new Date(mail.time).toLocaleTimeString('en-US', {
                             hour: '2-digit',
@@ -479,8 +603,8 @@ const MailDetails = (props: MailDetailsType) => {
                           })}
                         </Typography>
                         {mail.attachments.length ? (
-                          <IconButton size='small'>
-                            <Icon icon='bx:paperclip' />
+                          <IconButton size="small">
+                            <Icon icon="bx:paperclip" />
                           </IconButton>
                         ) : null}
                         <OptionsMenu
@@ -489,12 +613,14 @@ const MailDetails = (props: MailDetailsType) => {
                             {
                               text: 'Reply',
                               menuItemProps: { sx: { '& svg': { mr: 2 } } },
-                              icon: <Icon icon='bx:share' fontSize={20} />
+                              icon: <Icon icon="bx:share" fontSize={20} />
                             },
                             {
                               text: 'Forward',
                               menuItemProps: { sx: { '& svg': { mr: 2 } } },
-                              icon: <Icon icon='mdi:reply-outline' fontSize={20} />
+                              icon: (
+                                <Icon icon="mdi:reply-outline" fontSize={20} />
+                              )
                             }
                           ]}
                         />
@@ -509,15 +635,22 @@ const MailDetails = (props: MailDetailsType) => {
                     <Fragment>
                       <Divider sx={{ m: '0 !important' }} />
                       <Box sx={{ p: 5 }}>
-                        <Typography variant='body2'>Attachments</Typography>
+                        <Typography variant="body2">Attachments</Typography>
                         <List>
                           {mail.attachments.map((item: MailAttachmentType) => {
                             return (
                               <ListItem disableGutters key={item.fileName}>
                                 <ListItemIcon>
-                                  <img src={item.thumbnail} alt={item.fileName} width='24' height='24' />
+                                  <img
+                                    src={item.thumbnail}
+                                    alt={item.fileName}
+                                    width="24"
+                                    height="24"
+                                  />
                                 </ListItemIcon>
-                                <Typography variant='caption'>{item.fileName}</Typography>
+                                <Typography variant="caption">
+                                  {item.fileName}
+                                </Typography>
                               </ListItem>
                             )
                           })}
@@ -541,15 +674,23 @@ const MailDetails = (props: MailDetailsType) => {
                   <Typography sx={{ fontWeight: 500 }}>
                     Click here to{' '}
                     <Typography
-                      component='span'
-                      sx={{ cursor: 'pointer', color: 'primary.main', fontWeight: 'inherit' }}
+                      component="span"
+                      sx={{
+                        cursor: 'pointer',
+                        color: 'primary.main',
+                        fontWeight: 'inherit'
+                      }}
                     >
                       Reply
                     </Typography>{' '}
                     or{' '}
                     <Typography
-                      component='span'
-                      sx={{ cursor: 'pointer', color: 'primary.main', fontWeight: 'inherit' }}
+                      component="span"
+                      sx={{
+                        cursor: 'pointer',
+                        color: 'primary.main',
+                        fontWeight: 'inherit'
+                      }}
                     >
                       Forward
                     </Typography>
