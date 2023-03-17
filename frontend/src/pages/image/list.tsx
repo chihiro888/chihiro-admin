@@ -9,7 +9,7 @@ import {
 } from '@mui/material'
 import { useEffect, useState, Fragment } from 'react'
 import PageHeader from 'src/@core/components/page-header'
-import { getList } from 'src/apis/image'
+import { getImageList } from 'src/apis/image'
 import toast from 'react-hot-toast'
 import moment from 'moment'
 
@@ -70,7 +70,7 @@ const List = () => {
     const params = {
       page: value
     }
-    const { data: res } = await getList(params)
+    const { data: res } = await getImageList(params)
     if (res.statusCode === 200) {
       const data = res.data
       setPagination({
@@ -85,7 +85,7 @@ const List = () => {
     const params = {
       page: 1
     }
-    const { data: res } = await getList(params)
+    const { data: res } = await getImageList(params)
     if (res.statusCode === 200) {
       const data = res.data
       setPagination({

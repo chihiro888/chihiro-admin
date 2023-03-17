@@ -12,8 +12,8 @@ export const upload = (params) => {
 }
 
 // ANCHOR get list
-export const getList = (params: object) => {
-  const url = `${rootUrl}getList`
+export const getImageList = (params: object) => {
+  const url = `${rootUrl}getImageList`
   const response = axios.get<CommonResponse>(url, { params: params })
 
   return response

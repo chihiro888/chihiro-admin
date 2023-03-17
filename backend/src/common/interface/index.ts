@@ -3,3 +3,8 @@ export interface Result {
   message: string
   data?: any
 }
+
+export interface Pagination {
+  count: number
+  data: any[]
+}
