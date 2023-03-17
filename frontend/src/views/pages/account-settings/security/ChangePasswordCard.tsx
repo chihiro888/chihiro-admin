@@ -74,41 +74,33 @@ const ChangePasswordCard = () => {
   } = useForm({ defaultValues, resolver: yupResolver(schema) })
   const { t } = useTranslation()
 
+  // ** Handler
+  // 기존 비밀번호 보임/숨김
   const handleClickShowCurrentPassword = () => {
     setValues({ ...values, showCurrentPassword: !values.showCurrentPassword })
   }
-  const handleMouseDownCurrentPassword = (
-    event: MouseEvent<HTMLButtonElement>
-  ) => {
-    event.preventDefault()
-  }
 
+  // 새로운 비밀번호 보임/숨김
   const handleClickShowNewPassword = () => {
     setValues({ ...values, showNewPassword: !values.showNewPassword })
   }
-  const handleMouseDownNewPassword = (event: MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault()
-  }
 
+  // 새로운 비밀번호 확인 보임/숨김
   const handleClickShowConfirmNewPassword = () => {
     setValues({
       ...values,
       showConfirmNewPassword: !values.showConfirmNewPassword
     })
   }
-  const handleMouseDownConfirmNewPassword = (
-    event: MouseEvent<HTMLButtonElement>
-  ) => {
-    event.preventDefault()
-  }
 
+  // 비밀번호 변경
   const onPasswordFormSubmit = async (data: any) => {
-    const params = {
-      oldPassword: data.currentPassword,
-      newPassword: data.newPassword,
-      confirmNewPassword: data.confirmNewPassword
-    }
     try {
+      const params = {
+        oldPassword: data.currentPassword,
+        newPassword: data.newPassword,
+        confirmNewPassword: data.confirmNewPassword
+      }
       const { data: res } = await updatePassword(params)
       if (res.statusCode === 200) {
         toast.success(t(res.message))
@@ -150,7 +142,6 @@ const ChangePasswordCard = () => {
                           <IconButton
                             edge="end"
                             onClick={handleClickShowCurrentPassword}
-                            onMouseDown={handleMouseDownCurrentPassword}
                           >
                             <Icon
                               icon={
@@ -199,7 +190,6 @@ const ChangePasswordCard = () => {
                           <IconButton
                             edge="end"
                             onClick={handleClickShowNewPassword}
-                            onMouseDown={handleMouseDownNewPassword}
                           >
                             <Icon
                               icon={
@@ -244,7 +234,6 @@ const ChangePasswordCard = () => {
                           <IconButton
                             edge="end"
                             onClick={handleClickShowConfirmNewPassword}
-                            onMouseDown={handleMouseDownConfirmNewPassword}
                           >
                             <Icon
                               icon={

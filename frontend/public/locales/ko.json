@@ -5,7 +5,7 @@
   "confirmPassword must match password": "비밀번호와 비밀번호일치가 일치하지 않습니다.",
   "Administrator creation is complete.": "관리자 생성이 완료되었습니다.",
   "The account or password is not valid.": "계정 또는 비밀번호가 일치하지 않습니다.",
-  "Password change is complete.": "비밀번호 변경이 완료되었습니다.",
+  "Password has been changed successfully.": "비밀번호 변경이 완료되었습니다.",
   "Administrator already exists.": "관리자가 이미 존재합니다.",
   "An error occurred during administrator creation.": "관리자 추가 중 에러가 발생하였습니다.",
   "An error occurred while changing the password.": "비밀번호 변경 중 에러가 발생하였습니다.",
@@ -31,5 +31,6 @@
   "role must be a valid enum value": "유효하지 않은 권한입니다.",
   "oldPassword must be longer than or equal to 8 characters": "기존 비밀번호는 8글자 이상입니다.",
   "newPassword must be longer than or equal to 8 characters": "새로운 비밀번호는 8글자 이상입니다.",
-  "confirmNewPassword must match newPassword": "새로운 비밀번호와 새로운 비밀번호 확인이 일치하지 않습니다."
+  "confirmNewPassword must match newPassword": "새로운 비밀번호와 새로운 비밀번호 확인이 일치하지 않습니다.",
+  "The new password is the same as the old password.": "새로운 비밀번호가 기존 비밀번호와 같습니다."
 }

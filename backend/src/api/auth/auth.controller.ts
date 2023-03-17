@@ -60,10 +60,7 @@ export class AuthController {
 
     if (!result.result) {
       // return 403 response
-      throw new HttpException(
-        'The account or password is not valid.',
-        HttpStatus.UNAUTHORIZED
-      )
+      throw new HttpException(result.message, HttpStatus.UNAUTHORIZED)
     }
 
     // login
@@ -73,7 +70,7 @@ export class AuthController {
     // return 200 response
     res.status(HttpStatus.OK).json({
       statusCode: HttpStatus.OK,
-      message: 'Login Successful',
+      message: result.message,
       data: null
     })
   }
@@ -168,7 +165,23 @@ export class AuthController {
 
     // update password
     try {
-      await this.authService.updatePassword(dto)
+      const result = await this.authService.updatePassword(dto)
+
+      if (!result.result) {
+        // return 400 response
+        res.status(HttpStatus.BAD_REQUEST).json({
+          statusCode: HttpStatus.BAD_REQUEST,
+          message: result.message,
+          data: null
+        })
+      } else {
+        // return 200 response
+        res.status(HttpStatus.OK).json({
+          statusCode: HttpStatus.OK,
+          message: result.message,
+          data: null
+        })
+      }
     } catch (err) {
       // return 500 response
       throw new HttpException(
@@ -176,12 +189,5 @@ export class AuthController {
         HttpStatus.INTERNAL_SERVER_ERROR
       )
     }
-
-    // return 200 response
-    res.status(HttpStatus.OK).json({
-      statusCode: HttpStatus.OK,
-      message: 'Password change is complete.',
-      data: null
-    })
   }
 }

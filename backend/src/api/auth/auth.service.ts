@@ -22,6 +22,9 @@ import { GlobalService } from '../global/global.service'
 // ** Const
 import DATE from 'src/common/constants/date'
 
+// ** Interface
+import { Result } from 'src/common/interface'
+
 @Injectable()
 export class AuthService {
   constructor(
@@ -31,7 +34,7 @@ export class AuthService {
   ) {}
 
   // ANCHOR login
-  async login(dto: LoginDto) {
+  async login(dto: LoginDto): Promise<Result> {
     const user = await this.datasource.getRepository(User).findOne({
       where: {
         account: dto.account,
@@ -43,7 +46,11 @@ export class AuthService {
     // 계정이 틀린 경우
     // 권한이 SA, A가 아닌 경우
     if (!user || !(user.role === 'SA' || user.role === 'A')) {
-      return { result: false, data: null }
+      return {
+        result: false,
+        data: null,
+        message: 'The account or password is not valid.'
+      }
     }
 
     if (await isMatch(dto.password, user.password)) {
@@ -53,15 +60,19 @@ export class AuthService {
       loginHistory.type = 1
       await this.datasource.getRepository(LoginHistory).save(loginHistory)
 
-      return { result: true, data: user }
+      return { result: true, data: user, message: 'Login Successful' }
     } else {
       // 비밀번호가 틀린 경우
-      return { result: false, data: null }
+      return {
+        result: false,
+        data: null,
+        message: 'The account or password is not valid.'
+      }
     }
   }
 
   // ANCHOR logout
-  async logout(userId: number) {
+  async logout(userId: number): Promise<void> {
     // 로그아웃 이력 기록
     const loginHistory = new LoginHistory()
     loginHistory.userId = userId
@@ -71,7 +82,7 @@ export class AuthService {
   }
 
   // ANCHOR get admin by user id
-  async getAdminByUserId(userId: number) {
+  async getAdminByUserId(userId: number): Promise<User> {
     // 사용자 정보 조회
     const user = await this.datasource.getRepository(User).findOne({
       where: {
@@ -101,7 +112,7 @@ export class AuthService {
   }
 
   // ANCHOR update password
-  async updatePassword(dto: UpdatePasswordDto) {
+  async updatePassword(dto: UpdatePasswordDto): Promise<Result> {
     const user = await this.datasource.getRepository(User).findOne({
       where: {
         id: dto.userId,
@@ -109,10 +120,23 @@ export class AuthService {
       }
     })
 
+    if (await isMatch(dto.newPassword, user.password)) {
+      // 새 비밀번호가 기존 비밀번호와 같은 경우
+      return {
+        result: false,
+        message: 'The new password is the same as the old password.'
+      }
+    }
+
     // 비밀번호 변경
     user.password = await createPassword(dto.newPassword)
     user.updatedAt = moment().format(DATE.DATETIME)
 
     await this.datasource.getRepository(User).save(user)
+
+    return {
+      result: true,
+      message: 'Password has been changed successfully.'
+    }
   }
 }
