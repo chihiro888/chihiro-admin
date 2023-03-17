@@ -4,23 +4,23 @@ import ButtonGroup from '@mui/material/ButtonGroup'
 
 const ButtonGroupBasic = () => {
   return (
-    <div className='demo-space-y'>
+    <div className="demo-space-y">
       <div>
-        <ButtonGroup variant='outlined'>
+        <ButtonGroup variant="outlined">
           <Button>One</Button>
           <Button>Two</Button>
           <Button>Three</Button>
         </ButtonGroup>
       </div>
       <div>
-        <ButtonGroup variant='contained'>
+        <ButtonGroup variant="contained">
           <Button>One</Button>
           <Button>Two</Button>
           <Button>Three</Button>
         </ButtonGroup>
       </div>
       <div>
-        <ButtonGroup variant='text'>
+        <ButtonGroup variant="text">
           <Button>One</Button>
           <Button>Two</Button>
           <Button>Three</Button>

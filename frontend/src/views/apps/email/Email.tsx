@@ -68,7 +68,13 @@ const EmailAppLayout = ({ folder, label }: MailLayoutType) => {
 
   useEffect(() => {
     // @ts-ignore
-    dispatch(fetchMails({ q: query || '', folder: routeParams.folder, label: routeParams.label }))
+    // dispatch(
+    //   fetchMails({
+    //     q: query || '',
+    //     folder: routeParams.folder,
+    //     label: routeParams.label
+    //   })
+    // )
   }, [dispatch, query, routeParams.folder, routeParams.label])
 
   const toggleComposeOpen = () => setComposeOpen(!composeOpen)
@@ -83,7 +89,9 @@ const EmailAppLayout = ({ folder, label }: MailLayoutType) => {
         overflow: 'hidden',
         position: 'relative',
         boxShadow: skin === 'bordered' ? 0 : 6,
-        ...(skin === 'bordered' && { border: `1px solid ${theme.palette.divider}` })
+        ...(skin === 'bordered' && {
+          border: `1px solid ${theme.palette.divider}`
+        })
       }}
     >
       <SidebarLeft

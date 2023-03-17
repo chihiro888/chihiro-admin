@@ -44,7 +44,7 @@ const DialogSizes = () => {
 
   return (
     <Fragment>
-      <Button variant='outlined' onClick={handleClickOpen}>
+      <Button variant="outlined" onClick={handleClickOpen}>
         Open dialog
       </Button>
       <Dialog
@@ -52,18 +52,18 @@ const DialogSizes = () => {
         maxWidth={maxWidth}
         fullWidth={fullWidth}
         onClose={handleClose}
-        aria-labelledby='max-width-dialog-title'
+        aria-labelledby="max-width-dialog-title"
       >
-        <DialogTitle id='max-width-dialog-title'>Optional sizes</DialogTitle>
+        <DialogTitle id="max-width-dialog-title">Optional sizes</DialogTitle>
         <DialogContent>
           <DialogContentText sx={{ mb: 4 }}>
             You can set my maximum width and whether to adapt or not.
           </DialogContentText>
           <Form noValidate>
             <FormControl sx={{ mt: 2, minWidth: 120 }}>
-              <InputLabel htmlFor='max-width'>maxWidth</InputLabel>
+              <InputLabel htmlFor="max-width">maxWidth</InputLabel>
               <Select
-                label='maxWidth'
+                label="maxWidth"
                 value={maxWidth}
                 onChange={handleMaxWidthChange}
                 inputProps={{
@@ -72,22 +72,24 @@ const DialogSizes = () => {
                 }}
               >
                 <MenuItem value={false as any}>false</MenuItem>
-                <MenuItem value='xs'>xs</MenuItem>
-                <MenuItem value='sm'>sm</MenuItem>
-                <MenuItem value='md'>md</MenuItem>
-                <MenuItem value='lg'>lg</MenuItem>
-                <MenuItem value='xl'>xl</MenuItem>
+                <MenuItem value="xs">xs</MenuItem>
+                <MenuItem value="sm">sm</MenuItem>
+                <MenuItem value="md">md</MenuItem>
+                <MenuItem value="lg">lg</MenuItem>
+                <MenuItem value="xl">xl</MenuItem>
               </Select>
             </FormControl>
             <FormControlLabel
-              label='Full width'
+              label="Full width"
               sx={{ mt: 2 }}
-              control={<Switch checked={fullWidth} onChange={handleFullWidthChange} />}
+              control={
+                <Switch checked={fullWidth} onChange={handleFullWidthChange} />
+              }
             />
           </Form>
         </DialogContent>
         <DialogActions>
-          <Button variant='contained' onClick={handleClose}>
+          <Button variant="contained" onClick={handleClose}>
             Close
           </Button>
         </DialogActions>

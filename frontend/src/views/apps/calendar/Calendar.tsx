@@ -101,7 +101,8 @@ const Calendar = (props: CalendarType) => {
 
       eventClassNames({ event: calendarEvent }: any) {
         // @ts-ignore
-        const colorName = calendarsColor[calendarEvent._def.extendedProps.calendar]
+        const colorName =
+          calendarsColor[calendarEvent._def.extendedProps.calendar]
 
         return [
           // Background Color
@@ -122,7 +123,7 @@ const Calendar = (props: CalendarType) => {
 
       customButtons: {
         sidebarToggle: {
-          text: <Icon icon='bx:menu' />,
+          text: <Icon icon="bx:menu" />,
           click() {
             handleLeftSidebarToggle()
           }

@@ -26,21 +26,26 @@ const SnackbarSimple = () => {
 
   return (
     <Fragment>
-      <Button variant='outlined' onClick={handleClick}>
+      <Button variant="outlined" onClick={handleClick}>
         Open simple snackbar
       </Button>
       <Snackbar
         open={open}
         onClose={handleClose}
-        message='Note archived'
+        message="Note archived"
         autoHideDuration={3000}
         action={
           <Fragment>
-            <Button size='small' onClick={handleClose}>
+            <Button size="small" onClick={handleClose}>
               Undo
             </Button>
-            <IconButton size='small' aria-label='close' color='inherit' onClick={handleClose}>
-              <Icon icon='bx:x' fontSize={20} />
+            <IconButton
+              size="small"
+              aria-label="close"
+              color="inherit"
+              onClick={handleClose}
+            >
+              <Icon icon="bx:x" fontSize={20} />
             </IconButton>
           </Fragment>
         }

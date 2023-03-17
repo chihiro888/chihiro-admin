@@ -13,19 +13,19 @@ import Icon from 'src/@core/components/icon'
 const FormLayoutsIcons = () => {
   return (
     <Card>
-      <CardHeader title='Basic with Icons' />
+      <CardHeader title="Basic with Icons" />
       <CardContent>
-        <form onSubmit={e => e.preventDefault()}>
+        <form onSubmit={(e) => e.preventDefault()}>
           <Grid container spacing={5}>
             <Grid item xs={12}>
               <TextField
                 fullWidth
-                label='Full Name'
-                placeholder='Leonard Carter'
+                label="Full Name"
+                placeholder="Leonard Carter"
                 InputProps={{
                   startAdornment: (
-                    <InputAdornment position='start'>
-                      <Icon icon='bx:user' />
+                    <InputAdornment position="start">
+                      <Icon icon="bx:user" />
                     </InputAdornment>
                   )
                 }}
@@ -34,14 +34,14 @@ const FormLayoutsIcons = () => {
             <Grid item xs={12}>
               <TextField
                 fullWidth
-                type='email'
-                label='Email'
-                placeholder='carterleonard@gmail.com'
-                helperText='You can use letters, numbers & periods'
+                type="email"
+                label="Email"
+                placeholder="carterleonard@gmail.com"
+                helperText="You can use letters, numbers & periods"
                 InputProps={{
                   startAdornment: (
-                    <InputAdornment position='start'>
-                      <Icon icon='bx:envelope' />
+                    <InputAdornment position="start">
+                      <Icon icon="bx:envelope" />
                     </InputAdornment>
                   )
                 }}
@@ -50,13 +50,13 @@ const FormLayoutsIcons = () => {
             <Grid item xs={12}>
               <TextField
                 fullWidth
-                type='number'
-                label='Phone No.'
-                placeholder='+1-123-456-8790'
+                type="number"
+                label="Phone No."
+                placeholder="+1-123-456-8790"
                 InputProps={{
                   startAdornment: (
-                    <InputAdornment position='start'>
-                      <Icon icon='bx:phone' />
+                    <InputAdornment position="start">
+                      <Icon icon="bx:phone" />
                     </InputAdornment>
                   )
                 }}
@@ -67,20 +67,20 @@ const FormLayoutsIcons = () => {
                 fullWidth
                 multiline
                 minRows={3}
-                label='Message'
-                placeholder='Bio...'
+                label="Message"
+                placeholder="Bio..."
                 sx={{ '& .MuiOutlinedInput-root': { alignItems: 'baseline' } }}
                 InputProps={{
                   startAdornment: (
-                    <InputAdornment position='start'>
-                      <Icon icon='bx:message' />
+                    <InputAdornment position="start">
+                      <Icon icon="bx:message" />
                     </InputAdornment>
                   )
                 }}
               />
             </Grid>
             <Grid item xs={12}>
-              <Button type='submit' variant='contained' size='large'>
+              <Button type="submit" variant="contained" size="large">
                 Submit
               </Button>
             </Grid>

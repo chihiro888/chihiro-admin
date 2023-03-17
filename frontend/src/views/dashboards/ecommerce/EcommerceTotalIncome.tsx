@@ -25,7 +25,14 @@ interface DataType {
   trend?: 'positive' | 'negative'
 }
 
-const series = [{ name: 'Income', data: [3350, 3350, 4800, 4800, 2950, 2950, 1800, 1800, 3750, 3750, 5700, 5700] }]
+const series = [
+  {
+    name: 'Income',
+    data: [
+      3350, 3350, 4800, 4800, 2950, 2950, 1800, 1800, 3750, 3750, 5700, 5700
+    ]
+  }
+]
 
 const StyledGrid = styled(Grid)<GridProps>(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
@@ -128,7 +135,20 @@ const EcommerceTotalIncome = () => {
     xaxis: {
       axisTicks: { show: false },
       axisBorder: { show: false },
-      categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+      categories: [
+        'Jan',
+        'Feb',
+        'Mar',
+        'Apr',
+        'May',
+        'Jun',
+        'Jul',
+        'Aug',
+        'Sep',
+        'Oct',
+        'Nov',
+        'Dec'
+      ],
       crosshairs: {
         stroke: { color: `rgba(${theme.palette.customColors.main}, 0.2)` }
       },
@@ -142,7 +162,7 @@ const EcommerceTotalIncome = () => {
     },
     yaxis: {
       labels: {
-        formatter: value => `$${value / 1000}k`,
+        formatter: (value) => `$${value / 1000}k`,
         style: {
           fontSize: '14px',
           colors: theme.palette.text.disabled,
@@ -158,20 +178,32 @@ const EcommerceTotalIncome = () => {
         <StyledGrid item xs={12} md={8}>
           <CardHeader
             sx={{ p: 5, pb: 0 }}
-            title='Total Income'
-            subheader='Yearly report overview'
-            subheaderTypographyProps={{ sx: { fontSize: '1rem !important', color: 'text.disabled' } }}
+            title="Total Income"
+            subheader="Yearly report overview"
+            subheaderTypographyProps={{
+              sx: { fontSize: '1rem !important', color: 'text.disabled' }
+            }}
           />
-          <ReactApexcharts type='area' height={315} options={options} series={series} />
+          <ReactApexcharts
+            type="area"
+            height={315}
+            options={options}
+            series={series}
+          />
         </StyledGrid>
         <Grid item xs={12} md={4}>
           <CardHeader
-            title='Report'
+            title="Report"
             sx={{ p: 5, pt: 4 }}
-            subheader='Monthly Avg. $45.578k'
-            subheaderTypographyProps={{ sx: { fontSize: '1rem !important', color: 'text.disabled' } }}
+            subheader="Monthly Avg. $45.578k"
+            subheaderTypographyProps={{
+              sx: { fontSize: '1rem !important', color: 'text.disabled' }
+            }}
             action={
-              <OptionsMenu iconButtonProps={{ size: 'small' }} options={['Last Week', 'Last Month', 'Last Year']} />
+              <OptionsMenu
+                iconButtonProps={{ size: 'small' }}
+                options={['Last Week', 'Last Month', 'Last Year']}
+              />
             }
           />
           <CardContent sx={{ pt: `${theme.spacing(6.5)} !important` }}>
@@ -189,10 +221,21 @@ const EcommerceTotalIncome = () => {
                 }}
               >
                 <Avatar
-                  variant='rounded'
-                  sx={{ mr: 3, width: 44, height: 44, boxShadow: 6, backgroundColor: 'background.paper' }}
+                  variant="rounded"
+                  sx={{
+                    mr: 3,
+                    width: 44,
+                    height: 44,
+                    boxShadow: 6,
+                    backgroundColor: 'background.paper'
+                  }}
                 >
-                  <img alt='avatar image' src={item.avatarSrc} width={item.avatarWidth} height={item.avatarHeight} />
+                  <img
+                    alt="avatar image"
+                    src={item.avatarSrc}
+                    width={item.avatarWidth}
+                    height={item.avatarHeight}
+                  />
                 </Avatar>
                 <Box
                   sx={{
@@ -204,14 +247,26 @@ const EcommerceTotalIncome = () => {
                   }}
                 >
                   <Box sx={{ mr: 2, display: 'flex', flexDirection: 'column' }}>
-                    <Typography sx={{ color: 'text.secondary' }}>{item.title}</Typography>
-                    <Typography sx={{ fontWeight: 500, fontSize: '1.125rem' }}>{item.stats}</Typography>
+                    <Typography sx={{ color: 'text.secondary' }}>
+                      {item.title}
+                    </Typography>
+                    <Typography sx={{ fontWeight: 500, fontSize: '1.125rem' }}>
+                      {item.stats}
+                    </Typography>
                   </Box>
                   <Typography
-                    variant='body2'
-                    sx={{ mb: 0.5, fontWeight: 500, color: `${item.trend === 'negative' ? 'error' : 'success'}.main` }}
+                    variant="body2"
+                    sx={{
+                      mb: 0.5,
+                      fontWeight: 500,
+                      color: `${
+                        item.trend === 'negative' ? 'error' : 'success'
+                      }.main`
+                    }}
                   >
-                    {`${item.trend === 'negative' ? '-' : '+'}${item.trendNumber}k`}
+                    {`${item.trend === 'negative' ? '-' : '+'}${
+                      item.trendNumber
+                    }k`}
                   </Typography>
                 </Box>
               </Box>

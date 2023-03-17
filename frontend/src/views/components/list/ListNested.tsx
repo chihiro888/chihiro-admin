@@ -23,24 +23,24 @@ const ListNested = () => {
 
   return (
     <Fragment>
-      <List component='nav' aria-label='main mailbox'>
+      <List component="nav" aria-label="main mailbox">
         <ListItem disablePadding>
           <ListItemButton onClick={handleClick}>
             <ListItemIcon>
-              <Icon icon='bx:envelope' fontSize={20} />
+              <Icon icon="bx:envelope" fontSize={20} />
             </ListItemIcon>
-            <ListItemText primary='Inbox' />
+            <ListItemText primary="Inbox" />
             <Icon icon={open ? 'bx:chevron-up' : 'bx:chevron-down'} />
           </ListItemButton>
         </ListItem>
-        <Collapse in={open} timeout='auto' unmountOnExit>
-          <List component='div' disablePadding>
+        <Collapse in={open} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
             <ListItem disablePadding>
               <ListItemButton sx={{ pl: 8 }}>
                 <ListItemIcon sx={{ mr: 4 }}>
-                  <Icon icon='bx:timer' fontSize={20} />
+                  <Icon icon="bx:timer" fontSize={20} />
                 </ListItemIcon>
-                <ListItemText primary='Scheduled' />
+                <ListItemText primary="Scheduled" />
               </ListItemButton>
             </ListItem>
           </List>
@@ -48,28 +48,28 @@ const ListNested = () => {
         <ListItem disablePadding>
           <ListItemButton>
             <ListItemIcon>
-              <Icon icon='bx:copy' fontSize={20} />
+              <Icon icon="bx:copy" fontSize={20} />
             </ListItemIcon>
-            <ListItemText primary='Draft' />
+            <ListItemText primary="Draft" />
           </ListItemButton>
         </ListItem>
       </List>
       <Divider sx={{ m: '0 !important' }} />
-      <List component='nav' aria-label='secondary mailbox'>
+      <List component="nav" aria-label="secondary mailbox">
         <ListItem disablePadding>
           <ListItemButton>
             <ListItemIcon>
-              <Icon icon='bx:time-five' fontSize={20} />
+              <Icon icon="bx:time-five" fontSize={20} />
             </ListItemIcon>
-            <ListItemText primary='Snoozed' />
+            <ListItemText primary="Snoozed" />
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
           <ListItemButton>
             <ListItemIcon>
-              <Icon icon='bx:error-circle' fontSize={20} />
+              <Icon icon="bx:error-circle" fontSize={20} />
             </ListItemIcon>
-            <ListItemText primary='Spam' />
+            <ListItemText primary="Spam" />
           </ListItemButton>
         </ListItem>
       </List>

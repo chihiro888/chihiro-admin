@@ -53,13 +53,28 @@ const EcommerceExpensesRadialBar = () => {
 
   return (
     <Card>
-      <CardContent sx={{ p: theme => `${theme.spacing(3.5, 5, 3)} !important` }}>
-        <Typography sx={{ fontWeight: 600, color: 'text.secondary' }}>Expenses</Typography>
-        <ReactApexcharts type='radialBar' height={138} options={options} series={[72]} />
-        <Typography variant='body2' sx={{ mt: 4.25, textAlign: 'center', color: 'text.disabled' }}>
+      <CardContent
+        sx={{ p: (theme) => `${theme.spacing(3.5, 5, 3)} !important` }}
+      >
+        <Typography sx={{ fontWeight: 600, color: 'text.secondary' }}>
+          Expenses
+        </Typography>
+        <ReactApexcharts
+          type="radialBar"
+          height={138}
+          options={options}
+          series={[72]}
+        />
+        <Typography
+          variant="body2"
+          sx={{ mt: 4.25, textAlign: 'center', color: 'text.disabled' }}
+        >
           $2k Expenses more
         </Typography>
-        <Typography variant='body2' sx={{ textAlign: 'center', color: 'text.disabled' }}>
+        <Typography
+          variant="body2"
+          sx={{ textAlign: 'center', color: 'text.disabled' }}
+        >
           than last month
         </Typography>
       </CardContent>

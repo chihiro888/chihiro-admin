@@ -10,9 +10,14 @@ const SelectProps = () => {
   return (
     <Box sx={{ '& > *': { mt: 6, mr: 6 } }}>
       <FormControl>
-        <InputLabel id='demo-simple-select-helper-label'>Age</InputLabel>
-        <Select label='Age' defaultValue='' id='demo-simple-select-helper' labelId='demo-simple-select-helper-label'>
-          <MenuItem value=''>
+        <InputLabel id="demo-simple-select-helper-label">Age</InputLabel>
+        <Select
+          label="Age"
+          defaultValue=""
+          id="demo-simple-select-helper"
+          labelId="demo-simple-select-helper-label"
+        >
+          <MenuItem value="">
             <em>None</em>
           </MenuItem>
           <MenuItem value={10}>Ten</MenuItem>
@@ -22,8 +27,12 @@ const SelectProps = () => {
         <FormHelperText>With label + helper text</FormHelperText>
       </FormControl>
       <FormControl>
-        <Select defaultValue='' displayEmpty inputProps={{ 'aria-label': 'Without label' }}>
-          <MenuItem value=''>
+        <Select
+          defaultValue=""
+          displayEmpty
+          inputProps={{ 'aria-label': 'Without label' }}
+        >
+          <MenuItem value="">
             <em>None</em>
           </MenuItem>
           <MenuItem value={10}>Ten</MenuItem>
@@ -33,15 +42,15 @@ const SelectProps = () => {
         <FormHelperText>Without label</FormHelperText>
       </FormControl>
       <FormControl>
-        <InputLabel id='demo-simple-select-autoWidth-label'>Age</InputLabel>
+        <InputLabel id="demo-simple-select-autoWidth-label">Age</InputLabel>
         <Select
           autoWidth
-          label='Age'
-          defaultValue=''
-          id='demo-simple-select-autoWidth'
-          labelId='demo-simple-select-autoWidth-label'
+          label="Age"
+          defaultValue=""
+          id="demo-simple-select-autoWidth"
+          labelId="demo-simple-select-autoWidth-label"
         >
-          <MenuItem value=''>
+          <MenuItem value="">
             <em>None</em>
           </MenuItem>
           <MenuItem value={10}>Ten</MenuItem>
@@ -51,14 +60,14 @@ const SelectProps = () => {
         <FormHelperText>Auto width</FormHelperText>
       </FormControl>
       <FormControl disabled>
-        <InputLabel id='demo-simple-select-disabled-label'>Age</InputLabel>
+        <InputLabel id="demo-simple-select-disabled-label">Age</InputLabel>
         <Select
-          label='Age'
-          defaultValue=''
-          id='demo-simple-select-disabled'
-          labelId='demo-simple-select-disabled-label'
+          label="Age"
+          defaultValue=""
+          id="demo-simple-select-disabled"
+          labelId="demo-simple-select-disabled-label"
         >
-          <MenuItem value=''>
+          <MenuItem value="">
             <em>None</em>
           </MenuItem>
           <MenuItem value={10}>Ten</MenuItem>
@@ -68,15 +77,15 @@ const SelectProps = () => {
         <FormHelperText>Disabled</FormHelperText>
       </FormControl>
       <FormControl error>
-        <InputLabel id='demo-simple-select-error-label'>Age</InputLabel>
+        <InputLabel id="demo-simple-select-error-label">Age</InputLabel>
         <Select
-          label='Age'
-          defaultValue=''
-          id='demo-simple-select-error'
-          renderValue={value => `⚠️  - ${value}`}
-          labelId='demo-simple-select-error-label'
+          label="Age"
+          defaultValue=""
+          id="demo-simple-select-error"
+          renderValue={(value) => `⚠️  - ${value}`}
+          labelId="demo-simple-select-error-label"
         >
-          <MenuItem value=''>
+          <MenuItem value="">
             <em>None</em>
           </MenuItem>
           <MenuItem value={10}>Ten</MenuItem>
@@ -86,15 +95,15 @@ const SelectProps = () => {
         <FormHelperText>Error</FormHelperText>
       </FormControl>
       <FormControl>
-        <InputLabel id='demo-simple-select-readonly-label'>Age</InputLabel>
+        <InputLabel id="demo-simple-select-readonly-label">Age</InputLabel>
         <Select
-          label='Age'
-          defaultValue=''
+          label="Age"
+          defaultValue=""
           inputProps={{ readOnly: true }}
-          id='demo-simple-select-readonly'
-          labelId='demo-simple-select-readonly-label'
+          id="demo-simple-select-readonly"
+          labelId="demo-simple-select-readonly-label"
         >
-          <MenuItem value=''>
+          <MenuItem value="">
             <em>None</em>
           </MenuItem>
           <MenuItem value={10}>Ten</MenuItem>
@@ -104,14 +113,14 @@ const SelectProps = () => {
         <FormHelperText>Read only</FormHelperText>
       </FormControl>
       <FormControl required>
-        <InputLabel id='demo-simple-select-required-label'>Age</InputLabel>
+        <InputLabel id="demo-simple-select-required-label">Age</InputLabel>
         <Select
-          label='Age *'
-          defaultValue=''
-          id='demo-simple-select-required'
-          labelId='demo-simple-select-required-label'
+          label="Age *"
+          defaultValue=""
+          id="demo-simple-select-required"
+          labelId="demo-simple-select-required-label"
         >
-          <MenuItem value=''>
+          <MenuItem value="">
             <em>None</em>
           </MenuItem>
           <MenuItem value={10}>Ten</MenuItem>

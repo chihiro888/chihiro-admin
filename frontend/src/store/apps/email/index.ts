@@ -20,24 +20,30 @@ interface ReduxType {
 }
 
 // ** Fetch Mails
-export const fetchMails = createAsyncThunk('appEmail/fetchMails', async (params: FetchMailParamsType) => {
-  const response = await axios.get('/apps/email/emails', {
-    params
-  })
+export const fetchMails = createAsyncThunk(
+  'appEmail/fetchMails',
+  async (params: FetchMailParamsType) => {
+    const response = await axios.get('/apps/email/emails', {
+      params
+    })
 
-  return { ...response.data, filter: params }
-})
+    return { ...response.data, filter: params }
+  }
+)
 
 // ** Get Current Mail
-export const getCurrentMail = createAsyncThunk('appEmail/selectMail', async (id: number | string) => {
-  const response = await axios.get('/apps/email/get-email', {
-    params: {
-      id
-    }
-  })
+export const getCurrentMail = createAsyncThunk(
+  'appEmail/selectMail',
+  async (id: number | string) => {
+    const response = await axios.get('/apps/email/get-email', {
+      params: {
+        id
+      }
+    })
 
-  return response.data
-})
+    return response.data
+  }
+)
 
 // ** Update Mail
 export const updateMail = createAsyncThunk(
@@ -75,11 +81,14 @@ export const updateMailLabel = createAsyncThunk(
 )
 
 // ** Prev/Next Mails
-export const paginateMail = createAsyncThunk('appEmail/paginateMail', async (params: PaginateMailParamsType) => {
-  const response = await axios.get('/apps/email/paginate-email', { params })
+export const paginateMail = createAsyncThunk(
+  'appEmail/paginateMail',
+  async (params: PaginateMailParamsType) => {
+    const response = await axios.get('/apps/email/paginate-email', { params })
 
-  return response.data
-})
+    return response.data
+  }
+)
 
 export const appEmailSlice = createSlice({
   name: 'appEmail',
@@ -117,7 +126,7 @@ export const appEmailSlice = createSlice({
       state.selectedMails = selectAllMails as any
     }
   },
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     builder.addCase(fetchMails.fulfilled, (state, action) => {
       state.mails = action.payload.emails
       state.filter = action.payload.filter

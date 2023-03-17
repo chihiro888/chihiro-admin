@@ -99,29 +99,32 @@ const FormValidationBasic = () => {
 
   return (
     <Card>
-      <CardHeader title='Basic' />
+      <CardHeader title="Basic" />
       <CardContent>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Grid container spacing={5}>
             <Grid item xs={12} sm={6}>
               <FormControl fullWidth>
                 <Controller
-                  name='firstName'
+                  name="firstName"
                   control={control}
                   rules={{ required: true }}
                   render={({ field: { value, onChange } }) => (
                     <TextField
                       value={value}
-                      label='First Name'
+                      label="First Name"
                       onChange={onChange}
-                      placeholder='Leonard'
+                      placeholder="Leonard"
                       error={Boolean(errors.firstName)}
-                      aria-describedby='validation-basic-first-name'
+                      aria-describedby="validation-basic-first-name"
                     />
                   )}
                 />
                 {errors.firstName && (
-                  <FormHelperText sx={{ color: 'error.main' }} id='validation-basic-first-name'>
+                  <FormHelperText
+                    sx={{ color: 'error.main' }}
+                    id="validation-basic-first-name"
+                  >
                     This field is required
                   </FormHelperText>
                 )}
@@ -131,22 +134,25 @@ const FormValidationBasic = () => {
             <Grid item xs={12} sm={6}>
               <FormControl fullWidth>
                 <Controller
-                  name='lastName'
+                  name="lastName"
                   control={control}
                   rules={{ required: true }}
                   render={({ field: { value, onChange } }) => (
                     <TextField
                       value={value}
-                      label='Last Name'
+                      label="Last Name"
                       onChange={onChange}
-                      placeholder='Carter'
+                      placeholder="Carter"
                       error={Boolean(errors.lastName)}
-                      aria-describedby='validation-basic-last-name'
+                      aria-describedby="validation-basic-last-name"
                     />
                   )}
                 />
                 {errors.lastName && (
-                  <FormHelperText sx={{ color: 'error.main' }} id='validation-basic-last-name'>
+                  <FormHelperText
+                    sx={{ color: 'error.main' }}
+                    id="validation-basic-last-name"
+                  >
                     This field is required
                   </FormHelperText>
                 )}
@@ -156,23 +162,26 @@ const FormValidationBasic = () => {
             <Grid item xs={12} sm={6}>
               <FormControl fullWidth>
                 <Controller
-                  name='email'
+                  name="email"
                   control={control}
                   rules={{ required: true }}
                   render={({ field: { value, onChange } }) => (
                     <TextField
-                      type='email'
+                      type="email"
                       value={value}
-                      label='Email'
+                      label="Email"
                       onChange={onChange}
                       error={Boolean(errors.email)}
-                      placeholder='carterleonard@gmail.com'
-                      aria-describedby='validation-basic-email'
+                      placeholder="carterleonard@gmail.com"
+                      aria-describedby="validation-basic-email"
                     />
                   )}
                 />
                 {errors.email && (
-                  <FormHelperText sx={{ color: 'error.main' }} id='validation-basic-email'>
+                  <FormHelperText
+                    sx={{ color: 'error.main' }}
+                    id="validation-basic-email"
+                  >
                     This field is required
                   </FormHelperText>
                 )}
@@ -181,30 +190,35 @@ const FormValidationBasic = () => {
 
             <Grid item xs={12} sm={6}>
               <FormControl fullWidth>
-                <InputLabel htmlFor='validation-basic-password' error={Boolean(errors.password)}>
+                <InputLabel
+                  htmlFor="validation-basic-password"
+                  error={Boolean(errors.password)}
+                >
                   Password
                 </InputLabel>
                 <Controller
-                  name='password'
+                  name="password"
                   control={control}
                   rules={{ required: true }}
                   render={({ field: { value, onChange } }) => (
                     <OutlinedInput
                       value={value}
-                      label='Password'
+                      label="Password"
                       onChange={onChange}
-                      id='validation-basic-password'
+                      id="validation-basic-password"
                       error={Boolean(errors.password)}
                       type={state.showPassword ? 'text' : 'password'}
                       endAdornment={
-                        <InputAdornment position='end'>
+                        <InputAdornment position="end">
                           <IconButton
-                            edge='end'
+                            edge="end"
                             onClick={handleClickShowPassword}
                             onMouseDown={handleMouseDownPassword}
-                            aria-label='toggle password visibility'
+                            aria-label="toggle password visibility"
                           >
-                            <Icon icon={state.showPassword ? 'bx:show' : 'bx:hide'} />
+                            <Icon
+                              icon={state.showPassword ? 'bx:show' : 'bx:hide'}
+                            />
                           </IconButton>
                         </InputAdornment>
                       }
@@ -212,7 +226,10 @@ const FormValidationBasic = () => {
                   )}
                 />
                 {errors.password && (
-                  <FormHelperText sx={{ color: 'error.main' }} id='validation-basic-password'>
+                  <FormHelperText
+                    sx={{ color: 'error.main' }}
+                    id="validation-basic-password"
+                  >
                     This field is required
                   </FormHelperText>
                 )}
@@ -221,7 +238,7 @@ const FormValidationBasic = () => {
 
             <Grid item xs={12} sm={6}>
               <Controller
-                name='dob'
+                name="dob"
                 control={control}
                 rules={{ required: true }}
                 render={({ field: { value, onChange } }) => (
@@ -229,22 +246,25 @@ const FormValidationBasic = () => {
                     selected={value}
                     showYearDropdown
                     showMonthDropdown
-                    onChange={e => onChange(e)}
-                    placeholderText='MM/DD/YYYY'
+                    onChange={(e) => onChange(e)}
+                    placeholderText="MM/DD/YYYY"
                     customInput={
                       <CustomInput
                         value={value}
                         onChange={onChange}
-                        label='Date of Birth'
+                        label="Date of Birth"
                         error={Boolean(errors.dob)}
-                        aria-describedby='validation-basic-dob'
+                        aria-describedby="validation-basic-dob"
                       />
                     }
                   />
                 )}
               />
               {errors.dob && (
-                <FormHelperText sx={{ mx: 3.5, color: 'error.main' }} id='validation-basic-dob'>
+                <FormHelperText
+                  sx={{ mx: 3.5, color: 'error.main' }}
+                  id="validation-basic-dob"
+                >
                   This field is required
                 </FormHelperText>
               )}
@@ -253,34 +273,37 @@ const FormValidationBasic = () => {
             <Grid item xs={12} sm={6}>
               <FormControl fullWidth>
                 <InputLabel
-                  id='validation-basic-select'
+                  id="validation-basic-select"
                   error={Boolean(errors.select)}
-                  htmlFor='validation-basic-select'
+                  htmlFor="validation-basic-select"
                 >
                   Country
                 </InputLabel>
                 <Controller
-                  name='select'
+                  name="select"
                   control={control}
                   rules={{ required: true }}
                   render={({ field: { value, onChange } }) => (
                     <Select
                       value={value}
-                      label='Country'
+                      label="Country"
                       onChange={onChange}
                       error={Boolean(errors.select)}
-                      labelId='validation-basic-select'
-                      aria-describedby='validation-basic-select'
+                      labelId="validation-basic-select"
+                      aria-describedby="validation-basic-select"
                     >
-                      <MenuItem value='UK'>UK</MenuItem>
-                      <MenuItem value='USA'>USA</MenuItem>
-                      <MenuItem value='Australia'>Australia</MenuItem>
-                      <MenuItem value='Germany'>Germany</MenuItem>
+                      <MenuItem value="UK">UK</MenuItem>
+                      <MenuItem value="USA">USA</MenuItem>
+                      <MenuItem value="Australia">Australia</MenuItem>
+                      <MenuItem value="Germany">Germany</MenuItem>
                     </Select>
                   )}
                 />
                 {errors.select && (
-                  <FormHelperText sx={{ color: 'error.main' }} id='validation-basic-select'>
+                  <FormHelperText
+                    sx={{ color: 'error.main' }}
+                    id="validation-basic-select"
+                  >
                     This field is required
                   </FormHelperText>
                 )}
@@ -290,7 +313,7 @@ const FormValidationBasic = () => {
             <Grid item xs={12}>
               <FormControl fullWidth>
                 <Controller
-                  name='textarea'
+                  name="textarea"
                   control={control}
                   rules={{ required: true }}
                   render={({ field }) => (
@@ -298,14 +321,17 @@ const FormValidationBasic = () => {
                       rows={4}
                       multiline
                       {...field}
-                      label='Bio'
+                      label="Bio"
                       error={Boolean(errors.textarea)}
-                      aria-describedby='validation-basic-textarea'
+                      aria-describedby="validation-basic-textarea"
                     />
                   )}
                 />
                 {errors.textarea && (
-                  <FormHelperText sx={{ color: 'error.main' }} id='validation-basic-textarea'>
+                  <FormHelperText
+                    sx={{ color: 'error.main' }}
+                    id="validation-basic-textarea"
+                  >
                     This field is required
                   </FormHelperText>
                 )}
@@ -316,34 +342,54 @@ const FormValidationBasic = () => {
               <FormControl error={Boolean(errors.radio)}>
                 <FormLabel>Gender</FormLabel>
                 <Controller
-                  name='radio'
+                  name="radio"
                   control={control}
                   rules={{ required: true }}
                   render={({ field }) => (
-                    <RadioGroup row {...field} aria-label='gender' name='validation-basic-radio'>
+                    <RadioGroup
+                      row
+                      {...field}
+                      aria-label="gender"
+                      name="validation-basic-radio"
+                    >
                       <FormControlLabel
-                        value='female'
-                        label='Female'
+                        value="female"
+                        label="Female"
                         sx={errors.radio ? { color: 'error.main' } : null}
-                        control={<Radio sx={errors.radio ? { color: 'error.main' } : null} />}
+                        control={
+                          <Radio
+                            sx={errors.radio ? { color: 'error.main' } : null}
+                          />
+                        }
                       />
                       <FormControlLabel
-                        value='male'
-                        label='Male'
+                        value="male"
+                        label="Male"
                         sx={errors.radio ? { color: 'error.main' } : null}
-                        control={<Radio sx={errors.radio ? { color: 'error.main' } : null} />}
+                        control={
+                          <Radio
+                            sx={errors.radio ? { color: 'error.main' } : null}
+                          />
+                        }
                       />
                       <FormControlLabel
-                        value='other'
-                        label='Other'
+                        value="other"
+                        label="Other"
                         sx={errors.radio ? { color: 'error.main' } : null}
-                        control={<Radio sx={errors.radio ? { color: 'error.main' } : null} />}
+                        control={
+                          <Radio
+                            sx={errors.radio ? { color: 'error.main' } : null}
+                          />
+                        }
                       />
                     </RadioGroup>
                   )}
                 />
                 {errors.radio && (
-                  <FormHelperText sx={{ color: 'error.main' }} id='validation-basic-radio'>
+                  <FormHelperText
+                    sx={{ color: 'error.main' }}
+                    id="validation-basic-radio"
+                  >
                     This field is required
                   </FormHelperText>
                 )}
@@ -353,17 +399,17 @@ const FormValidationBasic = () => {
             <Grid item xs={12}>
               <FormControl>
                 <Controller
-                  name='checkbox'
+                  name="checkbox"
                   control={control}
                   rules={{ required: true }}
                   render={({ field }) => (
                     <FormControlLabel
-                      label='Agree to our terms and conditions'
+                      label="Agree to our terms and conditions"
                       sx={errors.checkbox ? { color: 'error.main' } : null}
                       control={
                         <Checkbox
                           {...field}
-                          name='validation-basic-checkbox'
+                          name="validation-basic-checkbox"
                           sx={errors.checkbox ? { color: 'error.main' } : null}
                         />
                       }
@@ -371,7 +417,10 @@ const FormValidationBasic = () => {
                   )}
                 />
                 {errors.checkbox && (
-                  <FormHelperText sx={{ color: 'error.main' }} id='validation-basic-checkbox'>
+                  <FormHelperText
+                    sx={{ color: 'error.main' }}
+                    id="validation-basic-checkbox"
+                  >
                     This field is required
                   </FormHelperText>
                 )}
@@ -379,7 +428,7 @@ const FormValidationBasic = () => {
             </Grid>
 
             <Grid item xs={12}>
-              <Button size='large' type='submit' variant='contained'>
+              <Button size="large" type="submit" variant="contained">
                 Submit
               </Button>
             </Grid>

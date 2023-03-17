@@ -27,15 +27,25 @@ const AlertsDismissible = () => {
         <Collapse in={open1}>
           <Alert
             action={
-              <IconButton size='small' color='inherit' aria-label='close' onClick={() => setOpen1(false)}>
-                <Icon icon='bx:x' fontSize='inherit' />
+              <IconButton
+                size="small"
+                color="inherit"
+                aria-label="close"
+                onClick={() => setOpen1(false)}
+              >
+                <Icon icon="bx:x" fontSize="inherit" />
               </IconButton>
             }
           >
             Close me!
           </Alert>
         </Collapse>
-        <Button disabled={open1} variant='outlined' sx={{ mt: 2 }} onClick={() => setOpen1(true)}>
+        <Button
+          disabled={open1}
+          variant="outlined"
+          sx={{ mt: 2 }}
+          onClick={() => setOpen1(true)}
+        >
           Open Collapse
         </Button>
       </Box>
@@ -44,15 +54,25 @@ const AlertsDismissible = () => {
         <Fade in={open2} {...(open2 ? { timeout: 700 } : {})}>
           <Alert
             action={
-              <IconButton size='small' color='inherit' aria-label='close' onClick={() => setOpen2(false)}>
-                <Icon icon='bx:x' fontSize='inherit' />
+              <IconButton
+                size="small"
+                color="inherit"
+                aria-label="close"
+                onClick={() => setOpen2(false)}
+              >
+                <Icon icon="bx:x" fontSize="inherit" />
               </IconButton>
             }
           >
             Close me!
           </Alert>
         </Fade>
-        <Button disabled={open2} variant='outlined' sx={{ mt: 2 }} onClick={() => setOpen2(true)}>
+        <Button
+          disabled={open2}
+          variant="outlined"
+          sx={{ mt: 2 }}
+          onClick={() => setOpen2(true)}
+        >
           Open Fade
         </Button>
       </Box>
@@ -61,32 +81,52 @@ const AlertsDismissible = () => {
         <Grow in={open3} {...(open3 ? { timeout: 700 } : {})}>
           <Alert
             action={
-              <IconButton size='small' color='inherit' aria-label='close' onClick={() => setOpen3(false)}>
-                <Icon icon='bx:x' fontSize='inherit' />
+              <IconButton
+                size="small"
+                color="inherit"
+                aria-label="close"
+                onClick={() => setOpen3(false)}
+              >
+                <Icon icon="bx:x" fontSize="inherit" />
               </IconButton>
             }
           >
             Close me!
           </Alert>
         </Grow>
-        <Button disabled={open3} variant='outlined' sx={{ mt: 2 }} onClick={() => setOpen3(true)}>
+        <Button
+          disabled={open3}
+          variant="outlined"
+          sx={{ mt: 2 }}
+          onClick={() => setOpen3(true)}
+        >
           Open Grow
         </Button>
       </Box>
 
       <div>
-        <Slide in={open4} direction='left' {...(open4 ? { timeout: 500 } : {})}>
+        <Slide in={open4} direction="left" {...(open4 ? { timeout: 500 } : {})}>
           <Alert
             action={
-              <IconButton size='small' color='inherit' aria-label='close' onClick={() => setOpen4(false)}>
-                <Icon icon='bx:x' fontSize='inherit' />
+              <IconButton
+                size="small"
+                color="inherit"
+                aria-label="close"
+                onClick={() => setOpen4(false)}
+              >
+                <Icon icon="bx:x" fontSize="inherit" />
               </IconButton>
             }
           >
             Close me!
           </Alert>
         </Slide>
-        <Button disabled={open4} variant='outlined' sx={{ mt: 2 }} onClick={() => setOpen4(true)}>
+        <Button
+          disabled={open4}
+          variant="outlined"
+          sx={{ mt: 2 }}
+          onClick={() => setOpen4(true)}
+        >
           Open Slide
         </Button>
       </div>

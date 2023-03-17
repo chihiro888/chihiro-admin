@@ -22,7 +22,7 @@ const ReviewComplete = () => {
       <Grid item xs={12} lg={6}>
         <Grid container spacing={2}>
           <Grid item xs={12}>
-            <Typography variant='h5' sx={{ mb: 4 }}>
+            <Typography variant="h5" sx={{ mb: 4 }}>
               Almost done! 🚀
             </Typography>
             <Typography sx={{ mb: 2, color: 'text.secondary' }}>
@@ -39,58 +39,87 @@ const ReviewComplete = () => {
                       verticalAlign: 'top',
                       '&:last-of-type': { px: '0 !important' },
                       '&:first-of-type': { pl: '0 !important' },
-                      py: theme => `${theme.spacing(1)} !important`
+                      py: (theme) => `${theme.spacing(1)} !important`
                     }
                   }}
                 >
                   <TableRow>
                     <TableCell>
-                      <Typography noWrap sx={{ fontWeight: 700, color: 'text.secondary' }}>
+                      <Typography
+                        noWrap
+                        sx={{ fontWeight: 700, color: 'text.secondary' }}
+                      >
                         Deal Type
                       </Typography>
                     </TableCell>
                     <TableCell>
-                      <Typography sx={{ color: 'text.secondary' }}>Percentage</Typography>
+                      <Typography sx={{ color: 'text.secondary' }}>
+                        Percentage
+                      </Typography>
                     </TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell>
-                      <Typography noWrap sx={{ fontWeight: 700, color: 'text.secondary' }}>
+                      <Typography
+                        noWrap
+                        sx={{ fontWeight: 700, color: 'text.secondary' }}
+                      >
                         Amount
                       </Typography>
                     </TableCell>
                     <TableCell>
-                      <Typography sx={{ color: 'text.secondary' }}>25%</Typography>
+                      <Typography sx={{ color: 'text.secondary' }}>
+                        25%
+                      </Typography>
                     </TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell>
-                      <Typography noWrap sx={{ fontWeight: 700, color: 'text.secondary' }}>
+                      <Typography
+                        noWrap
+                        sx={{ fontWeight: 700, color: 'text.secondary' }}
+                      >
                         Deal Code
                       </Typography>
                     </TableCell>
                     <TableCell>
-                      <CustomChip rounded size='small' skin='light' color='warning' label='25PEROFF' />
+                      <CustomChip
+                        rounded
+                        size="small"
+                        skin="light"
+                        color="warning"
+                        label="25PEROFF"
+                      />
                     </TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell>
-                      <Typography noWrap sx={{ fontWeight: 700, color: 'text.secondary' }}>
+                      <Typography
+                        noWrap
+                        sx={{ fontWeight: 700, color: 'text.secondary' }}
+                      >
                         Deal Title
                       </Typography>
                     </TableCell>
                     <TableCell>
-                      <Typography sx={{ color: 'text.secondary' }}>Black friday sale, 25% OFF</Typography>
+                      <Typography sx={{ color: 'text.secondary' }}>
+                        Black friday sale, 25% OFF
+                      </Typography>
                     </TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell>
-                      <Typography noWrap sx={{ fontWeight: 700, color: 'text.secondary' }}>
+                      <Typography
+                        noWrap
+                        sx={{ fontWeight: 700, color: 'text.secondary' }}
+                      >
                         Deal Duration
                       </Typography>
                     </TableCell>
                     <TableCell>
-                      <Typography sx={{ color: 'text.secondary' }}>2021-07-14 to 2021-07-30</Typography>
+                      <Typography sx={{ color: 'text.secondary' }}>
+                        2021-07-14 to 2021-07-30
+                      </Typography>
                     </TableCell>
                   </TableRow>
                 </TableBody>
@@ -100,8 +129,11 @@ const ReviewComplete = () => {
           <Grid item xs={12}>
             <FormControlLabel
               control={<Switch />}
-              label='I have confirmed the deal details.'
-              sx={{ mt: 1.75, '& .MuiTypography-root': { color: 'text.secondary' } }}
+              label="I have confirmed the deal details."
+              sx={{
+                mt: 1.75,
+                '& .MuiTypography-root': { color: 'text.secondary' }
+              }}
             />
           </Grid>
         </Grid>
@@ -110,11 +142,16 @@ const ReviewComplete = () => {
         item
         lg={6}
         xs={12}
-        sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', '& img': { maxWidth: '100%' } }}
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          '& img': { maxWidth: '100%' }
+        }}
       >
         <img
           width={350}
-          alt='review-illustration'
+          alt="review-illustration"
           src={`/images/pages/girl-checkout-offer-${theme.palette.mode}.png`}
         />
       </Grid>

@@ -15,12 +15,16 @@ import CustomAvatar from 'src/@core/components/mui/avatar'
 // ** Types
 import { HelpCenterCategoriesType } from 'src/@fake-db/types'
 
-const HelpCenterLandingKnowledgeBase = ({ categories }: { categories: HelpCenterCategoriesType[] }) => {
+const HelpCenterLandingKnowledgeBase = ({
+  categories
+}: {
+  categories: HelpCenterCategoriesType[]
+}) => {
   const renderCategories = () => {
     if (categories && categories.length) {
-      return categories.map(category => {
+      return categories.map((category) => {
         const totalArticles = category.subCategories
-          .map(subCategory => subCategory.articles.length)
+          .map((subCategory) => subCategory.articles.length)
           .reduce((partialSum, a) => partialSum + a, 0)
 
         return (
@@ -39,32 +43,46 @@ const HelpCenterLandingKnowledgeBase = ({ categories }: { categories: HelpCenter
             >
               <Box sx={{ mb: 5, display: 'flex', alignItems: 'center' }}>
                 <CustomAvatar
-                  skin='light'
-                  variant='rounded'
+                  skin="light"
+                  variant="rounded"
                   color={category.avatarColor}
                   sx={{ mr: 3, height: 34, width: 34 }}
                 >
                   <Icon icon={category.icon} />
                 </CustomAvatar>
-                <Link href={`/pages/help-center/${category.slug}/${category.subCategories[0].slug}`} passHref>
+                <Link
+                  href={`/pages/help-center/${category.slug}/${category.subCategories[0].slug}`}
+                  passHref
+                >
                   <Typography
-                    variant='h6'
-                    component='a'
-                    sx={{ fontWeight: 600, textDecoration: 'none', '&:hover': { color: 'primary.main' } }}
+                    variant="h6"
+                    component="a"
+                    sx={{
+                      fontWeight: 600,
+                      textDecoration: 'none',
+                      '&:hover': { color: 'primary.main' }
+                    }}
                   >
                     {category.title}
                   </Typography>
                 </Link>
               </Box>
-              <Box sx={{ mb: 5, display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-                {category.subCategories.map(subcategory => (
+              <Box
+                sx={{
+                  mb: 5,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'flex-start'
+                }}
+              >
+                {category.subCategories.map((subcategory) => (
                   <Link
                     passHref
                     key={subcategory.title}
                     href={`/pages/help-center/${category.slug}/${subcategory.slug}`}
                   >
                     <Box
-                      component='a'
+                      component="a"
                       sx={{
                         display: 'flex',
                         alignItems: 'center',
@@ -74,17 +92,26 @@ const HelpCenterLandingKnowledgeBase = ({ categories }: { categories: HelpCenter
                       }}
                     >
                       <Box sx={{ display: 'flex' }}>
-                        <Icon icon='mdi:circle-small' />
+                        <Icon icon="mdi:circle-small" />
                       </Box>
-                      <Typography sx={{ color: 'primary.main' }}>{subcategory.title}</Typography>
+                      <Typography sx={{ color: 'primary.main' }}>
+                        {subcategory.title}
+                      </Typography>
                     </Box>
                   </Link>
                 ))}
               </Box>
-              <Link href={`/pages/help-center/${category.slug}/${category.subCategories[0].slug}`} passHref>
+              <Link
+                href={`/pages/help-center/${category.slug}/${category.subCategories[0].slug}`}
+                passHref
+              >
                 <Typography
-                  component='a'
-                  sx={{ mt: 'auto', textDecoration: 'none', '&:hover': { color: 'primary.main' } }}
+                  component="a"
+                  sx={{
+                    mt: 'auto',
+                    textDecoration: 'none',
+                    '&:hover': { color: 'primary.main' }
+                  }}
                 >
                   {`${totalArticles} Articles`}
                 </Typography>

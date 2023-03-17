@@ -42,11 +42,20 @@ const offeredItemsArray = [
 
 const CustomInput = forwardRef((props: PickerProps, ref) => {
   const startDate = format(props.start, 'MM/dd/yyyy')
-  const endDate = props.end !== null ? ` - ${format(props.end, 'MM/dd/yyyy')}` : null
+  const endDate =
+    props.end !== null ? ` - ${format(props.end, 'MM/dd/yyyy')}` : null
 
   const value = `${startDate}${endDate !== null ? endDate : ''}`
 
-  return <TextField fullWidth inputRef={ref} label={props.label || ''} {...props} value={value} />
+  return (
+    <TextField
+      fullWidth
+      inputRef={ref}
+      label={props.label || ''}
+      {...props}
+      value={value}
+    />
+  )
 })
 
 const StepDealDetails = () => {
@@ -71,38 +80,42 @@ const StepDealDetails = () => {
   return (
     <Grid container spacing={5}>
       <Grid item xs={12} sm={6}>
-        <TextField fullWidth label='Deal Title' placeholder='Black Friday sale, 25% off' />
+        <TextField
+          fullWidth
+          label="Deal Title"
+          placeholder="Black Friday sale, 25% off"
+        />
       </Grid>
       <Grid item xs={12} sm={6}>
-        <TextField fullWidth label='Deal Code' placeholder='25PEROFF' />
+        <TextField fullWidth label="Deal Code" placeholder="25PEROFF" />
       </Grid>
       <Grid item xs={12} sm={6}>
         <TextField
           fullWidth
           multiline
           minRows={4}
-          label='Deal Description'
-          placeholder='To sell or distribute something as a business deal'
+          label="Deal Description"
+          placeholder="To sell or distribute something as a business deal"
         />
       </Grid>
       <Grid item xs={12} sm={6}>
         <FormControl fullWidth sx={{ mb: 4 }}>
-          <InputLabel id='select-offered-items'>Offered Items</InputLabel>
+          <InputLabel id="select-offered-items">Offered Items</InputLabel>
           <Select
             multiple
             value={offeredItems}
             onChange={handleChange}
-            labelId='select-offered-items'
-            input={<OutlinedInput label='Offered Items' />}
-            renderValue={selected => (
+            labelId="select-offered-items"
+            input={<OutlinedInput label="Offered Items" />}
+            renderValue={(selected) => (
               <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                {selected.map(value => (
-                  <CustomChip key={value} label={value} skin='light' />
+                {selected.map((value) => (
+                  <CustomChip key={value} label={value} skin="light" />
                 ))}
               </Box>
             )}
           >
-            {offeredItemsArray.map(reg => (
+            {offeredItemsArray.map((reg) => (
               <MenuItem key={reg} value={reg}>
                 {reg}
               </MenuItem>
@@ -110,10 +123,18 @@ const StepDealDetails = () => {
           </Select>
         </FormControl>
         <FormControl fullWidth>
-          <InputLabel id='select-cart-condition'>Cart Condition</InputLabel>
-          <Select labelId='select-cart-condition' label='Cart Condition' defaultValue=''>
-            <MenuItem value='all'>Cart must contain all selected Downloads</MenuItem>
-            <MenuItem value='any'>Cart needs one or more of the selected Downloads</MenuItem>
+          <InputLabel id="select-cart-condition">Cart Condition</InputLabel>
+          <Select
+            labelId="select-cart-condition"
+            label="Cart Condition"
+            defaultValue=""
+          >
+            <MenuItem value="all">
+              Cart must contain all selected Downloads
+            </MenuItem>
+            <MenuItem value="any">
+              Cart needs one or more of the selected Downloads
+            </MenuItem>
           </Select>
         </FormControl>
       </Grid>
@@ -123,21 +144,33 @@ const StepDealDetails = () => {
           endDate={endDate}
           selected={startDate}
           startDate={startDate}
-          id='date-range-picker'
+          id="date-range-picker"
           onChange={handleDateChange}
           shouldCloseOnSelect={false}
           customInput={
-            <CustomInput label='Deal Duration' start={startDate as Date | number} end={endDate as Date | number} />
+            <CustomInput
+              label="Deal Duration"
+              start={startDate as Date | number}
+              end={endDate as Date | number}
+            />
           }
         />
       </Grid>
       <Grid item xs={12} sm={6}>
-        <FormControl component='fieldset'>
-          <FormLabel component='legend'>Notify Users</FormLabel>
-          <FormGroup aria-label='position' row>
-            <FormControlLabel value='email' label='Email' control={<Checkbox />} />
-            <FormControlLabel value='sms' label='SMS' control={<Checkbox />} />
-            <FormControlLabel control={<Checkbox />} value='push-notification' label='Push Notification' />
+        <FormControl component="fieldset">
+          <FormLabel component="legend">Notify Users</FormLabel>
+          <FormGroup aria-label="position" row>
+            <FormControlLabel
+              value="email"
+              label="Email"
+              control={<Checkbox />}
+            />
+            <FormControlLabel value="sms" label="SMS" control={<Checkbox />} />
+            <FormControlLabel
+              control={<Checkbox />}
+              value="push-notification"
+              label="Push Notification"
+            />
           </FormGroup>
         </FormControl>
       </Grid>

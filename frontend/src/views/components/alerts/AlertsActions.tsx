@@ -4,9 +4,9 @@ import Button from '@mui/material/Button'
 
 const AlertsBasic = () => {
   return (
-    <div className='demo-space-y'>
+    <div className="demo-space-y">
       <Alert
-        onClose={e => {
+        onClose={(e) => {
           e.preventDefault()
         }}
       >
@@ -14,21 +14,21 @@ const AlertsBasic = () => {
       </Alert>
       <Alert
         action={
-          <Button color='inherit' size='small'>
+          <Button color="inherit" size="small">
             Undo
           </Button>
         }
-        variant='outlined'
+        variant="outlined"
       >
         This is a success alert — check it out!
       </Alert>
       <Alert
         action={
-          <Button color='inherit' size='small'>
+          <Button color="inherit" size="small">
             Undo
           </Button>
         }
-        variant='filled'
+        variant="filled"
       >
         This is a success alert — check it out!
       </Alert>

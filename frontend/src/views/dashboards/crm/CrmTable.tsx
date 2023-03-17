@@ -80,9 +80,36 @@ const data: TableData[] = [
 ]
 
 const statusObj = {
-  paid: <CustomChip rounded size='small' skin='light' color='success' label='Paid' sx={{ fontWeight: 500 }} />,
-  failed: <CustomChip rounded size='small' skin='light' color='error' label='Failed' sx={{ fontWeight: 500 }} />,
-  pending: <CustomChip rounded size='small' skin='light' color='warning' label='Pending' sx={{ fontWeight: 500 }} />
+  paid: (
+    <CustomChip
+      rounded
+      size="small"
+      skin="light"
+      color="success"
+      label="Paid"
+      sx={{ fontWeight: 500 }}
+    />
+  ),
+  failed: (
+    <CustomChip
+      rounded
+      size="small"
+      skin="light"
+      color="error"
+      label="Failed"
+      sx={{ fontWeight: 500 }}
+    />
+  ),
+  pending: (
+    <CustomChip
+      rounded
+      size="small"
+      skin="light"
+      color="warning"
+      label="Pending"
+      sx={{ fontWeight: 500 }}
+    />
+  )
 }
 
 const CrmTable = () => {
@@ -91,14 +118,26 @@ const CrmTable = () => {
   const { mode, direction } = settings
 
   const paidByObj = {
-    visa: <Avatar alt='visa' variant='rounded' sx={{ width: 50, height: 29 }} src={`/images/cards/visa-${mode}.png`} />,
+    visa: (
+      <Avatar
+        alt="visa"
+        variant="rounded"
+        sx={{ width: 50, height: 29 }}
+        src={`/images/cards/visa-${mode}.png`}
+      />
+    ),
     paypal: (
-      <Avatar alt='paypal' variant='rounded' sx={{ width: 50, height: 29 }} src={`/images/cards/paypal-${mode}.png`} />
+      <Avatar
+        alt="paypal"
+        variant="rounded"
+        sx={{ width: 50, height: 29 }}
+        src={`/images/cards/paypal-${mode}.png`}
+      />
     ),
     mastercard: (
       <Avatar
-        alt='mastercard'
-        variant='rounded'
+        alt="mastercard"
+        variant="rounded"
         sx={{ width: 50, height: 29 }}
         src={`/images/cards/mastercard-${mode}.png`}
       />
@@ -111,62 +150,127 @@ const CrmTable = () => {
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell sx={{ py: 3, lineHeight: 1.1, fontWeight: 600, whiteSpace: 'nowrap' }}>Customer</TableCell>
-              <TableCell sx={{ py: 3, lineHeight: 1.1, fontWeight: 600, whiteSpace: 'nowrap' }}>Amount</TableCell>
-              <TableCell sx={{ py: 3, lineHeight: 1.1, fontWeight: 600, whiteSpace: 'nowrap' }}>Status</TableCell>
-              <TableCell sx={{ py: 3, lineHeight: 1.1, fontWeight: 600, whiteSpace: 'nowrap' }}>Paid By</TableCell>
-              <TableCell align='center' sx={{ py: 3, lineHeight: 1.1, fontWeight: 600, whiteSpace: 'nowrap' }}>
+              <TableCell
+                sx={{
+                  py: 3,
+                  lineHeight: 1.1,
+                  fontWeight: 600,
+                  whiteSpace: 'nowrap'
+                }}
+              >
+                Customer
+              </TableCell>
+              <TableCell
+                sx={{
+                  py: 3,
+                  lineHeight: 1.1,
+                  fontWeight: 600,
+                  whiteSpace: 'nowrap'
+                }}
+              >
+                Amount
+              </TableCell>
+              <TableCell
+                sx={{
+                  py: 3,
+                  lineHeight: 1.1,
+                  fontWeight: 600,
+                  whiteSpace: 'nowrap'
+                }}
+              >
+                Status
+              </TableCell>
+              <TableCell
+                sx={{
+                  py: 3,
+                  lineHeight: 1.1,
+                  fontWeight: 600,
+                  whiteSpace: 'nowrap'
+                }}
+              >
+                Paid By
+              </TableCell>
+              <TableCell
+                align="center"
+                sx={{
+                  py: 3,
+                  lineHeight: 1.1,
+                  fontWeight: 600,
+                  whiteSpace: 'nowrap'
+                }}
+              >
                 Actions
               </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {data.map((item: TableData, index: number) => {
-              const { email, paidBy, amount, status, avatarSrc, customerName } = item
+              const { email, paidBy, amount, status, avatarSrc, customerName } =
+                item
 
               return (
                 <TableRow
                   key={index}
-                  sx={{ '& .MuiTableCell-root': { py: theme => `${theme.spacing(2)} !important` } }}
+                  sx={{
+                    '& .MuiTableCell-root': {
+                      py: (theme) => `${theme.spacing(2)} !important`
+                    }
+                  }}
                 >
                   <TableCell>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                      <Avatar src={avatarSrc} alt={customerName} sx={{ mr: 3.75, width: 38, height: 38 }} />
+                      <Avatar
+                        src={avatarSrc}
+                        alt={customerName}
+                        sx={{ mr: 3.75, width: 38, height: 38 }}
+                      />
                       <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                         <Typography noWrap sx={{ fontWeight: 500 }}>
                           {customerName}
                         </Typography>
-                        <Typography noWrap variant='body2' sx={{ color: 'text.disabled' }}>
+                        <Typography
+                          noWrap
+                          variant="body2"
+                          sx={{ color: 'text.disabled' }}
+                        >
                           {email}
                         </Typography>
                       </Box>
                     </Box>
                   </TableCell>
                   <TableCell>
-                    <Typography sx={{ fontWeight: 600, color: 'text.secondary' }}>{`$${amount}`}</Typography>
+                    <Typography
+                      sx={{ fontWeight: 600, color: 'text.secondary' }}
+                    >{`$${amount}`}</Typography>
                   </TableCell>
                   <TableCell>{statusObj[status]}</TableCell>
                   <TableCell>{paidByObj[paidBy]}</TableCell>
-                  <TableCell align='center'>
+                  <TableCell align="center">
                     <OptionsMenu
                       iconButtonProps={{ size: 'small' }}
                       menuProps={{
                         sx: { '& .MuiMenuItem-root svg': { mr: 2 } },
-                        anchorOrigin: { vertical: 'bottom', horizontal: direction === 'ltr' ? 'right' : 'left' },
-                        transformOrigin: { vertical: 'top', horizontal: direction === 'ltr' ? 'right' : 'left' }
+                        anchorOrigin: {
+                          vertical: 'bottom',
+                          horizontal: direction === 'ltr' ? 'right' : 'left'
+                        },
+                        transformOrigin: {
+                          vertical: 'top',
+                          horizontal: direction === 'ltr' ? 'right' : 'left'
+                        }
                       }}
                       options={[
                         {
                           text: 'View Transaction',
-                          icon: <Icon icon='bx:file' fontSize={20} />
+                          icon: <Icon icon="bx:file" fontSize={20} />
                         },
                         {
                           text: 'Customer Profile',
-                          icon: <Icon icon='bx:user' fontSize={20} />
+                          icon: <Icon icon="bx:user" fontSize={20} />
                         },
                         {
                           text: 'Delete History',
-                          icon: <Icon icon='bx:trash-alt' fontSize={20} />
+                          icon: <Icon icon="bx:trash-alt" fontSize={20} />
                         }
                       ]}
                     />

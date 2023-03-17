@@ -37,21 +37,29 @@ const DialogSimple = () => {
 
   return (
     <div>
-      <Typography variant='subtitle1' sx={{ mb: 2 }}>
+      <Typography variant="subtitle1" sx={{ mb: 2 }}>
         Selected: {selectedValue}
       </Typography>
-      <Button variant='outlined' onClick={handleClickOpen}>
+      <Button variant="outlined" onClick={handleClickOpen}>
         Open simple dialog
       </Button>
-      <Dialog onClose={handleDialogClose} aria-labelledby='simple-dialog-title' open={open}>
-        <DialogTitle id='simple-dialog-title'>Set backup account</DialogTitle>
+      <Dialog
+        onClose={handleDialogClose}
+        aria-labelledby="simple-dialog-title"
+        open={open}
+      >
+        <DialogTitle id="simple-dialog-title">Set backup account</DialogTitle>
         <List sx={{ pt: 0, px: '0 !important' }}>
-          {emails.map(email => (
-            <ListItem key={email} disablePadding onClick={() => handleClose(email)}>
+          {emails.map((email) => (
+            <ListItem
+              key={email}
+              disablePadding
+              onClick={() => handleClose(email)}
+            >
               <ListItemButton>
                 <ListItemAvatar>
-                  <CustomAvatar skin='light'>
-                    <Icon icon='bx:user' />
+                  <CustomAvatar skin="light">
+                    <Icon icon="bx:user" />
                   </CustomAvatar>
                 </ListItemAvatar>
                 <ListItemText primary={email} />
@@ -62,10 +70,10 @@ const DialogSimple = () => {
             <ListItemButton>
               <ListItemAvatar>
                 <MuiAvatar>
-                  <Icon icon='bx:plus' />
+                  <Icon icon="bx:plus" />
                 </MuiAvatar>
               </ListItemAvatar>
-              <ListItemText primary='Add account' />
+              <ListItemText primary="Add account" />
             </ListItemButton>
           </ListItem>
         </List>

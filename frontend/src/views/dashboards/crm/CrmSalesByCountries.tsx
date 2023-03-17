@@ -40,7 +40,7 @@ const data: DataType[] = [
     avatarColor: 'success',
     avatarSrc: '/images/cards/usa.png',
     subtitle: 'United states of america',
-    trend: <Icon icon='bx:chevron-up' />
+    trend: <Icon icon="bx:chevron-up" />
   },
   {
     sales: '645k',
@@ -51,7 +51,7 @@ const data: DataType[] = [
     trendNumber: '-6.2%',
     avatarColor: 'error',
     avatarSrc: '/images/cards/brazil.png',
-    trend: <Icon icon='bx:chevron-down' />
+    trend: <Icon icon="bx:chevron-down" />
   },
   {
     sales: '148k',
@@ -62,7 +62,7 @@ const data: DataType[] = [
     trendNumber: '12.4%',
     avatarColor: 'warning',
     avatarSrc: '/images/cards/india.png',
-    trend: <Icon icon='bx:chevron-up' />
+    trend: <Icon icon="bx:chevron-up" />
   },
   {
     sales: '86k',
@@ -73,7 +73,7 @@ const data: DataType[] = [
     trendNumber: '-11.9%',
     avatarColor: 'secondary',
     avatarSrc: '/images/cards/australia.png',
-    trend: <Icon icon='bx:chevron-down' />
+    trend: <Icon icon="bx:chevron-down" />
   },
   {
     sales: '42k',
@@ -84,7 +84,7 @@ const data: DataType[] = [
     trendNumber: '16.2%',
     avatarColor: 'error',
     avatarSrc: '/images/cards/belgium.png',
-    trend: <Icon icon='bx:chevron-up' />
+    trend: <Icon icon="bx:chevron-up" />
   },
   {
     sales: '8k',
@@ -95,7 +95,7 @@ const data: DataType[] = [
     trendNumber: '14.8%',
     avatarColor: 'primary',
     avatarSrc: '/images/cards/china.png',
-    trend: <Icon icon='bx:chevron-up' />
+    trend: <Icon icon="bx:chevron-up" />
   }
 ]
 
@@ -103,11 +103,14 @@ const CrmSalesByCountries = () => {
   return (
     <Card>
       <CardHeader
-        title='Sales by Countries'
-        subheader='Monthly Sales Overview'
+        title="Sales by Countries"
+        subheader="Monthly Sales Overview"
         subheaderTypographyProps={{ sx: { color: 'text.disabled' } }}
         action={
-          <OptionsMenu iconButtonProps={{ size: 'small' }} options={['Last 28 Days', 'Last Month', 'Last Year']} />
+          <OptionsMenu
+            iconButtonProps={{ size: 'small' }}
+            options={['Last 28 Days', 'Last Month', 'Last Year']}
+          />
         }
       />
       <CardContent>
@@ -121,7 +124,11 @@ const CrmSalesByCountries = () => {
                 mb: index !== data.length - 1 ? 4.5 : undefined
               }}
             >
-              <Avatar alt={item.avatarAlt} src={item.avatarSrc} sx={{ mr: 4, width: 38, height: 38 }}>
+              <Avatar
+                alt={item.avatarAlt}
+                src={item.avatarSrc}
+                sx={{ mr: 4, width: 38, height: 38 }}
+              >
                 {item.avatarAlt}
               </Avatar>
 
@@ -136,24 +143,38 @@ const CrmSalesByCountries = () => {
               >
                 <Box sx={{ mr: 2, display: 'flex', flexDirection: 'column' }}>
                   <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                    <Typography sx={{ mr: 1, fontWeight: 500 }}>{item.title}</Typography>
+                    <Typography sx={{ mr: 1, fontWeight: 500 }}>
+                      {item.title}
+                    </Typography>
                     <Box
                       sx={{
                         display: 'flex',
                         alignItems: 'center',
-                        '& svg': { mr: 0.5, color: item.trendDir === 'down' ? 'error.main' : 'success.main' }
+                        '& svg': {
+                          mr: 0.5,
+                          color:
+                            item.trendDir === 'down'
+                              ? 'error.main'
+                              : 'success.main'
+                        }
                       }}
                     >
                       {item.trend}
                       <Typography
-                        variant='body2'
-                        sx={{ fontWeight: 500, color: item.trendDir === 'down' ? 'error.main' : 'success.main' }}
+                        variant="body2"
+                        sx={{
+                          fontWeight: 500,
+                          color:
+                            item.trendDir === 'down'
+                              ? 'error.main'
+                              : 'success.main'
+                        }}
                       >
                         {item.trendNumber}
                       </Typography>
                     </Box>
                   </Box>
-                  <Typography variant='body2' sx={{ color: 'text.disabled' }}>
+                  <Typography variant="body2" sx={{ color: 'text.disabled' }}>
                     {item.subtitle}
                   </Typography>
                 </Box>

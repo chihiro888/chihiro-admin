@@ -28,7 +28,11 @@ import { useSettings } from 'src/@core/hooks/useSettings'
 import { hexToRGBA } from 'src/@core/utils/hex-to-rgba'
 import { rgbaToHex } from 'src/@core/utils/rgba-to-hex'
 
-const yearOptions = [new Date().getFullYear() - 1, new Date().getFullYear() - 2, new Date().getFullYear() - 3]
+const yearOptions = [
+  new Date().getFullYear() - 1,
+  new Date().getFullYear() - 2,
+  new Date().getFullYear() - 3
+]
 
 const series = [
   {
@@ -212,10 +216,30 @@ const CrmSalesAnalytics = () => {
         enableShades: false,
         colorScale: {
           ranges: [
-            { from: 0, to: 1000, name: '1K', color: rgbaToHex(hexToRGBA(theme.palette.primary.main, 0.2)) },
-            { from: 1001, to: 2000, name: '2K', color: rgbaToHex(hexToRGBA(theme.palette.primary.main, 0.4)) },
-            { from: 2001, to: 3000, name: '3K', color: rgbaToHex(hexToRGBA(theme.palette.primary.main, 0.6)) },
-            { from: 3001, to: 4000, name: '4K', color: rgbaToHex(hexToRGBA(theme.palette.primary.main, 1)) }
+            {
+              from: 0,
+              to: 1000,
+              name: '1K',
+              color: rgbaToHex(hexToRGBA(theme.palette.primary.main, 0.2))
+            },
+            {
+              from: 1001,
+              to: 2000,
+              name: '2K',
+              color: rgbaToHex(hexToRGBA(theme.palette.primary.main, 0.4))
+            },
+            {
+              from: 2001,
+              to: 3000,
+              name: '3K',
+              color: rgbaToHex(hexToRGBA(theme.palette.primary.main, 0.6))
+            },
+            {
+              from: 3001,
+              to: 4000,
+              name: '4K',
+              color: rgbaToHex(hexToRGBA(theme.palette.primary.main, 1))
+            }
           ]
         }
       }
@@ -225,34 +249,51 @@ const CrmSalesAnalytics = () => {
   return (
     <Card>
       <CardHeader
-        title='Sales Analytics'
+        title="Sales Analytics"
         subheader={
           <>
-            <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center' }}>
-              <CustomChip rounded size='small' skin='light' label='+42.6%' color='success' sx={{ mr: 1.5 }} />
-              <Typography sx={{ color: 'text.secondary' }}>Than last year</Typography>
+            <Box
+              sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center' }}
+            >
+              <CustomChip
+                rounded
+                size="small"
+                skin="light"
+                label="+42.6%"
+                color="success"
+                sx={{ mr: 1.5 }}
+              />
+              <Typography sx={{ color: 'text.secondary' }}>
+                Than last year
+              </Typography>
             </Box>
           </>
         }
         action={
           <>
             <Button
-              size='small'
-              variant='outlined'
-              aria-haspopup='true'
+              size="small"
+              variant="outlined"
+              aria-haspopup="true"
               onClick={handleClick}
               sx={{ '& svg': { ml: 0.5 } }}
             >
               {new Date().getFullYear()}
-              <Icon icon='bx:chevron-down' />
+              <Icon icon="bx:chevron-down" />
             </Button>
             <Menu
               keepMounted
               anchorEl={anchorEl}
               onClose={handleClose}
               open={Boolean(anchorEl)}
-              anchorOrigin={{ vertical: 'bottom', horizontal: direction === 'ltr' ? 'right' : 'left' }}
-              transformOrigin={{ vertical: 'top', horizontal: direction === 'ltr' ? 'right' : 'left' }}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: direction === 'ltr' ? 'right' : 'left'
+              }}
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: direction === 'ltr' ? 'right' : 'left'
+              }}
             >
               {yearOptions.map((year: number) => (
                 <MenuItem key={year} onClick={handleClose}>
@@ -263,7 +304,12 @@ const CrmSalesAnalytics = () => {
           </>
         }
       />
-      <ReactApexcharts type='heatmap' height={370} options={options} series={series} />
+      <ReactApexcharts
+        type="heatmap"
+        height={370}
+        options={options}
+        series={series}
+      />
     </Card>
   )
 }

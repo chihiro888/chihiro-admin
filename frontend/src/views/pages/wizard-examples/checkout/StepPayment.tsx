@@ -61,8 +61,8 @@ const StepPayment = ({ handleNext }: { handleNext: () => void }) => {
     <Grid container spacing={6}>
       <Grid item xs={12} lg={8} xl={9}>
         <Alert
-          severity='success'
-          icon={<Icon icon='bx:purchase-tag' />}
+          severity="success"
+          icon={<Icon icon="bx:purchase-tag" />}
           sx={{
             mb: 4,
             '& .MuiAlert-icon': {
@@ -73,51 +73,77 @@ const StepPayment = ({ handleNext }: { handleNext: () => void }) => {
             }
           }}
         >
-          <AlertTitle sx={{ fontWeight: '700 !important' }}>Bank Offers</AlertTitle>
+          <AlertTitle sx={{ fontWeight: '700 !important' }}>
+            Bank Offers
+          </AlertTitle>
           <div>
             <Typography sx={{ color: 'success.main' }}>
-              - 10% Instant Discount on Bank of America Corp Bank Debit and Credit cards
+              - 10% Instant Discount on Bank of America Corp Bank Debit and
+              Credit cards
             </Typography>
           </div>
         </Alert>
         <TabContext value={value}>
           <TabList
-            variant='scrollable'
-            scrollButtons='auto'
+            variant="scrollable"
+            scrollButtons="auto"
             onChange={handleChange}
-            aria-label='customized tabs example'
+            aria-label="customized tabs example"
           >
-            <Tab value='cc' label='Card' />
-            <Tab value='cod' label='Cash On Delivery' />
-            <Tab value='gc' label='Gift Card' />
+            <Tab value="cc" label="Card" />
+            <Tab value="cod" label="Cash On Delivery" />
+            <Tab value="gc" label="Gift Card" />
           </TabList>
           <Grid
             container
-            sx={{ mt: 5, '& .MuiTabPanel-root': { p: 0, border: 0, boxShadow: 0, backgroundColor: 'transparent' } }}
+            sx={{
+              mt: 5,
+              '& .MuiTabPanel-root': {
+                p: 0,
+                border: 0,
+                boxShadow: 0,
+                backgroundColor: 'transparent'
+              }
+            }}
           >
             <Grid item md={8} xs={12}>
-              <TabPanel value='cc'>
+              <TabPanel value="cc">
                 <Grid container spacing={4}>
                   <Grid item xs={12}>
-                    <TextField fullWidth type='number' label='Card Number' placeholder='1356 3215 6548 7898' />
+                    <TextField
+                      fullWidth
+                      type="number"
+                      label="Card Number"
+                      placeholder="1356 3215 6548 7898"
+                    />
                   </Grid>
                   <Grid item xs={12} sm={6}>
-                    <TextField fullWidth label='Name' placeholder='John Doe' />
-                  </Grid>
-                  <Grid item xs={6} sm={3}>
-                    <TextField fullWidth label='Expiry Date' placeholder='MM/YY' />
+                    <TextField fullWidth label="Name" placeholder="John Doe" />
                   </Grid>
                   <Grid item xs={6} sm={3}>
                     <TextField
                       fullWidth
-                      label='CVV'
-                      placeholder='654'
+                      label="Expiry Date"
+                      placeholder="MM/YY"
+                    />
+                  </Grid>
+                  <Grid item xs={6} sm={3}>
+                    <TextField
+                      fullWidth
+                      label="CVV"
+                      placeholder="654"
                       InputProps={{
                         endAdornment: (
-                          <InputAdornment position='start'>
-                            <Tooltip title='Card Verification Value'>
-                              <Box component='span' sx={{ display: 'inline-flex', '& svg': { cursor: 'pointer' } }}>
-                                <Icon icon='bx:help-circle' fontSize={20} />
+                          <InputAdornment position="start">
+                            <Tooltip title="Card Verification Value">
+                              <Box
+                                component="span"
+                                sx={{
+                                  display: 'inline-flex',
+                                  '& svg': { cursor: 'pointer' }
+                                }}
+                              >
+                                <Icon icon="bx:help-circle" fontSize={20} />
                               </Box>
                             </Tooltip>
                           </InputAdornment>
@@ -128,40 +154,59 @@ const StepPayment = ({ handleNext }: { handleNext: () => void }) => {
                   <Grid item xs={12}>
                     <FormControlLabel
                       control={<Switch defaultChecked />}
-                      label='Save Card for future billing?'
-                      sx={{ '& .MuiTypography-root': { color: 'text.secondary' } }}
+                      label="Save Card for future billing?"
+                      sx={{
+                        '& .MuiTypography-root': { color: 'text.secondary' }
+                      }}
                     />
                   </Grid>
                   <Grid item xs={12}>
-                    <Button variant='contained' sx={{ mr: 5 }} onClick={handleNext}>
+                    <Button
+                      variant="contained"
+                      sx={{ mr: 5 }}
+                      onClick={handleNext}
+                    >
                       Submit
                     </Button>
-                    <Button type='reset' variant='outlined' color='secondary'>
+                    <Button type="reset" variant="outlined" color="secondary">
                       Cancel
                     </Button>
                   </Grid>
                 </Grid>
               </TabPanel>
-              <TabPanel value='cod' sx={{ p: 0 }}>
+              <TabPanel value="cod" sx={{ p: 0 }}>
                 <Typography sx={{ mb: 4 }}>
-                  Cash on Delivery is a type of payment method where the recipient make payment for the order at the
-                  time of delivery rather than in advance.
+                  Cash on Delivery is a type of payment method where the
+                  recipient make payment for the order at the time of delivery
+                  rather than in advance.
                 </Typography>
-                <Button variant='contained' onClick={handleNext}>
+                <Button variant="contained" onClick={handleNext}>
                   Pay On Delivery
                 </Button>
               </TabPanel>
-              <TabPanel value='gc' sx={{ p: 0 }}>
-                <Typography sx={{ mb: 4, fontWeight: 500 }}>Enter Gift Card Details</Typography>
+              <TabPanel value="gc" sx={{ p: 0 }}>
+                <Typography sx={{ mb: 4, fontWeight: 500 }}>
+                  Enter Gift Card Details
+                </Typography>
                 <Grid container spacing={4}>
                   <Grid item xs={12}>
-                    <TextField fullWidth type='number' label='Gift Card Number' placeholder='Gift Card Number' />
+                    <TextField
+                      fullWidth
+                      type="number"
+                      label="Gift Card Number"
+                      placeholder="Gift Card Number"
+                    />
                   </Grid>
                   <Grid item xs={12}>
-                    <TextField fullWidth type='number' label='Gift Card Pin' placeholder='Gift Card Pin' />
+                    <TextField
+                      fullWidth
+                      type="number"
+                      label="Gift Card Pin"
+                      placeholder="Gift Card Pin"
+                    />
                   </Grid>
                   <Grid item xs={12}>
-                    <Button variant='contained' onClick={handleNext}>
+                    <Button variant="contained" onClick={handleNext}>
                       Redeem Gift Card
                     </Button>
                   </Grid>
@@ -183,46 +228,93 @@ const StepPayment = ({ handleNext }: { handleNext: () => void }) => {
           }}
         >
           <CardContent sx={{ p: 4 }}>
-            <Typography sx={{ mb: 4, fontWeight: 500 }}>Price Details</Typography>
+            <Typography sx={{ mb: 4, fontWeight: 500 }}>
+              Price Details
+            </Typography>
             <Grid container>
               <Grid item xs={6} sx={{ mb: 2 }}>
-                <Typography sx={{ color: 'text.secondary' }}>Order Total</Typography>
+                <Typography sx={{ color: 'text.secondary' }}>
+                  Order Total
+                </Typography>
               </Grid>
               <Grid item xs={6} sx={{ mb: 2 }}>
-                <Typography sx={{ textAlign: 'right', color: 'text.secondary' }}>$1100.00</Typography>
+                <Typography
+                  sx={{ textAlign: 'right', color: 'text.secondary' }}
+                >
+                  $1100.00
+                </Typography>
               </Grid>
               <Grid item xs={6}>
-                <Typography sx={{ color: 'text.secondary' }}>Delivery Charges</Typography>
+                <Typography sx={{ color: 'text.secondary' }}>
+                  Delivery Charges
+                </Typography>
               </Grid>
               <Grid item xs={6}>
                 <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-                  <Typography sx={{ mr: 2, textDecoration: 'line-through', color: 'text.secondary' }}>$5.00</Typography>
-                  <CustomChip rounded size='small' skin='light' color='success' label='Free' />
+                  <Typography
+                    sx={{
+                      mr: 2,
+                      textDecoration: 'line-through',
+                      color: 'text.secondary'
+                    }}
+                  >
+                    $5.00
+                  </Typography>
+                  <CustomChip
+                    rounded
+                    size="small"
+                    skin="light"
+                    color="success"
+                    label="Free"
+                  />
                 </Box>
               </Grid>
             </Grid>
           </CardContent>
           <Divider sx={{ my: '0 !important' }} />
-          <CardContent sx={{ p: 4, pb: theme => `${theme.spacing(4.5)} !important` }}>
+          <CardContent
+            sx={{ p: 4, pb: (theme) => `${theme.spacing(4.5)} !important` }}
+          >
             <Grid container sx={{ mb: 4 }}>
               <Grid item xs={6}>
-                <Typography sx={{ fontWeight: 700, color: 'text.secondary' }}>Total</Typography>
+                <Typography sx={{ fontWeight: 700, color: 'text.secondary' }}>
+                  Total
+                </Typography>
               </Grid>
               <Grid item xs={6}>
-                <Typography sx={{ fontWeight: 600, textAlign: 'right', color: 'text.secondary' }}>$1100.00</Typography>
+                <Typography
+                  sx={{
+                    fontWeight: 600,
+                    textAlign: 'right',
+                    color: 'text.secondary'
+                  }}
+                >
+                  $1100.00
+                </Typography>
               </Grid>
               <Grid item xs={6}>
-                <Typography sx={{ fontWeight: 700, color: 'text.secondary' }}>Deliver to:</Typography>
+                <Typography sx={{ fontWeight: 700, color: 'text.secondary' }}>
+                  Deliver to:
+                </Typography>
               </Grid>
               <Grid item xs={6}>
                 <Box sx={{ textAlign: 'right' }}>
-                  <CustomChip rounded size='small' skin='light' color='primary' label='Home' />
+                  <CustomChip
+                    rounded
+                    size="small"
+                    skin="light"
+                    color="primary"
+                    label="Home"
+                  />
                 </Box>
               </Grid>
             </Grid>
 
-            <Box component='address' sx={{ mb: 4.5, fontStyle: 'normal', color: 'text.secondary' }}>
-              <Box component='span' sx={{ fontWeight: 600 }}>
+            <Box
+              component="address"
+              sx={{ mb: 4.5, fontStyle: 'normal', color: 'text.secondary' }}
+            >
+              <Box component="span" sx={{ fontWeight: 600 }}>
                 {' '}
                 John Doe (Default),
               </Box>
@@ -233,9 +325,9 @@ const StepPayment = ({ handleNext }: { handleNext: () => void }) => {
               <br />
               Mobile : +1 906 568 2332
             </Box>
-            <Link href='/' passHref>
+            <Link href="/" passHref>
               <Box
-                component='a'
+                component="a"
                 onClick={(e: SyntheticEvent) => e.preventDefault()}
                 sx={{ mr: 2, color: 'primary.main', textDecoration: 'none' }}
               >

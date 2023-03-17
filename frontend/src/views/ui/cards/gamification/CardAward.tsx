@@ -16,21 +16,26 @@ const TrophyImg = styled('img')({
 const CardAward = () => {
   return (
     <Card sx={{ position: 'relative' }}>
-      <CardContent sx={{ py: theme => `${theme.spacing(5)} !important` }}>
-        <Typography sx={{ mb: 1.25, fontWeight: 500 }}>Congratulations Katie!</Typography>
-        <Typography variant='body2' sx={{ mb: 5 }}>
+      <CardContent sx={{ py: (theme) => `${theme.spacing(5)} !important` }}>
+        <Typography sx={{ mb: 1.25, fontWeight: 500 }}>
+          Congratulations Katie!
+        </Typography>
+        <Typography variant="body2" sx={{ mb: 5 }}>
           Best seller of the month
         </Typography>
-        <Typography variant='h5' sx={{ color: 'primary.main', fontSize: '1.625rem !important' }}>
+        <Typography
+          variant="h5"
+          sx={{ color: 'primary.main', fontSize: '1.625rem !important' }}
+        >
           $48.9k
         </Typography>
-        <Typography variant='body2' sx={{ mb: 2.5, color: 'text.disabled' }}>
+        <Typography variant="body2" sx={{ mb: 2.5, color: 'text.disabled' }}>
           78% of target
         </Typography>
-        <Button size='small' variant='contained'>
+        <Button size="small" variant="contained">
           View Sales
         </Button>
-        <TrophyImg alt='trophy' src='/images/misc/trophy.png' />
+        <TrophyImg alt="trophy" src="/images/misc/trophy.png" />
       </CardContent>
     </Card>
   )

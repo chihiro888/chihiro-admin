@@ -11,37 +11,46 @@ import Icon from 'src/@core/components/icon'
 
 const TextFieldIcons = () => {
   return (
-    <form className='demo-space-x' noValidate autoComplete='off'>
-      <FormControl variant='standard'>
-        <InputLabel htmlFor='input-with-icon-adornment'>With a start adornment</InputLabel>
+    <form className="demo-space-x" noValidate autoComplete="off">
+      <FormControl variant="standard">
+        <InputLabel htmlFor="input-with-icon-adornment">
+          With a start adornment
+        </InputLabel>
         <Input
-          id='input-with-icon-adornment'
+          id="input-with-icon-adornment"
           startAdornment={
-            <InputAdornment position='start'>
-              <Icon icon='bx:user-circle' />
+            <InputAdornment position="start">
+              <Icon icon="bx:user-circle" />
             </InputAdornment>
           }
         />
       </FormControl>
       <TextField
-        label='TextField'
-        variant='standard'
-        id='input-with-icon-textfield'
+        label="TextField"
+        variant="standard"
+        id="input-with-icon-textfield"
         InputProps={{
           startAdornment: (
-            <InputAdornment position='start'>
-              <Icon icon='bx:user-circle' />
+            <InputAdornment position="start">
+              <Icon icon="bx:user-circle" />
             </InputAdornment>
           )
         }}
       />
       <div>
-        <Grid container spacing={2} alignItems='flex-end'>
-          <Grid item sx={{ '& svg': { color: theme => theme.palette.action.active } }}>
-            <Icon icon='bx:user-circle' />
+        <Grid container spacing={2} alignItems="flex-end">
+          <Grid
+            item
+            sx={{ '& svg': { color: (theme) => theme.palette.action.active } }}
+          >
+            <Icon icon="bx:user-circle" />
           </Grid>
           <Grid item>
-            <TextField variant='standard' id='input-with-icon-grid' label='With a grid' />
+            <TextField
+              variant="standard"
+              id="input-with-icon-grid"
+              label="With a grid"
+            />
           </Grid>
         </Grid>
       </div>

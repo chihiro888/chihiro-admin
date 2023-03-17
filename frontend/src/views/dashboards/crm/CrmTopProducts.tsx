@@ -112,30 +112,54 @@ const Divider = styled(MuiDivider)<DividerProps>(({ theme }) => ({
 
 const CrmTopProducts = () => {
   return (
-    <Card sx={{ display: 'flex', justifyContent: 'space-between', flexDirection: ['column', 'column', 'row'] }}>
+    <Card
+      sx={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        flexDirection: ['column', 'column', 'row']
+      }}
+    >
       <Box sx={{ width: '100%' }}>
         <CardHeader
-          sx={{ p: theme => theme.spacing(4.75, 5.5) }}
+          sx={{ p: (theme) => theme.spacing(4.75, 5.5) }}
           title={
-            <Typography variant='h6' sx={{ mr: 1.5 }}>
+            <Typography variant="h6" sx={{ mr: 1.5 }}>
               Top Products by
-              <Typography variant='h6' component='span' sx={{ ml: 1.5, color: 'primary.main' }}>
+              <Typography
+                variant="h6"
+                component="span"
+                sx={{ ml: 1.5, color: 'primary.main' }}
+              >
                 Sales
               </Typography>
             </Typography>
           }
-          action={<OptionsMenu iconButtonProps={{ size: 'small' }} options={['Share', 'Refresh', 'Update']} />}
+          action={
+            <OptionsMenu
+              iconButtonProps={{ size: 'small' }}
+              options={['Share', 'Refresh', 'Update']}
+            />
+          }
         />
-        <CardContent sx={{ pt: theme => `${theme.spacing(4.5)} !important` }}>
+        <CardContent sx={{ pt: (theme) => `${theme.spacing(4.5)} !important` }}>
           {salesData.map((item: SalesData, index: number) => {
             const { title, amount, subtitle, avatarSrc } = item
 
             return (
               <Box
                 key={index}
-                sx={{ display: 'flex', alignItems: 'center', mb: index !== salesData.length - 1 ? 5.5 : 0 }}
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  mb: index !== salesData.length - 1 ? 5.5 : 0
+                }}
               >
-                <Avatar alt={title} variant='rounded' src={avatarSrc} sx={{ mr: 3, width: 38, height: 38 }} />
+                <Avatar
+                  alt={title}
+                  variant="rounded"
+                  src={avatarSrc}
+                  sx={{ mr: 3, width: 38, height: 38 }}
+                />
                 <Box
                   sx={{
                     width: '100%',
@@ -146,12 +170,16 @@ const CrmTopProducts = () => {
                   }}
                 >
                   <Box sx={{ mr: 2, display: 'flex', flexDirection: 'column' }}>
-                    <Typography sx={{ color: 'text.secondary' }}>{title}</Typography>
-                    <Typography variant='body2' sx={{ color: 'text.disabled' }}>
+                    <Typography sx={{ color: 'text.secondary' }}>
+                      {title}
+                    </Typography>
+                    <Typography variant="body2" sx={{ color: 'text.disabled' }}>
                       {subtitle}
                     </Typography>
                   </Box>
-                  <Typography sx={{ fontWeight: 600, color: 'text.secondary' }}>{amount}</Typography>
+                  <Typography sx={{ fontWeight: 600, color: 'text.secondary' }}>
+                    {amount}
+                  </Typography>
                 </Box>
               </Box>
             )
@@ -163,27 +191,52 @@ const CrmTopProducts = () => {
 
       <Box sx={{ width: '100%' }}>
         <CardHeader
-          sx={{ p: theme => theme.spacing(4.75, 5.5) }}
+          sx={{ p: (theme) => theme.spacing(4.75, 5.5) }}
           title={
-            <Typography variant='h6' sx={{ mr: 1.5 }}>
+            <Typography variant="h6" sx={{ mr: 1.5 }}>
               Top Products by
-              <Typography variant='h6' component='span' sx={{ ml: 1.5, color: 'primary.main' }}>
+              <Typography
+                variant="h6"
+                component="span"
+                sx={{ ml: 1.5, color: 'primary.main' }}
+              >
                 Volume
               </Typography>
             </Typography>
           }
-          action={<OptionsMenu iconButtonProps={{ size: 'small' }} options={['Share', 'Refresh', 'Update']} />}
+          action={
+            <OptionsMenu
+              iconButtonProps={{ size: 'small' }}
+              options={['Share', 'Refresh', 'Update']}
+            />
+          }
         />
-        <CardContent sx={{ pt: theme => `${theme.spacing(4.5)} !important` }}>
+        <CardContent sx={{ pt: (theme) => `${theme.spacing(4.5)} !important` }}>
           {volumeData.map((item: VolumeData, index: number) => {
-            const { title, amount, subtitle, avatarSrc, difference = 'positive', differenceNumber } = item
+            const {
+              title,
+              amount,
+              subtitle,
+              avatarSrc,
+              difference = 'positive',
+              differenceNumber
+            } = item
 
             return (
               <Box
                 key={index}
-                sx={{ display: 'flex', alignItems: 'center', mb: index !== volumeData.length - 1 ? 5.5 : 0 }}
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  mb: index !== volumeData.length - 1 ? 5.5 : 0
+                }}
               >
-                <Avatar alt={title} variant='rounded' src={avatarSrc} sx={{ mr: 3, width: 38, height: 38 }} />
+                <Avatar
+                  alt={title}
+                  variant="rounded"
+                  src={avatarSrc}
+                  sx={{ mr: 3, width: 38, height: 38 }}
+                />
                 <Box
                   sx={{
                     width: '100%',
@@ -194,20 +247,28 @@ const CrmTopProducts = () => {
                   }}
                 >
                   <Box sx={{ mr: 2, display: 'flex', flexDirection: 'column' }}>
-                    <Typography sx={{ color: 'text.secondary' }}>{title}</Typography>
-                    <Typography variant='body2' sx={{ color: 'text.disabled' }}>
+                    <Typography sx={{ color: 'text.secondary' }}>
+                      {title}
+                    </Typography>
+                    <Typography variant="body2" sx={{ color: 'text.disabled' }}>
                       {subtitle}
                     </Typography>
                   </Box>
                   <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                    <Typography sx={{ mr: 3.5, fontWeight: 600, color: 'text.secondary' }}>{amount}</Typography>
+                    <Typography
+                      sx={{ mr: 3.5, fontWeight: 600, color: 'text.secondary' }}
+                    >
+                      {amount}
+                    </Typography>
                     <CustomChip
                       rounded
-                      size='small'
-                      skin='light'
+                      size="small"
+                      skin="light"
                       sx={{ fontWeight: 500 }}
                       color={difference === 'positive' ? 'success' : 'error'}
-                      label={`${difference === 'positive' ? '+' : '-'}${differenceNumber}%`}
+                      label={`${
+                        difference === 'positive' ? '+' : '-'
+                      }${differenceNumber}%`}
                     />
                   </Box>
                 </Box>

@@ -4,23 +4,23 @@ import ButtonGroup from '@mui/material/ButtonGroup'
 
 const ButtonGroupSizes = () => {
   return (
-    <div className='demo-space-y'>
+    <div className="demo-space-y">
       <div>
-        <ButtonGroup size='small'>
+        <ButtonGroup size="small">
           <Button>One</Button>
           <Button>Two</Button>
           <Button>Three</Button>
         </ButtonGroup>
       </div>
       <div>
-        <ButtonGroup size='medium'>
+        <ButtonGroup size="medium">
           <Button>One</Button>
           <Button>Two</Button>
           <Button>Three</Button>
         </ButtonGroup>
       </div>
       <div>
-        <ButtonGroup size='large'>
+        <ButtonGroup size="large">
           <Button>One</Button>
           <Button>Two</Button>
           <Button>Three</Button>

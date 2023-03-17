@@ -12,12 +12,25 @@ import toast from 'react-hot-toast'
 const ToastSuccess = () => {
   return (
     <Box
-      sx={{ display: 'flex', textAlign: 'center', alignItems: 'center', flexDirection: 'column', '& svg': { mb: 2 } }}
+      sx={{
+        display: 'flex',
+        textAlign: 'center',
+        alignItems: 'center',
+        flexDirection: 'column',
+        '& svg': { mb: 2 }
+      }}
     >
-      <Icon icon='bx:check-circle' fontSize='2rem' />
+      <Icon icon="bx:check-circle" fontSize="2rem" />
       <Typography sx={{ mb: 4, fontWeight: 600 }}>Success</Typography>
-      <Typography sx={{ mb: 3 }}>Creates a notification with an animated checkmark.</Typography>
-      <Button sx={{ mb: 8 }} color='success' variant='contained' onClick={() => toast.success('Successfully toasted!')}>
+      <Typography sx={{ mb: 3 }}>
+        Creates a notification with an animated checkmark.
+      </Typography>
+      <Button
+        sx={{ mb: 8 }}
+        color="success"
+        variant="contained"
+        onClick={() => toast.success('Successfully toasted!')}
+      >
         Success
       </Button>
     </Box>

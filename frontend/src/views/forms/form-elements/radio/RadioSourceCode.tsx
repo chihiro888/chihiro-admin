@@ -1,6 +1,6 @@
 export const RadioColorJSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** MUI Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** MUI Imports
 import Radio from '@mui/material/Radio'
 import RadioGroup from '@mui/material/RadioGroup'
 import FormControlLabel from '@mui/material/FormControlLabel'
@@ -24,8 +24,8 @@ export default RadioColor
 )
 
 export const RadioControlledUncontrolledJSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { useState } from 'react'
 
 // ** MUI Imports
@@ -69,8 +69,8 @@ export default RadioControlledUncontrolled
 )
 
 export const RadioLabelPlacementJSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** MUI Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** MUI Imports
 import Radio from '@mui/material/Radio'
 import RadioGroup from '@mui/material/RadioGroup'
 import FormControl from '@mui/material/FormControl'
@@ -97,8 +97,8 @@ export default RadioLabelPlacement
 )
 
 export const RadioGroupJSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { useState } from 'react'
 
 // ** MUI Imports
@@ -136,8 +136,8 @@ export default RadioGroupComponent
 )
 
 export const RadioCustomizedJSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** MUI Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** MUI Imports
 import FormLabel from '@mui/material/FormLabel'
 import RadioGroup from '@mui/material/RadioGroup'
 import FormControl from '@mui/material/FormControl'
@@ -188,8 +188,8 @@ export default RadioCustomized
 )
 
 export const RadioSizesJSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** MUI Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** MUI Imports
 import Radio from '@mui/material/Radio'
 import RadioGroup from '@mui/material/RadioGroup'
 import FormControlLabel from '@mui/material/FormControlLabel'
@@ -213,8 +213,8 @@ export default RadioSizes
 )
 
 export const RadioShowErrorJSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { useState } from 'react'
 
 // ** MUI Imports
@@ -275,8 +275,8 @@ export default RadioShowError
 )
 
 export const RadioStandaloneJSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { useState } from 'react'
 
 // ** MUI Imports
@@ -316,8 +316,8 @@ export default RadioStandalone
 )
 
 export const RadioColorTSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** MUI Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** MUI Imports
 import Radio from '@mui/material/Radio'
 import RadioGroup from '@mui/material/RadioGroup'
 import FormControlLabel from '@mui/material/FormControlLabel'
@@ -341,8 +341,8 @@ export default RadioColor
 )
 
 export const RadioControlledUncontrolledTSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { ChangeEvent, useState } from 'react'
 
 // ** MUI Imports
@@ -386,8 +386,8 @@ export default RadioControlledUncontrolled
 )
 
 export const RadioCustomizedTSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** MUI Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** MUI Imports
 import FormLabel from '@mui/material/FormLabel'
 import RadioGroup from '@mui/material/RadioGroup'
 import FormControl from '@mui/material/FormControl'
@@ -438,8 +438,8 @@ export default RadioCustomized
 )
 
 export const RadioGroupTSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { ChangeEvent, useState } from 'react'
 
 // ** MUI Imports
@@ -477,8 +477,8 @@ export default RadioGroupComponent
 )
 
 export const RadioShowErrorTSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { ChangeEvent, FormEvent, useState } from 'react'
 
 // ** MUI Imports
@@ -540,8 +540,8 @@ export default RadioShowError
 )
 
 export const RadioLabelPlacementTSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** MUI Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** MUI Imports
 import Radio from '@mui/material/Radio'
 import RadioGroup from '@mui/material/RadioGroup'
 import FormControl from '@mui/material/FormControl'
@@ -568,8 +568,8 @@ export default RadioLabelPlacement
 )
 
 export const RadioSizesTSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** MUI Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** MUI Imports
 import Radio from '@mui/material/Radio'
 import RadioGroup from '@mui/material/RadioGroup'
 import FormControlLabel from '@mui/material/FormControlLabel'
@@ -593,8 +593,8 @@ export default RadioSizes
 )
 
 export const RadioStandaloneTSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { ChangeEvent, useState } from 'react'
 
 // ** MUI Imports

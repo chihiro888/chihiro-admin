@@ -27,14 +27,16 @@ const data: CustomCheckboxImgData[] = [
 ]
 
 const CustomCheckboxWithImages = () => {
-  const initialSelected: string[] = data.filter(item => item.isSelected).map(item => item.value)
+  const initialSelected: string[] = data
+    .filter((item) => item.isSelected)
+    .map((item) => item.value)
 
   // ** State
   const [selected, setSelected] = useState<string[]>(initialSelected)
 
   const handleChange = (value: string) => {
     if (selected.includes(value)) {
-      const updatedArr = selected.filter(item => item !== value)
+      const updatedArr = selected.filter((item) => item !== value)
       setSelected(updatedArr)
     } else {
       setSelected([...selected, value])
@@ -48,7 +50,7 @@ const CustomCheckboxWithImages = () => {
           key={index}
           data={data[index]}
           selected={selected}
-          name='custom-checkbox-img'
+          name="custom-checkbox-img"
           handleChange={handleChange}
           gridProps={{ sm: 4, xs: 12 }}
         />

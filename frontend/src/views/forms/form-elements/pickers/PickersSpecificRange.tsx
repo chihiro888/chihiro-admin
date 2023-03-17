@@ -16,35 +16,39 @@ import { DateType } from 'src/types/forms/reactDatepickerTypes'
 // ** Custom Component Imports
 import CustomInput from './PickersCustomInput'
 
-const PickersSpecificRange = ({ popperPlacement }: { popperPlacement: ReactDatePickerProps['popperPlacement'] }) => {
+const PickersSpecificRange = ({
+  popperPlacement
+}: {
+  popperPlacement: ReactDatePickerProps['popperPlacement']
+}) => {
   // ** States
   const [date, setDate] = useState<DateType>(new Date())
   const [time, setTime] = useState<DateType>(new Date())
 
   return (
-    <Box sx={{ display: 'flex', flexWrap: 'wrap' }} className='demo-space-x'>
+    <Box sx={{ display: 'flex', flexWrap: 'wrap' }} className="demo-space-x">
       <div>
         <DatePicker
           selected={date}
-          id='specific-date'
+          id="specific-date"
           minDate={new Date()}
           maxDate={addDays(new Date(), 5)}
           popperPlacement={popperPlacement}
           onChange={(date: Date) => setDate(date)}
-          customInput={<CustomInput label='Specific Date Range' />}
+          customInput={<CustomInput label="Specific Date Range" />}
         />
       </div>
       <div>
         <DatePicker
           showTimeSelect
           selected={time}
-          id='specific-time'
-          dateFormat='MM/dd/yyyy h:mm aa'
+          id="specific-time"
+          dateFormat="MM/dd/yyyy h:mm aa"
           popperPlacement={popperPlacement}
           onChange={(date: Date) => setTime(date)}
           minTime={setHours(setMinutes(new Date(), 0), 17)}
           maxTime={setHours(setMinutes(new Date(), 30), 20)}
-          customInput={<CustomInput label='Specific Time' />}
+          customInput={<CustomInput label="Specific Time" />}
         />
       </div>
     </Box>

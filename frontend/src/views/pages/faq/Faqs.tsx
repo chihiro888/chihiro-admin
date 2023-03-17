@@ -69,32 +69,50 @@ const Faqs = ({ data, activeTab, handleChange }: Props) => {
   const theme = useTheme()
 
   const renderTabContent = () => {
-    return Object.values(data.faqData).map(tab => {
+    return Object.values(data.faqData).map((tab) => {
       return (
         <TabPanel
           key={tab.id}
           value={tab.id}
-          sx={{ p: 0, border: 0, width: '100%', boxShadow: 0, backgroundColor: 'transparent' }}
+          sx={{
+            p: 0,
+            border: 0,
+            width: '100%',
+            boxShadow: 0,
+            backgroundColor: 'transparent'
+          }}
         >
           <Box key={tab.id}>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
-              <CustomAvatar skin='light' variant='rounded' sx={{ height: 42, width: 42 }}>
+              <CustomAvatar
+                skin="light"
+                variant="rounded"
+                sx={{ height: 42, width: 42 }}
+              >
                 <Icon icon={tab.icon} fontSize={28} />
               </CustomAvatar>
               <Box sx={{ ml: 4 }}>
-                <Typography variant='h5'>{tab.title}</Typography>
-                <Typography sx={{ color: 'text.secondary' }}>{tab.subtitle}</Typography>
+                <Typography variant="h5">{tab.title}</Typography>
+                <Typography sx={{ color: 'text.secondary' }}>
+                  {tab.subtitle}
+                </Typography>
               </Box>
             </Box>
             <Box sx={{ mt: 4 }}>
               {tab.qandA.map((item, index) => {
                 return (
                   <Accordion key={item.id}>
-                    <AccordionSummary expandIcon={<Icon icon='bx:chevron-down' />}>
-                      <Typography sx={{ fontWeight: '500' }}>{`Q${index + 1}: ${item.question}`}</Typography>
+                    <AccordionSummary
+                      expandIcon={<Icon icon="bx:chevron-down" />}
+                    >
+                      <Typography sx={{ fontWeight: '500' }}>{`Q${index + 1}: ${
+                        item.question
+                      }`}</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
-                      <Typography sx={{ color: 'text.secondary' }}>{item.answer}</Typography>
+                      <Typography sx={{ color: 'text.secondary' }}>
+                        {item.answer}
+                      </Typography>
                     </AccordionDetails>
                   </Accordion>
                 )
@@ -108,9 +126,16 @@ const Faqs = ({ data, activeTab, handleChange }: Props) => {
 
   const renderTabs = () => {
     if (data !== null) {
-      return Object.values(data.faqData).map(tab => {
+      return Object.values(data.faqData).map((tab) => {
         if (tab.qandA.length) {
-          return <Tab key={tab.id} value={tab.id} label={tab.title} icon={<Icon icon={tab.icon} fontSize={20} />} />
+          return (
+            <Tab
+              key={tab.id}
+              value={tab.id}
+              label={tab.title}
+              icon={<Icon icon={tab.icon} fontSize={20} />}
+            />
+          )
         } else {
           return null
         }
@@ -123,12 +148,25 @@ const Faqs = ({ data, activeTab, handleChange }: Props) => {
   return (
     <MuiBox>
       <TabContext value={activeTab}>
-        <Box sx={{ mr: [0, 0, 6], mb: [6, 6, 0], display: 'flex', flexDirection: 'column' }}>
+        <Box
+          sx={{
+            mr: [0, 0, 6],
+            mb: [6, 6, 0],
+            display: 'flex',
+            flexDirection: 'column'
+          }}
+        >
           <TabList onChange={handleChange}>{renderTabs()}</TabList>
-          <Box sx={{ mt: 12, '& img': { maxWidth: '100%' }, display: { xs: 'none', md: 'block' } }}>
+          <Box
+            sx={{
+              mt: 12,
+              '& img': { maxWidth: '100%' },
+              display: { xs: 'none', md: 'block' }
+            }}
+          >
             <img
-              width='200'
-              alt='illustration'
+              width="200"
+              alt="illustration"
               src={`/images/pages/sitting-girl-with-laptop-${theme.palette.mode}.png`}
             />
           </Box>

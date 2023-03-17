@@ -64,10 +64,16 @@ const userStatusObj: UserRowColorType = {
 // ** renders client column
 const renderClient = (row: UsersType) => {
   if (row.avatar.length) {
-    return <CustomAvatar src={row.avatar} sx={{ mr: 4, width: 30, height: 30 }} />
+    return (
+      <CustomAvatar src={row.avatar} sx={{ mr: 4, width: 30, height: 30 }} />
+    )
   } else {
     return (
-      <CustomAvatar skin='light' color={row.avatarColor} sx={{ mr: 4, width: 30, height: 30, fontSize: '0.875rem' }}>
+      <CustomAvatar
+        skin="light"
+        color={row.avatarColor}
+        sx={{ mr: 4, width: 30, height: 30, fontSize: '0.875rem' }}
+      >
         {getInitials(row.fullName ? row.fullName : 'John Doe')}
       </CustomAvatar>
     )
@@ -86,11 +92,30 @@ const columns = [
       return (
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           {renderClient(row)}
-          <Box sx={{ display: 'flex', alignItems: 'flex-start', flexDirection: 'column' }}>
-            <Typography noWrap component='a' sx={{ fontWeight: 600, color: 'text.secondary', textDecoration: 'none' }}>
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'flex-start',
+              flexDirection: 'column'
+            }}
+          >
+            <Typography
+              noWrap
+              component="a"
+              sx={{
+                fontWeight: 600,
+                color: 'text.secondary',
+                textDecoration: 'none'
+              }}
+            >
               {fullName}
             </Typography>
-            <Typography noWrap component='a' variant='body2' sx={{ color: 'text.disabled', textDecoration: 'none' }}>
+            <Typography
+              noWrap
+              component="a"
+              variant="body2"
+              sx={{ color: 'text.disabled', textDecoration: 'none' }}
+            >
               {`@${username}`}
             </Typography>
           </Box>
@@ -120,13 +145,16 @@ const columns = [
       return (
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <CustomAvatar
-            skin='light'
+            skin="light"
             color={userRoleObj[row.role].color || 'primary'}
             sx={{ mr: 2, width: 30, height: 30, '& svg': { fontSize: '1rem' } }}
           >
             <Icon fontSize={20} icon={userRoleObj[row.role].icon} />
           </CustomAvatar>
-          <Typography noWrap sx={{ color: 'text.secondary', textTransform: 'capitalize' }}>
+          <Typography
+            noWrap
+            sx={{ color: 'text.secondary', textTransform: 'capitalize' }}
+          >
             {row.role}
           </Typography>
         </Box>
@@ -140,7 +168,14 @@ const columns = [
     field: 'currentPlan',
     renderCell: ({ row }: CellType) => {
       return (
-        <Typography noWrap sx={{ fontWeight: 600, color: 'text.secondary', textTransform: 'capitalize' }}>
+        <Typography
+          noWrap
+          sx={{
+            fontWeight: 600,
+            color: 'text.secondary',
+            textTransform: 'capitalize'
+          }}
+        >
           {row.currentPlan}
         </Typography>
       )
@@ -152,7 +187,15 @@ const columns = [
     field: 'status',
     headerName: 'Status',
     renderCell: ({ row }: CellType) => {
-      return <CustomChip rounded skin='light' size='small' label={row.status} color={userStatusObj[row.status]} />
+      return (
+        <CustomChip
+          rounded
+          skin="light"
+          size="small"
+          label={row.status}
+          color={userStatusObj[row.status]}
+        />
+      )
     }
   },
   {
@@ -163,7 +206,7 @@ const columns = [
     headerName: 'Actions',
     renderCell: () => (
       <IconButton>
-        <Icon icon='bx:show-alt' />
+        <Icon icon="bx:show-alt" />
       </IconButton>
     )
   }
@@ -202,7 +245,12 @@ const UserList = () => {
     <Grid container spacing={6}>
       <Grid item xs={12}>
         <Card>
-          <TableHeader plan={plan} value={value} handleFilter={handleFilter} handlePlanChange={handlePlanChange} />
+          <TableHeader
+            plan={plan}
+            value={value}
+            handleFilter={handleFilter}
+            handlePlanChange={handlePlanChange}
+          />
           <DataGrid
             autoHeight
             rows={store.data}
@@ -210,7 +258,7 @@ const UserList = () => {
             pageSize={pageSize}
             disableSelectionOnClick
             rowsPerPageOptions={[10, 25, 50]}
-            onPageSizeChange={newPageSize => setPageSize(newPageSize)}
+            onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
           />
         </Card>
       </Grid>

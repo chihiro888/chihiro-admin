@@ -37,23 +37,52 @@ const UserSuspendDialog = (props: Props) => {
 
   return (
     <>
-      <Dialog fullWidth open={open} onClose={handleClose} sx={{ '& .MuiPaper-root': { width: '100%', maxWidth: 512 } }}>
+      <Dialog
+        fullWidth
+        open={open}
+        onClose={handleClose}
+        sx={{ '& .MuiPaper-root': { width: '100%', maxWidth: 512 } }}
+      >
         <DialogContent sx={{ pb: 4 }}>
-          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
-            <Box sx={{ mb: 9, maxWidth: '85%', textAlign: 'center', '& svg': { mb: 12.25, color: 'warning.main' } }}>
-              <Icon icon='bx:error-circle' fontSize='5.5rem' />
-              <Typography variant='h4' sx={{ color: 'text.secondary' }}>
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              flexDirection: 'column'
+            }}
+          >
+            <Box
+              sx={{
+                mb: 9,
+                maxWidth: '85%',
+                textAlign: 'center',
+                '& svg': { mb: 12.25, color: 'warning.main' }
+              }}
+            >
+              <Icon icon="bx:error-circle" fontSize="5.5rem" />
+              <Typography variant="h4" sx={{ color: 'text.secondary' }}>
                 Are you sure?
               </Typography>
             </Box>
-            <Typography sx={{ fontSize: '1.125rem' }}>You won't be able to revert user!</Typography>
+            <Typography sx={{ fontSize: '1.125rem' }}>
+              You won't be able to revert user!
+            </Typography>
           </Box>
         </DialogContent>
         <DialogActions sx={{ justifyContent: 'center' }}>
-          <Button variant='contained' sx={{ mr: 1.5 }} onClick={() => handleConfirmation('yes')}>
+          <Button
+            variant="contained"
+            sx={{ mr: 1.5 }}
+            onClick={() => handleConfirmation('yes')}
+          >
             Yes, Suspend user!
           </Button>
-          <Button variant='outlined' color='secondary' onClick={() => handleConfirmation('cancel')}>
+          <Button
+            variant="outlined"
+            color="secondary"
+            onClick={() => handleConfirmation('cancel')}
+          >
             Cancel
           </Button>
         </DialogActions>
@@ -76,17 +105,26 @@ const UserSuspendDialog = (props: Props) => {
               }
             }}
           >
-            <Icon fontSize='5.5rem' icon={userInput === 'yes' ? 'bx:check-circle' : 'bx:x-circle'} />
-            <Typography variant='h4' sx={{ mb: 8, color: 'text.secondary' }}>
+            <Icon
+              fontSize="5.5rem"
+              icon={userInput === 'yes' ? 'bx:check-circle' : 'bx:x-circle'}
+            />
+            <Typography variant="h4" sx={{ mb: 8, color: 'text.secondary' }}>
               {userInput === 'yes' ? 'Suspended!' : 'Cancelled'}
             </Typography>
             <Typography sx={{ fontSize: '1.125rem' }}>
-              {userInput === 'yes' ? 'User has been suspended.' : 'Cancelled Suspension :)'}
+              {userInput === 'yes'
+                ? 'User has been suspended.'
+                : 'Cancelled Suspension :)'}
             </Typography>
           </Box>
         </DialogContent>
         <DialogActions sx={{ justifyContent: 'center' }}>
-          <Button variant='contained' color='success' onClick={handleSecondDialogClose}>
+          <Button
+            variant="contained"
+            color="success"
+            onClick={handleSecondDialogClose}
+          >
             OK
           </Button>
         </DialogActions>

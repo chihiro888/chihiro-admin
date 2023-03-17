@@ -3,9 +3,9 @@ import Pagination from '@mui/material/Pagination'
 
 const PaginationDisabled = () => {
   return (
-    <div className='demo-space-y'>
+    <div className="demo-space-y">
       <Pagination count={10} disabled />
-      <Pagination count={10} variant='outlined' disabled />
+      <Pagination count={10} variant="outlined" disabled />
     </div>
   )
 }

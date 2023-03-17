@@ -60,43 +60,77 @@ const CurrentPlanCard = ({ data }: { data: PricingPlanType[] }) => {
   return (
     <>
       <Card>
-        <CardHeader title='Current Plan' />
+        <CardHeader title="Current Plan" />
         <CardContent>
           <Grid container spacing={6}>
             <Grid item xs={12} md={6}>
               <Box sx={{ mb: 6 }}>
-                <Typography sx={{ mb: 2, fontWeight: 500 }}>Your Current Plan is Basic</Typography>
-                <Typography sx={{ color: 'text.secondary' }}>A simple start for everyone</Typography>
+                <Typography sx={{ mb: 2, fontWeight: 500 }}>
+                  Your Current Plan is Basic
+                </Typography>
+                <Typography sx={{ color: 'text.secondary' }}>
+                  A simple start for everyone
+                </Typography>
               </Box>
               <Box sx={{ mb: 6 }}>
-                <Typography sx={{ mb: 2, fontWeight: 500 }}>Active until Dec 09, 2021</Typography>
+                <Typography sx={{ mb: 2, fontWeight: 500 }}>
+                  Active until Dec 09, 2021
+                </Typography>
                 <Typography sx={{ color: 'text.secondary' }}>
                   We will send you a notification upon Subscription expiration
                 </Typography>
               </Box>
               <div>
                 <Box sx={{ mb: 2, display: 'flex', alignItems: 'center' }}>
-                  <Typography sx={{ mr: 2, fontWeight: 500 }}>$199 Per Month</Typography>
-                  <CustomChip rounded label='Popular' size='small' color='primary' skin='light' />
+                  <Typography sx={{ mr: 2, fontWeight: 500 }}>
+                    $199 Per Month
+                  </Typography>
+                  <CustomChip
+                    rounded
+                    label="Popular"
+                    size="small"
+                    color="primary"
+                    skin="light"
+                  />
                 </Box>
-                <Typography sx={{ color: 'text.secondary' }}>Standard plan for small to medium businesses</Typography>
+                <Typography sx={{ color: 'text.secondary' }}>
+                  Standard plan for small to medium businesses
+                </Typography>
               </div>
             </Grid>
             <Grid item xs={12} md={6}>
-              <Alert severity='warning' icon={false} sx={{ mb: 6 }}>
-                <AlertTitle sx={{ fontWeight: 700 }}>We need your attention!</AlertTitle>
+              <Alert severity="warning" icon={false} sx={{ mb: 6 }}>
+                <AlertTitle sx={{ fontWeight: 700 }}>
+                  We need your attention!
+                </AlertTitle>
                 Your plan requires update
               </Alert>
 
               <div>
-                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                  <Typography sx={{ fontWeight: 600, color: 'text.secondary' }}>Days</Typography>
-                  <Typography sx={{ fontWeight: 600, color: 'text.secondary' }}>24 of 30 Days</Typography>
+                <Box
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between'
+                  }}
+                >
+                  <Typography sx={{ fontWeight: 600, color: 'text.secondary' }}>
+                    Days
+                  </Typography>
+                  <Typography sx={{ fontWeight: 600, color: 'text.secondary' }}>
+                    24 of 30 Days
+                  </Typography>
                 </Box>
                 <LinearProgress
                   value={75}
-                  variant='determinate'
-                  sx={{ mt: 2, mb: 1, height: 12, borderRadius: 6, '& .MuiLinearProgress-bar': { borderRadius: 6 } }}
+                  variant="determinate"
+                  sx={{
+                    mt: 2,
+                    mb: 1,
+                    height: 12,
+                    borderRadius: 6,
+                    '& .MuiLinearProgress-bar': { borderRadius: 6 }
+                  }}
                 />
                 <Typography sx={{ color: 'text.secondary' }}>
                   6 days remaining until your plan requires update
@@ -105,10 +139,17 @@ const CurrentPlanCard = ({ data }: { data: PricingPlanType[] }) => {
             </Grid>
             <Grid item xs={12}>
               <Box sx={{ mt: 3, gap: 3, display: 'flex', flexWrap: 'wrap' }}>
-                <Button variant='contained' onClick={() => setOpenPricingDialog(true)}>
+                <Button
+                  variant="contained"
+                  onClick={() => setOpenPricingDialog(true)}
+                >
                   Upgrade Plan
                 </Button>
-                <Button variant='outlined' color='secondary' onClick={() => setOpen(true)}>
+                <Button
+                  variant="outlined"
+                  color="secondary"
+                  onClick={() => setOpen(true)}
+                >
                   Cancel Subscription
                 </Button>
               </Box>
@@ -117,25 +158,48 @@ const CurrentPlanCard = ({ data }: { data: PricingPlanType[] }) => {
         </CardContent>
       </Card>
 
-      <Dialog fullWidth maxWidth='xs' open={open} onClose={handleClose}>
+      <Dialog fullWidth maxWidth="xs" open={open} onClose={handleClose}>
         <DialogContent>
-          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <Box sx={{ maxWidth: '85%', textAlign: 'center', '& svg': { mb: 4, color: 'warning.main' } }}>
-              <Icon icon='bx:error-circle' fontSize='5.5rem' />
-              <Typography>Are you sure you would like to cancel your subscription?</Typography>
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}
+          >
+            <Box
+              sx={{
+                maxWidth: '85%',
+                textAlign: 'center',
+                '& svg': { mb: 4, color: 'warning.main' }
+              }}
+            >
+              <Icon icon="bx:error-circle" fontSize="5.5rem" />
+              <Typography>
+                Are you sure you would like to cancel your subscription?
+              </Typography>
             </Box>
           </Box>
         </DialogContent>
         <DialogActions sx={{ justifyContent: 'center' }}>
-          <Button variant='contained' onClick={() => handleConfirmation('yes')}>
+          <Button variant="contained" onClick={() => handleConfirmation('yes')}>
             Yes
           </Button>
-          <Button variant='outlined' color='secondary' onClick={() => handleConfirmation('cancel')}>
+          <Button
+            variant="outlined"
+            color="secondary"
+            onClick={() => handleConfirmation('cancel')}
+          >
             Cancel
           </Button>
         </DialogActions>
       </Dialog>
-      <Dialog fullWidth maxWidth='xs' open={secondDialogOpen} onClose={handleSecondDialogClose}>
+      <Dialog
+        fullWidth
+        maxWidth="xs"
+        open={secondDialogOpen}
+        onClose={handleSecondDialogClose}
+      >
         <DialogContent>
           <Box
             sx={{
@@ -148,57 +212,93 @@ const CurrentPlanCard = ({ data }: { data: PricingPlanType[] }) => {
               }
             }}
           >
-            <Icon fontSize='5.5rem' icon={userInput === 'yes' ? 'bx:check-circle' : 'bx:x-circle'} />
-            <Typography variant='h4' sx={{ mb: 8 }}>
+            <Icon
+              fontSize="5.5rem"
+              icon={userInput === 'yes' ? 'bx:check-circle' : 'bx:x-circle'}
+            />
+            <Typography variant="h4" sx={{ mb: 8 }}>
               {userInput === 'yes' ? 'Unsubscribed!' : 'Cancelled'}
             </Typography>
             <Typography>
-              {userInput === 'yes' ? 'Your subscription cancelled successfully.' : 'Unsubscription Cancelled!'}
+              {userInput === 'yes'
+                ? 'Your subscription cancelled successfully.'
+                : 'Unsubscription Cancelled!'}
             </Typography>
           </Box>
         </DialogContent>
         <DialogActions sx={{ justifyContent: 'center' }}>
-          <Button variant='contained' color='success' onClick={handleSecondDialogClose}>
+          <Button
+            variant="contained"
+            color="success"
+            onClick={handleSecondDialogClose}
+          >
             OK
           </Button>
         </DialogActions>
       </Dialog>
       <Dialog
         fullWidth
-        scroll='body'
-        maxWidth='lg'
+        scroll="body"
+        maxWidth="lg"
         open={openPricingDialog}
         onClose={() => setOpenPricingDialog(false)}
         onBackdropClick={() => setOpenPricingDialog(false)}
       >
-        <DialogContent sx={{ px: { xs: 8, sm: 15 }, py: { xs: 8, sm: 12.5 }, position: 'relative' }}>
+        <DialogContent
+          sx={{
+            px: { xs: 8, sm: 15 },
+            py: { xs: 8, sm: 12.5 },
+            position: 'relative'
+          }}
+        >
           <IconButton
-            size='small'
+            size="small"
             onClick={() => setOpenPricingDialog(false)}
             sx={{ position: 'absolute', right: '1rem', top: '1rem' }}
           >
-            <Icon icon='bx:x' />
+            <Icon icon="bx:x" />
           </IconButton>
           <Box sx={{ mb: 4, textAlign: 'center' }}>
-            <Typography variant='h5' sx={{ mb: 3 }}>
+            <Typography variant="h5" sx={{ mb: 3 }}>
               Find the right plan for your site
             </Typography>
-            <Typography variant='body2'>
-              Get started with us - it's perfect for individuals and teams. Choose a subscription plan that meets your
-              needs.
+            <Typography variant="body2">
+              Get started with us - it's perfect for individuals and teams.
+              Choose a subscription plan that meets your needs.
             </Typography>
           </Box>
-          <Box sx={{ mb: 4, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <Box
+            sx={{
+              mb: 4,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}
+          >
             <InputLabel
-              htmlFor='modal-pricing-switch'
-              sx={{ fontWeight: 600, cursor: 'pointer', fontSize: '0.875rem', color: 'text.secondary' }}
+              htmlFor="modal-pricing-switch"
+              sx={{
+                fontWeight: 600,
+                cursor: 'pointer',
+                fontSize: '0.875rem',
+                color: 'text.secondary'
+              }}
             >
               Monthly
             </InputLabel>
-            <Switch onChange={handleChange} id='modal-pricing-switch' checked={plan === 'annually'} />
+            <Switch
+              onChange={handleChange}
+              id="modal-pricing-switch"
+              checked={plan === 'annually'}
+            />
             <InputLabel
-              htmlFor='modal-pricing-switch'
-              sx={{ fontWeight: 600, cursor: 'pointer', fontSize: '0.875rem', color: 'text.secondary' }}
+              htmlFor="modal-pricing-switch"
+              sx={{
+                fontWeight: 600,
+                cursor: 'pointer',
+                fontSize: '0.875rem',
+                color: 'text.secondary'
+              }}
             >
               Annually
             </InputLabel>

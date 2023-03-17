@@ -19,12 +19,18 @@ interface PickerProps {
   start: Date | number
 }
 
-const PickersRange = ({ popperPlacement }: { popperPlacement: ReactDatePickerProps['popperPlacement'] }) => {
+const PickersRange = ({
+  popperPlacement
+}: {
+  popperPlacement: ReactDatePickerProps['popperPlacement']
+}) => {
   // ** States
   const [startDate, setStartDate] = useState<DateType>(new Date())
   const [endDate, setEndDate] = useState<DateType>(addDays(new Date(), 15))
   const [startDateRange, setStartDateRange] = useState<DateType>(new Date())
-  const [endDateRange, setEndDateRange] = useState<DateType>(addDays(new Date(), 45))
+  const [endDateRange, setEndDateRange] = useState<DateType>(
+    addDays(new Date(), 45)
+  )
 
   const handleOnChange = (dates: any) => {
     const [start, end] = dates
@@ -40,27 +46,39 @@ const PickersRange = ({ popperPlacement }: { popperPlacement: ReactDatePickerPro
 
   const CustomInput = forwardRef((props: PickerProps, ref) => {
     const startDate = format(props.start, 'MM/dd/yyyy')
-    const endDate = props.end !== null ? ` - ${format(props.end, 'MM/dd/yyyy')}` : null
+    const endDate =
+      props.end !== null ? ` - ${format(props.end, 'MM/dd/yyyy')}` : null
 
     const value = `${startDate}${endDate !== null ? endDate : ''}`
 
-    return <TextField inputRef={ref} label={props.label || ''} {...props} value={value} />
+    return (
+      <TextField
+        inputRef={ref}
+        label={props.label || ''}
+        {...props}
+        value={value}
+      />
+    )
   })
 
   return (
-    <Box sx={{ display: 'flex', flexWrap: 'wrap' }} className='demo-space-x'>
+    <Box sx={{ display: 'flex', flexWrap: 'wrap' }} className="demo-space-x">
       <div>
         <DatePicker
           selectsRange
           endDate={endDate}
           selected={startDate}
           startDate={startDate}
-          id='date-range-picker'
+          id="date-range-picker"
           onChange={handleOnChange}
           shouldCloseOnSelect={false}
           popperPlacement={popperPlacement}
           customInput={
-            <CustomInput label='Date Range' start={startDate as Date | number} end={endDate as Date | number} />
+            <CustomInput
+              label="Date Range"
+              start={startDate as Date | number}
+              end={endDate as Date | number}
+            />
           }
         />
       </div>
@@ -72,12 +90,12 @@ const PickersRange = ({ popperPlacement }: { popperPlacement: ReactDatePickerPro
           selected={startDateRange}
           startDate={startDateRange}
           shouldCloseOnSelect={false}
-          id='date-range-picker-months'
+          id="date-range-picker-months"
           onChange={handleOnChangeRange}
           popperPlacement={popperPlacement}
           customInput={
             <CustomInput
-              label='Multiple Months'
+              label="Multiple Months"
               end={endDateRange as Date | number}
               start={startDateRange as Date | number}
             />

@@ -22,7 +22,10 @@ import CustomChip from 'src/@core/components/mui/chip'
 import OptionsMenu from 'src/@core/components/option-menu'
 
 // ** Types
-import { ProfileTeamsTechType, ProfileConnectionsType } from 'src/@fake-db/types'
+import {
+  ProfileTeamsTechType,
+  ProfileConnectionsType
+} from 'src/@fake-db/types'
 
 interface Props {
   teams: ProfileTeamsTechType[]
@@ -35,11 +38,16 @@ const ConnectionsTeams = ({ connections, teams }: Props) => {
       <Grid item md={6} xs={12}>
         <Card>
           <CardHeader
-            title='Connections'
+            title="Connections"
             action={
               <OptionsMenu
                 iconButtonProps={{ size: 'small' }}
-                options={['Share connections', 'Suggest edits', { divider: true }, 'Report bug']}
+                options={[
+                  'Share connections',
+                  'Suggest edits',
+                  { divider: true },
+                  'Report bug'
+                ]}
               />
             }
           />
@@ -57,29 +65,40 @@ const ConnectionsTeams = ({ connections, teams }: Props) => {
                     }}
                   >
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                      <Avatar src={connection.avatar} sx={{ mr: 4, width: 38, height: 38 }} />
+                      <Avatar
+                        src={connection.avatar}
+                        sx={{ mr: 4, width: 38, height: 38 }}
+                      />
                       <div>
-                        <Typography sx={{ lineHeight: 1.1, fontWeight: 500 }}>{connection.name}</Typography>
-                        <Typography variant='caption' sx={{ color: 'text.disabled' }}>
+                        <Typography sx={{ lineHeight: 1.1, fontWeight: 500 }}>
+                          {connection.name}
+                        </Typography>
+                        <Typography
+                          variant="caption"
+                          sx={{ color: 'text.disabled' }}
+                        >
                           {connection.connections} Connections
                         </Typography>
                       </div>
                     </Box>
                     <Button
-                      size='small'
-                      color='primary'
+                      size="small"
+                      color="primary"
                       variant={connection.isFriend ? 'contained' : 'outlined'}
-                      sx={{ minWidth: 38, p: theme => `${theme.spacing(1.5)} !important` }}
+                      sx={{
+                        minWidth: 38,
+                        p: (theme) => `${theme.spacing(1.5)} !important`
+                      }}
                     >
-                      <Icon icon='bx:user' />
+                      <Icon icon="bx:user" />
                     </Button>
                   </Box>
                 )
               })}
             <Box sx={{ width: '100%', textAlign: 'center' }}>
-              <Link href='/' passHref>
+              <Link href="/" passHref>
                 <Typography
-                  component='a'
+                  component="a"
                   onClick={(e: SyntheticEvent) => e.preventDefault()}
                   sx={{ color: 'primary.main', textDecoration: 'none' }}
                 >
@@ -93,11 +112,16 @@ const ConnectionsTeams = ({ connections, teams }: Props) => {
       <Grid item md={6} xs={12}>
         <Card>
           <CardHeader
-            title='Teams'
+            title="Teams"
             action={
               <OptionsMenu
                 iconButtonProps={{ size: 'small' }}
-                options={['Share teams', 'Suggest edits', { divider: true }, 'Report bug']}
+                options={[
+                  'Share teams',
+                  'Suggest edits',
+                  { divider: true },
+                  'Report bug'
+                ]}
               />
             }
           />
@@ -114,30 +138,48 @@ const ConnectionsTeams = ({ connections, teams }: Props) => {
                     }}
                   >
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                      <Avatar src={team.avatar} sx={{ mr: 4, width: 38, height: 38 }} />
+                      <Avatar
+                        src={team.avatar}
+                        sx={{ mr: 4, width: 38, height: 38 }}
+                      />
                       <div>
-                        <Typography sx={{ lineHeight: 1.1, fontWeight: 500 }}>{team.title}</Typography>
-                        <Typography variant='caption' sx={{ color: 'text.disabled' }}>
+                        <Typography sx={{ lineHeight: 1.1, fontWeight: 500 }}>
+                          {team.title}
+                        </Typography>
+                        <Typography
+                          variant="caption"
+                          sx={{ color: 'text.disabled' }}
+                        >
                           {team.members} Members
                         </Typography>
                       </div>
                     </Box>
-                    <Link href='/' passHref>
+                    <Link href="/" passHref>
                       <Box
-                        component='a'
+                        component="a"
                         onClick={(e: SyntheticEvent) => e.preventDefault()}
-                        sx={{ height: 0, textDecoration: 'none', '& .MuiChip-root': { cursor: 'pointer' } }}
+                        sx={{
+                          height: 0,
+                          textDecoration: 'none',
+                          '& .MuiChip-root': { cursor: 'pointer' }
+                        }}
                       >
-                        <CustomChip rounded size='small' skin='light' color={team.ChipColor} label={team.chipText} />
+                        <CustomChip
+                          rounded
+                          size="small"
+                          skin="light"
+                          color={team.ChipColor}
+                          label={team.chipText}
+                        />
                       </Box>
                     </Link>
                   </Box>
                 )
               })}
             <Box sx={{ width: '100%', textAlign: 'center' }}>
-              <Link href='/' passHref>
+              <Link href="/" passHref>
                 <Typography
-                  component='a'
+                  component="a"
                   onClick={(e: SyntheticEvent) => e.preventDefault()}
                   sx={{ color: 'primary.main', textDecoration: 'none' }}
                 >

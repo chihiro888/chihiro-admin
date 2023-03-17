@@ -46,14 +46,19 @@ const MenuCustomized = () => {
 
   return (
     <div>
-      <Button variant='contained' aria-haspopup='true' onClick={handleClick} aria-controls='customized-menu'>
+      <Button
+        variant="contained"
+        aria-haspopup="true"
+        onClick={handleClick}
+        aria-controls="customized-menu"
+      >
         Open Menu
       </Button>
       <Menu
         keepMounted
         elevation={0}
         anchorEl={anchorEl}
-        id='customized-menu'
+        id="customized-menu"
         onClose={handleClose}
         open={Boolean(anchorEl)}
         anchorOrigin={{
@@ -67,21 +72,21 @@ const MenuCustomized = () => {
       >
         <MenuItem>
           <ListItemIcon>
-            <Icon icon='bx:send' fontSize={20} />
+            <Icon icon="bx:send" fontSize={20} />
           </ListItemIcon>
-          <ListItemText primary='Sent mail' />
+          <ListItemText primary="Sent mail" />
         </MenuItem>
         <MenuItem>
           <ListItemIcon>
-            <Icon icon='bx:envelope-open' fontSize={20} />
+            <Icon icon="bx:envelope-open" fontSize={20} />
           </ListItemIcon>
-          <ListItemText primary='Drafts' />
+          <ListItemText primary="Drafts" />
         </MenuItem>
         <MenuItem>
           <ListItemIcon>
-            <Icon icon='bx:archive-in' fontSize={20} />
+            <Icon icon="bx:archive-in" fontSize={20} />
           </ListItemIcon>
-          <ListItemText primary='Inbox' />
+          <ListItemText primary="Inbox" />
         </MenuItem>
       </Menu>
     </div>

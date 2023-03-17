@@ -6,16 +6,16 @@ import FormControl from '@mui/material/FormControl'
 
 const SelectVariants = () => {
   return (
-    <div className='demo-space-x'>
+    <div className="demo-space-x">
       <FormControl>
-        <InputLabel id='demo-simple-select-outlined-label'>Age</InputLabel>
+        <InputLabel id="demo-simple-select-outlined-label">Age</InputLabel>
         <Select
-          label='Age'
-          defaultValue=''
-          id='demo-simple-select-outlined'
-          labelId='demo-simple-select-outlined-label'
+          label="Age"
+          defaultValue=""
+          id="demo-simple-select-outlined"
+          labelId="demo-simple-select-outlined-label"
         >
-          <MenuItem value=''>
+          <MenuItem value="">
             <em>None</em>
           </MenuItem>
           <MenuItem value={10}>Ten</MenuItem>
@@ -23,10 +23,15 @@ const SelectVariants = () => {
           <MenuItem value={30}>Thirty</MenuItem>
         </Select>
       </FormControl>
-      <FormControl variant='filled'>
-        <InputLabel id='demo-simple-select-filled-label'>Age</InputLabel>
-        <Select label='Age' labelId='demo-simple-select-filled-label' id='demo-simple-select-filled' defaultValue=''>
-          <MenuItem value=''>
+      <FormControl variant="filled">
+        <InputLabel id="demo-simple-select-filled-label">Age</InputLabel>
+        <Select
+          label="Age"
+          labelId="demo-simple-select-filled-label"
+          id="demo-simple-select-filled"
+          defaultValue=""
+        >
+          <MenuItem value="">
             <em>None</em>
           </MenuItem>
           <MenuItem value={10}>Ten</MenuItem>
@@ -34,9 +39,14 @@ const SelectVariants = () => {
           <MenuItem value={30}>Thirty</MenuItem>
         </Select>
       </FormControl>
-      <FormControl variant='standard'>
-        <InputLabel id='demo-simple-select-label'>Age</InputLabel>
-        <Select label='Age' labelId='demo-simple-select-label' id='demo-simple-select' defaultValue=''>
+      <FormControl variant="standard">
+        <InputLabel id="demo-simple-select-label">Age</InputLabel>
+        <Select
+          label="Age"
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          defaultValue=""
+        >
           <MenuItem value={10}>Ten</MenuItem>
           <MenuItem value={20}>Twenty</MenuItem>
           <MenuItem value={30}>Thirty</MenuItem>

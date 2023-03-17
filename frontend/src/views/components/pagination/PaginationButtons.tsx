@@ -3,7 +3,7 @@ import Pagination from '@mui/material/Pagination'
 
 const PaginationButtons = () => {
   return (
-    <div className='demo-space-y'>
+    <div className="demo-space-y">
       <Pagination count={10} showFirstButton showLastButton />
       <Pagination count={10} hidePrevButton hideNextButton />
     </div>

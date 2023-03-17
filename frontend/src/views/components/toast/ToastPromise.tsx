@@ -30,12 +30,20 @@ const ToastPromise = () => {
 
   return (
     <Box
-      sx={{ display: 'flex', textAlign: 'center', alignItems: 'center', flexDirection: 'column', '& svg': { mb: 2 } }}
+      sx={{
+        display: 'flex',
+        textAlign: 'center',
+        alignItems: 'center',
+        flexDirection: 'column',
+        '& svg': { mb: 2 }
+      }}
     >
-      <Icon icon='bx:loader' fontSize='2rem' />
+      <Icon icon="bx:loader" fontSize="2rem" />
       <Typography sx={{ mb: 4, fontWeight: 600 }}>Promise</Typography>
-      <Typography sx={{ mb: 3 }}>Update automatically when promise resolves / fails.</Typography>
-      <Button sx={{ mb: 8 }} variant='contained' onClick={handleClick}>
+      <Typography sx={{ mb: 3 }}>
+        Update automatically when promise resolves / fails.
+      </Typography>
+      <Button sx={{ mb: 8 }} variant="contained" onClick={handleClick}>
         Promise
       </Button>
     </Box>

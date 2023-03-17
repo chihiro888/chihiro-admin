@@ -109,7 +109,8 @@ const RolesCards = () => {
   const [open, setOpen] = useState<boolean>(false)
   const [dialogTitle, setDialogTitle] = useState<'Add' | 'Edit'>('Add')
   const [selectedCheckbox, setSelectedCheckbox] = useState<string[]>([])
-  const [isIndeterminateCheckbox, setIsIndeterminateCheckbox] = useState<boolean>(false)
+  const [isIndeterminateCheckbox, setIsIndeterminateCheckbox] =
+    useState<boolean>(false)
 
   // ** Hook
   const theme = useTheme()
@@ -137,7 +138,7 @@ const RolesCards = () => {
     if (isIndeterminateCheckbox) {
       setSelectedCheckbox([])
     } else {
-      rolesArr.forEach(row => {
+      rolesArr.forEach((row) => {
         const id = row.toLowerCase().split(' ').join('-')
         togglePermission(`${id}-read`)
         togglePermission(`${id}-write`)
@@ -147,7 +148,10 @@ const RolesCards = () => {
   }
 
   useEffect(() => {
-    if (selectedCheckbox.length > 0 && selectedCheckbox.length < rolesArr.length * 3) {
+    if (
+      selectedCheckbox.length > 0 &&
+      selectedCheckbox.length < rolesArr.length * 3
+    ) {
       setIsIndeterminateCheckbox(true)
     } else {
       setIsIndeterminateCheckbox(false)
@@ -159,28 +163,52 @@ const RolesCards = () => {
       <Grid item xs={12} sm={6} lg={4} key={index}>
         <Card>
           <CardContent sx={{ p: `${theme.spacing(5)} !important` }}>
-            <Box sx={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>
-              <Typography sx={{ color: 'text.secondary' }}>{`Total ${item.totalUsers} users`}</Typography>
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'flex-start',
+                justifyContent: 'space-between'
+              }}
+            >
+              <Typography
+                sx={{ color: 'text.secondary' }}
+              >{`Total ${item.totalUsers} users`}</Typography>
               <AvatarGroup
                 max={4}
-                className='pull-up'
-                sx={{ '& .MuiAvatar-root': { width: 28, height: 28, fontSize: '0.875rem' } }}
+                className="pull-up"
+                sx={{
+                  '& .MuiAvatar-root': {
+                    width: 28,
+                    height: 28,
+                    fontSize: '0.875rem'
+                  }
+                }}
               >
                 {item.avatars.map((item, index: number) => (
                   <Tooltip key={index} title={item.name}>
-                    <Avatar key={index} alt={item.name} src={`/images/avatars/${item.src}`} />
+                    <Avatar
+                      key={index}
+                      alt={item.name}
+                      src={`/images/avatars/${item.src}`}
+                    />
                   </Tooltip>
                 ))}
               </AvatarGroup>
             </Box>
-            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'flex-end'
+              }}
+            >
               <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                <Typography variant='h5' sx={{ mb: 1 }}>
+                <Typography variant="h5" sx={{ mb: 1 }}>
                   {item.title}
                 </Typography>
                 <Typography
-                  href='/'
-                  variant='body2'
+                  href="/"
+                  variant="body2"
                   component={Link}
                   sx={{ color: 'primary.main' }}
                   onClick={(e: SyntheticEvent) => {
@@ -193,7 +221,7 @@ const RolesCards = () => {
                 </Typography>
               </Box>
               <IconButton sx={{ color: 'text.primary' }}>
-                <Icon fontSize={20} icon='bx:copy' />
+                <Icon fontSize={20} icon="bx:copy" />
               </IconButton>
             </Box>
           </CardContent>
@@ -202,7 +230,7 @@ const RolesCards = () => {
     ))
 
   return (
-    <Grid container spacing={6} className='match-height'>
+    <Grid container spacing={6} className="match-height">
       {renderCards()}
       <Grid item xs={12} sm={6} lg={4}>
         <Card
@@ -214,11 +242,18 @@ const RolesCards = () => {
         >
           <Grid container sx={{ height: '100%' }}>
             <Grid item xs={4}>
-              <Box sx={{ height: '100%', display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }}>
+              <Box
+                sx={{
+                  height: '100%',
+                  display: 'flex',
+                  alignItems: 'flex-end',
+                  justifyContent: 'center'
+                }}
+              >
                 <img
                   width={88}
                   height={105}
-                  alt='add-role'
+                  alt="add-role"
                   src={`/images/pages/add-role-illustration-${theme.palette.mode}.png`}
                 />
               </Box>
@@ -227,7 +262,7 @@ const RolesCards = () => {
               <CardContent>
                 <Box sx={{ textAlign: 'right' }}>
                   <Button
-                    variant='contained'
+                    variant="contained"
                     sx={{ mb: 3, whiteSpace: 'nowrap' }}
                     onClick={() => {
                       handleClickOpen()
@@ -243,22 +278,28 @@ const RolesCards = () => {
           </Grid>
         </Card>
       </Grid>
-      <Dialog fullWidth maxWidth='md' scroll='body' onClose={handleClose} open={open}>
+      <Dialog
+        fullWidth
+        maxWidth="md"
+        scroll="body"
+        onClose={handleClose}
+        open={open}
+      >
         <DialogTitle sx={{ textAlign: 'center' }}>
-          <Typography variant='h5' component='span'>
+          <Typography variant="h5" component="span">
             {`${dialogTitle} Role`}
           </Typography>
-          <Typography variant='body2'>Set Role Permissions</Typography>
+          <Typography variant="body2">Set Role Permissions</Typography>
         </DialogTitle>
         <DialogContent sx={{ p: { xs: 6, sm: 12 } }}>
           <Box sx={{ my: 4 }}>
             <FormControl fullWidth>
-              <TextField label='Role Name' placeholder='Enter Role Name' />
+              <TextField label="Role Name" placeholder="Enter Role Name" />
             </FormControl>
           </Box>
-          <Typography variant='h6'>Role Permissions</Typography>
+          <Typography variant="h6">Role Permissions</Typography>
           <TableContainer>
-            <Table size='small'>
+            <Table size="small">
               <TableHead>
                 <TableRow>
                   <TableCell sx={{ pl: '0 !important' }}>
@@ -273,22 +314,35 @@ const RolesCards = () => {
                       }}
                     >
                       Administrator Access
-                      <Tooltip placement='top' title='Allows a full access to the system'>
-                        <Box sx={{ ml: 1, display: 'flex', color: 'text.secondary' }}>
-                          <Icon icon='bx:info-circle' fontSize='1rem' />
+                      <Tooltip
+                        placement="top"
+                        title="Allows a full access to the system"
+                      >
+                        <Box
+                          sx={{
+                            ml: 1,
+                            display: 'flex',
+                            color: 'text.secondary'
+                          }}
+                        >
+                          <Icon icon="bx:info-circle" fontSize="1rem" />
                         </Box>
                       </Tooltip>
                     </Box>
                   </TableCell>
                   <TableCell colSpan={3}>
                     <FormControlLabel
-                      label='Select All'
-                      sx={{ '& .MuiTypography-root': { textTransform: 'capitalize' } }}
+                      label="Select All"
+                      sx={{
+                        '& .MuiTypography-root': { textTransform: 'capitalize' }
+                      }}
                       control={
                         <Checkbox
                           onChange={handleSelectAllCheckbox}
                           indeterminate={isIndeterminateCheckbox}
-                          checked={selectedCheckbox.length === rolesArr.length * 3}
+                          checked={
+                            selectedCheckbox.length === rolesArr.length * 3
+                          }
                         />
                       }
                     />
@@ -300,7 +354,14 @@ const RolesCards = () => {
                   const id = i.toLowerCase().split(' ').join('-')
 
                   return (
-                    <TableRow key={index} sx={{ '& .MuiTableCell-root:first-of-type': { pl: '0 !important' } }}>
+                    <TableRow
+                      key={index}
+                      sx={{
+                        '& .MuiTableCell-root:first-of-type': {
+                          pl: '0 !important'
+                        }
+                      }}
+                    >
                       <TableCell
                         sx={{
                           fontWeight: 600,
@@ -312,7 +373,7 @@ const RolesCards = () => {
                       </TableCell>
                       <TableCell>
                         <FormControlLabel
-                          label='Read'
+                          label="Read"
                           sx={{ my: -1 }}
                           control={
                             <Checkbox
@@ -325,7 +386,7 @@ const RolesCards = () => {
                       </TableCell>
                       <TableCell>
                         <FormControlLabel
-                          label='Write'
+                          label="Write"
                           sx={{ my: -1 }}
                           control={
                             <Checkbox
@@ -338,13 +399,15 @@ const RolesCards = () => {
                       </TableCell>
                       <TableCell>
                         <FormControlLabel
-                          label='Create'
+                          label="Create"
                           sx={{ my: -1 }}
                           control={
                             <Checkbox
                               id={`${id}-create`}
                               onChange={() => togglePermission(`${id}-create`)}
-                              checked={selectedCheckbox.includes(`${id}-create`)}
+                              checked={selectedCheckbox.includes(
+                                `${id}-create`
+                              )}
                             />
                           }
                         />
@@ -356,12 +419,24 @@ const RolesCards = () => {
             </Table>
           </TableContainer>
         </DialogContent>
-        <DialogActions sx={{ pt: 0, display: 'flex', justifyContent: 'center' }}>
-          <Box className='demo-space-x'>
-            <Button size='large' type='submit' variant='contained' onClick={handleClose}>
+        <DialogActions
+          sx={{ pt: 0, display: 'flex', justifyContent: 'center' }}
+        >
+          <Box className="demo-space-x">
+            <Button
+              size="large"
+              type="submit"
+              variant="contained"
+              onClick={handleClose}
+            >
               Submit
             </Button>
-            <Button size='large' color='secondary' variant='outlined' onClick={handleClose}>
+            <Button
+              size="large"
+              color="secondary"
+              variant="outlined"
+              onClick={handleClose}
+            >
               Cancel
             </Button>
           </Box>

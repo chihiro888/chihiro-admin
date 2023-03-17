@@ -111,8 +111,8 @@ const ChartjsBubbleChart = (props: BubbleProps) => {
   return (
     <Card>
       <CardHeader
-        title='Bubble Chart'
-        subheader='Spending on various categories'
+        title="Bubble Chart"
+        subheader="Spending on various categories"
         sx={{
           flexDirection: ['column', 'row'],
           alignItems: ['flex-start', 'center'],
@@ -121,17 +121,23 @@ const ChartjsBubbleChart = (props: BubbleProps) => {
         }}
         action={
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <Typography variant='h6' sx={{ mr: 5 }}>
+            <Typography variant="h6" sx={{ mr: 5 }}>
               $221,267
             </Typography>
             <CustomChip
               rounded
-              skin='light'
-              color='success'
+              skin="light"
+              color="success"
               sx={{ fontWeight: 500, fontSize: '0.875rem' }}
               label={
-                <Box sx={{ display: 'flex', alignItems: 'center', '& svg': { mr: 1 } }}>
-                  <Icon icon='bx:up-arrow-alt' fontSize='1rem' />
+                <Box
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    '& svg': { mr: 1 }
+                  }}
+                >
+                  <Icon icon="bx:up-arrow-alt" fontSize="1rem" />
                   <span>22%</span>
                 </Box>
               }

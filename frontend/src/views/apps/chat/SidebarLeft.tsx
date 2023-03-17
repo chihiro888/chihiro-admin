@@ -28,7 +28,11 @@ import PerfectScrollbar from 'react-perfect-scrollbar'
 import Icon from 'src/@core/components/icon'
 
 // ** Types
-import { ContactType, ChatSidebarLeftType, ChatsArrType } from 'src/types/apps/chatTypes'
+import {
+  ContactType,
+  ChatSidebarLeftType,
+  ChatsArrType
+} from 'src/types/apps/chatTypes'
 
 // ** Custom Components Import
 import CustomAvatar from 'src/@core/components/mui/avatar'
@@ -36,11 +40,21 @@ import CustomAvatar from 'src/@core/components/mui/avatar'
 // ** Chat App Components Imports
 import UserProfileLeft from 'src/views/apps/chat/UserProfileLeft'
 
-const ScrollWrapper = ({ children, hidden }: { children: ReactNode; hidden: boolean }) => {
+const ScrollWrapper = ({
+  children,
+  hidden
+}: {
+  children: ReactNode
+  hidden: boolean
+}) => {
   if (hidden) {
     return <Box sx={{ height: '100%', overflow: 'auto' }}>{children}</Box>
   } else {
-    return <PerfectScrollbar options={{ wheelPropagation: false }}>{children}</PerfectScrollbar>
+    return (
+      <PerfectScrollbar options={{ wheelPropagation: false }}>
+        {children}
+      </PerfectScrollbar>
+    )
   }
 }
 
@@ -69,7 +83,10 @@ const SidebarLeft = (props: ChatSidebarLeftType) => {
   const [query, setQuery] = useState<string>('')
   const [filteredChat, setFilteredChat] = useState<ChatsArrType[]>([])
   const [filteredContacts, setFilteredContacts] = useState<ContactType[]>([])
-  const [active, setActive] = useState<null | { type: string; id: string | number }>(null)
+  const [active, setActive] = useState<null | {
+    type: string
+    id: string | number
+  }>(null)
 
   // ** Hooks
   const router = useRouter()
@@ -107,7 +124,7 @@ const SidebarLeft = (props: ChatSidebarLeftType) => {
 
   const hasActiveId = (id: number | string) => {
     if (store.chats !== null) {
-      const arr = store.chats.filter(i => i.id === id)
+      const arr = store.chats.filter((i) => i.id === id)
 
       return !!arr.length
     }
@@ -118,18 +135,26 @@ const SidebarLeft = (props: ChatSidebarLeftType) => {
       if (query.length && !filteredChat.length) {
         return (
           <ListItem>
-            <Typography sx={{ color: 'text.secondary' }}>No Chats Found</Typography>
+            <Typography sx={{ color: 'text.secondary' }}>
+              No Chats Found
+            </Typography>
           </ListItem>
         )
       } else {
-        const arrToMap = query.length && filteredChat.length ? filteredChat : store.chats
+        const arrToMap =
+          query.length && filteredChat.length ? filteredChat : store.chats
 
         return arrToMap.map((chat: ChatsArrType, index: number) => {
           const { lastMessage } = chat.chat
-          const activeCondition = active !== null && active.id === chat.id && active.type === 'chat'
+          const activeCondition =
+            active !== null && active.id === chat.id && active.type === 'chat'
 
           return (
-            <ListItem key={index} disablePadding sx={{ '&:not(:last-child)': { mb: 1.5 } }}>
+            <ListItem
+              key={index}
+              disablePadding
+              sx={{ '&:not(:last-child)': { mb: 1.5 } }}
+            >
               <ListItemButton
                 disableRipple
                 onClick={() => handleChatClick('chat', chat.id)}
@@ -139,19 +164,22 @@ const SidebarLeft = (props: ChatSidebarLeftType) => {
                   width: '100%',
                   borderRadius: 1,
                   alignItems: 'flex-start',
-                  backgroundColor: (theme: Theme) => (activeCondition ? `${theme.palette.primary.main} !important` : '')
+                  backgroundColor: (theme: Theme) =>
+                    activeCondition
+                      ? `${theme.palette.primary.main} !important`
+                      : ''
                 }}
               >
                 <ListItemAvatar sx={{ m: 0 }}>
                   <Badge
-                    overlap='circular'
+                    overlap="circular"
                     anchorOrigin={{
                       vertical: 'bottom',
                       horizontal: 'right'
                     }}
                     badgeContent={
                       <Box
-                        component='span'
+                        component="span"
                         sx={{
                           width: 8,
                           height: 8,
@@ -160,7 +188,9 @@ const SidebarLeft = (props: ChatSidebarLeftType) => {
                           backgroundColor: `${statusObj[chat.status]}.main`,
                           boxShadow: (theme: Theme) =>
                             `0 0 0 2px ${
-                              !activeCondition ? theme.palette.background.paper : theme.palette.common.white
+                              !activeCondition
+                                ? theme.palette.background.paper
+                                : theme.palette.common.white
                             }`
                         }}
                       />
@@ -173,7 +203,10 @@ const SidebarLeft = (props: ChatSidebarLeftType) => {
                         sx={{
                           width: 38,
                           height: 38,
-                          border: (theme: Theme) => (activeCondition ? `2px solid ${theme.palette.common.white}` : '')
+                          border: (theme: Theme) =>
+                            activeCondition
+                              ? `2px solid ${theme.palette.common.white}`
+                              : ''
                         }}
                       />
                     ) : (
@@ -184,7 +217,10 @@ const SidebarLeft = (props: ChatSidebarLeftType) => {
                           width: 38,
                           height: 38,
                           fontSize: '1rem',
-                          border: (theme: Theme) => (activeCondition ? `2px solid ${theme.palette.common.white}` : '')
+                          border: (theme: Theme) =>
+                            activeCondition
+                              ? `2px solid ${theme.palette.common.white}`
+                              : ''
                         }}
                       >
                         {getInitials(chat.fullName)}
@@ -197,18 +233,27 @@ const SidebarLeft = (props: ChatSidebarLeftType) => {
                     my: 0,
                     ml: 4,
                     mr: 1.5,
-                    '& .MuiTypography-root': { ...(activeCondition ? { color: 'common.white' } : {}) }
+                    '& .MuiTypography-root': {
+                      ...(activeCondition ? { color: 'common.white' } : {})
+                    }
                   }}
                   primary={
-                    <Typography noWrap sx={{ fontWeight: 500, fontSize: '0.875rem' }}>
+                    <Typography
+                      noWrap
+                      sx={{ fontWeight: 500, fontSize: '0.875rem' }}
+                    >
                       {chat.fullName}
                     </Typography>
                   }
                   secondary={
                     <Typography
                       noWrap
-                      variant='body2'
-                      sx={{ color: !activeCondition ? (theme: Theme) => theme.palette.text.disabled : {} }}
+                      variant="body2"
+                      sx={{
+                        color: !activeCondition
+                          ? (theme: Theme) => theme.palette.text.disabled
+                          : {}
+                      }}
                     >
                       {lastMessage ? lastMessage.message : null}
                     </Typography>
@@ -223,14 +268,24 @@ const SidebarLeft = (props: ChatSidebarLeftType) => {
                   }}
                 >
                   <Typography
-                    variant='body2'
-                    sx={{ whiteSpace: 'nowrap', color: activeCondition ? 'common.white' : 'text.disabled' }}
+                    variant="body2"
+                    sx={{
+                      whiteSpace: 'nowrap',
+                      color: activeCondition ? 'common.white' : 'text.disabled'
+                    }}
                   >
-                    <>{lastMessage ? formatDateToMonthShort(lastMessage.time as string, true) : new Date()}</>
+                    <>
+                      {lastMessage
+                        ? formatDateToMonthShort(
+                            lastMessage.time as string,
+                            true
+                          )
+                        : new Date()}
+                    </>
                   </Typography>
                   {chat.chat.unseenMsgs && chat.chat.unseenMsgs > 0 ? (
                     <Chip
-                      color='error'
+                      color="error"
                       label={chat.chat.unseenMsgs}
                       sx={{
                         mt: 0.5,
@@ -255,29 +310,48 @@ const SidebarLeft = (props: ChatSidebarLeftType) => {
       if (query.length && !filteredContacts.length) {
         return (
           <ListItem>
-            <Typography sx={{ color: 'text.secondary' }}>No Contacts Found</Typography>
+            <Typography sx={{ color: 'text.secondary' }}>
+              No Contacts Found
+            </Typography>
           </ListItem>
         )
       } else {
-        const arrToMap = query.length && filteredContacts.length ? filteredContacts : store.contacts
+        const arrToMap =
+          query.length && filteredContacts.length
+            ? filteredContacts
+            : store.contacts
 
         return arrToMap !== null
           ? arrToMap.map((contact: ContactType, index: number) => {
               const activeCondition =
-                active !== null && active.id === contact.id && active.type === 'contact' && !hasActiveId(contact.id)
+                active !== null &&
+                active.id === contact.id &&
+                active.type === 'contact' &&
+                !hasActiveId(contact.id)
 
               return (
-                <ListItem key={index} disablePadding sx={{ '&:not(:last-child)': { mb: 1.5 } }}>
+                <ListItem
+                  key={index}
+                  disablePadding
+                  sx={{ '&:not(:last-child)': { mb: 1.5 } }}
+                >
                   <ListItemButton
                     disableRipple
-                    onClick={() => handleChatClick(hasActiveId(contact.id) ? 'chat' : 'contact', contact.id)}
+                    onClick={() =>
+                      handleChatClick(
+                        hasActiveId(contact.id) ? 'chat' : 'contact',
+                        contact.id
+                      )
+                    }
                     sx={{
                       px: 3,
                       py: 2.5,
                       width: '100%',
                       borderRadius: 1,
                       backgroundColor: (theme: Theme) =>
-                        activeCondition ? `${theme.palette.primary.main} !important` : ''
+                        activeCondition
+                          ? `${theme.palette.primary.main} !important`
+                          : ''
                     }}
                   >
                     <ListItemAvatar sx={{ m: 0 }}>
@@ -288,7 +362,10 @@ const SidebarLeft = (props: ChatSidebarLeftType) => {
                           sx={{
                             width: 38,
                             height: 38,
-                            border: (theme: Theme) => (activeCondition ? `2px solid ${theme.palette.common.white}` : '')
+                            border: (theme: Theme) =>
+                              activeCondition
+                                ? `2px solid ${theme.palette.common.white}`
+                                : ''
                           }}
                         />
                       ) : (
@@ -299,7 +376,10 @@ const SidebarLeft = (props: ChatSidebarLeftType) => {
                             width: 38,
                             height: 38,
                             fontSize: '1rem',
-                            border: (theme: Theme) => (activeCondition ? `2px solid ${theme.palette.common.white}` : '')
+                            border: (theme: Theme) =>
+                              activeCondition
+                                ? `2px solid ${theme.palette.common.white}`
+                                : ''
                           }}
                         >
                           {getInitials(contact.fullName)}
@@ -307,15 +387,29 @@ const SidebarLeft = (props: ChatSidebarLeftType) => {
                       )}
                     </ListItemAvatar>
                     <ListItemText
-                      sx={{ my: 0, ml: 4, '& .MuiTypography-root': { color: activeCondition ? 'common.white' : '' } }}
+                      sx={{
+                        my: 0,
+                        ml: 4,
+                        '& .MuiTypography-root': {
+                          color: activeCondition ? 'common.white' : ''
+                        }
+                      }}
                       primary={
-                        <Typography sx={{ fontWeight: 500, fontSize: '0.875rem' }}>{contact.fullName}</Typography>
+                        <Typography
+                          sx={{ fontWeight: 500, fontSize: '0.875rem' }}
+                        >
+                          {contact.fullName}
+                        </Typography>
                       }
                       secondary={
                         <Typography
                           noWrap
-                          variant='body2'
-                          sx={{ color: !activeCondition ? (theme: Theme) => theme.palette.text.disabled : {} }}
+                          variant="body2"
+                          sx={{
+                            color: !activeCondition
+                              ? (theme: Theme) => theme.palette.text.disabled
+                              : {}
+                          }}
                         >
                           {contact.about}
                         </Typography>
@@ -382,7 +476,7 @@ const SidebarLeft = (props: ChatSidebarLeftType) => {
         >
           {store && store.userProfile ? (
             <Badge
-              overlap='circular'
+              overlap="circular"
               anchorOrigin={{
                 vertical: 'bottom',
                 horizontal: 'right'
@@ -391,14 +485,15 @@ const SidebarLeft = (props: ChatSidebarLeftType) => {
               onClick={handleUserProfileLeftSidebarToggle}
               badgeContent={
                 <Box
-                  component='span'
+                  component="span"
                   sx={{
                     width: 8,
                     height: 8,
                     borderRadius: '50%',
                     color: `${statusObj[userStatus]}.main`,
                     backgroundColor: `${statusObj[userStatus]}.main`,
-                    boxShadow: (theme: Theme) => `0 0 0 2px ${theme.palette.background.paper}`
+                    boxShadow: (theme: Theme) =>
+                      `0 0 0 2px ${theme.palette.background.paper}`
                   }}
                 />
               }
@@ -406,28 +501,35 @@ const SidebarLeft = (props: ChatSidebarLeftType) => {
               <MuiAvatar
                 src={store.userProfile.avatar}
                 alt={store.userProfile.fullName}
-                sx={{ width: '2.375rem', height: '2.375rem', cursor: 'pointer' }}
+                sx={{
+                  width: '2.375rem',
+                  height: '2.375rem',
+                  cursor: 'pointer'
+                }}
               />
             </Badge>
           ) : null}
           <TextField
             fullWidth
-            size='small'
+            size="small"
             value={query}
             onChange={handleFilter}
-            placeholder='Search for contact...'
+            placeholder="Search for contact..."
             sx={{ '& .MuiInputBase-root': { borderRadius: 5 } }}
             InputProps={{
               startAdornment: (
-                <InputAdornment position='start' sx={{ color: 'text.secondary' }}>
-                  <Icon icon='bx:search' fontSize={20} />
+                <InputAdornment
+                  position="start"
+                  sx={{ color: 'text.secondary' }}
+                >
+                  <Icon icon="bx:search" fontSize={20} />
                 </InputAdornment>
               )
             }}
           />
           {!mdAbove ? (
             <IconButton sx={{ p: 1, ml: 1 }} onClick={handleLeftSidebarToggle}>
-              <Icon icon='bx:x' />
+              <Icon icon="bx:x" />
             </IconButton>
           ) : null}
         </Box>
@@ -435,11 +537,17 @@ const SidebarLeft = (props: ChatSidebarLeftType) => {
         <Box sx={{ height: `calc(100% - 4.125rem)` }}>
           <ScrollWrapper hidden={hidden}>
             <Box sx={{ p: (theme: Theme) => theme.spacing(7, 3, 3) }}>
-              <Typography variant='h6' sx={{ ml: 3, mb: 3, color: 'primary.main' }}>
+              <Typography
+                variant="h6"
+                sx={{ ml: 3, mb: 3, color: 'primary.main' }}
+              >
                 Chats
               </Typography>
               <List sx={{ mb: 4, p: 0 }}>{renderChats()}</List>
-              <Typography variant='h6' sx={{ ml: 3, mb: 3, color: 'primary.main' }}>
+              <Typography
+                variant="h6"
+                sx={{ ml: 3, mb: 3, color: 'primary.main' }}
+              >
                 Contacts
               </Typography>
               <List sx={{ p: 0 }}>{renderContacts()}</List>

@@ -18,7 +18,9 @@ import ReactApexcharts from 'src/@core/components/react-apexcharts'
 
 const series = [
   {
-    data: [280, 200, 220, 180, 270, 250, 70, 90, 200, 150, 160, 100, 150, 100, 50]
+    data: [
+      280, 200, 220, 180, 270, 250, 70, 90, 200, 150, 160, 100, 150, 100, 50
+    ]
   }
 ]
 
@@ -92,8 +94,8 @@ const ApexLineChart = () => {
   return (
     <Card>
       <CardHeader
-        title='Balance'
-        subheader='Commercial networks & enterprises'
+        title="Balance"
+        subheader="Commercial networks & enterprises"
         sx={{
           flexDirection: ['column', 'row'],
           alignItems: ['flex-start', 'center'],
@@ -102,17 +104,23 @@ const ApexLineChart = () => {
         }}
         action={
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <Typography variant='h6' sx={{ mr: 5 }}>
+            <Typography variant="h6" sx={{ mr: 5 }}>
               $221,267
             </Typography>
             <CustomChip
               rounded
-              skin='light'
-              color='success'
+              skin="light"
+              color="success"
               sx={{ fontWeight: 500, fontSize: '0.875rem' }}
               label={
-                <Box sx={{ display: 'flex', alignItems: 'center', '& svg': { mr: 1 } }}>
-                  <Icon icon='bx:up-arrow-alt' fontSize='1rem' />
+                <Box
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    '& svg': { mr: 1 }
+                  }}
+                >
+                  <Icon icon="bx:up-arrow-alt" fontSize="1rem" />
                   <span>22%</span>
                 </Box>
               }
@@ -121,7 +129,12 @@ const ApexLineChart = () => {
         }
       />
       <CardContent>
-        <ReactApexcharts type='line' height={400} options={options} series={series} />
+        <ReactApexcharts
+          type="line"
+          height={400}
+          options={options}
+          series={series}
+        />
       </CardContent>
     </Card>
   )

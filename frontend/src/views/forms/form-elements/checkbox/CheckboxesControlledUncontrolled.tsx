@@ -17,10 +17,19 @@ const CheckboxesControlledUncontrolled = () => {
   return (
     <FormGroup row>
       <FormControlLabel
-        label='Controlled'
-        control={<Checkbox checked={checked} onChange={handleChange} name='controlled' />}
+        label="Controlled"
+        control={
+          <Checkbox
+            checked={checked}
+            onChange={handleChange}
+            name="controlled"
+          />
+        }
       />
-      <FormControlLabel label='Uncontrolled' control={<Checkbox defaultChecked name='uncontrolled' />} />
+      <FormControlLabel
+        label="Uncontrolled"
+        control={<Checkbox defaultChecked name="uncontrolled" />}
+      />
     </FormGroup>
   )
 }

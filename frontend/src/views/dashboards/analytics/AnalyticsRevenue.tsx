@@ -78,11 +78,20 @@ const AnalyticsRevenue = () => {
 
   return (
     <Card>
-      <CardContent sx={{ p: theme => `${theme.spacing(3.5, 5, 0)} !important` }}>
-        <Typography sx={{ fontWeight: 600, color: 'text.secondary' }}>Revenue</Typography>
-        <Typography variant='h5'>425k</Typography>
+      <CardContent
+        sx={{ p: (theme) => `${theme.spacing(3.5, 5, 0)} !important` }}
+      >
+        <Typography sx={{ fontWeight: 600, color: 'text.secondary' }}>
+          Revenue
+        </Typography>
+        <Typography variant="h5">425k</Typography>
       </CardContent>
-      <ReactApexcharts type='bar' height={110} options={options} series={[{ data: [23, 81, 70, 31, 99, 46, 73] }]} />
+      <ReactApexcharts
+        type="bar"
+        height={110}
+        options={options}
+        series={[{ data: [23, 81, 70, 31, 99, 46, 73] }]}
+      />
     </Card>
   )
 }

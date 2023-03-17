@@ -15,7 +15,11 @@ const SliderMinimumDistance = () => {
   const [value1, setValue1] = useState<number[]>([20, 37])
   const [value2, setValue2] = useState<number[]>([20, 37])
 
-  const handleChange1 = (event: Event, newValue: number | number[], activeThumb: number) => {
+  const handleChange1 = (
+    event: Event,
+    newValue: number | number[],
+    activeThumb: number
+  ) => {
     if (!Array.isArray(newValue)) {
       return
     }
@@ -27,7 +31,11 @@ const SliderMinimumDistance = () => {
     }
   }
 
-  const handleChange2 = (event: Event, newValue: number | number[], activeThumb: number) => {
+  const handleChange2 = (
+    event: Event,
+    newValue: number | number[],
+    activeThumb: number
+  ) => {
     if (!Array.isArray(newValue)) {
       return
     }
@@ -51,7 +59,7 @@ const SliderMinimumDistance = () => {
         disableSwap
         value={value1}
         onChange={handleChange1}
-        valueLabelDisplay='auto'
+        valueLabelDisplay="auto"
         getAriaValueText={valuetext}
         getAriaLabel={() => 'Minimum distance'}
       />
@@ -59,7 +67,7 @@ const SliderMinimumDistance = () => {
         disableSwap
         value={value2}
         onChange={handleChange2}
-        valueLabelDisplay='auto'
+        valueLabelDisplay="auto"
         getAriaValueText={valuetext}
         getAriaLabel={() => 'Minimum distance shift'}
       />

@@ -16,17 +16,17 @@ const SelectControlledUncontrolled = () => {
   }
 
   return (
-    <div className='demo-space-x'>
+    <div className="demo-space-x">
       <FormControl>
-        <InputLabel id='controlled-select-label'>Controlled</InputLabel>
+        <InputLabel id="controlled-select-label">Controlled</InputLabel>
         <Select
           value={value}
-          label='Controlled'
-          id='controlled-select'
+          label="Controlled"
+          id="controlled-select"
           onChange={handleChange}
-          labelId='controlled-select-label'
+          labelId="controlled-select-label"
         >
-          <MenuItem value=''>
+          <MenuItem value="">
             <em>None</em>
           </MenuItem>
           <MenuItem value={10}>Ten</MenuItem>
@@ -35,9 +35,14 @@ const SelectControlledUncontrolled = () => {
         </Select>
       </FormControl>
       <FormControl>
-        <InputLabel id='uncontrolled-select-label'>Uncontrolled</InputLabel>
-        <Select defaultValue='' label='Uncontrolled' id='uncontrolled-select' labelId='uncontrolled-select-label'>
-          <MenuItem value=''>
+        <InputLabel id="uncontrolled-select-label">Uncontrolled</InputLabel>
+        <Select
+          defaultValue=""
+          label="Uncontrolled"
+          id="uncontrolled-select"
+          labelId="uncontrolled-select-label"
+        >
+          <MenuItem value="">
             <em>None</em>
           </MenuItem>
           <MenuItem value={10}>Ten</MenuItem>

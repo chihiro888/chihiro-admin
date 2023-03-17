@@ -42,7 +42,7 @@ const data: DataType[] = [
     title: 'Net Profit',
     avatarColor: 'primary',
     subtitle: '12.4k Sales',
-    avatarIcon: <Icon icon='bx:trending-up' />
+    avatarIcon: <Icon icon="bx:trending-up" />
   },
   {
     amount: '$3,571',
@@ -50,7 +50,7 @@ const data: DataType[] = [
     title: 'Total Income',
     avatarColor: 'success',
     subtitle: 'Sales, Affiliation',
-    avatarIcon: <Icon icon='bx:dollar' />
+    avatarIcon: <Icon icon="bx:dollar" />
   },
   {
     amount: '$430',
@@ -58,7 +58,7 @@ const data: DataType[] = [
     title: 'Total Expenses',
     avatarColor: 'secondary',
     subtitle: 'ADVT, Marketing',
-    avatarIcon: <Icon icon='bx:credit-card' />
+    avatarIcon: <Icon icon="bx:credit-card" />
   }
 ]
 
@@ -136,19 +136,31 @@ const CrmEarningReport = () => {
   return (
     <Card>
       <CardHeader
-        title='Earning Report'
+        title="Earning Report"
         sx={{ p: theme.spacing(4.5, 5, 5) }}
-        subheader='Weekly Earnings Overview'
+        subheader="Weekly Earnings Overview"
         subheaderTypographyProps={{ sx: { color: 'text.disabled' } }}
-        action={<OptionsMenu iconButtonProps={{ size: 'small' }} options={['Share', 'Refresh', 'Update']} />}
+        action={
+          <OptionsMenu
+            iconButtonProps={{ size: 'small' }}
+            options={['Share', 'Refresh', 'Update']}
+          />
+        }
       />
       <CardContent sx={{ pb: `${theme.spacing(3.75)} !important` }}>
         {data.map((item: DataType, index) => {
           return (
-            <Box key={index} sx={{ mb: index !== data.length - 1 ? 4 : 0, display: 'flex', alignItems: 'center' }}>
+            <Box
+              key={index}
+              sx={{
+                mb: index !== data.length - 1 ? 4 : 0,
+                display: 'flex',
+                alignItems: 'center'
+              }}
+            >
               <CustomAvatar
-                skin='light'
-                variant='rounded'
+                skin="light"
+                variant="rounded"
                 color={item.avatarColor}
                 sx={{ mr: 3, width: 38, height: 38 }}
               >
@@ -165,7 +177,7 @@ const CrmEarningReport = () => {
               >
                 <Box sx={{ mr: 2, display: 'flex', flexDirection: 'column' }}>
                   <Typography sx={{ fontWeight: 500 }}>{item.title}</Typography>
-                  <Typography variant='body2' sx={{ color: 'text.disabled' }}>
+                  <Typography variant="body2" sx={{ color: 'text.disabled' }}>
                     {item.subtitle}
                   </Typography>
                 </Box>
@@ -177,11 +189,11 @@ const CrmEarningReport = () => {
                     '& svg': { mr: 0.5, color: 'success.main' }
                   }}
                 >
-                  <Typography variant='body2' sx={{ mr: 0.5, fontWeight: 500 }}>
+                  <Typography variant="body2" sx={{ mr: 0.5, fontWeight: 500 }}>
                     {item.amount}
                   </Typography>
-                  <Icon icon='bx:chevron-up' />
-                  <Typography variant='body2' sx={{ color: 'text.disabled' }}>
+                  <Icon icon="bx:chevron-up" />
+                  <Typography variant="body2" sx={{ color: 'text.disabled' }}>
                     {`${item.percentage}%`}
                   </Typography>
                 </Box>
@@ -189,7 +201,12 @@ const CrmEarningReport = () => {
             </Box>
           )
         })}
-        <ReactApexcharts type='bar' height={157} options={options} series={[{ data: [32, 98, 61, 41, 88, 47, 71] }]} />
+        <ReactApexcharts
+          type="bar"
+          height={157}
+          options={options}
+          series={[{ data: [32, 98, 61, 41, 88, 47, 71] }]}
+        />
       </CardContent>
     </Card>
   )

@@ -50,13 +50,23 @@ const StyledTreeItem = (props: StyledTreeItemProps) => {
     <StyledTreeItemRoot
       {...other}
       label={
-        <Box sx={{ py: 1, display: 'flex', alignItems: 'center', '& svg': { mr: 1 } }}>
-          <Icon icon={labelIcon} color='inherit' />
-          <Typography variant='body2' sx={{ flexGrow: 1, fontWeight: 'inherit' }}>
+        <Box
+          sx={{
+            py: 1,
+            display: 'flex',
+            alignItems: 'center',
+            '& svg': { mr: 1 }
+          }}
+        >
+          <Icon icon={labelIcon} color="inherit" />
+          <Typography
+            variant="body2"
+            sx={{ flexGrow: 1, fontWeight: 'inherit' }}
+          >
             {labelText}
           </Typography>
           {labelInfo ? (
-            <Typography variant='caption' color='inherit'>
+            <Typography variant="caption" color="inherit">
               {labelInfo}
             </Typography>
           ) : null}
@@ -69,7 +79,9 @@ const StyledTreeItem = (props: StyledTreeItemProps) => {
 const TreeViewGmailClone = ({ direction }: Props) => {
   const ExpandIcon = (
     <Box sx={{ display: 'flex' }}>
-      <Icon icon={direction === 'rtl' ? 'bx:chevron-left' : 'bx:chevron-right'} />
+      <Icon
+        icon={direction === 'rtl' ? 'bx:chevron-left' : 'bx:chevron-right'}
+      />
     </Box>
   )
 
@@ -80,19 +92,39 @@ const TreeViewGmailClone = ({ direction }: Props) => {
       defaultExpandIcon={ExpandIcon}
       defaultCollapseIcon={
         <Box sx={{ display: 'flex' }}>
-          <Icon icon='bx:chevron-down' />
+          <Icon icon="bx:chevron-down" />
         </Box>
       }
     >
-      <StyledTreeItem nodeId='1' labelText='All Mail' labelIcon='bx:envelope' />
-      <StyledTreeItem nodeId='2' labelText='Trash' labelIcon='bx:trash-alt' />
-      <StyledTreeItem nodeId='3' labelText='Categories' labelIcon='bx:label'>
-        <StyledTreeItem nodeId='5' labelInfo='90' labelText='Social' labelIcon='bx:group' />
-        <StyledTreeItem nodeId='6' labelInfo='2,294' labelText='Updates' labelIcon='bx:info-circle' />
-        <StyledTreeItem nodeId='7' labelInfo='3,566' labelText='Forums' labelIcon='bx:chat' />
-        <StyledTreeItem nodeId='8' labelInfo='733' labelText='Promotions' labelIcon='bx:purchase-tag' />
+      <StyledTreeItem nodeId="1" labelText="All Mail" labelIcon="bx:envelope" />
+      <StyledTreeItem nodeId="2" labelText="Trash" labelIcon="bx:trash-alt" />
+      <StyledTreeItem nodeId="3" labelText="Categories" labelIcon="bx:label">
+        <StyledTreeItem
+          nodeId="5"
+          labelInfo="90"
+          labelText="Social"
+          labelIcon="bx:group"
+        />
+        <StyledTreeItem
+          nodeId="6"
+          labelInfo="2,294"
+          labelText="Updates"
+          labelIcon="bx:info-circle"
+        />
+        <StyledTreeItem
+          nodeId="7"
+          labelInfo="3,566"
+          labelText="Forums"
+          labelIcon="bx:chat"
+        />
+        <StyledTreeItem
+          nodeId="8"
+          labelInfo="733"
+          labelText="Promotions"
+          labelIcon="bx:purchase-tag"
+        />
       </StyledTreeItem>
-      <StyledTreeItem nodeId='4' labelText='History' labelIcon='bx:label' />
+      <StyledTreeItem nodeId="4" labelText="History" labelIcon="bx:label" />
     </TreeView>
   )
 }

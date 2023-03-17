@@ -57,7 +57,13 @@ const TabList = styled(MuiTabList)<TabListProps>(({ theme }) => ({
   }
 }))
 
-const UserProfile = ({ tab, data }: { tab: string; data: UserProfileActiveTab }) => {
+const UserProfile = ({
+  tab,
+  data
+}: {
+  tab: string
+  data: UserProfileActiveTab
+}) => {
   // ** State
   const [activeTab, setActiveTab] = useState<string>(tab)
   const [isLoading, setIsLoading] = useState<boolean>(true)
@@ -108,43 +114,67 @@ const UserProfile = ({ tab, data }: { tab: string; data: UserProfileActiveTab })
             <Grid container spacing={0}>
               <Grid item xs={12}>
                 <TabList
-                  variant='scrollable'
-                  scrollButtons='auto'
+                  variant="scrollable"
+                  scrollButtons="auto"
                   onChange={handleChange}
-                  aria-label='customized tabs example'
+                  aria-label="customized tabs example"
                 >
                   <Tab
-                    value='profile'
+                    value="profile"
                     label={
-                      <Box sx={{ display: 'flex', alignItems: 'center', ...(!hideText && { '& svg': { mr: 2 } }) }}>
-                        <Icon icon='bx:user' />
+                      <Box
+                        sx={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          ...(!hideText && { '& svg': { mr: 2 } })
+                        }}
+                      >
+                        <Icon icon="bx:user" />
                         {!hideText && 'Profile'}
                       </Box>
                     }
                   />
                   <Tab
-                    value='teams'
+                    value="teams"
                     label={
-                      <Box sx={{ display: 'flex', alignItems: 'center', ...(!hideText && { '& svg': { mr: 2 } }) }}>
-                        <Icon icon='bx:group' />
+                      <Box
+                        sx={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          ...(!hideText && { '& svg': { mr: 2 } })
+                        }}
+                      >
+                        <Icon icon="bx:group" />
                         {!hideText && 'Teams'}
                       </Box>
                     }
                   />
                   <Tab
-                    value='projects'
+                    value="projects"
                     label={
-                      <Box sx={{ display: 'flex', alignItems: 'center', ...(!hideText && { '& svg': { mr: 2 } }) }}>
-                        <Icon icon='bx:grid-alt' />
+                      <Box
+                        sx={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          ...(!hideText && { '& svg': { mr: 2 } })
+                        }}
+                      >
+                        <Icon icon="bx:grid-alt" />
                         {!hideText && 'Projects'}
                       </Box>
                     }
                   />
                   <Tab
-                    value='connections'
+                    value="connections"
                     label={
-                      <Box sx={{ display: 'flex', alignItems: 'center', ...(!hideText && { '& svg': { mr: 2 } }) }}>
-                        <Icon icon='bx:link-alt' />
+                      <Box
+                        sx={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          ...(!hideText && { '& svg': { mr: 2 } })
+                        }}
+                      >
+                        <Icon icon="bx:link-alt" />
                         {!hideText && 'Connections'}
                       </Box>
                     }
@@ -153,12 +183,27 @@ const UserProfile = ({ tab, data }: { tab: string; data: UserProfileActiveTab })
               </Grid>
               <Grid item xs={12}>
                 {isLoading ? (
-                  <Box sx={{ mt: 6, display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
+                  <Box
+                    sx={{
+                      mt: 6,
+                      display: 'flex',
+                      alignItems: 'center',
+                      flexDirection: 'column'
+                    }}
+                  >
                     <CircularProgress sx={{ mb: 4 }} />
                     <Typography>Loading...</Typography>
                   </Box>
                 ) : (
-                  <TabPanel sx={{ p: 0, border: 0, boxShadow: 0, backgroundColor: 'transparent' }} value={activeTab}>
+                  <TabPanel
+                    sx={{
+                      p: 0,
+                      border: 0,
+                      boxShadow: 0,
+                      backgroundColor: 'transparent'
+                    }}
+                    value={activeTab}
+                  >
                     {tabContentList[activeTab]}
                   </TabPanel>
                 )}

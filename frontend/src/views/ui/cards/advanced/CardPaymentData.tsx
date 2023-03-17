@@ -25,23 +25,34 @@ import OptionsMenu from 'src/@core/components/option-menu'
 import CustomRadioBasic from 'src/@core/components/custom-radio/basic'
 
 // ** Util Import
-import { formatCVC, formatExpirationDate, formatCreditCardNumber } from 'src/@core/utils/format'
+import {
+  formatCVC,
+  formatExpirationDate,
+  formatCreditCardNumber
+} from 'src/@core/utils/format'
 
 const data: CustomRadioBasicData[] = [
   {
     value: 'paypal',
     isSelected: true,
-    title: <Typography sx={{ mt: 0.25, color: 'text.secondary' }}>Paypal</Typography>
+    title: (
+      <Typography sx={{ mt: 0.25, color: 'text.secondary' }}>Paypal</Typography>
+    )
   },
   {
     value: 'credit-card',
-    title: <Typography sx={{ mt: 0.25, color: 'text.secondary' }}>Credit Card</Typography>
+    title: (
+      <Typography sx={{ mt: 0.25, color: 'text.secondary' }}>
+        Credit Card
+      </Typography>
+    )
   }
 ]
 
 const CardPaymentData = () => {
-  const initialSelected: string = data.filter(item => item.isSelected)[data.filter(item => item.isSelected).length - 1]
-    .value
+  const initialSelected: string = data.filter((item) => item.isSelected)[
+    data.filter((item) => item.isSelected).length - 1
+  ].value
 
   // ** States
   const [cvc, setCvc] = useState<string>('')
@@ -74,21 +85,41 @@ const CardPaymentData = () => {
   return (
     <Card>
       <CardHeader
-        title='Payment Data'
+        title="Payment Data"
         sx={{ pt: 5, pb: 3 }}
-        action={<OptionsMenu iconButtonProps={{ size: 'small' }} options={['Re-send OTP', 'Call Support', 'Delete']} />}
+        action={
+          <OptionsMenu
+            iconButtonProps={{ size: 'small' }}
+            options={['Re-send OTP', 'Call Support', 'Delete']}
+          />
+        }
       />
       <CardContent>
-        <Typography variant='body2' sx={{ mb: 0.5 }}>
+        <Typography variant="body2" sx={{ mb: 0.5 }}>
           Price
         </Typography>
-        <Box sx={{ mb: 4, rowGap: 2, columnGap: 3, display: 'flex', flexWrap: 'wrap', alignItems: 'center' }}>
-          <Typography variant='h6' sx={{ color: 'primary.main' }}>
+        <Box
+          sx={{
+            mb: 4,
+            rowGap: 2,
+            columnGap: 3,
+            display: 'flex',
+            flexWrap: 'wrap',
+            alignItems: 'center'
+          }}
+        >
+          <Typography variant="h6" sx={{ color: 'primary.main' }}>
             $455.60
           </Typography>
-          <CustomChip rounded size='small' skin='light' color='primary' label='35% Off' />
+          <CustomChip
+            rounded
+            size="small"
+            skin="light"
+            color="primary"
+            label="35% Off"
+          />
         </Box>
-        <Typography variant='body2' sx={{ mb: 2.5 }}>
+        <Typography variant="body2" sx={{ mb: 2.5 }}>
           Choose payment method:
         </Typography>
         <Grid container spacing={5}>
@@ -98,33 +129,40 @@ const CardPaymentData = () => {
               data={data[index]}
               selected={selected}
               handleChange={handleRadioChange}
-              name='custom-radios-payment-data'
+              name="custom-radios-payment-data"
               gridProps={{
                 sm: 6,
                 xs: 12,
-                sx: { '& > .MuiBox-root': { px: 3, pt: 1.75, pb: 1.75, '& .MuiRadio-root': { my: -2 } } }
+                sx: {
+                  '& > .MuiBox-root': {
+                    px: 3,
+                    pt: 1.75,
+                    pb: 1.75,
+                    '& .MuiRadio-root': { my: -2 }
+                  }
+                }
               }}
             />
           ))}
           <Grid item xs={12}>
             <TextField
               fullWidth
-              name='number'
+              name="number"
               value={cardNumber}
-              autoComplete='off'
-              label='Card Number'
+              autoComplete="off"
+              label="Card Number"
               onChange={handleInputChange}
-              placeholder='0000 0000 0000 0000'
+              placeholder="0000 0000 0000 0000"
             />
           </Grid>
           <Grid item xs={6}>
             <TextField
               fullWidth
-              name='expiry'
+              name="expiry"
               value={expiry}
-              autoComplete='off'
-              label='Expiry Date'
-              placeholder='MM/YY'
+              autoComplete="off"
+              label="Expiry Date"
+              placeholder="MM/YY"
               onChange={handleInputChange}
               inputProps={{ maxLength: '5' }}
             />
@@ -132,32 +170,34 @@ const CardPaymentData = () => {
           <Grid item xs={6}>
             <TextField
               fullWidth
-              name='cvc'
+              name="cvc"
               value={cvc}
-              label='CVC Code'
-              autoComplete='off'
+              label="CVC Code"
+              autoComplete="off"
               onChange={handleInputChange}
-              placeholder={Payment.fns.cardType(cardNumber) === 'amex' ? '1234' : '123'}
+              placeholder={
+                Payment.fns.cardType(cardNumber) === 'amex' ? '1234' : '123'
+              }
             />
           </Grid>
           <Grid item xs={12}>
             <TextField
               fullWidth
-              name='name'
+              name="name"
               value={name}
-              label='Name'
-              autoComplete='off'
-              placeholder='John Doe'
-              onChange={e => setName(e.target.value)}
+              label="Name"
+              autoComplete="off"
+              placeholder="John Doe"
+              onChange={(e) => setName(e.target.value)}
             />
           </Grid>
         </Grid>
         <FormControlLabel
-          label='Save Card?'
+          label="Save Card?"
           sx={{ mt: 1.5, mb: 3 }}
-          control={<Checkbox defaultChecked name='payment-data-save-card' />}
+          control={<Checkbox defaultChecked name="payment-data-save-card" />}
         />
-        <Button fullWidth variant='contained'>
+        <Button fullWidth variant="contained">
           Add Card
         </Button>
       </CardContent>

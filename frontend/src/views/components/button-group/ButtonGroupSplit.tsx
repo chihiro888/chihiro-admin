@@ -14,7 +14,11 @@ import ClickAwayListener from '@mui/material/ClickAwayListener'
 // ** Icon Imports
 import Icon from 'src/@core/components/icon'
 
-const options = ['Create a merge commit', 'Squash and merge', 'Rebase and merge']
+const options = [
+  'Create a merge commit',
+  'Squash and merge',
+  'Rebase and merge'
+]
 
 const ButtonGroupSplit = () => {
   // ** States
@@ -34,7 +38,7 @@ const ButtonGroupSplit = () => {
   }
 
   const handleToggle = () => {
-    setOpen(prevOpen => !prevOpen)
+    setOpen((prevOpen) => !prevOpen)
   }
 
   const handleClose = () => {
@@ -43,35 +47,48 @@ const ButtonGroupSplit = () => {
 
   return (
     <Fragment>
-      <ButtonGroup variant='contained' ref={anchorRef} aria-label='split button'>
+      <ButtonGroup
+        variant="contained"
+        ref={anchorRef}
+        aria-label="split button"
+      >
         <Button onClick={handleClick}>{options[selectedIndex]}</Button>
         <Button
-          size='small'
-          aria-haspopup='menu'
+          size="small"
+          aria-haspopup="menu"
           onClick={handleToggle}
           sx={{ px: '0 !important' }}
-          aria-label='select merge strategy'
+          aria-label="select merge strategy"
           aria-expanded={open ? 'true' : undefined}
           aria-controls={open ? 'split-button-menu' : undefined}
         >
-          <Icon fontSize={12} icon='bxs:down-arrow' />
+          <Icon fontSize={12} icon="bxs:down-arrow" />
         </Button>
       </ButtonGroup>
-      <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
+      <Popper
+        open={open}
+        anchorEl={anchorRef.current}
+        role={undefined}
+        transition
+        disablePortal
+      >
         {({ TransitionProps, placement }) => (
           <Grow
             {...TransitionProps}
-            style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
+            style={{
+              transformOrigin:
+                placement === 'bottom' ? 'center top' : 'center bottom'
+            }}
           >
             <Paper>
               <ClickAwayListener onClickAway={handleClose}>
-                <MenuList id='split-button-menu'>
+                <MenuList id="split-button-menu">
                   {options.map((option, index) => (
                     <MenuItem
                       key={option}
                       disabled={index === 2}
                       selected={index === selectedIndex}
-                      onClick={event => handleMenuItemClick(event, index)}
+                      onClick={(event) => handleMenuItemClick(event, index)}
                     >
                       {option}
                     </MenuItem>

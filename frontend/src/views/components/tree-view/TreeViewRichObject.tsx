@@ -40,11 +40,14 @@ const data: RenderTree = {
 const TreeViewRichObject = ({ direction }: Props) => {
   const renderTree = (nodes: RenderTree) => (
     <TreeItem key={nodes.id} nodeId={nodes.id} label={nodes.name}>
-      {Array.isArray(nodes.children) ? nodes.children.map(node => renderTree(node)) : null}
+      {Array.isArray(nodes.children)
+        ? nodes.children.map((node) => renderTree(node))
+        : null}
     </TreeItem>
   )
 
-  const ExpandIcon = direction === 'rtl' ? 'bx:chevron-left' : 'bx:chevron-right'
+  const ExpandIcon =
+    direction === 'rtl' ? 'bx:chevron-left' : 'bx:chevron-right'
 
   return (
     <TreeView
@@ -57,7 +60,7 @@ const TreeViewRichObject = ({ direction }: Props) => {
       }
       defaultCollapseIcon={
         <Box sx={{ display: 'flex' }}>
-          <Icon icon='bx:chevron-down' />
+          <Icon icon="bx:chevron-down" />
         </Box>
       }
     >

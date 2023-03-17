@@ -12,18 +12,26 @@ const Wrapper = styled('div')(({ theme }) => ({
 
 const BadgesOverlap = () => {
   return (
-    <Wrapper className='demo-space-x'>
-      <Badge color='primary' badgeContent=' '>
-        <Avatar src='/images/avatars/16.png' alt='User Avatar' variant='square' />
+    <Wrapper className="demo-space-x">
+      <Badge color="primary" badgeContent=" ">
+        <Avatar
+          src="/images/avatars/16.png"
+          alt="User Avatar"
+          variant="square"
+        />
       </Badge>
-      <Badge color='primary' variant='dot'>
-        <Avatar src='/images/avatars/16.png' alt='User Avatar' variant='square' />
+      <Badge color="primary" variant="dot">
+        <Avatar
+          src="/images/avatars/16.png"
+          alt="User Avatar"
+          variant="square"
+        />
       </Badge>
-      <Badge color='primary' overlap='circular' badgeContent=' '>
-        <Avatar src='/images/avatars/16.png' alt='User Avatar' />
+      <Badge color="primary" overlap="circular" badgeContent=" ">
+        <Avatar src="/images/avatars/16.png" alt="User Avatar" />
       </Badge>
-      <Badge color='primary' overlap='circular' variant='dot'>
-        <Avatar src='/images/avatars/16.png' alt='User Avatar' />
+      <Badge color="primary" overlap="circular" variant="dot">
+        <Avatar src="/images/avatars/16.png" alt="User Avatar" />
       </Badge>
     </Wrapper>
   )

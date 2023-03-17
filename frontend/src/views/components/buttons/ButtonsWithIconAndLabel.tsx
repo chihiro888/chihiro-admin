@@ -6,11 +6,15 @@ import Icon from 'src/@core/components/icon'
 
 const ButtonsWithIconAndLabel = () => {
   return (
-    <div className='demo-space-x'>
-      <Button variant='contained' endIcon={<Icon icon='bx:send' />}>
+    <div className="demo-space-x">
+      <Button variant="contained" endIcon={<Icon icon="bx:send" />}>
         Send
       </Button>
-      <Button variant='contained' color='secondary' startIcon={<Icon icon='bx:trash-alt' />}>
+      <Button
+        variant="contained"
+        color="secondary"
+        startIcon={<Icon icon="bx:trash-alt" />}
+      >
         Delete
       </Button>
     </div>

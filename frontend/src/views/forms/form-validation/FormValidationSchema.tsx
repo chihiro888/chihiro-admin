@@ -50,15 +50,15 @@ const schema = yup.object().shape({
   email: yup.string().email().required(),
   lastName: yup
     .string()
-    .min(3, obj => showErrors('lastName', obj.value.length, obj.min))
+    .min(3, (obj) => showErrors('lastName', obj.value.length, obj.min))
     .required(),
   password: yup
     .string()
-    .min(8, obj => showErrors('password', obj.value.length, obj.min))
+    .min(8, (obj) => showErrors('password', obj.value.length, obj.min))
     .required(),
   firstName: yup
     .string()
-    .min(3, obj => showErrors('firstName', obj.value.length, obj.min))
+    .min(3, (obj) => showErrors('firstName', obj.value.length, obj.min))
     .required()
 })
 
@@ -92,29 +92,32 @@ const FormValidationSchema = () => {
 
   return (
     <Card>
-      <CardHeader title='Validation Schema With OnChange' />
+      <CardHeader title="Validation Schema With OnChange" />
       <CardContent>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Grid container spacing={5}>
             <Grid item xs={12}>
               <FormControl fullWidth>
                 <Controller
-                  name='firstName'
+                  name="firstName"
                   control={control}
                   rules={{ required: true }}
                   render={({ field: { value, onChange } }) => (
                     <TextField
                       value={value}
-                      label='First Name'
+                      label="First Name"
                       onChange={onChange}
-                      placeholder='Leonard'
+                      placeholder="Leonard"
                       error={Boolean(errors.firstName)}
-                      aria-describedby='validation-schema-first-name'
+                      aria-describedby="validation-schema-first-name"
                     />
                   )}
                 />
                 {errors.firstName && (
-                  <FormHelperText sx={{ color: 'error.main' }} id='validation-schema-first-name'>
+                  <FormHelperText
+                    sx={{ color: 'error.main' }}
+                    id="validation-schema-first-name"
+                  >
                     {errors.firstName.message}
                   </FormHelperText>
                 )}
@@ -124,22 +127,25 @@ const FormValidationSchema = () => {
             <Grid item xs={12}>
               <FormControl fullWidth>
                 <Controller
-                  name='lastName'
+                  name="lastName"
                   control={control}
                   rules={{ required: true }}
                   render={({ field: { value, onChange } }) => (
                     <TextField
                       value={value}
-                      label='Last Name'
+                      label="Last Name"
                       onChange={onChange}
-                      placeholder='Carter'
+                      placeholder="Carter"
                       error={Boolean(errors.lastName)}
-                      aria-describedby='validation-schema-last-name'
+                      aria-describedby="validation-schema-last-name"
                     />
                   )}
                 />
                 {errors.lastName && (
-                  <FormHelperText sx={{ color: 'error.main' }} id='validation-schema-last-name'>
+                  <FormHelperText
+                    sx={{ color: 'error.main' }}
+                    id="validation-schema-last-name"
+                  >
                     {errors.lastName.message}
                   </FormHelperText>
                 )}
@@ -149,23 +155,26 @@ const FormValidationSchema = () => {
             <Grid item xs={12}>
               <FormControl fullWidth>
                 <Controller
-                  name='email'
+                  name="email"
                   control={control}
                   rules={{ required: true }}
                   render={({ field: { value, onChange } }) => (
                     <TextField
-                      type='email'
+                      type="email"
                       value={value}
-                      label='Email'
+                      label="Email"
                       onChange={onChange}
                       error={Boolean(errors.email)}
-                      placeholder='carterleonard@gmail.com'
-                      aria-describedby='validation-schema-email'
+                      placeholder="carterleonard@gmail.com"
+                      aria-describedby="validation-schema-email"
                     />
                   )}
                 />
                 {errors.email && (
-                  <FormHelperText sx={{ color: 'error.main' }} id='validation-schema-email'>
+                  <FormHelperText
+                    sx={{ color: 'error.main' }}
+                    id="validation-schema-email"
+                  >
                     {errors.email.message}
                   </FormHelperText>
                 )}
@@ -174,30 +183,35 @@ const FormValidationSchema = () => {
 
             <Grid item xs={12}>
               <FormControl fullWidth>
-                <InputLabel htmlFor='validation-schema-password' error={Boolean(errors.password)}>
+                <InputLabel
+                  htmlFor="validation-schema-password"
+                  error={Boolean(errors.password)}
+                >
                   Password
                 </InputLabel>
                 <Controller
-                  name='password'
+                  name="password"
                   control={control}
                   rules={{ required: true }}
                   render={({ field: { value, onChange } }) => (
                     <OutlinedInput
                       value={value}
-                      label='Password'
+                      label="Password"
                       onChange={onChange}
-                      id='validation-schema-password'
+                      id="validation-schema-password"
                       error={Boolean(errors.password)}
                       type={state.showPassword ? 'text' : 'password'}
                       endAdornment={
-                        <InputAdornment position='end'>
+                        <InputAdornment position="end">
                           <IconButton
-                            edge='end'
+                            edge="end"
                             onClick={handleClickShowPassword}
                             onMouseDown={handleMouseDownPassword}
-                            aria-label='toggle password visibility'
+                            aria-label="toggle password visibility"
                           >
-                            <Icon icon={state.showPassword ? 'bx:show' : 'bx:hide'} />
+                            <Icon
+                              icon={state.showPassword ? 'bx:show' : 'bx:hide'}
+                            />
                           </IconButton>
                         </InputAdornment>
                       }
@@ -205,7 +219,10 @@ const FormValidationSchema = () => {
                   )}
                 />
                 {errors.password && (
-                  <FormHelperText sx={{ color: 'error.main' }} id='validation-schema-password'>
+                  <FormHelperText
+                    sx={{ color: 'error.main' }}
+                    id="validation-schema-password"
+                  >
                     {errors.password.message}
                   </FormHelperText>
                 )}
@@ -213,7 +230,7 @@ const FormValidationSchema = () => {
             </Grid>
 
             <Grid item xs={12}>
-              <Button size='large' type='submit' variant='contained'>
+              <Button size="large" type="submit" variant="contained">
                 Submit
               </Button>
             </Grid>

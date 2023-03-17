@@ -1,6 +1,6 @@
 export const CustomCheckboxBasicJSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { useState } from 'react'
 
 // ** MUI Imports
@@ -62,8 +62,8 @@ export default BasicCustomCheckbox
 )
 
 export const CustomCheckboxIconsJSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { useState } from 'react'
 
 // ** MUI Imports
@@ -136,8 +136,8 @@ export default CustomCheckboxWithIcons
 )
 
 export const CustomCheckboxImgJSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { useState } from 'react'
 
 // ** MUI Imports
@@ -199,8 +199,8 @@ export default CustomCheckboxWithImages
 )
 
 export const CustomRadioIconsJSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { useState } from 'react'
 
 // ** MUI Imports
@@ -272,8 +272,8 @@ export default CustomRadioWithIcons
 )
 
 export const CustomRadioImgJSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { useState } from 'react'
 
 // ** MUI Imports
@@ -334,8 +334,8 @@ export default CustomRadioWithImages
 )
 
 export const CustomRadioBasicJSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { useState } from 'react'
 
 // ** MUI Imports
@@ -396,8 +396,8 @@ export default BasicCustomRadio
 )
 
 export const CustomCheckboxImgTSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { useState } from 'react'
 
 // ** MUI Imports
@@ -462,8 +462,8 @@ export default CustomCheckboxWithImages
 )
 
 export const CustomCheckboxBasicTSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { useState } from 'react'
 
 // ** MUI Imports
@@ -528,8 +528,8 @@ export default BasicCustomCheckbox
 )
 
 export const CustomRadioIconsTSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { ChangeEvent, useState } from 'react'
 
 // ** MUI Imports
@@ -610,8 +610,8 @@ export default CustomRadioWithIcons
 )
 
 export const CustomCheckboxIconsTSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { useState } from 'react'
 
 // ** MUI Imports
@@ -692,8 +692,8 @@ export default CustomCheckboxWithIcons
 )
 
 export const CustomRadioImgTSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { ChangeEvent, useState } from 'react'
 
 // ** MUI Imports
@@ -758,8 +758,8 @@ export default CustomRadioWithImages
 )
 
 export const CustomRadioBasicTSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { ChangeEvent, useState } from 'react'
 
 // ** MUI Imports

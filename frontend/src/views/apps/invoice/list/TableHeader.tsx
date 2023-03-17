@@ -32,31 +32,33 @@ const TableHeader = (props: TableHeaderProps) => {
       }}
     >
       <Select
-        size='small'
+        size="small"
         displayEmpty
-        defaultValue=''
+        defaultValue=""
         sx={{ mr: 4, mb: 2 }}
         disabled={selectedRows && selectedRows.length === 0}
-        renderValue={selected => (selected.length === 0 ? 'Actions' : selected)}
+        renderValue={(selected) =>
+          selected.length === 0 ? 'Actions' : selected
+        }
       >
-        <MenuItem value='' disabled>
+        <MenuItem value="" disabled>
           Actions
         </MenuItem>
-        <MenuItem value='Delete'>Delete</MenuItem>
-        <MenuItem value='Edit'>Edit</MenuItem>
-        <MenuItem value='Send'>Send</MenuItem>
+        <MenuItem value="Delete">Delete</MenuItem>
+        <MenuItem value="Edit">Edit</MenuItem>
+        <MenuItem value="Send">Send</MenuItem>
       </Select>
       <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center' }}>
         <TextField
-          size='small'
+          size="small"
           value={value}
           sx={{ mr: 4, mb: 2 }}
-          placeholder='Search Invoice'
-          onChange={e => handleFilter(e.target.value)}
+          placeholder="Search Invoice"
+          onChange={(e) => handleFilter(e.target.value)}
         />
 
-        <Link href='/apps/invoice/add' passHref>
-          <Button sx={{ mb: 2 }} variant='contained'>
+        <Link href="/apps/invoice/add" passHref>
+          <Button sx={{ mb: 2 }} variant="contained">
             Create Invoice
           </Button>
         </Link>

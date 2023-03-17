@@ -43,13 +43,16 @@ const Slider = styled(MuiSlider)<SliderProps>(({ theme }) => ({
     width: 28,
     height: 28,
     backgroundColor: theme.palette.common.white,
-    boxShadow: '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.13),0 0 0 1px rgba(0,0,0,0.02)',
+    boxShadow:
+      '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.13),0 0 0 1px rgba(0,0,0,0.02)',
     '&:focus, &:hover, &.Mui-active': {
-      boxShadow: '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.3),0 0 0 1px rgba(0,0,0,0.02)',
+      boxShadow:
+        '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.3),0 0 0 1px rgba(0,0,0,0.02)',
 
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
-        boxShadow: '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.13),0 0 0 1px rgba(0,0,0,0.02)'
+        boxShadow:
+          '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.13),0 0 0 1px rgba(0,0,0,0.02)'
       }
     }
   },
@@ -64,13 +67,21 @@ const Slider = styled(MuiSlider)<SliderProps>(({ theme }) => ({
     },
     '& *': {
       background: 'transparent',
-      color: theme.palette.mode === 'dark' ? theme.palette.common.white : theme.palette.common.black
+      color:
+        theme.palette.mode === 'dark'
+          ? theme.palette.common.white
+          : theme.palette.common.black
     }
   }
 }))
 
 const SliderCustomized = () => (
-  <Slider marks={marks} defaultValue={60} valueLabelDisplay='on' aria-labelledby='customized-slider' />
+  <Slider
+    marks={marks}
+    defaultValue={60}
+    valueLabelDisplay="on"
+    aria-labelledby="customized-slider"
+  />
 )
 
 export default SliderCustomized

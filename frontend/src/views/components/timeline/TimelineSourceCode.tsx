@@ -1,6 +1,6 @@
 export const TimelineCenterJSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** MUI Import
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** MUI Import
 import Box from '@mui/material/Box'
 import List from '@mui/material/List'
 import Switch from '@mui/material/Switch'
@@ -308,8 +308,8 @@ export default TimelineCenter
 )
 
 export const TimelineOutlinedJSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** MUI Import
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** MUI Import
 import Box from '@mui/material/Box'
 import Avatar from '@mui/material/Avatar'
 import Divider from '@mui/material/Divider'
@@ -494,8 +494,8 @@ export default TimelineRight
 )
 
 export const TimelineFilledJSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** MUI Import
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** MUI Import
 import Box from '@mui/material/Box'
 import Avatar from '@mui/material/Avatar'
 import Divider from '@mui/material/Divider'
@@ -688,8 +688,8 @@ export default TimelineLeft
 )
 
 export const TimelineCenterTSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** MUI Import
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** MUI Import
 import Box from '@mui/material/Box'
 import List from '@mui/material/List'
 import Switch from '@mui/material/Switch'
@@ -997,8 +997,8 @@ export default TimelineCenter
 )
 
 export const TimelineFilledTSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** MUI Import
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** MUI Import
 import Box from '@mui/material/Box'
 import Avatar from '@mui/material/Avatar'
 import Divider from '@mui/material/Divider'
@@ -1191,8 +1191,8 @@ export default TimelineLeft
 )
 
 export const TimelineOutlinedTSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** MUI Import
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** MUI Import
 import Box from '@mui/material/Box'
 import Avatar from '@mui/material/Avatar'
 import Divider from '@mui/material/Divider'

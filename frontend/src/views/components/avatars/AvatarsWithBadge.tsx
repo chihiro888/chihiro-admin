@@ -15,32 +15,36 @@ const BadgeContentSpan = styled('span')(({ theme }) => ({
 
 const AvatarsWithBadge = () => {
   return (
-    <Box className='demo-space-x' sx={{ display: 'flex' }}>
+    <Box className="demo-space-x" sx={{ display: 'flex' }}>
       <Badge
-        overlap='circular'
+        overlap="circular"
         badgeContent={<BadgeContentSpan />}
         anchorOrigin={{
           vertical: 'bottom',
           horizontal: 'right'
         }}
       >
-        <Avatar alt='Marie Garza' src='/images/avatars/2.png' />
+        <Avatar alt="Marie Garza" src="/images/avatars/2.png" />
       </Badge>
       <Badge
-        overlap='circular'
+        overlap="circular"
         anchorOrigin={{
           vertical: 'bottom',
           horizontal: 'right'
         }}
         badgeContent={
           <Avatar
-            alt='Marie Garza'
-            src='/images/avatars/2.png'
-            sx={{ width: 22, height: 22, border: theme => `2px solid ${theme.palette.background.paper}` }}
+            alt="Marie Garza"
+            src="/images/avatars/2.png"
+            sx={{
+              width: 22,
+              height: 22,
+              border: (theme) => `2px solid ${theme.palette.background.paper}`
+            }}
           />
         }
       >
-        <Avatar alt='Olivia Sparks' src='/images/avatars/4.png' />
+        <Avatar alt="Olivia Sparks" src="/images/avatars/4.png" />
       </Badge>
     </Box>
   )

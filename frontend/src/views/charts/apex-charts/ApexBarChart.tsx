@@ -68,7 +68,15 @@ const ApexBarChart = () => {
     xaxis: {
       axisBorder: { show: false },
       axisTicks: { color: theme.palette.divider },
-      categories: ['MON, 11', 'THU, 14', 'FRI, 15', 'MON, 18', 'WED, 20', 'FRI, 21', 'MON, 23'],
+      categories: [
+        'MON, 11',
+        'THU, 14',
+        'FRI, 15',
+        'MON, 18',
+        'WED, 20',
+        'FRI, 21',
+        'MON, 23'
+      ],
       labels: {
         style: { colors: theme.palette.text.disabled }
       }
@@ -77,25 +85,26 @@ const ApexBarChart = () => {
 
   const CustomInput = forwardRef((props: PickerProps, ref) => {
     const startDate = format(props.start, 'MM/dd/yyyy')
-    const endDate = props.end !== null ? ` - ${format(props.end, 'MM/dd/yyyy')}` : null
+    const endDate =
+      props.end !== null ? ` - ${format(props.end, 'MM/dd/yyyy')}` : null
 
     const value = `${startDate}${endDate !== null ? endDate : ''}`
 
     return (
       <TextField
         {...props}
-        size='small'
+        size="small"
         value={value}
         inputRef={ref}
         InputProps={{
           startAdornment: (
-            <InputAdornment position='start'>
-              <Icon icon='bx:calendar-alt' />
+            <InputAdornment position="start">
+              <Icon icon="bx:calendar-alt" />
             </InputAdornment>
           ),
           endAdornment: (
-            <InputAdornment position='end'>
-              <Icon icon='bx:chevron-down' />
+            <InputAdornment position="end">
+              <Icon icon="bx:chevron-down" />
             </InputAdornment>
           )
         }}
@@ -112,8 +121,8 @@ const ApexBarChart = () => {
   return (
     <Card>
       <CardHeader
-        title='Data Science'
-        subheader='$74,382.72'
+        title="Data Science"
+        subheader="$74,382.72"
         sx={{
           flexDirection: ['column', 'row'],
           alignItems: ['flex-start', 'center'],
@@ -124,18 +133,23 @@ const ApexBarChart = () => {
           <DatePicker
             selectsRange
             endDate={endDate}
-            id='apexchart-bar'
+            id="apexchart-bar"
             selected={startDate}
             startDate={startDate}
             onChange={handleOnChange}
-            placeholderText='Click to select a date'
-            customInput={<CustomInput start={startDate as Date | number} end={endDate as Date | number} />}
+            placeholderText="Click to select a date"
+            customInput={
+              <CustomInput
+                start={startDate as Date | number}
+                end={endDate as Date | number}
+              />
+            }
           />
         }
       />
       <CardContent>
         <ReactApexcharts
-          type='bar'
+          type="bar"
           height={400}
           options={options}
           series={[{ data: [700, 350, 480, 600, 210, 550, 150] }]}

@@ -16,8 +16,11 @@ const SwitchesControlledUncontrolled = () => {
 
   return (
     <FormGroup row>
-      <FormControlLabel label='Controlled' control={<Switch checked={checked} onChange={handleChange} />} />
-      <FormControlLabel control={<Switch />} label='Uncontrolled' />
+      <FormControlLabel
+        label="Controlled"
+        control={<Switch checked={checked} onChange={handleChange} />}
+      />
+      <FormControlLabel control={<Switch />} label="Uncontrolled" />
     </FormGroup>
   )
 }

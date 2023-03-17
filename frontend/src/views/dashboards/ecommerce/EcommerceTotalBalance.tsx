@@ -96,43 +96,72 @@ const EcommerceTotalBalance = () => {
   return (
     <Card>
       <CardHeader
-        title='Total Balance'
-        action={<OptionsMenu iconButtonProps={{ size: 'small' }} options={['Last Week', 'Last Month', 'Last Year']} />}
+        title="Total Balance"
+        action={
+          <OptionsMenu
+            iconButtonProps={{ size: 'small' }}
+            options={['Last Week', 'Last Month', 'Last Year']}
+          />
+        }
       />
       <CardContent>
         <Grid container spacing={6} sx={{ mb: 6 }}>
           <Grid item xs={6}>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
-              <CustomAvatar skin='light' color='warning' sx={{ mr: 3.75 }} variant='rounded'>
-                <Icon icon='bx:wallet-alt' />
+              <CustomAvatar
+                skin="light"
+                color="warning"
+                sx={{ mr: 3.75 }}
+                variant="rounded"
+              >
+                <Icon icon="bx:wallet-alt" />
               </CustomAvatar>
               <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                <Typography variant='h6'>$2.54k</Typography>
-                <Typography variant='body2'>Wallet</Typography>
+                <Typography variant="h6">$2.54k</Typography>
+                <Typography variant="body2">Wallet</Typography>
               </Box>
             </Box>
           </Grid>
           <Grid item xs={6}>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
-              <CustomAvatar skin='light' color='secondary' sx={{ mr: 3.75 }} variant='rounded'>
-                <Icon icon='bx:dollar' />
+              <CustomAvatar
+                skin="light"
+                color="secondary"
+                sx={{ mr: 3.75 }}
+                variant="rounded"
+              >
+                <Icon icon="bx:dollar" />
               </CustomAvatar>
               <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                <Typography variant='h6'>$4.21k</Typography>
-                <Typography variant='body2'>Paypal</Typography>
+                <Typography variant="h6">$4.21k</Typography>
+                <Typography variant="body2">Paypal</Typography>
               </Box>
             </Box>
           </Grid>
         </Grid>
-        <ReactApexcharts type='line' height={217} options={options} series={series} />
+        <ReactApexcharts
+          type="line"
+          height={217}
+          options={options}
+          series={series}
+        />
         <Divider sx={{ mb: 6 }} />
         <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
           <Box sx={{ mr: 2, display: 'flex', flexDirection: 'column' }}>
-            <Typography variant='body2'>You have done 57.6% more sales.</Typography>
-            <Typography variant='body2'>Check your new badge in your profile.</Typography>
+            <Typography variant="body2">
+              You have done 57.6% more sales.
+            </Typography>
+            <Typography variant="body2">
+              Check your new badge in your profile.
+            </Typography>
           </Box>
-          <CustomAvatar skin='light' color='warning' variant='rounded' sx={{ width: 34, height: 34 }}>
-            <Icon icon='bx:chevron-right' fontSize={28} />
+          <CustomAvatar
+            skin="light"
+            color="warning"
+            variant="rounded"
+            sx={{ width: 34, height: 34 }}
+          >
+            <Icon icon="bx:chevron-right" fontSize={28} />
           </CustomAvatar>
         </Box>
       </CardContent>

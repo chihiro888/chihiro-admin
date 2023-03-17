@@ -104,9 +104,12 @@ const data: DataType[] = [
 
 const UserViewSecurity = () => {
   // ** States
-  const [defaultValues, setDefaultValues] = useState<any>({ mobile: '+1(968) 819-2547' })
+  const [defaultValues, setDefaultValues] = useState<any>({
+    mobile: '+1(968) 819-2547'
+  })
   const [mobileNumber, setMobileNumber] = useState<string>(defaultValues.mobile)
-  const [openEditMobileNumber, setOpenEditMobileNumber] = useState<boolean>(false)
+  const [openEditMobileNumber, setOpenEditMobileNumber] =
+    useState<boolean>(false)
   const [values, setValues] = useState<State>({
     newPassword: '',
     showNewPassword: false,
@@ -115,9 +118,10 @@ const UserViewSecurity = () => {
   })
 
   // Handle Password
-  const handleNewPasswordChange = (prop: keyof State) => (event: ChangeEvent<HTMLInputElement>) => {
-    setValues({ ...values, [prop]: event.target.value })
-  }
+  const handleNewPasswordChange =
+    (prop: keyof State) => (event: ChangeEvent<HTMLInputElement>) => {
+      setValues({ ...values, [prop]: event.target.value })
+    }
   const handleClickShowNewPassword = () => {
     setValues({ ...values, showNewPassword: !values.showNewPassword })
   }
@@ -126,13 +130,19 @@ const UserViewSecurity = () => {
   }
 
   // Handle Confirm Password
-  const handleConfirmNewPasswordChange = (prop: keyof State) => (event: ChangeEvent<HTMLInputElement>) => {
-    setValues({ ...values, [prop]: event.target.value })
-  }
+  const handleConfirmNewPasswordChange =
+    (prop: keyof State) => (event: ChangeEvent<HTMLInputElement>) => {
+      setValues({ ...values, [prop]: event.target.value })
+    }
   const handleClickShowConfirmNewPassword = () => {
-    setValues({ ...values, showConfirmNewPassword: !values.showConfirmNewPassword })
+    setValues({
+      ...values,
+      showConfirmNewPassword: !values.showConfirmNewPassword
+    })
   }
-  const handleMouseDownConfirmNewPassword = (event: MouseEvent<HTMLButtonElement>) => {
+  const handleMouseDownConfirmNewPassword = (
+    event: MouseEvent<HTMLButtonElement>
+  ) => {
     event.preventDefault()
   }
 
@@ -154,35 +164,46 @@ const UserViewSecurity = () => {
     <Grid container spacing={6}>
       <Grid item xs={12}>
         <Card>
-          <CardHeader title='Change Password' />
+          <CardHeader title="Change Password" />
           <CardContent>
-            <Alert icon={false} severity='warning' sx={{ mb: 6 }}>
-              <AlertTitle sx={{ fontWeight: 600, mb: theme => `${theme.spacing(1)} !important` }}>
+            <Alert icon={false} severity="warning" sx={{ mb: 6 }}>
+              <AlertTitle
+                sx={{
+                  fontWeight: 600,
+                  mb: (theme) => `${theme.spacing(1)} !important`
+                }}
+              >
                 Ensure that these requirements are met
               </AlertTitle>
               Minimum 8 characters long, uppercase & symbol
             </Alert>
 
-            <form onSubmit={e => e.preventDefault()}>
+            <form onSubmit={(e) => e.preventDefault()}>
               <Grid container spacing={6}>
                 <Grid item xs={12} sm={6}>
                   <FormControl fullWidth>
-                    <InputLabel htmlFor='user-view-security-new-password'>New Password</InputLabel>
+                    <InputLabel htmlFor="user-view-security-new-password">
+                      New Password
+                    </InputLabel>
                     <OutlinedInput
-                      label='New Password'
+                      label="New Password"
                       value={values.newPassword}
-                      id='user-view-security-new-password'
+                      id="user-view-security-new-password"
                       onChange={handleNewPasswordChange('newPassword')}
                       type={values.showNewPassword ? 'text' : 'password'}
                       endAdornment={
-                        <InputAdornment position='end'>
+                        <InputAdornment position="end">
                           <IconButton
-                            edge='end'
+                            edge="end"
                             onClick={handleClickShowNewPassword}
-                            aria-label='toggle password visibility'
+                            aria-label="toggle password visibility"
                             onMouseDown={handleMouseDownNewPassword}
                           >
-                            <Icon icon={values.showNewPassword ? 'bx:show' : 'bx:hide'} />
+                            <Icon
+                              icon={
+                                values.showNewPassword ? 'bx:show' : 'bx:hide'
+                              }
+                            />
                           </IconButton>
                         </InputAdornment>
                       }
@@ -192,22 +213,32 @@ const UserViewSecurity = () => {
 
                 <Grid item xs={12} sm={6}>
                   <FormControl fullWidth>
-                    <InputLabel htmlFor='user-view-security-confirm-new-password'>Confirm New Password</InputLabel>
+                    <InputLabel htmlFor="user-view-security-confirm-new-password">
+                      Confirm New Password
+                    </InputLabel>
                     <OutlinedInput
-                      label='Confirm New Password'
+                      label="Confirm New Password"
                       value={values.confirmNewPassword}
-                      id='user-view-security-confirm-new-password'
+                      id="user-view-security-confirm-new-password"
                       type={values.showConfirmNewPassword ? 'text' : 'password'}
-                      onChange={handleConfirmNewPasswordChange('confirmNewPassword')}
+                      onChange={handleConfirmNewPasswordChange(
+                        'confirmNewPassword'
+                      )}
                       endAdornment={
-                        <InputAdornment position='end'>
+                        <InputAdornment position="end">
                           <IconButton
-                            edge='end'
-                            aria-label='toggle password visibility'
+                            edge="end"
+                            aria-label="toggle password visibility"
                             onClick={handleClickShowConfirmNewPassword}
                             onMouseDown={handleMouseDownConfirmNewPassword}
                           >
-                            <Icon icon={values.showConfirmNewPassword ? 'bx:show' : 'bx:hide'} />
+                            <Icon
+                              icon={
+                                values.showConfirmNewPassword
+                                  ? 'bx:show'
+                                  : 'bx:hide'
+                              }
+                            />
                           </IconButton>
                         </InputAdornment>
                       }
@@ -216,7 +247,7 @@ const UserViewSecurity = () => {
                 </Grid>
 
                 <Grid item xs={12}>
-                  <Button type='submit' variant='contained'>
+                  <Button type="submit" variant="contained">
                     Change Password
                   </Button>
                 </Grid>
@@ -229,40 +260,64 @@ const UserViewSecurity = () => {
       <Grid item xs={12}>
         <Card>
           <CardHeader
-            title='Two-step verification'
+            title="Two-step verification"
             titleTypographyProps={{ sx: { mb: 1 } }}
-            subheader='Keep your account secure with authentication step.'
+            subheader="Keep your account secure with authentication step."
           />
           <CardContent>
             <Typography sx={{ mb: 2.5, fontWeight: 500 }}>SMS</Typography>
 
-            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-              <Typography sx={{ color: 'text.secondary' }}>{mobileNumber}</Typography>
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between'
+              }}
+            >
+              <Typography sx={{ color: 'text.secondary' }}>
+                {mobileNumber}
+              </Typography>
               <div>
                 <IconButton
-                  size='small'
-                  aria-label='edit'
+                  size="small"
+                  aria-label="edit"
                   sx={{ color: 'text.secondary' }}
                   onClick={handleEditMobileNumberClickOpen}
                 >
-                  <Icon icon='bx:edit' fontSize={20} />
+                  <Icon icon="bx:edit" fontSize={20} />
                 </IconButton>
-                <IconButton size='small' aria-label='delete' sx={{ color: 'text.secondary' }}>
-                  <Icon icon='bx:trash-alt' fontSize={20} />
+                <IconButton
+                  size="small"
+                  aria-label="delete"
+                  sx={{ color: 'text.secondary' }}
+                >
+                  <Icon icon="bx:trash-alt" fontSize={20} />
                 </IconButton>
               </div>
             </Box>
 
             <Divider
-              sx={{ mt: theme => `${theme.spacing(2)} !important`, mb: theme => `${theme.spacing(6)} !important` }}
+              sx={{
+                mt: (theme) => `${theme.spacing(2)} !important`,
+                mb: (theme) => `${theme.spacing(6)} !important`
+              }}
             />
 
             <Typography
-              sx={{ color: 'text.secondary', '& a': { color: 'text.secondary', '&:hover': { color: 'primary.main' } } }}
+              sx={{
+                color: 'text.secondary',
+                '& a': {
+                  color: 'text.secondary',
+                  '&:hover': { color: 'primary.main' }
+                }
+              }}
             >
-              Two-factor authentication adds an additional layer of security to your account by requiring more than just
-              a password to log in.{' '}
-              <Link href='/' onClick={(e: SyntheticEvent) => e.preventDefault()}>
+              Two-factor authentication adds an additional layer of security to
+              your account by requiring more than just a password to log in.{' '}
+              <Link
+                href="/"
+                onClick={(e: SyntheticEvent) => e.preventDefault()}
+              >
                 Learn more
               </Link>
               .
@@ -272,34 +327,53 @@ const UserViewSecurity = () => {
           <Dialog
             open={openEditMobileNumber}
             onClose={handleCancelClick}
-            aria-labelledby='user-view-security-edit-mobile-number'
-            sx={{ '& .MuiPaper-root': { width: '100%', maxWidth: 560, p: [2, 10] } }}
-            aria-describedby='user-view-security-edit-mobile-number-description'
+            aria-labelledby="user-view-security-edit-mobile-number"
+            sx={{
+              '& .MuiPaper-root': { width: '100%', maxWidth: 560, p: [2, 10] }
+            }}
+            aria-describedby="user-view-security-edit-mobile-number-description"
           >
             <DialogTitle
-              id='user-view-security-edit-mobile-number'
-              sx={{ mb: 6, textAlign: 'center', fontSize: '1.625rem !important' }}
+              id="user-view-security-edit-mobile-number"
+              sx={{
+                mb: 6,
+                textAlign: 'center',
+                fontSize: '1.625rem !important'
+              }}
             >
               Enable One Time Password
             </DialogTitle>
 
             <DialogContent>
-              <Typography sx={{ mb: 4, fontWeight: 500 }}>Verify Your Mobile Number for SMS</Typography>
-              <Typography sx={{ mb: 6, color: 'text.secondary' }}>
-                Enter your mobile phone number with country code and we will send you a verification code.
+              <Typography sx={{ mb: 4, fontWeight: 500 }}>
+                Verify Your Mobile Number for SMS
               </Typography>
-              <form onSubmit={e => e.preventDefault()}>
+              <Typography sx={{ mb: 6, color: 'text.secondary' }}>
+                Enter your mobile phone number with country code and we will
+                send you a verification code.
+              </Typography>
+              <form onSubmit={(e) => e.preventDefault()}>
                 <TextField
                   fullWidth
                   value={mobileNumber}
-                  label='Mobile number with country code'
-                  onChange={e => setMobileNumber(e.target.value)}
+                  label="Mobile number with country code"
+                  onChange={(e) => setMobileNumber(e.target.value)}
                 />
                 <Box sx={{ mt: 6, display: 'flex' }}>
-                  <Button type='submit' sx={{ mr: 5 }} variant='contained' onClick={handleSubmitClick}>
+                  <Button
+                    type="submit"
+                    sx={{ mr: 5 }}
+                    variant="contained"
+                    onClick={handleSubmitClick}
+                  >
                     Submit
                   </Button>
-                  <Button type='reset' color='secondary' variant='outlined' onClick={handleCancelClick}>
+                  <Button
+                    type="reset"
+                    color="secondary"
+                    variant="outlined"
+                    onClick={handleCancelClick}
+                  >
                     Cancel
                   </Button>
                 </Box>
@@ -311,14 +385,19 @@ const UserViewSecurity = () => {
 
       <Grid item xs={12}>
         <Card>
-          <CardHeader title='Recent devices' />
+          <CardHeader title="Recent devices" />
 
           <Divider sx={{ m: '0 !important' }} />
 
           <TableContainer>
             <Table sx={{ minWidth: 500 }}>
               <TableHead
-                sx={{ backgroundColor: theme => (theme.palette.mode === 'light' ? 'grey.50' : 'background.default') }}
+                sx={{
+                  backgroundColor: (theme) =>
+                    theme.palette.mode === 'light'
+                      ? 'grey.50'
+                      : 'background.default'
+                }}
               >
                 <TableRow>
                   <TableCell>Browser</TableCell>
@@ -330,11 +409,23 @@ const UserViewSecurity = () => {
 
               <TableBody>
                 {data.map((item: DataType, index: number) => (
-                  <TableRow hover key={index} sx={{ '&:last-of-type td': { border: 0 } }}>
+                  <TableRow
+                    hover
+                    key={index}
+                    sx={{ '&:last-of-type td': { border: 0 } }}
+                  >
                     <TableCell>
-                      <Box sx={{ display: 'flex', alignItems: 'center', '& svg': { color: `${item.iconColor}.main` } }}>
+                      <Box
+                        sx={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          '& svg': { color: `${item.iconColor}.main` }
+                        }}
+                      >
                         <Icon icon={item.icon} fontSize={20} />
-                        <Typography sx={{ ml: 4, fontWeight: 600 }}>{item.browser}</Typography>
+                        <Typography sx={{ ml: 4, fontWeight: 600 }}>
+                          {item.browser}
+                        </Typography>
                       </Box>
                     </TableCell>
                     <TableCell>{item.device}</TableCell>

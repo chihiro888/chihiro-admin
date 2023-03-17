@@ -23,12 +23,16 @@ interface ScatterProps {
 
 const ChartjsScatterChart = (props: ScatterProps) => {
   // ** Props
-  const { green, warning, primary, labelColor, borderColor, legendColor } = props
+  const { green, warning, primary, labelColor, borderColor, legendColor } =
+    props
 
   // ** State
   const [active, setActive] = useState<string | null>('daily')
 
-  const handleActive = (event: MouseEvent<HTMLElement>, newActive: string | null) => {
+  const handleActive = (
+    event: MouseEvent<HTMLElement>,
+    newActive: string | null
+  ) => {
     setActive(newActive)
   }
 
@@ -166,7 +170,7 @@ const ChartjsScatterChart = (props: ScatterProps) => {
   return (
     <Card>
       <CardHeader
-        title='New Product Data'
+        title="New Product Data"
         sx={{
           flexDirection: ['column', 'row'],
           alignItems: ['flex-start', 'center'],
@@ -175,9 +179,9 @@ const ChartjsScatterChart = (props: ScatterProps) => {
         }}
         action={
           <ToggleButtonGroup exclusive value={active} onChange={handleActive}>
-            <ToggleButton value='daily'>Daily</ToggleButton>
-            <ToggleButton value='monthly'>Monthly</ToggleButton>
-            <ToggleButton value='yearly'>Yearly</ToggleButton>
+            <ToggleButton value="daily">Daily</ToggleButton>
+            <ToggleButton value="monthly">Monthly</ToggleButton>
+            <ToggleButton value="yearly">Yearly</ToggleButton>
           </ToggleButtonGroup>
         }
       />

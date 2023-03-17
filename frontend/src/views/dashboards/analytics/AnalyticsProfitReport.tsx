@@ -93,29 +93,51 @@ const AnalyticsProfitReport = () => {
           p: `${theme.spacing(4, 5, 3.25)} !important`
         }}
       >
-        <Box sx={{ gap: 2, display: 'flex', justifyContent: 'space-between', flexDirection: ['row', 'column'] }}>
+        <Box
+          sx={{
+            gap: 2,
+            display: 'flex',
+            justifyContent: 'space-between',
+            flexDirection: ['row', 'column']
+          }}
+        >
           <div>
-            <Typography noWrap variant='h6' sx={{ mb: 1 }}>
+            <Typography noWrap variant="h6" sx={{ mb: 1 }}>
               Profit Report
             </Typography>
             <CustomChip
-              skin='light'
-              color='warning'
+              skin="light"
+              color="warning"
               sx={{ fontWeight: 500 }}
               label={`Year ${new Date().getFullYear()}`}
             />
           </div>
           <div>
-            <Box sx={{ display: 'flex', alignItems: 'center', color: 'success.main' }}>
-              <Icon icon='bx:chevron-up' />
-              <Typography variant='body2' sx={{ fontWeight: 500, color: 'success.main' }}>
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                color: 'success.main'
+              }}
+            >
+              <Icon icon="bx:chevron-up" />
+              <Typography
+                variant="body2"
+                sx={{ fontWeight: 500, color: 'success.main' }}
+              >
                 68.2%
               </Typography>
             </Box>
-            <Typography variant='h5'>$84,686k</Typography>
+            <Typography variant="h5">$84,686k</Typography>
           </div>
         </Box>
-        <ReactApexcharts type='line' height={131} width='90%' options={options} series={series} />
+        <ReactApexcharts
+          type="line"
+          height={131}
+          width="90%"
+          options={options}
+          series={series}
+        />
       </CardContent>
     </Card>
   )

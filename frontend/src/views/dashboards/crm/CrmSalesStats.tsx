@@ -78,21 +78,53 @@ const CrmSalesStats = () => {
   return (
     <Card>
       <CardHeader
-        title='Sales Stats'
+        title="Sales Stats"
         action={
-          <OptionsMenu iconButtonProps={{ size: 'small' }} options={['Last 28 Days', 'Last Month', 'Last Year']} />
+          <OptionsMenu
+            iconButtonProps={{ size: 'small' }}
+            options={['Last 28 Days', 'Last Month', 'Last Year']}
+          />
         }
       />
       <CardContent>
-        <ReactApexcharts type='radialBar' height={348} options={options} series={[75]} />
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-around' }}>
-          <Box sx={{ mr: 2.5, display: 'flex', alignItems: 'center', '& svg': { mr: 1.5, color: 'success.main' } }}>
-            <Icon icon='bxs:circle' fontSize={14} />
-            <Typography sx={{ color: 'text.secondary' }}>Conversion Ratio</Typography>
+        <ReactApexcharts
+          type="radialBar"
+          height={348}
+          options={options}
+          series={[75]}
+        />
+        <Box
+          sx={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            alignItems: 'center',
+            justifyContent: 'space-around'
+          }}
+        >
+          <Box
+            sx={{
+              mr: 2.5,
+              display: 'flex',
+              alignItems: 'center',
+              '& svg': { mr: 1.5, color: 'success.main' }
+            }}
+          >
+            <Icon icon="bxs:circle" fontSize={14} />
+            <Typography sx={{ color: 'text.secondary' }}>
+              Conversion Ratio
+            </Typography>
           </Box>
-          <Box sx={{ display: 'flex', alignItems: 'center', '& svg': { mr: 1.5, color: 'customColors.trackBg' } }}>
-            <Icon icon='bxs:circle' fontSize={14} />
-            <Typography sx={{ color: 'text.secondary' }}>Total requirements</Typography>
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              '& svg': { mr: 1.5, color: 'customColors.trackBg' }
+            }}
+          >
+            <Icon icon="bxs:circle" fontSize={14} />
+            <Typography sx={{ color: 'text.secondary' }}>
+              Total requirements
+            </Typography>
           </Box>
         </Box>
       </CardContent>

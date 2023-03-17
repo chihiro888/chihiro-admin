@@ -222,24 +222,45 @@ const EcommerceNewVisitor = () => {
       <CardContent sx={{ p: `${theme.spacing(4, 5)} !important` }}>
         <Grid container>
           <StyledGrid item xs={12} sm={6}>
-            <Box sx={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>
-              <Typography variant='h6'>New Visitors</Typography>
-              <Typography variant='body2'>Last Week</Typography>
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'flex-start',
+                justifyContent: 'space-between'
+              }}
+            >
+              <Typography variant="h6">New Visitors</Typography>
+              <Typography variant="body2">Last Week</Typography>
             </Box>
-            <Box sx={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between' }}>
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'flex-end',
+                justifyContent: 'space-between'
+              }}
+            >
               <Box sx={{ mr: 2, display: 'flex', flexDirection: 'column' }}>
-                <Typography variant='h4' sx={{ mb: 2 }}>
+                <Typography variant="h4" sx={{ mb: 2 }}>
                   23%
                 </Typography>
-                <Box sx={{ display: 'flex', alignItems: 'center', '& svg': { mr: 1, color: 'error.main' } }}>
-                  <Icon icon='bx:down-arrow-alt' fontSize={18} />
-                  <Typography variant='body2' sx={{ fontWeight: 500, color: 'error.main' }}>
+                <Box
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    '& svg': { mr: 1, color: 'error.main' }
+                  }}
+                >
+                  <Icon icon="bx:down-arrow-alt" fontSize={18} />
+                  <Typography
+                    variant="body2"
+                    sx={{ fontWeight: 500, color: 'error.main' }}
+                  >
                     8.75%
                   </Typography>
                 </Box>
               </Box>
               <ReactApexcharts
-                type='bar'
+                type="bar"
                 width={190}
                 height={140}
                 options={barOptions}
@@ -248,24 +269,45 @@ const EcommerceNewVisitor = () => {
             </Box>
           </StyledGrid>
           <StyledGrid2 item xs={12} sm={6}>
-            <Box sx={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>
-              <Typography variant='h6'>Activity</Typography>
-              <Typography variant='body2'>Last Week</Typography>
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'flex-start',
+                justifyContent: 'space-between'
+              }}
+            >
+              <Typography variant="h6">Activity</Typography>
+              <Typography variant="body2">Last Week</Typography>
             </Box>
-            <Box sx={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between' }}>
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'flex-end',
+                justifyContent: 'space-between'
+              }}
+            >
               <Box sx={{ mr: 2, display: 'flex', flexDirection: 'column' }}>
-                <Typography variant='h4' sx={{ mb: 2 }}>
+                <Typography variant="h4" sx={{ mb: 2 }}>
                   82%
                 </Typography>
-                <Box sx={{ display: 'flex', alignItems: 'center', '& svg': { mr: 1, color: 'success.main' } }}>
-                  <Icon icon='bx:up-arrow-alt' fontSize={18} />
-                  <Typography variant='body2' sx={{ fontWeight: 500, color: 'success.main' }}>
+                <Box
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    '& svg': { mr: 1, color: 'success.main' }
+                  }}
+                >
+                  <Icon icon="bx:up-arrow-alt" fontSize={18} />
+                  <Typography
+                    variant="body2"
+                    sx={{ fontWeight: 500, color: 'success.main' }}
+                  >
                     19.6%
                   </Typography>
                 </Box>
               </Box>
               <ReactApexcharts
-                type='area'
+                type="area"
                 width={190}
                 height={140}
                 options={areaOptions}

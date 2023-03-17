@@ -4,7 +4,13 @@ import { ReactElement, SyntheticEvent } from 'react'
 
 export type MailLabelType = 'personal' | 'company' | 'important' | 'private'
 
-export type MailFolderType = 'inbox' | 'sent' | 'draft' | 'starred' | 'spam' | 'trash'
+export type MailFolderType =
+  | 'inbox'
+  | 'sent'
+  | 'draft'
+  | 'starred'
+  | 'spam'
+  | 'trash'
 
 export type RouteParams = {
   label?: string
@@ -26,13 +32,25 @@ export type FieldMenuItems = {
   value: string
 }
 
-export type FetchMailParamsType = { q: string; folder: MailFolderType; label: MailLabelType }
+export type FetchMailParamsType = {
+  q: string
+  folder: MailFolderType
+  label: MailLabelType
+}
 
-export type PaginateMailParamsType = { dir: 'next' | 'previous'; emailId: number }
+export type PaginateMailParamsType = {
+  dir: 'next' | 'previous'
+  emailId: number
+}
 
 export type UpdateMailParamsType = {
   emailIds: number[] | number | []
-  dataToUpdate: { folder?: MailFolderType; isStarred?: boolean; isRead?: boolean; label?: MailLabelType }
+  dataToUpdate: {
+    folder?: MailFolderType
+    isStarred?: boolean
+    isRead?: boolean
+    label?: MailLabelType
+  }
 }
 
 export type UpdateMailLabelType = {

@@ -59,13 +59,15 @@ const steps = [
   }
 ]
 
-const StepperHeaderContainer = styled(CardContent)<CardContentProps>(({ theme }) => ({
-  borderRight: `1px solid ${theme.palette.divider}`,
-  [theme.breakpoints.down('lg')]: {
-    borderRight: 0,
-    borderBottom: `1px solid ${theme.palette.divider}`
-  }
-}))
+const StepperHeaderContainer = styled(CardContent)<CardContentProps>(
+  ({ theme }) => ({
+    borderRight: `1px solid ${theme.palette.divider}`,
+    [theme.breakpoints.down('lg')]: {
+      borderRight: 0,
+      borderBottom: `1px solid ${theme.palette.divider}`
+    }
+  })
+)
 
 const Step = styled(MuiStep)<StepProps>(({ theme }) => ({
   '& .MuiStepLabel-root': {
@@ -148,19 +150,23 @@ const PropertyListingWizard = () => {
     return (
       <Box sx={{ mt: 5, display: 'flex', justifyContent: 'space-between' }}>
         <Button
-          color='secondary'
-          variant='outlined'
+          color="secondary"
+          variant="outlined"
           onClick={handlePrev}
           disabled={activeStep === 0}
-          startIcon={<Icon icon='bx:chevron-left' />}
+          startIcon={<Icon icon="bx:chevron-left" />}
         >
           Previous
         </Button>
         <Button
-          variant='contained'
+          variant="contained"
           color={stepCondition ? 'success' : 'primary'}
-          {...(!stepCondition ? { endIcon: <Icon icon='bx:chevron-right' /> } : {})}
-          onClick={() => (stepCondition ? alert('Submitted..!!') : handleNext())}
+          {...(!stepCondition
+            ? { endIcon: <Icon icon="bx:chevron-right" /> }
+            : {})}
+          onClick={() =>
+            stepCondition ? alert('Submitted..!!') : handleNext()
+          }
         >
           {stepCondition ? 'Submit' : 'Next'}
         </Button>
@@ -174,7 +180,7 @@ const PropertyListingWizard = () => {
         <StepperWrapper sx={{ height: '100%' }}>
           <Stepper
             connector={<></>}
-            orientation='vertical'
+            orientation="vertical"
             activeStep={activeStep}
             sx={{ height: '100%', minWidth: '15rem' }}
           >
@@ -186,23 +192,31 @@ const PropertyListingWizard = () => {
                   sx={{ '&.Mui-completed + svg': { color: 'primary.main' } }}
                 >
                   <StepLabel>
-                    <div className='step-label'>
+                    <div className="step-label">
                       <CustomAvatar
-                        variant='rounded'
+                        variant="rounded"
                         skin={activeStep === index ? 'filled' : 'light'}
                         color={activeStep >= index ? 'primary' : 'secondary'}
                         sx={{
                           mr: 2.5,
                           ...(activeStep === index && {
-                            boxShadow: theme => `0 0.1875rem 0.375rem 0 ${hexToRGBA(theme.palette.primary.main, 0.4)}`
+                            boxShadow: (theme) =>
+                              `0 0.1875rem 0.375rem 0 ${hexToRGBA(
+                                theme.palette.primary.main,
+                                0.4
+                              )}`
                           })
                         }}
                       >
                         <Icon icon={step.icon} />
                       </CustomAvatar>
                       <div>
-                        <Typography className='step-title'>{step.title}</Typography>
-                        <Typography className='step-subtitle'>{step.subtitle}</Typography>
+                        <Typography className="step-title">
+                          {step.title}
+                        </Typography>
+                        <Typography className="step-subtitle">
+                          {step.subtitle}
+                        </Typography>
                       </div>
                     </div>
                   </StepLabel>
@@ -212,7 +226,7 @@ const PropertyListingWizard = () => {
           </Stepper>
         </StepperWrapper>
       </StepperHeaderContainer>
-      <CardContent sx={{ pt: theme => `${theme.spacing(6)} !important` }}>
+      <CardContent sx={{ pt: (theme) => `${theme.spacing(6)} !important` }}>
         {renderContent()}
         {renderFooter()}
       </CardContent>

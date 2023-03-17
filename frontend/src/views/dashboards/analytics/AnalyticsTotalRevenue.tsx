@@ -28,11 +28,18 @@ import { useSettings } from 'src/@core/hooks/useSettings'
 // ** Util Import
 import { hexToRGBA } from 'src/@core/utils/hex-to-rgba'
 
-const yearOptions = [new Date().getFullYear() - 1, new Date().getFullYear() - 2, new Date().getFullYear() - 3]
+const yearOptions = [
+  new Date().getFullYear() - 1,
+  new Date().getFullYear() - 2,
+  new Date().getFullYear() - 3
+]
 
 const series = [
   { name: `${new Date().getFullYear() - 1}`, data: [18, 7, 15, 29, 18, 12, 9] },
-  { name: `${new Date().getFullYear() - 2}`, data: [-13, -18, -9, -14, -5, -17, -15] }
+  {
+    name: `${new Date().getFullYear() - 2}`,
+    data: [-13, -18, -9, -14, -5, -17, -15]
+  }
 ]
 
 const StyledGrid = styled(Grid)<GridProps>(({ theme }) => ({
@@ -73,7 +80,10 @@ const AnalyticsTotalRevenue = () => {
       lineCap: 'round',
       colors: [theme.palette.background.paper]
     },
-    colors: [hexToRGBA(theme.palette.primary.main, 1), hexToRGBA(theme.palette.info.main, 1)],
+    colors: [
+      hexToRGBA(theme.palette.primary.main, 1),
+      hexToRGBA(theme.palette.info.main, 1)
+    ],
     legend: {
       offsetX: -10,
       position: 'top',
@@ -261,33 +271,46 @@ const AnalyticsTotalRevenue = () => {
           sm={7}
           xl={8}
           xs={12}
-          sx={{ '& .apexcharts-series[rel="2"]': { transform: 'translateY(-10px)' } }}
+          sx={{
+            '& .apexcharts-series[rel="2"]': { transform: 'translateY(-10px)' }
+          }}
         >
           <CardContent sx={{ p: `${theme.spacing(5, 6, 0)} !important` }}>
-            <Typography variant='h6'>Total Revenue</Typography>
+            <Typography variant="h6">Total Revenue</Typography>
           </CardContent>
-          <ReactApexcharts type='bar' height={312} options={barOptions} series={series} />
+          <ReactApexcharts
+            type="bar"
+            height={312}
+            options={barOptions}
+            series={series}
+          />
         </StyledGrid>
         <Grid item xs={12} sm={5} xl={4}>
           <CardContent sx={{ p: `${theme.spacing(8, 6, 7.5)} !important` }}>
             <Box sx={{ textAlign: 'center' }}>
               <Button
-                size='small'
-                variant='outlined'
-                aria-haspopup='true'
+                size="small"
+                variant="outlined"
+                aria-haspopup="true"
                 onClick={handleClick}
                 sx={{ '& svg': { ml: 0.5 } }}
               >
                 {new Date().getFullYear()}
-                <Icon icon='bx:chevron-down' />
+                <Icon icon="bx:chevron-down" />
               </Button>
               <Menu
                 keepMounted
                 anchorEl={anchorEl}
                 onClose={handleClose}
                 open={Boolean(anchorEl)}
-                anchorOrigin={{ vertical: 'bottom', horizontal: direction === 'ltr' ? 'right' : 'left' }}
-                transformOrigin={{ vertical: 'top', horizontal: direction === 'ltr' ? 'right' : 'left' }}
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: direction === 'ltr' ? 'right' : 'left'
+                }}
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: direction === 'ltr' ? 'right' : 'left'
+                }}
               >
                 {yearOptions.map((year: number) => (
                   <MenuItem key={year} onClick={handleClose}>
@@ -295,25 +318,53 @@ const AnalyticsTotalRevenue = () => {
                   </MenuItem>
                 ))}
               </Menu>
-              <ReactApexcharts type='radialBar' height={200} series={[78]} options={radialBarOptions} />
-              <Typography sx={{ mb: 7.5, fontWeight: 600, color: 'text.secondary' }}>62% Company Growth</Typography>
+              <ReactApexcharts
+                type="radialBar"
+                height={200}
+                series={[78]}
+                options={radialBarOptions}
+              />
+              <Typography
+                sx={{ mb: 7.5, fontWeight: 600, color: 'text.secondary' }}
+              >
+                62% Company Growth
+              </Typography>
             </Box>
-            <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
+            <Box
+              sx={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                justifyContent: 'center'
+              }}
+            >
               <Box sx={{ mr: 4, display: 'flex', alignItems: 'center' }}>
-                <CustomAvatar skin='light' variant='rounded' sx={{ mr: 2.5, width: 38, height: 38 }}>
-                  <Icon icon='bx:dollar' />
+                <CustomAvatar
+                  skin="light"
+                  variant="rounded"
+                  sx={{ mr: 2.5, width: 38, height: 38 }}
+                >
+                  <Icon icon="bx:dollar" />
                 </CustomAvatar>
                 <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                  <Typography variant='body2'>{new Date().getFullYear()}</Typography>
+                  <Typography variant="body2">
+                    {new Date().getFullYear()}
+                  </Typography>
                   <Typography sx={{ fontWeight: 500 }}>$32.5k</Typography>
                 </Box>
               </Box>
               <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <CustomAvatar skin='light' color='info' variant='rounded' sx={{ mr: 2.5, width: 38, height: 38 }}>
-                  <Icon icon='bx:wallet' />
+                <CustomAvatar
+                  skin="light"
+                  color="info"
+                  variant="rounded"
+                  sx={{ mr: 2.5, width: 38, height: 38 }}
+                >
+                  <Icon icon="bx:wallet" />
                 </CustomAvatar>
                 <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                  <Typography variant='body2'>{new Date().getFullYear() - 1}</Typography>
+                  <Typography variant="body2">
+                    {new Date().getFullYear() - 1}
+                  </Typography>
                   <Typography sx={{ fontWeight: 500 }}>$41.2k</Typography>
                 </Box>
               </Box>

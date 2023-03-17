@@ -23,39 +23,53 @@ const DialogFullScreen = () => {
 
   return (
     <div>
-      <Button variant='outlined' onClick={handleClickOpen}>
+      <Button variant="outlined" onClick={handleClickOpen}>
         Open dialog
       </Button>
-      <Dialog fullScreen onClose={handleClose} aria-labelledby='full-screen-dialog-title' open={open}>
-        <DialogTitle id='full-screen-dialog-title'>
-          <Typography variant='h6' component='span'>
+      <Dialog
+        fullScreen
+        onClose={handleClose}
+        aria-labelledby="full-screen-dialog-title"
+        open={open}
+      >
+        <DialogTitle id="full-screen-dialog-title">
+          <Typography variant="h6" component="span">
             Modal title
           </Typography>
           <IconButton
-            aria-label='close'
+            aria-label="close"
             onClick={handleClose}
             sx={{ top: 8, right: 10, position: 'absolute', color: 'grey.500' }}
           >
-            <Icon icon='bx:x' />
+            <Icon icon="bx:x" />
           </IconButton>
         </DialogTitle>
-        <DialogContent sx={{ '& + .MuiDialogActions-root': { p: theme => `${theme.spacing(3)} !important` } }}>
+        <DialogContent
+          sx={{
+            '& + .MuiDialogActions-root': {
+              p: (theme) => `${theme.spacing(3)} !important`
+            }
+          }}
+        >
           <Typography gutterBottom>
-            Chupa chups jelly-o candy sweet roll wafer cake chocolate bar. Brownie sweet roll topping cake chocolate
-            cake cheesecake tiramisu chocolate cake. Jujubes liquorice chocolate bar pastry. Chocolate jujubes caramels
-            pastry.
+            Chupa chups jelly-o candy sweet roll wafer cake chocolate bar.
+            Brownie sweet roll topping cake chocolate cake cheesecake tiramisu
+            chocolate cake. Jujubes liquorice chocolate bar pastry. Chocolate
+            jujubes caramels pastry.
           </Typography>
           <Typography gutterBottom>
-            Ice cream marshmallow dragée bonbon croissant. Carrot cake sweet donut ice cream bonbon oat cake danish
-            sugar plum. Gingerbread gummies marzipan gingerbread.
+            Ice cream marshmallow dragée bonbon croissant. Carrot cake sweet
+            donut ice cream bonbon oat cake danish sugar plum. Gingerbread
+            gummies marzipan gingerbread.
           </Typography>
           <Typography gutterBottom>
-            Soufflé toffee ice cream. Jelly-o pudding sweet roll bonbon. Marshmallow liquorice icing. Jelly beans
-            chocolate bar chocolate marzipan candy fruitcake jujubes.
+            Soufflé toffee ice cream. Jelly-o pudding sweet roll bonbon.
+            Marshmallow liquorice icing. Jelly beans chocolate bar chocolate
+            marzipan candy fruitcake jujubes.
           </Typography>
         </DialogContent>
         <DialogActions>
-          <Button variant='contained' onClick={handleClose}>
+          <Button variant="contained" onClick={handleClose}>
             Save changes
           </Button>
         </DialogActions>

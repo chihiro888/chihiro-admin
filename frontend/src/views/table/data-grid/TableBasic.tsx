@@ -49,7 +49,7 @@ const columns = [
 const TableBasic = () => {
   return (
     <Card>
-      <CardHeader title='Basic' />
+      <CardHeader title="Basic" />
       <Box sx={{ height: 500 }}>
         <DataGrid columns={columns} rows={rows.slice(0, 10)} />
       </Box>

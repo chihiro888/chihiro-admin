@@ -85,33 +85,49 @@ const EcommercePerformance = () => {
   return (
     <Card>
       <CardHeader
-        title='Performance'
-        action={<OptionsMenu iconButtonProps={{ size: 'small' }} options={['Last Week', 'Last Month', 'Last Year']} />}
+        title="Performance"
+        action={
+          <OptionsMenu
+            iconButtonProps={{ size: 'small' }}
+            options={['Last Week', 'Last Month', 'Last Year']}
+          />
+        }
       />
       <CardContent>
         <Grid container spacing={6}>
           <Grid item xs={6}>
-            <Typography variant='body2'>
-              <Box component='span' sx={{ mr: 1.5 }}>
+            <Typography variant="body2">
+              <Box component="span" sx={{ mr: 1.5 }}>
                 Earning:
               </Box>
-              <Box component='span' sx={{ fontWeight: 500, display: 'inline-block' }}>
+              <Box
+                component="span"
+                sx={{ fontWeight: 500, display: 'inline-block' }}
+              >
                 $846.17
               </Box>
             </Typography>
           </Grid>
           <Grid item xs={6}>
-            <Typography variant='body2'>
-              <Box component='span' sx={{ mr: 1.5 }}>
+            <Typography variant="body2">
+              <Box component="span" sx={{ mr: 1.5 }}>
                 Sales:
               </Box>
-              <Box component='span' sx={{ fontWeight: 500, display: 'inline-block' }}>
+              <Box
+                component="span"
+                sx={{ fontWeight: 500, display: 'inline-block' }}
+              >
                 25.7M
               </Box>
             </Typography>
           </Grid>
         </Grid>
-        <ReactApexcharts options={options} series={series} type='radar' height={313} />
+        <ReactApexcharts
+          options={options}
+          series={series}
+          type="radar"
+          height={313}
+        />
       </CardContent>
     </Card>
   )

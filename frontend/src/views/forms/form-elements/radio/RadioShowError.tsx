@@ -40,13 +40,26 @@ const RadioShowError = () => {
   return (
     <form onSubmit={handleSubmit}>
       <FormControl error={error}>
-        <FormLabel component='legend'>Pop quiz: MUI is...</FormLabel>
-        <RadioGroup aria-label='quiz' name='quiz' value={value} onChange={handleRadioChange}>
-          <FormControlLabel value='best' control={<Radio />} label='The best!' />
-          <FormControlLabel value='worst' control={<Radio />} label='The worst.' />
+        <FormLabel component="legend">Pop quiz: MUI is...</FormLabel>
+        <RadioGroup
+          aria-label="quiz"
+          name="quiz"
+          value={value}
+          onChange={handleRadioChange}
+        >
+          <FormControlLabel
+            value="best"
+            control={<Radio />}
+            label="The best!"
+          />
+          <FormControlLabel
+            value="worst"
+            control={<Radio />}
+            label="The worst."
+          />
         </RadioGroup>
         <FormHelperText>{helperText}</FormHelperText>
-        <Button type='submit' variant='outlined' sx={{ mt: 3 }}>
+        <Button type="submit" variant="outlined" sx={{ mt: 3 }}>
           Check Answer
         </Button>
       </FormControl>

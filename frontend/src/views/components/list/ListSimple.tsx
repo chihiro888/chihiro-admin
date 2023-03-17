@@ -15,40 +15,40 @@ import Icon from 'src/@core/components/icon'
 const ListSimple = () => {
   return (
     <Fragment>
-      <List component='nav' aria-label='main mailbox'>
+      <List component="nav" aria-label="main mailbox">
         <ListItem disablePadding>
           <ListItemButton>
             <ListItemIcon>
-              <Icon icon='bx:envelope' fontSize={20} />
+              <Icon icon="bx:envelope" fontSize={20} />
             </ListItemIcon>
-            <ListItemText primary='Inbox' />
+            <ListItemText primary="Inbox" />
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
           <ListItemButton>
             <ListItemIcon>
-              <Icon icon='bx:copy' fontSize={20} />
+              <Icon icon="bx:copy" fontSize={20} />
             </ListItemIcon>
-            <ListItemText primary='Draft' />
+            <ListItemText primary="Draft" />
           </ListItemButton>
         </ListItem>
       </List>
       <Divider sx={{ m: '0 !important' }} />
-      <List component='nav' aria-label='secondary mailbox'>
+      <List component="nav" aria-label="secondary mailbox">
         <ListItem disablePadding>
           <ListItemButton>
             <ListItemIcon>
-              <Icon icon='bx:time-five' fontSize={20} />
+              <Icon icon="bx:time-five" fontSize={20} />
             </ListItemIcon>
-            <ListItemText primary='Snoozed' />
+            <ListItemText primary="Snoozed" />
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
-          <ListItemButton component='a' href='#simple-list'>
+          <ListItemButton component="a" href="#simple-list">
             <ListItemIcon>
-              <Icon icon='bx:error-circle' fontSize={20} />
+              <Icon icon="bx:error-circle" fontSize={20} />
             </ListItemIcon>
-            <ListItemText primary='Spam' />
+            <ListItemText primary="Spam" />
           </ListItemButton>
         </ListItem>
       </List>

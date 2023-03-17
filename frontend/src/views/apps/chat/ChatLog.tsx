@@ -10,7 +10,9 @@ import Typography from '@mui/material/Typography'
 import Icon from 'src/@core/components/icon'
 
 // ** Third Party Components
-import PerfectScrollbarComponent, { ScrollBarProps } from 'react-perfect-scrollbar'
+import PerfectScrollbarComponent, {
+  ScrollBarProps
+} from 'react-perfect-scrollbar'
 
 // ** Custom Components Imports
 import CustomAvatar from 'src/@core/components/mui/avatar'
@@ -28,7 +30,9 @@ import {
   FormattedChatsType
 } from 'src/types/apps/chatTypes'
 
-const PerfectScrollbar = styled(PerfectScrollbarComponent)<ScrollBarProps & { ref: Ref<unknown> }>(({ theme }) => ({
+const PerfectScrollbar = styled(PerfectScrollbarComponent)<
+  ScrollBarProps & { ref: Ref<unknown> }
+>(({ theme }) => ({
   padding: theme.spacing(5)
 }))
 
@@ -98,20 +102,29 @@ const ChatLog = (props: ChatLogType) => {
     if (isSender) {
       if (feedback.isSent && !feedback.isDelivered) {
         return (
-          <Box component='span' sx={{ display: 'inline-flex', '& svg': { mr: 2, color: 'text.secondary' } }}>
-            <Icon icon='bx:check' fontSize='1rem' />
+          <Box
+            component="span"
+            sx={{
+              display: 'inline-flex',
+              '& svg': { mr: 2, color: 'text.secondary' }
+            }}
+          >
+            <Icon icon="bx:check" fontSize="1rem" />
           </Box>
         )
       } else if (feedback.isSent && feedback.isDelivered) {
         return (
           <Box
-            component='span'
+            component="span"
             sx={{
               display: 'inline-flex',
-              '& svg': { mr: 2, color: feedback.isSeen ? 'success.main' : 'text.secondary' }
+              '& svg': {
+                mr: 2,
+                color: feedback.isSeen ? 'success.main' : 'text.secondary'
+              }
             }}
           >
-            <Icon icon='bx:check-all' fontSize='1rem' />
+            <Icon icon="bx:check-all" fontSize="1rem" />
           </Box>
         )
       } else {
@@ -129,100 +142,129 @@ const ChatLog = (props: ChatLogType) => {
 
   // ** Renders user chat
   const renderChats = () => {
-    return formattedChatData().map((item: FormattedChatsType, index: number) => {
-      const isSender = item.senderId === data.userContact.id
+    return formattedChatData().map(
+      (item: FormattedChatsType, index: number) => {
+        const isSender = item.senderId === data.userContact.id
 
-      return (
-        <Box
-          key={index}
-          sx={{
-            display: 'flex',
-            flexDirection: !isSender ? 'row' : 'row-reverse',
-            mb: index !== formattedChatData().length - 1 ? 4 : undefined
-          }}
-        >
-          <div>
-            <CustomAvatar
-              skin='light'
-              color={data.contact.avatarColor ? data.contact.avatarColor : undefined}
-              sx={{
-                width: '2rem',
-                height: '2rem',
-                fontSize: '0.875rem',
-                ml: isSender ? 3.5 : undefined,
-                mr: !isSender ? 3.5 : undefined
-              }}
-              {...(data.contact.avatar && !isSender
-                ? {
-                    src: data.contact.avatar,
-                    alt: data.contact.fullName
-                  }
-                : {})}
-              {...(isSender
-                ? {
-                    src: data.userContact.avatar,
-                    alt: data.userContact.fullName
-                  }
-                : {})}
+        return (
+          <Box
+            key={index}
+            sx={{
+              display: 'flex',
+              flexDirection: !isSender ? 'row' : 'row-reverse',
+              mb: index !== formattedChatData().length - 1 ? 4 : undefined
+            }}
+          >
+            <div>
+              <CustomAvatar
+                skin="light"
+                color={
+                  data.contact.avatarColor
+                    ? data.contact.avatarColor
+                    : undefined
+                }
+                sx={{
+                  width: '2rem',
+                  height: '2rem',
+                  fontSize: '0.875rem',
+                  ml: isSender ? 3.5 : undefined,
+                  mr: !isSender ? 3.5 : undefined
+                }}
+                {...(data.contact.avatar && !isSender
+                  ? {
+                      src: data.contact.avatar,
+                      alt: data.contact.fullName
+                    }
+                  : {})}
+                {...(isSender
+                  ? {
+                      src: data.userContact.avatar,
+                      alt: data.userContact.fullName
+                    }
+                  : {})}
+              >
+                {data.contact.avatarColor
+                  ? getInitials(data.contact.fullName)
+                  : null}
+              </CustomAvatar>
+            </div>
+
+            <Box
+              className="chat-body"
+              sx={{ maxWidth: ['calc(100% - 5.75rem)', '75%', '65%'] }}
             >
-              {data.contact.avatarColor ? getInitials(data.contact.fullName) : null}
-            </CustomAvatar>
-          </div>
+              {item.messages.map(
+                (
+                  chat: ChatLogChatType,
+                  index: number,
+                  { length }: { length: number }
+                ) => {
+                  const time = new Date(chat.time)
 
-          <Box className='chat-body' sx={{ maxWidth: ['calc(100% - 5.75rem)', '75%', '65%'] }}>
-            {item.messages.map((chat: ChatLogChatType, index: number, { length }: { length: number }) => {
-              const time = new Date(chat.time)
-
-              return (
-                <Box key={index} sx={{ '&:not(:last-of-type)': { mb: 3.5 } }}>
-                  <div>
-                    <Typography
-                      sx={{
-                        boxShadow: 1,
-                        borderRadius: 1,
-                        width: 'fit-content',
-                        fontSize: '0.875rem',
-                        p: theme => theme.spacing(3, 4),
-                        ml: isSender ? 'auto' : undefined,
-                        borderTopLeftRadius: !isSender ? 0 : undefined,
-                        borderTopRightRadius: isSender ? 0 : undefined,
-                        color: isSender ? 'common.white' : 'text.primary',
-                        backgroundColor: isSender ? 'primary.main' : 'background.paper'
-                      }}
-                    >
-                      {chat.msg}
-                    </Typography>
-                  </div>
-                  {index + 1 === length ? (
+                  return (
                     <Box
-                      sx={{
-                        mt: 1,
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: isSender ? 'flex-end' : 'flex-start'
-                      }}
+                      key={index}
+                      sx={{ '&:not(:last-of-type)': { mb: 3.5 } }}
                     >
-                      {renderMsgFeedback(isSender, chat.feedback)}
-                      <Typography variant='caption'>
-                        {time
-                          ? new Date(time).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
-                          : null}
-                      </Typography>
+                      <div>
+                        <Typography
+                          sx={{
+                            boxShadow: 1,
+                            borderRadius: 1,
+                            width: 'fit-content',
+                            fontSize: '0.875rem',
+                            p: (theme) => theme.spacing(3, 4),
+                            ml: isSender ? 'auto' : undefined,
+                            borderTopLeftRadius: !isSender ? 0 : undefined,
+                            borderTopRightRadius: isSender ? 0 : undefined,
+                            color: isSender ? 'common.white' : 'text.primary',
+                            backgroundColor: isSender
+                              ? 'primary.main'
+                              : 'background.paper'
+                          }}
+                        >
+                          {chat.msg}
+                        </Typography>
+                      </div>
+                      {index + 1 === length ? (
+                        <Box
+                          sx={{
+                            mt: 1,
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: isSender ? 'flex-end' : 'flex-start'
+                          }}
+                        >
+                          {renderMsgFeedback(isSender, chat.feedback)}
+                          <Typography variant="caption">
+                            {time
+                              ? new Date(time).toLocaleString('en-US', {
+                                  hour: 'numeric',
+                                  minute: 'numeric',
+                                  hour12: true
+                                })
+                              : null}
+                          </Typography>
+                        </Box>
+                      ) : null}
                     </Box>
-                  ) : null}
-                </Box>
-              )
-            })}
+                  )
+                }
+              )}
+            </Box>
           </Box>
-        </Box>
-      )
-    })
+        )
+      }
+    )
   }
 
   const ScrollWrapper = ({ children }: { children: ReactNode }) => {
     if (hidden) {
       return (
-        <Box ref={chatArea} sx={{ p: 5, height: '100%', overflowY: 'auto', overflowX: 'hidden' }}>
+        <Box
+          ref={chatArea}
+          sx={{ p: 5, height: '100%', overflowY: 'auto', overflowX: 'hidden' }}
+        >
           {children}
         </Box>
       )

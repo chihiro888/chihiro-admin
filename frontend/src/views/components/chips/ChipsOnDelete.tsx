@@ -16,16 +16,40 @@ const ChipsOnDelete = () => {
   return (
     <Fragment>
       <Typography sx={{ fontWeight: 500 }}>Default</Typography>
-      <div className='demo-space-x'>
-        <Chip label='Basic' variant='outlined' onDelete={handleDelete} />
-        <Chip label='Primary' color='primary' variant='outlined' onDelete={handleDelete} />
-        <Chip label='Secondary' color='secondary' variant='outlined' onDelete={handleDelete} />
+      <div className="demo-space-x">
+        <Chip label="Basic" variant="outlined" onDelete={handleDelete} />
+        <Chip
+          label="Primary"
+          color="primary"
+          variant="outlined"
+          onDelete={handleDelete}
+        />
+        <Chip
+          label="Secondary"
+          color="secondary"
+          variant="outlined"
+          onDelete={handleDelete}
+        />
       </div>
       <Typography sx={{ mt: 4, fontWeight: 500 }}>Custom</Typography>
-      <div className='demo-space-x'>
-        <Chip label='Basic' onDelete={handleDelete} deleteIcon={<Icon icon='bx:trash-alt' />} />
-        <Chip label='Primary' color='primary' onDelete={handleDelete} deleteIcon={<Icon icon='bx:trash-alt' />} />
-        <Chip label='Secondary' color='secondary' onDelete={handleDelete} deleteIcon={<Icon icon='bx:trash-alt' />} />
+      <div className="demo-space-x">
+        <Chip
+          label="Basic"
+          onDelete={handleDelete}
+          deleteIcon={<Icon icon="bx:trash-alt" />}
+        />
+        <Chip
+          label="Primary"
+          color="primary"
+          onDelete={handleDelete}
+          deleteIcon={<Icon icon="bx:trash-alt" />}
+        />
+        <Chip
+          label="Secondary"
+          color="secondary"
+          onDelete={handleDelete}
+          deleteIcon={<Icon icon="bx:trash-alt" />}
+        />
       </div>
     </Fragment>
   )

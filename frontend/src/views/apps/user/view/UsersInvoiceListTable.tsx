@@ -72,34 +72,49 @@ const columns = [
     flex: 0.15,
     minWidth: 80,
     field: 'invoiceStatus',
-    renderHeader: () => <Icon icon='bx:trending-up' fontSize={20} />,
+    renderHeader: () => <Icon icon="bx:trending-up" fontSize={20} />,
     renderCell: ({ row }: CellType) => {
       const { dueDate, balance, invoiceStatus } = row
 
-      const color = invoiceStatusObj[invoiceStatus] ? invoiceStatusObj[invoiceStatus].color : 'primary'
+      const color = invoiceStatusObj[invoiceStatus]
+        ? invoiceStatusObj[invoiceStatus].color
+        : 'primary'
 
       return (
         <Tooltip
           title={
             <>
-              <Typography variant='caption' sx={{ color: 'common.white', fontWeight: 600 }}>
+              <Typography
+                variant="caption"
+                sx={{ color: 'common.white', fontWeight: 600 }}
+              >
                 {invoiceStatus}
               </Typography>
               <br />
-              <Typography variant='caption' sx={{ color: 'common.white', fontWeight: 600 }}>
+              <Typography
+                variant="caption"
+                sx={{ color: 'common.white', fontWeight: 600 }}
+              >
                 Balance:
               </Typography>{' '}
               {balance}
               <br />
-              <Typography variant='caption' sx={{ color: 'common.white', fontWeight: 600 }}>
+              <Typography
+                variant="caption"
+                sx={{ color: 'common.white', fontWeight: 600 }}
+              >
                 Due Date:
               </Typography>{' '}
               {dueDate}
             </>
           }
         >
-          <CustomAvatar skin='light' color={color} sx={{ width: '1.875rem', height: '1.875rem' }}>
-            <Icon icon={invoiceStatusObj[invoiceStatus].icon} fontSize='1rem' />
+          <CustomAvatar
+            skin="light"
+            color={color}
+            sx={{ width: '1.875rem', height: '1.875rem' }}
+          >
+            <Icon icon={invoiceStatusObj[invoiceStatus].icon} fontSize="1rem" />
           </CustomAvatar>
         </Tooltip>
       )
@@ -110,14 +125,18 @@ const columns = [
     minWidth: 90,
     field: 'total',
     headerName: 'Total',
-    renderCell: ({ row }: CellType) => <Typography variant='body2'>${row.total || 0}</Typography>
+    renderCell: ({ row }: CellType) => (
+      <Typography variant="body2">${row.total || 0}</Typography>
+    )
   },
   {
     flex: 0.3,
     minWidth: 125,
     field: 'issuedDate',
     headerName: 'Issued Date',
-    renderCell: ({ row }: CellType) => <Typography variant='body2'>{row.issuedDate}</Typography>
+    renderCell: ({ row }: CellType) => (
+      <Typography variant="body2">{row.issuedDate}</Typography>
+    )
   },
   {
     flex: 0.1,
@@ -127,23 +146,27 @@ const columns = [
     headerName: 'Actions',
     renderCell: ({ row }: CellType) => (
       <Box sx={{ display: 'flex', alignItems: 'center' }}>
-        <Tooltip title='Send Mail'>
-          <IconButton size='small'>
-            <Icon icon='bx:send' fontSize={20} />
+        <Tooltip title="Send Mail">
+          <IconButton size="small">
+            <Icon icon="bx:send" fontSize={20} />
           </IconButton>
         </Tooltip>
-        <Tooltip title='Preview'>
+        <Tooltip title="Preview">
           <div>
             <Link href={`/apps/invoice/preview/${row.id}`} passHref>
-              <IconButton size='small' component='a' sx={{ textDecoration: 'none' }}>
-                <Icon icon='bx:show' fontSize={20} />
+              <IconButton
+                size="small"
+                component="a"
+                sx={{ textDecoration: 'none' }}
+              >
+                <Icon icon="bx:show" fontSize={20} />
               </IconButton>
             </Link>
           </div>
         </Tooltip>
-        <Tooltip title='Download'>
-          <IconButton size='small'>
-            <Icon icon='bx:download' fontSize={20} />
+        <Tooltip title="Download">
+          <IconButton size="small">
+            <Icon icon="bx:download" fontSize={20} />
           </IconButton>
         </Tooltip>
       </Box>
@@ -169,22 +192,27 @@ const InvoiceListTable = ({ invoiceData }: Props) => {
   return (
     <Card>
       <CardHeader
-        title='Invoice List'
+        title="Invoice List"
         sx={{ '& .MuiCardHeader-action': { m: 0 } }}
         action={
           <>
             <Button
-              color='secondary'
-              variant='outlined'
-              aria-haspopup='true'
+              color="secondary"
+              variant="outlined"
+              aria-haspopup="true"
               onClick={handleClick}
               aria-expanded={open ? 'true' : undefined}
-              endIcon={<Icon icon='bx:chevron-down' />}
+              endIcon={<Icon icon="bx:chevron-down" />}
               aria-controls={open ? 'user-view-overview-export' : undefined}
             >
               Export
             </Button>
-            <Menu open={open} anchorEl={anchorEl} onClose={handleClose} id='user-view-overview-export'>
+            <Menu
+              open={open}
+              anchorEl={anchorEl}
+              onClose={handleClose}
+              id="user-view-overview-export"
+            >
               <MenuItem onClick={handleClose}>PDF</MenuItem>
               <MenuItem onClick={handleClose}>XLSX</MenuItem>
               <MenuItem onClick={handleClose}>CSV</MenuItem>
@@ -199,7 +227,7 @@ const InvoiceListTable = ({ invoiceData }: Props) => {
         pageSize={pageSize}
         disableSelectionOnClick
         rowsPerPageOptions={[7, 10, 25, 50]}
-        onPageSizeChange={newPageSize => setPageSize(newPageSize)}
+        onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
       />
     </Card>
   )

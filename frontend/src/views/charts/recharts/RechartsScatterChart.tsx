@@ -14,7 +14,14 @@ import InputAdornment from '@mui/material/InputAdornment'
 // ** Third Party Imports
 import format from 'date-fns/format'
 import DatePicker from 'react-datepicker'
-import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, ResponsiveContainer } from 'recharts'
+import {
+  ScatterChart,
+  Scatter,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  ResponsiveContainer
+} from 'recharts'
 
 // ** Icon Imports
 import Icon from 'src/@core/components/icon'
@@ -89,25 +96,26 @@ const RechartsScatterChart = ({ direction }: Props) => {
 
   const CustomInput = forwardRef((props: PickerProps, ref) => {
     const startDate = format(props.start, 'MM/dd/yyyy')
-    const endDate = props.end !== null ? ` - ${format(props.end, 'MM/dd/yyyy')}` : null
+    const endDate =
+      props.end !== null ? ` - ${format(props.end, 'MM/dd/yyyy')}` : null
 
     const value = `${startDate}${endDate !== null ? endDate : ''}`
 
     return (
       <TextField
         {...props}
-        size='small'
+        size="small"
         value={value}
         inputRef={ref}
         InputProps={{
           startAdornment: (
-            <InputAdornment position='start'>
-              <Icon icon='bx:calendar-alt' />
+            <InputAdornment position="start">
+              <Icon icon="bx:calendar-alt" />
             </InputAdornment>
           ),
           endAdornment: (
-            <InputAdornment position='end'>
-              <Icon icon='bx:chevron-down' />
+            <InputAdornment position="end">
+              <Icon icon="bx:chevron-down" />
             </InputAdornment>
           )
         }}
@@ -124,7 +132,7 @@ const RechartsScatterChart = ({ direction }: Props) => {
   return (
     <Card>
       <CardHeader
-        title='Framework Usage'
+        title="Framework Usage"
         sx={{
           flexDirection: ['column', 'row'],
           alignItems: ['flex-start', 'center'],
@@ -136,38 +144,83 @@ const RechartsScatterChart = ({ direction }: Props) => {
             selectsRange
             endDate={endDate}
             selected={startDate}
-            id='recharts-scatter'
+            id="recharts-scatter"
             startDate={startDate}
             onChange={handleOnChange}
-            placeholderText='Click to select a date'
-            customInput={<CustomInput start={startDate as Date | number} end={endDate as Date | number} />}
+            placeholderText="Click to select a date"
+            customInput={
+              <CustomInput
+                start={startDate as Date | number}
+                end={endDate as Date | number}
+              />
+            }
           />
         }
       />
       <CardContent>
         <Box sx={{ display: 'flex', mb: 4 }}>
-          <Box sx={{ mr: 6, display: 'flex', alignItems: 'center', '& svg': { mr: 1.5, color: 'primary.main' } }}>
-            <Icon icon='bxs:circle' fontSize='0.75rem' />
-            <Typography variant='body2'>React</Typography>
+          <Box
+            sx={{
+              mr: 6,
+              display: 'flex',
+              alignItems: 'center',
+              '& svg': { mr: 1.5, color: 'primary.main' }
+            }}
+          >
+            <Icon icon="bxs:circle" fontSize="0.75rem" />
+            <Typography variant="body2">React</Typography>
           </Box>
-          <Box sx={{ mr: 6, display: 'flex', alignItems: 'center', '& svg': { mr: 1.5, color: 'success.main' } }}>
-            <Icon icon='bxs:circle' fontSize='0.75rem' />
-            <Typography variant='body2'>Vue</Typography>
+          <Box
+            sx={{
+              mr: 6,
+              display: 'flex',
+              alignItems: 'center',
+              '& svg': { mr: 1.5, color: 'success.main' }
+            }}
+          >
+            <Icon icon="bxs:circle" fontSize="0.75rem" />
+            <Typography variant="body2">Vue</Typography>
           </Box>
-          <Box sx={{ display: 'flex', alignItems: 'center', '& svg': { mr: 1.5, color: 'error.main' } }}>
-            <Icon icon='bxs:circle' fontSize='0.75rem' />
-            <Typography variant='body2'>Angular</Typography>
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              '& svg': { mr: 1.5, color: 'error.main' }
+            }}
+          >
+            <Icon icon="bxs:circle" fontSize="0.75rem" />
+            <Typography variant="body2">Angular</Typography>
           </Box>
         </Box>
         <Box sx={{ height: 350 }}>
           <ResponsiveContainer>
-            <ScatterChart height={350} style={{ direction }} margin={{ left: -20 }}>
+            <ScatterChart
+              height={350}
+              style={{ direction }}
+              margin={{ left: -20 }}
+            >
               <CartesianGrid />
-              <XAxis type='number' dataKey='x' reversed={direction === 'rtl'} />
-              <YAxis type='number' dataKey='y' orientation={direction === 'rtl' ? 'right' : 'left'} />
-              <Scatter name='Angular' data={angularData} fill={theme.palette.error.main} />
-              <Scatter name='Vue' data={vueData} fill={theme.palette.success.main} />
-              <Scatter name='React' data={reactData} fill={theme.palette.primary.main} />
+              <XAxis type="number" dataKey="x" reversed={direction === 'rtl'} />
+              <YAxis
+                type="number"
+                dataKey="y"
+                orientation={direction === 'rtl' ? 'right' : 'left'}
+              />
+              <Scatter
+                name="Angular"
+                data={angularData}
+                fill={theme.palette.error.main}
+              />
+              <Scatter
+                name="Vue"
+                data={vueData}
+                fill={theme.palette.success.main}
+              />
+              <Scatter
+                name="React"
+                data={reactData}
+                fill={theme.palette.primary.main}
+              />
             </ScatterChart>
           </ResponsiveContainer>
         </Box>

@@ -14,7 +14,16 @@ import InputAdornment from '@mui/material/InputAdornment'
 // ** Third Party Imports
 import format from 'date-fns/format'
 import DatePicker from 'react-datepicker'
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, TooltipProps } from 'recharts'
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+  TooltipProps
+} from 'recharts'
 
 // ** Icon Imports
 import Icon from 'src/@core/components/icon'
@@ -109,16 +118,25 @@ const CustomTooltip = (data: TooltipProps<any, any>) => {
 
   if (active && payload) {
     return (
-      <div className='recharts-custom-tooltip'>
+      <div className="recharts-custom-tooltip">
         <Typography>{data.label}</Typography>
         <Divider />
         {data &&
           data.payload &&
           data.payload.map((i: any) => {
             return (
-              <Box sx={{ display: 'flex', alignItems: 'center', '& svg': { color: i.fill, mr: 2.5 } }} key={i.dataKey}>
-                <Icon icon='bxs:circle' fontSize='0.6rem' />
-                <Typography variant='body2'>{`${i.dataKey} : ${i.payload[i.dataKey]}`}</Typography>
+              <Box
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  '& svg': { color: i.fill, mr: 2.5 }
+                }}
+                key={i.dataKey}
+              >
+                <Icon icon="bxs:circle" fontSize="0.6rem" />
+                <Typography variant="body2">{`${i.dataKey} : ${
+                  i.payload[i.dataKey]
+                }`}</Typography>
               </Box>
             )
           })}
@@ -136,25 +154,26 @@ const RechartsBarChart = ({ direction }: Props) => {
 
   const CustomInput = forwardRef((props: PickerProps, ref) => {
     const startDate = format(props.start, 'MM/dd/yyyy')
-    const endDate = props.end !== null ? ` - ${format(props.end, 'MM/dd/yyyy')}` : null
+    const endDate =
+      props.end !== null ? ` - ${format(props.end, 'MM/dd/yyyy')}` : null
 
     const value = `${startDate}${endDate !== null ? endDate : ''}`
 
     return (
       <TextField
         {...props}
-        size='small'
+        size="small"
         value={value}
         inputRef={ref}
         InputProps={{
           startAdornment: (
-            <InputAdornment position='start'>
-              <Icon icon='bx:calendar-alt' />
+            <InputAdornment position="start">
+              <Icon icon="bx:calendar-alt" />
             </InputAdornment>
           ),
           endAdornment: (
-            <InputAdornment position='end'>
-              <Icon icon='bx:chevron-down' />
+            <InputAdornment position="end">
+              <Icon icon="bx:chevron-down" />
             </InputAdornment>
           )
         }}
@@ -171,7 +190,7 @@ const RechartsBarChart = ({ direction }: Props) => {
   return (
     <Card>
       <CardHeader
-        title='Brand Turnover'
+        title="Brand Turnover"
         sx={{
           flexDirection: ['column', 'row'],
           alignItems: ['flex-start', 'center'],
@@ -181,46 +200,89 @@ const RechartsBarChart = ({ direction }: Props) => {
         action={
           <DatePicker
             selectsRange
-            id='recharts-bar'
+            id="recharts-bar"
             endDate={endDate}
             selected={startDate}
             startDate={startDate}
             onChange={handleOnChange}
-            placeholderText='Click to select a date'
-            customInput={<CustomInput start={startDate as Date | number} end={endDate as Date | number} />}
+            placeholderText="Click to select a date"
+            customInput={
+              <CustomInput
+                start={startDate as Date | number}
+                end={endDate as Date | number}
+              />
+            }
           />
         }
       />
       <CardContent>
         <Box sx={{ mb: 4, display: 'flex', flexWrap: 'wrap' }}>
-          <Box sx={{ mr: 6, display: 'flex', alignItems: 'center', '& svg': { mr: 1.5, color: '#826af9' } }}>
-            <Icon icon='bxs:circle' fontSize='0.75rem' />
-            <Typography variant='body2'>Apple</Typography>
+          <Box
+            sx={{
+              mr: 6,
+              display: 'flex',
+              alignItems: 'center',
+              '& svg': { mr: 1.5, color: '#826af9' }
+            }}
+          >
+            <Icon icon="bxs:circle" fontSize="0.75rem" />
+            <Typography variant="body2">Apple</Typography>
           </Box>
-          <Box sx={{ mr: 6, display: 'flex', alignItems: 'center', '& svg': { mr: 1.5, color: '#9f87ff' } }}>
-            <Icon icon='bxs:circle' fontSize='0.75rem' />
-            <Typography variant='body2'>Samsung</Typography>
+          <Box
+            sx={{
+              mr: 6,
+              display: 'flex',
+              alignItems: 'center',
+              '& svg': { mr: 1.5, color: '#9f87ff' }
+            }}
+          >
+            <Icon icon="bxs:circle" fontSize="0.75rem" />
+            <Typography variant="body2">Samsung</Typography>
           </Box>
-          <Box sx={{ mr: 6, display: 'flex', alignItems: 'center', '& svg': { mr: 1.5, color: '#d2b0ff' } }}>
-            <Icon icon='bxs:circle' fontSize='0.75rem' />
-            <Typography variant='body2'>Oneplus</Typography>
+          <Box
+            sx={{
+              mr: 6,
+              display: 'flex',
+              alignItems: 'center',
+              '& svg': { mr: 1.5, color: '#d2b0ff' }
+            }}
+          >
+            <Icon icon="bxs:circle" fontSize="0.75rem" />
+            <Typography variant="body2">Oneplus</Typography>
           </Box>
-          <Box sx={{ display: 'flex', alignItems: 'center', '& svg': { mr: 1.5, color: '#f8d3ff' } }}>
-            <Icon icon='bxs:circle' fontSize='0.75rem' />
-            <Typography variant='body2'>Motorola</Typography>
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              '& svg': { mr: 1.5, color: '#f8d3ff' }
+            }}
+          >
+            <Icon icon="bxs:circle" fontSize="0.75rem" />
+            <Typography variant="body2">Motorola</Typography>
           </Box>
         </Box>
         <Box sx={{ height: 350 }}>
           <ResponsiveContainer>
-            <BarChart height={350} data={data} barSize={15} style={{ direction }} margin={{ left: -20 }}>
-              <CartesianGrid strokeDasharray='3 3' />
-              <XAxis dataKey='name' reversed={direction === 'rtl'} />
+            <BarChart
+              height={350}
+              data={data}
+              barSize={15}
+              style={{ direction }}
+              margin={{ left: -20 }}
+            >
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="name" reversed={direction === 'rtl'} />
               <YAxis orientation={direction === 'rtl' ? 'right' : 'left'} />
               <Tooltip content={CustomTooltip} />
-              <Bar dataKey='Apple' stackId='a' fill='#826af9' />
-              <Bar dataKey='Samsung' stackId='a' fill='#9f87ff' />
-              <Bar dataKey='Oneplus' stackId='a' fill='#d2b0ff' />
-              <Bar dataKey='Motorola' stackId='a' fill='#f8d3ff' radius={[15, 15, 0, 0]} />
+              <Bar dataKey="Apple" stackId="a" fill="#826af9" />
+              <Bar dataKey="Samsung" stackId="a" fill="#9f87ff" />
+              <Bar dataKey="Oneplus" stackId="a" fill="#d2b0ff" />
+              <Bar
+                dataKey="Motorola"
+                stackId="a"
+                fill="#f8d3ff"
+                radius={[15, 15, 0, 0]}
+              />
             </BarChart>
           </ResponsiveContainer>
         </Box>

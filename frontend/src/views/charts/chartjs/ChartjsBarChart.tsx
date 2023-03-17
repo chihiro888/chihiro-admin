@@ -95,25 +95,26 @@ const ChartjsBarChart = (props: BarProp) => {
 
   const CustomInput = forwardRef(({ ...props }: any, ref) => {
     const startDate = format(props.start, 'MM/dd/yyyy')
-    const endDate = props.end !== null ? ` - ${format(props.end, 'MM/dd/yyyy')}` : null
+    const endDate =
+      props.end !== null ? ` - ${format(props.end, 'MM/dd/yyyy')}` : null
 
     const value = `${startDate}${endDate !== null ? endDate : ''}`
 
     return (
       <TextField
         {...props}
-        size='small'
+        size="small"
         value={value}
         inputRef={ref}
         InputProps={{
           startAdornment: (
-            <InputAdornment position='start'>
-              <Icon icon='bx:calendar-alt' />
+            <InputAdornment position="start">
+              <Icon icon="bx:calendar-alt" />
             </InputAdornment>
           ),
           endAdornment: (
-            <InputAdornment position='end'>
-              <Icon icon='bx:chevron-down' />
+            <InputAdornment position="end">
+              <Icon icon="bx:chevron-down" />
             </InputAdornment>
           )
         }}
@@ -130,7 +131,7 @@ const ChartjsBarChart = (props: BarProp) => {
   return (
     <Card>
       <CardHeader
-        title='Latest Statistics'
+        title="Latest Statistics"
         sx={{
           flexDirection: ['column', 'row'],
           alignItems: ['flex-start', 'center'],
@@ -140,12 +141,12 @@ const ChartjsBarChart = (props: BarProp) => {
         action={
           <DatePicker
             selectsRange
-            id='chartjs-bar'
+            id="chartjs-bar"
             endDate={endDate}
             selected={startDate}
             startDate={startDate}
             onChange={handleOnChange}
-            placeholderText='Click to select a date'
+            placeholderText="Click to select a date"
             customInput={<CustomInput start={startDate} end={endDate} />}
           />
         }

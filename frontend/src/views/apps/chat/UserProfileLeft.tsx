@@ -48,9 +48,17 @@ const UserProfileLeft = (props: UserProfileLeftType) => {
 
   const ScrollWrapper = ({ children }: { children: ReactNode }) => {
     if (hidden) {
-      return <Box sx={{ height: '100%', overflowY: 'auto', overflowX: 'hidden' }}>{children}</Box>
+      return (
+        <Box sx={{ height: '100%', overflowY: 'auto', overflowX: 'hidden' }}>
+          {children}
+        </Box>
+      )
     } else {
-      return <PerfectScrollbar options={{ wheelPropagation: false }}>{children}</PerfectScrollbar>
+      return (
+        <PerfectScrollbar options={{ wheelPropagation: false }}>
+          {children}
+        </PerfectScrollbar>
+      )
     }
   }
 
@@ -62,8 +70,8 @@ const UserProfileLeft = (props: UserProfileLeftType) => {
         zIndex: 9,
         height: '100%',
         width: sidebarWidth,
-        borderTopLeftRadius: theme => theme.shape.borderRadius,
-        borderBottomLeftRadius: theme => theme.shape.borderRadius,
+        borderTopLeftRadius: (theme) => theme.shape.borderRadius,
+        borderBottomLeftRadius: (theme) => theme.shape.borderRadius,
         '& + .MuiBackdrop-root': {
           zIndex: 8,
           borderRadius: 1
@@ -73,31 +81,37 @@ const UserProfileLeft = (props: UserProfileLeftType) => {
       {store && store.userProfile ? (
         <Fragment>
           <IconButton
-            size='small'
+            size="small"
             onClick={handleUserProfileLeftSidebarToggle}
-            sx={{ top: '0.5rem', right: '0.5rem', position: 'absolute', color: 'text.secondary' }}
+            sx={{
+              top: '0.5rem',
+              right: '0.5rem',
+              position: 'absolute',
+              color: 'text.secondary'
+            }}
           >
-            <Icon icon='bx:x' />
+            <Icon icon="bx:x" />
           </IconButton>
 
           <Box sx={{ p: 5, display: 'flex', flexDirection: 'column' }}>
             <Box sx={{ mb: 5.5, display: 'flex', justifyContent: 'center' }}>
               <Badge
-                overlap='circular'
+                overlap="circular"
                 anchorOrigin={{
                   vertical: 'bottom',
                   horizontal: 'right'
                 }}
                 badgeContent={
                   <Box
-                    component='span'
+                    component="span"
                     sx={{
                       width: 10,
                       height: 10,
                       borderRadius: '50%',
                       color: `${statusObj[userStatus]}.main`,
                       backgroundColor: `${statusObj[userStatus]}.main`,
-                      boxShadow: theme => `0 0 0 2px ${theme.palette.background.paper}`
+                      boxShadow: (theme) =>
+                        `0 0 0 2px ${theme.palette.background.paper}`
                     }}
                   />
                 }
@@ -109,8 +123,13 @@ const UserProfileLeft = (props: UserProfileLeftType) => {
                 />
               </Badge>
             </Box>
-            <Typography sx={{ mb: 0.5, fontWeight: 500, textAlign: 'center' }}>{store.userProfile.fullName}</Typography>
-            <Typography variant='body2' sx={{ textAlign: 'center', textTransform: 'capitalize' }}>
+            <Typography sx={{ mb: 0.5, fontWeight: 500, textAlign: 'center' }}>
+              {store.userProfile.fullName}
+            </Typography>
+            <Typography
+              variant="body2"
+              sx={{ textAlign: 'center', textTransform: 'capitalize' }}
+            >
               {store.userProfile.role}
             </Typography>
           </Box>
@@ -118,77 +137,100 @@ const UserProfileLeft = (props: UserProfileLeftType) => {
           <Box sx={{ height: 'calc(100% - 11.8125rem)' }}>
             <ScrollWrapper>
               <Box sx={{ p: 5 }}>
-                <Typography variant='body2' sx={{ mb: 4, textTransform: 'uppercase' }}>
+                <Typography
+                  variant="body2"
+                  sx={{ mb: 4, textTransform: 'uppercase' }}
+                >
                   About
                 </Typography>
-                <TextField minRows={3} multiline fullWidth sx={{ mb: 4 }} defaultValue={store.userProfile.about} />
-                <Typography variant='body2' sx={{ mb: 4, textTransform: 'uppercase' }}>
+                <TextField
+                  minRows={3}
+                  multiline
+                  fullWidth
+                  sx={{ mb: 4 }}
+                  defaultValue={store.userProfile.about}
+                />
+                <Typography
+                  variant="body2"
+                  sx={{ mb: 4, textTransform: 'uppercase' }}
+                >
                   Status
                 </Typography>
-                <RadioGroup value={userStatus} sx={{ mb: 4, ml: 0.8 }} onChange={handleUserStatus}>
+                <RadioGroup
+                  value={userStatus}
+                  sx={{ mb: 4, ml: 0.8 }}
+                  onChange={handleUserStatus}
+                >
                   <div>
                     <FormControlLabel
-                      value='online'
-                      label='Online'
-                      control={<Radio color='success' sx={{ p: 1.5 }} />}
-                    />
-                  </div>
-                  <div>
-                    <FormControlLabel value='away' label='Away' control={<Radio color='warning' sx={{ p: 1.5 }} />} />
-                  </div>
-                  <div>
-                    <FormControlLabel
-                      value='busy'
-                      label='Do not Disturb'
-                      control={<Radio color='error' sx={{ p: 1.5 }} />}
+                      value="online"
+                      label="Online"
+                      control={<Radio color="success" sx={{ p: 1.5 }} />}
                     />
                   </div>
                   <div>
                     <FormControlLabel
-                      value='offline'
-                      label='Offline'
-                      control={<Radio color='secondary' sx={{ p: 1.5 }} />}
+                      value="away"
+                      label="Away"
+                      control={<Radio color="warning" sx={{ p: 1.5 }} />}
+                    />
+                  </div>
+                  <div>
+                    <FormControlLabel
+                      value="busy"
+                      label="Do not Disturb"
+                      control={<Radio color="error" sx={{ p: 1.5 }} />}
+                    />
+                  </div>
+                  <div>
+                    <FormControlLabel
+                      value="offline"
+                      label="Offline"
+                      control={<Radio color="secondary" sx={{ p: 1.5 }} />}
                     />
                   </div>
                 </RadioGroup>
-                <Typography variant='body2' sx={{ mb: 4, textTransform: 'uppercase' }}>
+                <Typography
+                  variant="body2"
+                  sx={{ mb: 4, textTransform: 'uppercase' }}
+                >
                   Settings
                 </Typography>
                 <List dense sx={{ p: 0, mb: 4 }}>
                   <ListItem disablePadding>
                     <ListItemButton sx={{ px: 2 }}>
                       <ListItemIcon sx={{ mr: 2, color: 'text.primary' }}>
-                        <Icon icon='bx:check-circle' />
+                        <Icon icon="bx:check-circle" />
                       </ListItemIcon>
-                      <ListItemText primary='Two-step Verification' />
+                      <ListItemText primary="Two-step Verification" />
                     </ListItemButton>
                   </ListItem>
                   <ListItem disablePadding>
                     <ListItemButton sx={{ px: 2 }}>
                       <ListItemIcon sx={{ mr: 2, color: 'text.primary' }}>
-                        <Icon icon='bx:bell' />
+                        <Icon icon="bx:bell" />
                       </ListItemIcon>
-                      <ListItemText primary='Notification' />
+                      <ListItemText primary="Notification" />
                     </ListItemButton>
                   </ListItem>
                   <ListItem disablePadding>
                     <ListItemButton sx={{ px: 2 }}>
                       <ListItemIcon sx={{ mr: 2, color: 'text.primary' }}>
-                        <Icon icon='bx:user' />
+                        <Icon icon="bx:user" />
                       </ListItemIcon>
-                      <ListItemText primary='Invite Friends' />
+                      <ListItemText primary="Invite Friends" />
                     </ListItemButton>
                   </ListItem>
                   <ListItem disablePadding>
                     <ListItemButton sx={{ px: 2 }}>
                       <ListItemIcon sx={{ mr: 2, color: 'text.primary' }}>
-                        <Icon icon='bx:trash-alt' />
+                        <Icon icon="bx:trash-alt" />
                       </ListItemIcon>
-                      <ListItemText primary='Delete Account' />
+                      <ListItemText primary="Delete Account" />
                     </ListItemButton>
                   </ListItem>
                 </List>
-                <Button variant='contained'>Logout</Button>
+                <Button variant="contained">Logout</Button>
               </Box>
             </ScrollWrapper>
           </Box>

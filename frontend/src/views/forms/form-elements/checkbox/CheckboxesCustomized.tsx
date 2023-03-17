@@ -16,7 +16,10 @@ const BpIcon = styled('span')(({ theme }) => ({
   },
   'input:disabled ~ &': {
     boxShadow: 'none',
-    background: theme.palette.mode === 'dark' ? 'rgba(57,75,89,.5)' : 'rgba(206,217,224,.5)'
+    background:
+      theme.palette.mode === 'dark'
+        ? 'rgba(57,75,89,.5)'
+        : 'rgba(206,217,224,.5)'
   },
   boxShadow:
     theme.palette.mode === 'dark'
@@ -30,7 +33,8 @@ const BpIcon = styled('span')(({ theme }) => ({
 
 const BpCheckedIcon = styled(BpIcon)({
   backgroundColor: '#137cbd',
-  backgroundImage: 'linear-gradient(180deg,hsla(0,0%,100%,.1),hsla(0,0%,100%,0))',
+  backgroundImage:
+    'linear-gradient(180deg,hsla(0,0%,100%,.1),hsla(0,0%,100%,0))',
   'input:hover ~ &': {
     backgroundColor: '#106ba3'
   },
@@ -52,7 +56,7 @@ const BpCheckbox = (props: CheckboxProps) => {
     <Checkbox
       {...props}
       disableRipple
-      color='default'
+      color="default"
       icon={<BpIcon />}
       checkedIcon={<BpCheckedIcon />}
       inputProps={{ 'aria-label': 'Checkbox demo' }}

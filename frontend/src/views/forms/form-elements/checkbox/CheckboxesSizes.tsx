@@ -7,11 +7,14 @@ const CheckboxesSizes = () => {
   return (
     <FormGroup row>
       <FormControlLabel
-        label='Small'
+        label="Small"
         sx={{ '& svg': { height: 20, width: 20 } }}
-        control={<Checkbox defaultChecked name='size-small' />}
+        control={<Checkbox defaultChecked name="size-small" />}
       />
-      <FormControlLabel label='Default' control={<Checkbox defaultChecked name='size-default' />} />
+      <FormControlLabel
+        label="Default"
+        control={<Checkbox defaultChecked name="size-default" />}
+      />
     </FormGroup>
   )
 }

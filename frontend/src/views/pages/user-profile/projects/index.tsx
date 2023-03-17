@@ -37,7 +37,11 @@ const ProjectAvatar = ({ project }: { project: ProjectsTabType }) => {
     return <CustomAvatar src={avatar} sx={{ width: 38, height: 38 }} />
   } else {
     return (
-      <CustomAvatar skin='light' color={avatarColor} sx={{ width: 38, height: 38 }}>
+      <CustomAvatar
+        skin="light"
+        color={avatarColor}
+        sx={{ width: 38, height: 38 }}
+      >
         {getInitials(title)}
       </CustomAvatar>
     )
@@ -55,7 +59,11 @@ const Projects = ({ data }: { data: ProjectsTabType[] }) => {
               <Card>
                 <CardHeader
                   avatar={<ProjectAvatar project={item} />}
-                  sx={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'flex-start',
+                    justifyContent: 'space-between'
+                  }}
                   subheader={
                     <Typography sx={{ color: 'text.secondary' }}>
                       <strong>Client:</strong> {item.client}
@@ -69,15 +77,18 @@ const Projects = ({ data }: { data: ProjectsTabType[] }) => {
                         'View Details',
                         'Add to Favorites',
                         { divider: true },
-                        { text: 'Leave Project', menuItemProps: { sx: { color: 'error.main' } } }
+                        {
+                          text: 'Leave Project',
+                          menuItemProps: { sx: { color: 'error.main' } }
+                        }
                       ]}
                     />
                   }
                   title={
-                    <Link href='/' passHref>
+                    <Link href="/" passHref>
                       <Typography
-                        variant='h6'
-                        component='a'
+                        variant="h6"
+                        component="a"
                         onClick={(e: SyntheticEvent) => e.preventDefault()}
                         sx={{
                           color: 'text.primary',
@@ -103,57 +114,101 @@ const Projects = ({ data }: { data: ProjectsTabType[] }) => {
                   >
                     <CustomChip
                       rounded
-                      size='small'
-                      skin='light'
+                      size="small"
+                      skin="light"
                       sx={{ height: 60 }}
                       label={
                         <>
                           <Box sx={{ display: 'flex' }}>
-                            <Typography sx={{ fontWeight: 500 }}>{item.budgetSpent}</Typography>
-                            <Typography sx={{ color: 'text.secondary' }}>{`/${item.budget}`}</Typography>
+                            <Typography sx={{ fontWeight: 500 }}>
+                              {item.budgetSpent}
+                            </Typography>
+                            <Typography
+                              sx={{ color: 'text.secondary' }}
+                            >{`/${item.budget}`}</Typography>
                           </Box>
-                          <Typography sx={{ color: 'text.secondary' }}>Total Budget</Typography>
+                          <Typography sx={{ color: 'text.secondary' }}>
+                            Total Budget
+                          </Typography>
                         </>
                       }
                     />
-                    <Box sx={{ display: 'flex', alignItems: 'flex-end', flexDirection: 'column' }}>
+                    <Box
+                      sx={{
+                        display: 'flex',
+                        alignItems: 'flex-end',
+                        flexDirection: 'column'
+                      }}
+                    >
                       <Box sx={{ display: 'flex' }}>
-                        <Typography sx={{ mr: 1, fontWeight: 500 }}>Start Date:</Typography>
-                        <Typography sx={{ color: 'text.secondary' }}>{item.startDate}</Typography>
+                        <Typography sx={{ mr: 1, fontWeight: 500 }}>
+                          Start Date:
+                        </Typography>
+                        <Typography sx={{ color: 'text.secondary' }}>
+                          {item.startDate}
+                        </Typography>
                       </Box>
                       <Box sx={{ display: 'flex' }}>
-                        <Typography sx={{ mr: 1, fontWeight: 500 }}>Deadline:</Typography>
-                        <Typography sx={{ color: 'text.secondary' }}>{item.deadline}</Typography>
+                        <Typography sx={{ mr: 1, fontWeight: 500 }}>
+                          Deadline:
+                        </Typography>
+                        <Typography sx={{ color: 'text.secondary' }}>
+                          {item.deadline}
+                        </Typography>
                       </Box>
                     </Box>
                   </Box>
-                  <Typography sx={{ color: 'text.secondary' }}>{item.description}</Typography>
+                  <Typography sx={{ color: 'text.secondary' }}>
+                    {item.description}
+                  </Typography>
                 </CardContent>
                 <Divider sx={{ my: '0 !important' }} />
                 <CardContent>
-                  <Box sx={{ mb: 4, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                  <Box
+                    sx={{
+                      mb: 4,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between'
+                    }}
+                  >
                     <Box sx={{ display: 'flex' }}>
-                      <Typography sx={{ mr: 1, fontWeight: 500 }}>All Hours:</Typography>
-                      <Typography sx={{ color: 'text.secondary' }}>{item.hours}</Typography>
+                      <Typography sx={{ mr: 1, fontWeight: 500 }}>
+                        All Hours:
+                      </Typography>
+                      <Typography sx={{ color: 'text.secondary' }}>
+                        {item.hours}
+                      </Typography>
                     </Box>
                     <CustomChip
                       rounded
-                      size='small'
-                      skin='light'
+                      size="small"
+                      skin="light"
                       color={item.chipColor}
                       label={`${item.daysLeft} days left`}
                     />
                   </Box>
-                  <Box sx={{ mb: 1, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                    <Typography variant='body2'>{`Tasks: ${item.completedTask}/${item.totalTask}`}</Typography>
-                    <Typography variant='body2'>
-                      {`${Math.round((item.completedTask / item.totalTask) * 100)}% Completed`}
+                  <Box
+                    sx={{
+                      mb: 1,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between'
+                    }}
+                  >
+                    <Typography variant="body2">{`Tasks: ${item.completedTask}/${item.totalTask}`}</Typography>
+                    <Typography variant="body2">
+                      {`${Math.round(
+                        (item.completedTask / item.totalTask) * 100
+                      )}% Completed`}
                     </Typography>
                   </Box>
                   <LinearProgress
-                    color='primary'
-                    variant='determinate'
-                    value={Math.round((item.completedTask / item.totalTask) * 100)}
+                    color="primary"
+                    variant="determinate"
+                    value={Math.round(
+                      (item.completedTask / item.totalTask) * 100
+                    )}
                     sx={{
                       mb: 4,
                       height: 8,
@@ -161,25 +216,38 @@ const Projects = ({ data }: { data: ProjectsTabType[] }) => {
                       '& .MuiLinearProgress-bar': { borderRadius: 2 }
                     }}
                   />
-                  <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between'
+                    }}
+                  >
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                      <AvatarGroup className='pull-up' sx={{ mr: 2 }}>
+                      <AvatarGroup className="pull-up" sx={{ mr: 2 }}>
                         {item.avatarGroup &&
                           item.avatarGroup.map((person, index) => {
                             return (
                               <Tooltip key={index} title={person.name}>
-                                <CustomAvatar src={person.avatar} alt={person.name} sx={{ height: 32, width: 32 }} />
+                                <CustomAvatar
+                                  src={person.avatar}
+                                  alt={person.name}
+                                  sx={{ height: 32, width: 32 }}
+                                />
                               </Tooltip>
                             )
                           })}
                       </AvatarGroup>
-                      <Typography variant='body2' sx={{ color: 'text.disabled' }}>
+                      <Typography
+                        variant="body2"
+                        sx={{ color: 'text.disabled' }}
+                      >
                         {item.members}
                       </Typography>
                     </Box>
-                    <Link href='/' passHref>
+                    <Link href="/" passHref>
                       <Box
-                        component='a'
+                        component="a"
                         onClick={(e: SyntheticEvent) => e.preventDefault()}
                         sx={{
                           display: 'flex',
@@ -188,8 +256,10 @@ const Projects = ({ data }: { data: ProjectsTabType[] }) => {
                           '& svg': { mr: 1, color: 'text.secondary' }
                         }}
                       >
-                        <Icon icon='bx:chat' />
-                        <Typography sx={{ color: 'text.secondary' }}>{item.comments}</Typography>
+                        <Icon icon="bx:chat" />
+                        <Typography sx={{ color: 'text.secondary' }}>
+                          {item.comments}
+                        </Typography>
                       </Box>
                     </Link>
                   </Box>

@@ -93,8 +93,8 @@ const CardSalesByCountries = () => {
   return (
     <Card>
       <CardHeader
-        title='Sales by Countries'
-        subheader='Monthly Sales Overview'
+        title="Sales by Countries"
+        subheader="Monthly Sales Overview"
         subheaderTypographyProps={{ sx: { color: 'text.disabled' } }}
         action={
           <OptionsMenu
@@ -114,7 +114,11 @@ const CardSalesByCountries = () => {
                 mb: index !== data.length - 1 ? 5 : undefined
               }}
             >
-              <Avatar alt={item.avatarAlt} src={item.avatarSrc} sx={{ mr: 4, width: 38, height: 38 }}>
+              <Avatar
+                alt={item.avatarAlt}
+                src={item.avatarSrc}
+                sx={{ mr: 4, width: 38, height: 38 }}
+              >
                 {item.avatarAlt}
               </Avatar>
 
@@ -129,24 +133,44 @@ const CardSalesByCountries = () => {
               >
                 <Box sx={{ mr: 2, display: 'flex', flexDirection: 'column' }}>
                   <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                    <Typography sx={{ mr: 1, fontWeight: 500 }}>{item.title}</Typography>
+                    <Typography sx={{ mr: 1, fontWeight: 500 }}>
+                      {item.title}
+                    </Typography>
                     <Box
                       sx={{
                         display: 'flex',
                         alignItems: 'center',
-                        '& svg': { mr: 0.5, color: item.trendDir === 'down' ? 'error.main' : 'success.main' }
+                        '& svg': {
+                          mr: 0.5,
+                          color:
+                            item.trendDir === 'down'
+                              ? 'error.main'
+                              : 'success.main'
+                        }
                       }}
                     >
-                      <Icon icon={item.trendDir === 'down' ? 'bx:chevron-down' : 'bx:chevron-up'} />
+                      <Icon
+                        icon={
+                          item.trendDir === 'down'
+                            ? 'bx:chevron-down'
+                            : 'bx:chevron-up'
+                        }
+                      />
                       <Typography
-                        variant='body2'
-                        sx={{ fontWeight: 500, color: item.trendDir === 'down' ? 'error.main' : 'success.main' }}
+                        variant="body2"
+                        sx={{
+                          fontWeight: 500,
+                          color:
+                            item.trendDir === 'down'
+                              ? 'error.main'
+                              : 'success.main'
+                        }}
                       >
                         {item.trendNumber}
                       </Typography>
                     </Box>
                   </Box>
-                  <Typography variant='body2' sx={{ color: 'text.disabled' }}>
+                  <Typography variant="body2" sx={{ color: 'text.disabled' }}>
                     {item.subtitle}
                   </Typography>
                 </Box>

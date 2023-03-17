@@ -1,6 +1,6 @@
 export const MenuBasicJSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { useState } from 'react'
 
 // ** MUI Imports
@@ -40,8 +40,8 @@ export default MenuBasic
 )
 
 export const MenuCompositionJSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { useEffect, useRef, useState } from 'react'
 
 // ** MUI Imports
@@ -164,8 +164,8 @@ export default MenuComposition
 )
 
 export const MenuContextJSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { useState } from 'react'
 
 // ** MUI Imports
@@ -228,8 +228,8 @@ export default MenuContext
 )
 
 export const MenuCustomizedJSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { useState } from 'react'
 
 // ** MUI Imports
@@ -325,8 +325,8 @@ export default MenuCustomized
 )
 
 export const MenuMaxHeightJSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { useState } from 'react'
 
 // ** MUI Imports
@@ -400,8 +400,8 @@ export default MenuMaxHeight
 )
 
 export const MenuSelectedJSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { useState } from 'react'
 
 // ** MUI Imports
@@ -476,8 +476,8 @@ export default MenuSelected
 )
 
 export const MenuTransitionJSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { useState } from 'react'
 
 // ** MUI Imports
@@ -525,8 +525,8 @@ export default MenuTransition
 )
 
 export const MenuBasicTSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { MouseEvent, useState } from 'react'
 
 // ** MUI Imports
@@ -566,8 +566,8 @@ export default MenuBasic
 )
 
 export const MenuCompositionTSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { KeyboardEvent, useEffect, useRef, useState, MouseEvent, TouchEvent } from 'react'
 
 // ** MUI Imports
@@ -692,8 +692,8 @@ export default MenuComposition
 )
 
 export const MenuCustomizedTSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { MouseEvent, useState } from 'react'
 
 // ** MUI Imports
@@ -789,8 +789,8 @@ export default MenuCustomized
 )
 
 export const MenuContextTSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { MouseEvent, useState } from 'react'
 
 // ** MUI Imports
@@ -858,8 +858,8 @@ export default MenuContext
 )
 
 export const MenuSelectedTSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { MouseEvent, useState } from 'react'
 
 // ** MUI Imports
@@ -934,8 +934,8 @@ export default MenuSelected
 )
 
 export const MenuMaxHeightTSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { MouseEvent, useState } from 'react'
 
 // ** MUI Imports
@@ -1010,8 +1010,8 @@ export default MenuMaxHeight
 )
 
 export const MenuTransitionTSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { MouseEvent, useState } from 'react'
 
 // ** MUI Imports

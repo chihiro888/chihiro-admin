@@ -15,7 +15,10 @@ import Icon from 'src/@core/components/icon'
 
 // ** Types
 import { ThemeColor } from 'src/@core/layouts/types'
-import { SidebarLeftType, CalendarFiltersType } from 'src/types/apps/calendarTypes'
+import {
+  SidebarLeftType,
+  CalendarFiltersType
+} from 'src/types/apps/calendarTypes'
 
 const SidebarLeft = (props: SidebarLeftType) => {
   const {
@@ -41,13 +44,20 @@ const SidebarLeft = (props: SidebarLeftType) => {
           <FormControlLabel
             key={key}
             label={key}
-            sx={{ mb: -2, '& .MuiFormControlLabel-label': { color: 'text.secondary' } }}
+            sx={{
+              mb: -2,
+              '& .MuiFormControlLabel-label': { color: 'text.secondary' }
+            }}
             control={
               <Checkbox
-                size='small'
+                size="small"
                 color={value as ThemeColor}
-                checked={store.selectedCalendars.includes(key as CalendarFiltersType)}
-                onChange={() => dispatch(handleCalendarsUpdate(key as CalendarFiltersType))}
+                checked={store.selectedCalendars.includes(
+                  key as CalendarFiltersType
+                )}
+                onChange={() =>
+                  dispatch(handleCalendarsUpdate(key as CalendarFiltersType))
+                }
               />
             }
           />
@@ -91,39 +101,65 @@ const SidebarLeft = (props: SidebarLeftType) => {
           }
         }}
       >
-        <Box sx={{ p: theme => theme.spacing(5.625, 6) }}>
+        <Box sx={{ p: (theme) => theme.spacing(5.625, 6) }}>
           <Button
             fullWidth
-            variant='contained'
+            variant="contained"
             onClick={handleSidebarToggleSidebar}
-            startIcon={<Icon icon='bx:plus' />}
+            startIcon={<Icon icon="bx:plus" />}
             sx={{ '& svg': { fontSize: '1.125rem !important' } }}
           >
             Add Event
           </Button>
         </Box>
         <Divider sx={{ mt: '0 !important' }} />
-        <Box sx={{ px: 4, '& .react-datepicker': { boxShadow: 'none !important', border: 'none !important' } }}>
+        <Box
+          sx={{
+            px: 4,
+            '& .react-datepicker': {
+              boxShadow: 'none !important',
+              border: 'none !important'
+            }
+          }}
+        >
           <DatePicker
             inline
-            onChange={date => {
+            onChange={(date) => {
               calendarApi.gotoDate(date)
             }}
           />
         </Box>
         <Divider sx={{ m: '0 !important' }} />
-        <Box sx={{ px: 6, display: 'flex', alignItems: 'flex-start', flexDirection: 'column' }}>
-          <Typography variant='body2' sx={{ mt: 7, mb: 4, color: 'text.primary', textTransform: 'uppercase' }}>
+        <Box
+          sx={{
+            px: 6,
+            display: 'flex',
+            alignItems: 'flex-start',
+            flexDirection: 'column'
+          }}
+        >
+          <Typography
+            variant="body2"
+            sx={{
+              mt: 7,
+              mb: 4,
+              color: 'text.primary',
+              textTransform: 'uppercase'
+            }}
+          >
             Filter
           </Typography>
           <FormControlLabel
-            label='View All'
-            sx={{ mb: -2, '& .MuiFormControlLabel-label': { color: 'text.secondary' } }}
+            label="View All"
+            sx={{
+              mb: -2,
+              '& .MuiFormControlLabel-label': { color: 'text.secondary' }
+            }}
             control={
               <Checkbox
-                size='small'
+                size="small"
                 checked={store.selectedCalendars.length === colorsArr.length}
-                onChange={e => dispatch(handleAllCalendars(e.target.checked))}
+                onChange={(e) => dispatch(handleAllCalendars(e.target.checked))}
               />
             }
           />

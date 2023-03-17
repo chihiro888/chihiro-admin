@@ -5,7 +5,10 @@ import { ChangeEvent, useState } from 'react'
 import Grid from '@mui/material/Grid'
 
 // ** Type Import
-import { CustomRadioIconsData, CustomRadioIconsProps } from 'src/@core/components/custom-radio/types'
+import {
+  CustomRadioIconsData,
+  CustomRadioIconsProps
+} from 'src/@core/components/custom-radio/types'
 
 // ** Demo Components Imports
 import CustomRadioIcons from 'src/@core/components/custom-radio/icons'
@@ -35,14 +38,24 @@ const data: CustomRadioIconsData[] = [
 ]
 
 const icons: IconType[] = [
-  { icon: 'bx:rocket', iconProps: { fontSize: '2rem', style: { marginBottom: 8 } } },
-  { icon: 'bx:user', iconProps: { fontSize: '2rem', style: { marginBottom: 8 } } },
-  { icon: 'bx:crown', iconProps: { fontSize: '2rem', style: { marginBottom: 8 } } }
+  {
+    icon: 'bx:rocket',
+    iconProps: { fontSize: '2rem', style: { marginBottom: 8 } }
+  },
+  {
+    icon: 'bx:user',
+    iconProps: { fontSize: '2rem', style: { marginBottom: 8 } }
+  },
+  {
+    icon: 'bx:crown',
+    iconProps: { fontSize: '2rem', style: { marginBottom: 8 } }
+  }
 ]
 
 const CustomRadioWithIcons = () => {
-  const initialSelected: string = data.filter(item => item.isSelected)[data.filter(item => item.isSelected).length - 1]
-    .value
+  const initialSelected: string = data.filter((item) => item.isSelected)[
+    data.filter((item) => item.isSelected).length - 1
+  ].value
 
   // ** State
   const [selected, setSelected] = useState<string>(initialSelected)
@@ -63,7 +76,7 @@ const CustomRadioWithIcons = () => {
           data={data[index]}
           selected={selected}
           icon={icons[index].icon}
-          name='custom-radios-icons'
+          name="custom-radios-icons"
           handleChange={handleChange}
           gridProps={{ sm: 4, xs: 12 }}
           iconProps={icons[index].iconProps}

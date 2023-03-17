@@ -12,7 +12,7 @@ const ServerSideNavItems = () => {
   const [menuItems, setMenuItems] = useState<HorizontalNavItemsType>([])
 
   useEffect(() => {
-    axios.get('/api/horizontal-nav/data').then(response => {
+    axios.get('/api/horizontal-nav/data').then((response) => {
       const menuArray = response.data
 
       setMenuItems(menuArray)

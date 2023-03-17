@@ -89,78 +89,124 @@ const UserViewRight = ({ tab, invoiceData }: Props) => {
   return activeTab ? (
     <TabContext value={activeTab}>
       <TabList
-        variant='scrollable'
-        scrollButtons='auto'
+        variant="scrollable"
+        scrollButtons="auto"
         onChange={handleChange}
-        aria-label='forced scroll tabs example'
+        aria-label="forced scroll tabs example"
       >
         <Tab
-          value='account'
+          value="account"
           label={
-            <Box sx={{ display: 'flex', alignItems: 'center', ...(!hideText && { '& svg': { mr: 2 } }) }}>
-              <Icon icon='bx:user' />
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                ...(!hideText && { '& svg': { mr: 2 } })
+              }}
+            >
+              <Icon icon="bx:user" />
               {!hideText && 'Account'}
             </Box>
           }
         />
         <Tab
-          value='security'
+          value="security"
           label={
-            <Box sx={{ display: 'flex', alignItems: 'center', ...(!hideText && { '& svg': { mr: 2 } }) }}>
-              <Icon icon='bx:lock-alt' />
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                ...(!hideText && { '& svg': { mr: 2 } })
+              }}
+            >
+              <Icon icon="bx:lock-alt" />
               {!hideText && 'Security'}
             </Box>
           }
         />
         <Tab
-          value='billing-plan'
+          value="billing-plan"
           label={
-            <Box sx={{ display: 'flex', alignItems: 'center', ...(!hideText && { '& svg': { mr: 2 } }) }}>
-              <Icon icon='bx:detail' />
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                ...(!hideText && { '& svg': { mr: 2 } })
+              }}
+            >
+              <Icon icon="bx:detail" />
               {!hideText && 'Billing & Plans'}
             </Box>
           }
         />
         <Tab
-          value='notification'
+          value="notification"
           label={
-            <Box sx={{ display: 'flex', alignItems: 'center', ...(!hideText && { '& svg': { mr: 2 } }) }}>
-              <Icon icon='bx:bell' />
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                ...(!hideText && { '& svg': { mr: 2 } })
+              }}
+            >
+              <Icon icon="bx:bell" />
               {!hideText && 'Notifications'}
             </Box>
           }
         />
         <Tab
-          value='connection'
+          value="connection"
           label={
-            <Box sx={{ display: 'flex', alignItems: 'center', ...(!hideText && { '& svg': { mr: 2 } }) }}>
-              <Icon icon='bx:link-alt' />
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                ...(!hideText && { '& svg': { mr: 2 } })
+              }}
+            >
+              <Icon icon="bx:link-alt" />
               {!hideText && 'Connections'}
             </Box>
           }
         />
       </TabList>
-      <Box sx={{ '& .MuiTabPanel-root': { p: 0, border: 0, boxShadow: 0, backgroundColor: 'transparent' } }}>
+      <Box
+        sx={{
+          '& .MuiTabPanel-root': {
+            p: 0,
+            border: 0,
+            boxShadow: 0,
+            backgroundColor: 'transparent'
+          }
+        }}
+      >
         {isLoading ? (
-          <Box sx={{ mt: 6, display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
+          <Box
+            sx={{
+              mt: 6,
+              display: 'flex',
+              alignItems: 'center',
+              flexDirection: 'column'
+            }}
+          >
             <CircularProgress sx={{ mb: 4 }} />
             <Typography>Loading...</Typography>
           </Box>
         ) : (
           <>
-            <TabPanel value='account'>
+            <TabPanel value="account">
               <UserViewAccount invoiceData={invoiceData} />
             </TabPanel>
-            <TabPanel value='security'>
+            <TabPanel value="security">
               <UserViewSecurity />
             </TabPanel>
-            <TabPanel value='billing-plan'>
+            <TabPanel value="billing-plan">
               <UserViewBilling />
             </TabPanel>
-            <TabPanel value='notification'>
+            <TabPanel value="notification">
               <UserViewNotification />
             </TabPanel>
-            <TabPanel value='connection'>
+            <TabPanel value="connection">
               <UserViewConnection />
             </TabPanel>
           </>
@@ -168,7 +214,9 @@ const UserViewRight = ({ tab, invoiceData }: Props) => {
       </Box>
     </TabContext>
   ) : (
-    <Box sx={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
+    <Box
+      sx={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}
+    >
       <CircularProgress sx={{ mb: 4 }} />
       <Typography>Loading...</Typography>
     </Box>

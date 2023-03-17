@@ -5,14 +5,14 @@ import Typography from '@mui/material/Typography'
 
 const BadgesDot = () => {
   return (
-    <div className='demo-space-x'>
-      <Badge variant='dot' color='primary'>
-        <Avatar src='/images/avatars/16.png' alt='User Avatar' />
+    <div className="demo-space-x">
+      <Badge variant="dot" color="primary">
+        <Avatar src="/images/avatars/16.png" alt="User Avatar" />
       </Badge>
-      <Badge variant='dot' color='secondary'>
-        <Avatar src='/images/avatars/16.png' alt='User Avatar' />
+      <Badge variant="dot" color="secondary">
+        <Avatar src="/images/avatars/16.png" alt="User Avatar" />
       </Badge>
-      <Badge variant='dot' color='error'>
+      <Badge variant="dot" color="error">
         <Typography>Typography</Typography>
       </Badge>
     </div>

@@ -1,6 +1,6 @@
 export const DialogAlertJSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { Fragment, useState } from 'react'
 
 // ** MUI Imports
@@ -54,8 +54,8 @@ export default DialogAlert
 )
 
 export const DialogConfirmationJSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { Fragment, useState } from 'react'
 
 // ** MUI Imports
@@ -114,8 +114,8 @@ export default DialogConfirmation
 )
 
 export const DialogFormJSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { Fragment, useState } from 'react'
 
 // ** MUI Imports
@@ -165,8 +165,8 @@ export default DialogForm
 )
 
 export const DialogCustomizedJSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { useState } from 'react'
 
 // ** MUI Imports
@@ -256,8 +256,8 @@ export default DialogCustomized
 )
 
 export const DialogSizesJSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { Fragment, useState } from 'react'
 
 // ** MUI Imports
@@ -359,8 +359,8 @@ export default DialogSizes
 )
 
 export const DialogFullScreenJSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { useState } from 'react'
 
 // ** MUI Imports
@@ -430,8 +430,8 @@ export default DialogFullScreen
 )
 
 export const DialogSimpleJSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { useState } from 'react'
 
 // ** MUI Imports
@@ -511,8 +511,8 @@ export default DialogSimple
 )
 
 export const DialogRespoFullScreenJSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { Fragment, useState } from 'react'
 
 // ** MUI Imports
@@ -567,8 +567,8 @@ export default DialogRespoFullScreen
 )
 
 export const DialogsScrollJSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { useEffect, useRef, useState } from 'react'
 
 // ** MUI Imports
@@ -645,8 +645,8 @@ export default DialogsScroll
 )
 
 export const DialogTransitionJSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { forwardRef, Fragment, useState } from 'react'
 
 // ** MUI Imports
@@ -707,8 +707,8 @@ export default DialogTransition
 )
 
 export const DialogAlertTSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { Fragment, useState } from 'react'
 
 // ** MUI Imports
@@ -764,8 +764,8 @@ export default DialogAlert
 )
 
 export const DialogConfirmationTSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { Fragment, useState } from 'react'
 
 // ** MUI Imports
@@ -826,8 +826,8 @@ export default DialogConfirmation
 )
 
 export const DialogCustomizedTSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { useState } from 'react'
 
 // ** MUI Imports
@@ -919,8 +919,8 @@ export default DialogCustomized
 )
 
 export const DialogFormTSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { Fragment, useState } from 'react'
 
 // ** MUI Imports
@@ -972,8 +972,8 @@ export default DialogForm
 )
 
 export const DialogFullScreenTSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { useState } from 'react'
 
 // ** MUI Imports
@@ -1045,8 +1045,8 @@ export default DialogFullScreen
 )
 
 export const DialogSizesTSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { Fragment, useState, ChangeEvent } from 'react'
 
 // ** MUI Imports
@@ -1150,8 +1150,8 @@ export default DialogSizes
 )
 
 export const DialogRespoFullScreenTSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { Fragment, useState } from 'react'
 
 // ** MUI Imports
@@ -1208,8 +1208,8 @@ export default DialogRespoFullScreen
 )
 
 export const DialogSimpleTSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { useState } from 'react'
 
 // ** MUI Imports
@@ -1291,8 +1291,8 @@ export default DialogSimple
 )
 
 export const DialogsScrollTSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { useEffect, useRef, useState } from 'react'
 
 // ** MUI Imports
@@ -1372,8 +1372,8 @@ export default DialogsScroll
 )
 
 export const DialogTransitionTSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
+  <pre className="language-jsx">
+    <code className="language-jsx">{`// ** React Imports
 import { forwardRef, Fragment, ReactElement, Ref, useState } from 'react'
 
 // ** MUI Imports

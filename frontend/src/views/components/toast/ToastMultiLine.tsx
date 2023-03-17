@@ -18,12 +18,20 @@ const ToastMultiLine = () => {
 
   return (
     <Box
-      sx={{ display: 'flex', textAlign: 'center', alignItems: 'center', flexDirection: 'column', '& svg': { mb: 2 } }}
+      sx={{
+        display: 'flex',
+        textAlign: 'center',
+        alignItems: 'center',
+        flexDirection: 'column',
+        '& svg': { mb: 2 }
+      }}
     >
-      <Icon icon='bx:detail' fontSize='2rem' />
+      <Icon icon="bx:detail" fontSize="2rem" />
       <Typography sx={{ mb: 4, fontWeight: 600 }}>Multi Line</Typography>
-      <Typography sx={{ mb: 3 }}>The most basic variant with longer texts</Typography>
-      <Button sx={{ mb: 8 }} variant='contained' onClick={handleClick}>
+      <Typography sx={{ mb: 3 }}>
+        The most basic variant with longer texts
+      </Typography>
+      <Button sx={{ mb: 8 }} variant="contained" onClick={handleClick}>
         Multi Line
       </Button>
     </Box>

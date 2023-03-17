@@ -40,23 +40,31 @@ const UserProfileRight = (props: UserProfileRightType) => {
 
   const ScrollWrapper = ({ children }: { children: ReactNode }) => {
     if (hidden) {
-      return <Box sx={{ height: '100%', overflowY: 'auto', overflowX: 'hidden' }}>{children}</Box>
+      return (
+        <Box sx={{ height: '100%', overflowY: 'auto', overflowX: 'hidden' }}>
+          {children}
+        </Box>
+      )
     } else {
-      return <PerfectScrollbar options={{ wheelPropagation: false }}>{children}</PerfectScrollbar>
+      return (
+        <PerfectScrollbar options={{ wheelPropagation: false }}>
+          {children}
+        </PerfectScrollbar>
+      )
     }
   }
 
   return (
     <Sidebar
-      direction='right'
+      direction="right"
       show={userProfileRightOpen}
       backDropClick={handleUserProfileRightSidebarToggle}
       sx={{
         zIndex: 9,
         height: '100%',
         width: sidebarWidth,
-        borderTopRightRadius: theme => theme.shape.borderRadius,
-        borderBottomRightRadius: theme => theme.shape.borderRadius,
+        borderTopRightRadius: (theme) => theme.shape.borderRadius,
+        borderBottomRightRadius: (theme) => theme.shape.borderRadius,
         '& + .MuiBackdrop-root': {
           zIndex: 8,
           borderRadius: 1
@@ -67,30 +75,40 @@ const UserProfileRight = (props: UserProfileRightType) => {
         <Fragment>
           <Box sx={{ position: 'relative' }}>
             <IconButton
-              size='small'
+              size="small"
               onClick={handleUserProfileRightSidebarToggle}
-              sx={{ top: '0.5rem', right: '0.5rem', position: 'absolute', color: 'text.secondary' }}
+              sx={{
+                top: '0.5rem',
+                right: '0.5rem',
+                position: 'absolute',
+                color: 'text.secondary'
+              }}
             >
-              <Icon icon='bx:x' />
+              <Icon icon="bx:x" />
             </IconButton>
             <Box sx={{ p: 5, display: 'flex', flexDirection: 'column' }}>
               <Box sx={{ mb: 5.5, display: 'flex', justifyContent: 'center' }}>
                 <Badge
-                  overlap='circular'
+                  overlap="circular"
                   anchorOrigin={{
                     vertical: 'bottom',
                     horizontal: 'right'
                   }}
                   badgeContent={
                     <Box
-                      component='span'
+                      component="span"
                       sx={{
                         width: 10,
                         height: 10,
                         borderRadius: '50%',
-                        color: `${statusObj[store.selectedChat.contact.status]}.main`,
-                        boxShadow: theme => `0 0 0 2px ${theme.palette.background.paper}`,
-                        backgroundColor: `${statusObj[store.selectedChat.contact.status]}.main`
+                        color: `${
+                          statusObj[store.selectedChat.contact.status]
+                        }.main`,
+                        boxShadow: (theme) =>
+                          `0 0 0 2px ${theme.palette.background.paper}`,
+                        backgroundColor: `${
+                          statusObj[store.selectedChat.contact.status]
+                        }.main`
                       }}
                     />
                   }
@@ -103,19 +121,26 @@ const UserProfileRight = (props: UserProfileRightType) => {
                     />
                   ) : (
                     <CustomAvatar
-                      skin='light'
+                      skin="light"
                       color={store.selectedChat.contact.avatarColor}
-                      sx={{ width: '5rem', height: '5rem', fontWeight: 500, fontSize: '2rem' }}
+                      sx={{
+                        width: '5rem',
+                        height: '5rem',
+                        fontWeight: 500,
+                        fontSize: '2rem'
+                      }}
                     >
                       {getInitials(store.selectedChat.contact.fullName)}
                     </CustomAvatar>
                   )}
                 </Badge>
               </Box>
-              <Typography sx={{ mb: 0.5, fontWeight: 500, textAlign: 'center' }}>
+              <Typography
+                sx={{ mb: 0.5, fontWeight: 500, textAlign: 'center' }}
+              >
                 {store.selectedChat.contact.fullName}
               </Typography>
-              <Typography variant='body2' sx={{ textAlign: 'center' }}>
+              <Typography variant="body2" sx={{ textAlign: 'center' }}>
                 {store.selectedChat.contact.role}
               </Typography>
             </Box>
@@ -125,84 +150,100 @@ const UserProfileRight = (props: UserProfileRightType) => {
             <ScrollWrapper>
               <Box sx={{ p: 5 }}>
                 <FormGroup sx={{ mb: 10.5 }}>
-                  <Typography variant='body2' sx={{ mb: 3.5, textTransform: 'uppercase' }}>
+                  <Typography
+                    variant="body2"
+                    sx={{ mb: 3.5, textTransform: 'uppercase' }}
+                  >
                     About
                   </Typography>
-                  <Typography sx={{ fontSize: '0.875rem' }}>{store.selectedChat.contact.about}</Typography>
+                  <Typography sx={{ fontSize: '0.875rem' }}>
+                    {store.selectedChat.contact.about}
+                  </Typography>
                 </FormGroup>
 
                 <Box sx={{ mb: 8.5 }}>
-                  <Typography variant='body2' sx={{ mb: 3.5, textTransform: 'uppercase' }}>
+                  <Typography
+                    variant="body2"
+                    sx={{ mb: 3.5, textTransform: 'uppercase' }}
+                  >
                     Personal Information
                   </Typography>
                   <List dense sx={{ p: 0 }}>
                     <ListItem sx={{ px: 2 }}>
                       <ListItemIcon sx={{ mr: 2, color: 'text.primary' }}>
-                        <Icon icon='bx:envelope' />
+                        <Icon icon="bx:envelope" />
                       </ListItemIcon>
                       <ListItemText
                         sx={{ textTransform: 'lowercase' }}
-                        primary={`${store.selectedChat.contact.fullName.replace(/\s/g, '_')}@email.com`}
+                        primary={`${store.selectedChat.contact.fullName.replace(
+                          /\s/g,
+                          '_'
+                        )}@email.com`}
                       />
                     </ListItem>
                     <ListItem sx={{ px: 2 }}>
                       <ListItemIcon sx={{ mr: 2, color: 'text.primary' }}>
-                        <Icon icon='bx:phone' />
+                        <Icon icon="bx:phone" />
                       </ListItemIcon>
-                      <ListItemText primary='+1(123) 456 - 7890' />
+                      <ListItemText primary="+1(123) 456 - 7890" />
                     </ListItem>
                     <ListItem sx={{ px: 2 }}>
                       <ListItemIcon sx={{ mr: 2, color: 'text.primary' }}>
-                        <Icon icon='bx:time-five' />
+                        <Icon icon="bx:time-five" />
                       </ListItemIcon>
-                      <ListItemText primary='Mon - Fri 10AM - 8PM' />
+                      <ListItemText primary="Mon - Fri 10AM - 8PM" />
                     </ListItem>
                   </List>
                 </Box>
 
                 <div>
-                  <Typography variant='body2' sx={{ mb: 3.5, textTransform: 'uppercase' }}>
+                  <Typography
+                    variant="body2"
+                    sx={{ mb: 3.5, textTransform: 'uppercase' }}
+                  >
                     Options
                   </Typography>
                   <List dense sx={{ p: 0 }}>
                     <ListItem disablePadding>
                       <ListItemButton sx={{ px: 2 }}>
                         <ListItemIcon sx={{ mr: 2, color: 'text.primary' }}>
-                          <Icon icon='bx:label' />
+                          <Icon icon="bx:label" />
                         </ListItemIcon>
-                        <ListItemText primary='Add Tag' />
+                        <ListItemText primary="Add Tag" />
                       </ListItemButton>
                     </ListItem>
                     <ListItem disablePadding>
                       <ListItemButton sx={{ px: 2 }}>
                         <ListItemIcon sx={{ mr: 2, color: 'text.primary' }}>
-                          <Icon icon='bx:star' />
+                          <Icon icon="bx:star" />
                         </ListItemIcon>
-                        <ListItemText primary='Important Contact' />
+                        <ListItemText primary="Important Contact" />
                       </ListItemButton>
                     </ListItem>
                     <ListItem disablePadding>
                       <ListItemButton sx={{ px: 2 }}>
                         <ListItemIcon sx={{ mr: 2, color: 'text.primary' }}>
-                          <Icon icon='bx:image' />
+                          <Icon icon="bx:image" />
                         </ListItemIcon>
-                        <ListItemText primary='Shared Media' />
+                        <ListItemText primary="Shared Media" />
                       </ListItemButton>
                     </ListItem>
                     <ListItem disablePadding>
                       <ListItemButton sx={{ px: 2 }}>
                         <ListItemIcon sx={{ mr: 2, color: 'text.primary' }}>
-                          <Icon icon='bx:trash-alt' />
+                          <Icon icon="bx:trash-alt" />
                         </ListItemIcon>
-                        <ListItemText primary='Delete Contact' />
+                        <ListItemText primary="Delete Contact" />
                       </ListItemButton>
                     </ListItem>
                     <ListItem disablePadding>
                       <ListItemButton sx={{ px: 2 }}>
-                        <ListItemIcon sx={{ mr: 2.5, ml: 0.5, color: 'text.primary' }}>
-                          <Icon icon='bx:block' fontSize='1.125rem' />
+                        <ListItemIcon
+                          sx={{ mr: 2.5, ml: 0.5, color: 'text.primary' }}
+                        >
+                          <Icon icon="bx:block" fontSize="1.125rem" />
                         </ListItemIcon>
-                        <ListItemText primary='Block Contact' />
+                        <ListItemText primary="Block Contact" />
                       </ListItemButton>
                     </ListItem>
                   </List>

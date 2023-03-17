@@ -190,37 +190,83 @@ const AnalyticsTabsWithChart = () => {
   return (
     <Card>
       <TabContext value={value}>
-        <CardContent sx={{ p: `${theme.spacing(5)} !important`, borderBottom: `1px solid ${theme.palette.divider}` }}>
-          <TabList variant='scrollable' scrollButtons='auto' onChange={handleChange} aria-label='tab widget card'>
-            <Tab value='income' label='Income' />
-            <Tab value='expenses' label='Expenses' />
-            <Tab value='profit' label='Profit' />
+        <CardContent
+          sx={{
+            p: `${theme.spacing(5)} !important`,
+            borderBottom: `1px solid ${theme.palette.divider}`
+          }}
+        >
+          <TabList
+            variant="scrollable"
+            scrollButtons="auto"
+            onChange={handleChange}
+            aria-label="tab widget card"
+          >
+            <Tab value="income" label="Income" />
+            <Tab value="expenses" label="Expenses" />
+            <Tab value="profit" label="Profit" />
           </TabList>
         </CardContent>
-        <TabPanel value={value} sx={{ border: 0, boxShadow: 0, p: '0 !important', backgroundColor: 'transparent' }}>
+        <TabPanel
+          value={value}
+          sx={{
+            border: 0,
+            boxShadow: 0,
+            p: '0 !important',
+            backgroundColor: 'transparent'
+          }}
+        >
           <Box sx={{ p: 5, display: 'flex', alignItems: 'center' }}>
-            <Avatar variant='rounded' src={data[value].avatarSrc} sx={{ mr: 3.5, width: 46, height: 46 }} />
+            <Avatar
+              variant="rounded"
+              src={data[value].avatarSrc}
+              sx={{ mr: 3.5, width: 46, height: 46 }}
+            />
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-              <Typography sx={{ color: 'text.secondary' }}>{`Total ${data[value].title}`}</Typography>
-              <Box sx={{ display: 'flex', alignItems: 'center', '& svg': { color: 'success.main' } }}>
-                <Typography variant='h6' sx={{ mr: 0.5 }}>
+              <Typography
+                sx={{ color: 'text.secondary' }}
+              >{`Total ${data[value].title}`}</Typography>
+              <Box
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  '& svg': { color: 'success.main' }
+                }}
+              >
+                <Typography variant="h6" sx={{ mr: 0.5 }}>
                   {data[value].stats}
                 </Typography>
-                <Icon icon='bx:chevron-up' />
-                <Typography variant='body2' sx={{ fontWeight: 500, color: 'success.main' }}>
+                <Icon icon="bx:chevron-up" />
+                <Typography
+                  variant="body2"
+                  sx={{ fontWeight: 500, color: 'success.main' }}
+                >
                   {`${data[value].trendNumber}%`}
                 </Typography>
               </Box>
             </Box>
           </Box>
-          <ReactApexcharts type='area' height={222} options={options} series={series} />
-          <Box sx={{ p: 5, pt: 6, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <ReactApexcharts
+            type="area"
+            height={222}
+            options={options}
+            series={series}
+          />
+          <Box
+            sx={{
+              p: 5,
+              pt: 6,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}
+          >
             <Box sx={{ mr: 4, position: 'relative' }}>
               <CircularProgress
                 size={50}
                 value={100}
                 thickness={2}
-                variant='determinate'
+                variant="determinate"
                 sx={{
                   position: 'absolute',
                   color: 'customColors.trackBg',
@@ -230,20 +276,35 @@ const AnalyticsTabsWithChart = () => {
               <CircularProgress
                 size={50}
                 thickness={4}
-                color='primary'
-                variant='determinate'
+                color="primary"
+                variant="determinate"
                 value={data[value].progressValue * 10}
-                sx={{ '& .MuiCircularProgress-circle': { strokeWidth: 4, strokeLinecap: 'round' } }}
+                sx={{
+                  '& .MuiCircularProgress-circle': {
+                    strokeWidth: 4,
+                    strokeLinecap: 'round'
+                  }
+                }}
               />
-              <Box sx={{ mt: -1, top: '50%', left: '50%', position: 'absolute', transform: 'translate(-50%, -50%)' }}>
-                <Typography variant='body2' sx={{ fontWeight: 500 }}>
+              <Box
+                sx={{
+                  mt: -1,
+                  top: '50%',
+                  left: '50%',
+                  position: 'absolute',
+                  transform: 'translate(-50%, -50%)'
+                }}
+              >
+                <Typography variant="body2" sx={{ fontWeight: 500 }}>
                   {`${data[value].progressValue}k`}
                 </Typography>
               </Box>
             </Box>
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-              <Typography sx={{ color: 'text.secondary' }}>{`${data[value].title} this week`}</Typography>
-              <Typography variant='body2' sx={{ color: 'text.disabled' }}>
+              <Typography
+                sx={{ color: 'text.secondary' }}
+              >{`${data[value].title} this week`}</Typography>
+              <Typography variant="body2" sx={{ color: 'text.disabled' }}>
                 {`$${data[value].difference}k less than last week`}
               </Typography>
             </Box>
