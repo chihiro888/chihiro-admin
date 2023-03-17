@@ -2,8 +2,12 @@ import { ApiProperty } from '@nestjs/swagger'
 import { Length } from 'class-validator'
 
 export class UpdatePasswordDto {
-  // ** Session
-  userId: number
+  @ApiProperty({
+    description: 'id',
+    example: ''
+  })
+  @Length(8, 255)
+  id: number
 
   @ApiProperty({
     description: 'old password',

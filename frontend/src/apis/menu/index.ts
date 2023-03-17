@@ -4,7 +4,7 @@ import { CommonResponse } from 'src/common/interface'
 const rootUrl = '/api/menu/'
 
 // ANCHOR get menu list
-export const getMenuList = (params?: object) => {
+export const getMenuList = () => {
   const url = `${rootUrl}getMenuList`
   const response = axios.get<CommonResponse>(url)
 

@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { IsNotEmpty } from 'class-validator'
 
-export class GetLoginHistoryDetailDto {
+export class GetLoginHistoryDto {
   @ApiProperty({
     description: 'id',
     example: 1

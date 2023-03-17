@@ -1,4 +1,5 @@
-import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common'
+// ** Module
+import { Inject, Injectable } from '@nestjs/common'
 import { DataSource } from 'typeorm'
 
 @Injectable()

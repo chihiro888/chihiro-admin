@@ -1,7 +1,4 @@
-import { DeleteMenuDto } from './dto/delete-menu.dto'
-import { UpdateMenuDto } from './dto/update-menu.dto copy'
-import { GetMenuListDto } from './dto/get-menu-list.dto'
-import { SystemAdminGuard } from 'src/common/guard/system-admin.guard'
+// ** Module
 import {
   Body,
   Controller,
@@ -17,8 +14,18 @@ import {
 } from '@nestjs/common'
 import { ApiOperation, ApiTags } from '@nestjs/swagger'
 import { Response } from 'express'
-import { MenuService } from './menu.service'
+
+// ** Dto
+import { DeleteMenuDto } from './dto/delete-menu.dto'
+import { UpdateMenuDto } from './dto/update-menu.dto copy'
 import { CreateMenuDto } from './dto/create-menu.dto'
+import { GetMenuOrderListDto } from './dto/get-menu-order-list.dto'
+
+// ** Service
+import { MenuService } from './menu.service'
+
+// ** Guard
+import { SystemAdminGuard } from 'src/common/guard/system-admin.guard'
 
 // ANCHOR builder controller
 @ApiTags('menu')
@@ -32,12 +39,8 @@ export class MenuController {
     summary: '메뉴 조회',
     description: '세션을 조회하여 권한에 맞는 메뉴 목록을 조회합니다.'
   })
-  async getMenu(
-    @Res() res: Response,
-    @Session() session: any,
-    @Query() dto: GetMenuListDto
-  ) {
-    // get menu list
+  async getMenu(@Res() res: Response, @Session() session: any) {
+    // get menu
     const data = await this.menuService.getMenu(session.role)
 
     // return 200 response
@@ -55,13 +58,9 @@ export class MenuController {
     summary: '메뉴 목록 조회 (시스템 관리자 기능)',
     description: '메뉴 목록을 조회합니다.'
   })
-  async getMenuList(
-    @Res() res: Response,
-    @Session() session: any,
-    @Query() dto: GetMenuListDto
-  ) {
+  async getMenuList(@Res() res: Response, @Session() session: any) {
     // get menu list
-    const data = await this.menuService.getMenuList(dto)
+    const data = await this.menuService.getMenuList()
 
     // return 200 response
     res.status(HttpStatus.OK).json({
@@ -81,7 +80,7 @@ export class MenuController {
   async getMenuOrderList(
     @Res() res: Response,
     @Session() session: any,
-    @Query() dto: GetMenuListDto
+    @Query() dto: GetMenuOrderListDto
   ) {
     // get order menu list
     const data = await this.menuService.getMenuOrderList(dto)
@@ -152,7 +151,6 @@ export class MenuController {
     @Session() session: any,
     @Query() dto: DeleteMenuDto
   ) {
-    console.log('dto =>', dto)
     // delete Menu
     const data = await this.menuService.deleteMenu(dto)
 

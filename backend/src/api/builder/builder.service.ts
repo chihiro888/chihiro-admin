@@ -1,15 +1,24 @@
-import { DeletePageDto } from './dto/delete-page.dto'
-import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common'
-import { Page } from 'src/entities/page.entity'
+// ** Module
+import { Inject, Injectable } from '@nestjs/common'
 import { DataSource } from 'typeorm'
+import moment from 'moment'
+
+// ** Dto
+import { DeletePageDto } from './dto/delete-page.dto'
 import { CreatePageDto } from './dto/create-page.dto'
 import { GetPageListDto } from './dto/get-page-list.dto'
 import { GetPageDto } from './dto/get-page.dto'
 import { UpdatePageDto } from './dto/update-page.dto'
-import moment from 'moment'
-import DATE from 'src/common/constants/date'
-import { Result } from 'src/common/interface'
 import { GetPageByUrlDto } from './dto/get-page-by-url.dto'
+
+// ** Entity
+import { Page } from 'src/entities/page.entity'
+
+// ** Constant
+import DATE from 'src/common/constants/date'
+
+// ** Interface
+import { Result } from 'src/common/interface'
 
 @Injectable()
 export class BuilderService {

@@ -1,6 +1,4 @@
-import { GetPageDto } from './dto/get-page.dto'
-import { GetPageListDto } from './dto/get-page-list.dto'
-import { SystemAdminGuard } from 'src/common/guard/system-admin.guard'
+// ** Module
 import {
   Body,
   Controller,
@@ -16,11 +14,20 @@ import {
 } from '@nestjs/common'
 import { ApiOperation, ApiTags } from '@nestjs/swagger'
 import { Response } from 'express'
-import { BuilderService } from './builder.service'
+
+// ** Dto
+import { GetPageDto } from './dto/get-page.dto'
+import { GetPageListDto } from './dto/get-page-list.dto'
 import { DeletePageDto } from './dto/delete-page.dto'
 import { UpdatePageDto } from './dto/update-page.dto'
 import { CreatePageDto } from './dto/create-page.dto'
 import { GetPageByUrlDto } from './dto/get-page-by-url.dto'
+
+// ** Service
+import { BuilderService } from './builder.service'
+
+// ** Guard
+import { SystemAdminGuard } from 'src/common/guard/system-admin.guard'
 
 // ANCHOR builder controller
 @ApiTags('builder')
@@ -72,6 +79,38 @@ export class BuilderController {
       message: '',
       data
     })
+  }
+
+  // ANCHOR get page by url
+  @UseGuards(SystemAdminGuard)
+  @Get('getPageByUrl')
+  @ApiOperation({
+    summary: '페이지 조회 (시스템 관리자 기능)',
+    description: '페이지를 조회합니다.'
+  })
+  async getPageByUrl(
+    @Res() res: Response,
+    @Session() session: any,
+    @Query() dto: GetPageByUrlDto
+  ) {
+    // get page
+    const data = await this.builderService.getPageByUrl(dto)
+
+    if (data.result) {
+      // return 200 response
+      res.status(HttpStatus.OK).json({
+        statusCode: HttpStatus.OK,
+        message: '',
+        data: data.data
+      })
+    } else {
+      // return 400 response
+      res.status(HttpStatus.BAD_REQUEST).json({
+        statusCode: HttpStatus.BAD_REQUEST,
+        message: data.data,
+        data: null
+      })
+    }
   }
 
   // ANCHOR create page
@@ -159,37 +198,5 @@ export class BuilderController {
       message: '페이지 삭제가 완료되었습니다.',
       data: null
     })
-  }
-
-  // ANCHOR get page by url
-  @UseGuards(SystemAdminGuard)
-  @Get('getPageByUrl')
-  @ApiOperation({
-    summary: '페이지 조회 (시스템 관리자 기능)',
-    description: '페이지를 조회합니다.'
-  })
-  async getPageByUrl(
-    @Res() res: Response,
-    @Session() session: any,
-    @Query() dto: GetPageByUrlDto
-  ) {
-    // get page
-    const data = await this.builderService.getPageByUrl(dto)
-
-    if (data.result) {
-      // return 200 response
-      res.status(HttpStatus.OK).json({
-        statusCode: HttpStatus.OK,
-        message: '',
-        data: data.data
-      })
-    } else {
-      // return 400 response
-      res.status(HttpStatus.BAD_REQUEST).json({
-        statusCode: HttpStatus.BAD_REQUEST,
-        message: data.data,
-        data: null
-      })
-    }
   }
 }

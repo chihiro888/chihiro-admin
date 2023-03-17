@@ -1,7 +1,4 @@
-import { UpdateAdminPasswordDto } from './dto/update-admin-password.dto'
-import { LoginDto } from './dto/login.dto'
-import { CreateSystemAdminDto } from './dto/create-system-admin.dto'
-import { UserService } from './user.service'
+// ** Module
 import {
   Body,
   Query,
@@ -14,32 +11,33 @@ import {
   Session,
   Res,
   HttpException,
-  UseGuards,
-  UseInterceptors,
-  UploadedFiles
+  UseGuards
 } from '@nestjs/common'
-import {
-  ApiConsumes,
-  ApiOperation,
-  ApiResponse,
-  ApiTags
-} from '@nestjs/swagger'
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 import { Response } from 'express'
-import { UpdatePasswordDto } from './dto/update-password.dto'
 import SWAGGER from 'src/common/constants/swagger'
-import { SystemAdminGuard } from 'src/common/guard/system-admin.guard'
-import { GetUserDetailDto } from './dto/get-user-detail.dto'
+
+// ** Dto
 import { CreateUserDto } from './dto/create-user.dto'
-import { UpdateUsernameDto } from './dto/update-username.dto'
-import { UpdateUserRoleDto } from './dto/update-user-role.dto'
-import { UpdateUserProfileDto } from './dto/update-user-profile.dto'
-import { GetLoginHistoryDetailDto } from './dto/get-login-history-detail.dto'
-import { GetLoginHistoryListDto } from './dto/get-login-history-list.dto'
-import { ApiFiles } from 'src/common/decorator/api-files.decorator'
-import { FilesInterceptor } from '@nestjs/platform-express'
-import { UpdateUserIntroDto } from './dto/update-user-intro.dto'
 import { DeleteUserDto } from './dto/delete-user.dto'
+import { GetLoginHistoryDto } from './dto/get-login-history.dto'
+import { GetLoginHistoryListDto } from './dto/get-login-history-list.dto'
+import { GetUserDto } from './dto/get-user.dto'
 import { GetUserListDto } from './dto/get-user-list.dto'
+import { UpdatePasswordDto } from './dto/update-password.dto'
+import { UpdateUserIntroDto } from './dto/update-user-intro.dto'
+import { UpdateUserProfileDto } from './dto/update-user-profile.dto'
+import { UpdateUserRoleDto } from './dto/update-user-role.dto'
+import { UpdateUsernameDto } from './dto/update-username.dto'
+
+// ** Service
+import { UserService } from './user.service'
+
+// ** Guard
+import { SystemAdminGuard } from 'src/common/guard/system-admin.guard'
+
+// ** Decorator
+import { ApiFiles } from 'src/common/decorator/api-files.decorator'
 
 // ANCHOR user controller
 @ApiTags('user')
@@ -78,16 +76,16 @@ export class UserController {
     })
   }
 
-  // ANCHOR get user detail
+  // ANCHOR get user
   @UseGuards(SystemAdminGuard)
-  @Get('getUserDetail')
+  @Get('getUser')
   @ApiOperation({
     summary: '사용자 상세정보 조회 (시스템 관리자 기능)',
     description: '사용자 상세정보를 조회합니다.'
   })
-  async getUserDetail(@Res() res: Response, @Query() dto: GetUserDetailDto) {
-    // get user detail
-    const user = await this.userService.getUserDetail(dto)
+  async getUser(@Res() res: Response, @Query() dto: GetUserDto) {
+    // get user
+    const user = await this.userService.getUser(dto)
 
     // return 200 response
     res.status(HttpStatus.OK).json({
@@ -153,7 +151,7 @@ export class UserController {
   })
   async updateUserPassword(
     @Res() res: Response,
-    @Body() dto: UpdateAdminPasswordDto
+    @Body() dto: UpdatePasswordDto
   ) {
     // update user password
     await this.userService.updateUserPassword(dto)
@@ -267,19 +265,19 @@ export class UserController {
     })
   }
 
-  // ANCHOR get login history detail
+  // ANCHOR get login history
   @UseGuards(SystemAdminGuard)
-  @Get('getLoginHistoryDetail')
+  @Get('getLoginHistory')
   @ApiOperation({
     summary: '로그인 이력 상세 조회 (시스템 관리자 기능)',
     description: '로그인 이력 상세를 조회합니다.'
   })
-  async getLoginHistoryDetail(
+  async getLoginHistory(
     @Res() res: Response,
-    @Query() dto: GetLoginHistoryDetailDto
+    @Query() dto: GetLoginHistoryDto
   ) {
-    // get login history detail
-    const data = await this.userService.getLoginHistoryDetail(dto)
+    // get login history
+    const data = await this.userService.getLoginHistory(dto)
 
     // return 200 response
     res.status(HttpStatus.OK).json({

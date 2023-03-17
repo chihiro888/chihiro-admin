@@ -7,7 +7,7 @@ import * as fs from 'fs'
 // ** Dto
 import { GetImageListDto } from './dto/get-image-list.dto'
 
-// ** Entity d
+// ** Entity
 import { File } from 'src/entities/file.entity'
 
 // ** Util
@@ -65,8 +65,10 @@ export class ImageService {
       f.absPath = absPath
       f.note = note
       const fileData = await this.datasource.getRepository(File).save(f)
-      fileData['url'] =
-        (await this.globalService.getGlobal('imageDomain')) + '/' + encName
+
+      // url 추가
+      const imageDomain = await this.globalService.getGlobal('imageDomain')
+      fileData['url'] = `${imageDomain}/${encName}`
       fileList.push(fileData)
 
       // 파일 저장
