@@ -18,7 +18,7 @@ import Icon from 'src/@core/components/icon'
 import toast from 'react-hot-toast'
 import { useDropzone } from 'react-dropzone'
 import { upload } from 'src/apis/image'
-import CustomLottie from '../custom-lottie'
+import CustomLottie from '../custom/custom-lottie'
 import * as uploadLottie from 'src/lottie/upload.json'
 
 interface FileProp {

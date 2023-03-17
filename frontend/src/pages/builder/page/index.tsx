@@ -38,7 +38,7 @@ import {
 import { useRouter } from 'next/router'
 import { useSelector } from 'react-redux'
 import { getPaginationCount, getParamsFromForm } from 'src/utils'
-import CustomChip from 'src/components/custom-chip'
+import CustomChip from 'src/components/custom/custom-chip'
 import ModalCodeViewerContainer from 'src/components/core/modal-code-viewer-container'
 import moment from 'moment'
 import DATE from 'src/common/constants/date'

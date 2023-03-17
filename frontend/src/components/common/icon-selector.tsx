@@ -17,9 +17,9 @@ import {
   setIconText,
   setSelectedIcon
 } from 'src/store/apps/icon'
-import CustomDialogTitle from '../custom-dialog-title'
+import CustomDialogTitle from '../custom/custom-dialog-title'
 import Icon from 'src/@core/components/icon'
-import CustomLottie from '../custom-lottie'
+import CustomLottie from '../custom/custom-lottie'
 import * as iconLottie from 'src/lottie/icon.json'
 
 const IconSelector = () => {

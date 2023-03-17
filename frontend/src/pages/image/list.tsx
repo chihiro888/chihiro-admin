@@ -22,10 +22,10 @@ import DialogContent from '@mui/material/DialogContent'
 // ** Icon Imports
 import DATE from 'src/common/constants/date'
 import { getPaginationCount } from 'src/utils'
-import CustomLottie from 'src/components/custom-lottie'
+import CustomLottie from 'src/components/custom/custom-lottie'
 import * as cat from 'src/lottie/cat.json'
-import CustomDialogTitle from 'src/components/custom-dialog-title'
-import CustomChip from 'src/components/custom-chip'
+import CustomDialogTitle from 'src/components/custom/custom-dialog-title'
+import CustomChip from 'src/components/custom/custom-chip'
 
 const List = () => {
   // ** State

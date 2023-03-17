@@ -6,8 +6,8 @@ import ApexChartWrapper from 'src/@core/styles/libs/react-apexcharts'
 
 // ** Demo Component Imports
 import { useEffect } from 'react'
-import Congratulations from 'src/components/congratulations'
-import CardStatsVertical from 'src/components/card-stats-vertical'
+import Congratulations from 'src/components/custom/congratulations'
+import CardStatsVertical from 'src/components/custom/card-stats-vertical'
 import {
   getImageCount,
   getImageLineChart,
@@ -23,7 +23,7 @@ import { useDispatch, useSelector } from 'react-redux'
 // ** Redux
 import { initDashboard, setDashboardList } from 'src/store/apps/crud'
 import { RootState } from 'src/store'
-import ApexLineChart from 'src/components/apex-line-chart'
+import ApexLineChart from 'src/components/custom/apex-line-chart'
 
 const Home = () => {
   const dispatch = useDispatch()

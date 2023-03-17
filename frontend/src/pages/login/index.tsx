@@ -34,7 +34,7 @@ import { getAppInfo } from 'src/apis/global'
 import { checkSystemAdmin } from 'src/apis/admin'
 
 // ** Custom component
-import FormHeader from 'src/components/form-header'
+import FormHeader from 'src/components/custom/form-header'
 
 // ** Redux
 import { useAuth } from 'src/hooks/useAuth'

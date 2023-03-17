@@ -33,7 +33,7 @@ import { checkSystemAdmin, createSystemAdmin } from 'src/apis/admin'
 import { getAppInfo } from 'src/apis/global'
 
 // ** Custom component
-import FormHeader from 'src/components/form-header'
+import FormHeader from 'src/components/custom/form-header'
 
 // ** Redux
 import { setAppInfo } from 'src/store/apps/app'

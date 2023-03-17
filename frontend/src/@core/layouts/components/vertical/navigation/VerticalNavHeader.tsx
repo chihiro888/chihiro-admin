@@ -15,7 +15,7 @@ import Icon from 'src/@core/components/icon'
 
 // ** Configs
 import themeConfig from 'src/configs/themeConfig'
-import Logo from 'src/components/logo'
+import Logo from 'src/components/custom/logo'
 import { RootState } from 'src/store'
 import { useSelector } from 'react-redux'
 

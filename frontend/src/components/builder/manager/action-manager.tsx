@@ -11,7 +11,7 @@ import { useDispatch } from 'react-redux'
 import { AppDispatch, RootState } from 'src/store'
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import CustomLottie from 'src/components/custom-lottie'
+import CustomLottie from 'src/components/custom/custom-lottie'
 import * as block from 'src/lottie/block.json'
 
 interface Item {

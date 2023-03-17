@@ -1,5 +1,5 @@
 import { getPaginationCount, getParamsFromForm } from 'src/utils'
-import CustomLottie from 'src/components/custom-lottie'
+import CustomLottie from 'src/components/custom/custom-lottie'
 import Stack from '@mui/material/Stack'
 import Table from '@mui/material/Table'
 import TableCell from '@mui/material/TableCell'

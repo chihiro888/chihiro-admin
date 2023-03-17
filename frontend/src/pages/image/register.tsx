@@ -24,7 +24,7 @@ import PageHeader from 'src/@core/components/page-header'
 import { upload } from 'src/apis/image'
 
 // ** Lottie
-import CustomLottie from 'src/components/custom-lottie'
+import CustomLottie from 'src/components/custom/custom-lottie'
 import * as uploadLottie from 'src/lottie/upload.json'
 
 // ** Utils
