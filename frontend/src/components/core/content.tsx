@@ -35,7 +35,7 @@ const Content = () => {
   })
   const { openSnack, snackContent } = state
 
-  // typelist : text | date | editor | image | chip | snackbar | action
+  // typelist : text | date | editor | image | chip | snackbar
 
   // const [tableContent, setContentForm] = useState([
   //   {
@@ -53,8 +53,13 @@ const Content = () => {
   //     type: 'date'
   //   },
   //   {
-  //     key: 'chip',
-  //     type: 'chip'
+  //     key:'role',
+  //     type:'chip',
+  //     condition: {
+  //       SA: 'primary',
+  //       A: 'secondary',
+  //       U: 'warning'
+  //     }
   //   },
   //   {
   //     key: 'intro',
@@ -65,10 +70,6 @@ const Content = () => {
   //     key: 'password',
   //     type: 'snackbar',
   //     title: '비밀번호'
-  //   },
-  //   {
-  //     key: 'action',
-  //     type: 'action'
   //   }
   // ])
 
@@ -88,51 +89,81 @@ const Content = () => {
       <TableBody>
         {pagination.data.map((row: any, idx: number) => (
           <TableRow key={idx}>
-            {tableContent.map((cell, index) =>
-              cell.type === 'text' ? (
-                <TableCell key={index}>{row[`${cell.key}`] || '-'}</TableCell>
-              ) : cell.type === 'date' ? (
-                <TableCell key={index}>
-                  {row[`${cell.key}`] !== null
-                    ? moment(row[`${cell.key}`]).format(DATE.DATETIME)
-                    : '-'}
-                </TableCell>
-              ) : cell.type === 'editor' ? (
-                <TableCell key={index}>
-                  <ModalEditorViewerContainer
-                    title={cell.title}
-                    content={row[`${cell.key}`]}
-                  />
-                </TableCell>
-              ) : cell.type === 'image' ? (
-                <TableCell key={index}>
-                  <CustomAvatar
-                    src={row[`${cell.key}`] || '/images/custom/image.png'}
-                    variant="square"
-                    sx={{ width: cell.width || 30, height: cell.height || 30 }}
-                  />
-                </TableCell>
-              ) : cell.type === 'chip' ? ( //TODO - 추후 커스텀기능 필요
-                <TableCell key={index}>
-                  <Chip
-                    label={row[`${cell.key}`] || cell.key}
-                    color="primary"
-                    variant="outlined"
-                  />
-                </TableCell>
-              ) : cell.type === 'snackbar' ? (
-                <TableCell>
-                  <Button
-                    variant="text"
-                    onClick={() => handleClickSnack(row[`${cell.key}`] || '-')}
-                  >
-                    {cell.title}
-                  </Button>
-                </TableCell>
-              ) : (
-                <></>
-              )
-            )}
+            {/* 테이블 내용 출력 */}
+            {tableContent.map((cell, index) => {
+              switch (cell.type) {
+                case 'text':
+                  return (
+                    <TableCell key={index}>
+                      {row[`${cell.key}`] || '-'}
+                    </TableCell>
+                  )
+                case 'date':
+                  return (
+                    <TableCell key={index}>
+                      {row[`${cell.key}`] !== null
+                        ? moment(row[`${cell.key}`]).format(DATE.DATETIME)
+                        : '-'}
+                    </TableCell>
+                  )
+                case 'editor':
+                  return (
+                    <TableCell key={index}>
+                      <ModalEditorViewerContainer
+                        title={cell.title}
+                        content={row[`${cell.key}`]}
+                      />
+                    </TableCell>
+                  )
+                case 'image':
+                  return (
+                    <TableCell key={index}>
+                      <CustomAvatar
+                        src={row[`${cell.key}`] || '/images/custom/image.png'}
+                        variant="square"
+                        sx={{
+                          width: cell.width || 30,
+                          height: cell.height || 30
+                        }}
+                      />
+                    </TableCell>
+                  )
+                case 'chip': {
+                  if (cell.condition === null || cell.condition === undefined) {
+                    break
+                  }
+                  const color = cell.condition[`${row[`${cell.key}`]}`]
+
+                  return (
+                    <TableCell key={index}>
+                      <Chip
+                        label={row[`${cell.key}`] || cell.key}
+                        color={color || 'error'}
+                        variant="outlined"
+                      />
+                    </TableCell>
+                  )
+                }
+                case 'snackbar':
+                  return (
+                    <TableCell>
+                      <Button
+                        variant="text"
+                        onClick={() =>
+                          handleClickSnack(row[`${cell.key}`] || '-')
+                        }
+                      >
+                        {cell.title}
+                      </Button>
+                    </TableCell>
+                  )
+
+                default:
+                  break
+              }
+            })}
+
+            {/* 액션 버튼 */}
             {(actionList.length > 0 ||
               detailAPI !== null ||
               deleteAPI !== null) && (
