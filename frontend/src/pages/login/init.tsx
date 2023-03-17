@@ -1,12 +1,5 @@
 // ** React Import
-import {
-  ChangeEvent,
-  FormEvent,
-  MouseEvent,
-  ReactNode,
-  useEffect,
-  useState
-} from 'react'
+import { ChangeEvent, FormEvent, ReactNode, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 
 // ** MUI Component
@@ -125,7 +118,7 @@ const LoginV1 = () => {
     const { data: res } = await checkSystemAdmin()
     if (res.statusCode === 200) {
       if (!res.data) {
-        // 시스템 관리자가 존해자는 경우 로그인 페이지로 이동
+        // 시스템 관리자가 존재하는 경우 로그인 페이지로 이동
         router.push('/login')
       }
     }

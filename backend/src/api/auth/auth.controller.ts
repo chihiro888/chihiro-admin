@@ -3,7 +3,6 @@ import { LoginDto } from './dto/login.dto'
 import { AuthService } from './auth.service'
 import {
   Body,
-  Query,
   Controller,
   Get,
   Post,
@@ -13,16 +12,9 @@ import {
   Session,
   Res,
   HttpException,
-  UseGuards,
-  UseInterceptors,
-  UploadedFiles
+  UseGuards
 } from '@nestjs/common'
-import {
-  ApiConsumes,
-  ApiOperation,
-  ApiResponse,
-  ApiTags
-} from '@nestjs/swagger'
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 import { Response } from 'express'
 import SWAGGER from 'src/common/constants/swagger'
 import { AdminGuard } from 'src/common/guard/admin.guard'

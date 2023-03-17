@@ -28,18 +28,23 @@ export class AuthService {
       }
     })
 
+    // 유효성
+    // 계정이 틀린 경우
+    // 권한이 SA, A가 아닌 경우
     if (!user || !(user.role === 'SA' || user.role === 'A')) {
       return { result: false, data: null }
     }
 
     if (await isMatch(dto.password, user.password)) {
-      // insert login history
+      // 로그인 이력 기록
       const loginHistory = new LoginHistory()
       loginHistory.userId = user.id
       loginHistory.type = 1
       await this.datasource.getRepository(LoginHistory).save(loginHistory)
+
       return { result: true, data: user }
     } else {
+      // 비밀번호가 틀린 경우
       return { result: false, data: null }
     }
   }
