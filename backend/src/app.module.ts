@@ -26,10 +26,9 @@ import { MenuModule } from './api/menu/menu.module'
     GlobalHttpModule,
 
     // import app module
-    // DevelopModule,
     AdminModule,
-    UserModule,
     AuthModule,
+    UserModule,
     GlobalModule,
     ImageModule,
     DashboardModule,

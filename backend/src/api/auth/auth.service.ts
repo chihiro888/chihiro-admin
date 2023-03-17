@@ -1,14 +1,25 @@
-import { createPassword } from './../../common/util/auth'
-import { UpdatePasswordDto } from './../admin/dto/update-password.dto'
+// ** Module
 import { Inject, Injectable } from '@nestjs/common'
-import { isMatch } from 'src/common/util/auth'
 import { DataSource, IsNull } from 'typeorm'
+import moment from 'moment'
+
+// ** Dto
 import { LoginDto } from './dto/login.dto'
+import { UpdatePasswordDto } from './dto/update-password.dto'
+
+// ** Entity
 import { LoginHistory } from 'src/entities/login-history.entity'
 import { File } from 'src/entities/file.entity'
-import { GlobalService } from '../global/global.service'
 import { User } from 'src/entities/user.entity'
-import moment from 'moment'
+
+// ** Util
+import { createPassword } from './../../common/util/auth'
+import { isMatch } from 'src/common/util/auth'
+
+// ** Service
+import { GlobalService } from '../global/global.service'
+
+// ** Const
 import DATE from 'src/common/constants/date'
 
 @Injectable()
@@ -50,11 +61,12 @@ export class AuthService {
   }
 
   // ANCHOR logout
-  async logout(userId) {
-    // insert login history
+  async logout(userId: number) {
+    // 로그아웃 이력 기록
     const loginHistory = new LoginHistory()
     loginHistory.userId = userId
     loginHistory.type = 0
+
     await this.datasource.getRepository(LoginHistory).save(loginHistory)
   }
 
@@ -94,8 +106,10 @@ export class AuthService {
       }
     })
 
+    // 비밀번호 변경
     user.password = await createPassword(dto.newPassword)
     user.updatedAt = moment().format(DATE.DATETIME)
+
     await this.datasource.getRepository(User).save(user)
   }
 }

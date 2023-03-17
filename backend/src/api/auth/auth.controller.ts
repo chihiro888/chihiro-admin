@@ -1,6 +1,4 @@
-import { UpdatePasswordDto } from './../admin/dto/update-password.dto'
-import { LoginDto } from './dto/login.dto'
-import { AuthService } from './auth.service'
+// ** Module
 import {
   Body,
   Controller,
@@ -17,6 +15,15 @@ import {
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 import { Response } from 'express'
 import SWAGGER from 'src/common/constants/swagger'
+
+// ** Dto
+import { LoginDto } from './dto/login.dto'
+import { UpdatePasswordDto } from './dto/update-password.dto'
+
+// ** Service
+import { AuthService } from './auth.service'
+
+// ** Guard
 import { AdminGuard } from 'src/common/guard/admin.guard'
 
 // ANCHOR admin controller

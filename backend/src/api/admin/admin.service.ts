@@ -1,8 +1,15 @@
+// ** Module
 import { Inject, Injectable } from '@nestjs/common'
-import { createPassword } from 'src/common/util/auth'
 import { DataSource, IsNull } from 'typeorm'
+
+// ** Dto
 import { CreateSystemAdminDto } from './dto/create-system-admin.dto'
+
+// ** Entity
 import { User } from 'src/entities/user.entity'
+
+// ** Util
+import { createPassword } from 'src/common/util/auth'
 
 @Injectable()
 export class AdminService {
@@ -27,7 +34,7 @@ export class AdminService {
   }
 
   // ANCHOR create system admin
-  async createSystemAdmin(dto: CreateSystemAdminDto) {
+  async createSystemAdmin(dto: CreateSystemAdminDto): Promise<void> {
     const user = new User()
     user.account = dto.account
     user.password = await createPassword(dto.password)
