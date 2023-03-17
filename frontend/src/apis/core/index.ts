@@ -17,9 +17,9 @@ export const getUserList = (params: object) => {
   return response
 }
 
-// ANCHOR get user detail
-export const getUserDetail = (params: object) => {
-  const url = `/api/user/getUserDetail`
+// ANCHOR get user
+export const getUser = (params: object) => {
+  const url = `/api/user/getUser`
   const response = axios.get<CommonResponse>(url, { params })
 
   return response
@@ -89,9 +89,9 @@ export const getLoginHistoryList = (params: object) => {
   return response
 }
 
-// ANCHOR get login history detail
-export const getLoginHistoryDetail = (params: object) => {
-  const url = `/api/user/getLoginHistoryDetail`
+// ANCHOR get login history
+export const getLoginHistory = (params: object) => {
+  const url = `/api/user/getLoginHistory`
   const response = axios.get<CommonResponse>(url, { params })
 
   return response
