@@ -1,5 +1,5 @@
 // ** Module
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
@@ -87,7 +87,7 @@ const Core = () => {
         dispatch(setSearchForm(res.data.searchForm ?? []))
 
         // NOTE 액션 정의
-        res.data.actionList.map((item, index) => {
+        res.data.actionList.map((item) => {
           item.loadAPI = api[item.loadAPI] ?? null
           item.updateAPI = api[item.updateAPI] ?? null
         })
