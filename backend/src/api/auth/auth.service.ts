@@ -72,6 +72,7 @@ export class AuthService {
 
   // ANCHOR get admin by user id
   async getAdminByUserId(userId: number) {
+    // 사용자 정보 조회
     const user = await this.datasource.getRepository(User).findOne({
       where: {
         id: userId,
@@ -79,20 +80,22 @@ export class AuthService {
       }
     })
 
-    const profile = await this.datasource.getRepository(File).find({
+    // 프로필 정보 조회
+    const profile = await this.datasource.getRepository(File).findOne({
       where: {
         tableName: '_user',
         tablePk: userId
+      },
+      order: {
+        createdAt: 'DESC'
       }
     })
 
-    if (profile.length !== 0) {
-      profile[0]['url'] =
-        (await this.globalService.getGlobal('imageDomain')) +
-        '/' +
-        profile[0].encName
+    if (profile) {
+      // 프로필 이미지가 존재하는 경우
+      const imageDomain = await this.globalService.getGlobal('imageDomain')
+      user['url'] = `${imageDomain}/${profile.encName}`
     }
-    user['profile'] = profile[0]
 
     return user
   }
