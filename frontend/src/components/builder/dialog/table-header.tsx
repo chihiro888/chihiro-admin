@@ -97,6 +97,7 @@ const TableHeader = () => {
                     variant="outlined"
                     color="error"
                     onClick={() => handleClickRemove(idx)}
+                    sx={{ width: '100%', height: '100%' }}
                   >
                     <Icon icon="material-symbols:delete-forever-outline"></Icon>
                   </Button>
