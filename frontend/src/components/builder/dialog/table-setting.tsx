@@ -3,32 +3,33 @@ import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import CustomDialogTitle from 'src/components/custom/custom-dialog-title'
 import { AppDispatch, RootState } from 'src/store'
-import { hCloseAddForm } from 'src/store/apps/page'
-import FormManager from '../manager/form-manager'
+import { hCloseTableSetting } from 'src/store/apps/page'
+import TableManager from '../manager/table-manager'
 
-const AddForm = () => {
+const TableSetting = () => {
   // ** Hooks
   const dispatch = useDispatch<AppDispatch>()
 
   // ** Redux
   const page = useSelector((state: RootState) => state.page)
-  const { openAddForm, addForm } = page
+  const { openTableSetting, tableSetting } = page
 
   return (
     <>
-      <Dialog open={openAddForm}>
+      {/* 검색 폼 편집 */}
+      <Dialog open={openTableSetting}>
         <CustomDialogTitle
-          title="추가 폼 편집"
+          title="테이블 구성 편집"
           onClose={() => {
-            dispatch(hCloseAddForm())
+            dispatch(hCloseTableSetting())
           }}
         />
         <DialogContent style={{ minWidth: '350px' }}>
-          <FormManager _key="addForm" list={addForm} />
+          <TableManager list={tableSetting} />
         </DialogContent>
       </Dialog>
     </>
   )
 }
 
-export default AddForm
+export default TableSetting

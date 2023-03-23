@@ -22,7 +22,7 @@ const Content = () => {
   // ** Hooks
   const crud = useSelector((state: RootState) => state.crud)
   const pagination = crud.pagination
-  const tableContent = crud.tableContent
+  const tableSetting = crud.tableSetting
   const actionList = crud.actionList
 
   // ** Redux
@@ -52,7 +52,7 @@ const Content = () => {
         {pagination.data.map((row: any, idx: number) => (
           <TableRow key={idx}>
             {/* 테이블 내용 출력 */}
-            {tableContent.map((cell, index) => {
+            {tableSetting.map((cell, index) => {
               switch (cell.type) {
                 case 'text':
                   return (
@@ -68,11 +68,11 @@ const Content = () => {
                         : '-'}
                     </TableCell>
                   )
-                case 'editor':
+                case 'modal':
                   return (
                     <TableCell key={index}>
                       <ModalEditorViewerContainer
-                        title={cell.title}
+                        title={cell.label}
                         content={row[`${cell.key}`]}
                       />
                     </TableCell>
@@ -94,13 +94,36 @@ const Content = () => {
                   if (cell.condition === null || cell.condition === undefined) {
                     break
                   }
-                  const color = cell.condition[`${row[`${cell.key}`]}`]
+
+                  let color = 'error'
+                  let label = cell.key
+
+                  cell.condition.map((item, index) => {
+                    if (item.label === row[`${cell.key}`]) {
+                      color = item.key
+                      label = item.alt
+                    }
+                  })
 
                   return (
                     <TableCell key={index}>
                       <Chip
-                        label={row[`${cell.key}`] || cell.key}
-                        color={color || 'error'}
+                        label={label}
+                        color={
+                          color === 'default'
+                            ? 'default'
+                            : color === 'primary'
+                            ? 'primary'
+                            : color === 'info'
+                            ? 'info'
+                            : color === 'secondary'
+                            ? 'secondary'
+                            : color === 'success'
+                            ? 'success'
+                            : color === 'warning'
+                            ? 'warning'
+                            : 'error'
+                        }
                         variant="outlined"
                       />
                     </TableCell>
@@ -115,28 +138,29 @@ const Content = () => {
                           handleClickSnack(row[`${cell.key}`] || '-')
                         }
                       >
-                        {cell.title}
+                        {cell.label}
                       </Button>
                     </TableCell>
+                  )
+                case 'action':
+                  return (
+                    (actionList.length > 0 ||
+                      detailAPI !== null ||
+                      deleteAPI !== null) && (
+                      <TableCell>
+                        <ActionContainer
+                          id={row.id}
+                          detailAction={detailAPI !== null}
+                          deleteAction={deleteAPI !== null}
+                        />
+                      </TableCell>
+                    )
                   )
 
                 default:
                   break
               }
             })}
-
-            {/* 액션 버튼 */}
-            {(actionList.length > 0 ||
-              detailAPI !== null ||
-              deleteAPI !== null) && (
-              <TableCell>
-                <ActionContainer
-                  id={row.id}
-                  detailAction={detailAPI !== null}
-                  deleteAction={deleteAPI !== null}
-                />
-              </TableCell>
-            )}
           </TableRow>
         ))}
       </TableBody>

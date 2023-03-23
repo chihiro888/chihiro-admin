@@ -20,7 +20,7 @@ const ListContainer = ({ children }) => {
   const dispatch = useDispatch()
   const crud = useSelector((state: RootState) => state.crud)
   const pagination = crud.pagination
-  const tableHeader = crud.tableHeader
+  const tableSetting = crud.tableSetting
   const searchForm = crud.searchForm
   const listAPI = crud.listAPI
 
@@ -56,10 +56,10 @@ const ListContainer = ({ children }) => {
                   <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
                       <TableRow>
-                        {tableHeader.map((item, idx) => {
+                        {tableSetting.map((item, idx) => {
                           return (
                             <>
-                              <TableCell key={idx}>{item}</TableCell>
+                              <TableCell key={idx}>{item.header}</TableCell>
                             </>
                           )
                         })}

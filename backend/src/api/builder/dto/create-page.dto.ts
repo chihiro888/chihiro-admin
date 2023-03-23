@@ -68,16 +68,10 @@ export class CreatePageDto {
   deleteApi: string
 
   @ApiProperty({
-    description: 'table header',
+    description: 'table setting',
     example: ''
   })
-  tableHeader: string
-
-  @ApiProperty({
-    description: 'table content',
-    example: ''
-  })
-  tableContent: string
+  tableSetting: string
 
   @ApiProperty({
     description: 'add form',

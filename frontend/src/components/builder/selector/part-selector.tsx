@@ -15,11 +15,18 @@ import {
   hOpenDefaultPart,
   hOpenLinePart,
   hOpenSelectPart,
+  hOpenTableActionPart,
+  hOpenTableChipPart,
+  hOpenTableDefaultPart,
+  hOpenTableImagePart,
+  hOpenTableModalPart,
+  hOpenTableSnackbarPart,
   hOpenTextareaPart,
   hOpenUploadPart,
   setClearInput,
   updateState
 } from 'src/store/apps/page'
+import { addPart } from 'src/utils/page'
 
 // ** Icon Imports
 import Icon from 'src/@core/components/icon'
@@ -111,6 +118,44 @@ const PartSelector = () => {
     }
   ]
 
+  const tablePartList = [
+    {
+      type: 'text',
+      icon: 'mdi:alpha-t-box-outline',
+      title: 'Text Field'
+    },
+    {
+      type: 'image',
+      icon: 'mdi:alpha-t-box-outline',
+      title: 'Image'
+    },
+    {
+      type: 'date',
+      icon: 'system-uicons:calendar-date',
+      title: 'Date'
+    },
+    {
+      type: 'chip',
+      icon: 'mdi:alpha-t-box-outline',
+      title: 'Chip'
+    },
+    {
+      type: 'modal',
+      icon: 'mdi:alpha-t-box-outline',
+      title: 'Modal window'
+    },
+    {
+      type: 'snackbar',
+      icon: 'mdi:alpha-t-box-outline',
+      title: 'Snackbar'
+    },
+    {
+      type: 'action',
+      icon: 'mdi:alpha-t-box-outline',
+      title: 'Action button'
+    }
+  ]
+
   const [partList, setPartList] = useState([])
 
   // 파츠 목록 초기화
@@ -118,6 +163,7 @@ const PartSelector = () => {
     if (partType === 'add' || partType === 'action') setPartList(addPartList)
     else if (partType === 'search') setPartList(searchPartList)
     else if (partType === 'detail') setPartList(detailPartList)
+    else if (partType === 'table') setPartList(tablePartList)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [partType])
 
@@ -141,29 +187,52 @@ const PartSelector = () => {
                     dispatch(
                       updateState({ key: 'partSubType', value: part.type })
                     )
+                    if (partType === 'table') {
+                      const defaultCondition =
+                        part.type === 'text' || part.type === 'date'
+                      const imageCondition = part.type === 'image'
+                      const chipCondition = part.type === 'chip'
+                      const modalCondition = part.type === 'modal'
+                      const snackbarCondition = part.type === 'snackbar'
+                      const actionCondition = part.type === 'action'
 
-                    const defaultCondition =
-                      part.type === 'text' ||
-                      part.type === 'number' ||
-                      part.type === 'password' ||
-                      part.type === 'editor' ||
-                      part.type === 'text' ||
-                      part.type === 'date'
-                    const lineCondition = part.type === 'line'
-                    const selectCondition = part.type === 'select'
-                    const uploadCondition = part.type === 'upload'
-                    const textareaCondition = part.type === 'textarea'
+                      if (defaultCondition) {
+                        dispatch(hOpenTableDefaultPart())
+                      } else if (imageCondition) {
+                        dispatch(hOpenTableImagePart())
+                      } else if (chipCondition) {
+                        dispatch(hOpenTableChipPart())
+                      } else if (modalCondition) {
+                        dispatch(hOpenTableModalPart())
+                      } else if (snackbarCondition) {
+                        dispatch(hOpenTableSnackbarPart())
+                      } else if (actionCondition) {
+                        dispatch(hOpenTableActionPart())
+                      }
+                    } else {
+                      const defaultCondition =
+                        part.type === 'text' ||
+                        part.type === 'number' ||
+                        part.type === 'password' ||
+                        part.type === 'editor' ||
+                        part.type === 'text' ||
+                        part.type === 'date'
+                      const lineCondition = part.type === 'line'
+                      const selectCondition = part.type === 'select'
+                      const uploadCondition = part.type === 'upload'
+                      const textareaCondition = part.type === 'textarea'
 
-                    if (defaultCondition) {
-                      dispatch(hOpenDefaultPart())
-                    } else if (lineCondition) {
-                      dispatch(hOpenLinePart())
-                    } else if (selectCondition) {
-                      dispatch(hOpenSelectPart())
-                    } else if (uploadCondition) {
-                      dispatch(hOpenUploadPart())
-                    } else if (textareaCondition) {
-                      dispatch(hOpenTextareaPart())
+                      if (defaultCondition) {
+                        dispatch(hOpenDefaultPart())
+                      } else if (lineCondition) {
+                        dispatch(hOpenLinePart())
+                      } else if (selectCondition) {
+                        dispatch(hOpenSelectPart())
+                      } else if (uploadCondition) {
+                        dispatch(hOpenUploadPart())
+                      } else if (textareaCondition) {
+                        dispatch(hOpenTextareaPart())
+                      }
                     }
                   }}
                   sx={{

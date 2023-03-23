@@ -18,6 +18,10 @@ const updateSearchForm = (dispatch, value) => {
   dispatch(updateState({ key: 'searchForm', value }))
 }
 
+const updateTableSetting = (dispatch, value) => {
+  dispatch(updateState({ key: 'tableSetting', value }))
+}
+
 // 추가
 const pushAddForm = (dispatch, addForm, value) => {
   dispatch(updateState({ key: 'addForm', value: [...addForm, value] }))
@@ -33,6 +37,12 @@ const pushDetailForm = (dispatch, detailForm, value) => {
 
 const pushSearchForm = (dispatch, searchForm, value) => {
   dispatch(updateState({ key: 'searchForm', value: [...searchForm, value] }))
+}
+
+const pushTableSetting = (dispatch, tableSetting, value) => {
+  dispatch(
+    updateState({ key: 'tableSetting', value: [...tableSetting, value] })
+  )
 }
 
 // 요소 삭제 및 순서 재정렬
@@ -58,7 +68,7 @@ export const deletePart = (dispatch, page, order) => {
   const { partType } = page
 
   // 입력값
-  const { addForm, detailForm, searchForm, actionForm } = page
+  const { addForm, detailForm, searchForm, actionForm, tableSetting } = page
 
   // 삭제 처리
   if (partType === 'add' || partType === 'action') {
@@ -69,6 +79,8 @@ export const deletePart = (dispatch, page, order) => {
     updateDetailForm(dispatch, deleteAndReorder(detailForm, order))
   } else if (partType === 'search') {
     updateSearchForm(dispatch, deleteAndReorder(searchForm, order))
+  } else if (partType === 'table') {
+    updateTableSetting(dispatch, deleteAndReorder(tableSetting, order))
   }
 }
 
@@ -87,11 +99,15 @@ export const addPart = (dispatch, page) => {
     inputAllowFileExt,
     inputMaxFileCount,
     inputMaxFileSizeBytes,
-    inputSelectList
+    inputSelectList,
+    inputHeader,
+    inputWidth,
+    inputHeight,
+    inputChipList
   } = page
 
   // 입력값
-  const { addForm, detailForm, searchForm, actionForm } = page
+  const { addForm, detailForm, searchForm, actionForm, tableSetting } = page
 
   const defaultCondition =
     partSubType === 'text' ||
@@ -190,6 +206,56 @@ export const addPart = (dispatch, page) => {
     } else if (textareaCondition) {
       // 미사용
     }
+  } else if (partType === 'table') {
+    const defaultCondition = partSubType === 'text' || partSubType === 'date'
+    const imageCondition = partSubType === 'image'
+    const chipCondition = partSubType === 'chip'
+    const modalCondition = partSubType === 'modal'
+    const snackbarCondition = partSubType === 'snackbar'
+    const actionCondition = partSubType === 'action'
+
+    if (defaultCondition) {
+      pushTableSetting(dispatch, tableSetting, {
+        header: inputHeader,
+        type: partSubType,
+        key: inputKey
+      })
+    } else if (imageCondition) {
+      pushTableSetting(dispatch, tableSetting, {
+        header: inputHeader,
+        type: partSubType,
+        key: inputKey,
+        width: inputWidth,
+        height: inputHeight
+      })
+    } else if (chipCondition) {
+      pushTableSetting(dispatch, tableSetting, {
+        header: inputHeader,
+        type: partSubType,
+        key: inputKey,
+        condition: inputChipList
+      })
+      console.log('inputChipList', inputChipList)
+    } else if (modalCondition) {
+      pushTableSetting(dispatch, tableSetting, {
+        header: inputHeader,
+        type: partSubType,
+        key: inputKey,
+        label: inputLabel
+      })
+    } else if (snackbarCondition) {
+      pushTableSetting(dispatch, tableSetting, {
+        header: inputHeader,
+        type: partSubType,
+        key: inputKey,
+        label: inputLabel
+      })
+    } else if (actionCondition) {
+      pushTableSetting(dispatch, tableSetting, {
+        header: inputHeader,
+        type: partSubType
+      })
+    }
   }
 }
 
@@ -209,11 +275,15 @@ export const updatePart = (dispatch, page) => {
     inputAllowFileExt,
     inputMaxFileCount,
     inputMaxFileSizeBytes,
-    inputSelectList
+    inputSelectList,
+    inputHeader,
+    inputWidth,
+    inputHeight,
+    inputChipList
   } = page
 
   // 입력값
-  const { addForm, detailForm, searchForm, actionForm } = page
+  const { addForm, detailForm, searchForm, actionForm, tableSetting } = page
 
   const defaultCondition =
     partSubType === 'text' ||
@@ -337,6 +407,79 @@ export const updatePart = (dispatch, page) => {
       // 미사용
     } else if (textareaCondition) {
       // 미사용
+    }
+  } else if (partType === 'table') {
+    const defaultCondition = partSubType === 'text' || partSubType === 'date'
+    const imageCondition = partSubType === 'image'
+    const chipCondition = partSubType === 'chip'
+    const modalCondition = partSubType === 'modal'
+    const snackbarCondition = partSubType === 'snackbar'
+    const actionCondition = partSubType === 'action'
+
+    if (defaultCondition) {
+      const nextState = produce(tableSetting, (draftState) => {
+        draftState.map((item) => {
+          if (item.order === inputOrder) {
+            item.header = inputHeader
+            item.key = inputKey
+          }
+        })
+      })
+      updateTableSetting(dispatch, nextState)
+    } else if (imageCondition) {
+      const nextState = produce(tableSetting, (draftState) => {
+        draftState.map((item) => {
+          if (item.order === inputOrder) {
+            item.header = inputHeader
+            item.key = inputKey
+            item.width = inputWidth
+            item.height = inputHeight
+          }
+        })
+      })
+      updateTableSetting(dispatch, nextState)
+    } else if (chipCondition) {
+      const nextState = produce(tableSetting, (draftState) => {
+        draftState.map((item) => {
+          if (item.order === inputOrder) {
+            item.header = inputHeader
+            item.key = inputKey
+            item.condition = inputChipList
+          }
+        })
+      })
+      updateTableSetting(dispatch, nextState)
+    } else if (modalCondition) {
+      const nextState = produce(tableSetting, (draftState) => {
+        draftState.map((item) => {
+          if (item.order === inputOrder) {
+            item.header = inputHeader
+            item.key = inputKey
+            item.label = inputLabel
+          }
+        })
+      })
+      updateTableSetting(dispatch, nextState)
+    } else if (snackbarCondition) {
+      const nextState = produce(tableSetting, (draftState) => {
+        draftState.map((item) => {
+          if (item.order === inputOrder) {
+            item.header = inputHeader
+            item.key = inputKey
+            item.label = inputLabel
+          }
+        })
+      })
+      updateTableSetting(dispatch, nextState)
+    } else if (actionCondition) {
+      const nextState = produce(tableSetting, (draftState) => {
+        draftState.map((item) => {
+          if (item.order === inputOrder) {
+            item.header = inputHeader
+          }
+        })
+      })
+      updateTableSetting(dispatch, nextState)
     }
   }
 }
