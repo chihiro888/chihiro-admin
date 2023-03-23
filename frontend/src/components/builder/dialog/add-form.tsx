@@ -1,5 +1,4 @@
 import { Dialog, DialogContent } from '@mui/material'
-import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import CustomDialogTitle from 'src/components/custom/custom-dialog-title'

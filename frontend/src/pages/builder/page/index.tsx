@@ -265,13 +265,8 @@ const Page = () => {
                     </Grid>
                     <Box sx={{ mt: 3 }}>
                       <ModalCodeViewerContainer
-                        title="#테이블헤더"
-                        content={row.tableHeader}
-                        pretty
-                      />
-                      <ModalCodeViewerContainer
-                        title="#테이블내용"
-                        content={row.tableContent}
+                        title="#테이블설정"
+                        content={row.tableSetting}
                         pretty
                       />
                       <ModalCodeViewerContainer
