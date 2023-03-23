@@ -3,8 +3,9 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const init = {
   // dialog
-  openTableHeader: false,
-  openTableContent: false,
+  // openTableHeader: false,
+  // openTableContent: false,
+  openTableSetting: false, // REVIEW
   openSearchForm: false,
   openAddForm: false,
   openDetailForm: false,
@@ -24,6 +25,14 @@ const init = {
   openUploadPart: false,
   openTextareaPart: false,
 
+  // table part dialog
+  openTableDefaultPart: false,
+  openTableImagePart: false,
+  openTableChipPart: false,
+  openTableModalPart: false,
+  openTableSnackbarPart: false,
+  openTableActionPart: false,
+
   // part type
   partType: 'add', // add, search, detail
   partSubType: '', // text, select, date, number, textarea, password, upload, editor, line
@@ -42,6 +51,12 @@ const init = {
   inputMaxFileCount: 1,
   inputMaxFileSizeBytes: 10 * 1024 * 1024,
   inputSelectList: [],
+
+  // table part dialog
+  inputHeader: '',
+  inputWidth: 0,
+  inputHeight: 0,
+  inputChipList: [],
 
   // action input
   inputActionOrder: 0,
@@ -84,8 +99,9 @@ const init = {
     checked: false,
     functionName: ''
   },
-  tableHeader: [],
+  // tableHeader: [],
   tableContent: '',
+  tableSetting: [], // REVIEW
   addForm: [],
   detailForm: [],
   searchForm: [],
@@ -97,20 +113,31 @@ export const appPageSlice = createSlice({
   name: 'appPage',
   initialState: { ...init },
   reducers: {
-    // 테이블 헤더 모달
-    hOpenTableHeader(state) {
-      state.openTableHeader = true
-    },
-    hCloseTableHeader(state) {
-      state.openTableHeader = false
-    },
+    // // 테이블 헤더 모달
+    // hOpenTableHeader(state) {
+    //   state.openTableHeader = true
+    // },
+    // hCloseTableHeader(state) {
+    //   state.openTableHeader = false
+    // },
 
-    // 테이블 내용 모달
-    hOpenTableContent(state) {
-      state.openTableContent = true
+    // // 테이블 내용 모달
+    // hOpenTableContent(state) {
+    //   state.openTableContent = true
+    // },
+    // hCloseTableContent(state) {
+    //   state.openTableContent = false
+    // },
+
+    // REVIEW - 테이블 구성 모달
+    hOpenTableSetting(state) {
+      state.openTableSetting = true
+      state.partType = 'table'
+      state.editMode = false
+      state.deleteMode = false
     },
-    hCloseTableContent(state) {
-      state.openTableContent = false
+    hCloseTableSetting(state) {
+      state.openTableSetting = false
     },
 
     // 검색 폼 모달
@@ -223,6 +250,56 @@ export const appPageSlice = createSlice({
       state.openTextareaPart = false
     },
 
+    // SECTION - 테이블 관련 모달
+    // 테이블 기본 모달
+    hOpenTableDefaultPart(state) {
+      state.openTableDefaultPart = true
+    },
+    hCloseTableDefaultPart(state) {
+      state.openTableDefaultPart = false
+    },
+
+    // 테이블 이미지 모달
+    hOpenTableImagePart(state) {
+      state.openTableImagePart = true
+    },
+    hCloseTableImagePart(state) {
+      state.openTableImagePart = false
+    },
+
+    // 테이블 칩 모달
+    hOpenTableChipPart(state) {
+      state.openTableChipPart = true
+    },
+    hCloseTableChipPart(state) {
+      state.openTableChipPart = false
+    },
+
+    // 테이블 Modal 모달
+    hOpenTableModalPart(state) {
+      state.openTableModalPart = true
+    },
+    hCloseTableModalPart(state) {
+      state.openTableModalPart = false
+    },
+
+    // 테이블 스낵바 모달
+    hOpenTableSnackbarPart(state) {
+      state.openTableSnackbarPart = true
+    },
+    hCloseTableSnackbarPart(state) {
+      state.openTableSnackbarPart = false
+    },
+
+    // 테이블 스낵바 모달
+    hOpenTableActionPart(state) {
+      state.openTableActionPart = true
+    },
+    hCloseTableActionPart(state) {
+      state.openTableActionPart = false
+    },
+    // !SECTION - 테이블 관련 모달
+
     // 공통 수정
     updateState(state, action) {
       state[action.payload.key] = action.payload.value
@@ -239,6 +316,10 @@ export const appPageSlice = createSlice({
       state.inputMaxFileCount = 1
       state.inputMaxFileSizeBytes = 10 * 1024 * 1024
       state.inputSelectList = []
+      state.inputHeader = ''
+      state.inputWidth = 0
+      state.inputHeight = 0
+      state.inputChipList = []
     },
 
     // 액션 입력 초기화
@@ -274,7 +355,8 @@ export const appPageSlice = createSlice({
         checked: false,
         functionName: ''
       }
-      state.tableHeader = []
+      // state.tableHeader = []
+      state.tableSetting = [] //REVIEW -
       state.addForm = []
       state.detailForm = []
       state.searchForm = []
@@ -307,8 +389,9 @@ export const appPageSlice = createSlice({
         checked: action.payload.useDeleteApi,
         functionName: action.payload.deleteApi
       }
-      state.tableHeader = action.payload.tableHeader
-      state.tableContent = action.payload.tableContent
+      // state.tableHeader = action.payload.tableHeader
+      // state.tableContent = action.payload.tableContent
+      state.tableSetting = action.payload.tableSetting //REVIEW -
       state.addForm = action.payload.addForm
       state.detailForm = action.payload.detailForm
       state.searchForm = action.payload.searchForm
@@ -318,10 +401,12 @@ export const appPageSlice = createSlice({
 })
 
 export const {
-  hOpenTableHeader,
-  hCloseTableHeader,
-  hOpenTableContent,
-  hCloseTableContent,
+  // hOpenTableHeader,
+  // hCloseTableHeader,
+  // hOpenTableContent,
+  // hCloseTableContent,
+  hOpenTableSetting, //REVIEW -
+  hCloseTableSetting, //REVIEW -
   hOpenSearchForm,
   hCloseSearchForm,
   hOpenAddForm,
@@ -350,7 +435,19 @@ export const {
   setClearInput,
   setClearActionInput,
   setClearData,
-  setInitData
+  setInitData,
+  hOpenTableDefaultPart,
+  hCloseTableDefaultPart,
+  hOpenTableImagePart,
+  hCloseTableImagePart,
+  hOpenTableChipPart,
+  hCloseTableChipPart,
+  hOpenTableModalPart,
+  hCloseTableModalPart,
+  hOpenTableSnackbarPart,
+  hCloseTableSnackbarPart,
+  hOpenTableActionPart,
+  hCloseTableActionPart
 } = appPageSlice.actions
 
 export default appPageSlice.reducer

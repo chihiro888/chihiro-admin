@@ -9,28 +9,24 @@ import { AppDispatch, RootState } from 'src/store'
 import { hOpenPartSelector, updateState } from 'src/store/apps/page'
 import DefaultItem from '../item/default-item'
 import * as block from 'src/lottie/block.json'
+import TableItem from '../item/table-item'
 
 interface Item {
   id: number
   order: number
-  type: string
+  header: string
   key: string
-  label: string
-  value: string
-  list?: any
-  allowFileExt?: string[]
-  maxFileCount?: number
-  maxFileSizeBytes?: number
-  chip?: boolean
-  sx?: any
+  type: string
+  width?: number
+  height?: number
+  condition?: any
+  label?: string
 }
 interface Props {
-  _key: 'addForm' | 'detailForm' | 'searchForm' | 'actionForm' // 예약어 회피
-
   list: Item[]
 }
 
-const FormManager = ({ _key, list }: Props) => {
+const TableManager = ({ list }: Props) => {
   // ** Hooks
   const dispatch = useDispatch<AppDispatch>()
 
@@ -46,7 +42,7 @@ const FormManager = ({ _key, list }: Props) => {
         item.order = i
       }
     })
-    dispatch(updateState({ key: _key, value: nextState }))
+    dispatch(updateState({ key: 'tableSetting', value: nextState }))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [list])
 
@@ -99,12 +95,12 @@ const FormManager = ({ _key, list }: Props) => {
         <ReactSortable
           list={list.map((x) => ({ ...x, chosen: true }))}
           setList={(newState) =>
-            dispatch(updateState({ key: _key, value: newState }))
+            dispatch(updateState({ key: 'tableSetting', value: newState }))
           }
           animation={200}
         >
           {list.map((part, idx) => {
-            return <DefaultItem key={idx} order={part.order} part={part} />
+            return <TableItem key={idx} order={part.order} part={part} />
           })}
         </ReactSortable>
       </Box>
@@ -112,4 +108,4 @@ const FormManager = ({ _key, list }: Props) => {
   )
 }
 
-export default FormManager
+export default TableManager

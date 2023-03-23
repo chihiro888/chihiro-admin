@@ -21,8 +21,7 @@ import {
   hOpenAddForm,
   hOpenDetailForm,
   hOpenSearchForm,
-  hOpenTableContent,
-  hOpenTableHeader,
+  hOpenTableSetting,
   updateState
 } from 'src/store/apps/page'
 
@@ -41,8 +40,7 @@ const EditForm = () => {
     createApi,
     detailApi,
     deleteApi,
-    tableHeader,
-    tableContent,
+    tableSetting,
     addForm,
     detailForm,
     searchForm,
@@ -119,8 +117,7 @@ const EditForm = () => {
         detailApi: detailApi.functionName,
         useDeleteApi: deleteApi.checked,
         deleteApi: deleteApi.functionName,
-        tableHeader: tableHeader,
-        tableContent: tableContent,
+        tableSetting: tableSetting,
         addForm: addForm,
         detailForm: detailForm,
         searchForm: searchForm,
@@ -319,7 +316,7 @@ const EditForm = () => {
                 <Button
                   variant="outlined"
                   onClick={() => {
-                    dispatch(hOpenTableHeader())
+                    dispatch(hOpenTableSetting())
                   }}
                   fullWidth
                 >
@@ -327,22 +324,7 @@ const EditForm = () => {
                     icon="material-symbols:table-chart-outline"
                     style={{ marginRight: '5px' }}
                   ></Icon>
-                  테이블 헤더 편집
-                </Button>
-              </Grid>
-              <Grid item xs={12} md={2}>
-                <Button
-                  variant="outlined"
-                  onClick={() => {
-                    dispatch(hOpenTableContent())
-                  }}
-                  fullWidth
-                >
-                  <Icon
-                    icon="material-symbols:table-chart-outline"
-                    style={{ marginRight: '5px' }}
-                  ></Icon>
-                  테이블 내용 편집
+                  테이블 편집
                 </Button>
               </Grid>
             </Grid>

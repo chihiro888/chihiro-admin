@@ -6,7 +6,6 @@ import { setPageHeader as setPageHeaderRedux } from 'src/store/apps/crud'
 import { useRouter } from 'next/router'
 import { getPage } from 'src/apis/builder'
 import EditForm from 'src/components/builder/edit-form'
-import TableHeader from 'src/components/builder/dialog/table-header'
 import SearchForm from 'src/components/builder/dialog/search-form'
 import AddForm from 'src/components/builder/dialog/add-form'
 import DetailForm from 'src/components/builder/dialog/detail-form'
@@ -20,7 +19,13 @@ import TextareaPart from 'src/components/builder/part/textarea-part'
 import UploadPart from 'src/components/builder/part/upload-part'
 import ActionController from 'src/components/builder/controller/action-controller'
 import ActionForm from 'src/components/builder/dialog/action-form'
-import TableContent from 'src/components/builder/dialog/table-content'
+import TableSetting from 'src/components/builder/dialog/table-setting'
+import TableDefaultPart from 'src/components/builder/part/table-default-part'
+import TableImagePart from 'src/components/builder/part/table-image-part'
+import TableChipPart from 'src/components/builder/part/table-chip-part'
+import TableModalPart from 'src/components/builder/part/table-modal-part'
+import TableSnackbarPart from 'src/components/builder/part/table-snackbar-part'
+import TableActionPart from 'src/components/builder/part/table-action-part'
 
 const Page = () => {
   // ** Hooks
@@ -68,11 +73,8 @@ const Page = () => {
       {/* 편집 폼 */}
       <EditForm />
 
-      {/* 테이블 헤더 편집 */}
-      <TableHeader />
-
-      {/* 테이블 내용 편집 */}
-      <TableContent />
+      {/* 테이블 구성 편집 */}
+      <TableSetting />
 
       {/* 검색 폼 편집 */}
       <SearchForm />
@@ -109,6 +111,24 @@ const Page = () => {
 
       {/* 업로드 파츠 */}
       <UploadPart />
+
+      {/* 테이블 기본 파츠 */}
+      <TableDefaultPart />
+
+      {/* 테이블 이미지 파츠 */}
+      <TableImagePart />
+
+      {/* 테이블 CHIP 파츠 */}
+      <TableChipPart />
+
+      {/* 테이블 모달 파츠 */}
+      <TableModalPart />
+
+      {/* 테이블 스낵바 파츠 */}
+      <TableSnackbarPart />
+
+      {/* 테이블 액션 파츠 */}
+      <TableActionPart />
     </>
   )
 }
