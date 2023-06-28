@@ -177,7 +177,7 @@ export class AdminController {
 
   // ANCHOR create admin
   @UseGuards(SystemAdminGuard)
-  @Post('createUser')
+  @Post('createAdmin')
   @ApiFiles()
   @ApiOperation({
     summary: '관리자 생성 (시스템 관리자 기능)',
@@ -210,7 +210,7 @@ export class AdminController {
     summary: '관리자 삭제 (시스템 관리자 기능)',
     description: '관리자를 삭제합니다.'
   })
-  async deleteUser(@Res() res: Response, @Query() dto: DeleteAdminDto) {
+  async deleteAdmin(@Res() res: Response, @Query() dto: DeleteAdminDto) {
     // delete admin
     await this.adminService.deleteAdmin(dto)
 
@@ -307,12 +307,12 @@ export class AdminController {
     })
   }
 
-  // ANCHOR update user intro
+  // ANCHOR update admin intro
   @UseGuards(SystemAdminGuard)
-  @Put('updateUserIntro')
+  @Put('updateAdminIntro')
   @ApiOperation({
-    summary: '사용자 소개 변경 (시스템 관리자 기능)',
-    description: '사용자의 자기소개를 변경합니다.'
+    summary: '관리자 소개 변경 (시스템 관리자 기능)',
+    description: '관리자의 자기소개를 변경합니다.'
   })
   async updateAdminIntro(
     @Res() res: Response,
