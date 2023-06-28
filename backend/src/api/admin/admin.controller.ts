@@ -224,12 +224,12 @@ export class AdminController {
 
   // ANCHOR update admin password
   @UseGuards(SystemAdminGuard)
-  @Put('UpdateAdminPasswordDto')
+  @Put('updateAdminPassword')
   @ApiOperation({
     summary: '관리자 비밀번호 변경 (시스템 관리자 기능)',
     description: '관리자를 비밀번호를 변경합니다.'
   })
-  async UpdateAdminPasswordDto(
+  async updateAdminPassword(
     @Res() res: Response,
     @Body() dto: UpdateAdminPasswordDto
   ) {
