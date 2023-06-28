@@ -10,7 +10,7 @@ import { UpdatePasswordDto } from './dto/update-password.dto'
 // ** Entity
 import { LoginHistory } from 'src/entities/login-history.entity'
 import { File } from 'src/entities/file.entity'
-import { User } from 'src/entities/user.entity'
+import { Admin } from 'src/entities/admin.entity'
 
 // ** Util
 import { createPassword } from './../../common/util/auth'
@@ -35,7 +35,7 @@ export class AuthService {
 
   // ANCHOR login
   async login(dto: LoginDto): Promise<Result> {
-    const user = await this.datasource.getRepository(User).findOne({
+    const user = await this.datasource.getRepository(Admin).findOne({
       where: {
         account: dto.account,
         deletedAt: IsNull()
@@ -82,9 +82,9 @@ export class AuthService {
   }
 
   // ANCHOR get admin by user id
-  async getAdminByUserId(userId: number): Promise<User> {
+  async getAdminByUserId(userId: number): Promise<Admin> {
     // 사용자 정보 조회
-    const user = await this.datasource.getRepository(User).findOne({
+    const user = await this.datasource.getRepository(Admin).findOne({
       where: {
         id: userId,
         deletedAt: IsNull()
@@ -113,7 +113,7 @@ export class AuthService {
 
   // ANCHOR update password
   async updatePassword(dto: UpdatePasswordDto): Promise<Result> {
-    const user = await this.datasource.getRepository(User).findOne({
+    const user = await this.datasource.getRepository(Admin).findOne({
       where: {
         id: dto.userId,
         deletedAt: IsNull()
@@ -132,7 +132,7 @@ export class AuthService {
     user.password = await createPassword(dto.newPassword)
     user.updatedAt = moment().format(DATE.DATETIME)
 
-    await this.datasource.getRepository(User).save(user)
+    await this.datasource.getRepository(Admin).save(user)
 
     return {
       result: true,

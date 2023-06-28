@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { IsNotEmpty } from 'class-validator'
 
-export class GetUserListDto {
+export class GetAdminListDto {
   @ApiProperty({
     description: 'page',
     example: 1

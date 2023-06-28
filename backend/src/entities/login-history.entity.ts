@@ -21,19 +21,19 @@ export class LoginHistory {
     comment: 'create time',
     default: () => 'CURRENT_TIMESTAMP'
   })
-  createdAt: String | Date | null
+  createdAt: string | Date | null
 
   @Column('datetime', {
     name: 'updated_at',
     nullable: true,
     comment: 'update time'
   })
-  updatedAt: String | Date | null
+  updatedAt: string | Date | null
 
   @Column('datetime', {
     name: 'deleted_at',
     nullable: true,
     comment: 'delete time'
   })
-  deletedAt: String | Date | null
+  deletedAt: string | Date | null
 }

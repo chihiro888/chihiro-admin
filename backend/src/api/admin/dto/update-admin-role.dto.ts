@@ -7,7 +7,7 @@ enum Role {
   User = 'U'
 }
 
-export class UpdateUserRoleDto {
+export class UpdateAdminRoleDto {
   @ApiProperty({
     description: 'user id',
     example: 1
