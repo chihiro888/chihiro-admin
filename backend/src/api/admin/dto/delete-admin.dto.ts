@@ -1,9 +1,9 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { IsNotEmpty } from 'class-validator'
 
-export class DeleteUserDto {
+export class DeleteAdminDto {
   @ApiProperty({
-    description: 'user id',
+    description: 'admin id',
     example: 1
   })
   @IsNotEmpty()

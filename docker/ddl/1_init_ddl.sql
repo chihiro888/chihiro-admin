@@ -1,14 +1,14 @@
 /*
-    user table
+    admin table
 */
-DROP TABLE IF EXISTS _user;
-CREATE TABLE IF NOT EXISTS _user (
+DROP TABLE IF EXISTS _admin;
+CREATE TABLE IF NOT EXISTS _admin (
   `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT COMMENT 'id',
   `account` VARCHAR(255) UNIQUE NOT NULL COMMENT 'account',
   `password` VARCHAR(255) NOT NULL COMMENT 'password',
   `intro` VARCHAR(255) COMMENT 'intro',
   `username` VARCHAR(255) NOT NULL COMMENT 'username',
-  `role` VARCHAR(10) DEFAULT 'U' COMMENT 'role (U: 사용자, A: 관리자, SA: 시스템관리자)',
+  `role` VARCHAR(10) DEFAULT 'U' COMMENT 'role (A: 관리자, SA: 시스템관리자)',
   `created_at` DATETIME DEFAULT now() COMMENT 'create time',
   `updated_at` DATETIME DEFAULT NULL COMMENT 'update time',
   `deleted_at` DATETIME DEFAULT NULL COMMENT 'delete time'
@@ -78,8 +78,8 @@ CREATE TABLE IF NOT EXISTS _page (
   `detail_api` VARCHAR(255) COMMENT 'detail api',
   `use_delete_api` BOOLEAN DEFAULT 0 COMMENT 'use delete api',
   `delete_api` VARCHAR(255) COMMENT 'delete api',
-  `table_header` TEXT COMMENT 'table header (JSON)',
-  `table_content` TEXT COMMENT 'table content (JSON)',
+  -- `table_header` TEXT COMMENT 'table header (JSON)',
+  -- `table_content` TEXT COMMENT 'table content (JSON)',
   `table_setting` TEXT COMMENT 'table setting (JSON)',
   `add_form` TEXT COMMENT 'add form (JSON)',
   `detail_form` TEXT COMMENT 'detail form (JSON)',

@@ -1,8 +1,6 @@
 import { BuilderModule } from './api/builder/builder.module'
 import { AuthModule } from './api/auth/auth.module'
-import { UserModule } from './api/user/user.module'
 import { Module } from '@nestjs/common'
-import { ScheduleModule } from '@nestjs/schedule'
 import { ConfigModule } from '@nestjs/config'
 import { AdminModule } from './api/admin/admin.module'
 import { DashboardModule } from './api/dashboard/dashboard.module'
@@ -39,11 +37,7 @@ import { ExcelModule } from './api/excel/excel.module'
     BuilderModule,
 
     // custom module
-    DashboardModule,
-    UserModule,
-
-    // task
-    ScheduleModule.forRoot()
+    DashboardModule
   ]
 })
 export class AppModule {}

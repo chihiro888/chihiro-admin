@@ -29,7 +29,7 @@ async function bootstrap() {
   const config = new DocumentBuilder()
     .setTitle('Chihiro Admin API')
     .setDescription('Documentation is quite important. lol')
-    .setVersion('1.0')
+    .setVersion('3.0')
     .build()
 
   // create swagger document

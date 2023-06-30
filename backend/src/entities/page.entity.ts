@@ -83,6 +83,13 @@ export class Page {
   deleteApi: string | null
 
   @Column('text', {
+    name: 'table_setting',
+    nullable: true,
+    comment: 'table setting (JSON)'
+  })
+  tableSetting: string | null
+
+  @Column('text', {
     name: 'add_form',
     nullable: true,
     comment: 'add form (JSON)'
@@ -131,7 +138,4 @@ export class Page {
     comment: 'delete time'
   })
   deletedAt: string | Date | null
-
-  @Column('text', { name: 'table_setting', nullable: true })
-  tableSetting: string | null
 }
