@@ -2,9 +2,9 @@
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import Icon from 'src/@core/components/icon'
-import ActionContainer from 'src/components/core/action-container'
 import CustomLottie from 'src/components/custom/custom-lottie'
 import * as cat from 'src/lottie/cat.json'
+import { getPaginationCount } from 'src/utils'
 
 // ** Core
 import HeaderContainer from 'src/components/core/header-container'
@@ -27,7 +27,8 @@ import {
   Grid,
   IconButton,
   Menu,
-  MenuItem
+  MenuItem,
+  Pagination
 } from '@mui/material'
 import { useRouter } from 'next/router'
 
@@ -35,6 +36,7 @@ const Page = () => {
   // ** Hooks
   const dispatch = useDispatch<AppDispatch>()
   const router = useRouter()
+
   // ** State
   const [dialog, setDialog] = useState<boolean>(false)
   const [menuAnchorEl, setMenuAnchorEl] = useState(null)
@@ -51,6 +53,22 @@ const Page = () => {
   const [isDisabled, setIsDisabled] = useState(true)
   const [dialogType, setDialogType] = useState<number>(0)
 
+  // ** Handler
+  const handleChangePage = async (e: any, value: number) => {
+    const params = {
+      page: value
+    }
+    const { data: res } = await getQueryList(params)
+    if (res.statusCode === 200) {
+      const data = res.data
+      setPagination({
+        activePage: value,
+        count: getPaginationCount(data.count),
+        data: data.data
+      })
+    }
+  }
+
   const createSql = async () => {
     if (title === '') {
       setTitleError('제목을 입력하세요')
@@ -62,6 +80,7 @@ const Page = () => {
     if (title === '' || query === '') return
     if (title.includes(' ') || title.includes('　')) {
       setTitleError('공백 문자는 사용할 수 없습니다.')
+
       return
     }
     const params = {
@@ -103,18 +122,15 @@ const Page = () => {
     const params = {
       page: pagination.activePage
     }
-    const { data: res2 } = await getQueryList(params)
-    if (res2.statusCode === 200) {
-      const data = res2.data
+    const { data: res } = await getQueryList(params)
+    if (res.statusCode === 200) {
+      const data = res.data
       setPagination({
         activePage: pagination.activePage,
         count: getPaginationCount(data.count),
         data: data.data
       })
     }
-  }
-  const getPaginationCount = (count: number) => {
-    return parseInt(String(count / 30)) + 1
   }
 
   const initPageState = async () => {
@@ -208,6 +224,7 @@ const Page = () => {
           </Button>
         </div>
       </Stack>
+
       {pagination.data.length === 0 ? (
         <>
           <CustomLottie text={'데이터가 존재하지 않습니다.'} data={cat} />
@@ -275,6 +292,15 @@ const Page = () => {
               </Grid>
             ))}
           </Grid>
+          <Stack alignItems="center" sx={{ mt: 5 }}>
+            <Pagination
+              count={pagination?.count}
+              shape="rounded"
+              color="primary"
+              page={pagination?.activePage}
+              onChange={handleChangePage}
+            />
+          </Stack>
         </>
       )}
       <Dialog open={dialog} maxWidth="md" scroll="body" onClose={closeDialog}>

@@ -27,7 +27,7 @@ export class ExcelService {
 
   // ANCHOR get page list
   async getQueryList(dto: GetQueryListDto) {
-    const limit = 30
+    const limit = 12
     const offset = (dto.page - 1) * limit
 
     // count
