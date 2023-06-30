@@ -16,3 +16,9 @@ export const getUploadPath = (): string => {
   const uploadPath = path.join(getProjectPath(), '/', 'upload')
   return uploadPath
 }
+
+// ANCHOR 업로드 경로 반환
+export const getUploadExcelPath = (): string => {
+  const uploadPath = path.join(getProjectPath(), '/', 'upload/excel/')
+  return uploadPath
+}

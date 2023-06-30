@@ -37,6 +37,11 @@ const navigation = (): VerticalNavItemsType => {
       path: '/builder/page'
     },
     {
+      title: 'Excel 빌더',
+      icon: 'uiw:file-excel',
+      path: '/excel'
+    },
+    {
       title: '이미지 등록',
       icon: 'material-symbols:upload-file-outline',
       path: '/image/register'
