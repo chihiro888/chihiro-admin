@@ -44,4 +44,4 @@ insert into `_menu_order` (`id`, `menu_id`, `menu_order`, `permission`) values
 -- excel sample data
 insert into `_excel` (`created_at`, `deleted_at`, `file_name`, `id`, `query`, `stock`, `title`, `updated_at`) values ('2023-06-30 17:01:28', NULL, 'f6a9a5a8-495f-46e2-8bb2-f00f2df2083d.xlsx', 1, 'select\n*\nfrom _page', 1, 'pageTBLQuery', NULL)
 insert into `_excel` (`created_at`, `deleted_at`, `file_name`, `id`, `query`, `stock`, `title`, `updated_at`) values ('2023-06-30 17:01:52', NULL, '9ad0bc0c-5905-431a-a8b9-a89cc36db9fa.xlsx', 2, 'select\n*\nfrom _user', 1, 'useTBLQuery', NULL)
-insert into `_excel` (`created_at`, `deleted_at`, `file_name`, `id`, `query`, `stock`, `title`, `updated_at`) values ('2023-06-30 17:01:52', NULL, '9ad0bc0c-5905-431a-a8b9-a89cc36db9fa.xlsx', 2, 'select\n*\nfrom _user', 1, 'useTBLQuery', NULL)
+insert into `_excel` (`created_at`, `deleted_at`, `file_name`, `id`, `query`, `stock`, `title`, `updated_at`) values ('2023-06-30 17:02:33', NULL, '2cab30ae-ee72-42ac-8579-22775674714c.xlsx', 3, 'select\n*\nfrom _menu', 1, 'menuTBLQuery', NULL)
