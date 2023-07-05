@@ -13,7 +13,6 @@ import { GlobalHttpModule } from './common/global/http.module'
 import configuration from './configuration/configuration'
 import { MenuModule } from './api/menu/menu.module'
 import { ExcelModule } from './api/excel/excel.module'
-import { UserModule } from './api/user/user.module'
 @Module({
   imports: [
     // setting configuration
@@ -38,10 +37,7 @@ import { UserModule } from './api/user/user.module'
     BuilderModule,
 
     // custom module
-    DashboardModule,
-
-    // App module
-    UserModule
+    DashboardModule
   ]
 })
 export class AppModule {}
