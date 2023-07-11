@@ -36,12 +36,8 @@ export class GlobalController {
   @Get('getGlobalList')
   @ApiOperation({ summary: '전역 데이터 리스트 조회 (시스템 관리자 기능)' })
   async getGlobalList(@Res() res: Response) {
-    const data = await this.globalService.getGlobalList()
-    res.status(HttpStatus.OK).json({
-      statusCode: HttpStatus.OK,
-      message: '',
-      data
-    })
+    const result = await this.globalService.getGlobalList()
+    res.status(result.statusCode).json(result)
   }
 
   // ANCHOR create global

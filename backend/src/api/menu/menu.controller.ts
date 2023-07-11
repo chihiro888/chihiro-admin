@@ -37,15 +37,9 @@ export class MenuController {
   @Get('getMenu')
   @ApiOperation({ summary: '메뉴 조회' })
   async getMenu(@Res() res: Response, @Session() session: any) {
-    // get menu
-    const data = await this.menuService.getMenu(session.role)
-
-    // return 200 response
-    res.status(HttpStatus.OK).json({
-      statusCode: HttpStatus.OK,
-      message: '',
-      data
-    })
+    const role = session.role
+    const result = await this.menuService.getMenu(role)
+    res.status(result.statusCode).json(result)
   }
 
   // ANCHOR get menu list
@@ -53,15 +47,8 @@ export class MenuController {
   @Get('getMenuList')
   @ApiOperation({ summary: '메뉴 목록 조회 (시스템 관리자 기능)' })
   async getMenuList(@Res() res: Response) {
-    // get menu list
-    const data = await this.menuService.getMenuList()
-
-    // return 200 response
-    res.status(HttpStatus.OK).json({
-      statusCode: HttpStatus.OK,
-      message: '',
-      data
-    })
+    const result = await this.menuService.getMenuList()
+    res.status(result.statusCode).json(result)
   }
 
   // ANCHOR get menu order list
@@ -72,15 +59,8 @@ export class MenuController {
     @Res() res: Response,
     @Query() dto: GetMenuOrderListDto
   ) {
-    // get order menu list
-    const data = await this.menuService.getMenuOrderList(dto)
-
-    // return 200 response
-    res.status(HttpStatus.OK).json({
-      statusCode: HttpStatus.OK,
-      message: '',
-      data
-    })
+    const result = await this.menuService.getMenuOrderList(dto)
+    res.status(result.statusCode).json(result)
   }
 
   // ANCHOR create menu
@@ -88,15 +68,8 @@ export class MenuController {
   @Post('createMenu')
   @ApiOperation({ summary: '메뉴 생성 (시스템 관리자 기능)' })
   async createMenu(@Res() res: Response, @Body() dto: CreateMenuDto) {
-    // create menu
-    const data = await this.menuService.createMenu(dto)
-
-    // return 200 response
-    res.status(HttpStatus.OK).json({
-      statusCode: HttpStatus.OK,
-      message: '',
-      data
-    })
+    const result = await this.menuService.createMenu(dto)
+    res.status(result.statusCode).json(result)
   }
 
   // ANCHOR update Menu
@@ -104,15 +77,8 @@ export class MenuController {
   @Put('updateMenu')
   @ApiOperation({ summary: '메뉴 수정 (시스템 관리자 기능)' })
   async updateMenu(@Res() res: Response, @Body() dto: UpdateMenuDto) {
-    // update Menu
-    const data = await this.menuService.updateMenu(dto)
-
-    // return 200 response
-    res.status(HttpStatus.OK).json({
-      statusCode: HttpStatus.OK,
-      message: '성공적으로 메뉴가 갱신되었습니다.',
-      data
-    })
+    const result = await this.menuService.updateMenu(dto)
+    res.status(result.statusCode).json(result)
   }
 
   // ANCHOR delete Menu
@@ -120,14 +86,7 @@ export class MenuController {
   @Delete('deleteMenu')
   @ApiOperation({ summary: '메뉴 삭제 (시스템 관리자 기능)' })
   async deleteMenu(@Res() res: Response, @Query() dto: DeleteMenuDto) {
-    // delete Menu
-    const data = await this.menuService.deleteMenu(dto)
-
-    // return 200 response
-    res.status(HttpStatus.OK).json({
-      statusCode: HttpStatus.OK,
-      message: '성공적으로 메뉴가 삭제되었습니다.',
-      data
-    })
+    const result = await this.menuService.deleteMenu(dto)
+    res.status(result.statusCode).json(result)
   }
 }

@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 
 // ** Hooks Import
 import { useAuth } from 'src/hooks/useAuth'
-import { getAdmin } from 'src/apis/admin'
+import { getAdminBySession } from 'src/apis/admin'
 
 interface AuthGuardProps {
   children: ReactNode
@@ -22,7 +22,7 @@ const AuthGuard = (props: AuthGuardProps) => {
   const initData = async () => {
     // 세션 기반으로 로그인 정보 조회
     try {
-      const { data: res } = await getAdmin()
+      const { data: res } = await getAdminBySession()
       if (res.statusCode === 200) {
         setUser({ ...res.data })
       }

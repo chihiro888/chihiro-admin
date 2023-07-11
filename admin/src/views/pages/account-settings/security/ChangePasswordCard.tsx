@@ -24,7 +24,7 @@ import * as yup from 'yup'
 import toast from 'react-hot-toast'
 import { useForm, Controller } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { updatePassword } from 'src/apis/auth'
+import { updatePassword } from 'src/apis/admin'
 import { useTranslation } from 'react-i18next'
 
 interface State {
