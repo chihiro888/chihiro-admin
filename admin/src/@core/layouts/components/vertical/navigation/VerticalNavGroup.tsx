@@ -116,7 +116,7 @@ const VerticalNavGroup = (props: Props) => {
       openGroup = []
 
       // ** push Current Active Group To Open Group array
-      if (currentActiveGroup.every(elem => groupActive.includes(elem))) {
+      if (currentActiveGroup.every((elem) => groupActive.includes(elem))) {
         openGroup.push(...currentActiveGroup)
       }
 
@@ -165,7 +165,10 @@ const VerticalNavGroup = (props: Props) => {
       setGroupActive([])
     }
 
-    if ((navCollapsed && navHover) || (groupActive.length === 0 && !navCollapsed)) {
+    if (
+      (navCollapsed && navHover) ||
+      (groupActive.length === 0 && !navCollapsed)
+    ) {
       setGroupActive([...currentActiveGroup])
     }
 
@@ -181,7 +184,8 @@ const VerticalNavGroup = (props: Props) => {
 
   const icon = parent && !item.icon ? themeConfig.navSubItemIcon : item.icon
 
-  const menuGroupCollapsedStyles = navCollapsed && !navHover ? { opacity: 0 } : { opacity: 1 }
+  const menuGroupCollapsedStyles =
+    navCollapsed && !navHover ? { opacity: 0 } : { opacity: 1 }
 
   const conditionalBgColor = () => {
     if (mode === 'semi-dark') {
@@ -203,7 +207,9 @@ const VerticalNavGroup = (props: Props) => {
             '&, &:hover': {
               backgroundColor: `rgba(${theme.palette.customColors.dark}, 0.04)`
             },
-            '& .MuiTypography-root, & svg': { color: `rgba(${theme.palette.customColors.dark}, 0.87)` }
+            '& .MuiTypography-root, & svg': {
+              color: `rgba(${theme.palette.customColors.dark}, 0.87)`
+            }
           }
         }
       }
@@ -211,7 +217,10 @@ const VerticalNavGroup = (props: Props) => {
       return {
         '&.Mui-selected': {
           '&, &:hover': {
-            backgroundColor: mode === 'light' ? bgColors.primaryLight.backgroundColor : 'primary.main'
+            backgroundColor:
+              mode === 'light'
+                ? bgColors.primaryLight.backgroundColor
+                : 'primary.main'
           },
           '& .MuiTypography-root, & svg': {
             color: mode === 'light' ? 'primary.main' : 'common.white'
@@ -232,7 +241,7 @@ const VerticalNavGroup = (props: Props) => {
       <Fragment>
         <ListItem
           disablePadding
-          className='nav-group'
+          className="nav-group"
           sx={{
             px: '0 !important',
             flexDirection: 'column',
@@ -265,25 +274,38 @@ const VerticalNavGroup = (props: Props) => {
               ...conditionalBgColor(),
               transition: 'padding .25s ease-in-out',
               width: `calc(100% - ${theme.spacing(4 * 2)})`,
-              pr: navCollapsed && !navHover ? ((collapsedNavWidth - navigationBorderWidth - 22) / 4 - 8) / 2 : 2.5,
+              pr:
+                navCollapsed && !navHover
+                  ? ((collapsedNavWidth - navigationBorderWidth - 22) / 4 - 8) /
+                    2
+                  : 2.5,
               pl:
                 navCollapsed && !navHover
-                  ? ((collapsedNavWidth - navigationBorderWidth - 22) / 4 - 8) / 2
+                  ? ((collapsedNavWidth - navigationBorderWidth - 22) / 4 - 8) /
+                    2
                   : parent
                   ? 6
                   : 4,
               ...(groupActive.includes(item.title) && {
                 backgroundColor:
-                  mode === 'semi-dark' ? `rgba(${theme.palette.customColors.dark}, 0.04)` : 'action.hover'
+                  mode === 'semi-dark'
+                    ? `rgba(${theme.palette.customColors.dark}, 0.04)`
+                    : 'action.hover'
               }),
               ...(groupActive.includes(item.title) && {
                 '& .MuiTypography-root, & svg': {
-                  color: mode === 'semi-dark' ? `rgba(${theme.palette.customColors.dark}, 0.87)` : 'text.primary'
+                  color:
+                    mode === 'semi-dark'
+                      ? `rgba(${theme.palette.customColors.dark}, 0.87)`
+                      : 'text.primary'
                 }
               }),
               '&.Mui-selected.Mui-focusVisible': {
                 '&, &:hover': {
-                  backgroundColor: mode === 'light' ? hexToRGBA(theme.palette.primary.main, 0.24) : 'primary.dark'
+                  backgroundColor:
+                    mode === 'light'
+                      ? hexToRGBA(theme.palette.primary.main, 0.24)
+                      : 'primary.dark'
                 }
               }
             }}
@@ -297,36 +319,61 @@ const VerticalNavGroup = (props: Props) => {
                   ...(parent
                     ? {
                         mr: 4.25,
-                        color: mode === 'semi-dark' ? `rgba(${theme.palette.customColors.dark}, 0.38)` : 'text.disabled'
+                        color:
+                          mode === 'semi-dark'
+                            ? `rgba(${theme.palette.customColors.dark}, 0.38)`
+                            : 'text.disabled'
                       }
-                    : { ...(mode === 'semi-dark' && { color: `rgba(${theme.palette.customColors.dark}, 0.6)` }) })
+                    : {
+                        ...(mode === 'semi-dark' && {
+                          color: `rgba(${theme.palette.customColors.dark}, 0.6)`
+                        })
+                      })
                 }}
               >
-                <UserIcon icon={icon as string} fontSize={parent ? '0.4375rem' : '1.375rem'} />
+                <UserIcon
+                  icon={icon as string}
+                  fontSize={parent ? '0.4375rem' : '1.375rem'}
+                />
               </ListItemIcon>
             )}
-            <MenuItemTextWrapper sx={{ ...menuGroupCollapsedStyles, ...(isSubToSub ? { ml: 9 } : {}) }}>
+            <MenuItemTextWrapper
+              sx={{
+                ...menuGroupCollapsedStyles,
+                ...(isSubToSub ? { ml: 9 } : {})
+              }}
+            >
               <Typography
                 sx={{
-                  color: mode === 'semi-dark' ? `rgba(${theme.palette.customColors.dark}, 0.6)` : 'text.secondary'
+                  color:
+                    mode === 'semi-dark'
+                      ? `rgba(${theme.palette.customColors.dark}, 0.6)`
+                      : 'text.secondary'
                 }}
-                {...((themeConfig.menuTextTruncate || (!themeConfig.menuTextTruncate && navCollapsed && !navHover)) && {
+                {...((themeConfig.menuTextTruncate ||
+                  (!themeConfig.menuTextTruncate &&
+                    navCollapsed &&
+                    !navHover)) && {
                   noWrap: true
                 })}
               >
                 <Translations text={item.title} />
               </Typography>
               <Box
-                className='menu-item-meta'
+                className="menu-item-meta"
                 sx={{
                   ml: 0.8,
                   display: 'flex',
                   alignItems: 'center',
                   '& svg': {
                     transition: 'transform .25s ease-in-out',
-                    color: mode === 'semi-dark' ? `rgba(${theme.palette.customColors.dark}, 0.6)` : 'text.secondary',
+                    color:
+                      mode === 'semi-dark'
+                        ? `rgba(${theme.palette.customColors.dark}, 0.6)`
+                        : 'text.secondary',
                     ...(groupActive.includes(item.title) && {
-                      transform: direction === 'ltr' ? 'rotate(90deg)' : 'rotate(-90deg)'
+                      transform:
+                        direction === 'ltr' ? 'rotate(90deg)' : 'rotate(-90deg)'
                     })
                   }
                 }}
@@ -339,17 +386,25 @@ const VerticalNavGroup = (props: Props) => {
                       mr: 0.8,
                       height: 20,
                       fontWeight: 500,
-                      '& .MuiChip-label': { px: 1.5, textTransform: 'capitalize' }
+                      '& .MuiChip-label': {
+                        px: 1.5,
+                        textTransform: 'capitalize'
+                      }
                     }}
                   />
                 ) : null}
-                <Icon fontSize='1.25rem' icon={direction === 'ltr' ? 'bx:chevron-right' : 'bx:chevron-left'} />
+                <Icon
+                  fontSize="1.25rem"
+                  icon={
+                    direction === 'ltr' ? 'bx:chevron-right' : 'bx:chevron-left'
+                  }
+                />
               </Box>
             </MenuItemTextWrapper>
           </ListItemButton>
           <Collapse
-            component='ul'
-            onClick={e => e.stopPropagation()}
+            component="ul"
+            onClick={(e) => e.stopPropagation()}
             in={groupActive.includes(item.title)}
             sx={{
               pl: 0,

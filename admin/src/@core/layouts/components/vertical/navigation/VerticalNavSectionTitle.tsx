@@ -3,7 +3,9 @@ import Box from '@mui/material/Box'
 import Divider from '@mui/material/Divider'
 import { styled, useTheme } from '@mui/material/styles'
 import Typography, { TypographyProps } from '@mui/material/Typography'
-import MuiListSubheader, { ListSubheaderProps } from '@mui/material/ListSubheader'
+import MuiListSubheader, {
+  ListSubheaderProps
+} from '@mui/material/ListSubheader'
 
 // ** Types
 import { NavSectionTitle } from 'src/@core/layouts/types'
@@ -22,17 +24,17 @@ interface Props {
 }
 
 // ** Styled Components
-const ListSubheader = styled((props: ListSubheaderProps) => <MuiListSubheader component='li' {...props} />)(
-  ({ theme }) => ({
-    lineHeight: 1,
-    display: 'flex',
-    position: 'static',
-    margin: theme.spacing(4, 0, 2),
-    backgroundColor: 'transparent',
-    padding: theme.spacing(2.5, 8, 2.5, 0),
-    transition: 'padding .25s ease-in-out'
-  })
-)
+const ListSubheader = styled((props: ListSubheaderProps) => (
+  <MuiListSubheader component="li" {...props} />
+))(({ theme }) => ({
+  lineHeight: 1,
+  display: 'flex',
+  position: 'static',
+  margin: theme.spacing(4, 0, 2),
+  backgroundColor: 'transparent',
+  // padding: theme.spacing(2.5, 8, 2.5, 0),
+  transition: 'padding .25s ease-in-out'
+}))
 
 const TypographyHeaderText = styled(Typography)<TypographyProps>({
   fontSize: '0.75rem',
@@ -42,7 +44,8 @@ const TypographyHeaderText = styled(Typography)<TypographyProps>({
 
 const VerticalNavSectionTitle = (props: Props) => {
   // ** Props
-  const { item, navHover, settings, collapsedNavWidth, navigationBorderWidth } = props
+  const { item, navHover, settings, collapsedNavWidth, navigationBorderWidth } =
+    props
 
   // ** Hooks & Vars
   const theme = useTheme()
@@ -51,7 +54,7 @@ const VerticalNavSectionTitle = (props: Props) => {
   return (
     <CanViewNavSectionTitle navTitle={item}>
       <ListSubheader
-        className='nav-section-title'
+        className="nav-section-title"
         sx={{
           ...(navCollapsed &&
             !navHover && {
@@ -64,8 +67,11 @@ const VerticalNavSectionTitle = (props: Props) => {
           <Divider
             sx={{
               width: '1rem',
-              m: theme => `${theme.spacing(1.625, 0)} !important`,
-              borderColor: mode === 'semi-dark' ? `rgba(${theme.palette.customColors.dark}, 0.38)` : 'text.disabled'
+              m: (theme) => `${theme.spacing(1.625, 0)} !important`,
+              borderColor:
+                mode === 'semi-dark'
+                  ? `rgba(${theme.palette.customColors.dark}, 0.38)`
+                  : 'text.disabled'
             }}
           />
         ) : (
@@ -73,13 +79,21 @@ const VerticalNavSectionTitle = (props: Props) => {
             <Divider
               sx={{
                 width: '1rem',
-                m: theme => `${theme.spacing(0, 4, 0, 0)} !important`,
-                borderColor: mode === 'semi-dark' ? `rgba(${theme.palette.customColors.dark}, 0.38)` : 'text.disabled'
+                m: (theme) => `${theme.spacing(0, 4, 0, 0)} !important`,
+                borderColor:
+                  mode === 'semi-dark'
+                    ? `rgba(${theme.palette.customColors.dark}, 0.38)`
+                    : 'text.disabled'
               }}
             />
             <TypographyHeaderText
               noWrap
-              sx={{ color: mode === 'semi-dark' ? `rgba(${theme.palette.customColors.dark}, 0.38)` : 'text.disabled' }}
+              sx={{
+                color:
+                  mode === 'semi-dark'
+                    ? `rgba(${theme.palette.customColors.dark}, 0.38)`
+                    : 'text.disabled'
+              }}
             >
               <Translations text={item.sectionTitle} />
             </TypographyHeaderText>

@@ -12,7 +12,9 @@ import Typography from '@mui/material/Typography'
 import Box, { BoxProps } from '@mui/material/Box'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import { styled, useTheme } from '@mui/material/styles'
-import ListItemButton, { ListItemButtonProps } from '@mui/material/ListItemButton'
+import ListItemButton, {
+  ListItemButtonProps
+} from '@mui/material/ListItemButton'
 
 // ** Configs Import
 import themeConfig from 'src/configs/themeConfig'
@@ -47,7 +49,10 @@ interface Props {
 
 // ** Styled Components
 const MenuNavLink = styled(ListItemButton)<
-  ListItemButtonProps & { component?: ElementType; target?: '_blank' | undefined }
+  ListItemButtonProps & {
+    component?: ElementType
+    target?: '_blank' | undefined
+  }
 >(({ theme }) => ({
   width: '100%',
   margin: theme.spacing(0, 4),
@@ -110,7 +115,7 @@ const VerticalNavLink = ({
     <CanViewNavLink navLink={item}>
       <ListItem
         disablePadding
-        className='nav-link'
+        className="nav-link"
         disabled={item.disabled || false}
         sx={{
           px: '0 !important',
@@ -137,7 +142,7 @@ const VerticalNavLink = ({
             {...(item.disabled && { tabIndex: -1 })}
             className={isNavLinkActive() ? 'active' : ''}
             {...(item.openInNewTab ? { target: '_blank' } : null)}
-            onClick={e => {
+            onClick={(e) => {
               if (item.path === undefined) {
                 e.preventDefault()
                 e.stopPropagation()
@@ -147,13 +152,20 @@ const VerticalNavLink = ({
               }
             }}
             sx={{
-              py: 2.5,
+              py: 1,
               ...conditionalBgColor(),
-              ...(item.disabled ? { pointerEvents: 'none' } : { cursor: 'pointer' }),
-              pr: navCollapsed && !navHover ? ((collapsedNavWidth - navigationBorderWidth - 22) / 4 - 8) / 2 : 4,
+              ...(item.disabled
+                ? { pointerEvents: 'none' }
+                : { cursor: 'pointer' }),
+              pr:
+                navCollapsed && !navHover
+                  ? ((collapsedNavWidth - navigationBorderWidth - 22) / 4 - 8) /
+                    2
+                  : 4,
               pl:
                 navCollapsed && !navHover
-                  ? ((collapsedNavWidth - navigationBorderWidth - 22) / 4 - 8) / 2
+                  ? ((collapsedNavWidth - navigationBorderWidth - 22) / 4 - 8) /
+                    2
                   : parent
                   ? 6
                   : 4,
@@ -162,7 +174,10 @@ const VerticalNavLink = ({
                     '&.active': {
                       '& .MuiTypography-root': {
                         fontWeight: 600,
-                        color: mode === 'semi-dark' ? `rgba(${theme.palette.customColors.dark}, 0.87)` : 'text.primary'
+                        color:
+                          mode === 'semi-dark'
+                            ? `rgba(${theme.palette.customColors.dark}, 0.87)`
+                            : 'text.primary'
                       },
                       '& svg': {
                         color: 'primary.main',
@@ -173,14 +188,20 @@ const VerticalNavLink = ({
                   }
                 : {
                     '&.active': {
-                      backgroundColor: mode === 'light' ? bgColors.primaryLight.backgroundColor : 'primary.main',
+                      backgroundColor:
+                        mode === 'light'
+                          ? bgColors.primaryLight.backgroundColor
+                          : 'primary.main',
                       '& .MuiTypography-root, & svg': {
-                        color: mode === 'light' ? 'primary.main' : 'common.white'
+                        color:
+                          mode === 'light' ? 'primary.main' : 'common.white'
                       },
                       '&.active.Mui-focusVisible': {
                         '&, &:hover': {
                           backgroundColor:
-                            mode === 'light' ? hexToRGBA(theme.palette.primary.main, 0.24) : 'primary.dark'
+                            mode === 'light'
+                              ? hexToRGBA(theme.palette.primary.main, 0.24)
+                              : 'primary.dark'
                         }
                       }
                     }
@@ -195,12 +216,23 @@ const VerticalNavLink = ({
                 ...(parent
                   ? {
                       mr: 4.25,
-                      color: mode === 'semi-dark' ? `rgba(${theme.palette.customColors.dark}, 0.38)` : 'text.disabled'
+                      color:
+                        mode === 'semi-dark'
+                          ? `rgba(${theme.palette.customColors.dark}, 0.38)`
+                          : 'text.disabled'
                     }
-                  : { ...(mode === 'semi-dark' && { color: `rgba(${theme.palette.customColors.dark}, 0.6)` }) })
+                  : {
+                      ...(mode === 'semi-dark' && {
+                        color: `rgba(${theme.palette.customColors.dark}, 0.6)`
+                      })
+                    })
               }}
             >
-              <UserIcon icon={icon as string} fontSize={parent ? '0.4375rem' : '1.375rem'} />
+              <UserIcon
+                icon={icon as string}
+                // fontSize={parent ? '0.4375rem' : '1.375rem'}
+                fontSize={'12px'}
+              />
             </ListItemIcon>
 
             <MenuItemTextMetaWrapper
@@ -211,9 +243,16 @@ const VerticalNavLink = ({
             >
               <Typography
                 sx={{
-                  color: mode === 'semi-dark' ? `rgba(${theme.palette.customColors.dark}, 0.6)` : 'text.secondary'
+                  fontSize: '12px',
+                  color:
+                    mode === 'semi-dark'
+                      ? `rgba(${theme.palette.customColors.dark}, 0.6)`
+                      : 'text.secondary'
                 }}
-                {...((themeConfig.menuTextTruncate || (!themeConfig.menuTextTruncate && navCollapsed && !navHover)) && {
+                {...((themeConfig.menuTextTruncate ||
+                  (!themeConfig.menuTextTruncate &&
+                    navCollapsed &&
+                    !navHover)) && {
                   noWrap: true
                 })}
               >

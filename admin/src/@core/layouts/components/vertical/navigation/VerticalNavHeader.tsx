@@ -50,7 +50,7 @@ const StyledLink = styled('a')({
   textDecoration: 'none'
 })
 
-const VerticalNavHeader = (props: Props) => {
+const VerticalNavHeader = (props: any) => {
   // ** Props
   const {
     hidden,
@@ -127,12 +127,13 @@ const VerticalNavHeader = (props: Props) => {
       ) : (
         <Link href="/" passHref>
           <StyledLink>
-            <Logo width={30} height={30} path={app.appLogo} />
+            <Logo width={20} height={20} path={app.appLogo} />
             <Typography
               variant="body1"
               sx={{
                 lineHeight: 1,
                 fontWeight: 700,
+                fontSize: '12px',
                 ...menuCollapsedStyles,
                 letterSpacing: '-0.45px',
                 textTransform: 'lowercase',

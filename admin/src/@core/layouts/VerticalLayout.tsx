@@ -59,12 +59,21 @@ const ContentWrapper = styled('main')(({ theme }) => ({
 
 const VerticalLayout = (props: LayoutProps) => {
   // ** Props
-  const { hidden, settings, children, scrollToTop, footerProps, contentHeightFixed, verticalLayoutProps } = props
+  const {
+    hidden,
+    settings,
+    children,
+    scrollToTop,
+    footerProps,
+    contentHeightFixed,
+    verticalLayoutProps
+  } = props
 
   // ** Vars
   const { skin, appBar, navHidden, appBarBlur, contentWidth } = settings
   const navigationBorderWidth = skin === 'bordered' ? 1 : 0
-  const { navigationSize, disableCustomizer, collapsedNavigationSize } = themeConfig
+  const { navigationSize, disableCustomizer, collapsedNavigationSize } =
+    themeConfig
   const navWidth = navigationSize
   const collapsedNavWidth = collapsedNavigationSize
 
@@ -76,9 +85,10 @@ const VerticalLayout = (props: LayoutProps) => {
 
   return (
     <>
-      <VerticalLayoutWrapper className='layout-wrapper'>
+      <VerticalLayoutWrapper className="layout-wrapper">
         {/* Navigation Menu */}
-        {navHidden && !(navHidden && settings.lastLayout === 'horizontal') ? null : (
+        {navHidden &&
+        !(navHidden && settings.lastLayout === 'horizontal') ? null : (
           <Navigation
             navWidth={navWidth}
             navVisible={navVisible}
@@ -98,17 +108,20 @@ const VerticalLayout = (props: LayoutProps) => {
           />
         )}
         <MainContentWrapper
-          className='layout-content-wrapper'
+          className="layout-content-wrapper"
           sx={{ ...(contentHeightFixed && { maxHeight: '100vh' }) }}
         >
           {/* Blur the empty space above the AppBar when `appBarBlur` is `true` */}
           {appBarBlur && appBar === 'fixed' && (
             <AppBarBgBlur
               sx={{
-                height: theme => theme.spacing(skin === 'bordered' ? 4.5 : 3.25),
-                background: theme =>
+                height: (theme) =>
+                  theme.spacing(skin === 'bordered' ? 4.5 : 3.25),
+                background: (theme) =>
                   hexToRGBA(
-                    skin === 'bordered' ? theme.palette.background.paper : theme.palette.background.default,
+                    skin === 'bordered'
+                      ? theme.palette.background.paper
+                      : theme.palette.background.default,
                     0.6
                   )
               }}
@@ -125,7 +138,7 @@ const VerticalLayout = (props: LayoutProps) => {
 
           {/* Content */}
           <ContentWrapper
-            className='layout-page-content'
+            className="layout-page-content"
             sx={{
               ...(contentHeightFixed && {
                 overflow: 'hidden',
@@ -142,7 +155,11 @@ const VerticalLayout = (props: LayoutProps) => {
           </ContentWrapper>
 
           {/* Footer Component */}
-          <Footer footerStyles={footerProps?.sx} footerContent={footerProps?.content} {...props} />
+          <Footer
+            footerStyles={footerProps?.sx}
+            footerContent={footerProps?.content}
+            {...props}
+          />
         </MainContentWrapper>
       </VerticalLayoutWrapper>
 
@@ -153,9 +170,9 @@ const VerticalLayout = (props: LayoutProps) => {
       {scrollToTop ? (
         scrollToTop(props)
       ) : (
-        <ScrollToTop className='mui-fixed'>
-          <Fab color='primary' size='small' aria-label='scroll back to top'>
-            <Icon icon='bx:up-arrow-alt' />
+        <ScrollToTop className="mui-fixed">
+          <Fab color="primary" size="small" aria-label="scroll back to top">
+            <Icon icon="bx:up-arrow-alt" />
           </Fab>
         </ScrollToTop>
       )}
