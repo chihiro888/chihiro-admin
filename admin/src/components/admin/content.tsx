@@ -11,6 +11,9 @@ import DATE from 'src/common/constants/date'
 import { useSelector } from 'react-redux'
 import { RootState } from 'src/store'
 
+import CustomAvatar from 'src/@core/components/mui/avatar'
+import ModalEditorViewerContainer from '../core/modal-editor-viewer-container'
+
 const Content = () => {
   // ** Hooks
   const crud = useSelector((state: RootState) => state.crud)
@@ -38,8 +41,22 @@ const Content = () => {
       <TableBody>
         {pagination.data.map((row: any, idx: number) => (
           <TableRow key={idx}>
+            <TableCell>
+              <CustomAvatar
+                src={row.url}
+                variant="rounded"
+                sx={{ width: 40, height: 40 }}
+              />
+            </TableCell>
             <TableCell>{row.id}</TableCell>
             <TableCell>{row.account}</TableCell>
+            <TableCell>
+              <ModalEditorViewerContainer
+                title="자기소개"
+                content={row.intro}
+              />
+            </TableCell>
+
             <TableCell>
               <Button
                 variant="text"
