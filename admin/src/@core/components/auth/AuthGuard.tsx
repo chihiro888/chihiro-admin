@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 
 // ** Hooks Import
 import { useAuth } from 'src/hooks/useAuth'
-import { getAdmin} from 'src/apis/auth'
+import { getAdmin } from 'src/apis/admin'
 
 interface AuthGuardProps {
   children: ReactNode
@@ -46,7 +46,6 @@ const AuthGuard = (props: AuthGuardProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [router.route]
   )
-
 
   if (auth.loading || auth.user === null) {
     return fallback

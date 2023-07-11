@@ -37,6 +37,7 @@ import DATE from 'src/common/constants/date'
 
 // ** Interface
 import { Result } from 'src/common/interface'
+import { GetAdminBySessionDto } from './dto/get-admin-by-session.dto'
 
 @Injectable()
 export class AdminService {
@@ -318,6 +319,45 @@ export class AdminService {
           count: Number(count.count),
           data: data
         }
+      }
+    } catch (error) {
+      handleError(queryRunner, error)
+    } finally {
+      await queryRunner.release()
+    }
+  }
+
+  // ANCHOR get admin by session
+  async getAdminBySession(dto: GetAdminBySessionDto): Promise<Result> {
+    const queryRunner = this.datasource.createQueryRunner()
+    await queryRunner.startTransaction()
+    try {
+      const admin = await queryRunner.manager.getRepository(Admin).findOne({
+        where: {
+          id: dto.userId,
+          deletedAt: IsNull()
+        }
+      })
+
+      const profile = await queryRunner.manager.getRepository(File).find({
+        where: {
+          tableName: '_admin',
+          tablePk: dto.userId
+        }
+      })
+
+      if (profile.length !== 0) {
+        profile[0]['url'] =
+          (await this.globalService.getGlobal('imageDomain')) +
+          '/' +
+          profile[0].encName
+      }
+      admin['profile'] = profile
+
+      return {
+        statusCode: HttpStatus.OK,
+        message: '',
+        data: admin
       }
     } catch (error) {
       handleError(queryRunner, error)

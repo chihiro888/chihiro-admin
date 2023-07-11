@@ -30,6 +30,7 @@ import { GetLoginHistoryDto } from './dto/get-login-history.dto'
 import { LoginDto } from './dto/login.dto'
 import { LogoutDto } from './dto/logout.dto'
 import { UpdatePasswordDto } from './dto/update-password.dto'
+import { GetAdminBySessionDto } from './dto/get-admin-by-session.dto'
 
 // ** Decorator
 import { ApiFiles } from 'src/common/decorator/api-files.decorator'
@@ -104,10 +105,15 @@ export class AdminController {
 
   // ANCHOR get admin
   @UseGuards(AdminGuard)
-  @Get('getAdmin')
+  @Get('getAdminBySession')
   @ApiOperation({ summary: '관리자 상세정보 조회 (관리자 기능)' })
-  async getAdmin(@Res() res: Response, @Query() dto: GetAdminDto) {
-    const result = await this.adminService.getAdmin(dto)
+  async getAdminBySession(
+    @Res() res: Response,
+    @Query() dto: GetAdminBySessionDto,
+    @Session() session: any
+  ) {
+    dto.userId = session.userId
+    const result = await this.adminService.getAdminBySession(dto)
     res.status(result.statusCode).json(result)
   }
 
@@ -122,6 +128,15 @@ export class AdminController {
   ) {
     dto.userId = session.userId
     const result = await this.adminService.updatePassword(dto)
+    res.status(result.statusCode).json(result)
+  }
+
+  // ANCHOR get admin
+  @UseGuards(AdminGuard)
+  @Get('getAdmin')
+  @ApiOperation({ summary: '관리자 상세정보 조회 (관리자 기능)' })
+  async getAdmin(@Res() res: Response, @Query() dto: GetAdminDto) {
+    const result = await this.adminService.getAdmin(dto)
     res.status(result.statusCode).json(result)
   }
 

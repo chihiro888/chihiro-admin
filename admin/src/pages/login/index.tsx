@@ -29,9 +29,8 @@ import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
 
 // ** API
-import { getAdmin, login } from 'src/apis/auth'
 import { getAppInfo } from 'src/apis/global'
-import { checkSystemAdmin } from 'src/apis/admin'
+import { checkSystemAdmin, getAdminBySession, login } from 'src/apis/admin'
 
 // ** Custom component
 import FormHeader from 'src/components/custom/form-header'
@@ -93,7 +92,7 @@ const LoginV1 = () => {
       // 로그인 성공한 경우
       if (res.statusCode === 200) {
         // 관리자 정보 조회
-        const { data: res } = await getAdmin()
+        const { data: res } = await getAdminBySession()
         if (res.statusCode === 200) {
           // 관리자 정보 Context에 저장
           setUser({ ...res.data })

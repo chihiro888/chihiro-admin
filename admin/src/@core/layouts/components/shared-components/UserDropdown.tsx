@@ -24,7 +24,7 @@ import { useAuth } from 'src/hooks/useAuth'
 import { Settings } from 'src/@core/context/settingsContext'
 
 // ** API
-import { logout as logoutAPI } from 'src/apis/auth'
+import { logout as logoutAPI } from 'src/apis/admin'
 
 interface Props {
   settings: Settings
