@@ -20,6 +20,8 @@ import DATE from 'src/common/constants/date'
 
 // ** Interface
 import { Result } from 'src/common/interface'
+
+// ** Util
 import { handleError } from 'src/common/util'
 
 @Injectable()
@@ -39,7 +41,7 @@ export class BuilderService {
   }
 
   // ANCHOR get page list
-  async getPageList(dto: GetPageListDto) {
+  async getPageList(dto: GetPageListDto): Promise<Result> {
     const queryRunner = this.datasource.createQueryRunner()
     await queryRunner.startTransaction()
     try {
@@ -109,7 +111,7 @@ export class BuilderService {
   }
 
   // ANCHOR get page
-  async getPage(dto: GetPageDto) {
+  async getPage(dto: GetPageDto): Promise<Result> {
     const queryRunner = this.datasource.createQueryRunner()
     await queryRunner.startTransaction()
     try {
@@ -140,7 +142,7 @@ export class BuilderService {
   }
 
   // ANCHOR create page
-  async createPage(dto: CreatePageDto) {
+  async createPage(dto: CreatePageDto): Promise<Result> {
     const queryRunner = this.datasource.createQueryRunner()
     await queryRunner.startTransaction()
     try {
@@ -153,8 +155,9 @@ export class BuilderService {
 
       if (exist) {
         return {
-          result: false,
-          message: '이미 존재하는 URL 입니다.'
+          statusCode: HttpStatus.BAD_REQUEST,
+          message: '이미 존재하는 URL 입니다.',
+          data: null
         }
       }
 
@@ -194,7 +197,7 @@ export class BuilderService {
   }
 
   // ANCHOR update page
-  async updatePage(dto: UpdatePageDto) {
+  async updatePage(dto: UpdatePageDto): Promise<Result> {
     const queryRunner = this.datasource.createQueryRunner()
     await queryRunner.startTransaction()
     try {
@@ -239,7 +242,7 @@ export class BuilderService {
   }
 
   // ANCHOR delete page
-  async deletePage(dto: DeletePageDto) {
+  async deletePage(dto: DeletePageDto): Promise<Result> {
     const queryRunner = this.datasource.createQueryRunner()
     await queryRunner.startTransaction()
     try {
@@ -269,7 +272,7 @@ export class BuilderService {
   }
 
   // ANCHOR get page by url
-  async getPageByUrl(dto: GetPageByUrlDto) {
+  async getPageByUrl(dto: GetPageByUrlDto): Promise<Result> {
     const queryRunner = this.datasource.createQueryRunner()
     await queryRunner.startTransaction()
     try {

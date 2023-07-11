@@ -16,7 +16,12 @@ import { MenuOrder } from 'src/entities/menu-order.entity'
 
 // ** Constant
 import DATE from 'src/common/constants/date'
+
+// ** Util
 import { handleError } from 'src/common/util'
+
+// ** Interface
+import { Result } from 'src/common/interface'
 
 @Injectable()
 export class MenuService {
@@ -26,7 +31,7 @@ export class MenuService {
   ) {}
 
   // ANCHOR get menu list
-  async getMenuList() {
+  async getMenuList(): Promise<Result> {
     const queryRunner = this.datasource.createQueryRunner()
     await queryRunner.startTransaction()
     try {
@@ -61,7 +66,7 @@ export class MenuService {
   }
 
   // ANCHOR get menu
-  async getMenu(role: string) {
+  async getMenu(role: string): Promise<Result> {
     const queryRunner = this.datasource.createQueryRunner()
     await queryRunner.startTransaction()
     try {
@@ -101,7 +106,7 @@ export class MenuService {
   }
 
   // ANCHOR get menu list
-  async getMenuOrderList(dto: GetMenuOrderListDto) {
+  async getMenuOrderList(dto: GetMenuOrderListDto): Promise<Result> {
     const queryRunner = this.datasource.createQueryRunner()
     await queryRunner.startTransaction()
     try {
@@ -130,7 +135,7 @@ export class MenuService {
   }
 
   // ANCHOR create menu
-  async createMenu(dto: CreateMenuDto) {
+  async createMenu(dto: CreateMenuDto): Promise<Result> {
     const queryRunner = this.datasource.createQueryRunner()
     await queryRunner.startTransaction()
     try {
@@ -158,7 +163,7 @@ export class MenuService {
   }
 
   // ANCHOR update menu
-  async updateMenu(dto: UpdateMenuDto) {
+  async updateMenu(dto: UpdateMenuDto): Promise<Result> {
     const queryRunner = this.datasource.createQueryRunner()
     await queryRunner.startTransaction()
     try {
@@ -193,7 +198,7 @@ export class MenuService {
   }
 
   // ANCHOR update menu
-  async deleteMenu(dto: DeleteMenuDto) {
+  async deleteMenu(dto: DeleteMenuDto): Promise<Result> {
     const queryRunner = this.datasource.createQueryRunner()
     await queryRunner.startTransaction()
     try {

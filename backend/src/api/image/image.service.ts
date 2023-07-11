@@ -30,7 +30,7 @@ export class ImageService {
   ) {}
 
   // ANCHOR upload
-  async upload(files: any, note: string) {
+  async upload(files: any, note: string): Promise<Result> {
     const queryRunner = this.datasource.createQueryRunner()
     await queryRunner.startTransaction()
     try {
@@ -45,7 +45,11 @@ export class ImageService {
 
       // validation
       if (!files) {
-        return { result: false, message: 'File does not exist' }
+        return {
+          statusCode: HttpStatus.BAD_REQUEST,
+          message: 'File does not exist',
+          data: null
+        }
       }
 
       for (const file of files) {

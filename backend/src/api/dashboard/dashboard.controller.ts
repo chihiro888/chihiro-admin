@@ -1,6 +1,6 @@
 // ** Module
 import { Controller, Get, HttpStatus, Res, UseGuards } from '@nestjs/common'
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
+import { ApiOperation, ApiTags } from '@nestjs/swagger'
 import { Response } from 'express'
 
 // ** Service
