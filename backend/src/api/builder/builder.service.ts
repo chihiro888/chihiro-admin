@@ -114,7 +114,7 @@ export class BuilderService {
   }
 
   // ANCHOR create page
-  async createPage(dto: CreatePageDto): Promise<Result> {
+  async createPage(dto: CreatePageDto) {
     // 유효성
     const exist = await this.datasource.getRepository(Page).findOne({
       where: {
@@ -157,7 +157,7 @@ export class BuilderService {
   }
 
   // ANCHOR update page
-  async updatePage(dto: UpdatePageDto): Promise<Result> {
+  async updatePage(dto: UpdatePageDto) {
     const page = await this.datasource.getRepository(Page).findOne({
       where: {
         id: dto.id

@@ -11,8 +11,7 @@ import { GetImageListDto } from './dto/get-image-list.dto'
 import { File } from 'src/entities/file.entity'
 
 // ** Util
-import { formatBytes } from 'src/common/util/auth'
-import { getUploadPath } from 'src/common/util'
+import { formatBytes, getUploadPath } from 'src/common/util'
 
 // ** Service
 import { GlobalService } from '../global/global.service'
@@ -30,7 +29,7 @@ export class ImageService {
   ) {}
 
   // ANCHOR upload
-  async upload(files: any, note: string): Promise<Result> {
+  async upload(files: any, note: string) {
     // 업로드 경로 가져오기
     const uploadPath = getUploadPath()
     const fileList = []

@@ -1,5 +1,4 @@
 import { BuilderModule } from './api/builder/builder.module'
-import { AuthModule } from './api/auth/auth.module'
 import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 import { AdminModule } from './api/admin/admin.module'
@@ -26,7 +25,6 @@ import { MenuModule } from './api/menu/menu.module'
 
     // syatem module
     AdminModule,
-    AuthModule,
     GlobalModule,
     ImageModule,
 

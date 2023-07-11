@@ -1,5 +1,7 @@
+import { HttpStatus } from '@nestjs/common'
+
 export interface Result {
-  result: boolean
+  statusCode: HttpStatus
   message: string
   data?: any
 }
