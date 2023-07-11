@@ -10,9 +10,11 @@ const Dialog = (theme: Theme, skin: Skin) => {
       styleOverrides: {
         paper: {
           boxShadow: theme.shadows[skin === 'bordered' ? 0 : 6],
-          ...(skin === 'bordered' && { border: `1px solid ${theme.palette.divider}` }),
+          ...(skin === 'bordered' && {
+            border: `1px solid ${theme.palette.divider}`
+          }),
           '&:not(.MuiDialog-paperFullScreen)': {
-            borderRadius: 8,
+            // borderRadius: 8,
             '@media (max-width:599px)': {
               margin: theme.spacing(4),
               width: `calc(100% - ${theme.spacing(8)})`,

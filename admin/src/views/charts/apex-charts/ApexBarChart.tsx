@@ -45,7 +45,7 @@ const ApexBarChart = () => {
     dataLabels: { enabled: false },
     plotOptions: {
       bar: {
-        borderRadius: 8,
+        // borderRadius: 8,
         barHeight: '30%',
         horizontal: true,
         startingShape: 'rounded'

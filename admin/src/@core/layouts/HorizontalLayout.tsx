@@ -88,13 +88,16 @@ const HorizontalLayout = (props: LayoutProps) => {
   delete userAppBarProps.sx
 
   return (
-    <HorizontalLayoutWrapper className='layout-wrapper'>
-      <MainContentWrapper className='layout-content-wrapper' sx={{ ...(contentHeightFixed && { maxHeight: '100vh' }) }}>
+    <HorizontalLayoutWrapper className="layout-wrapper">
+      <MainContentWrapper
+        className="layout-content-wrapper"
+        sx={{ ...(contentHeightFixed && { maxHeight: '100vh' }) }}
+      >
         {/* Navbar (or AppBar) and Navigation Menu Wrapper */}
         <AppBar
-          color='default'
+          color="default"
           elevation={skin === 'bordered' ? 0 : 6}
-          className='layout-navbar-and-nav-container'
+          className="layout-navbar-and-nav-container"
           position={appBar === 'fixed' ? 'sticky' : 'static'}
           sx={{
             alignItems: 'center',
@@ -102,27 +105,41 @@ const HorizontalLayout = (props: LayoutProps) => {
             justifyContent: 'center',
             ...(appBar === 'static' && { zIndex: 13 }),
             transition: 'border-bottom 0.2s ease-in-out',
-            ...(appBar === 'fixed' && appBarBlur && { backdropFilter: 'saturate(200%) blur(6px)' }),
-            backgroundColor: theme => hexToRGBA(theme.palette.background.paper, appBarBlur ? 0.95 : 1),
-            ...(skin === 'bordered' && { borderBottom: theme => `1px solid ${theme.palette.divider}` }),
+            ...(appBar === 'fixed' &&
+              appBarBlur && { backdropFilter: 'saturate(200%) blur(6px)' }),
+            backgroundColor: (theme) =>
+              hexToRGBA(theme.palette.background.paper, appBarBlur ? 0.95 : 1),
+            ...(skin === 'bordered' && {
+              borderBottom: (theme) => `1px solid ${theme.palette.divider}`
+            }),
             ...userAppBarStyle
           }}
           {...userAppBarProps}
         >
           {/* Navbar / AppBar */}
           <Box
-            className='layout-navbar'
+            className="layout-navbar"
             sx={{
               width: '100%',
-              ...(navHidden ? {} : { borderBottom: theme => `1px solid ${theme.palette.divider}` })
+              ...(navHidden
+                ? {}
+                : {
+                    borderBottom: (theme) =>
+                      `1px solid ${theme.palette.divider}`
+                  })
             }}
           >
             <Toolbar
-              className='navbar-content-container'
+              className="navbar-content-container"
               sx={{
                 mx: 'auto',
-                ...(contentWidth === 'boxed' && { '@media (min-width:1440px)': { maxWidth: 1440 } }),
-                minHeight: theme => `${(theme.mixins.toolbar.minHeight as number) - 1}px !important`
+                ...(contentWidth === 'boxed' && {
+                  '@media (min-width:1440px)': { maxWidth: 1440 }
+                }),
+                minHeight: (theme) =>
+                  `${
+                    (theme.mixins.toolbar.minHeight as number) - 1
+                  }px !important`
               }}
             >
               <AppBarContent
@@ -138,21 +155,34 @@ const HorizontalLayout = (props: LayoutProps) => {
 
           {/* Navigation Menu */}
           {navHidden ? null : (
-            <Box className='layout-horizontal-nav' sx={{ width: '100%', ...horizontalLayoutProps?.navMenu.sx }}>
+            <Box
+              className="layout-horizontal-nav"
+              sx={{ width: '100%', ...horizontalLayoutProps?.navMenu.sx }}
+            >
               <Toolbar
-                className='horizontal-nav-content-container'
+                className="horizontal-nav-content-container"
                 sx={{
                   mx: 'auto',
-                  ...(contentWidth === 'boxed' && { '@media (min-width:1440px)': { maxWidth: 1440 } }),
-                  minHeight: theme =>
-                    `${(theme.mixins.toolbar.minHeight as number) - 4 - (skin === 'bordered' ? 1 : 0)}px !important`
+                  ...(contentWidth === 'boxed' && {
+                    '@media (min-width:1440px)': { maxWidth: 1440 }
+                  }),
+                  minHeight: (theme) =>
+                    `${
+                      (theme.mixins.toolbar.minHeight as number) -
+                      4 -
+                      (skin === 'bordered' ? 1 : 0)
+                    }px !important`
                 }}
               >
                 {(userNavMenuContent && userNavMenuContent(props)) || (
                   <Navigation
                     {...props}
                     horizontalNavItems={
-                      (horizontalLayoutProps as NonNullable<LayoutProps['horizontalLayoutProps']>).navMenu.navItems
+                      (
+                        horizontalLayoutProps as NonNullable<
+                          LayoutProps['horizontalLayoutProps']
+                        >
+                      ).navMenu.navItems
                     }
                   />
                 )}
@@ -163,7 +193,7 @@ const HorizontalLayout = (props: LayoutProps) => {
 
         {/* Content */}
         <ContentWrapper
-          className='layout-page-content'
+          className="layout-page-content"
           sx={{
             ...(contentHeightFixed && { display: 'flex', overflow: 'hidden' }),
             ...(contentWidth === 'boxed' && {
@@ -177,7 +207,11 @@ const HorizontalLayout = (props: LayoutProps) => {
         </ContentWrapper>
 
         {/* Footer */}
-        <Footer {...props} footerStyles={footerProps?.sx} footerContent={footerProps?.content} />
+        <Footer
+          {...props}
+          footerStyles={footerProps?.sx}
+          footerContent={footerProps?.content}
+        />
 
         {/* Customizer */}
         {themeConfig.disableCustomizer || hidden ? null : <Customizer />}
@@ -186,9 +220,9 @@ const HorizontalLayout = (props: LayoutProps) => {
         {scrollToTop ? (
           scrollToTop(props)
         ) : (
-          <ScrollToTop className='mui-fixed'>
-            <Fab color='primary' size='small' aria-label='scroll back to top'>
-              <Icon icon='bx:up-arrow-alt' />
+          <ScrollToTop className="mui-fixed">
+            <Fab color="primary" size="small" aria-label="scroll back to top">
+              <Icon icon="bx:up-arrow-alt" />
             </Fab>
           </ScrollToTop>
         )}

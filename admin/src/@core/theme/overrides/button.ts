@@ -29,17 +29,26 @@ const Button = (theme: Theme) => {
         },
         containedPrimary: {
           '&:not(.Mui-disabled), &.MuiButtonGroup-grouped:not(.Mui-disabled)': {
-            boxShadow: `0 2px 4px 0 ${hexToRGBA(theme.palette.primary.main, 0.4)}`
+            boxShadow: `0 2px 4px 0 ${hexToRGBA(
+              theme.palette.primary.main,
+              0.4
+            )}`
           }
         },
         containedSecondary: {
           '&:not(.Mui-disabled), &.MuiButtonGroup-grouped:not(.Mui-disabled)': {
-            boxShadow: `0 2px 4px 0 ${hexToRGBA(theme.palette.secondary.main, 0.4)}`
+            boxShadow: `0 2px 4px 0 ${hexToRGBA(
+              theme.palette.secondary.main,
+              0.4
+            )}`
           }
         },
         containedSuccess: {
           '&:not(.Mui-disabled), &.MuiButtonGroup-grouped:not(.Mui-disabled)': {
-            boxShadow: `0 2px 4px 0 ${hexToRGBA(theme.palette.success.main, 0.4)}`
+            boxShadow: `0 2px 4px 0 ${hexToRGBA(
+              theme.palette.success.main,
+              0.4
+            )}`
           }
         },
         containedError: {
@@ -49,7 +58,10 @@ const Button = (theme: Theme) => {
         },
         containedWarning: {
           '&:not(.Mui-disabled), &.MuiButtonGroup-grouped:not(.Mui-disabled)': {
-            boxShadow: `0 2px 4px 0 ${hexToRGBA(theme.palette.warning.main, 0.4)}`
+            boxShadow: `0 2px 4px 0 ${hexToRGBA(
+              theme.palette.warning.main,
+              0.4
+            )}`
           }
         },
         containedInfo: {
@@ -71,7 +83,7 @@ const Button = (theme: Theme) => {
           }
         },
         sizeLarge: {
-          borderRadius: 8,
+          // borderRadius: 8,
           padding: theme.spacing(2.125, 6),
           '&.MuiButton-contained': {
             padding: theme.spacing(2.125, 6)
@@ -91,13 +103,19 @@ const Button = (theme: Theme) => {
       styleOverrides: {
         root: {
           '&.MuiFab-success:not(.Mui-disabled)': {
-            boxShadow: `0 2px 4px 0 ${hexToRGBA(theme.palette.success.main, 0.4)}`
+            boxShadow: `0 2px 4px 0 ${hexToRGBA(
+              theme.palette.success.main,
+              0.4
+            )}`
           },
           '&.Mui-error:not(.Mui-disabled)': {
             boxShadow: `0 2px 4px 0 ${hexToRGBA(theme.palette.error.main, 0.4)}`
           },
           '&.MuiFab-warning:not(.Mui-disabled)': {
-            boxShadow: `0 2px 4px 0 ${hexToRGBA(theme.palette.warning.main, 0.4)}`
+            boxShadow: `0 2px 4px 0 ${hexToRGBA(
+              theme.palette.warning.main,
+              0.4
+            )}`
           },
           '&.MuiFab-info:not(.Mui-disabled)': {
             boxShadow: `0 2px 4px 0 ${hexToRGBA(theme.palette.info.main, 0.4)}`
@@ -105,12 +123,18 @@ const Button = (theme: Theme) => {
         },
         primary: {
           '&:not(.Mui-disabled)': {
-            boxShadow: `0 2px 4px 0 ${hexToRGBA(theme.palette.primary.main, 0.4)}`
+            boxShadow: `0 2px 4px 0 ${hexToRGBA(
+              theme.palette.primary.main,
+              0.4
+            )}`
           }
         },
         secondary: {
           '&:not(.Mui-disabled)': {
-            boxShadow: `0 2px 4px 0 ${hexToRGBA(theme.palette.secondary.main, 0.4)}`
+            boxShadow: `0 2px 4px 0 ${hexToRGBA(
+              theme.palette.secondary.main,
+              0.4
+            )}`
           }
         }
       }
@@ -123,22 +147,40 @@ const Button = (theme: Theme) => {
             paddingLeft: theme.spacing(5),
             paddingRight: theme.spacing(5),
             '&.MuiButton-containedPrimary:hover': {
-              boxShadow: `0 2px 4px 0 ${hexToRGBA(theme.palette.primary.main, 0.4)}`
+              boxShadow: `0 2px 4px 0 ${hexToRGBA(
+                theme.palette.primary.main,
+                0.4
+              )}`
             },
             '&.MuiButton-containedSecondary:hover': {
-              boxShadow: `0 2px 4px 0 ${hexToRGBA(theme.palette.secondary.main, 0.4)}`
+              boxShadow: `0 2px 4px 0 ${hexToRGBA(
+                theme.palette.secondary.main,
+                0.4
+              )}`
             },
             '&.MuiButton-containedSuccess:hover': {
-              boxShadow: `0 2px 4px 0 ${hexToRGBA(theme.palette.success.main, 0.4)}`
+              boxShadow: `0 2px 4px 0 ${hexToRGBA(
+                theme.palette.success.main,
+                0.4
+              )}`
             },
             '&.MuiButton-containedError:hover': {
-              boxShadow: `0 2px 4px 0 ${hexToRGBA(theme.palette.error.main, 0.4)}`
+              boxShadow: `0 2px 4px 0 ${hexToRGBA(
+                theme.palette.error.main,
+                0.4
+              )}`
             },
             '&.MuiButton-containedWarning:hover': {
-              boxShadow: `0 2px 4px 0 ${hexToRGBA(theme.palette.warning.main, 0.4)}`
+              boxShadow: `0 2px 4px 0 ${hexToRGBA(
+                theme.palette.warning.main,
+                0.4
+              )}`
             },
             '&.MuiButton-containedInfo:hover': {
-              boxShadow: `0 2px 4px 0 ${hexToRGBA(theme.palette.info.main, 0.4)}`
+              boxShadow: `0 2px 4px 0 ${hexToRGBA(
+                theme.palette.info.main,
+                0.4
+              )}`
             }
           }
         }

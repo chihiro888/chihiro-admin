@@ -115,9 +115,9 @@ const columns = [
           sx={{
             mr: 4,
             height: 6,
-            width: '100%',
-            borderRadius: 8,
-            '& .MuiLinearProgress-bar': { borderRadius: 8 }
+            width: '100%'
+            // borderRadius: 8,
+            // '& .MuiLinearProgress-bar': { borderRadius: 8 }
           }}
         />
         <Typography

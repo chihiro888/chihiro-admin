@@ -16,12 +16,20 @@ const Pagination = (theme: Theme) => {
           fontSize: '.9375rem',
           padding: theme.spacing(2.5, 2),
           '&.Mui-selected': {
-            '&.MuiPaginationItem-textPrimary, &.MuiPaginationItem-outlinedPrimary': {
-              boxShadow: `0 2px 4px 0 ${hexToRGBA(theme.palette.primary.main, 0.4)}`
-            },
-            '&.MuiPaginationItem-textSecondary, &.MuiPaginationItem-outlinedSecondary': {
-              boxShadow: `0 2px 4px 0 ${hexToRGBA(theme.palette.secondary.main, 0.4)}`
-            }
+            '&.MuiPaginationItem-textPrimary, &.MuiPaginationItem-outlinedPrimary':
+              {
+                boxShadow: `0 2px 4px 0 ${hexToRGBA(
+                  theme.palette.primary.main,
+                  0.4
+                )}`
+              },
+            '&.MuiPaginationItem-textSecondary, &.MuiPaginationItem-outlinedSecondary':
+              {
+                boxShadow: `0 2px 4px 0 ${hexToRGBA(
+                  theme.palette.secondary.main,
+                  0.4
+                )}`
+              }
           }
         },
         rounded: {
@@ -62,7 +70,7 @@ const Pagination = (theme: Theme) => {
           borderRadius: '50%',
           padding: theme.spacing(3.75, 2),
           '&.MuiPaginationItem-rounded': {
-            borderRadius: 8
+            // borderRadius: 8
           }
         }
       }

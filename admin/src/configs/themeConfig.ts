@@ -74,7 +74,7 @@ const themeConfig: ThemeConfig = {
     'accordion' /* accordion | collapse /*! Note: This is for Vertical navigation menu only */,
   navCollapsed:
     false /* true | false /*! Note: This is for Vertical navigation menu only */,
-  navigationSize: 200 /* Number in px(Pixels) /*! Note: This is for Vertical navigation menu only */,
+  navigationSize: 180 /* Number in px(Pixels) /*! Note: This is for Vertical navigation menu only */,
   collapsedNavigationSize: 84 /* Number in px(Pixels) /*! Note: This is for Vertical navigation menu only */,
   afterVerticalNavMenuContentPosition: 'fixed' /* fixed | static */,
   beforeVerticalNavMenuContentPosition: 'fixed' /* fixed | static */,
@@ -84,7 +84,7 @@ const themeConfig: ThemeConfig = {
 
   // ** AppBar Configs
   appBar:
-    'fixed' /* fixed | static | hidden /*! Note: hidden value will only work for Vertical Layout */,
+    'static' /* fixed | static | hidden /*! Note: hidden value will only work for Vertical Layout */,
   appBarBlur: true /* true | false */,
 
   // ** Other Configs

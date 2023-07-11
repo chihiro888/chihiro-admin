@@ -185,7 +185,7 @@ import Icon from 'src/@core/components/icon'
 // ** Styled close button
 const CustomCloseButton = styled(IconButton)(({ theme }) => ({
   top: '2.25rem',
-  borderRadius: 8,
+  // borderRadius: 8,
   right: '0.75rem',
   position: 'absolute',
   padding: theme.spacing(1.5),
@@ -846,7 +846,7 @@ import Icon from 'src/@core/components/icon'
 // ** Styled close button
 const CustomCloseButton = styled(IconButton)<IconButtonProps>(({ theme }) => ({
   top: '2.25rem',
-  borderRadius: 8,
+  // borderRadius: 8,
   right: '0.75rem',
   position: 'absolute',
   padding: theme.spacing(1.5),

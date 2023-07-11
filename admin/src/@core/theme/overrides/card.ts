@@ -9,15 +9,18 @@ const Card = (theme: Theme, skin: Skin) => {
     MuiCard: {
       styleOverrides: {
         root: {
-          borderRadius: 8,
-          ...(skin === 'bordered' && { border: `1px solid ${theme.palette.divider}` }),
+          // borderRadius: 8,
+          ...(skin === 'bordered' && {
+            border: `1px solid ${theme.palette.divider}`
+          }),
           '& .card-more-options': {
             marginTop: theme.spacing(-1),
             marginRight: theme.spacing(-3)
           },
-          '& .MuiTableContainer-root, & .MuiDataGrid-root, & .MuiDataGrid-columnHeaders': {
-            borderRadius: 0
-          }
+          '& .MuiTableContainer-root, & .MuiDataGrid-root, & .MuiDataGrid-columnHeaders':
+            {
+              borderRadius: 0
+            }
         }
       },
       defaultProps: {
@@ -28,9 +31,10 @@ const Card = (theme: Theme, skin: Skin) => {
       styleOverrides: {
         root: {
           padding: theme.spacing(6),
-          '& + .MuiCardContent-root, & + .MuiCardActions-root, & + .MuiCollapse-root .MuiCardContent-root': {
-            paddingTop: 0
-          },
+          '& + .MuiCardContent-root, & + .MuiCardActions-root, & + .MuiCollapse-root .MuiCardContent-root':
+            {
+              paddingTop: 0
+            },
           '& .MuiCardHeader-subheader': {
             fontSize: '0.875rem',
             marginTop: theme.spacing(1.25),
@@ -56,9 +60,10 @@ const Card = (theme: Theme, skin: Skin) => {
       styleOverrides: {
         root: {
           padding: theme.spacing(6),
-          '& + .MuiCardHeader-root, & + .MuiCardContent-root, & + .MuiCardActions-root': {
-            paddingTop: 0
-          },
+          '& + .MuiCardHeader-root, & + .MuiCardContent-root, & + .MuiCardActions-root':
+            {
+              paddingTop: 0
+            },
           '&:last-of-type': {
             paddingBottom: theme.spacing(6)
           }
@@ -81,9 +86,10 @@ const Card = (theme: Theme, skin: Skin) => {
           },
           '.MuiCard-root &:first-of-type': {
             paddingTop: theme.spacing(3),
-            '& + .MuiCardHeader-root, & + .MuiCardContent-root, & + .MuiCardActions-root': {
-              paddingTop: 0
-            }
+            '& + .MuiCardHeader-root, & + .MuiCardContent-root, & + .MuiCardActions-root':
+              {
+                paddingTop: 0
+              }
           }
         }
       }

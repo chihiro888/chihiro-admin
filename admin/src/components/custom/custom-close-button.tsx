@@ -4,7 +4,7 @@ import { styled } from '@mui/material/styles'
 // ** Styled close button
 const CustomCloseButton = styled(IconButton)<IconButtonProps>(({ theme }) => ({
   top: '3rem',
-  borderRadius: 8,
+  // borderRadius: 8,
   right: '1.5rem',
   position: 'absolute',
   padding: theme.spacing(1.5),

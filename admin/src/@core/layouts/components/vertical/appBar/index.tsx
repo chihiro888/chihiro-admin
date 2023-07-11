@@ -14,8 +14,12 @@ interface Props {
   toggleNavVisibility: () => void
   settings: LayoutProps['settings']
   saveSettings: LayoutProps['saveSettings']
-  appBarContent: NonNullable<LayoutProps['verticalLayoutProps']['appBar']>['content']
-  appBarProps: NonNullable<LayoutProps['verticalLayoutProps']['appBar']>['componentProps']
+  appBarContent: NonNullable<
+    LayoutProps['verticalLayoutProps']['appBar']
+  >['content']
+  appBarProps: NonNullable<
+    LayoutProps['verticalLayoutProps']['appBar']
+  >['componentProps']
 }
 
 const AppBar = styled(MuiAppBar)<AppBarProps>(({ theme }) => ({
@@ -37,8 +41,8 @@ const AppBar = styled(MuiAppBar)<AppBarProps>(({ theme }) => ({
 
 const Toolbar = styled(MuiToolbar)<ToolbarProps>(({ theme }) => ({
   width: '100%',
-  borderRadius: 8,
-  marginTop: theme.spacing(3),
+  // borderRadius: 8,
+  marginTop: theme.spacing(0.5),
   padding: `${theme.spacing(0, 6)} !important`
 }))
 
@@ -63,21 +67,26 @@ const LayoutAppBar = (props: Props) => {
   return (
     <AppBar
       elevation={0}
-      color='default'
-      className='layout-navbar'
+      color="default"
+      className="layout-navbar"
       sx={{ ...userAppBarStyle }}
       position={appBar === 'fixed' ? 'sticky' : 'static'}
       {...userAppBarProps}
     >
       <Toolbar
-        className='navbar-content-container'
+        className="navbar-content-container"
         sx={{
           ...(appBarBlur && { backdropFilter: 'saturate(200%) blur(6px)' }),
-          minHeight: theme => `${theme.mixins.toolbar.minHeight as number}px !important`,
-          backgroundColor: theme => hexToRGBA(theme.palette.background.paper, appBarBlur ? 0.95 : 1),
-          ...(skin === 'bordered' ? { border: theme => `1px solid ${theme.palette.divider}` } : { boxShadow: 6 }),
+          minHeight: '30px',
+          backgroundColor: (theme) =>
+            hexToRGBA(theme.palette.background.paper, appBarBlur ? 0.95 : 1),
+          ...(skin === 'bordered'
+            ? { border: (theme) => `1px solid ${theme.palette.divider}` }
+            : { boxShadow: 6 }),
           ...(contentWidth === 'boxed' && {
-            '@media (min-width:1440px)': { maxWidth: theme => `calc(1440px - ${theme.spacing(6 * 2)})` }
+            '@media (min-width:1440px)': {
+              maxWidth: (theme) => `calc(1440px - ${theme.spacing(6 * 2)})`
+            }
           })
         }}
       >
