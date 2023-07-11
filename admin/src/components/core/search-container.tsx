@@ -77,9 +77,9 @@ const SearchContainer = () => {
 
   return (
     <>
-      <Card sx={{ mt: 5 }} style={{ overflow: 'unset' }}>
+      <Card sx={{ mt: 3 }} style={{ overflow: 'unset' }}>
         <CardContent style={{ padding: '0px' }}>
-          <CardActions className="card-action-dense">
+          <CardActions className="card-action-dense" style={{ padding: '0px' }}>
             <Box
               sx={{
                 width: '100%',
@@ -99,7 +99,7 @@ const SearchContainer = () => {
           </CardActions>
           <Collapse in={collapse}>
             <Divider sx={{ m: '0 !important' }} />
-            <CardContent>
+            <CardContent style={{ padding: '10px' }}>
               <Grid container spacing={4}>
                 {searchForm.map((item, idx) => {
                   return (
@@ -109,6 +109,7 @@ const SearchContainer = () => {
                           <Grid key={idx} item xs={3}>
                             <FormControl style={{ width: '100%' }}>
                               <TextField
+                                size="small"
                                 id="outlined-basic"
                                 label={item.label}
                                 value={item.value}
@@ -201,12 +202,25 @@ const SearchContainer = () => {
                   <Button
                     variant="outlined"
                     color="secondary"
-                    sx={{ mr: 3 }}
+                    sx={{
+                      fontSize: '12px',
+                      paddingTop: '3px',
+                      paddingBottom: '3px',
+                      mr: 3
+                    }}
                     onClick={handleInitForm}
                   >
                     초기화
                   </Button>
-                  <Button variant="contained" onClick={handleClickSearch}>
+                  <Button
+                    variant="contained"
+                    onClick={handleClickSearch}
+                    sx={{
+                      fontSize: '12px',
+                      paddingTop: '3px',
+                      paddingBottom: '3px'
+                    }}
+                  >
                     검색
                   </Button>
                 </div>
