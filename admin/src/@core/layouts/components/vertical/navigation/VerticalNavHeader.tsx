@@ -189,7 +189,7 @@ const VerticalNavHeader = (props: any) => {
           <Box
             sx={{
               display: 'flex',
-              borderRadius: 5,
+              borderRadius: '50%',
               backgroundColor: 'primary.main'
             }}
           >
