@@ -1,5 +1,5 @@
+import { useEffect } from 'react'
 import { getPaginationCount, getParamsFromForm } from 'src/utils'
-import CustomLottie from 'src/components/custom/custom-lottie'
 import Stack from '@mui/material/Stack'
 import Table from '@mui/material/Table'
 import TableCell from '@mui/material/TableCell'
@@ -13,14 +13,14 @@ import Pagination from '@mui/material/Pagination'
 import { useDispatch, useSelector } from 'react-redux'
 import { setPagination } from 'src/store/apps/crud'
 import { RootState } from 'src/store'
-import * as cat from 'src/lottie/cat.json'
+import CustomLottie from '../custom/custom-lottie'
 
 const ListContainer = ({ children }) => {
   // ** Hooks
   const dispatch = useDispatch()
   const crud = useSelector((state: RootState) => state.crud)
   const pagination = crud.pagination
-  const tableSetting = crud.tableSetting
+  const tableHeader = crud.tableHeader
   const searchForm = crud.searchForm
   const listAPI = crud.listAPI
 
@@ -45,7 +45,7 @@ const ListContainer = ({ children }) => {
     <>
       {pagination?.data.length === 0 ? (
         <>
-          <CustomLottie text={'데이터가 존재하지 않습니다.'} data={cat} />
+          <CustomLottie text={'데이터가 존재하지 않습니다.'} />
         </>
       ) : (
         <>
@@ -56,10 +56,10 @@ const ListContainer = ({ children }) => {
                   <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
                       <TableRow>
-                        {tableSetting.map((item, idx) => {
+                        {tableHeader.map((item, idx) => {
                           return (
                             <>
-                              <TableCell key={idx}>{item.header}</TableCell>
+                              <TableCell key={idx}>{item}</TableCell>
                             </>
                           )
                         })}

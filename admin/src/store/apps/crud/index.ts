@@ -54,12 +54,6 @@ export const appCrudSlice = createSlice({
     // table header
     tableHeader: [],
 
-    // content form
-    tableContent: [],
-
-    // content form
-    tableSetting: [],
-
     // add form
     addForm: [],
 
@@ -158,7 +152,19 @@ export const appCrudSlice = createSlice({
     initEditForm(state, action) {
       const nextState = produce(state.actionForm, (draftState) => {
         draftState.map((item) => {
-          item.value = action.payload[item.key]
+          // 어드민 권한 로직
+          if (item.key === 'level') {
+            if (
+              action.payload.isAdmin === 1 &&
+              action.payload.isSystemAdmin === 1
+            )
+              item.value = 'SA'
+            if (
+              action.payload.isAdmin === 1 &&
+              action.payload.isSystemAdmin === 0
+            )
+              item.value = 'A'
+          } else item.value = action.payload[item.key]
         })
       })
       state.actionForm = nextState
@@ -220,12 +226,6 @@ export const appCrudSlice = createSlice({
     },
     setLoadAPI(state, action) {
       state.loadAPI = action.payload
-    },
-    setTableContent(state, action) {
-      state.tableContent = action.payload
-    },
-    setTableSetting(state, action) {
-      state.tableSetting = action.payload
     }
   }
 })
@@ -253,9 +253,7 @@ export const {
   setDetailAPI,
   setDeleteAPI,
   setUpdateAPI,
-  setLoadAPI,
-  setTableContent,
-  setTableSetting
+  setLoadAPI
 } = appCrudSlice.actions
 
 export default appCrudSlice.reducer
