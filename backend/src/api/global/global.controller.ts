@@ -17,7 +17,7 @@ import { Response } from 'express'
 // ** Dto
 import { DeleteGlobalDto } from './dto/delete-global.dto'
 import { CreateGlobalDto } from './dto/create-global.dto'
-import { SaveGlobalDto } from './dto/save-global.dto'
+import { UpdateGlobalDto } from './dto/update-global.dto'
 
 // ** Service
 import { GlobalService } from './global.service'
@@ -53,7 +53,7 @@ export class GlobalController {
   @UseGuards(SystemAdminGuard)
   @Put('updateGlobal')
   @ApiOperation({ summary: '전역 데이터 수정 (시스템 관리자 기능)' })
-  async updateGlobal(@Res() res: Response, @Body() dto: SaveGlobalDto) {
+  async updateGlobal(@Res() res: Response, @Body() dto: UpdateGlobalDto) {
     const result = await this.globalService.updateGlobal(dto)
     res.status(result.statusCode).json(result)
   }

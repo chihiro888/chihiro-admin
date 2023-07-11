@@ -5,7 +5,8 @@ interface Global {
   value: string
   memo: string
 }
-export class SaveGlobalDto {
+
+export class UpdateGlobalDto {
   @ApiProperty({
     description: 'key',
     example: ''

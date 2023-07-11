@@ -19,9 +19,9 @@ export const createGlobal = (params: object) => {
   return response
 }
 
-// ANCHOR save global
-export const saveGlobal = (params: object) => {
-  const url = `${rootUrl}saveGlobal`
+// ANCHOR update global
+export const updateGlobal = (params: object) => {
+  const url = `${rootUrl}updateGlobal`
   const response = axios.put<CommonResponse>(url, params)
 
   return response

@@ -32,7 +32,7 @@ import {
   createGlobal,
   deleteGlobal,
   getGlobalList,
-  saveGlobal
+  updateGlobal
 } from 'src/apis/global'
 import CustomCloseButton from '../../components/custom/custom-close-button'
 
@@ -117,7 +117,7 @@ const Settings = () => {
       const params = {
         globalList: globalList
       }
-      const { data: res } = await saveGlobal(params)
+      const { data: res } = await updateGlobal(params)
       if (res.statusCode === 200) {
         toast.success(t(res.message))
         handleCloseSave()

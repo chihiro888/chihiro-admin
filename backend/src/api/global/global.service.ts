@@ -6,7 +6,7 @@ import moment from 'moment'
 // ** Dto
 import { CreateGlobalDto } from './dto/create-global.dto'
 import { DeleteGlobalDto } from './dto/delete-global.dto'
-import { SaveGlobalDto } from './dto/save-global.dto'
+import { UpdateGlobalDto } from './dto/update-global.dto'
 
 // ** Entity
 import { Global } from 'src/entities/global.entity'
@@ -93,7 +93,7 @@ export class GlobalService {
   }
 
   // ANCHOR update global
-  async updateGlobal(dto: SaveGlobalDto): Promise<Result> {
+  async updateGlobal(dto: UpdateGlobalDto): Promise<Result> {
     const queryRunner = this.datasource.createQueryRunner()
     await queryRunner.startTransaction()
     try {
