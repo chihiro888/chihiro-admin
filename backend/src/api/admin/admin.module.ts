@@ -1,5 +1,10 @@
-import { AdminController } from './admin.controller'
+// ** Module
 import { Module } from '@nestjs/common'
+
+// ** Controller
+import { AdminController } from './admin.controller'
+
+// ** Service
 import { AdminService } from './admin.service'
 import { GlobalService } from '../global/global.service'
 

@@ -35,10 +35,7 @@ export class MenuController {
 
   // ANCHOR get menu
   @Get('getMenu')
-  @ApiOperation({
-    summary: '메뉴 조회',
-    description: '세션을 조회하여 권한에 맞는 메뉴 목록을 조회합니다.'
-  })
+  @ApiOperation({ summary: '메뉴 조회' })
   async getMenu(@Res() res: Response, @Session() session: any) {
     // get menu
     const data = await this.menuService.getMenu(session.role)
@@ -54,11 +51,8 @@ export class MenuController {
   // ANCHOR get menu list
   @UseGuards(SystemAdminGuard)
   @Get('getMenuList')
-  @ApiOperation({
-    summary: '메뉴 목록 조회 (시스템 관리자 기능)',
-    description: '메뉴 목록을 조회합니다.'
-  })
-  async getMenuList(@Res() res: Response, @Session() session: any) {
+  @ApiOperation({ summary: '메뉴 목록 조회 (시스템 관리자 기능)' })
+  async getMenuList(@Res() res: Response) {
     // get menu list
     const data = await this.menuService.getMenuList()
 
@@ -73,13 +67,9 @@ export class MenuController {
   // ANCHOR get menu order list
   @UseGuards(SystemAdminGuard)
   @Get('getMenuOrderList')
-  @ApiOperation({
-    summary: '메뉴 목록 조회 (시스템 관리자 기능)',
-    description: '메뉴 목록을 조회합니다.'
-  })
+  @ApiOperation({ summary: '메뉴 목록 조회 (시스템 관리자 기능)' })
   async getMenuOrderList(
     @Res() res: Response,
-    @Session() session: any,
     @Query() dto: GetMenuOrderListDto
   ) {
     // get order menu list
@@ -96,15 +86,8 @@ export class MenuController {
   // ANCHOR create menu
   @UseGuards(SystemAdminGuard)
   @Post('createMenu')
-  @ApiOperation({
-    summary: '메뉴 생성 (시스템 관리자 기능)',
-    description: '메뉴를 생성합니다.'
-  })
-  async createMenu(
-    @Res() res: Response,
-    @Session() session: any,
-    @Body() dto: CreateMenuDto
-  ) {
+  @ApiOperation({ summary: '메뉴 생성 (시스템 관리자 기능)' })
+  async createMenu(@Res() res: Response, @Body() dto: CreateMenuDto) {
     // create menu
     const data = await this.menuService.createMenu(dto)
 
@@ -119,15 +102,8 @@ export class MenuController {
   // ANCHOR update Menu
   @UseGuards(SystemAdminGuard)
   @Put('updateMenu')
-  @ApiOperation({
-    summary: '메뉴 갱신 (시스템 관리자 기능)',
-    description: '메뉴를 갱신합니다.'
-  })
-  async updateMenu(
-    @Res() res: Response,
-    @Session() session: any,
-    @Body() dto: UpdateMenuDto
-  ) {
+  @ApiOperation({ summary: '메뉴 수정 (시스템 관리자 기능)' })
+  async updateMenu(@Res() res: Response, @Body() dto: UpdateMenuDto) {
     // update Menu
     const data = await this.menuService.updateMenu(dto)
 
@@ -142,15 +118,8 @@ export class MenuController {
   // ANCHOR delete Menu
   @UseGuards(SystemAdminGuard)
   @Delete('deleteMenu')
-  @ApiOperation({
-    summary: '메뉴 삭제 (시스템 관리자 기능)',
-    description: '메뉴를 삭제합니다.'
-  })
-  async deleteMenu(
-    @Res() res: Response,
-    @Session() session: any,
-    @Query() dto: DeleteMenuDto
-  ) {
+  @ApiOperation({ summary: '메뉴 삭제 (시스템 관리자 기능)' })
+  async deleteMenu(@Res() res: Response, @Query() dto: DeleteMenuDto) {
     // delete Menu
     const data = await this.menuService.deleteMenu(dto)
 

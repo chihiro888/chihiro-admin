@@ -38,165 +38,54 @@ export class BuilderController {
   // ANCHOR get page list
   @UseGuards(SystemAdminGuard)
   @Get('getPageList')
-  @ApiOperation({
-    summary: '페이지 목록 조회 (시스템 관리자 기능)',
-    description: '페이지 목록을 조회합니다.'
-  })
-  async getPageList(
-    @Res() res: Response,
-    @Session() session: any,
-    @Query() dto: GetPageListDto
-  ) {
-    // get page list
-    const data = await this.builderService.getPageList(dto)
-
-    // return 200 response
-    res.status(HttpStatus.OK).json({
-      statusCode: HttpStatus.OK,
-      message: '',
-      data
-    })
+  @ApiOperation({ summary: '페이지 목록 조회 (시스템 관리자 기능)' })
+  async getPageList(@Res() res: Response, @Query() dto: GetPageListDto) {
+    const result = await this.builderService.getPageList(dto)
+    res.status(result.statusCode).json(result)
   }
 
   // ANCHOR get page
   @UseGuards(SystemAdminGuard)
   @Get('getPage')
-  @ApiOperation({
-    summary: '페이지 조회 (시스템 관리자 기능)',
-    description: '페이지를 조회합니다.'
-  })
-  async getPage(
-    @Res() res: Response,
-    @Session() session: any,
-    @Query() dto: GetPageDto
-  ) {
-    // get page
-    const data = await this.builderService.getPage(dto)
-
-    // return 200 response
-    res.status(HttpStatus.OK).json({
-      statusCode: HttpStatus.OK,
-      message: '',
-      data
-    })
+  @ApiOperation({ summary: '페이지 조회 (시스템 관리자 기능)' })
+  async getPage(@Res() res: Response, @Query() dto: GetPageDto) {
+    const result = await this.builderService.getPage(dto)
+    res.status(result.statusCode).json(result)
   }
 
   // ANCHOR get page by url
   @UseGuards(SystemAdminGuard)
   @Get('getPageByUrl')
-  @ApiOperation({
-    summary: '페이지 조회 (시스템 관리자 기능)',
-    description: '페이지를 조회합니다.'
-  })
-  async getPageByUrl(
-    @Res() res: Response,
-    @Session() session: any,
-    @Query() dto: GetPageByUrlDto
-  ) {
-    // get page
-    const data = await this.builderService.getPageByUrl(dto)
-
-    if (data.result) {
-      // return 200 response
-      res.status(HttpStatus.OK).json({
-        statusCode: HttpStatus.OK,
-        message: '',
-        data: data.data
-      })
-    } else {
-      // return 400 response
-      res.status(HttpStatus.BAD_REQUEST).json({
-        statusCode: HttpStatus.BAD_REQUEST,
-        message: data.data,
-        data: null
-      })
-    }
+  @ApiOperation({ summary: '페이지 조회 (시스템 관리자 기능)' })
+  async getPageByUrl(@Res() res: Response, @Query() dto: GetPageByUrlDto) {
+    const result = await this.builderService.getPageByUrl(dto)
+    res.status(result.statusCode).json(result)
   }
 
   // ANCHOR create page
   @UseGuards(SystemAdminGuard)
   @Post('createPage')
-  @ApiOperation({
-    summary: '페이지 생성 (시스템 관리자 기능)',
-    description: '페이지를 생성합니다.'
-  })
-  async createPage(
-    @Res() res: Response,
-    @Session() session: any,
-    @Body() dto: CreatePageDto
-  ) {
-    // create page
+  @ApiOperation({ summary: '페이지 생성 (시스템 관리자 기능)' })
+  async createPage(@Res() res: Response, @Body() dto: CreatePageDto) {
     const result = await this.builderService.createPage(dto)
-
-    if (result.result) {
-      // return 200 response
-      res.status(HttpStatus.OK).json({
-        statusCode: HttpStatus.OK,
-        message: result.message,
-        data: null
-      })
-    } else {
-      // return 400 response
-      res.status(HttpStatus.BAD_REQUEST).json({
-        statusCode: HttpStatus.BAD_REQUEST,
-        message: result.message,
-        data: null
-      })
-    }
+    res.status(result.statusCode).json(result)
   }
 
   // ANCHOR update page
   @UseGuards(SystemAdminGuard)
   @Put('updatePage')
-  @ApiOperation({
-    summary: '페이지 수정 (시스템 관리자 기능)',
-    description: '페이지를 수정합니다.'
-  })
-  async updatePage(
-    @Res() res: Response,
-    @Session() session: any,
-    @Body() dto: UpdatePageDto
-  ) {
-    // create page
+  @ApiOperation({ summary: '페이지 수정 (시스템 관리자 기능)' })
+  async updatePage(@Res() res: Response, @Body() dto: UpdatePageDto) {
     const result = await this.builderService.updatePage(dto)
-
-    if (result.result) {
-      // return 200 response
-      res.status(HttpStatus.OK).json({
-        statusCode: HttpStatus.OK,
-        message: result.message,
-        data: null
-      })
-    } else {
-      // return 400 response
-      res.status(HttpStatus.BAD_REQUEST).json({
-        statusCode: HttpStatus.BAD_REQUEST,
-        message: result.message,
-        data: null
-      })
-    }
+    res.status(result.statusCode).json(result)
   }
 
   // ANCHOR delete page
   @UseGuards(SystemAdminGuard)
   @Delete('deletePage')
-  @ApiOperation({
-    summary: '페이지 삭제 (시스템 관리자 기능)',
-    description: '페이지를 삭제합니다.'
-  })
-  async deletePage(
-    @Res() res: Response,
-    @Session() session: any,
-    @Query() dto: DeletePageDto
-  ) {
-    // delete page
-    await this.builderService.deletePage(dto)
-
-    // return 200 response
-    res.status(HttpStatus.OK).json({
-      statusCode: HttpStatus.OK,
-      message: '페이지 삭제가 완료되었습니다.',
-      data: null
-    })
+  @ApiOperation({ summary: '페이지 삭제 (시스템 관리자 기능)' })
+  async deletePage(@Res() res: Response, @Query() dto: DeletePageDto) {
+    const result = await this.builderService.deletePage(dto)
+    res.status(result.statusCode).json(result)
   }
 }

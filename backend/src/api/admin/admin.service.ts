@@ -74,6 +74,8 @@ export class AdminService {
         loginHistory.type = 1
         await queryRunner.manager.getRepository(LoginHistory).save(loginHistory)
 
+        await queryRunner.commitTransaction()
+
         return {
           statusCode: HttpStatus.OK,
           data: admin,
@@ -105,6 +107,8 @@ export class AdminService {
       loginHistory.type = 0
 
       await queryRunner.manager.getRepository(LoginHistory).save(loginHistory)
+
+      await queryRunner.commitTransaction()
 
       return {
         statusCode: HttpStatus.OK,
@@ -143,6 +147,8 @@ export class AdminService {
       user.updatedAt = moment().format(DATE.DATETIME)
 
       await this.datasource.getRepository(Admin).save(user)
+
+      await queryRunner.commitTransaction()
 
       return {
         statusCode: HttpStatus.OK,
@@ -200,6 +206,8 @@ export class AdminService {
       admin.role = 'SA'
 
       await queryRunner.manager.getRepository(Admin).save(admin)
+
+      await queryRunner.commitTransaction()
 
       return {
         statusCode: HttpStatus.OK,
@@ -379,6 +387,8 @@ export class AdminService {
         await this.updateAdminProfile(params)
       }
 
+      await queryRunner.commitTransaction()
+
       return {
         statusCode: HttpStatus.OK,
         message: '',
@@ -414,6 +424,8 @@ export class AdminService {
       admin.deletedAt = moment().format(DATE.DATETIME)
       await queryRunner.manager.getRepository(Admin).save(admin)
 
+      await queryRunner.commitTransaction()
+
       return {
         statusCode: HttpStatus.OK,
         message: 'Administrator creation is complete.',
@@ -440,6 +452,8 @@ export class AdminService {
       admin.password = await createPassword(dto.newPassword)
       admin.updatedAt = moment().format(DATE.DATETIME)
       await queryRunner.manager.getRepository(Admin).save(admin)
+
+      await queryRunner.commitTransaction()
 
       return {
         statusCode: HttpStatus.OK,
@@ -468,6 +482,8 @@ export class AdminService {
       admin.updatedAt = moment().format(DATE.DATETIME)
       await queryRunner.manager.getRepository(Admin).save(admin)
 
+      await queryRunner.commitTransaction()
+
       return {
         statusCode: HttpStatus.OK,
         message: '',
@@ -494,6 +510,8 @@ export class AdminService {
       admin.role = dto.role
       admin.updatedAt = moment().format(DATE.DATETIME)
       await queryRunner.manager.getRepository(Admin).save(admin)
+
+      await queryRunner.commitTransaction()
 
       return {
         statusCode: HttpStatus.OK,
@@ -542,6 +560,9 @@ export class AdminService {
         updateProfile.tablePk = userId
         await queryRunner.manager.getRepository(File).save(updateProfile)
       }
+
+      await queryRunner.commitTransaction()
+
       return {
         statusCode: HttpStatus.OK,
         message: '',
@@ -568,6 +589,9 @@ export class AdminService {
 
       admin.intro = dto.intro
       await queryRunner.manager.getRepository(Admin).save(admin)
+
+      await queryRunner.commitTransaction()
+
       return {
         statusCode: HttpStatus.OK,
         message: '',

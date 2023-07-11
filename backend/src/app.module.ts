@@ -11,7 +11,7 @@ import { GlobalDatabaseModule } from './common/global/database.module'
 import { GlobalHttpModule } from './common/global/http.module'
 import configuration from './configuration/configuration'
 import { MenuModule } from './api/menu/menu.module'
-import { ExcelModule } from './api/excel/excel.module'
+// import { ExcelModule } from './api/excel/excel.module'
 @Module({
   imports: [
     // setting configuration
@@ -28,7 +28,7 @@ import { ExcelModule } from './api/excel/excel.module'
     AdminModule,
     GlobalModule,
     ImageModule,
-    ExcelModule,
+    // ExcelModule,
 
     // menu and builder module
     MenuModule,
