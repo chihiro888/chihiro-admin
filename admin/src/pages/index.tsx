@@ -18,7 +18,7 @@ const Home = () => {
   useEffect(() => {
     if (auth.user && auth.user.role) {
       // Redirect user to Home URL
-      router.replace('/builder/menu')
+      router.replace('/home')
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])

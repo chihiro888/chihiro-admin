@@ -23,7 +23,6 @@ import HorizontalAppBarContent from './components/horizontal/AppBarContent'
 
 // ** Hook Import
 import { useSettings } from 'src/@core/hooks/useSettings'
-import IconSelector from 'src/components/common/icon-selector'
 
 interface Props {
   children: ReactNode
@@ -99,9 +98,6 @@ const UserLayout = ({ children, contentHeightFixed }: Props) => {
       >
         {children}
       </Layout>
-
-      {/* 공통 컴포넌트 */}
-      <IconSelector />
     </>
   )
 }

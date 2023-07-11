@@ -1,46 +1,32 @@
-import { getMenu } from './../../apis/menu/index'
 // ** Type import
 import { VerticalNavItemsType } from 'src/@core/layouts/types'
-import { createMenu } from 'src/apis/menu'
-import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { AppDispatch, RootState } from 'src/store'
-import { reloadMenu } from 'src/store/apps/menu'
-import { useAuth } from 'src/hooks/useAuth'
 
 const navigation = (): VerticalNavItemsType => {
-  // ** Hooks
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const auth = useAuth()
-
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const dispatch = useDispatch<AppDispatch>()
-
-  // ** Redux
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const menu = useSelector((state: RootState) => state.menu)
-  const { menuList } = menu
-
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const defaultSystemAdminMenu = [
+  return [
     {
-      sectionTitle: '시스템 관리'
+      sectionTitle: '대시보드'
     },
     {
-      title: '메뉴 빌더',
-      icon: 'ri:node-tree',
-      path: '/builder/menu'
+      title: '대시보드',
+      icon: 'bx:home',
+      path: '/home'
     },
     {
-      title: '페이지 빌더',
-      icon: 'material-symbols:insert-page-break-outline',
-      path: '/builder/page'
+      sectionTitle: '관리자'
     },
-    // {
-    //   title: 'Excel 빌더',
-    //   icon: 'uiw:file-excel',
-    //   path: '/excel'
-    // },
+    {
+      title: '관리자 관리',
+      icon: 'material-symbols:person',
+      path: '/admin'
+    },
+    {
+      title: '로그인 이력',
+      icon: 'mdi:account-clock',
+      path: '/admin/history'
+    },
+    {
+      sectionTitle: '설정'
+    },
     {
       title: '이미지 등록',
       icon: 'material-symbols:upload-file-outline',
@@ -57,22 +43,6 @@ const navigation = (): VerticalNavItemsType => {
       path: '/settings'
     }
   ]
-
-  const handleLoadMenu = async () => {
-    dispatch(reloadMenu())
-  }
-
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  useEffect(() => {
-    handleLoadMenu()
-  }, [])
-
-  // ** Menu list
-  if (auth.user?.role === 'SA') {
-    return [...defaultSystemAdminMenu, ...menuList]
-  } else {
-    return menuList
-  }
 }
 
 export default navigation

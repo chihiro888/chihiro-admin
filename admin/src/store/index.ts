@@ -12,8 +12,6 @@ import permissions from 'src/store/apps/permissions'
 // ** Custom Store
 import crud from 'src/store/apps/crud'
 import app from 'src/store/apps/app'
-import page from 'src/store/apps/page'
-import menu from 'src/store/apps/menu'
 import icon from 'src/store/apps/icon'
 
 export const store = configureStore({
@@ -26,8 +24,6 @@ export const store = configureStore({
     permissions,
     crud,
     app,
-    page,
-    menu,
     icon
   },
   middleware: (getDefaultMiddleware) =>

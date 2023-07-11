@@ -249,9 +249,9 @@ export class AdminService {
         .andWhere(dto.account === '' ? '1=1' : 'a.account like :account', {
           account: `%${dto.account}%`
         })
-        .andWhere(dto.role === '' ? '1=1' : 'role = :role', {
-          role: dto.role
-        })
+        // .andWhere(dto.role === '' ? '1=1' : 'role = :role', {
+        //   role: dto.role
+        // })
         .andWhere(
           dto.createdAt === '' ? '1=1' : 'DATE(a.created_at) = :createdAt',
           {
@@ -298,9 +298,9 @@ export class AdminService {
         .andWhere(dto.account === '' ? '1=1' : 'a.account like :account', {
           account: `%${dto.account}%`
         })
-        .andWhere(dto.role === '' ? '1=1' : 'role = :role', {
-          role: dto.role
-        })
+        // .andWhere(dto.role === '' ? '1=1' : 'role = :role', {
+        //   role: dto.role
+        // })
         .andWhere(
           dto.createdAt === '' ? '1=1' : 'DATE(a.created_at) = :createdAt',
           {
