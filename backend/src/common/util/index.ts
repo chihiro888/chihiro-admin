@@ -19,32 +19,8 @@ export const getUploadPath = (): string => {
   return uploadPath
 }
 
-// ANCHOR bytes formatting
-export const formatBytes = (bytes: number, decimals = 2) => {
-  if (bytes <= 0) return '0Bytes'
-
-  const k = 1024
-  const dm = decimals < 0 ? 0 : decimals
-  const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
-
-  const i = Math.floor(Math.log(bytes) / Math.log(k))
-
-  return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))}${sizes[i]}`
-}
-
-// ANCHOR handle error
-export const handleError = async (queryRunner: QueryRunner, error: any) => {
-  const message = 'An unknown error has occurred.'
-
-  // debug
-  console.log(`[ERROR] ${error}`)
-
-  // rollback
-  await queryRunner.rollbackTransaction()
-
-  // fail
-  return {
-    statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
-    message
-  }
+// ANCHOR 업로드 경로 반환
+export const getUploadExcelPath = (): string => {
+  const uploadPath = path.join(getProjectPath(), '/', 'upload/excel/')
+  return uploadPath
 }

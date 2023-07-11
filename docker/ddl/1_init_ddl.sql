@@ -117,3 +117,18 @@ CREATE TABLE IF NOT EXISTS _menu_order (
   `menu_order` INT COMMENT 'order',
   `permission` VARCHAR(255) NOT NULL COMMENT 'permission'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT="_menu_order";
+
+/*
+    excel table
+*/
+DROP TABLE IF EXISTS _excel;
+CREATE TABLE IF NOT EXISTS _excel (
+  `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `title`  VARCHAR(255) COMMENT 'title',
+  `stock` INT COMMENT 'stock',
+  `query` TEXT COMMENT 'query',
+  `file_name` VARCHAR(255) COMMENT 'file_name',
+  `created_at` DATETIME DEFAULT now() COMMENT 'create time',
+  `updated_at` DATETIME DEFAULT NULL COMMENT 'update time',
+  `deleted_at` DATETIME DEFAULT NULL COMMENT 'delete time'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT="_excel";
