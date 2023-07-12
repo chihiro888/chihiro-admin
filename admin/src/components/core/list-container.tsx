@@ -34,7 +34,7 @@ const ListContainer = ({ children }) => {
       dispatch(
         setPagination({
           activePage: value,
-          count: getPaginationCount(data.count),
+          count: getPaginationCount(data.count, params['limit']),
           data: data.data,
           info: data.info
         })

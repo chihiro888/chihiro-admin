@@ -1,5 +1,7 @@
-export const getPaginationCount = (count: number) => {
-  return parseInt(String(count / 12)) + 1
+export const getPaginationCount = (count: number, limit: number) => {
+  const res = Math.ceil(count / limit)
+
+  return res
 }
 
 export const getParamsFromForm = (form) => {

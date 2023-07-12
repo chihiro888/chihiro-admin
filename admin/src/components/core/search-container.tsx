@@ -67,7 +67,7 @@ const SearchContainer = () => {
       dispatch(
         setPagination({
           activePage: 1,
-          count: getPaginationCount(data.count),
+          count: getPaginationCount(data.count, params['limit']),
           data: data.data,
           info: data.info
         })

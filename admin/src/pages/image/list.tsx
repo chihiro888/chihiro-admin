@@ -75,7 +75,7 @@ const List = () => {
       const data = res.data
       setPagination({
         activePage: value,
-        count: getPaginationCount(data.count),
+        count: getPaginationCount(data.count, params['limit']),
         data: data.data
       })
     }
@@ -90,7 +90,7 @@ const List = () => {
       const data = res.data
       setPagination({
         activePage: 1,
-        count: getPaginationCount(data.count),
+        count: getPaginationCount(data.count, params['limit']),
         data: data.data
       })
     }

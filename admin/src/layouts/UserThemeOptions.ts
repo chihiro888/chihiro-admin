@@ -67,12 +67,12 @@ const UserThemeOptions = (): ThemeOptions => {
         }
       },
       MuiAvatar: {
-        styleOverrides: {
-          root: {
-            width: '25px !important',
-            height: '25px !important'
-          }
-        }
+        // styleOverrides: {
+        //   root: {
+        //     width: '25px !important',
+        //     height: '25px !important'
+        //   }
+        // }
       }
     },
     typography: {
