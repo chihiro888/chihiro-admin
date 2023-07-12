@@ -119,7 +119,12 @@ const List = () => {
                   </Box>
                 ) : (
                   <Box>
-                    <CustomLottie data={uploadLottie} text="" />
+                    <CustomLottie
+                      data={uploadLottie}
+                      text=""
+                      width={100}
+                      height={100}
+                    />
                     <Box textAlign={'center'} sx={{ mt: 3 }}>
                       <Typography variant="subtitle1">파일 업로드</Typography>
                       <Typography variant="subtitle2">

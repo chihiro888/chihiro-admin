@@ -16,8 +16,8 @@ const CustomLottie = (props: any) => {
           }
         }}
         isClickToPauseDisabled
-        height={250}
-        width={250}
+        height={props.height}
+        width={props.width}
       />
       <Stack textAlign={'center'}>
         <Typography>{props.text}</Typography>

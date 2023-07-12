@@ -152,10 +152,15 @@ const CustomFileUploader = ({ handleChangeForm, item }) => {
       <div {...getRootProps({ className: 'dropzone' })}>
         <input {...getInputProps()} />
         <Box>
-          <CustomLottie data={uploadLottie} text="" />
           <Box textAlign={'center'} sx={{ mt: 3 }}>
             <Typography variant="subtitle1">파일 업로드</Typography>
             <Typography variant="subtitle2">
+              <CustomLottie
+                data={uploadLottie}
+                text=""
+                width={100}
+                height={100}
+              />{' '}
               파일을 드래그 하거나 컴포넌트를 클릭한 후 파일 탐색기를 열어 파일
               업로드
             </Typography>

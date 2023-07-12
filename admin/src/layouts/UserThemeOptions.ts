@@ -18,6 +18,23 @@ const UserThemeOptions = (): ThemeOptions => {
   // const palette = corePalette(mode, skin)
 
   return {
+    components: {
+      MuiCardHeader: {
+        styleOverrides: {
+          title: {
+            fontSize: '14px !important'
+          }
+        }
+      },
+      MuiButton: {
+        styleOverrides: {
+          root: {
+            fontSize: '12px !important',
+            padding: '4px !important'
+          }
+        }
+      }
+    },
     typography: {
       fontFamily:
         '"Nanum Gothic", "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji"'

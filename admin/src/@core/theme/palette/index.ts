@@ -50,9 +50,9 @@ const DefaultPalette = (mode: PaletteMode, skin: Skin) => {
       contrastText: whiteColor
     },
     error: {
-      light: '#FF5B3F',
-      main: '#FF3E1D',
-      dark: '#E8381A',
+      light: '#ef5350',
+      main: '#ef5350',
+      dark: '#ef5350',
       contrastText: whiteColor
     },
     warning: {

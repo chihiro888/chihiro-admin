@@ -38,7 +38,7 @@ const SearchContainer = () => {
   const listAPI = crud.listAPI
 
   // ** State
-  const [collapse, setCollapse] = useState<boolean>(false)
+  const [collapse, setCollapse] = useState<boolean>(true)
 
   // ** Handler
   // 검색 필터 토글
@@ -88,7 +88,9 @@ const SearchContainer = () => {
                 justifyContent: 'space-between'
               }}
             >
-              <Button onClick={handleClickCollapse}>검색필터</Button>
+              <Button onClick={handleClickCollapse} sx={{ ml: 1.5 }}>
+                검색필터
+              </Button>
               <IconButton size="small" onClick={handleClickCollapse}>
                 <Icon
                   fontSize="1.875rem"
@@ -132,10 +134,14 @@ const SearchContainer = () => {
                         <>
                           <Grid key={idx} item xs={3}>
                             <FormControl style={{ width: '100%' }}>
-                              <InputLabel id={item.label}>
+                              <InputLabel
+                                id={item.label}
+                                style={{ top: '-6px' }}
+                              >
                                 {item.label}
                               </InputLabel>
                               <Select
+                                size="small"
                                 label={item.label}
                                 defaultValue=""
                                 id={item.label}
@@ -203,24 +209,13 @@ const SearchContainer = () => {
                     variant="outlined"
                     color="secondary"
                     sx={{
-                      fontSize: '12px',
-                      paddingTop: '3px',
-                      paddingBottom: '3px',
                       mr: 3
                     }}
                     onClick={handleInitForm}
                   >
                     초기화
                   </Button>
-                  <Button
-                    variant="contained"
-                    onClick={handleClickSearch}
-                    sx={{
-                      fontSize: '12px',
-                      paddingTop: '3px',
-                      paddingBottom: '3px'
-                    }}
-                  >
+                  <Button variant="contained" onClick={handleClickSearch}>
                     검색
                   </Button>
                 </div>

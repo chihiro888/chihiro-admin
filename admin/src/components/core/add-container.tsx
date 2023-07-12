@@ -25,15 +25,7 @@ const AddContainer = () => {
     <>
       <Stack>
         <div style={{ textAlign: 'right' }}>
-          <Button
-            variant="contained"
-            onClick={handleClickOpenModal}
-            sx={{
-              fontSize: '12px',
-              paddingTop: '3px',
-              paddingBottom: '3px'
-            }}
-          >
+          <Button variant="contained" onClick={handleClickOpenModal}>
             추가
           </Button>
         </div>

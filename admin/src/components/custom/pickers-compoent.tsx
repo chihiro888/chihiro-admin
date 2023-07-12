@@ -15,6 +15,7 @@ const PickersComponent = forwardRef(({ ...props }: PickerProps, ref) => {
 
   return (
     <TextField
+      size="small"
       inputRef={ref}
       {...props}
       label={label || ''}

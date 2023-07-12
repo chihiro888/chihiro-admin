@@ -19,7 +19,7 @@ const StyledGrid = styled(Grid)<GridProps>(({ theme }) => ({
 // Styled component for the image
 const Img = styled('img')(({ theme }) => ({
   right: 60,
-  bottom: -1,
+  bottom: '-15px',
   height: 170,
   position: 'absolute',
   [theme.breakpoints.down('sm')]: {
@@ -40,14 +40,14 @@ const Congratulations = () => {
             <Typography variant="h5" sx={{ mb: 4, color: 'primary.main' }}>
               관리자 솔루션 🚀
             </Typography>
-            <Typography sx={{ color: 'text.secondary' }}>
-              전체적인 서비스를 관리할 수 있습니다.
+            <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+              디자인은 심플해야 아름답습니다.
             </Typography>
-            <Typography sx={{ color: 'text.secondary' }}>
-              심플하고 세런된 UI/UX로 좀 더 편리하게
+            <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+              UI/UX는 사용자의 기능 및 편의성에 중점을 맞춰야합니다.
             </Typography>
-            <Typography sx={{ mb: 3, color: 'text.secondary' }}>
-              서비스를 쉽게 관리하세요!
+            <Typography variant="body2" sx={{ mb: 3, color: 'text.secondary' }}>
+              완벽한 관리자 솔루션이 탄생할 때 까지 노력하겠습니다.
             </Typography>
             {/* <Button
               size="small"
@@ -60,7 +60,7 @@ const Congratulations = () => {
           <StyledGrid item xs={12} sm={6}>
             <Img
               alt="Congratulations John"
-              src={`/images/cards/illustration-john-${theme.palette.mode}.png`}
+              src={`/images/cards/kaiwa_communication_business.png`}
             />
           </StyledGrid>
         </Grid>

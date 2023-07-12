@@ -64,6 +64,7 @@ const ModalFormContent = ({ formContent, handleChangeForm }) => {
                   {item.type === 'text' ? (
                     <>
                       <TextField
+                        size="small"
                         id="outlined-basic"
                         label={item.label}
                         value={item.value}
@@ -79,6 +80,7 @@ const ModalFormContent = ({ formContent, handleChangeForm }) => {
                   {item.type === 'textarea' ? (
                     <>
                       <TextField
+                        size="small"
                         id="outlined-basic"
                         label={item.label}
                         value={item.value}
@@ -96,6 +98,7 @@ const ModalFormContent = ({ formContent, handleChangeForm }) => {
                   {item.type === 'number' ? (
                     <>
                       <TextField
+                        size="small"
                         id="outlined-number"
                         type="number"
                         InputLabelProps={{
@@ -115,6 +118,7 @@ const ModalFormContent = ({ formContent, handleChangeForm }) => {
                   {item.type === 'password' ? (
                     <>
                       <TextField
+                        size="small"
                         id="outlined-basic"
                         type="password"
                         label={item.label}
@@ -131,8 +135,11 @@ const ModalFormContent = ({ formContent, handleChangeForm }) => {
                   {item.type === 'select' ? (
                     <>
                       <FormControl style={{ width: '100%' }}>
-                        <InputLabel id={item.label}>{item.label}</InputLabel>
+                        <InputLabel id={item.label} style={{ top: '-6px' }}>
+                          {item.label}
+                        </InputLabel>
                         <Select
+                          size="small"
                           label={item.label}
                           value={item.value}
                           id={item.label}
