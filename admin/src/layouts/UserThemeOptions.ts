@@ -77,7 +77,8 @@ const UserThemeOptions = (): ThemeOptions => {
     },
     typography: {
       fontFamily:
-        '"Nanum Gothic", "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji"'
+        '"Nanum Gothic", "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji"',
+      fontSize: '12px !important'
     }
     /*
     palette:{

@@ -122,6 +122,7 @@ const ChangePasswordCard = () => {
                 <InputLabel
                   htmlFor="input-current-password"
                   error={Boolean(errors.currentPassword)}
+                  style={{ top: '-6px' }}
                 >
                   기존 비밀번호
                 </InputLabel>
@@ -131,6 +132,7 @@ const ChangePasswordCard = () => {
                   rules={{ required: true }}
                   render={({ field: { value, onChange } }) => (
                     <OutlinedInput
+                      size="small"
                       value={value}
                       label="Current Password"
                       onChange={onChange}
@@ -170,6 +172,7 @@ const ChangePasswordCard = () => {
                 <InputLabel
                   htmlFor="input-new-password"
                   error={Boolean(errors.newPassword)}
+                  style={{ top: '-6px' }}
                 >
                   새로운 비밀번호
                 </InputLabel>
@@ -179,6 +182,7 @@ const ChangePasswordCard = () => {
                   rules={{ required: true }}
                   render={({ field: { value, onChange } }) => (
                     <OutlinedInput
+                      size="small"
                       value={value}
                       label="New Password"
                       onChange={onChange}
@@ -214,6 +218,7 @@ const ChangePasswordCard = () => {
                 <InputLabel
                   htmlFor="input-confirm-new-password"
                   error={Boolean(errors.confirmNewPassword)}
+                  style={{ top: '-6px' }}
                 >
                   새로운 비밀번호 확인
                 </InputLabel>
@@ -223,6 +228,7 @@ const ChangePasswordCard = () => {
                   rules={{ required: true }}
                   render={({ field: { value, onChange } }) => (
                     <OutlinedInput
+                      size="small"
                       value={value}
                       label="Confirm New Password"
                       onChange={onChange}
@@ -267,10 +273,10 @@ const ChangePasswordCard = () => {
                   '& li': { mb: 1, color: 'text.secondary' }
                 }}
               >
-                <li>최소 8자리 이상의 숫자</li>
-                <li>
+                <Typography variant="body2">최소 8자리 이상의 숫자</Typography>
+                <Typography variant="body2">
                   보안을 위해 대문자, 소문자, 특수문자, 숫자를 조합해주십시오
-                </li>
+                </Typography>
               </Box>
             </Grid>
             <Grid item xs={12}>
