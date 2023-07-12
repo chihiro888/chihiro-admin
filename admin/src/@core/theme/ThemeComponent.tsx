@@ -6,7 +6,11 @@ import { deepmerge } from '@mui/utils'
 import { Theme } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
 import GlobalStyles from '@mui/material/GlobalStyles'
-import { ThemeProvider, createTheme, responsiveFontSizes } from '@mui/material/styles'
+import {
+  ThemeProvider,
+  createTheme,
+  responsiveFontSizes
+} from '@mui/material/styles'
 
 // ** Type Imports
 import { Settings } from 'src/@core/context/settingsContext'
@@ -48,7 +52,8 @@ const ThemeComponent = (props: Props) => {
     deepmerge({ ...overrides(theme, settings) }, UserThemeOptions()?.components)
 
   // ** Deep Merge Typography of core and user
-  const mergeTypography = (theme: Theme) => deepmerge(typography(theme), UserThemeOptions()?.typography)
+  const mergeTypography = (theme: Theme) =>
+    deepmerge(typography(theme), UserThemeOptions()?.typography)
 
   // ** Continue theme creation and pass merged component overrides to CreateTheme function
   theme = createTheme(theme, {
