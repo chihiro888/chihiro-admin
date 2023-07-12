@@ -1,4 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger'
+import { Type } from 'class-transformer'
 import { IsNotEmpty } from 'class-validator'
 
 export class GetLoginHistoryListDto {
@@ -22,8 +23,21 @@ export class GetLoginHistoryListDto {
   type: string
 
   @ApiProperty({
-    description: 'created at',
+    description: 'created start at',
     example: ''
   })
-  createdAt: string
+  createdStartAt: string
+
+  @ApiProperty({
+    description: 'created end at',
+    example: ''
+  })
+  createdEndAt: string
+
+  @ApiProperty({
+    description: 'limit',
+    example: ''
+  })
+  @Type(() => Number)
+  limit: number
 }

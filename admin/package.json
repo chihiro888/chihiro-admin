@@ -37,6 +37,7 @@
     "apexcharts-clevision": "3.28.5",
     "axios": "0.27.2",
     "axios-mock-adapter": "1.20.0",
+    "bignumber.js": "4.0.4",
     "chart.js": "3.7.1",
     "cleave.js": "1.6.0",
     "clipboard-copy": "4.0.1",

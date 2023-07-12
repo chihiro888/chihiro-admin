@@ -68,7 +68,8 @@ const SearchContainer = () => {
         setPagination({
           activePage: 1,
           count: getPaginationCount(data.count),
-          data: data.data
+          data: data.data,
+          info: data.info
         })
       )
       toast.success('검색 필터가 적용되었습니다.')
@@ -129,6 +130,26 @@ const SearchContainer = () => {
                         </>
                       ) : (
                         <></>
+                      )}
+                      {item.type === 'number' && (
+                        <Grid key={idx} item xs={3}>
+                          <FormControl style={{ width: '100%' }}>
+                            <TextField
+                              size="small"
+                              id="outlined-number"
+                              type="number"
+                              InputLabelProps={{
+                                shrink: true
+                              }}
+                              label={item.label}
+                              value={item.value}
+                              onChange={(e) =>
+                                handleChangeForm(item.key, e.target.value)
+                              }
+                              fullWidth
+                            />
+                          </FormControl>
+                        </Grid>
                       )}
                       {item.type === 'select' ? (
                         <>

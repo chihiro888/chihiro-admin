@@ -25,7 +25,8 @@ export const initData = createAsyncThunk(
         setPagination({
           activePage: 1,
           count: getPaginationCount(data.count),
-          data: data.data
+          data: data.data,
+          info: data.info
         })
       )
     }
@@ -42,7 +43,8 @@ export const appCrudSlice = createSlice({
     pagination: {
       count: 0,
       data: [],
-      activePage: 1
+      activePage: 1,
+      info: []
     },
 
     // page header

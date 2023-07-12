@@ -35,7 +35,8 @@ const ListContainer = ({ children }) => {
         setPagination({
           activePage: value,
           count: getPaginationCount(data.count),
-          data: data.data
+          data: data.data,
+          info: data.info
         })
       )
     }

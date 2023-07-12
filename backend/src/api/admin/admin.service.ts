@@ -649,7 +649,7 @@ export class AdminService {
     const queryRunner = this.datasource.createQueryRunner()
     await queryRunner.startTransaction()
     try {
-      const limit = 12
+      const limit = dto.limit
       const offset = (dto.page - 1) * limit
 
       // count
@@ -667,11 +667,80 @@ export class AdminService {
           type: `${dto.type}`
         })
         .andWhere(
-          dto.createdAt === '' ? '1=1' : 'DATE(lh.created_at) = :createdAt',
+          dto.createdStartAt === ''
+            ? '1=1'
+            : 'DATE(lh.created_at) >= :createdStartAt',
           {
-            createdAt: dto.createdAt
+            createdStartAt: dto.createdStartAt
           }
         )
+        .andWhere(
+          dto.createdEndAt === ''
+            ? '1=1'
+            : 'DATE(lh.created_at) <= :createdEndAt',
+          {
+            createdEndAt: dto.createdEndAt
+          }
+        )
+        .getRawOne()
+
+      // count
+      const totalCount = await queryRunner.manager
+        .getRepository(LoginHistory)
+        .createQueryBuilder('lh')
+        .select(['count(1) as count'])
+        .innerJoin(Admin, 'a', 'lh.user_id = a.id')
+        .where('1=1')
+        .andWhere('lh.deleted_at is null')
+        .andWhere(dto.account === '' ? '1=1' : 'a.account like :account', {
+          account: `%${dto.account}%`
+        })
+        .andWhere(
+          dto.createdStartAt === ''
+            ? '1=1'
+            : 'DATE(lh.created_at) >= :createdStartAt',
+          {
+            createdStartAt: dto.createdStartAt
+          }
+        )
+        .andWhere(
+          dto.createdEndAt === ''
+            ? '1=1'
+            : 'DATE(lh.created_at) <= :createdEndAt',
+          {
+            createdEndAt: dto.createdEndAt
+          }
+        )
+        .getRawOne()
+
+      // count
+      const loginCount = await queryRunner.manager
+        .getRepository(LoginHistory)
+        .createQueryBuilder('lh')
+        .select(['count(1) as count'])
+        .innerJoin(Admin, 'a', 'lh.user_id = a.id')
+        .where('1=1')
+        .andWhere('lh.deleted_at is null')
+        .andWhere(dto.account === '' ? '1=1' : 'a.account like :account', {
+          account: `%${dto.account}%`
+        })
+        .andWhere('lh.type = 1')
+
+        .getRawOne()
+
+      // count
+      const logoutCount = await queryRunner.manager
+        .getRepository(LoginHistory)
+        .createQueryBuilder('lh')
+        .select(['count(1) as count'])
+        .innerJoin(Admin, 'a', 'lh.user_id = a.id')
+        .where('1=1')
+        .andWhere('lh.deleted_at is null')
+        .andWhere(dto.account === '' ? '1=1' : 'a.account like :account', {
+          account: `%${dto.account}%`
+        })
+        .andWhere('lh.type = 0')
+
         .getRawOne()
 
       // data
@@ -697,9 +766,19 @@ export class AdminService {
           type: `${dto.type}`
         })
         .andWhere(
-          dto.createdAt === '' ? '1=1' : 'DATE(lh.created_at) = :createdAt',
+          dto.createdStartAt === ''
+            ? '1=1'
+            : 'DATE(lh.created_at) >= :createdStartAt',
           {
-            createdAt: dto.createdAt
+            createdStartAt: dto.createdStartAt
+          }
+        )
+        .andWhere(
+          dto.createdEndAt === ''
+            ? '1=1'
+            : 'DATE(lh.created_at) <= :createdEndAt',
+          {
+            createdEndAt: dto.createdEndAt
           }
         )
         .orderBy('lh.created_at', 'DESC')
@@ -712,7 +791,13 @@ export class AdminService {
         message: '',
         data: {
           count: Number(count.count),
-          data
+          data: data,
+          info: [
+            { label: '현재', value: Number(count.count) },
+            { label: '전체', value: Number(totalCount.count) },
+            { label: '로그인', value: Number(loginCount.count) },
+            { label: '로그아웃', value: Number(logoutCount.count) }
+          ]
         }
       }
     } catch (error) {
