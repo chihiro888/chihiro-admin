@@ -148,6 +148,7 @@ const LoginV1 = () => {
               onSubmit={(e) => handleClickAction(e)}
             >
               <TextField
+                size="small"
                 autoFocus
                 fullWidth
                 id="email"
@@ -156,8 +157,14 @@ const LoginV1 = () => {
                 onChange={handleChange('email')}
               />
               <FormControl fullWidth sx={{ mb: 2 }}>
-                <InputLabel htmlFor="auth-login-password">비밀번호</InputLabel>
+                <InputLabel
+                  style={{ top: '-6px' }}
+                  htmlFor="auth-login-password"
+                >
+                  비밀번호
+                </InputLabel>
                 <OutlinedInput
+                  size="small"
                   label="Password"
                   value={values.password}
                   id="auth-login-password"
