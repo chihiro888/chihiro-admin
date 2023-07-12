@@ -33,6 +33,46 @@ const UserThemeOptions = (): ThemeOptions => {
             padding: '4px !important'
           }
         }
+      },
+      MuiChip: {
+        styleOverrides: {
+          root: {
+            fontSize: '10px !important',
+            borderRadius: '0 !important'
+          }
+        }
+      },
+      MuiTable: {
+        styleOverrides: {
+          root: {
+            padding: '0 !important'
+          }
+        }
+      },
+      MuiTableCell: {
+        styleOverrides: {
+          root: {
+            padding: '2px !important'
+          },
+          head: {
+            paddingBottom: '10px !important'
+          }
+        }
+      },
+      MuiMenuItem: {
+        styleOverrides: {
+          root: {
+            fontSize: '12px !important'
+          }
+        }
+      },
+      MuiAvatar: {
+        styleOverrides: {
+          root: {
+            width: '25px !important',
+            height: '25px !important'
+          }
+        }
       }
     },
     typography: {

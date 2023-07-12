@@ -144,6 +144,7 @@ const List = () => {
         <CardContent>
           <Box>
             <TextField
+              size="small"
               id="outlined-basic"
               label="메모"
               value={memo}

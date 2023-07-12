@@ -51,7 +51,14 @@ const ListContainer = ({ children }) => {
         <>
           <Stack sx={{ mt: 5 }}>
             <Card>
-              <CardContent>
+              <CardContent
+                sx={{
+                  paddingTop: '10px',
+                  paddingLeft: '15px',
+                  paddingRight: '15px',
+                  paddingBottom: '10px !important'
+                }}
+              >
                 <TableContainer component={Paper}>
                   <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
