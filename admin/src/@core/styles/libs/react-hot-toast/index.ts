@@ -15,11 +15,14 @@ const ReactHotToast = styled(Box)<BoxProps>(({ theme }) => {
       left: `${theme.spacing(6)} !important`,
       right: `${theme.spacing(6)} !important`,
       bottom: `${theme.spacing(6)} !important`,
-      top: layout === 'horizontal' && !navHidden ? '139px !important' : '75px !important'
+      top:
+        layout === 'horizontal' && !navHidden
+          ? '139px !important'
+          : '75px !important'
     },
     '& .react-hot-toast': {
       fontWeight: 500,
-      fontSize: '1rem',
+      fontSize: '12px',
       letterSpacing: '0.14px',
       zIndex: theme.zIndex.snackbar,
       color: theme.palette.text.primary,

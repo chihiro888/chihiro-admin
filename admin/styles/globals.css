@@ -20,7 +20,7 @@ code {
     'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
     'Droid Sans', 'Helvetica Neue';
   padding: 0.1rem 0.4rem;
-  font-size: 90%;
+  font-size: '12px !important';
   color: #00a0ff;
   border-radius: 4px;
   background-color: rgba(0, 160, 255, 0.08);
