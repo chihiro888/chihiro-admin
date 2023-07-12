@@ -174,7 +174,11 @@ export const appCrudSlice = createSlice({
     initSearchForm(state) {
       const nextState = produce(state.searchForm, (draftState) => {
         draftState.map((item) => {
-          item.value = ''
+          if (item.key === 'limit') {
+            item.value = 10
+          } else {
+            item.value = ''
+          }
         })
       })
       state.searchForm = nextState

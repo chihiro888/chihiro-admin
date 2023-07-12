@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { IsNotEmpty } from 'class-validator'
+import { Type } from 'class-transformer'
 
 export class GetAdminListDto {
   @ApiProperty({
@@ -16,14 +17,27 @@ export class GetAdminListDto {
   account: string
 
   @ApiProperty({
-    description: 'role',
+    description: 'level',
     example: ''
   })
-  role: string
+  level: string
 
   @ApiProperty({
-    description: 'created at',
+    description: 'created start at',
     example: ''
   })
-  createdAt: string
+  createdStartAt: string
+
+  @ApiProperty({
+    description: 'created end at',
+    example: ''
+  })
+  createdEndAt: string
+
+  @ApiProperty({
+    description: 'limit',
+    example: ''
+  })
+  @Type(() => Number)
+  limit: number
 }

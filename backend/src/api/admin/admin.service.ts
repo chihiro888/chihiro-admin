@@ -227,7 +227,7 @@ export class AdminService {
     const queryRunner = this.datasource.createQueryRunner()
     await queryRunner.startTransaction()
     try {
-      const limit = 12
+      const limit = dto.limit === 0 ? 10 : dto.limit
       const offset = (dto.page - 1) * limit
 
       // count
@@ -249,15 +249,43 @@ export class AdminService {
         .andWhere(dto.account === '' ? '1=1' : 'a.account like :account', {
           account: `%${dto.account}%`
         })
-        // .andWhere(dto.role === '' ? '1=1' : 'role = :role', {
-        //   role: dto.role
-        // })
+        .andWhere(dto.level === '' ? '1=1' : 'role = :level', {
+          level: dto.level
+        })
         .andWhere(
-          dto.createdAt === '' ? '1=1' : 'DATE(a.created_at) = :createdAt',
+          dto.createdStartAt === ''
+            ? '1=1'
+            : 'DATE(a.created_at) >= :createdStartAt',
           {
-            createdAt: dto.createdAt
+            createdStartAt: dto.createdStartAt
           }
         )
+        .andWhere(
+          dto.createdEndAt === ''
+            ? '1=1'
+            : 'DATE(a.created_at) <= :createdEndAt',
+          {
+            createdEndAt: dto.createdEndAt
+          }
+        )
+        .getRawOne()
+
+      // count
+      const totalCount = await queryRunner.manager
+        .getRepository(Admin)
+        .createQueryBuilder('a')
+        .select(['count(1) as count'])
+        .leftJoin(
+          (qb) =>
+            qb
+              .from(File, 'file')
+              .select('file.table_pk')
+              .where('file.table_name = :table_name', { table_name: '_admin' }),
+          'f',
+          'a.id = f.table_pk'
+        )
+        .where('1=1')
+        .andWhere('a.deleted_at is null')
         .getRawOne()
 
       // data
@@ -298,13 +326,23 @@ export class AdminService {
         .andWhere(dto.account === '' ? '1=1' : 'a.account like :account', {
           account: `%${dto.account}%`
         })
-        // .andWhere(dto.role === '' ? '1=1' : 'role = :role', {
-        //   role: dto.role
-        // })
+        .andWhere(dto.level === '' ? '1=1' : 'role = :level', {
+          level: dto.level
+        })
         .andWhere(
-          dto.createdAt === '' ? '1=1' : 'DATE(a.created_at) = :createdAt',
+          dto.createdStartAt === ''
+            ? '1=1'
+            : 'DATE(a.created_at) >= :createdStartAt',
           {
-            createdAt: dto.createdAt
+            createdStartAt: dto.createdStartAt
+          }
+        )
+        .andWhere(
+          dto.createdEndAt === ''
+            ? '1=1'
+            : 'DATE(a.created_at) <= :createdEndAt',
+          {
+            createdEndAt: dto.createdEndAt
           }
         )
         .orderBy('a.created_at', 'DESC')
@@ -317,7 +355,11 @@ export class AdminService {
         message: '',
         data: {
           count: Number(count.count),
-          data: data
+          data: data,
+          info: [
+            { label: '현재', value: Number(count.count) },
+            { label: '전체', value: Number(totalCount.count) }
+          ]
         }
       }
     } catch (error) {
@@ -649,7 +691,7 @@ export class AdminService {
     const queryRunner = this.datasource.createQueryRunner()
     await queryRunner.startTransaction()
     try {
-      const limit = dto.limit
+      const limit = dto.limit === 0 ? 10 : dto.limit
       const offset = (dto.page - 1) * limit
 
       // count

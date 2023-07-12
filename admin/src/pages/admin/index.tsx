@@ -38,6 +38,7 @@ import {
 } from 'src/store/apps/crud'
 import { useEffect } from 'react'
 import { AppDispatch } from 'src/store'
+import InfoContainer from 'src/components/core/info-container'
 
 const Admin = () => {
   // ** Hooks
@@ -219,9 +220,21 @@ const Admin = () => {
         },
         {
           type: 'date',
-          label: '생성일자',
-          key: 'createdAt',
+          label: '생성일자 (시작)',
+          key: 'createdStartAt',
           value: ''
+        },
+        {
+          type: 'date',
+          label: '생성일자 (종료)',
+          key: 'createdEndAt',
+          value: ''
+        },
+        {
+          type: 'number',
+          label: '페이지개수',
+          key: 'limit',
+          value: 10
         }
       ])
     )
@@ -341,6 +354,9 @@ const Admin = () => {
 
       {/* 검색 컨테이너 */}
       <SearchContainer />
+
+      {/* 정보 컨테이너 */}
+      <InfoContainer />
 
       {/* 리스트 컨테이너 */}
       <ListContainer>
