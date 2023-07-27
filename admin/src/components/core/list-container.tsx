@@ -11,9 +11,11 @@ import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import Pagination from '@mui/material/Pagination'
 import { useDispatch, useSelector } from 'react-redux'
-import { setPagination } from 'src/store/apps/crud'
+import { setIsLoad, setPagination } from 'src/store/apps/crud'
 import { RootState } from 'src/store'
 import CustomLottie from '../custom/custom-lottie'
+import * as load from '../../lottie/load.json'
+import { Box } from '@mui/material'
 
 const ListContainer = ({ children }) => {
   // ** Hooks
@@ -23,11 +25,13 @@ const ListContainer = ({ children }) => {
   const tableHeader = crud.tableHeader
   const searchForm = crud.searchForm
   const listAPI = crud.listAPI
+  const isLoad = crud.isLoad
 
   // ** Handler
   const handleChangePage = async (e: any, value: number) => {
     const params = getParamsFromForm(searchForm)
     params['page'] = value
+    dispatch(setIsLoad(true))
     const { data: res } = await listAPI(params)
     if (res.statusCode === 200) {
       const data = res.data
@@ -39,56 +43,72 @@ const ListContainer = ({ children }) => {
           info: data.info
         })
       )
+      dispatch(setIsLoad(false))
     }
   }
 
   return (
     <>
-      {pagination?.data.length === 0 ? (
+      {isLoad ? (
         <>
-          <CustomLottie text={'데이터가 존재하지 않습니다.'} />
+          <Box sx={{ mt: 5 }}>
+            <CustomLottie
+              data={load}
+              width={200}
+              height={200}
+              text={'데이터를 불러오는 중입니다. 잠시만 기다려주십시오.'}
+            />
+          </Box>
         </>
       ) : (
         <>
-          <Stack sx={{ mt: 5 }}>
-            <Card>
-              <CardContent
-                sx={{
-                  paddingTop: '10px',
-                  paddingLeft: '15px',
-                  paddingRight: '15px',
-                  paddingBottom: '10px !important'
-                }}
-              >
-                <TableContainer component={Paper}>
-                  <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                    <TableHead>
-                      <TableRow>
-                        {tableHeader.map((item, idx) => {
-                          return (
-                            <>
-                              <TableCell key={idx}>{item}</TableCell>
-                            </>
-                          )
-                        })}
-                      </TableRow>
-                    </TableHead>
-                    {children}
-                  </Table>
-                </TableContainer>
-              </CardContent>
-            </Card>
-          </Stack>
+          {pagination?.data.length === 0 ? (
+            <>
+              <CustomLottie text={'데이터가 존재하지 않습니다.'} />
+            </>
+          ) : (
+            <>
+              <Stack sx={{ mt: 5 }}>
+                <Card>
+                  <CardContent
+                    sx={{
+                      paddingTop: '10px',
+                      paddingLeft: '15px',
+                      paddingRight: '15px',
+                      paddingBottom: '10px !important'
+                    }}
+                  >
+                    <TableContainer component={Paper}>
+                      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                        <TableHead>
+                          <TableRow>
+                            {tableHeader.map((item, idx) => {
+                              return (
+                                <>
+                                  <TableCell key={idx}>{item}</TableCell>
+                                </>
+                              )
+                            })}
+                          </TableRow>
+                        </TableHead>
+                        {children}
+                      </Table>
+                    </TableContainer>
+                  </CardContent>
+                </Card>
+              </Stack>
 
-          <Stack alignItems="center" sx={{ mt: 5 }}>
-            <Pagination
-              count={pagination?.count}
-              shape="rounded"
-              color="primary"
-              page={pagination?.activePage}
-              onChange={handleChangePage}
-            />
-          </Stack>
+              <Stack alignItems="center" sx={{ mt: 5 }}>
+                <Pagination
+                  count={pagination?.count}
+                  shape="rounded"
+                  color="primary"
+                  page={pagination?.activePage}
+                  onChange={handleChangePage}
+                />
+              </Stack>
+            </>
+          )}
         </>
       )}
     </>

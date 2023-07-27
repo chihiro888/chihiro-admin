@@ -26,6 +26,7 @@ import toast from 'react-hot-toast'
 import { RootState } from 'src/store'
 import {
   initSearchForm,
+  setIsLoad,
   setPagination,
   updateSearchForm
 } from 'src/store/apps/crud'
@@ -36,6 +37,7 @@ const SearchContainer = () => {
   const crud = useSelector((state: RootState) => state.crud)
   const searchForm = crud.searchForm
   const listAPI = crud.listAPI
+  const isLoad = crud.isLoad
 
   // ** State
   const [collapse, setCollapse] = useState<boolean>(true)
@@ -61,6 +63,7 @@ const SearchContainer = () => {
   const handleClickSearch = async () => {
     const params = getParamsFromForm(searchForm)
     params['page'] = 1
+    dispatch(setIsLoad(true))
     const { data: res } = await listAPI(params)
     if (res.statusCode === 200) {
       const data = res.data
@@ -72,6 +75,7 @@ const SearchContainer = () => {
           info: data.info
         })
       )
+      dispatch(setIsLoad(false))
       toast.success('검색 필터가 적용되었습니다.')
     }
   }
@@ -236,7 +240,11 @@ const SearchContainer = () => {
                   >
                     초기화
                   </Button>
-                  <Button variant="contained" onClick={handleClickSearch}>
+                  <Button
+                    variant="contained"
+                    onClick={handleClickSearch}
+                    disabled={isLoad}
+                  >
                     검색
                   </Button>
                 </div>

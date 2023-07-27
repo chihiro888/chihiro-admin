@@ -18,6 +18,7 @@ export const initData = createAsyncThunk(
     const searchForm = crud.searchForm
     const params = getParamsFromForm(searchForm)
     params['page'] = 1
+    dispatch(setIsLoad(true))
     const { data: res } = await listAPI(params)
     if (res.statusCode === 200) {
       const data = res.data
@@ -29,6 +30,7 @@ export const initData = createAsyncThunk(
           info: data.info
         })
       )
+      dispatch(setIsLoad(false))
     }
   }
 )
@@ -76,6 +78,7 @@ export const appCrudSlice = createSlice({
 
     // list API
     listAPI: null,
+    isLoad: false, // listAPI가 로딩될 때 상태 (true: 로딩 O, false: 로딩 X)
 
     // create API
     createAPI: null,
@@ -232,6 +235,9 @@ export const appCrudSlice = createSlice({
     },
     setLoadAPI(state, action) {
       state.loadAPI = action.payload
+    },
+    setIsLoad(state, action) {
+      state.isLoad = action.payload
     }
   }
 })
@@ -259,7 +265,8 @@ export const {
   setDetailAPI,
   setDeleteAPI,
   setUpdateAPI,
-  setLoadAPI
+  setLoadAPI,
+  setIsLoad
 } = appCrudSlice.actions
 
 export default appCrudSlice.reducer
