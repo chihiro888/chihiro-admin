@@ -152,7 +152,6 @@ export class AdminController {
   // ANCHOR create admin
   @UseGuards(SystemAdminGuard)
   @Post('createAdmin')
-  @ApiFiles()
   @ApiOperation({ summary: '관리자 생성 (시스템 관리자 기능)' })
   async createAdmin(@Res() res: Response, @Body() dto: CreateAdminDto) {
     const result = await this.adminService.createAdmin(dto)
