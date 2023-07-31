@@ -6,15 +6,7 @@ export class UpdateAdminPasswordDto {
     description: 'id',
     example: ''
   })
-  @Length(8, 255)
   id: number
-
-  @ApiProperty({
-    description: 'old password',
-    example: ''
-  })
-  @Length(8, 255)
-  oldPassword: string | null
 
   @ApiProperty({
     description: 'new password',

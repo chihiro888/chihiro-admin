@@ -16,9 +16,9 @@ import {
   deleteAdmin,
   updateAdminPassword,
   updateAdminUsername,
-  updateAdminLevel,
   updateAdminProfile,
-  updateAdminIntro
+  updateAdminIntro,
+  updateAdminRole
 } from 'src/apis/admin'
 
 // ** Redux
@@ -73,7 +73,7 @@ const Admin = () => {
         '계정',
         '소개',
         '비밀번호',
-        '사용자명',
+        '관리자명',
         '권한',
         '생성일자',
         '수정일자',
@@ -104,7 +104,7 @@ const Admin = () => {
         },
         {
           type: 'text',
-          label: '사용자명',
+          label: '관리자명',
           key: 'username',
           value: ''
         },
@@ -126,7 +126,7 @@ const Admin = () => {
         {
           type: 'select',
           label: '권한',
-          key: 'level',
+          key: 'role',
           value: '',
           list: [
             {
@@ -161,7 +161,7 @@ const Admin = () => {
           value: ''
         },
         {
-          label: '사용자명',
+          label: '관리자명',
           key: 'username',
           value: ''
         },
@@ -205,7 +205,7 @@ const Admin = () => {
         {
           type: 'select',
           label: '권한',
-          key: 'level',
+          key: 'role',
           value: '',
           list: [
             {
@@ -279,12 +279,6 @@ const Admin = () => {
           content: [
             {
               type: 'password',
-              label: '기존 비밀번호',
-              key: 'oldPassword',
-              value: ''
-            },
-            {
-              type: 'password',
               label: '새로운 비밀번호',
               key: 'newPassword',
               value: ''
@@ -301,11 +295,11 @@ const Admin = () => {
         },
         {
           icon: 'bx:pencil',
-          label: '사용자명 변경',
+          label: '관리자명 변경',
           content: [
             {
               type: 'text',
-              label: '사용자명',
+              label: '관리자명',
               key: 'username',
               value: ''
             }
@@ -320,7 +314,7 @@ const Admin = () => {
             {
               type: 'select',
               label: '권한',
-              key: 'level',
+              key: 'role',
               value: '',
               list: [
                 {
@@ -335,7 +329,7 @@ const Admin = () => {
             }
           ],
           loadAPI: getAdmin,
-          updateAPI: updateAdminLevel
+          updateAPI: updateAdminRole
         }
       ])
     )

@@ -85,7 +85,7 @@ export class AdminService {
       } else {
         // 비밀번호가 틀린 경우
         return {
-          statusCode: HttpStatus.OK,
+          statusCode: HttpStatus.UNAUTHORIZED,
           data: null,
           message: 'The account or password is not valid.'
         }
@@ -249,8 +249,8 @@ export class AdminService {
         .andWhere(dto.account === '' ? '1=1' : 'a.account like :account', {
           account: `%${dto.account}%`
         })
-        .andWhere(dto.level === '' ? '1=1' : 'role = :level', {
-          level: dto.level
+        .andWhere(dto.role === '' ? '1=1' : 'role = :role', {
+          role: dto.role
         })
         .andWhere(
           dto.createdStartAt === ''
@@ -326,8 +326,8 @@ export class AdminService {
         .andWhere(dto.account === '' ? '1=1' : 'a.account like :account', {
           account: `%${dto.account}%`
         })
-        .andWhere(dto.level === '' ? '1=1' : 'role = :level', {
-          level: dto.level
+        .andWhere(dto.role === '' ? '1=1' : 'role = :role', {
+          role: dto.role
         })
         .andWhere(
           dto.createdStartAt === ''
@@ -473,7 +473,7 @@ export class AdminService {
 
       return {
         statusCode: HttpStatus.OK,
-        message: '',
+        message: '관리자 추가가 완료되었습니다.',
         data: null
       }
     } catch (error) {
@@ -488,6 +488,14 @@ export class AdminService {
     const queryRunner = this.datasource.createQueryRunner()
     await queryRunner.startTransaction()
     try {
+      if (dto.userId === Number(dto.id)) {
+        return {
+          statusCode: HttpStatus.BAD_REQUEST,
+          message: '본인 아이디는 삭제할 수 없습니다.',
+          data: null
+        }
+      }
+
       const admin = await queryRunner.manager.getRepository(Admin).findOne({
         where: {
           id: dto.id,
@@ -498,7 +506,7 @@ export class AdminService {
       if (!admin) {
         return {
           statusCode: HttpStatus.BAD_REQUEST,
-          message: 'The administrator you are trying to delete does not exist.',
+          message: '삭제하려는 대상이 존재하지 않습니다.',
           data: null
         }
       }
@@ -510,7 +518,7 @@ export class AdminService {
 
       return {
         statusCode: HttpStatus.OK,
-        message: 'Administrator creation is complete.',
+        message: '관리자 삭제가 완료되었습니다.',
         data: null
       }
     } catch (error) {
@@ -539,7 +547,7 @@ export class AdminService {
 
       return {
         statusCode: HttpStatus.OK,
-        message: '',
+        message: '비밀번호 변경이 완료되었습니다.',
         data: null
       }
     } catch (error) {
@@ -568,7 +576,7 @@ export class AdminService {
 
       return {
         statusCode: HttpStatus.OK,
-        message: '',
+        message: '관리자명 변경이 완료되었습니다.',
         data: null
       }
     } catch (error) {
@@ -597,7 +605,7 @@ export class AdminService {
 
       return {
         statusCode: HttpStatus.OK,
-        message: '',
+        message: '관리자 권한 변경이 완료되었습니다.',
         data: null
       }
     } catch (error) {
@@ -647,7 +655,7 @@ export class AdminService {
 
       return {
         statusCode: HttpStatus.OK,
-        message: '',
+        message: '관리자 프로필 변경이 완료되었습니다.',
         data: null
       }
     } catch (error) {
@@ -676,7 +684,7 @@ export class AdminService {
 
       return {
         statusCode: HttpStatus.OK,
-        message: '',
+        message: '관리자 자기소개 변경이 완료되었습니다.',
         data: null
       }
     } catch (error) {

@@ -60,3 +60,17 @@ CREATE TABLE IF NOT EXISTS _file (
   `updated_at` DATETIME DEFAULT NULL COMMENT 'update time',
   `deleted_at` DATETIME DEFAULT NULL COMMENT 'delete time'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT="file";
+
+/*
+    history action table
+*/
+DROP TABLE IF EXISTS _history_action;
+CREATE TABLE IF NOT EXISTS _history_action (
+  `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `admin_id` INT NOT NULL COMMENT 'admin id', -- 관리자 아이디
+  `api_name` VARCHAR(255) COMMENT 'to username', -- API명
+  `params` TEXT COMMENT 'to username', -- 파라미터
+  `created_at` DATETIME DEFAULT now() COMMENT 'create time',
+  `updated_at` DATETIME DEFAULT NULL COMMENT 'update time',
+  `deleted_at` DATETIME DEFAULT NULL COMMENT 'delete time'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT="history action";

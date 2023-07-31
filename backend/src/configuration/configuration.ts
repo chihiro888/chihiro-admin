@@ -27,7 +27,7 @@ export default () => {
       extra: {
         connectionLimit: 10
       },
-      timezone: 'Z',
+      timezone: '+09:00', // response 반환 시 UTC로 반환됨
       logging: ['query', 'error', 'schema', 'warn', 'info', 'log']
       // logging: ['error', 'schema', 'warn', 'info', 'log']
     },

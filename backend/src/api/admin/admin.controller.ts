@@ -41,12 +41,16 @@ import { AdminGuard } from 'src/common/guard/admin.guard'
 
 // ** Service
 import { AdminService } from './admin.service'
+import { ActionService } from '../action/action.service'
 
 // ANCHOR admin controller
 @ApiTags('admin')
 @Controller('api/admin')
 export class AdminController {
-  constructor(private adminService: AdminService) {}
+  constructor(
+    private adminService: AdminService,
+    private actionService: ActionService
+  ) {}
 
   // ANCHOR check system admin
   @Get('checkSystemAdmin')
@@ -153,8 +157,16 @@ export class AdminController {
   @UseGuards(SystemAdminGuard)
   @Post('createAdmin')
   @ApiOperation({ summary: '관리자 생성 (시스템 관리자 기능)' })
-  async createAdmin(@Res() res: Response, @Body() dto: CreateAdminDto) {
+  async createAdmin(
+    @Res() res: Response,
+    @Body() dto: CreateAdminDto,
+    @Session() session: any
+  ) {
     const result = await this.adminService.createAdmin(dto)
+
+    // 액션 저장
+    await this.actionService.saveAdminAction(session.userId, 'createAdmin', dto)
+
     res.status(result.statusCode).json(result)
   }
 
@@ -162,8 +174,17 @@ export class AdminController {
   @UseGuards(SystemAdminGuard)
   @Delete('deleteAdmin')
   @ApiOperation({ summary: '관리자 삭제 (시스템 관리자 기능)' })
-  async deleteAdmin(@Res() res: Response, @Query() dto: DeleteAdminDto) {
+  async deleteAdmin(
+    @Res() res: Response,
+    @Query() dto: DeleteAdminDto,
+    @Session() session: any
+  ) {
+    dto.userId = session.userId
     const result = await this.adminService.deleteAdmin(dto)
+
+    // 액션 저장
+    await this.actionService.saveAdminAction(session.userId, 'deleteAdmin', dto)
+
     res.status(result.statusCode).json(result)
   }
 
@@ -173,9 +194,18 @@ export class AdminController {
   @ApiOperation({ summary: '관리자 비밀번호 변경 (시스템 관리자 기능)' })
   async updateAdminPassword(
     @Res() res: Response,
-    @Body() dto: UpdateAdminPasswordDto
+    @Body() dto: UpdateAdminPasswordDto,
+    @Session() session: any
   ) {
     const result = await this.adminService.updateAdminPassword(dto)
+
+    // 액션 저장
+    await this.actionService.saveAdminAction(
+      session.userId,
+      'updateAdminPassword',
+      dto
+    )
+
     res.status(result.statusCode).json(result)
   }
 
@@ -185,9 +215,18 @@ export class AdminController {
   @ApiOperation({ summary: '관리자 사용자명 변경 (시스템 관리자 기능)' })
   async updateAdminUsername(
     @Res() res: Response,
-    @Body() dto: UpdateAdminUsernameDto
+    @Body() dto: UpdateAdminUsernameDto,
+    @Session() session: any
   ) {
     const result = await this.adminService.updateAdminUsername(dto)
+
+    // 액션 저장
+    await this.actionService.saveAdminAction(
+      session.userId,
+      'updateAdminUsername',
+      dto
+    )
+
     res.status(result.statusCode).json(result)
   }
 
@@ -195,8 +234,20 @@ export class AdminController {
   @UseGuards(SystemAdminGuard)
   @Put('updateAdminRole')
   @ApiOperation({ summary: '관리자 권한 변경 (시스템 관리자 기능)' })
-  async updateAdminRole(@Res() res: Response, @Body() dto: UpdateAdminRoleDto) {
+  async updateAdminRole(
+    @Res() res: Response,
+    @Body() dto: UpdateAdminRoleDto,
+    @Session() session: any
+  ) {
     const result = await this.adminService.updateAdminRole(dto)
+
+    // 액션 저장
+    await this.actionService.saveAdminAction(
+      session.userId,
+      'updateAdminRole',
+      dto
+    )
+
     res.status(result.statusCode).json(result)
   }
 
@@ -206,9 +257,18 @@ export class AdminController {
   @ApiOperation({ summary: '관리자 프로필 변경 (시스템 관리자 기능)' })
   async updateAdminProfile(
     @Res() res: Response,
-    @Body() dto: UpdateAdminProfileDto
+    @Body() dto: UpdateAdminProfileDto,
+    @Session() session: any
   ) {
     const result = await this.adminService.updateAdminProfile(dto)
+
+    // 액션 저장
+    await this.actionService.saveAdminAction(
+      session.userId,
+      'updateAdminProfile',
+      dto
+    )
+
     res.status(result.statusCode).json(result)
   }
 
@@ -218,9 +278,18 @@ export class AdminController {
   @ApiOperation({ summary: '관리자 소개 변경 (시스템 관리자 기능)' })
   async updateAdminIntro(
     @Res() res: Response,
-    @Body() dto: UpdateAdminIntroDto
+    @Body() dto: UpdateAdminIntroDto,
+    @Session() session: any
   ) {
     const result = await this.adminService.updateAdminIntro(dto)
+
+    // 액션 저장
+    await this.actionService.saveAdminAction(
+      session.userId,
+      'updateAdminIntro',
+      dto
+    )
+
     res.status(result.statusCode).json(result)
   }
 

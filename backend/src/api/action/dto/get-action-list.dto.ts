@@ -1,8 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger'
-import { IsNotEmpty } from 'class-validator'
 import { Type } from 'class-transformer'
+import { IsNotEmpty } from 'class-validator'
 
-export class GetAdminListDto {
+export class GetActionListDto {
   @ApiProperty({
     description: 'page',
     example: 1
@@ -11,16 +11,28 @@ export class GetAdminListDto {
   page: number
 
   @ApiProperty({
-    description: 'account',
+    description: 'adminId',
     example: ''
   })
-  account: string
+  adminId: string
 
   @ApiProperty({
-    description: 'role',
+    description: 'adminAccount',
     example: ''
   })
-  role: string
+  adminAccount: string
+
+  @ApiProperty({
+    description: 'adminUsername',
+    example: ''
+  })
+  adminUsername: string
+
+  @ApiProperty({
+    description: 'api name',
+    example: ''
+  })
+  apiName: string
 
   @ApiProperty({
     description: 'created start at',

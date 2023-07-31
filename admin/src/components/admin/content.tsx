@@ -67,7 +67,7 @@ const Content = () => {
             </TableCell>
             <TableCell>{row.username}</TableCell>
             <TableCell>
-              {Number(row.level) === 1 ? (
+              {row.role === 'SA' ? (
                 <>
                   <Chip
                     label="시스템관리자"

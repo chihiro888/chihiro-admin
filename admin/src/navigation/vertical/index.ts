@@ -25,6 +25,11 @@ const navigation = (): VerticalNavItemsType => {
       path: '/admin/history'
     },
     {
+      title: '액션 이력',
+      icon: 'mdi:account-clock',
+      path: '/admin/action'
+    },
+    {
       sectionTitle: '설정'
     },
     {
