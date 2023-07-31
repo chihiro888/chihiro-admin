@@ -138,8 +138,9 @@ export class AdminService {
       if (await isMatch(dto.newPassword, user.password)) {
         // 새 비밀번호가 기존 비밀번호와 같은 경우
         return {
-          result: false,
-          message: 'The new password is the same as the old password.'
+          statusCode: HttpStatus.BAD_REQUEST,
+          data: null,
+          message: '새로운 비밀번호가 기존 비밀번호와 동일합니다.'
         }
       }
 
@@ -154,7 +155,7 @@ export class AdminService {
       return {
         statusCode: HttpStatus.OK,
         data: null,
-        message: ''
+        message: '비밀번호 변경이 완료되었습니다.'
       }
     } catch (error) {
       handleError(queryRunner, error)

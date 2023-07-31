@@ -93,7 +93,7 @@ export class DashboardService {
 
   // ANCHOR get user count
   async getUserCount() {
-    return await this.countQuery('_user')
+    return await this.countQuery('_admin')
   }
 
   // ANCHOR get login history count
@@ -113,7 +113,7 @@ export class DashboardService {
 
   // ANCHOR get user line chart
   async getUserLineChart() {
-    return await this.lineChartQuery('_user')
+    return await this.lineChartQuery('_admin')
   }
 
   // ANCHOR get login history line chart
