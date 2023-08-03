@@ -1,7 +1,9 @@
 export const getPaginationCount = (count: number, limit: number) => {
-  const res = Math.ceil(count / limit)
-
-  return res
+  if (limit < 1) {
+    return 1
+  } else {
+    return Math.ceil(count / limit)
+  }
 }
 
 export const getParamsFromForm = (form) => {
