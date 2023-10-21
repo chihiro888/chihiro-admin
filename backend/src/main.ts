@@ -41,8 +41,6 @@ async function bootstrap() {
   // get database information
   const configService = app.get(ConfigService)
   const database = configService.get<DataSourceOptions>('database')
-
-  // get session store
   const options = {
     host: database['host'],
     user: database['username'],
@@ -51,7 +49,26 @@ async function bootstrap() {
     port: database['port']
   }
   const connection = mysql.createConnection(options)
-  const sessionStore = new MySQLStore({}, connection)
+
+  // session store 'database' or redis
+  const sessionStoreType = configService.get('sessionStoreType')
+  let sessionStore
+  if (sessionStoreType === 'database') {
+    sessionStore = new MySQLStore({}, connection)
+  } else if (sessionStoreType === 'redis') {
+    const redisConnection = configService.get('redis')
+    const redis = require('redis')
+    const RedisStore = require('connect-redis').default
+    const redisClient = redis.createClient({
+      url: `redis://${redisConnection.host}:${redisConnection.port}`
+    })
+    redisClient.connect().catch(console.error)
+    sessionStore = new RedisStore({
+      client: redisClient
+    })
+  } else {
+    throw new Error('not found session store plz config check!!')
+  }
 
   // set express-session
   app.use(

@@ -31,6 +31,11 @@ export default () => {
       logging: ['query', 'error', 'schema', 'warn', 'info', 'log']
       // logging: ['error', 'schema', 'warn', 'info', 'log']
     },
+    redis: {
+      host: data.db.host,
+      port: Number(data.redis.port)
+    },
+    sessionStoreType: data.session_store,
     sessionSecretKey: data.db.session.secretKey
   }
   console.log('configuration -> ', configuration)
