@@ -8,7 +8,7 @@ import { ValidationPipe } from '@nestjs/common'
 
 // session
 import session from 'express-session'
-import mysql from 'mysql'
+import mysql from 'mysql2/promise'
 import MySQLStore from 'express-mysql-session'
 
 async function bootstrap() {
@@ -45,10 +45,10 @@ async function bootstrap() {
     host: database['host'],
     user: database['username'],
     password: database['password'],
-    database: database['database'],
+    database: database['database'].toString(),
     port: database['port']
   }
-  const connection = mysql.createConnection(options)
+  const connection = await mysql.createConnection(options)
 
   // session store 'database' or redis
   const sessionStoreType = configService.get('sessionStoreType')

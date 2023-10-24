@@ -43,6 +43,7 @@ const RAW_RUNTIME_STATE =
           ["@types/js-yaml", "npm:4.0.8"],\
           ["@types/node", "npm:16.18.59"],\
           ["@types/supertest", "npm:2.0.15"],\
+          ["@types/uuid", "npm:9.0.6"],\
           ["@typescript-eslint/eslint-plugin", "virtual:44b469eadfa8be85e65fd1f4659e75acb6421b9371facf8a84ddc9324b6953938a3210389f99ae7a7a773c037f7811dd1738c4ac914430a6e41429731ecdd5d3#npm:5.62.0"],\
           ["@typescript-eslint/parser", "virtual:44b469eadfa8be85e65fd1f4659e75acb6421b9371facf8a84ddc9324b6953938a3210389f99ae7a7a773c037f7811dd1738c4ac914430a6e41429731ecdd5d3#npm:5.62.0"],\
           ["@yarnpkg/sdks", "npm:3.0.0"],\
@@ -77,6 +78,7 @@ const RAW_RUNTIME_STATE =
           ["tsconfig-paths", "npm:4.0.0"],\
           ["typeorm", "virtual:44b469eadfa8be85e65fd1f4659e75acb6421b9371facf8a84ddc9324b6953938a3210389f99ae7a7a773c037f7811dd1738c4ac914430a6e41429731ecdd5d3#npm:0.3.17"],\
           ["typescript", "patch:typescript@npm%3A4.9.5#optional!builtin<compat/typescript>::version=4.9.5&hash=289587"],\
+          ["uuid", "npm:9.0.1"],\
           ["webpack", "virtual:44b469eadfa8be85e65fd1f4659e75acb6421b9371facf8a84ddc9324b6953938a3210389f99ae7a7a773c037f7811dd1738c4ac914430a6e41429731ecdd5d3#npm:5.89.0"],\
           ["xlsx", "npm:0.18.5"]\
         ],\
@@ -2578,6 +2580,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["@types/uuid", [\
+      ["npm:9.0.6", {\
+        "packageLocation": "../../../.yarn/berry/cache/@types-uuid-npm-9.0.6-741993c9d3-10c0.zip/node_modules/@types/uuid/",\
+        "packageDependencies": [\
+          ["@types/uuid", "npm:9.0.6"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["@types/yargs", [\
       ["npm:17.0.29", {\
         "packageLocation": "../../../.yarn/berry/cache/@types-yargs-npm-17.0.29-6860504025-10c0.zip/node_modules/@types/yargs/",\
@@ -4212,6 +4223,7 @@ const RAW_RUNTIME_STATE =
           ["@types/js-yaml", "npm:4.0.8"],\
           ["@types/node", "npm:16.18.59"],\
           ["@types/supertest", "npm:2.0.15"],\
+          ["@types/uuid", "npm:9.0.6"],\
           ["@typescript-eslint/eslint-plugin", "virtual:44b469eadfa8be85e65fd1f4659e75acb6421b9371facf8a84ddc9324b6953938a3210389f99ae7a7a773c037f7811dd1738c4ac914430a6e41429731ecdd5d3#npm:5.62.0"],\
           ["@typescript-eslint/parser", "virtual:44b469eadfa8be85e65fd1f4659e75acb6421b9371facf8a84ddc9324b6953938a3210389f99ae7a7a773c037f7811dd1738c4ac914430a6e41429731ecdd5d3#npm:5.62.0"],\
           ["@yarnpkg/sdks", "npm:3.0.0"],\
@@ -4246,6 +4258,7 @@ const RAW_RUNTIME_STATE =
           ["tsconfig-paths", "npm:4.0.0"],\
           ["typeorm", "virtual:44b469eadfa8be85e65fd1f4659e75acb6421b9371facf8a84ddc9324b6953938a3210389f99ae7a7a773c037f7811dd1738c4ac914430a6e41429731ecdd5d3#npm:0.3.17"],\
           ["typescript", "patch:typescript@npm%3A4.9.5#optional!builtin<compat/typescript>::version=4.9.5&hash=289587"],\
+          ["uuid", "npm:9.0.1"],\
           ["webpack", "virtual:44b469eadfa8be85e65fd1f4659e75acb6421b9371facf8a84ddc9324b6953938a3210389f99ae7a7a773c037f7811dd1738c4ac914430a6e41429731ecdd5d3#npm:5.89.0"],\
           ["xlsx", "npm:0.18.5"]\
         ],\

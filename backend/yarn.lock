@@ -1699,6 +1699,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/uuid@npm:^9":
+  version: 9.0.6
+  resolution: "@types/uuid@npm:9.0.6"
+  checksum: 8fb6b3a583a035b8e917192eeadaadadfbfd29315094aafd3478e11f11a986cb118ee0f388b15035fda063d9f1a32fa62e7a791215b762fe1e2c177929ca7146
+  languageName: node
+  linkType: hard
+
 "@types/yargs-parser@npm:*":
   version: 21.0.2
   resolution: "@types/yargs-parser@npm:21.0.2"
@@ -3014,6 +3021,7 @@ __metadata:
     "@types/js-yaml": "npm:^4.0.5"
     "@types/node": "npm:^16.0.0"
     "@types/supertest": "npm:^2.0.11"
+    "@types/uuid": "npm:^9"
     "@typescript-eslint/eslint-plugin": "npm:^5.0.0"
     "@typescript-eslint/parser": "npm:^5.0.0"
     "@yarnpkg/sdks": "npm:^3.0.0"
@@ -3048,6 +3056,7 @@ __metadata:
     tsconfig-paths: "npm:4.0.0"
     typeorm: "npm:^0.3.7"
     typescript: "npm:^4.3.5"
+    uuid: "npm:^9.0.1"
     webpack: "npm:^5.89.0"
     xlsx: "npm:^0.18.5"
   languageName: unknown
@@ -9477,7 +9486,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"uuid@npm:^9.0.0":
+"uuid@npm:^9.0.0, uuid@npm:^9.0.1":
   version: 9.0.1
   resolution: "uuid@npm:9.0.1"
   bin:
