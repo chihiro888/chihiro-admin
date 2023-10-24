@@ -29,6 +29,7 @@
     "@iconify/react": "4.0.0",
     "@mui/lab": "5.0.0-alpha.100",
     "@mui/material": "5.10.6",
+    "@mui/utils": "^5.14.14",
     "@mui/x-data-grid": "5.17.3",
     "@popperjs/core": "2.11.2",
     "@reduxjs/toolkit": "1.8.3",
@@ -106,6 +107,7 @@
     "@types/react-redux": "7.1.24",
     "@typescript-eslint/eslint-plugin": "5.38.0",
     "@typescript-eslint/parser": "5.38.0",
+    "@yarnpkg/sdks": "^3.0.0",
     "eslint": "8.23.1",
     "eslint-config-next": "12.3.1",
     "eslint-config-prettier": "8.3.0",
@@ -113,23 +115,20 @@
     "eslint-import-resolver-typescript": "3.5.1",
     "eslint-plugin-import": "2.25.4",
     "next-transpile-modules": "9.0.0",
+    "node-gyp": "^9.4.0",
     "prettier": "^2.8.4",
-    "typescript": "4.8.3"
+    "typescript": "4.8.3",
+    "webpack": "^5.89.0"
   },
   "resolutions": {
     "minipass": "3.3.5",
     "@mui/x-data-grid/@mui/system": "5.4.1",
-    "react-credit-cards/prop-types": "15.7.2",
-    "react-hot-toast/goober/csstype": "3.0.10",
-    "recharts/react-smooth/prop-types": "15.6.0",
-    "react-draft-wysiwyg/html-to-draftjs/immutable": "3.x.x || 4.x.x",
-    "react-draft-wysiwyg/draftjs-utils/immutable": "3.x.x || 4.x.x",
-    "@emotion/react/@emotion/babel-plugin/@babel/core": "7.0.0",
-    "@emotion/react/@emotion/babel-plugin/@babel/plugin-syntax-jsx/@babel/core": "7.0.0"
+    "react-credit-cards/prop-types": "15.7.2"
   },
   "overrides": {
     "react-credit-cards": {
       "react": "$react"
     }
-  }
+  },
+  "packageManager": "yarn@4.0.0"
 }

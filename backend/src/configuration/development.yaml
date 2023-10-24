@@ -5,11 +5,11 @@ http:
 session_store: 'database'
 
 db:
-  host: 'localhost'
-  port: 4001
-  username: 'docker'
-  password: 'docker'
-  database: 'develop'
+  host: 'sparr0w7.titan-team.io'
+  port: 3306
+  username: 'sparr0w7'
+  password: 'xkdlxks12!@'
+  database: 'metavian'
   session:
     secretKey: 'b3aa9ad4-c8e9-4715-9c3f-75d91fe86471'
 
