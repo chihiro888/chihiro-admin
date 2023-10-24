@@ -1,3 +1,6 @@
+# production settings
+src/configuration/production.yaml
+
 # compiled output
 /dist
 /node_modules
@@ -11,6 +14,7 @@
 !.yarn/versions
 !.yarn/cache
 
+# https://yarnpkg.com/getting-started/qa#which-files-should-be-gitignored
 # 아래를 코멘트하여 .pnp.*를 깃허브에 연동시 Zero install로 관리(의존성 설치 불필요)
 # .pnp.*
 
@@ -49,3 +53,7 @@ lerna-debug.log*
 
 # Logo
 !upload/9415e64f-5328-4706-909f-abc34fba1427.png
+
+# Backend
+!upload/.keep
+upload/*
