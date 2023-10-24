@@ -48,12 +48,12 @@ const RAW_RUNTIME_STATE =
           ["@typescript-eslint/parser", "virtual:44b469eadfa8be85e65fd1f4659e75acb6421b9371facf8a84ddc9324b6953938a3210389f99ae7a7a773c037f7811dd1738c4ac914430a6e41429731ecdd5d3#npm:5.62.0"],\
           ["@yarnpkg/sdks", "npm:3.0.0"],\
           ["bcrypt", "npm:5.1.1"],\
+          ["bignumber.js", "npm:4.0.4"],\
           ["class-transformer", "npm:0.5.1"],\
           ["class-validator", "npm:0.13.2"],\
           ["connect-redis", "virtual:44b469eadfa8be85e65fd1f4659e75acb6421b9371facf8a84ddc9324b6953938a3210389f99ae7a7a773c037f7811dd1738c4ac914430a6e41429731ecdd5d3#npm:7.1.0"],\
           ["connect-typeorm", "virtual:44b469eadfa8be85e65fd1f4659e75acb6421b9371facf8a84ddc9324b6953938a3210389f99ae7a7a773c037f7811dd1738c4ac914430a6e41429731ecdd5d3#npm:2.0.0"],\
           ["cpx", "npm:1.5.0"],\
-          ["cross-env", "npm:7.0.3"],\
           ["eslint", "npm:8.52.0"],\
           ["eslint-config-prettier", "virtual:44b469eadfa8be85e65fd1f4659e75acb6421b9371facf8a84ddc9324b6953938a3210389f99ae7a7a773c037f7811dd1738c4ac914430a6e41429731ecdd5d3#npm:8.10.0"],\
           ["eslint-plugin-prettier", "virtual:44b469eadfa8be85e65fd1f4659e75acb6421b9371facf8a84ddc9324b6953938a3210389f99ae7a7a773c037f7811dd1738c4ac914430a6e41429731ecdd5d3#npm:4.2.1"],\
@@ -3809,6 +3809,13 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["bignumber.js", [\
+      ["npm:4.0.4", {\
+        "packageLocation": "../../../.yarn/berry/cache/bignumber.js-npm-4.0.4-a6a8fa7ae5-10c0.zip/node_modules/bignumber.js/",\
+        "packageDependencies": [\
+          ["bignumber.js", "npm:4.0.4"]\
+        ],\
+        "linkType": "HARD"\
+      }],\
       ["npm:9.0.0", {\
         "packageLocation": "../../../.yarn/berry/cache/bignumber.js-npm-9.0.0-ce190bcd7c-10c0.zip/node_modules/bignumber.js/",\
         "packageDependencies": [\
@@ -4228,12 +4235,12 @@ const RAW_RUNTIME_STATE =
           ["@typescript-eslint/parser", "virtual:44b469eadfa8be85e65fd1f4659e75acb6421b9371facf8a84ddc9324b6953938a3210389f99ae7a7a773c037f7811dd1738c4ac914430a6e41429731ecdd5d3#npm:5.62.0"],\
           ["@yarnpkg/sdks", "npm:3.0.0"],\
           ["bcrypt", "npm:5.1.1"],\
+          ["bignumber.js", "npm:4.0.4"],\
           ["class-transformer", "npm:0.5.1"],\
           ["class-validator", "npm:0.13.2"],\
           ["connect-redis", "virtual:44b469eadfa8be85e65fd1f4659e75acb6421b9371facf8a84ddc9324b6953938a3210389f99ae7a7a773c037f7811dd1738c4ac914430a6e41429731ecdd5d3#npm:7.1.0"],\
           ["connect-typeorm", "virtual:44b469eadfa8be85e65fd1f4659e75acb6421b9371facf8a84ddc9324b6953938a3210389f99ae7a7a773c037f7811dd1738c4ac914430a6e41429731ecdd5d3#npm:2.0.0"],\
           ["cpx", "npm:1.5.0"],\
-          ["cross-env", "npm:7.0.3"],\
           ["eslint", "npm:8.52.0"],\
           ["eslint-config-prettier", "virtual:44b469eadfa8be85e65fd1f4659e75acb6421b9371facf8a84ddc9324b6953938a3210389f99ae7a7a773c037f7811dd1738c4ac914430a6e41429731ecdd5d3#npm:8.10.0"],\
           ["eslint-plugin-prettier", "virtual:44b469eadfa8be85e65fd1f4659e75acb6421b9371facf8a84ddc9324b6953938a3210389f99ae7a7a773c037f7811dd1738c4ac914430a6e41429731ecdd5d3#npm:4.2.1"],\
@@ -4880,16 +4887,6 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../../.yarn/berry/cache/create-require-npm-1.1.1-839884ca2e-10c0.zip/node_modules/create-require/",\
         "packageDependencies": [\
           ["create-require", "npm:1.1.1"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
-    ["cross-env", [\
-      ["npm:7.0.3", {\
-        "packageLocation": "../../../.yarn/berry/cache/cross-env-npm-7.0.3-96d81820f4-10c0.zip/node_modules/cross-env/",\
-        "packageDependencies": [\
-          ["cross-env", "npm:7.0.3"],\
-          ["cross-spawn", "npm:7.0.3"]\
         ],\
         "linkType": "HARD"\
       }]\

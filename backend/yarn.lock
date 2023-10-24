@@ -2634,6 +2634,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"bignumber.js@npm:4.0.4":
+  version: 4.0.4
+  resolution: "bignumber.js@npm:4.0.4"
+  checksum: 03af24331654619b8e4df3507ccc72fbf8ae388f1591c7d5606511886aa65d4d04c62ad231f2c9627516f355c26ea300e46fd75e8e7d73780d75518e65615cbc
+  languageName: node
+  linkType: hard
+
 "bignumber.js@npm:9.0.0":
   version: 9.0.0
   resolution: "bignumber.js@npm:9.0.0"
@@ -3026,12 +3033,12 @@ __metadata:
     "@typescript-eslint/parser": "npm:^5.0.0"
     "@yarnpkg/sdks": "npm:^3.0.0"
     bcrypt: "npm:^5.0.1"
+    bignumber.js: "npm:4.0.4"
     class-transformer: "npm:^0.5.1"
     class-validator: "npm:^0.13.2"
     connect-redis: "npm:^7.1.0"
     connect-typeorm: "npm:^2.0.0"
     cpx: "npm:^1.5.0"
-    cross-env: "npm:^7.0.3"
     eslint: "npm:^8.0.1"
     eslint-config-prettier: "npm:^8.3.0"
     eslint-plugin-prettier: "npm:^4.0.0"
@@ -3589,19 +3596,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cross-env@npm:^7.0.3":
-  version: 7.0.3
-  resolution: "cross-env@npm:7.0.3"
-  dependencies:
-    cross-spawn: "npm:^7.0.1"
-  bin:
-    cross-env: src/bin/cross-env.js
-    cross-env-shell: src/bin/cross-env-shell.js
-  checksum: f3765c25746c69fcca369655c442c6c886e54ccf3ab8c16847d5ad0e91e2f337d36eedc6599c1227904bf2a228d721e690324446876115bc8e7b32a866735ecf
-  languageName: node
-  linkType: hard
-
-"cross-spawn@npm:7.0.3, cross-spawn@npm:^7.0.0, cross-spawn@npm:^7.0.1, cross-spawn@npm:^7.0.2, cross-spawn@npm:^7.0.3":
+"cross-spawn@npm:7.0.3, cross-spawn@npm:^7.0.0, cross-spawn@npm:^7.0.2, cross-spawn@npm:^7.0.3":
   version: 7.0.3
   resolution: "cross-spawn@npm:7.0.3"
   dependencies:
