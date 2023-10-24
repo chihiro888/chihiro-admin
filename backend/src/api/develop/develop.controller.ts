@@ -4,6 +4,7 @@ import {
   Controller,
   Delete,
   Get,
+  HttpStatus,
   Post,
   Put,
   Query,
@@ -14,7 +15,6 @@ import { Response } from 'express'
 
 // ** Dto
 import { GetSampleDto } from './dto/get-sample.dto'
-import { GetSampleListDto } from './dto/get-sample-list.dto'
 import { CreateSampleDto } from './dto/create-sample.dto'
 import { UpdateSampleDto } from './dto/update-sample.dto'
 import { DeleteSampleDto } from './dto/delete-sample.dto'
@@ -33,15 +33,11 @@ export class DevelopController {
   @ApiOperation({ summary: 'summary' })
   async getSample(@Res() res: Response, @Query() dto: GetSampleDto) {
     const result = await this.developService.getSample(dto)
-    res.status(result.statusCode).json(result)
-  }
-
-  // ANCHOR get sample list
-  @Get('getSampleList')
-  @ApiOperation({ summary: 'summary' })
-  async getSampleList(@Res() res: Response, @Query() dto: GetSampleListDto) {
-    const result = await this.developService.getSampleList(dto)
-    res.status(result.statusCode).json(result)
+    res.status(HttpStatus.OK).json({
+      statusCode: HttpStatus.OK,
+      message: result.message,
+      data: result.data
+    })
   }
 
   // ANCHOR create sample
@@ -49,7 +45,11 @@ export class DevelopController {
   @ApiOperation({ summary: 'summary' })
   async createSample(@Res() res: Response, @Body() dto: CreateSampleDto) {
     const result = await this.developService.createSample(dto)
-    res.status(result.statusCode).json(result)
+    res.status(HttpStatus.OK).json({
+      statusCode: HttpStatus.OK,
+      message: result.message,
+      data: result.data
+    })
   }
 
   // ANCHOR update sample
@@ -57,7 +57,11 @@ export class DevelopController {
   @ApiOperation({ summary: 'summary' })
   async updateSample(@Res() res: Response, @Body() dto: UpdateSampleDto) {
     const result = await this.developService.updateSample(dto)
-    res.status(result.statusCode).json(result)
+    res.status(HttpStatus.OK).json({
+      statusCode: HttpStatus.OK,
+      message: result.message,
+      data: result.data
+    })
   }
 
   // ANCHOR delete sample
@@ -65,6 +69,10 @@ export class DevelopController {
   @ApiOperation({ summary: 'summary' })
   async deleteSample(@Res() res: Response, @Query() dto: DeleteSampleDto) {
     const result = await this.developService.deleteSample(dto)
-    res.status(result.statusCode).json(result)
+    res.status(HttpStatus.OK).json({
+      statusCode: HttpStatus.OK,
+      message: result.message,
+      data: result.data
+    })
   }
 }

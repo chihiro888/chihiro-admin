@@ -1,19 +1,17 @@
 // ** Module
-import { HttpStatus, Inject, Injectable } from '@nestjs/common'
+import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common'
 import { DataSource } from 'typeorm'
 
 // ** Dto
 import { GetSampleDto } from './dto/get-sample.dto'
-import { GetSampleListDto } from './dto/get-sample-list.dto'
 import { CreateSampleDto } from './dto/create-sample.dto'
 import { UpdateSampleDto } from './dto/update-sample.dto'
 import { DeleteSampleDto } from './dto/delete-sample.dto'
 
 // ** Util
-import { handleError } from 'src/common/util'
 
 // ** Interface
-import { Result } from 'src/common/interface'
+import { CommonResult } from 'src/common/interface'
 
 @Injectable()
 export class DevelopService {
@@ -23,103 +21,90 @@ export class DevelopService {
   ) {}
 
   // ANCHOR get sample
-  async getSample(dto: GetSampleDto): Promise<Result> {
-    const queryRunner = this.datasource.createQueryRunner()
-    await queryRunner.startTransaction()
-    try {
-      // TODO 코드를 작성하십시오.
-
-      return {
-        statusCode: HttpStatus.OK,
-        message: '',
-        data: null
+  async getSample(dto: GetSampleDto): Promise<CommonResult> {
+    await this.datasource.transaction(async (transactionalEntityManager) => {
+      try {
+        // TODO 코드를 작성하십시오.
+        // const entity = await transactionalEntityManager
+        //   .getRepository(Entity)
+        // if ("validation false") {
+        //   throw new HttpException('message', HttpStatus.BAD_REQUEST)
+        // }
+        // await transactionalEntityManager.getRepository(Entity).save(entity)
+      } catch (error) {
+        throw new HttpException(error.message, error.status)
       }
-    } catch (error) {
-      handleError(queryRunner, error)
-    } finally {
-      await queryRunner.release()
-    }
-  }
+    })
 
-  // ANCHOR get sample list
-  async getSampleList(dto: GetSampleListDto): Promise<Result> {
-    const queryRunner = this.datasource.createQueryRunner()
-    await queryRunner.startTransaction()
-    try {
-      // TODO 코드를 작성하십시오.
-
-      return {
-        statusCode: HttpStatus.OK,
-        message: '',
-        data: null
-      }
-    } catch (error) {
-      handleError(queryRunner, error)
-    } finally {
-      await queryRunner.release()
+    return {
+      message: '',
+      data: null
     }
   }
 
   // ANCHOR create sample
-  async createSample(dto: CreateSampleDto): Promise<Result> {
-    const queryRunner = this.datasource.createQueryRunner()
-    await queryRunner.startTransaction()
-    try {
-      // TODO 코드를 작성하십시오.
-
-      await queryRunner.commitTransaction()
-
-      return {
-        statusCode: HttpStatus.OK,
-        message: '',
-        data: null
+  async createSample(dto: CreateSampleDto): Promise<CommonResult> {
+    await this.datasource.transaction(async (transactionalEntityManager) => {
+      try {
+        // TODO 코드를 작성하십시오.
+        // const entity = await transactionalEntityManager
+        //   .getRepository(Entity)
+        // if ("validation false") {
+        //   throw new HttpException('message', HttpStatus.BAD_REQUEST)
+        // }
+        // await transactionalEntityManager.getRepository(Entity).save(entity)
+      } catch (error) {
+        throw new HttpException(error.message, error.status)
       }
-    } catch (error) {
-      handleError(queryRunner, error)
-    } finally {
-      await queryRunner.release()
+    })
+
+    return {
+      message: '',
+      data: null
     }
   }
 
   // ANCHOR update sample
-  async updateSample(dto: UpdateSampleDto): Promise<Result> {
-    const queryRunner = this.datasource.createQueryRunner()
-    await queryRunner.startTransaction()
-    try {
-      // TODO 코드를 작성하십시오.
-
-      await queryRunner.commitTransaction()
-
-      return {
-        statusCode: HttpStatus.OK,
-        message: '',
-        data: null
+  async updateSample(dto: UpdateSampleDto): Promise<CommonResult> {
+    await this.datasource.transaction(async (transactionalEntityManager) => {
+      try {
+        // TODO 코드를 작성하십시오.
+        // const entity = await transactionalEntityManager
+        //   .getRepository(Entity)
+        // if ("validation false") {
+        //   throw new HttpException('message', HttpStatus.BAD_REQUEST)
+        // }
+        // await transactionalEntityManager.getRepository(Entity).save(entity)
+      } catch (error) {
+        throw new HttpException(error.message, error.status)
       }
-    } catch (error) {
-      handleError(queryRunner, error)
-    } finally {
-      await queryRunner.release()
+    })
+
+    return {
+      message: '',
+      data: null
     }
   }
 
   // ANCHOR delete sample
-  async deleteSample(dto: DeleteSampleDto): Promise<Result> {
-    const queryRunner = this.datasource.createQueryRunner()
-    await queryRunner.startTransaction()
-    try {
-      // TODO 코드를 작성하십시오.
-
-      await queryRunner.commitTransaction()
-
-      return {
-        statusCode: HttpStatus.OK,
-        message: '',
-        data: null
+  async deleteSample(dto: DeleteSampleDto): Promise<CommonResult> {
+    await this.datasource.transaction(async (transactionalEntityManager) => {
+      try {
+        // TODO 코드를 작성하십시오.
+        // const entity = await transactionalEntityManager
+        //   .getRepository(Entity)
+        // if ("validation false") {
+        //   throw new HttpException('message', HttpStatus.BAD_REQUEST)
+        // }
+        // await transactionalEntityManager.getRepository(Entity).save(entity)
+      } catch (error) {
+        throw new HttpException(error.message, error.status)
       }
-    } catch (error) {
-      handleError(queryRunner, error)
-    } finally {
-      await queryRunner.release()
+    })
+
+    return {
+      message: '',
+      data: null
     }
   }
 }

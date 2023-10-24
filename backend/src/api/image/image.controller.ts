@@ -8,7 +8,8 @@ import {
   UseInterceptors,
   UploadedFiles,
   Get,
-  Query
+  Query,
+  HttpStatus
 } from '@nestjs/common'
 import { ApiConsumes, ApiOperation, ApiTags } from '@nestjs/swagger'
 import { Response } from 'express'
@@ -46,7 +47,11 @@ export class ImageController {
     @UploadedFiles() files
   ) {
     const result = await this.imageService.upload(files, dto.note)
-    res.status(result.statusCode).json(result)
+    res.status(HttpStatus.OK).json({
+      statusCode: HttpStatus.OK,
+      message: result.message,
+      data: result.data
+    })
   }
 
   // ANCHOR get image list
@@ -56,6 +61,10 @@ export class ImageController {
   @ApiOperation({ summary: '이미지 리스트 조회 (시스템 관리자 기능)' })
   async getImageList(@Res() res: Response, @Query() dto: GetImageListDto) {
     const result = await this.imageService.getImageList(dto)
-    res.status(result.statusCode).json(result)
+    res.status(HttpStatus.OK).json({
+      statusCode: HttpStatus.OK,
+      message: result.message,
+      data: result.data
+    })
   }
 }

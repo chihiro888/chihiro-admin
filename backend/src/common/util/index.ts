@@ -31,20 +31,3 @@ export const formatBytes = (bytes: number, decimals = 2) => {
 
   return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))}${sizes[i]}`
 }
-
-// ANCHOR handle error
-export const handleError = async (queryRunner: QueryRunner, error: any) => {
-  const message = 'An unknown error has occurred.'
-
-  // debug
-  console.log(`[ERROR] ${error}`)
-
-  // rollback
-  await queryRunner.rollbackTransaction()
-
-  // fail
-  return {
-    statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
-    message
-  }
-}

@@ -9,7 +9,8 @@ import {
   Query,
   Delete,
   Put,
-  Session
+  Session,
+  HttpStatus
 } from '@nestjs/common'
 import { ApiOperation, ApiTags } from '@nestjs/swagger'
 import { Response } from 'express'
@@ -57,7 +58,11 @@ export class AdminController {
   @ApiOperation({ summary: '시스템 관리자 존재 여부 확인' })
   async checkSystemAdmin(@Res() res: Response) {
     const result = await this.adminService.checkSystemAdmin()
-    res.status(result.statusCode).json(result)
+    res.status(HttpStatus.OK).json({
+      statusCode: HttpStatus.OK,
+      message: result.message,
+      data: result.data
+    })
   }
 
   // ANCHOR create system admin
@@ -68,7 +73,11 @@ export class AdminController {
     @Body() dto: CreateSystemAdminDto
   ) {
     const result = await this.adminService.createSystemAdmin(dto)
-    res.status(result.statusCode).json(result)
+    res.status(HttpStatus.OK).json({
+      statusCode: HttpStatus.OK,
+      message: result.message,
+      data: result.data
+    })
   }
 
   // ANCHOR login
@@ -81,12 +90,14 @@ export class AdminController {
   ) {
     const result = await this.adminService.login(dto)
 
-    if (result.statusCode === 200) {
-      session.userId = result.data.id
-      session.role = result.data.role
-    }
+    session.userId = result.data.id
+    session.role = result.data.role
 
-    res.status(result.statusCode).json(result)
+    res.status(HttpStatus.OK).json({
+      statusCode: HttpStatus.OK,
+      message: result.message,
+      data: result.data
+    })
   }
 
   // ANCHOR logout
@@ -100,11 +111,13 @@ export class AdminController {
     dto.userId = session.userId
     const result = await this.adminService.logout(dto)
 
-    if (result.statusCode === 200) {
-      session.destroy()
-    }
+    session.destroy()
 
-    res.status(result.statusCode).json(result)
+    res.status(HttpStatus.OK).json({
+      statusCode: HttpStatus.OK,
+      message: result.message,
+      data: result.data
+    })
   }
 
   // ANCHOR get admin
@@ -118,7 +131,11 @@ export class AdminController {
   ) {
     dto.userId = session.userId
     const result = await this.adminService.getAdminBySession(dto)
-    res.status(result.statusCode).json(result)
+    res.status(HttpStatus.OK).json({
+      statusCode: HttpStatus.OK,
+      message: result.message,
+      data: result.data
+    })
   }
 
   // ANCHOR update password
@@ -132,7 +149,11 @@ export class AdminController {
   ) {
     dto.userId = session.userId
     const result = await this.adminService.updatePassword(dto)
-    res.status(result.statusCode).json(result)
+    res.status(HttpStatus.OK).json({
+      statusCode: HttpStatus.OK,
+      message: result.message,
+      data: result.data
+    })
   }
 
   // ANCHOR get admin
@@ -141,7 +162,11 @@ export class AdminController {
   @ApiOperation({ summary: '관리자 상세정보 조회 (관리자 기능)' })
   async getAdmin(@Res() res: Response, @Query() dto: GetAdminDto) {
     const result = await this.adminService.getAdmin(dto)
-    res.status(result.statusCode).json(result)
+    res.status(HttpStatus.OK).json({
+      statusCode: HttpStatus.OK,
+      message: result.message,
+      data: result.data
+    })
   }
 
   // ANCHOR get admin list
@@ -150,7 +175,11 @@ export class AdminController {
   @ApiOperation({ summary: '관리자 리스트 조회 (시스템 관리자 기능)' })
   async getAdminList(@Res() res: Response, @Query() dto: GetAdminListDto) {
     const result = await this.adminService.getAdminList(dto)
-    res.status(result.statusCode).json(result)
+    res.status(HttpStatus.OK).json({
+      statusCode: HttpStatus.OK,
+      message: result.message,
+      data: result.data
+    })
   }
 
   // ANCHOR create admin
@@ -167,7 +196,11 @@ export class AdminController {
     // 액션 저장
     await this.actionService.saveAdminAction(session.userId, 'createAdmin', dto)
 
-    res.status(result.statusCode).json(result)
+    res.status(HttpStatus.OK).json({
+      statusCode: HttpStatus.OK,
+      message: result.message,
+      data: result.data
+    })
   }
 
   // ANCHOR delete admin
@@ -185,7 +218,11 @@ export class AdminController {
     // 액션 저장
     await this.actionService.saveAdminAction(session.userId, 'deleteAdmin', dto)
 
-    res.status(result.statusCode).json(result)
+    res.status(HttpStatus.OK).json({
+      statusCode: HttpStatus.OK,
+      message: result.message,
+      data: result.data
+    })
   }
 
   // ANCHOR update admin password
@@ -206,7 +243,11 @@ export class AdminController {
       dto
     )
 
-    res.status(result.statusCode).json(result)
+    res.status(HttpStatus.OK).json({
+      statusCode: HttpStatus.OK,
+      message: result.message,
+      data: result.data
+    })
   }
 
   // ANCHOR update admin username
@@ -227,7 +268,11 @@ export class AdminController {
       dto
     )
 
-    res.status(result.statusCode).json(result)
+    res.status(HttpStatus.OK).json({
+      statusCode: HttpStatus.OK,
+      message: result.message,
+      data: result.data
+    })
   }
 
   // ANCHOR update admin role
@@ -248,7 +293,11 @@ export class AdminController {
       dto
     )
 
-    res.status(result.statusCode).json(result)
+    res.status(HttpStatus.OK).json({
+      statusCode: HttpStatus.OK,
+      message: result.message,
+      data: result.data
+    })
   }
 
   // ANCHOR update admin profile
@@ -269,7 +318,11 @@ export class AdminController {
       dto
     )
 
-    res.status(result.statusCode).json(result)
+    res.status(HttpStatus.OK).json({
+      statusCode: HttpStatus.OK,
+      message: result.message,
+      data: result.data
+    })
   }
 
   // ANCHOR update admin intro
@@ -290,7 +343,11 @@ export class AdminController {
       dto
     )
 
-    res.status(result.statusCode).json(result)
+    res.status(HttpStatus.OK).json({
+      statusCode: HttpStatus.OK,
+      message: result.message,
+      data: result.data
+    })
   }
 
   // ANCHOR get login history list
@@ -302,7 +359,11 @@ export class AdminController {
     @Query() dto: GetLoginHistoryListDto
   ) {
     const result = await this.adminService.getLoginHistoryList(dto)
-    res.status(result.statusCode).json(result)
+    res.status(HttpStatus.OK).json({
+      statusCode: HttpStatus.OK,
+      message: result.message,
+      data: result.data
+    })
   }
 
   // ANCHOR get login history
@@ -314,6 +375,10 @@ export class AdminController {
     @Query() dto: GetLoginHistoryDto
   ) {
     const result = await this.adminService.getLoginHistory(dto)
-    res.status(result.statusCode).json(result)
+    res.status(HttpStatus.OK).json({
+      statusCode: HttpStatus.OK,
+      message: result.message,
+      data: result.data
+    })
   }
 }

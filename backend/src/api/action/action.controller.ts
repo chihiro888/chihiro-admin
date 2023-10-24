@@ -1,25 +1,16 @@
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 import { ActionService } from './action.service'
 import {
-  Body,
   Query,
   Controller,
   Get,
-  Post,
-  Put,
-  Delete,
   HttpStatus,
   Session,
   Res,
-  HttpException,
-  UseGuards,
-  UseInterceptors,
-  UploadedFiles
+  UseGuards
 } from '@nestjs/common'
-import { ApiConsumes } from '@nestjs/swagger'
 import { Response } from 'express'
 import { SystemAdminGuard } from 'src/common/guard/system-admin.guard'
-import SWAGGER from 'src/common/constants/swagger'
 import { GetActionListDto } from './dto/get-action-list.dto'
 
 // ANCHOR action controller
@@ -41,13 +32,13 @@ export class ActionController {
     @Query() dto: GetActionListDto
   ) {
     // get admin
-    const adminList = await this.actionService.getActionList(dto)
+    const result = await this.actionService.getActionList(dto)
 
     // return 200 response
     res.status(HttpStatus.OK).json({
       statusCode: HttpStatus.OK,
-      message: '',
-      data: adminList
+      message: result.message,
+      data: result.data
     })
   }
 }
