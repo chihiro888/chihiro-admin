@@ -2,6 +2,19 @@
 /dist
 /node_modules
 
+# dependencies
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+#!.yarn/cache
+# 아래를 코멘트하여 .pnp.*를 깃허브에 연동시 Zero install로 관리(의존성 설치 불필요)
+# .pnp.*
+
+
 # Logs
 logs
 *.log
