@@ -22,7 +22,7 @@ import Icon from 'src/@core/components/icon'
 import BlankLayout from 'src/@core/layouts/BlankLayout'
 
 // ** Demo Imports
-import AuthIllustrationWrapper from 'src/views/pages/auth/AuthIllustrationWrapper'
+import AuthIllustrationWrapper from 'src/components/custom/auth-illustration-wrapper'
 
 // ** Third Party Components
 import toast from 'react-hot-toast'
