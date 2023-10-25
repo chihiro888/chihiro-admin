@@ -182,7 +182,7 @@ sudo apt install certbot python3-certbot-nginx
 sudo certbot --nginx
 ```
 
-### server environment variable set up
+### server environment variable set up
 ```
 cp backend/src/configuration/development.yaml backend/src/configuration/production.yaml
 vi backend/src/configuration/production.yaml # 서버 접속 정보를 수정합니다.
