@@ -2,8 +2,6 @@
 
 # dependencies
 /node_modules
-/.pnp
-.pnp.js
 .yarn/*
 !.yarn/patches
 !.yarn/plugins
@@ -12,8 +10,8 @@
 !.yarn/versions
 !.yarn/cache
 
-# 아래를 코멘트하여 .pnp.*를 깃허브에 연동시 Zero install로 관리(의존성 설치 불필요)
-# .pnp.*
+# 아래를 코멘트하여 .pnp.*를 깃허브에 연동시 Zero install로 관리(의존성 설치 불필요) - next.js에서 호환 잘 안되므로 설정 금지
+.pnp.*
 
 # testing
 /coverage
