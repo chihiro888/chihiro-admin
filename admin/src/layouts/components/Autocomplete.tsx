@@ -26,7 +26,6 @@ import MuiAutocomplete, {
 import axios from 'axios'
 
 // ** Types Imports
-import { AppBarSearchType } from 'src/@fake-db/types'
 import { Settings } from 'src/@core/context/settingsContext'
 
 // ** Icon Imports
@@ -56,6 +55,14 @@ interface DefaultSuggestionsType {
     icon: string
     suggestion: string
   }[]
+}
+
+type AppBarSearchType = {
+  id: number
+  url: string
+  icon: string
+  title: string
+  category: string
 }
 
 const defaultSuggestionsData: DefaultSuggestionsType[] = [

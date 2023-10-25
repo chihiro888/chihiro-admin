@@ -1,5 +1,3 @@
-import ChangePasswordCard from 'src/views/pages/account-settings/security/ChangePasswordCard'
-
 // ** React Imports
 import { MouseEvent, useState } from 'react'
 
