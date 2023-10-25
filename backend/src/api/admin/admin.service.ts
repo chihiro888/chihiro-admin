@@ -52,7 +52,7 @@ export class AdminService {
 
     await this.datasource.transaction(async (transactionalEntityManager) => {
       try {
-        const admin = await transactionalEntityManager
+        admin = await transactionalEntityManager
           .getRepository(Admin)
           .findOne({
             where: {

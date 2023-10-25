@@ -50,7 +50,7 @@ export class ActionService {
         const offset = (dto.page - 1) * limit
 
         // count
-        const count = await transactionalEntityManager
+        count = await transactionalEntityManager
           .getRepository(HistoryAction)
           .createQueryBuilder('ha')
           .select(['count(1) as count'])
@@ -94,7 +94,7 @@ export class ActionService {
           .getRawOne()
 
         // count
-        const totalCount = await transactionalEntityManager
+        totalCount = await transactionalEntityManager
           .getRepository(HistoryAction)
           .createQueryBuilder('ha')
           .select(['count(1) as count'])
@@ -104,7 +104,7 @@ export class ActionService {
           .getRawOne()
 
         // data
-        const data = await transactionalEntityManager
+        data = await transactionalEntityManager
           .getRepository(HistoryAction)
           .createQueryBuilder('ha')
           .select([
