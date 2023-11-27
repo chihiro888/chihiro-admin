@@ -3,7 +3,6 @@ version: "3"
 services:
   cdk-db-dev:
     image: mysql:8
-    container_name: cdk-db-dev
     environment:
       # LANGUAGE OR LANG UTF-8 설정을 하지 않으면
       # docker-entrypoint-initdb.d 사용시 한글이 깨져서 데이터가 들어가게됨
@@ -21,7 +20,6 @@ services:
       - 4001:3306
   cdk-img-dev:
     image: nginx:1.23.2
-    container_name: cdk-img-dev
     ports:
       - 5001:7000
     volumes:
