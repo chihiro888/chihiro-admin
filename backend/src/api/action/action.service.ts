@@ -43,7 +43,7 @@ export class ActionService {
     let count = null
     let data = null
     let totalCount = null
-    
+
     await this.datasource.transaction(async (transactionalEntityManager) => {
       try {
         const limit = dto.limit === 0 ? 10 : dto.limit
@@ -157,7 +157,6 @@ export class ActionService {
           .limit(limit)
           .offset(offset)
           .getRawMany()
-
       } catch (error) {
         throw new HttpException(error.message, error.status)
       }
