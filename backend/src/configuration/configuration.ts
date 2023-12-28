@@ -24,6 +24,7 @@ export default () => {
       database: data.db.database,
       entities: [join(__dirname, '..', 'entities', '*.entity{.ts,.js}')],
       synchronize: false,
+      charset: 'utf8mb4_unicode_ci',
       extra: {
         connectionLimit: 10
       },
