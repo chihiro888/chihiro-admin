@@ -3047,6 +3047,7 @@ __metadata:
     jest: "npm:28.1.2"
     js-yaml: "npm:^4.1.0"
     moment: "npm:^2.29.4"
+    moment-timezone: "npm:^0.5.44"
     mysql2: "npm:^2.3.3"
     nestjs-real-ip: "npm:^2.2.0"
     node-gyp: "npm:^9.4.0"
@@ -6969,6 +6970,15 @@ __metadata:
   bin:
     mkdirp: dist/cjs/src/bin.js
   checksum: 96f551c651dd8f5f9435d53df1a7b9bfc553be769ee6da5192c37c1f303a376ef1c6996f96913d4a8d357060451d4526a346031d1919f92c58806a5fa3cd8dfe
+  languageName: node
+  linkType: hard
+
+"moment-timezone@npm:^0.5.44":
+  version: 0.5.44
+  resolution: "moment-timezone@npm:0.5.44"
+  dependencies:
+    moment: "npm:^2.29.4"
+  checksum: f29ab17576fdd3fe3ac9ff3e85b16127012033b39458a1ed3526853f46c2d9617ab2b9a29eb0fcc6b97d3108e5256a5c2d84a86c2492a553c0c101fe59066394
   languageName: node
   linkType: hard
 

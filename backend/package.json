@@ -44,6 +44,7 @@
     "express-session": "^1.17.3",
     "js-yaml": "^4.1.0",
     "moment": "^2.29.4",
+    "moment-timezone": "^0.5.44",
     "mysql2": "^2.3.3",
     "nestjs-real-ip": "^2.2.0",
     "redis": "^4.6.10",
